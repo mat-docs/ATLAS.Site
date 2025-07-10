@@ -1,0 +1,38 @@
+[build]
+command = "mkdocs build"
+publish = "site"
+
+[[headers]]
+  for = "*.min.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "*.min.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "assets/swoosh/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "assets/swoosh-black/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "search/search_index.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "assets/images/favicon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
