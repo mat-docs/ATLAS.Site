@@ -14,7 +14,12 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.tabs
-    - toc.integrate
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.prune 
+    - navigation.indexes 
+    - navigation.top
     - content.code.copy
     - content.tabs.link
     - search.suggest
