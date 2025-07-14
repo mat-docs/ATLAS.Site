@@ -7,9 +7,12 @@ site_description: '"Comprehensive technical documentation for McLaren ATLAS. Cov
 
 theme:
   name: material
-  theme:
-    logo: assets/images/logo.svg
-    favicon: assets/images/favicon.ico
+  palette:
+    scheme: default
+    primary: 'orange'
+    accent: 'blue'
+  logo: assets/images/logo.svg
+  favicon: assets/images/favicon.ico
   features:
     - navigation.sections
     - navigation.expand
@@ -25,6 +28,8 @@ theme:
     - search.suggest
     - search.highlight
 
+extra_css:
+  - stylesheets/extra.css
 
 copyright: Copyright &copy; 2025 Motion Applied Ltd.
 
@@ -53,7 +58,7 @@ nav:
       - Running Simulink Models: process/vtag/simulink.md
     - SECU4: process/secu4/index.md
   - Store:
-    - SQLRace: store/sqlrace/index.md
+    - SQLRace Server: store/sqlrace/index.md
   - Visualise: 
     - ATLAS: 
       - Overview: visualise/atlas/overview.md
@@ -128,4 +133,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mat-docs/ATLAS.Site
-  generator: false
+    - icon: fontawesome/brands/linkedin
+      link: https://uk.linkedin.com/company/motionapplied
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:sales@mclarenapplied.com
