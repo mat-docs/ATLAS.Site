@@ -57,7 +57,10 @@ nav:
       - Overview: process/vtag/introduction.md
       - Integrating with ADS: process/vtag/integrating-with-ads.md
       - Running Simulink Models: process/vtag/simulink.md
-    - SECU4: process/secu4/index.md
+    - SECU4: 
+      - Virtual Parameter Service: process/secu4/vps.md
+      - Bridge Service: process/secu4/bridge-service.md
+      - Parquet Support: process/secu4/parquet.md
   - Store:
     - SQLRace Server: store/sqlrace/index.md
   - Visualise: 
@@ -74,9 +77,33 @@ nav:
     - SECU4: 
       - Stream API: developer-resources/secu4/stream-api.md
       - Bridge Service: developer-resources/secu4/bridge-service.md
+      - Configuration API: developer-resources/secu4/configuration-api.md
+      - Support Library: developer-resources/secu4/support-library.md
     - ATLAS: 
       - SQLRace API: developer-resources/atlas/sqlrace.md
-      - Display API: developer-resources/atlas/display.md
+      - Display API: 
+        - Overview: developer-resources/atlas/display-api/index.md
+        - Tutorials:
+          -  developer-resources/atlas/devguide/createfromscratch.md
+          -  developer-resources/atlas/devguide/diagnostic.md
+          -  developer-resources/atlas/devguide/numericcompare.md
+          -  developer-resources/atlas/devguide/graphical.md
+          -  developer-resources/atlas/devguide/gauge.md
+          -  developer-resources/atlas/devguide/deploymentscript.md
+          -  developer-resources/atlas/devguide/displaypluginlibrary.md
+        - Enhancing Displays:
+          -  developer-resources/atlas/display-api/factoriesandservices.md
+          -  developer-resources/atlas/display-api/initialization.md
+          -  developer-resources/atlas/display-api/displayprops.md
+          -  developer-resources/atlas/display-api/sessions.md
+          -  developer-resources/atlas/display-api/timebasecursor.md
+          -  developer-resources/atlas/display-api/parameters.md
+          -  developer-resources/atlas/display-api/data.md
+          -  developer-resources/atlas/display-api/goodcitizenship.md
+        - Further Information:
+            -  developer-resources/atlas/display-api/coreapi.md
+            -  developer-resources/atlas/display-api/limitations.md
+        - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
       - Automation API: developer-resources/atlas/automation.md
     - RTA: 
       - REST API: developer-resources/rta/rest-api.md
