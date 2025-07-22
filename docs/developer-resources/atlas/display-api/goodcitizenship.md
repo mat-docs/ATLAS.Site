@@ -8,7 +8,7 @@ A custom display should be written to look, behave and act just like the standar
 
 In order to be a good citizen within the ATLAS ecosystem, a custom display should
 
-- Follow [MVVM](../../introduction/mvvm.md)
+- Follow [MVVM](mvvm.md)
 - Not use unsupported [private APIs](../../index.md#direct-use-of-platform-and-presentation-apis) whenever possible
 - Not do processing on the UI thread
     - Use _TaskPool_ for processing and dispatch UI updates via `SynchronizationContext` instead
@@ -21,6 +21,6 @@ In order to be a good citizen within the ATLAS ecosystem, a custom display shoul
 
 !!! tip
 
-    The [Display Plugin Library](../tutorials/displaypluginlibrary.md) demonstrates how to make a custom display a good citizen
+    The [Display Plugin Library](devguide/displaypluginlibrary.md) demonstrates how to make a custom display a good citizen
 
     Using the provided _View Model_ base classes in your own custom displays will help to ensure you follow these guidelines

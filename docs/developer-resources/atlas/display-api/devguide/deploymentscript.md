@@ -22,7 +22,7 @@ To aid development efficiency, automatically copy the custom display plugin DLL 
 
     - Add _deploy.bat_ to _scripts_ folder
 
-    ![Scripts Folder]( ../../atlas/devguide/assets/images/devguide/tutorials/scriptsfolder.png)
+    ![Scripts Folder]( assets/images/scriptsfolder.png)
 
 - Add a post build step via project settings
 
@@ -30,10 +30,10 @@ To aid development efficiency, automatically copy the custom display plugin DLL 
     call "$(SolutionDir)scripts\deploy.bat" "$(TargetDir)$(ProjectName).dll“
     ```
 
-    ![Post Build Step]( ../../atlas/devguide/assets/images/devguide/tutorials/postbuildstep.png)
+    ![Post Build Step]( assets/images/postbuildstep.png)
 
 !!! attention
 
     Special permissions are needed to write to program files, therefore you will need to run Visual Studio as Administrator
 
-    ![Run Visual Studio]( ../../atlas/devguide/assets/images/devguide/tutorials/runvisualstudio.png)
+    ![Run Visual Studio]( assets/images/runvisualstudio.png)

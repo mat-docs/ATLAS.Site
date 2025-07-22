@@ -8,7 +8,7 @@ The display plugin library provides base and utility classes that reduce the ove
 
 ## `TemplateDisplayViewModelBase` _View Model_ base class
 
-`TemplateDisplayViewModelBase` (a substitute for `DisplayPluginViewModel`) provides a template to help follow the [Data request guidelines](../detailed/data.md#data-request-guidelines) properly
+`TemplateDisplayViewModelBase` (a substitute for `DisplayPluginViewModel`) provides a template to help follow the [Data request guidelines](../data.md#data-request-guidelines) properly
 
 - Data requests are throttled to 5Hz by default 
     - Pass a different throttle interval to the constructor if the default is not suitable

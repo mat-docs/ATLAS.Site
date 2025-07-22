@@ -138,7 +138,7 @@ public sealed class ParameterViewModel : ParameterSampleViewModelBase
 
 ## Update the _View Model_ class
 
-Derive from [ParameterSampleDisplayViewModelBase](displaypluginlibrary.md#parametersampledisplayviewmodelbase-view-model-base-class) and allow parameters by specifying the [`DisplayPluginSettings`](../detailed/parameters.md) attribute
+Derive from [ParameterSampleDisplayViewModelBase](displaypluginlibrary.md#parametersampledisplayviewmodelbase-view-model-base-class) and allow parameters by specifying the [`DisplayPluginSettings`](../parameters.md) attribute
 
 ```c#
 [DisplayPluginSettings(ParametersMaxCount = 100)]
@@ -169,7 +169,7 @@ Add a post build step via project settings
 call "$(SolutionDir)scripts\deploy.bat" "$(TargetDir)CircularGauge.dll“
 ```
 
-![Post Build Step]( ../../atlas/devguide/assets/images/devguide/tutorials/circulargaugecontrolpostbuildstep.png)
+![Post Build Step]( assets/images/circulargaugecontrolpostbuildstep.png)
 
 ## Testing the display
 

@@ -19,4 +19,4 @@ The Display API currently has the following limitations
 
 !!! tip
 
-    Some of these limitations (especially around flow control) are overcome within the _View Model_ base classes provided by the [Display Plugin Library](tutorials/displaypluginlibrary.md) 
+    Some of these limitations (especially around flow control) are overcome within the _View Model_ base classes provided by the [Display Plugin Library](devguide/displaypluginlibrary.md) 

@@ -25,3 +25,25 @@ Preview the docs in a local web browser as follows:
 On windows machine, do:
 
     python -m mkdocs serve
+
+## Contributing
+
+### User Guides
+
+### Developer Resources
+
+Below outlines the structure that should be followed when contributing to developer resources.
+
+#### When should I create a new section?
+
+Each product should have its own section, containing the API documentation related to that specific product. 
+
+Where a new API has been created and needs to be documented then a new section should be created. It should follow the following structure:
+
+- Main Product
+  - APIs
+    - Overview of features available with this API and when to use
+    - Getting started with this API
+    - Endpoint/class references
+
+Role: Get other developers using and integrating quickly. 

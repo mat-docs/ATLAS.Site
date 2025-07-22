@@ -1,6 +1,6 @@
 # Numeric Compare display
 
-This tutorial demonstrates the use of [Composite Data Requests](../detailed/data.md#data-request-properties) for [Compare Sets](../detailed/sessions.md#sessions-object-model).
+This tutorial demonstrates the use of [Composite Data Requests](../data.md#data-request-properties) for [Compare Sets](../sessions.md#sessions-object-model).
 
 The existing Numeric display within ATLAS only displays values for the primary session, therefore a useful way to explore compare mode is to create a numeric like display to view the value of each display parameter for each session within a compare set.
 
@@ -73,7 +73,7 @@ public sealed class CellViewModel : BindableBase
 
 ## Update the _View Model_ class
 
-Derive from [TemplateDisplayViewModelBase](displaypluginlibrary.md#templatedisplayviewmodelbase-view-model-base-class) and allow display parameters by specifying the [`DisplayPluginSettings`](../detailed/parameters.md) attribute
+Derive from [TemplateDisplayViewModelBase](displaypluginlibrary.md#templatedisplayviewmodelbase-view-model-base-class) and allow display parameters by specifying the [`DisplayPluginSettings`](../parameters.md) attribute
 
 ```c#
     [DisplayPluginSettings(ParametersMaxCount = 100)]

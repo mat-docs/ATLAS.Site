@@ -22,14 +22,14 @@ Create a new _C# WPF User Control Library (.NET Framework)_ project with Visual 
 
     Enter _wpf_ into the Search box
 
-![Create Project](../../atlas/devguide/assets/images/devguide/tutorials/createproject.png)
+![Create Project](assets/images/createproject.png)
 
 !!! caution
 
     Create a _.NET Framework WPF_ project and not a _.Net Core WPF_ project
 
 
-![Name Project](../../atlas/devguide/assets/images/devguide/tutorials/nameproject.png)
+![Name Project](assets/images/nameproject.png)
 
 !!! attention
 
@@ -43,23 +43,23 @@ Create a new _C# WPF User Control Library (.NET Framework)_ project with Visual 
 
 Edit project settings
 
-![Project Settings](../../atlas/devguide/assets/images/devguide/tutorials/editprojectsettings.png)
+![Project Settings](assets/images/editprojectsettings.png)
 
 Click _Assembly Information..._
 
-![Project Settings](../../atlas/devguide/assets/images/devguide/tutorials/projectsettings.png)
+![Project Settings](assets/images/projectsettings.png)
 
 Modify the Title, Description and GUID (if not already set) properties
 
-![Project Settings](../../atlas/devguide/assets/images/devguide/tutorials/assemblyinformation.png)
+![Project Settings](assets/images/assemblyinformation.png)
 
 The _Title_ property corresponds to the custom display window title
 
-![Window Title](../../atlas/devguide/assets/images/devguide/tutorials/windowtitle.png)
+![Window Title](assets/images/windowtitle.png)
 
 The _Description_ property corresponds to the custom display icon tooltip
 
-![Toolbar Icon Tooltip](../../atlas/devguide/assets/images/devguide/tutorials/icontooltip.png)
+![Toolbar Icon Tooltip](assets/images/icontooltip.png)
 
 !!! attention
 
@@ -67,11 +67,11 @@ The _Description_ property corresponds to the custom display icon tooltip
 
     Use Tools->Create GUID as necessary
 
-    ![Tools Create Guid](../../atlas/devguide/assets/images/devguide/tutorials/toolscreateguid.png)
+    ![Tools Create Guid](assets/images/toolscreateguid.png)
 
     Copy Registry Format
 
-    ![Tools Create Guid](../../atlas/devguide/assets/images/devguide/tutorials/createguid.png)
+    ![Tools Create Guid](assets/images/createguid.png)
 
     Remember to remove '{' and '}' from beginning and end of the string
 
@@ -79,29 +79,29 @@ The _Description_ property corresponds to the custom display icon tooltip
 
 Manage NuGet packages of project
 
-![Manage NuGet Packages](../../atlas/devguide/assets/images/devguide/tutorials/managenugetpackages.png)
+![Manage NuGet Packages](assets/images/managenugetpackages.png)
 
 Browse to _Atlas.DisplayAPI_ NuGet package and install
 
-![Add Nuget Package](../../atlas/devguide/assets/images/devguide/tutorials/nugetpackage.png)
+![Add Nuget Package](assets/images/nugetpackage.png)
 
 Once installed the references should look similar to this
 
-![References](../../atlas/devguide/assets/images/devguide/tutorials/references.png)
+![References](assets/images/references.png)
 
 ## Add an icon for the toolbar
 
 Add a _Resources_ folder to the project
 
-![Add Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/addresourcesfolder.png)
+![Add Resources Folder](assets/images/addresourcesfolder.png)
 
 Which should look like
 
-![Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/resourcesfolder.png)
+![Resources Folder](assets/images/resourcesfolder.png)
 
 Add an existing item to the Resources folder
 
-![Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/addiconasexistingitem.png)
+![Resources Folder](assets/images/addiconasexistingitem.png)
 
 !!! note
 
@@ -109,15 +109,15 @@ Add an existing item to the Resources folder
 
 Select and _Add_ icon
 
-![Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/selectandaddicon.png)
+![Resources Folder](assets/images/selectandaddicon.png)
 
 Which should look like
 
-![Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/icon.png)
+![Resources Folder](assets/images/icon.png)
 
 Ensure _Build Action_ is set to _Resource_
 
-![Resources Folder](../../atlas/devguide/assets/images/devguide/tutorials/iconproperties.png)
+![Resources Folder](assets/images/iconproperties.png)
 
 ## Configure _View_ class
 
@@ -172,11 +172,11 @@ The _View Model_ class provides the business logic behind the custom visualizati
 
 Add a _New Item_ to the project
 
-![Add New Item](../../atlas/devguide/assets/images/devguide/tutorials/addnewitem.png)
+![Add New Item](assets/images/addnewitem.png)
 
 Add a _Class_ named _SampleDisplayViewModel_ to the project
 
-![Add Class](../../atlas/devguide/assets/images/devguide/tutorials/addviewmodelclass.png)
+![Add Class](assets/images/addviewmodelclass.png)
 
 !!! important
 
@@ -230,7 +230,7 @@ The _PluginModule_ class provides the entry point for ATLAS to initialise the cu
 - Decorate class with _Export_ attribute (provided by _MEF_)
     - Add a reference to _System.ComponentModel.Composition_ if required
 
-    ![Project References](../../atlas/devguide/assets/images/devguide/tutorials/mefreference.png)
+    ![Project References](assets/images/mefreference.png)
 
 - Override _Load_ method and register display plugin 
 
@@ -296,12 +296,12 @@ namespace SampleDisplayPlugin
     - Add a post build step to automatically copy, see [Deployment Script](deploymentscript.md)
 - Debug using ATLAS 10 (updating the project settings to start ATLAS on debugging)
 
-    ![Debug Project Settings](../../atlas/devguide/assets/images/devguide/tutorials/debugprojectsettings.png)
+    ![Debug Project Settings](assets/images/debugprojectsettings.png)
 
 - Assuming all went well, there should be a toolbar icon for the custom display in ATLAS
 
-    ![Icon](../../atlas/devguide/assets/images/devguide/tutorials/icontooltip.png)
+    ![Icon](assets/images/icontooltip.png)
 
 - Clicking the custom display toolbar icon should display a window containing the contents of the _View_
 
-    ![Display Window](../../atlas/devguide/assets/images/devguide/tutorials/customdisplaywindow.png)
+    ![Display Window](assets/images/customdisplaywindow.png)

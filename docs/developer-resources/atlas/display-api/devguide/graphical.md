@@ -22,7 +22,7 @@ Start the tutorial by [creating a new display from scratch](createfromscratch.md
 
 ### Update the _View Model_ class
 
-Derive from [TemplateDisplayViewModelBase](displaypluginlibrary.md#templatedisplayviewmodelbase-view-model-base-class) and allow parameters by specifying the [`DisplayPluginSettings`](../detailed/parameters.md) attribute
+Derive from [TemplateDisplayViewModelBase](displaypluginlibrary.md#templatedisplayviewmodelbase-view-model-base-class) and allow parameters by specifying the [`DisplayPluginSettings`](../parameters.md) attribute
 
 ```c#
     [DisplayPluginSettings(ParametersMaxCount = 2)]
@@ -51,11 +51,11 @@ This example shows how to display a dynamic representation of the PCU8D shift li
 
 The LEDs are represented by a single parameter (e.g. `NLEDStatusAll`, verify from ATLAS settings or ask your System Administrator)
 
-![PCU8D Settings]( ../../atlas/devguide/assets/images/devguide/tutorials/pcu8dsettings.png)
+![PCU8D Settings]( assets/images/pcu8dsettings.png)
 
 Bit positions are mapped to the following LEDs
 
-![PCU8D Bit Mapping]( ../../atlas/devguide/assets/images/devguide/tutorials/pcu8dbitmapping.png)
+![PCU8D Bit Mapping]( assets/images/pcu8dbitmapping.png)
 
 ### Add _LED View Model_ class
 
@@ -381,7 +381,7 @@ The simplest way to display a trace is to fetch all the samples of a parameter a
 
 The trouble is, when viewing multiple laps of a high frequency parameter there could be 100,000+ samples, however even at 4K resolution we couldn't possibly resolve that many samples. Therefore we should re-sample the parameter to a more manageable resolution, e.g. 1000 data points.
 
-Therefore by making a [_data request_](../detailed/data.md#data-request-properties) instead of a _sample data request_ it doesn't matter how many actual samples there are within the time range
+Therefore by making a [_data request_](../data.md#data-request-properties) instead of a _sample data request_ it doesn't matter how many actual samples there are within the time range
 
 - The time range is divided into an equal time interval per data point, the sample mode determines how the actual samples that fall within each interval are summarized.
 
