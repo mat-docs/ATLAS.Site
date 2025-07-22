@@ -1,68 +1,78 @@
-# Overview
+# Introduction to the ATLAS Display API
 
-This section is a detailed guide to the [Display API](https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html).
+ATLAS ships with a range of standard displays such as: Waveform, Scatterplot and Numeric to name a few.
 
-!!! tip
+In addition to standard displays, ATLAS is fully customizable, allowing custom displays to be added via plugins created using the ATLAS Display API.
 
-    Have you read the [Introduction](../index.md)?
-    
-    Start there to review the architecture and key concepts.
+Using the Display API, custom displays can be made to look, behave and act just like the standard displays with full access to session and parameter data for custom visualizations tailored to specific third party needs.
 
-The Display API is used by third parties to create custom display visualizations.
+## Plugins
 
-Custom displays are written in _C#_ using _WPF_ with _MVVM_, see [Required Knowledge](../introduction/prerequisites.md#required-knowledge)
+ATLAS is a modular platform, the ATLAS application executable provides a user interface shell whereby the majority of functionality is provided by plugins.
 
-The Display API is published as a [NuGet](https://github.com/mat-docs/packages) package on GitHub.
+There are essentially three types of plugin
 
-## Tutorials
+- Display Plugins, such as: Waveform, Scatterplot, Numeric
+- Functionality Plugins, such as: Session Browser, Parameter Browser, Alarms
+- Recorder Plugins, such as: DTS, File, Advanced Streams
 
-A number of tutorials are provided to help explain and demonstrate the [features](../introduction/features.md) of the Display API
+A plugin is a standard C# library DLL that exposes an entry point class derived from a suitable base class provided by the ATLAS APIs.
 
-- Creating a plugin for a custom display from scratch, see [Tutorial 1](tutorials/createfromscratch.md)
-- Diagnostic display to explore Display API features, see [Tutorial 2](tutorials/diagnostic.md)
-- Numeric display that supports compare mode, see [Tutorial 3](tutorials/numericcompare.md)
-- Graphical display that demonstrates richer, more real world visualizations, see [Tutorial 4](tutorials/graphical.md)
-- Quick to create display that visualizes parameter value changes, see [Tutorial 5](tutorials/gauge.md)
+At startup, ATLAS will dynamically load compatible plugins that reside within the ATLAS program files folder. 
 
-### Tutorials Setup
+## Architecture Overview
 
-Before completing the tutorials, you'll need to set up a few things.
+![Architecture](devguide/assets/images/architecture.png)
 
-#### GitHub Account
+All ATLAS functionality is built on top of the ATLAS Platform and Presentation APIs. These APIs should be seen as "internal/private APIs" that are actively developed and changed between each ATLAS release.
 
-These tutorials use packages and code hosted on [GitHub](https://github.com/mat-docs).
+The Display API is a thin wrapper over these internal APIs, providing a stable and versioned API for third parties to develop custom display plugins. Changes to the Display API is purely additive, meaning custom display plugins remain compatible with future releases of ATLAS.
 
 !!! note
 
-    You'll need a free account to access them.
+    All data access is through the SQL Race API.
 
-#### Development Environment
+### Direct use of Platform and Presentation APIs
 
-- [Visual Studio](../introduction/prerequisites.md#visual-studio) installed
-- [Access to Display API NuGet package](../introduction/prerequisites.md#display-api-nuget-package)
-- [ATLAS](../introduction/prerequisites.md#atlas) installed
+!!! attention
 
-#### Code Samples
+    The Display API is by its very nature a subset of the internal APIs.
 
-Clone our [Atlas.DisplayAPI.Examples](https://github.com/mat-docs/Atlas.DisplayAPI.Examples) git repo for pre-built versions of the tutorials.
+    When coming across a feature that is not present in the Display API, but is available in the internal APIs, it may be tempting to just reference the internal APIs and use them directly.
 
-#### Toolbar Icon
+    However, as ATLAS continues to be developed, we reserve the right to change the internal APIs as we see fit without regard for backwards compatibility, There is a high chance that future releases of ATLAS will become incompatible with custom display plugins that use internal APIs, with the most likely consequence being crashes on startup.
 
-Create or find an icon for the custom display.
+    Before calling internal APIs, please contact McLaren Applied for advice, whereby alternative APIs may be recommended, or future enhancements to the Display API will be considered.
 
-!!! tip
+## Display API Features
 
-    A 16x16 pixel PNG file (preferably in non dark colours)
+Here are the main features of the Display API that can be used to create custom displays.
 
-## Detailed explanations of common topics
+### Native look and feel
+Custom displays look, behave and act like standard displays.
 
-The following common topics are explained separately to avoid repetition and to allow for easier reference
+### Fully integrated into ATLAS 
+- Appear on main Toolbar
+- Docking support
+- Access to Parameter Browser
+- Properties Window support
+- Saved to Workbook
 
-- [Factories and Services](detailed/factoriesandservices.md)
-- [Initialization, state and notifications](detailed/initialization.md)
-- [Working with Display Properties](detailed/displayprops.md)
-- [Working with Sessions](detailed/sessions.md)
-- [Working with Timebase and Cursor](detailed/timebasecursor.md)
-- [Working with Display Parameters](detailed/parameters.md)
-- [Working with Data](detailed/data.md)
-- [Recommendations for creating a well behaved Custom Display](detailed/goodcitizenship.md)
+### Track common actions via Events
+- Session loaded/unloaded/associated
+- Parameters added/removed
+- Timebase updated
+- Cursor position changed
+- Page activated
+
+### Fetch Parameter Samples and Data
+- Just for primary session or composite sessions
+- Actual or resampled data
+
+## Display API deployment
+
+The Display API is deployed as a NuGet package hosted on GitHub, see [https://github.com/mat-docs/packages](https://github.com/mat-docs/packages)
+
+The NuGet packages contains the following
+
+![NuGet Contents](devguide/assets/images/package.png)

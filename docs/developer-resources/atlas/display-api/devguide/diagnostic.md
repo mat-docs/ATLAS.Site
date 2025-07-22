@@ -1,6 +1,6 @@
 # Enhanced Diagnostic display
 
-A useful way to explore the [features](../../introduction/features.md) of the Display API is to create a diagnostic display to exercise various aspects of the API and log information when interacting with the display and view the results.
+A useful way to explore the [features](../index.md#display-api-features) of the Display API is to create a diagnostic display to exercise various aspects of the API and log information when interacting with the display and view the results.
 
 !!! note
 
@@ -34,7 +34,7 @@ Modify the _XAML_ of the _View_ to contain a `TextBox` to view the diagnostic lo
 </UserControl>
 ```
 
-Add a `string` property named `LogText` to the _View Model_ (see [Display Properties](../detailed/displayprops.md) for further information)
+Add a `string` property named `LogText` to the _View Model_ (see [Display Properties](../displayprops.md) for further information)
 
 ```c#
 [Browsable(false)]
@@ -193,23 +193,23 @@ public override void OnActiveDisplayPageChanged(bool isActive)
 
 Add overrides for all the notification methods as detailed in the following sections
 
-### [Initialization and  state change notifications](../detailed/initialization.md)
+### [Initialization and  state change notifications](../initialization.md)
 - `OnInitialised()`
 - `OnActiveDisplayPageChanged()`
 - `OnCanRenderDisplayChanged()`
 
-### [Session notifications](../detailed/sessions.md)
+### [Session notifications](../sessions.md)
 - `OnCompositeSessionLoaded()`
 - `OnCompositeSessionUnLoaded()`
 - `OnCompositeSessionContainerChanged()`
 
-### [Display Parameter notifications](../detailed/parameters.md)
+### [Display Parameter notifications](../parameters.md)
 - `OnParameterContainerAdded()`
 - `OnParameterContainerRemoved()`
 - `OnParameterAdded()`
 - `OnParameterRemoved()`
 
-### [Timebase and cursor notifications](../detailed/timebasecursor.md)
+### [Timebase and cursor notifications](../timebasecursor.md)
 - `OnCursorDataPointChanged(ICompositeSession)`
 - `OnSessionTimeRangeChanged(ICompositeSession)`
 
@@ -230,7 +230,7 @@ public SampleDisplayViewModel(ISessionCursorService sessionCursorService)
 
 !!! note
 
-    See [Factories and Services](../detailed/factoriesandservices.md) for an explanation of other services
+    See [Factories and Services](../factoriesandservices.md) for an explanation of other services
  
 Add a `Button` to the _View XAML_
 
@@ -274,7 +274,7 @@ private void OnCentreCursor()
 
 ## Exploring data requests
 
-[Data Requests](../detailed/data.md) can be explored by logging the value of parameters when the cursor is changed.
+[Data Requests](../data.md) can be explored by logging the value of parameters when the cursor is changed.
 
 Ensure display parameters are allowed by adding the _DisplayPluginSettings_ attribute to the _View Model_
 
@@ -381,7 +381,7 @@ To view the parameter values
 
 The tutorial code also demonstrates the following API features
 
-- [Working with Display Properties](../detailed/displayprops.md)
+- [Working with Display Properties](../displayprops.md)
     - Demonstrates adding and handling properties within the the properties window
 - Tracking timebase changes and logging the minimum and maximum values of configured parameters
     - Demonstrates issuing and handling data requests between two timestamps
