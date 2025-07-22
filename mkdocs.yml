@@ -131,7 +131,7 @@ nav:
         - Data Services: extending-atlas/rta/introduction/data-services.md
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
-  - News: news/index.md
+  - News: blog/index.md
   - Downloads: https://portal.mclarenapplied.com/
 
 
@@ -169,3 +169,6 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@mclarenapplied.com
+
+plugins:
+  - blog
