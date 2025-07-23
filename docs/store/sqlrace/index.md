@@ -1,4 +1,4 @@
-# Overview
+# SQLRace Server
 
 This is a placeholder page for our new website structure. Feel free to explore.
 

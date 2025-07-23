@@ -41,6 +41,7 @@ nav:
     - Product Variants and Packages: getting-started/product-variants.md
     - Core Concepts: getting-started/core-concepts.md
     - Security: getting-started/security.md
+    - System Requirements: getting-started/sysreqs.md
     - Support: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
   - Distribute & Capture: 
     - System Monitor: 
@@ -66,11 +67,41 @@ nav:
     - SQLRace Server: store/sqlrace/index.md
   - Visualise: 
     - ATLAS: 
-      - Overview: visualise/atlas/overview.md
-      - Fundamentals: visualise/atlas/fundamentals.md
-      - Working with Data: visualise/atlas/working-with-data.md
-      - Visualisation Tools: visualise/atlas/visualisation-tools.md
-      - Troubleshooting: visualise/atlas/troubleshooting.md
+      - Overview: visualise/atlas/index.md
+      - System Operation: 
+        - Mouse Actions: visualise/atlas/system-operation/mouse.md
+        - Keyboard Shortcuts: visualise/atlas/system-operation/keyboard.md
+      - Handling Data: 
+        - Overview: visualise/atlas/handling-data/index.md
+        - Recorders: 
+          - USB Recorder: visualise/atlas/handling-data/recorders/usb-logger.md
+          - NASCAR Telemetry Recorder: visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
+          - Data Server Telemetry Recorder: visualise/atlas/handling-data/recorders/data-server.md
+          - File Telemetry Recorder: visualise/atlas/handling-data/recorders/file-telemetry.md
+          - Ethernet File Telemetry: visualise/atlas/handling-data/recorders/ethernet-file.md
+          - Ethernet Multi Session Offload: visualise/atlas/handling-data/recorders/ethernet-mso.md
+          - Ethernet Offload: visualise/atlas/handling-data/recorders/ethernet-offload.md
+          - Stream Recorder: visualise/atlas/handling-data/recorders/stream-recorder.md
+        - Sessions:
+          - Overview: visualise/atlas/handling-data/sessions/index.md
+          - Session Browser: visualise/atlas/handling-data/sessions/browser.md
+          - Loading Sessions: visualise/atlas/handling-data/sessions/loading-sessions.md
+          - Changing Properties: visualise/atlas/handling-data/sessions/properties.md
+        - Laps and Markers:
+          - Markers: visualise/atlas/handling-data/laps-markers/markers.md
+          - Laps: visualise/atlas/handling-data/laps-markers/laps.md
+      - Time and Position: visualise/atlas/index.md
+      - Parameters: visualise/atlas/index.md
+      - Functions: 
+        - Overview: visualise/atlas/functions/index.md
+        - Processing: visualise/atlas/functions/processing.md
+        - Using DLLs: visualise/atlas/functions/using-dlls.md
+        - Tutorial: visualise/atlas/functions/tutorial.md
+      - Displays: 
+        - Scatterplot: visualise/atlas/displays/scatterplot.md
+      - Alarms: visualise/atlas/index.md
+      - Troubleshooting: 
+        - Profiling: visualise/atlas/troubleshooting/profiling.md
   - Developer Resources:
     - Overview: developer-resources/index.md
     - System Monitor: 
