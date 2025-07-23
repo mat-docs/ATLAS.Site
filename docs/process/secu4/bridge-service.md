@@ -12,7 +12,7 @@ components will only receive data available to the team.
 Kafka broker - The Bridge service needs to be configured to write to a Kafka broker. As you can see in the above example, the config file points to a broker url, which is hosting kafka locally on the same machine as the ADS.
 
 To enable the Bridge Service, set "Enable remote data feed" setting to "True" in ADS | Tools | Options | Recording tab | General
-![Enable remote data feed](../assets/enable_remote_data_feed.png)
+![Enable remote data feed](assets/enable_remote_data_feed.png)
 
 Restart ADS once the setting is applied. 
 
