@@ -38,7 +38,7 @@ The list of parameters and their valid ranges will be known when software is fla
 
 ATLAS and RTA can handle data efficiently, by preserving the data width &mdash; from single-byte to double-precision.
 
-There is also a facility to take a buffer &mdash; representing a section of memory from an embedded controller &mdash; and pick it apart into parameters. This is called _Row Data_ in the [API Specification](../api/index.md).
+There is also a facility to take a buffer &mdash; representing a section of memory from an embedded controller &mdash; and pick it apart into parameters. This is called _Row Data_ in the [API Specification](../../../developer-resources/rta/api/index.md).
 
 ## Text
 

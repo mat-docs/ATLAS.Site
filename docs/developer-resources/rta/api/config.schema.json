@@ -1,0 +1,457 @@
+{
+	"type": "object",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"description": "MAT Configuration Schema, composed of one or logical applications keyed by app name/identifier.",
+	"additionalProperties": {
+		"$ref": "#/definitions/Application"
+	},
+	"definitions": {
+		"Application": {
+			"description": "Group of configuration representing a named application. In this MAT ecosystem, this is a code unit that can be programmed onto an ECU, or simulated on a virtual ECU - but can be generalised to any self-contained code unit needing a description. There are two notable synthetic applications: VIRT, representing virtual parameters (functions computed on other parameters), and CANP for CAN bus data.",
+			"type": "object",
+			"required": [  ],
+			"properties": {
+				"desc": {
+					"description": "Human-readable description of the application. This is frequently the same as the application key (name/identifier), but this is not required. If undefined, defaults to the app name.",
+					"type": "string"
+				},
+				"identity": {
+					"description": "Optional identity attributes needed to evaluate RDA (Reduced Data Access) and useful when storing versioned configuration. Can be left undefined.",
+					"$ref": "#/definitions/ApplicationIdentity"
+				},
+				"rda": {
+					"description": " Optional RDA (Reduced Data Access) settings. Can be left undefined.",
+					"$ref": "#/definitions/ApplicationRda"
+				},
+				"tree": {
+					"type": "object",
+					"description": "Parameter Groups and Parameter identifiers bound to the Application.",
+					"properties": {
+						"groups": {
+							"type": "array",
+							"description": "Top-level Parameter Groups in the Application.",
+							"items": {
+								"$ref": "#/definitions/ParameterGroup"
+							}
+						},
+						"params": {
+							"type": "array",
+							"description": "Parameter identifiers bound directly to this Application. A parameter should be either bound directly to the Application *or* in one or more child groups - but not both.",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"parameters": {
+					"description": "Parameters defined in the Application and referened from the tree.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Parameter"
+					}
+				},
+				"channels": {
+					"description": "Channels defined in the Application and referenced from the Parameters.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Channel"
+					}
+				},
+				"conversions": {
+					"description": "Conversions defined in the Application and referenced from Parameters and Event Definitions.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Conversion"
+					}
+				},
+				"errors": {
+					"description": "Error Definitions defined in the Application.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ErrorDefinition"
+					}
+				},
+				"events": {
+					"description": "Event Definitions defined in the Application.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/EventDefinition"
+					}
+				}
+			}
+		},
+		"ApplicationIdentity": {
+			"description": "Uniquely identifies an Application.",
+			"type": "object",
+			"required": [ "commsPath", "applicationVersionId" ],
+			"properties": {
+				"commsPath": {
+					"description": "Pseudo-namespace for the application version id. This concept has its origins in handling multiple units (loggers) and VTAG applications, where the uniqueness of the application id might not be guaranteed.",
+					"type": "string"
+				},
+				"applicationVersionId": {
+					"description": "Two-part application id, consisting of an id and version (2 bytes each). The high word identifies the application, and the low word is its version.",
+					"type": "string",
+					"pattern": "^[A-Fa-f0-9]{8}$"
+				}
+			}
+		},
+		"ApplicationRda": {
+			"description": "RDA (Reduced Data Access) settings for an Application. RDA is essentially a Digital Rights Management scheme to allow an application author to limit access to data to participants within a consortium licensing scheme.",
+			"type": "object",
+			"required": [ "ownerId", "support" ],
+			"properties": {
+				"ownerId": {
+					"description": "Gets the team/owner id for RDA licensing. Use 0xffff to indicate that the application is unlocked.",
+					"type": "integer"
+				},
+				"support": {
+					"description": "RDA support mode. If RDA is supported, the application will be locked unless either the RDA user matches the owner or a valid parameter unlock list is available.",
+					"type": "string",
+					"enum": [ "supported", "notSupported" ]
+				}
+			}
+		},
+		"ParameterGroup": {
+			"description": "Group of Parameters and child Parameter Groups.",
+			"type": "object",
+			"required": [ "id" ],
+			"properties": {
+				"id": {
+					"description": "Unique identifier for the group. This should be structured so that it is unique across all configuration.",
+					"type": "string",
+					"minLength": 1
+				},
+				"desc": {
+					"description": "Human-readable description for the group.",
+					"type": "string",
+					"default": ""
+				},
+				"groups": {
+					"description": "Child parameter groups that are immediately under this group.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ParameterGroup"
+					}
+				},
+				"params": {
+					"description": "Parameter identifiers bound to this group. A parameter may be bound to multiple groups.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"Parameter": {
+			"description": "Source of time-series data. Can be measured directly or calculated from other parameters.",
+			"type": "object",
+			"required": [ "id", "name", "desc", "conv" ],
+			"properties": {
+				"type": {
+					"description": "Type of parameter. May be extended in future to cover configurable parameters.",
+					"type": "string",
+					"enum": [ "std", "virt" ],
+					"default": "std"
+				},
+				"id": {
+					"description": "Globally-unique identifier. Should be qualified with the app name/identifier - foo:app - unless part of MAT ECU logging configuration (one of CANP/VIRT/Input).",
+					"type": "string",
+					"minLength": 1
+				},
+				"name": {
+					"description": "Human-readable name. Usually the same as the identifier, minus the app name qualifier.",
+					"type": "string",
+					"minLength": 1
+				},
+				"desc": {
+					"description": "Human-readable description.",
+					"type": "string",
+					"minLength": 1
+				},
+				"min": {
+					"description": "Minimum expected (physical) value. Defaults to 0.0 if undefined.",
+					"type": "number",
+					"default": 0.0
+				},
+				"max": {
+					"description": "Maximum expected (physical) value. Defaults to 0.0 if undefined.",
+					"type": "number",
+					"default": 0.0
+				},
+				"warnMin": {
+					"description": "Minimum value, outside which a warning should be triggered. Defaults to min if undefined.",
+					"type": "number"
+				},
+				"warnMax": {
+					"description": "Maximum value, outside which a warning should be triggered. Defaults to max if undefined.",
+					"type": "number"
+				},
+				"format": {
+					"description": "If defined, overrides the format string from the referenced Conversion.",
+					"type": "string"
+				},
+				"unit": {
+					"description": "If defined, overrides the unit from the referenced Conversion.",
+					"type": "string"
+				},
+				"byteOrder": {
+					"description": "Byte order. Defaults to littleEndian (le) if undefined. Note that the byte order may not be preserved after the data is stored.",
+					"type": "string",
+					"enum": [ "le", "be" ],
+					"default": "le"
+				},
+				"offset": {
+					"description": "Offset applied to the parameter value after conversion as calibration (setting the zero point).",
+					"type": "number",
+					"default": 0
+				},
+				"mask": {
+					"description": "Bit mask to apply to the raw value after bit-shifting, but prior to conversion. Defaults to 0xffffffff if undefined.",
+					"type": "string",
+					"default": "ffffffff"
+				},
+				"errorMask": {
+					"description": "Bit mask indicating whether the parameter is in error.",
+					"$comment": "Unclear whether this is currently in use. It's defined in System Monitor but does not appear to be active in the ATLAS codebase.",
+					"type": "string"
+				},
+				"shift": {
+					"description": "Bit shift to apply prior to data masking and conversion. +ve indicates a right-shift; -ve indicates a left-shift.",
+					"type": "integer",
+					"default": 0
+				},
+				"conv": {
+					"description": "Conversion name. Conversions can and should be shared across parameters.",
+					"type": "string"
+				},
+				"channels": {
+					"description": "Channel ids feeding this parameter.",
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"func": {
+					"description": "Maths function for Virtual parameters.",
+					"type": "object",
+					"required": [ "code" ],
+					"properties": {
+						"lang": {
+							"description": "Language type. Defaults to \"fdl\" if undefined.",
+							"type": "string",
+							"enum": [ "fdl", "sfdl", "C#", "fdl#", "fdl#Script" ],
+							"default": "fdl"
+						},
+						"code": {
+							"description": "Function code. Typically a simple expression applying a scale factor and offset to a parameter, or averaging over several parameters (e.g. wheel speeds).",
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"Channel": {
+			"description": "Sub-division of a Parameter, describing a source of the data. A parameter is often composed of several channels. In the MAT ecosytem, an ECU yields data through a mixture of RAM snapshots (row data), periodic sampling (logged) at various rates through triggers, or synchronized with another time-source, such as engine rotation. Channels could also be derived in software by maths functions. It is important to capture these characteristics so that data can be composited together into a parameter using the best available sample rates and timing precision.",
+			"type": "object",
+			"required": [ "id" ],
+			"properties": {
+				"id": {
+					"description": "Channel id. This is unique within a configuration, and de-conflicted by offset to maintain this invariant when configuration is composed. Number contiguously from 0 or 1 to ensure this offset can be applied.",
+					"type": "integer"
+				},
+				"name": {
+					"description": "Channel name. This is informational and not required to be unique. For an MAT ECU, this is typically a 10-digit hex string representing the controller and memory address.",
+					"type": "string"
+				},
+				"source": {
+					"description": "Data source (e.g. row / periodic / synchro), which affects the timing accuracy of the data. \"timestamped\" is functionally-equivalent to \"synchro\". Defaults to \"row\" if undefined, as this is by far the most common type of channel.",
+					"type": "string",
+					"enum": [ "can", "event", "periodic", "synchro", "timestamped", "row", "subSampledPeriodic" ],
+					"default": "row"
+				},
+				"type": {
+					"description": "Data type/precision. uX is unsigned; sX is signed. 3f32 is a 3-axis 32-bit float. Defaults to f64 if undefined.",
+					"type": "string",
+					"enum": [ "u8", "s8", "u16", "s16", "u32", "s32", "f32", "3f32", "f64" ],
+					"default": "f64"
+				},
+				"interval": {
+					"description": "Interval in nanoseconds between samples, or 0 if the channel is not periodically sampled. Defaults to 0 if undefined.",
+					"type": "integer",
+					"default": 0
+				}
+			}
+		},
+		"Conversion": {
+			"description": "Maps raw data onto engineering values. There are four types of conversion, with the default being a Rational 1:1 (no-change) conversion unless otherwise specified as this is very common. Only one of rational/table/text/formula can be defined.",
+			"type": "object",
+			"required": [ "name" ],
+			"properties": {
+				"name": {
+					"description": "Globally unique name. Should be qualified with the app name/identifier - foo:app - unless part of MAT ECU logging configuration (one of CANP/VIRT/Input).",
+					"type": "string",
+					"minLength": 1
+				},
+				"unit": {
+					"description": "Unit of measure. Can include Unicode. May be overridden in Parameters referencing the Conversion.",
+					"type": "string"
+				},
+				"format": {
+					"description": "C-style formatting string. May be overridden in Parameters referencing the Conversion.",
+					"type": "string"
+				},
+				"rational": {
+					"description": "Maps raw data onto engineering values using coefficients in a standard formula.",
+					"type": "object",
+					"required": [ "coeffs" ],
+					"properties": {
+						"coeffs": {
+							"description": "Coefficients in a simple gain and offset linear conversion, where eng = (c1*raw^2 + c2*raw + c3)/(c4*raw^2 + c5*raw + c6). A 1:1 conversion has coefficients [0,1,0,0,1,0].",
+							"type": "array",
+							"minItems": 6,
+							"maxItems": 6,
+							"items": {
+								"type": "number"
+							}
+						}
+					}
+				},
+				"table": {
+					"description": "Maps raw data onto engineering values by table lookup.",
+					"type": "object",
+					"required": [ "raw", "calibrated" ],
+					"properties": {
+						"raw": {
+							"description": "Raw values populating the map, in ascending numerical order.",
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						},
+						"calibrated": {
+							"description": "Calibrated/Engineering values populating the map, matching the raw values.",
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						},
+						"interpolated": {
+							"description": "Specifies whether values should be interpolated between lookup table entries. Defaults to false if undefined.",
+							"type": "boolean"
+						}
+					}
+				},
+				"text": {
+					"description": "Maps raw data onto text values - essentially as an enumeration.",
+					"type": "object",
+					"required": [ "keys", "values" ],
+					"properties": {
+						"keys": {
+							"description": "Raw values.",
+							"type": "array",
+							"items": {
+								"type": "number"
+							}
+						},
+						"values": {
+							"description": "Text representation for raw values.",
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"default": {
+							"description": "Default text representation if unmatched in the list of keys. Defaults to an empty string if undefined.",
+							"type": "string"
+						}
+					}
+				},
+				"formula": {
+					"description": "Maps raw data onto engineering values by formula.",
+					"type": "object",
+					"required": [ "code" ],
+					"properties": {
+						"code": {
+							"description": "SFDL function code.",
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"ErrorDefinition": {
+			"description": "Defines a mapping to extract errors from parameter data.",
+			"type": "object",
+			"required": [ "name", "group", "current", "logged" ],
+			"properties": {
+				"name": {
+					"description": "Human-readable name - unique if possible. Typical structure is short alpha-numeric prefix to indicate the faulty sensor, followed by a reasonably short title.",
+					"type": "string",
+					"minLength": 1,
+					"examples": [ "A7123 High Side (7A) 5 Current" ]
+				},
+				"desc": {
+					"description": "Further human-readable description. By convention, this explains the conditions under which the error arose.",
+					"type": "string",
+					"minLength": 1,
+					"examples": [ "Noise >= NoiseThresh" ]
+				},
+				"group": {
+					"description": "Group, with application name qualifier. By convention, the pre-qualifier part of the group is a /-separated path to form the navigation struture, with no leading /.",
+					"type": "string",
+					"minLength": 1,
+					"examples": [ "Analogue:TAG320BIOS" ]
+				},
+				"current": {
+					"description": "Identifer for the parameter signalling that the error currently applies.",
+					"type": "string",
+					"minLength": 1
+				},
+				"logged": {
+					"description": "Identifier for the parameter signalling that the error previously applied.",
+					"type": "string",
+					"minLength": 1
+				},
+				"bit": {
+					"description": "Bit number (0-based) used to mask whether the parameter value is 'in error'. The mask is applied after conversion, and treating the value as a u32.",
+					"type": "integer",
+					"default": 0
+				}
+			}
+		},
+		"EventDefinition": {
+			"description": "Defines point-in-time events (such as button presses). Events can also carry data, so the definition includes references to conversions. MAT ECUs currently support up to 3 data items.",
+			"type": "object",
+			"required": [ "id" ],
+			"properties": {
+				"id": {
+					"description": "Unique id. It is critical that this id is unique amongst applications loaded onto a hardware logger, as it is used in the logging protocol as an identifier.",
+					"type": "integer"
+				},
+				"code": {
+					"description": "Alternate id to help compensate for the difficulty of creating a truly unique across all possible applications.",
+					"type": "string"
+				},
+				"desc": {
+					"description": "Human-readable description of the event. By convention, this is a short title. The event itself can carry further text when raised.",
+					"type": "string",
+					"default": ""
+				},
+				"pri": {
+					"description": "Priority (severity). Defaults to debug if undefined.",
+					"type": "string",
+					"default": "debug",
+					"enum": [ "debug", "low", "medium", "high" ]
+				},
+				"convs": {
+					"description": "Conversion names, in order, to convert the data associated with events when they are raised.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

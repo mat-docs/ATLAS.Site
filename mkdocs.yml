@@ -153,7 +153,84 @@ nav:
         - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
       - Automation API: developer-resources/atlas/automation.md
     - RTA: 
-      - REST API: developer-resources/rta/rest-api.md
+      - Overview: developer-resources/rta/worked-guide/index.md
+      - Services Reference:
+        - Overview:                   developer-resources/rta/services/index.md
+        - Server:
+          - README:                   developer-resources/rta/services/rta-server/README.md
+          - gRPC APIs:                developer-resources/rta/services/rta-server/grpc.md
+        - Session Service:    
+          - README:                   developer-resources/rta/services/rta-sessionsvc/README.md
+          - gRPC API:                 developer-resources/rta/services/rta-sessionsvc/grpc.md
+        - Config Service:   
+          - README:                   developer-resources/rta/services/rta-configsvc/README.md
+          - gRPC API:                 developer-resources/rta/services/rta-configsvc/grpc.md
+        - Data Service:   
+          - README:                   developer-resources/rta/services/rta-datasvc/README.md
+          - gRPC API:                 developer-resources/rta/services/rta-datasvc/grpc.md
+        - Gateway Service:    
+          - README:                   developer-resources/rta/services/rta-gatewaysvc/README.md
+        - Stream Service:   
+          - README:                   developer-resources/rta/services/rta-streamsvc/README.md
+        - Schema Mapping Service:
+          - README:                   developer-resources/rta/services/rta-schemamappingsvc/README.md
+          - gRPC API:                 developer-resources/rta/services/rta-schemamappingsvc/grpc.md
+        - Influx Data Service:
+          - README:                   developer-resources/rta/services/rta-influxdatasvc/README.md
+      - Worked Guide:
+        - Tutorials:
+          - Prerequisites:            developer-resources/rta/worked-guide/tutorials/prerequisites.md
+          - '01: Quick-Start':
+            - Walkthrough:            developer-resources/rta/worked-guide/tutorials/quick-start/index.md
+            - Review:                 developer-resources/rta/worked-guide/tutorials/quick-start/review.md
+          - '02: Microservices':
+            - Walkthrough:            developer-resources/rta/worked-guide/tutorials/microservices/index.md
+            - Review:                 developer-resources/rta/worked-guide/tutorials/microservices/review.md
+          - '03: InfluxDB Data Adapter':
+            - Walkthrough:            developer-resources/rta/worked-guide/tutorials/influx/index.md
+            - Review:                 developer-resources/rta/worked-guide/tutorials/influx/review.md
+          - '04: Live Streaming':
+            - Walkthrough:            developer-resources/rta/worked-guide/tutorials/live/index.md
+            - Review:                 developer-resources/rta/worked-guide/tutorials/live/review.md
+          - '05: Custom Data Adapter':
+            - Walkthrough:            developer-resources/rta/worked-guide/tutorials/data-adapter/index.md
+            - Review:                 developer-resources/rta/worked-guide/tutorials/data-adapter/review.md
+        - Working with Sessions:
+          - Session Basics:           developer-resources/rta/worked-guide/sessions/index.md
+          - Session Model:            developer-resources/rta/worked-guide/sessions/model.md
+          - Session Service:          developer-resources/rta/worked-guide/sessions/session-service.md
+          - Relationships:            developer-resources/rta/worked-guide/sessions/relationships.md
+          - Listing and Queries:      developer-resources/rta/worked-guide/sessions/queries.md
+          - Folders:                  developer-resources/rta/worked-guide/sessions/folders.md
+          - Session Metamodel:        developer-resources/rta/worked-guide/sessions/metamodel.md
+          - Data Bindings:            developer-resources/rta/worked-guide/sessions/data-bindings.md
+        - Working with Configuration:
+          - Configuration Basics:     developer-resources/rta/worked-guide/configuration/index.md
+          - Channels and Parameters:  developer-resources/rta/worked-guide/configuration/channels-parameters.md
+          - Parameter Groups (tree):  developer-resources/rta/worked-guide/configuration/parameter-groups.md
+          - Conversions:              developer-resources/rta/worked-guide/configuration/conversions.md
+          - Event Definitions:        developer-resources/rta/worked-guide/configuration/event-defs.md
+          - Serializing JSON/FFC:     developer-resources/rta/worked-guide/configuration/serializing.md
+          - Publishing to the Config Service: developer-resources/rta/worked-guide/configuration/publishing.md
+        - Working with Data:
+          - Data Basics:              developer-resources/rta/worked-guide/data/index.md
+          - Schema Mappings:          developer-resources/rta/worked-guide/data/schema-mappings.md
+          - Chunks:                   developer-resources/rta/worked-guide/data/chunks.md
+        - Live-Streaming Data:
+          - Live-Streaming Basics:    developer-resources/rta/worked-guide/live/index.md
+          - WebSocket Protocol:       developer-resources/rta/worked-guide/live/websockets.md
+          - Streaming to Redis:       developer-resources/rta/worked-guide/live/redis.md
+        - Protobuf Schemas:
+          - Overview:                 developer-resources/rta/worked-guide/protobuf/index.md
+          - model_data.proto:         developer-resources/rta/worked-guide/protobuf/model_data.md
+          - net_chunks.proto:         developer-resources/rta/worked-guide/protobuf/net_chunks.md
+          - net_stream.proto:         developer-resources/rta/worked-guide/protobuf/net_stream.md
+      - Useful Utilities:           
+        - Overview: developer-resources/rta/worked-guide/utilities.md
+        - Downloads: developer-resources/rta/downloads.md
+        - REST API: 
+          - Overview: developer-resources/rta/api/index.md
+      - FAQ: developer-resources/rta/worked-guide/faq.md
   - Extending ATLAS:
     - SECU4: 
       - Open Streaming Architecture:

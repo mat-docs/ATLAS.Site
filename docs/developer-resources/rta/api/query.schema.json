@@ -1,0 +1,197 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"description": "RTA query language.",
+	"$ref": "#/definitions/FilterCriteria",
+	"definitions": {
+		"FilterCriteria": {
+			"title": "Criteria for matching sessions",
+			"description": "Object keys are properties that must all match the session model as a literal or `FilterCondition`, or logical operators ($and|$or|$nor).",
+			"type": "object",
+			"properties": {
+				"$and": {
+					"title": "Logical AND",
+					"description": "All criteria must match.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FilterCriteria"
+					}
+				},
+				"$or": {
+					"title": "Logical OR",
+					"description": "Any criteria must match.",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FilterCriteria"
+					}
+				},
+				"$nor": {
+					"title": "Logical NOR",
+					"description": "None of the criteria must match",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/FilterCriteria"
+					}
+				}
+			},
+			"patternProperties": {
+				"^[^$].*": {
+					"title": "Property filter",
+					"description": "The property must match the specified value or condition.",
+					"oneOf": [
+						{
+							"$ref": "#/definitions/FilterCondition"
+						},
+						{
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					]
+				}
+			}
+		},
+		"FilterCondition": {
+			"title": "Condition under which a criterion can match",
+			"description": "Either a comparison ($eq|$gt|$gte|$lt|$lte|$neq), text match ($startsWith|$endsWith|$contains), aggregate ($in|$nin) or negation ($not).",
+			"type": "object",
+			"oneOf": [
+				{
+					"title": "Equal to (comparison)",
+					"description": "Matched when a property is equal to the value.",
+					"required": [ "$eq" ],
+					"properties": {
+						"$eq": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Greater than (comparison)",
+					"description": "Matched when a property is greater than the value.",
+					"required": [ "$gt" ],
+					"properties": {
+						"$gt": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Greater than or equal to (comparison)",
+					"description": "Matched when a property is greater than or equal to the value.",
+					"required": [ "$gte" ],
+					"properties": {
+						"$gte": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Less than (comparison)",
+					"description": "Matched when a property is less than the value.",
+					"required": [ "$lt" ],
+					"properties": {
+						"$lt": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Less than or equal to (comparison)",
+					"description": "Matched when a property is less than or equal to the value.",
+					"required": [ "$lte" ],
+					"properties": {
+						"$lte": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Not equal to (comparison)",
+					"description": "Matched when a property is not equal to the value.",
+					"required": [ "$neq" ],
+					"properties": {
+						"$neq": {
+							"type": [ "string", "integer", "number", "boolean", "null" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Starts with (text match)",
+					"description": "Matched when a string property starts with the text.",
+					"required": [ "$startsWith" ],
+					"properties": {
+						"$startsWith": {
+							"type": [ "string" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Ends with (text match)",
+					"description": "Matched when a string property ends with the text.",
+					"required": [ "$endsWith" ],
+					"properties": {
+						"$endsWith": {
+							"type": [ "string" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Contains (text match)",
+					"description": "Matched when a string property contains the text.",
+					"required": [ "$contains" ],
+					"properties": {
+						"$contains": {
+							"type": [ "string" ]
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "In (aggregate)",
+					"description": "Matched when a property is one of a list of values.",
+					"required": [ "$in" ],
+					"properties": {
+						"$in": {
+							"type": "array",
+							"items": {
+								"type": [ "string", "integer", "number", "boolean", "null" ]
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "Not in (aggregate)",
+					"description": "Matched when a property is not one of a list of values.",
+					"required": [ "$nin" ],
+					"properties": {
+						"$nin": {
+							"type": "array",
+							"items": {
+								"type": [ "string", "integer", "number", "boolean", "null" ]
+							}
+						}
+					},
+					"additionalProperties": false
+				},
+				{
+					"title": "NOT (negation)",
+					"description": "Matched when a property does not match the condition.",
+					"required": [ "$not" ],
+					"properties": {
+						"$not": {
+							"$ref": "#/definitions/FilterCondition"
+						}
+					},
+					"additionalProperties": false
+				}
+			]
+		}
+	}
+}

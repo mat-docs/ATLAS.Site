@@ -1,0 +1,56 @@
+
+{% extends "main.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+  {{ super() }}
+
+  <style type="text/css">
+    code {
+      color: inherit;
+    }
+  
+    main.md-main {
+      display: none;
+    }
+  
+    main#redoc-container {
+      flex-grow: 1;
+    }
+  </style>
+    
+  <main id="redoc-container"></main>
+
+  <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+
+  <script>
+    Redoc.init('api.yaml', {
+      "scrollYOffset": 50,
+      "disableSearch": true,
+      "theme": {
+        "typography": {
+          "fontSize": "0.8rem",
+          "headings": {
+            "fontFamily": "inherit"
+          },
+          "code": {
+            "fontFamily": "inherit",
+            "fontSize": "inherit"
+          }
+        },
+        "rightPanel": {
+          "backgroundColor": "#212121"
+        }
+      }
+    }, document.getElementById('redoc-container'))
+  </script>
+
+{% endblock %}
+
+<!-- Content -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}
+  {{ super() }}
+{% endblock %}
