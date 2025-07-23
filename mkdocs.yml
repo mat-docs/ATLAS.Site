@@ -12,8 +12,8 @@ theme:
     scheme: default
     primary: 'orange'
     accent: 'blue'
-  logo: assets/images/logo.svg
-  favicon: assets/images/favicon.ico
+  logo: assets/swoosh/logo.png
+  favicon: assets/swoosh/favicon.png
   features:
     - navigation.sections
     - navigation.expand
@@ -57,7 +57,8 @@ nav:
       - Overview: process/vtag/introduction.md
       - Integrating with ADS: process/vtag/integrating-with-ads.md
       - Running Simulink Models: process/vtag/simulink.md
-    - SECU4: 
+    - SECU4:
+      - Overview: process/secu4/index.md 
       - Virtual Parameter Service: process/secu4/vps.md
       - Bridge Service: process/secu4/bridge-service.md
       - Parquet Support: process/secu4/parquet.md
@@ -71,14 +72,26 @@ nav:
       - Visualisation Tools: visualise/atlas/visualisation-tools.md
       - Troubleshooting: visualise/atlas/troubleshooting.md
   - Developer Resources:
+    - Overview: developer-resources/index.md
     - System Monitor: 
       - COM API: developer-resources/system-monitor/automation.md
     - vTAG: developer-resources/vtag/index.md
     - SECU4: 
-      - Stream API: developer-resources/secu4/stream-api.md
-      - Bridge Service: developer-resources/secu4/bridge-service.md
-      - Configuration API: developer-resources/secu4/configuration-api.md
-      - Support Library: developer-resources/secu4/support-library.md
+      - Stream API: 
+        - Overview:                   developer-resources/secu4/stream_api/index.md
+        - Stream API Client:          developer-resources/secu4/stream_api/stream_client.md
+        - Stream API Server:          developer-resources/secu4/stream_api/stream_server.md
+        - Key Generator Service:      developer-resources/secu4/stream_api/key_generator.md
+        - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+      - Bridge Service: 
+        - Overview: developer-resources/secu4/bridge_service/index.md
+      - Configuration API: 
+        - Overview: developer-resources/secu4/configuration_api/index.md
+        - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
+        - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
+        - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
+      - Support Library: 
+        - Overview: developer-resources/secu4/support_library/index.md
     - ATLAS: 
       - SQLRace API: developer-resources/atlas/sqlrace.md
       - Display API: 
