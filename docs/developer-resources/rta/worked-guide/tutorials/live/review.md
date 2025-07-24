@@ -17,7 +17,7 @@ Users can't browse and load the session until it is published to the [Session Se
 === "This tutorial"
 
     1. Describe the fields as [Configuration](../../configuration/index.md);
-    2. Describe how the database fields will map onto [Timestamped Data requests](../../../../api/#operation/get-timestamped-data);
+    2. Describe how the database fields will map onto [Timestamped Data requests](../../../api/index.md#operation/get-timestamped-data);
     3. Publish the [Session](../../sessions/index.md) in the `open` state;
     4. Write data to [InfluxDB](https://www.influxdata.com/products/influxdb/);
     5. Update the [Session](../../sessions/index.md) state to `closed`;
@@ -27,7 +27,7 @@ Users can't browse and load the session until it is published to the [Session Se
 === "Previous tutorial"
 
     1. Write data to [InfluxDB](https://www.influxdata.com/products/influxdb/);
-    2. Describe how the database fields will map onto [Timestamped Data requests](../../../../api/#operation/get-timestamped-data);
+    2. Describe how the database fields will map onto [Timestamped Data requests](../../../api/index.md#operation/get-timestamped-data);
     3. Describe the fields as [Configuration](../../configuration/index.md);
     4. Publish the [Session](../../sessions/index.md);
 
@@ -70,7 +70,7 @@ The streams are typically buffered in Redis long enough to cover the time taken 
 
 ### Library Support
 
-[The protocol](../../live/redis.md) is implemented by the _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../../downloads/nuget.md).
+[The protocol](../../live/redis.md) is implemented by the _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../../downloads.md#nuget-packages).
 
 To connect to Redis:
 

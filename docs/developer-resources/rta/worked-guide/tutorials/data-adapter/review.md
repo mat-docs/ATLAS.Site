@@ -130,7 +130,7 @@ Sessions are published as follows:
 
 ## Data Adapter Service
 
-This service is based on the **ASP.NET Core Web Application** template in Visual Studio 2019, using the McLaren _MAT.OCS.RTA.Services.AspNetCore_ [NuGet Package](../../../downloads/nuget.md) to provide common functionality. This library is also used in all the [Toolkit Services](../../../services/index.md).
+This service is based on the **ASP.NET Core Web Application** template in Visual Studio 2019, using the McLaren _MAT.OCS.RTA.Services.AspNetCore_ [NuGet Package](../../../downloads.md#nuget-binaries) to provide common functionality. This library is also used in all the [Toolkit Services](../../../services/index.md).
 
 The key modifications are:
 
@@ -372,7 +372,7 @@ app.UseEndpoints(endpoints =>
 
 ### Improvements
 
-Writing Data Adapter services in C# and ASP.NET Core shortens development using the RTA [NuGet packages](../../../downloads/nuget.md) &mdash; and even without this advantage, ASP.NET Core is a mature, powerful, cross-platform framework, with a rich ecosystem.
+Writing Data Adapter services in C# and ASP.NET Core shortens development using the RTA [NuGet packages](../../../downloads.md#nuget-binaries) &mdash; and even without this advantage, ASP.NET Core is a mature, powerful, cross-platform framework, with a rich ecosystem.
 
 The package ecosystem offers some really useful packages to bring the service up to production standard:
 

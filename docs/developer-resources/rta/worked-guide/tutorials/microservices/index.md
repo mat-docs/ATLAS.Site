@@ -13,7 +13,7 @@ In this tutorial, you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads/nuget.md) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md/#nuget-packages) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.
@@ -27,8 +27,8 @@ Check out the common tutorial [prerequisites](../prerequisites.md) before you st
 You're going to need:
 
 * [ATLAS](../prerequisites.md#atlas)
-* [PostgreSQL](../prerequisites#postgresql)
-* [Development Environment](../prerequisites#development-environment)
+* [PostgreSQL](../prerequisites.md#postgresql)
+* [Development Environment](../prerequisites.md#development-environment)
 * [Docker](../prerequisites.md#recommended-tools)
 * [grpcui](../prerequisites.md#recommended-tools)
 
@@ -47,7 +47,7 @@ For this tutorial, we'll use [Docker Compose](https://docs.docker.com/compose/) 
 
 !!! info "If you can't use Docker"
 
-    We also provide [Windows](../../../downloads/services.md/windows) and [Linux](../../../downloads/services.md/linux) executables.  
+    We also provide Windows and Linux executables.
     You can start these in separate terminals or using a script.
 
     In production, you could deploy these as services using automation tools like [Puppet](https://puppet.com/) and [Ansible](https://www.ansible.com/), or [Nomad](https://www.nomadproject.io/) (without containers).

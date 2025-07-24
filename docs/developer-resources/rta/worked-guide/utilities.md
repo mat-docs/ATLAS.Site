@@ -18,7 +18,7 @@ For example, connecting to the [Session Service](../services/rta-sessionsvc/READ
 
 ## httpstat
 
-[httpstat](https://github.com/davecheney/httpstat) is useful for benchmarking &mdash; particularly when developing a [Data Service](../introduction/data-services.md).
+[httpstat](https://github.com/davecheney/httpstat) is useful for benchmarking &mdash; particularly when developing a [Data Service](../../../extending-atlas/rta/introduction/data-services.md).
 
 ```bash
 httpstat -H "Accept: application/vnd.mat.protobuf+chunked" -o output.bin http://localhost/rta/v2/sessions/abc123/data/timestamped/0-7f

@@ -44,7 +44,7 @@ which also provides buffering to cover the gap between flushed data &mdash; whic
 [REST API](../../api/index.md) &mdash; and the leading edge. This gap will vary depending on the storage technology:
 it could be milliseconds or hours.
 
-The _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../downloads/nuget.md) (.NET Core) provides an implementation
+The _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../downloads.md#nuget-binaries) (.NET Core) provides an implementation
 for ingest processes to send data to Redis, and the [protocol](redis.md) is documented for the benefit of
 ingest pipelines written in other languages.
 

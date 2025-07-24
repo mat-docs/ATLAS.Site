@@ -173,7 +173,7 @@ This is the representation in the [OpenAPI specification](../../api/index.md) an
 
         For example, if the configuration specifies channel `#!json 50`, and the `"channelOffset"` is `#!json 1000`, then ATLAS will request data from the service using channel `#!json 1050`.
 
-        This is done so that sessions can contain configuration from multiple independently-compiled "apps", and shared across sessions. This turns out to be important for [scalability](../../introduction/configuration.md#designed-for-scale) when sessions have 10s of thousands of parameters.
+        This is done so that sessions can contain configuration from multiple independently-compiled "apps", and shared across sessions. This turns out to be important for [scalability](../../../../extending-atlas/rta/introduction/configuration.md#designed-for-scale) when sessions have 10s of thousands of parameters.
 
         Many deployments will use a single configuration binding with no offset.
 

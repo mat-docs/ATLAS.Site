@@ -1,6 +1,6 @@
 # InfluxDB Data Adapter &mdash; Walkthrough
 
-This tutorial stores and serves data directly from [InfluxDB](https://www.influxdata.com/products/influxdb/), using the [microservices architecture](../../../introduction/architectures#microservices) introduced in [Tutorial 02](../microservices/index.md).
+This tutorial stores and serves data directly from [InfluxDB](https://www.influxdata.com/products/influxdb/), using the [microservices architecture](../../../../../extending-atlas/rta/introduction/architectures.md#microservices) introduced in [Tutorial 02](../microservices/index.md).
 
 At the end, you'll have ATLAS connected to a popular off-the-shelf timeseries database.
 
@@ -13,7 +13,7 @@ In this tutorial you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads/nuget.md) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md#nuget-packages) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.

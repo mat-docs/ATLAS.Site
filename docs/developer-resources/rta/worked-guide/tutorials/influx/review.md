@@ -21,7 +21,7 @@ These steps are:
 
 1. Write data to [InfluxDB](https://www.influxdata.com/products/influxdb/);  
    _This step is just providing example data, and really has nothing RTA-specific at all._
-2. Describe how the database fields will map onto [Timestamped Data requests](../../../../api/#operation/get-timestamped-data);  
+2. Describe how the database fields will map onto [Timestamped Data requests](../../../api/index.md#operation/get-timestamped-data);  
    _The data adapter ([Influx Data Service](../../../services/rta-influxdatasvc/README.md)) will use this to handle the requests._
 3. Describe the fields as [Configuration](../../configuration/index.md);  
    _ATLAS will use this to show the user can see what parameters (fields) are available._
@@ -38,7 +38,7 @@ In this demo, the sample project writes data using the [InfluxDB line protocol](
 
 ## Defining the Schema Mapping
 
-ATLAS does not know anything about how the data is stored. [Configuration](../../configuration/index.md) provides the client with a catalog of parameters and all the information it needs to make requests to the [REST API](../../../../api/#operation/get-timestamped-data) &mdash; but it doesn't contain any information about  database tables and fields, or file paths and offsets.
+ATLAS does not know anything about how the data is stored. [Configuration](../../configuration/index.md) provides the client with a catalog of parameters and all the information it needs to make requests to the [REST API](../../../api/index.md#operation/get-timestamped-data) &mdash; but it doesn't contain any information about  database tables and fields, or file paths and offsets.
 
 When the data adapter receives a request, it is expressed in terms of:
 

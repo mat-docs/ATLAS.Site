@@ -5,7 +5,7 @@
 No &mdash; the [API Specification](../api/index.md) is language-neutral.  
 The [Toolkit Services](../services/index.md) communicate via [gRPC](https://grpc.io/), so they are also language-neutral.
 
-However, we do provide [NuGet Packages](../downloads/nuget.md) that will definitely speed up your development.  
+However, we do provide [NuGet Packages](../downloads.md/#nuget-packages) that will definitely speed up your development.  
 They provide:
 
 * Model classes to help with JSON serialization

@@ -12,7 +12,7 @@ In this tutorial, you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads/nuget.md) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md/#nuget-packages) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.
@@ -24,8 +24,8 @@ Check out the common tutorial [prerequisites](../prerequisites.md) before you st
 You're going to need:
 
 * [ATLAS](../prerequisites.md#atlas)
-* [PostgreSQL](../prerequisites#postgresql)
-* [Development Environment](../prerequisites#development-environment)
+* [PostgreSQL](../prerequisites.md#postgresql)
+* [Development Environment](../prerequisites.md#development-environment)
 
 and optionally:
 
@@ -56,7 +56,7 @@ It provides session management, stores configuration, and can also store and ser
     This example assumes you are running PostgreSQL on your host machine, accessed through [`host.docker.internal`](https://docs.docker.com/docker-for-windows/networking/#use-cases-and-workarounds) in the connection string below.
 
     Update the command below with the hostname (if not `host.docker.internal`) and user/password.  
-    By default, [RTA Server will initialize the database](../../../services/rta-server/#init-store) using these credentials.
+    By default, [RTA Server will initialize the database](../../../services/rta-server/README.md#init-store) using these credentials.
 
     In PowerShell:
 
@@ -72,7 +72,7 @@ It provides session management, stores configuration, and can also store and ser
 
 === "Windows: rta-server.exe"
 
-    If Docker is not available in your development environment, you can [download](../../../downloads/services.md#binaries) and run the service as an executable.
+    If Docker is not available in your development environment, you can [download](../../../downloads.md#binaries) and run the service as an executable.
 
     Create convenient directories to store data and configuration.
 

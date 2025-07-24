@@ -36,4 +36,4 @@ They can also be deployed as Windows or Linux binaries on a server or laptop.
 [RTA Influx Data Service](rta-influxdatasvc/README.md)
 : Data adapter for [InfluxDB](https://www.influxdata.com/products/influxdb/).
 
-[Docker Images and Downloads](../downloads/services.md){ .md-button .md-button--primary }
+[Docker Images and Downloads](../downloads.md#docker){ .md-button .md-button--primary }

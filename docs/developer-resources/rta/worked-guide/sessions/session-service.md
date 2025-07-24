@@ -252,7 +252,7 @@ var session = await sessionClient.GetSessionAsync(new GetSessionRequest
 
 !!! tip
 
-    The _MAT.OCS.RTA.Toolkit.API.GrpcClients_ [NuGet package](../../downloads/nuget.md) provides a convenience method to retrieve and parse the JSON Session Model:
+    The _MAT.OCS.RTA.Toolkit.API.GrpcClients_ [NuGet package](../../downloads.md#nuget-binaries) provides a convenience method to retrieve and parse the JSON Session Model:
 
     ```c#
     var sessionModel = await sessionClient.GetSessionJsonAsync("example");

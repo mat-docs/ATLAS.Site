@@ -43,7 +43,7 @@ An RTA Session does not have to be a 1:1 match for a telemetry recording, and th
 
     The Toolkit [Session Service](../../services/rta-sessionsvc/grpc.md) provides an API to create and modify sessions using [gRPC](https://grpc.io/).
 
-    This C# sample &mdash; using the _MAT.OCS.RTA.Toolkit.API.GrpcClients_ [NuGet Package](../../downloads/nuget.md) &mdash; produces an equivalent result:
+    This C# sample &mdash; using the _MAT.OCS.RTA.Toolkit.API.GrpcClients_ [NuGet Package](../../downloads.md#nuget-binaries) &mdash; produces an equivalent result:
 
     ```c#
     // re-use the channel across service calls

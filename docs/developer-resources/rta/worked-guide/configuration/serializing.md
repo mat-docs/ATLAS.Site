@@ -15,7 +15,7 @@ The JSON format is defined in the [JSON schema](../../api/config.schema.json).
     * Properties are _camelCase_ &mdash; e.g. `"timeRange"` instead of `"TimeRange"`
     * Enumerations are expressed as _camelCase_ string constants &mdash; e.g. `#!json "closed"` instead of `#!json "Closed"`
 
-For .NET, library support is provided via McLaren's [NuGet packages](../../downloads/nuget.md).
+For .NET, library support is provided via McLaren's [NuGet packages](../../downloads.md#nuget-binaries).
 
 To convert configuration to JSON, add a package reference for _MAT.OCS.Configuration.Json_ and use the serializer like this:
 
@@ -39,7 +39,7 @@ await configClient.PutConfigAsync(configIdentifier, config, MediaTypes.JsonConfi
 
 FFC is a McLaren proprietary binary format with support for internal indexing and selective parsing.
 
-It is supported in C#, F#, C++ VB.NET for .NET Core and .NET Framework, via McLaren's [NuGet packages](../../downloads/nuget.md).  
+It is supported in C#, F#, C++ VB.NET for .NET Core and .NET Framework, via McLaren's [NuGet packages](../../downloads.md#nuget-binaries).  
 If you are using another language, serialize configuration as JSON.
 
 !!! info

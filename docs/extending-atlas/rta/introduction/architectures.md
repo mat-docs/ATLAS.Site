@@ -1,8 +1,8 @@
 # Architecture Patterns
 
-The [RTA API Specification](../api/index.md) does not require any specific architecture or technology stack &mdash; but there are some common patterns.
+The [RTA API Specification](../../../developer-resources/rta/api/index.md) does not require any specific architecture or technology stack &mdash; but there are some common patterns.
 
-This page illustrates some architectures supported by [services from our implementation toolkit](../services/index.md).
+This page illustrates some architectures supported by [services from our implementation toolkit](../../../developer-resources/rta/services/index.md).
 
 !!! info "Legend"
     <object type="image/svg+xml" data="../assets/architectures/legend.svg" class="diagram" title="Legend for diagrams"></object>
@@ -11,13 +11,13 @@ This page illustrates some architectures supported by [services from our impleme
 
 ### RTA Server
 
-[RTA Server](../services/rta-server/README.md) provides a simple, single-process deployment to experiment to explore the [RTA API Specification](../api/index.md) and gain familiarity with [Sessions](sessions.md), [Configuration](configuration.md) and the data types.
+[RTA Server](../../../developer-resources/rta/services/rta-server/README.md) provides a simple, single-process deployment to experiment to explore the [RTA API Specification](../../../developer-resources/rta/api/index.md) and gain familiarity with [Sessions](sessions.md), [Configuration](configuration.md) and the data types.
 
 <object type="image/svg+xml" data="../assets/architectures/rta-server.svg" class="diagram" title="Architecture diagram showing data being loaded into RTA Server and connected to ATLAS"></object>
 
 ### Microservices
 
-The [Toolkit Services](../services/index.md) are designed be to run as microservices within a [container orchestrator](https://docs.docker.com/get-started/orchestration/), like [Kubernetes](https://kubernetes.io/).
+The [Toolkit Services](../../../developer-resources/rta/services/index.md) are designed be to run as microservices within a [container orchestrator](https://docs.docker.com/get-started/orchestration/), like [Kubernetes](https://kubernetes.io/).
 
 Here is the same capability, split into individual components:
 
@@ -27,11 +27,11 @@ All these services are horizontally-scalable, facilitating high-availability dep
 
 ### OAuth 2.0 Security
 
-ATLAS and the [Toolkit Services](../services/index.md) can use [OAuth 2.0](https://oauth.net/2/) with multi-factor authentication:
+ATLAS and the [Toolkit Services](../../../developer-resources/rta/services/index.md) can use [OAuth 2.0](https://oauth.net/2/) with multi-factor authentication:
 
 <object type="image/svg+xml" data="../assets/architectures/microservices-oauth.svg" class="diagram" title="Architecture diagram showing RTA toolkit microservices with an OAuth 2.0 provider"></object>
 
-The [Gateway Service](../services/rta-gatewaysvc/README.md) proxies the authorization bearer token through to the other microservices.
+The [Gateway Service](../../../developer-resources/rta/services/rta-gatewaysvc/README.md) proxies the authorization bearer token through to the other microservices.
 
 ## Data Adapter Service
 
@@ -41,7 +41,7 @@ Instead of copying the data with a loader, you can index it in place and deploy 
 
 === "InfluxDB"
 
-    _McLaren provide an [InfluxDB Data Service](../services/rta-influxdatasvc/README.md) in the implementation toolkit:_
+    _McLaren provide an [InfluxDB Data Service](../../../developer-resources/rta/services/rta-influxdatasvc/README.md) in the implementation toolkit:_
 
     <object type="image/svg+xml" data="../assets/architectures/data-influx.svg" class="diagram" title="Architecture diagram showing data served from InfluxDB via a data service"></object>
 
@@ -61,7 +61,7 @@ Instead of copying the data with a loader, you can index it in place and deploy 
 
 The diagrams above show data being indexed after it has arrived. But this can be integrated into existing ingest pipelines.
 
-Calls to the [Toolkit Services](../services/index.md) are made using [gRPC](https://grpc.io/), which is supported in a wide range of languages &mdash; so it is easy to publish [configuration](configuration.md) and [session](sessions.md) metadata from an existing framework.
+Calls to the [Toolkit Services](../../../developer-resources/rta/services/index.md) are made using [gRPC](https://grpc.io/), which is supported in a wide range of languages &mdash; so it is easy to publish [configuration](configuration.md) and [session](sessions.md) metadata from an existing framework.
 
 <object type="image/svg+xml" data="../assets/architectures/ingest-pipeline.svg" class="diagram" title="Architecture diagram toolkit services called from an ingest pipeline instead of an indexer"></object>
 
@@ -69,7 +69,7 @@ This is not limited to metadata. You can live-stream data to ATLAS:
 
 === "Live Streaming"
 
-    _A copy of the data is streamed across to [Redis](https://redis.io/), and connected to clients via [Stream Service](../services/rta-streamsvc/README.md) web sockets:_
+    _A copy of the data is streamed across to [Redis](https://redis.io/), and connected to clients via [Stream Service](../../../developer-resources/rta/services/rta-streamsvc/README.md) web sockets:_
 
     <object type="image/svg+xml" data="../assets/architectures/ingest-pipeline-live.svg" class="diagram" title="Architecture diagram showing live streaming to ATLAS"></object>
 

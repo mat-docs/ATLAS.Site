@@ -7,11 +7,11 @@
 This demo project illustrates a data loading pattern, where data is format-shifted for use with ATLAS.
 
 This is not the only way to use RTA.
-You can also connect to existing stores using a [Data Service as an adapter](../../../introduction/data-services.md). 
+You can also connect to existing stores using a [Data Service as an adapter](../../../../../extending-atlas/rta/introduction/data-services.md). 
 
 ## Importing NuGet Packages
 
-The project imports [NuGet Packages](../../../downloads/nuget.md) from the McLaren GitHub feed:
+The project imports [NuGet Packages](../../../downloads.md#nuget-packages) from the McLaren GitHub feed:
 
 ```xml
   <ItemGroup>
@@ -118,7 +118,7 @@ The configuration tells ATLAS what data is available, and how to render it.
 
 === "Sample Code"
 
-    Configuration is defined here using the _MAT.OCS.Configuration_ library, which is brought in as a [NuGet Package](../../../downloads/nuget.md).
+    Configuration is defined here using the _MAT.OCS.Configuration_ library, which is brought in as a [NuGet Package](../../../downloads.md#nuget-packages).
 
     The _Builder_ objects all have constructors indicating the mandatory properties, and the overall `ConfigurationBuilder` is consistency-checked when `BuildConfiguration()` is called.
 

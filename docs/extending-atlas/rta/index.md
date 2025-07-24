@@ -25,13 +25,13 @@ When users open live sessions, ATLAS selectively subscribes to the parameters on
 
 ## Toolkit Services
 
-The [RTA API Specification](api/index.md) provides all the nececessary information to create a slick integration between ATLAS and your data infrastructure, with detail including:
+The [RTA API Specification](../../developer-resources/rta/api/index.md) provides all the nececessary information to create a slick integration between ATLAS and your data infrastructure, with detail including:
 
 * [OpenAPI schema](https://www.openapis.org/faq) describing the REST API
 * [JSON schemas](https://json-schema.org/) for the data model and query dialect 
 * [Protobuf schemas](https://developers.google.com/protocol-buffers) for low-level data transport
 
-However, you can save a lot of development effort by deploying [services](services/index.md) from our implementation toolkit.
+However, you can save a lot of development effort by deploying [services](../../developer-resources/rta/services/index.md) from our implementation toolkit.
 
 By using these services to cover all the data management functionality, you won't need to implement any of the browsing, search or configuration management features. All you'll need to write is a simple hook into your ingest pipeline, and a [Data Adapter Service](introduction/data-services.md):
 
@@ -41,7 +41,7 @@ These Toolkit Services provide [gRPC](https://grpc.io/) services for integration
 
 [gRPC](https://grpc.io/) is a modern, high performance framework for making service calls. It supports all popular programming languages, and the services are fully-described with schemas &mdash; so you get a high-quality client library that will work with your existing software stack, and high-quality developer tools to guide use of the API.
 
-You can deploy these services on [Windows](downloads/services.md#binaries) or [Linux](downloads/services.md#binaries), and on-premises or in the Cloud using our [Docker images](downloads/services.md#docker). Our services are specifically designed to work well with [Kubernetes](https://kubernetes.io/) and [AWS](https://aws.amazon.com/).
+You can deploy these services on [Windows](../../developer-resources/rta/downloads.md#binaries) or [Linux](../../developer-resources/rta/downloads.md#binaries), and on-premises or in the Cloud using our [Docker images](../../developer-resources/rta/downloads.md#docker). Our services are specifically designed to work well with [Kubernetes](https://kubernetes.io/) and [AWS](https://aws.amazon.com/).
 
 ## Standalone Options
 

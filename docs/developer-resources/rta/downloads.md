@@ -2,9 +2,9 @@
 
 ## Toolkit Services
 
-These [services](../services/index.md) provide an implementation toolkit covering some or all of the functionality in the [RTA API Specification](api/index.md).
+These [services](services/index.md) provide an implementation toolkit covering some or all of the functionality in the [RTA API Specification](api/index.md).
 
-Combined with the [libraries](nuget.md) to support [Data Service](../../extending-atlas/rta/introduction/data-services.md) development, this can significantly reduce integration work.
+Combined with the [libraries](#nuget-packages) to support [Data Service](../../extending-atlas/rta/introduction/data-services.md) development, this can significantly reduce integration work.
 
 ### Docker
 
@@ -42,7 +42,7 @@ MAT.OCS.RTA.Services.AspNetCore
   Supports ASP.NET Core 2.1, 3.1 and 5.0
 
 MAT.OCS.RTA.Toolkit.API.GrpcClients
-: Pre-compiled gRPC clients for the [Toolkit Services](../reference/services);  
+: Pre-compiled gRPC clients for the Toolkit Services;
   Supports .NET Standard 2.1 and .NET 5.0
 
 Refer to the [Developer Guide](worked-guide/index.md) for more details.

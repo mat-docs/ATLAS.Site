@@ -4,7 +4,7 @@
 
     Complete the [Walkthrough](index.md) first.
 
-Like the [Quick-Start Tutorial](../quick-start/review.md), this demo project is based around a data loading pattern, where data is format-shifted for use with ATLAS. But in this example, we've split the services up, and we're nearly ready to connect to existing stores using a [Data Service as an adapter](../../../introduction/data-services.md). 
+Like the [Quick-Start Tutorial](../quick-start/review.md), this demo project is based around a data loading pattern, where data is format-shifted for use with ATLAS. But in this example, we've split the services up, and we're nearly ready to connect to existing stores using a [Data Service as an adapter](../../../../../extending-atlas/rta/introduction/data-services.md). 
 
 ## Docker Compose and Container Orchestration
 

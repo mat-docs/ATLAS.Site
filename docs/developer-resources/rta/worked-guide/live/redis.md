@@ -19,7 +19,7 @@ and the [Stream Service](../../services/rta-streamsvc/README.md) implementing th
 
 !!! info
 
-    This protocol is implemented by the _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../downloads/nuget.md) (.NET Core).
+    This protocol is implemented by the _MAT.OCS.RTA.StreamBuffer_ [NuGet Package](../../downloads.md#nuget-binaries) (.NET Core).
 
 ## Stream Management
 

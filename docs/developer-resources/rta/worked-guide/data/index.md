@@ -11,7 +11,7 @@ RTA supports four data representations:
 
 [^1]: i.e. one parameter/channel at a time
 
-These are all defined in the [rta.model.data](../protobuf/model_data.md) protobuf schema. Pre-compiled classes are available for .NET in our [NuGet packages](../../downloads/nuget.md), or you can use the [protobuf compiler](https://github.com/protocolbuffers/protobuf/releases) to generate idiomatic code from the schema in a range of languages.
+These are all defined in the [rta.model.data](../protobuf/model_data.md) protobuf schema. Pre-compiled classes are available for .NET in our [NuGet packages](../../downloads.md#nuget-binaries), or you can use the [protobuf compiler](https://github.com/protocolbuffers/protobuf/releases) to generate idiomatic code from the schema in a range of languages.
 
 All RTA data timestamps are measured in nanoseconds since the Unix Epoch (1970-01-01 00:00:00Z).
 
@@ -99,7 +99,7 @@ Combining the delta-encoding scheme with protobuf variable-length integer encodi
 
     Bursts of data must never overlap each other.
 
-Data is served from the [REST API](../../api/#operation/get-timestamped-data) in chunks using this list type:
+Data is served from the [REST API](../../api/index.md#operation/get-timestamped-data) in chunks using this list type:
 
 ```protobuf
 message TimestampedDataList {
@@ -259,7 +259,7 @@ The `interval` field enables a burst to be split by timestamp without reference 
 
     Bursts of data must never overlap each other.
 
-Data is served from the [REST API](../../api/#operation/get-periodic-data) in chunks using this list type:
+Data is served from the [REST API](../../api/index.md#operation/get-periodic-data) in chunks using this list type:
 
 ```protobuf
 message PeriodicDataList {
@@ -387,7 +387,7 @@ This encoding cannot be parsed without reference to configuration.
 
     Channels need to be consistently grouped together &mdash; for example, channels `[16, 17, 18]` above must be the same in all bursts.
 
-Data is served from the [REST API](../../api/#operation/get-row-data) in chunks using this list type:
+Data is served from the [REST API](../../api/index.md#operation/get-row-data) in chunks using this list type:
 
 ```protobuf
 message RowDataList {
@@ -497,7 +497,7 @@ Events are described in configuration, by `event_definition_id` (located in an a
 
     We recommend that event definition ids are globally-unique, to avoid tool compatibility issues.
 
-Data is served from the [REST API](../../api/#operation/get-events) in chunks using this list type:
+Data is served from the [REST API](../../api/index.md#operation/get-events) in chunks using this list type:
 
 ```protobuf
 message EventsList {

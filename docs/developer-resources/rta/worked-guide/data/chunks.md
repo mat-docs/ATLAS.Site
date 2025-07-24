@@ -58,7 +58,7 @@ To turn most row-oriented data into chunks:
 
 ## Using the API
 
-The _MAT.OCS.RTA.Model_ [NuGet Package](../../downloads/nuget.md) has a `Chunk` class that holds the data in serialized and compressed form.
+The _MAT.OCS.RTA.Model_ [NuGet Package](../../downloads.md#nuget-binaries) has a `Chunk` class that holds the data in serialized and compressed form.
 
 For example:
 
@@ -85,13 +85,13 @@ This applies fast LZ4 compression by default and uses a Memory Pool for low-over
 
 Make sure you respect the [Constraints](#constraints) listed below.
 
-The _MAT.OCS.RTA.Services.AspNetCore_ [NuGet Package](../../downloads/nuget.md) provides formatters to send a `ChunkedResult` (wrapping a `Chunk` stream) back to the client as the [`application/vnd.mat.protobuf+chunked` wire-format](../protobuf/net_chunks.md).
+The _MAT.OCS.RTA.Services.AspNetCore_ [NuGet Package](../../downloads.md#nuget-binaries) provides formatters to send a `ChunkedResult` (wrapping a `Chunk` stream) back to the client as the [`application/vnd.mat.protobuf+chunked` wire-format](../protobuf/net_chunks.md).
 
 ## Constraints
 
 This section describes some important constraints, using RFC&nbsp;2119 language (MUST, SHOULD, etc).
 
-These are important if you are implementing a [Data Service](../../introduction/data-services.md).
+These are important if you are implementing a [Data Service](../../../../extending-atlas/rta/introduction/data-services.md).
 
 ### Size Limits
 
@@ -186,7 +186,7 @@ There are two main approaches to implement this:
 
 <a id="time-based-chunking">time-based chunking:</a>
 :   Round the request time-bounds (if any) outwards &mdash; generally just by dropping precision.  
-    The _MAT.OCS.RTA.Services_ [NuGet Package](../../downloads/nuget.md) provides a `ChunkTime` utility to help with this.
+    The _MAT.OCS.RTA.Services_ [NuGet Package](../../downloads.md#nuget-binaries) provides a `ChunkTime` utility to help with this.
 
     This is easy to implement but requires some knowledge of the expected data rate so the chunks are neither too small nor exceed the [Size Limits](#size-limits). Data rates could be communicated by convention, configuration or the [Schema Mapping Service](../../services/rta-schemamappingsvc/README.md).
 

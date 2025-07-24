@@ -12,7 +12,7 @@ In this tutorial you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads/nuget.md) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md#nuget-packages) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.
