@@ -1,0 +1,1135 @@
+openapi: 3.0.3
+servers:
+  - url: https://localhost:8080/rta/v2
+info:
+  title: RTA API
+  version: "v2"
+  description: |
+    This is the client-facing REST API.  
+    All paths are located under `/rta/v2`
+    
+    The API is divided into sections to indicate microservice responsibilities.  
+
+paths:
+  /sessions:
+    get:
+      operationId: list-sessions
+      summary: List sessions
+      description: |
+        [Lists sessions](../devguide/sessions/queries/) with sorting and pagination.
+      tags:
+        - Session API
+      parameters:
+        - name: pageIndex
+          in: query
+          description: Page index, from 0.
+          schema: 
+            type: integer
+            minimum: 0
+        - name: pageSize
+          in: query
+          description: Page size, from 0
+          schema:
+            type: integer
+            minimum: 0
+        - name: folder
+          in: query
+          description: | 
+            [Virtual folder](../devguide/folders) sub-tree under which sessions are located.
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: |
+            Properties to sort by, with `:asc` or `:desc` suffixes.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Page of sessions.
+          content:
+            application/json:
+              schema:
+                format: json
+                type: object
+                $ref: '#/components/schemas/SessionsPage'
+
+    post:
+      operationId: query-sessions
+      summary: Query sessions
+      description: |
+        [Lists sessions](../devguide/sessions/queries/) with sorting, pagination and filtering.
+
+        The filter [query dialect](../devguide/sessions/queries/) is a subset of the [MongoDB Query Syntax](https://docs.mongodb.com/manual/reference/operator/query/).
+      tags:
+        - Session API
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                pageIndex:
+                  description: Page index, from 0
+                  type: integer
+                  minimum: 0
+                pageSize:
+                  description: Page size, from 0
+                  type: integer
+                  minimum: 0
+                folder:
+                  description: |
+                    [Virtual folder](../devguide/folders) sub-tree under which sessions are located.
+                  type: string
+                sort:
+                  description: |
+                    Properties to sort by, with ':asc' or ':desc' suffixes.
+                  type: array
+                  items:
+                    type: string
+                query:
+                  description: |
+                    Query string, conforming to the specified query dialect.
+                  format: json
+                  type: string
+                  $ref: 'query.schema.json'
+                prop:
+                  description: Additional properties to include in the request if they are available.
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Page of sessions.
+          content:
+            application/json:
+              schema:
+                format: json
+                type: object
+                $ref: '#/components/schemas/SessionsPage'
+
+  /sessions/{identity}:
+    parameters:
+      - $ref: '#/components/parameters/sessionIdentity'
+    get:
+      operationId: get-session
+      tags:
+        - Session API
+      summary: Get session
+      responses:
+        '200':
+          description: Session model.
+          content:
+            application/json:
+              schema:
+                format: json
+                $ref: '#/components/schemas/Session'
+        '404':
+          description: Session is not available.
+
+  /session-folders/{parent}:
+    get:
+      operationId: get-session-folders
+      tags:
+        - Session API
+      summary: Get session folders
+      parameters:
+        - name: parent
+          required: true
+          in: path
+          description: |
+            [Virtual Folder](../devguide/sessions/folders) to browse.  
+            The root folder is identified by an empty string.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |
+            [Virtual Folders](../devguide/sessions/folders) under the `parent`.
+          content:
+            application/json:
+              schema:
+                format: json
+                $ref: '#/components/schemas/SessionFolders'
+
+  /session-metamodel:
+    get:
+      operationId: get-session-metamodel
+      tags:
+        - Session API
+      summary: Get session metamodel
+      description: >
+        Gets a metamodel describing session properties in the specified scope.
+        The server may return a subset of the full metamodel, with [Query session metamodel](#operators/query-session-metamodel)
+        providing a means to search for additional properties.
+      parameters:
+        - name: folder
+          in: query
+          description: | 
+            [Virtual folder](../devguide/folders) sub-tree under which sessions are located.
+          schema:
+            type: string
+        - name: prop
+          in: query
+          description: Additional properties to include in the request if they are available.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Session metamodel.
+          content:
+            application/json:
+              schema:
+                format: json
+                type: object
+                $ref: '#/components/schemas/SessionMetamodel'
+            
+  /session-metamodel/properties:
+    get:
+      operationId: query-session-metamodel
+      tags:
+        - Session API
+      summary: Query session metamodel
+      description: Finds properties in the session metamodel similar to the specified partial match.
+      parameters:
+        - name: query
+          in: query
+          description: Partial parameter identifier match.
+          schema:
+            type: string
+        - name: folder
+          in: query
+          description: | 
+            [Virtual folder](../devguide/folders) sub-tree under which sessions are located.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fuzzy-matched properties.
+          content:
+            application/json:
+              schema:
+                format: json    
+                type: array
+                items:
+                  type: object
+                  $ref: '#/components/schemas/PropertySummary'
+
+  /configs/{identifier}:
+    parameters:
+      - $ref: '#/components/parameters/configIdentifier'
+    head:
+      operationId: has-config
+      tags:
+        - Config API
+      summary: Has config
+      description: |
+        Checks whether the specified [Configuration](../devguide/configuration) is available.
+      responses:
+        '200':
+          description: Configuration is available.
+        '404':
+          description: Configuration is not available.
+    get:
+      operationId: get-config
+      tags:
+        - Config API
+      summary: Get config
+      description: Gets the specified configuration as FFC or JSON.
+      responses:
+        '200':
+          description: |
+            [Configuration](../devguide/configuration) resource of the specified media type.
+          content:
+            application/vnd.mat.config+json:
+              schema:
+                format: json
+                type: object
+                $ref: 'config.schema.json'
+              example:
+                demo:
+                  tree:
+                    params:
+                      - param:demo
+                  parameters:
+                    - id: param:demo
+                      name: param
+                      desc: Example Parameter
+                      min: -1500
+                      max: 1500
+                      warnMin: -1000
+                      warnMax: 1000
+                      conv: 1to1:demo
+                      channels:
+                        - 1
+                  channels:
+                    - id: 1
+                      source: timestamped
+                  conversions:
+                    - name: 1to1:demo
+                      unit: ''
+                      format: "%5.3f"
+                  events:
+                    - id: 8
+                      code: '0008'
+                      desc: '0008:demo Example Event'
+                      pri: high
+                      convs: []  
+
+            application/vnd.mat.config+ffc:
+              schema:
+                format: binary
+                type: string
+        '404':
+            description: Configuration is not available.
+
+  /sessions/{identity}/data/timestamped/{channels}:
+    parameters:
+      - $ref: '#/components/parameters/sessionIdentity'
+      - $ref: '#/components/parameters/channelsExpression'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      operationId: get-timestamped-data
+      tags:
+        - Data API
+      summary: Get timestamped data
+      description: |
+        Streams [Timestamped Data](../devguide/data#timestamped-data) covered by the specified `channels`
+        expression and optional time bounds.
+
+        The client maps parameters to channels by reference to [Configuration](../devguide/configuration),
+        bound to the [Session](../devguide/sessions) model and retrieved from [`Get Config`](#operation/get-config).
+
+        The requested time range is rounded outwards to chunk boundaries, which means
+        there will be some over-read beyond the requested time period, which will not exceed
+        the bounds of the data. Chunks may not be evenly-sized, though they will have stable boundaries.
+
+        Chunks are streamed in ascending time order.
+
+      responses:
+        '200':
+          description: Stream of `TimestampedDataList` protobuf records in chunks.
+          content:
+            application/vnd.mat.protobuf+chunked:
+              schema:
+                $ref: '#/components/schemas/ChunkedProtobuf'
+
+  /sessions/{identity}/data/periodic/{channels}:
+    parameters:
+      - $ref: '#/components/parameters/sessionIdentity'
+      - $ref: '#/components/parameters/channelsExpression'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      operationId: get-periodic-data
+      tags:
+        - Data API
+      summary: Get periodic data
+      description: |
+        Streams [Periodic Data](../devguide/data#periodic-data) covered by the specified `channels`
+        expression and optional time bounds.
+
+        The client maps parameters to channels by reference to [Configuration](../devguide/configuration),
+        bound to the [Session](../devguide/sessions) model and retrieved from [`Get Config`](#operation/get-config).
+
+        The requested time range is rounded outwards to chunk boundaries, which means
+        there will be some over-read beyond the requested time period, which will not exceed
+        the bounds of the data. Chunks may not be evenly-sized, though they will have stable boundaries.
+
+        Chunks are streamed in ascending time order.
+      responses:
+        '200':
+          description: Stream of `PeriodicDataList` protobuf records in chunks.
+          content:
+            application/vnd.mat.protobuf+chunked:
+              schema:
+                $ref: '#/components/schemas/ChunkedProtobuf'
+
+  /sessions/{identity}/data/row/{channels}:
+    parameters:
+      - $ref: '#/components/parameters/sessionIdentity'
+      - $ref: '#/components/parameters/channelsExpression'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      operationId: get-row-data
+      tags:
+        - Data API
+      summary: Get row data
+      description: |
+        Streams [Row Data](../devguide/data#row-data) covered by the specified `channels`
+        expression and optional time bounds.
+
+        The client maps parameters to channels by reference to [Configuration](../devguide/configuration),
+        bound to the [Session](../devguide/sessions) model and retrieved from [`Get Config`](#operation/get-config).
+
+        The requested time range is rounded outwards to chunk boundaries, which means
+        there will be some over-read beyond the requested time period, which will not exceed
+        the bounds of the data. Chunks may not be evenly-sized, though they will have stable boundaries.
+
+        Chunks are streamed in ascending time order.
+      responses:
+        '200':
+          description: Stream of `RowDataList` protobuf records in chunks.
+          content:
+            application/vnd.mat.protobuf+chunked:
+              schema:
+                $ref: '#/components/schemas/ChunkedProtobuf'
+
+  /sessions/{identity}/data/events:
+    parameters:
+      - $ref: '#/components/parameters/sessionIdentity'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      operationId: get-events
+      tags:
+        - Data API
+      summary: Get events
+      description: |
+        Streams [Events](../devguide/data#events) covered by the specified time bounds.
+        
+        Unlike the other data, there is no `channels` expression.
+
+        No provision is made to select based on event definition id as the volumes of
+        events are assumed to be reasonably low.
+
+        The requested time range is rounded outwards to chunk boundaries, which means
+        there will be some over-read beyond the requested time period, which will not exceed
+        the bounds of the data. Chunks may not be evenly-sized, though they will have stable boundaries.
+
+        Chunks are streamed in ascending time order.
+      responses:
+        '200':
+          description: Stream of `EventsList` protobuf records in chunks.
+          content:
+            application/vnd.mat.protobuf+chunked:
+              schema:
+                $ref: '#/components/schemas/ChunkedProtobuf'
+
+components:
+  parameters:
+    configIdentifier:
+      name: identifier
+      in: path
+      required: true
+      description: |
+        Unique identifier for the requested [Configuration](../devguide/configuration).  
+        Configuration resources are shared and bound onto the [Session](../devguide/sessions) Model.
+      schema:
+        type : string
+      example: 6d711dbc-5f0d-47d2-b127-8c9d20bcec01
+
+    sessionIdentity:
+      name: identity
+      in: path
+      required: true      
+      description: |
+        Session identity.  
+        Could be a GUID, or some other structured id.  
+        This is a public id, so best-practise is to make this an unpredictable id.
+      schema:
+        type : string
+      example: f10f4a19-3831-4dd6-a178-faa94931a5b0
+
+    channelsExpression:
+      name: channels
+      in: path
+      required: true
+      description: |
+        Comma-separated hexadecimal [Channel](../devguide/configuration/channels-parameters) ids or ranges of ids.          
+        Ranges are denoted by a hyphen and can be open-ended.
+      example: -5,7,B-D,14-
+      schema:
+        type : string
+
+    startTime:
+      name: start
+      in: query
+      description: >
+        Optional start time, in nanoseconds, relative to the Unix epoch.
+        If unspecified, the earliest available data are included.
+      schema:
+        type : integer
+        minimum: 0
+      example: 1620323936202890000
+
+    endTime:
+      name: end
+      in: query
+      description: >
+        Optional end time, in nanoseconds, relative to the Unix epoch.
+        If unspecified, the earliest available data are included.
+      schema:
+        type : integer
+        minimum: 0
+      example: 1620324536202890000
+
+  schemas:
+    ChunkedProtobuf:
+      format: binary
+      type: string
+      description: |
+        Wire format for each chunk (concatenated in a stream):
+
+        | Field   | Bytes         | Data type                | Description                                                              |
+        |---------|---------------|--------------------------|--------------------------------------------------------------------------|
+        | prefix  | 4             | signed little-endian int | length of header                                                         |
+        | header  | _prefix_      | protobuf                 | `ChunkTransferHeader` &mdash; including `packed_length` (of the payload) |
+        | payload | _from header_ | protobuf                 | _data list_                                                              |
+
+        ```protobuf
+        // Protobuf header for wire transfer of chunks with the 'application/vnd.mat.protobuf+chunked' media type.
+        message ChunkTransferHeader {
+
+          // Chunk start time (ns since unix epoch) compared to the previous chunk.
+          sint64 chunk_start_time_delta = 1;
+
+          // Chunk duration (nanoseconds) compared to the previous chunk duration.
+          // Equal-sized chunks will result in all zeros except for the first chunk, but
+          // chunks can also be variable size &mdash; in which case this will be negative.
+          sint64 chunk_duration_delta = 2;
+
+          // Channel ids, if applicable.
+          repeated uint32 channel_ids = 3;
+
+          // Compression mode difference compared to the previous chunk.
+          // Chunks are usually compressed-alike so in practice should always be zero after the first chunk.
+          int32 compression_delta = 4;
+
+          // Uncompressed length of payload.
+          // This indicates the buffer size that should be allocated when unpacking the chunk data.
+          int32 unpacked_length = 5;
+
+          // Compressed length of payload.
+          // This indicates the length of the data following the header on the wire.
+          int32 packed_length = 6;
+        }
+        ```
+
+        The `compression_delta` indicates LZ4=1 on the first chunk if it is used (strongly recommended).
+
+    SessionFolders:
+      description: |
+        [Virtual Folders](../devguide/sessions/folders)
+      type: array
+      items:
+        type: object
+        required:
+        - identity
+        - label
+        - description
+        properties:
+          identity:
+            description: |
+              Folder identity.              
+              This is an arbitrary globally-unique id. It does not have to be structured to follow any specific path format.
+            type: string
+          label:
+            description: Label for display.
+            type: string
+          description:
+            description: Extended description for display.
+            type: string
+          hasChldren:
+            description: Whether the folder has children.
+            type: boolean
+            default: false
+      example:
+        - identity: animals::felines
+          label:    Felines
+          description: All kinds of cats
+          hasChildren: true
+        - identity: animals::canines
+          label:    Canines
+          description: Good bois
+          hasChildren: true
+
+    SessionMetamodel:
+      type: object
+      properties:
+        state:
+          $ref: "#/components/schemas/PropertyCapabilities"
+        timestamp:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        startTimestamp:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        endTimestamp:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        identifier:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        type:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        quality:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        group:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        version:
+          $ref: "#/components/schemas/SessionPropertyDescriptor"
+        details:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/SessionDetailPropertyDescriptor"
+        extDetails:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/SessionDetailPropertyGroupDescriptor"
+      example:
+        state:
+          filter: true
+          sort: true
+        timestamp:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            minimum: '2021-05-06T18:58:56.20289+01:00'
+            maximum: '2021-05-24T16:21:39+00:00'
+        startTimestamp:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            minimum: '2021-05-06T18:58:56.20289+01:00'
+            maximum: '2021-05-06T18:58:56.20289+01:00'
+        endTimestamp:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            minimum: '2021-05-06T19:08:56.20289+01:00'
+            maximum: '2021-05-06T19:08:56.20289+01:00'
+        identifier:
+          capabilities:
+            filter: true
+            sort: true
+        type:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            values:
+            -
+        quality:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            minimum: 0
+            maximum: 1
+        group:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            values:
+            -
+        version:
+          capabilities:
+            filter: true
+            sort: true
+          constraints:
+            values:
+            -
+        details:
+          Lab Tech:
+            label: Lab Tech
+            capabilities:
+              filter: true
+              sort: true
+            constraints:
+              values:
+              - Bob Jones
+              - Derek Smith
+          Run:
+            label: Run
+            capabilities:
+              filter: true
+              sort: true
+            constraints:
+              values:
+              - 17
+              - 200
+        extDetails: {}
+
+    PropertyCapabilities:
+      description: Indicates client-side capabilities supported by the server.
+      type: object
+      properties:
+        sort:
+          description: The server can sort sessions using the property.
+          type: boolean
+          default: false
+        filter:
+          description: The server can use the property to restrict sessions returned.
+          type: boolean
+          default: false
+
+    SessionPropertyDescriptor:
+      description: |
+        Describes the server capabilities for a property and aggregate
+        values to drive client-side faceted search.
+      type: object
+      properties:
+        capabilities:
+          $ref: "#/components/schemas/PropertyCapabilities"
+        constraints:
+          $ref: "#/components/schemas/PropertyConstraints"
+
+    SessionDetailPropertyDescriptor:
+      description: |
+        Describes a property, aggregate values (for faceted search)
+        and server capabilities. Used for session `details` and `extDetails`.
+      type: object
+      required:
+      - label
+      properties:
+        label:
+          description: |
+            Display name. Should be unique within its group, but this is
+            not technically required.
+          type: string
+        description:
+          description: |
+            Optional free-text description to accompany the label.
+          type: string
+        type:
+          description: |
+            Data type. Servers are not required to support all these data
+            types: in particular, some systems can support only string values for session details.
+          type: string
+          default: string
+          enum:
+          - string
+          - number
+          - integer
+          - boolean
+          - dateTime
+        capabilities:
+          $ref: "#/components/schemas/PropertyCapabilities"
+        constraints:
+          $ref: "#/components/schemas/PropertyConstraints"
+        display:
+          $ref: "#/components/schemas/PropertyDisplay"
+
+    SessionDetailPropertyGroupDescriptor:
+      description: |
+        Describes a group of properties &mdash; essentially another set of session details.
+      type: object
+      required:
+      - label
+      properties:
+        label:
+          description: |
+            Display name. Should be unique amongst the groups, but this is not technically required.
+          type: string
+        description:
+          description: |
+            Optional free-text description to accompany the label.
+          type: string
+        properties:
+          description: |
+            Set of properties in the group. This may not be the full set
+            of properties potentially available: the server can opt to provide a subset
+            and the client may request that specific properties be included.
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/SessionDetailPropertyDescriptor"
+
+    PropertyConstraints:
+      description: |
+        Constrains the possible values a property can take for editing and filtering.
+      type: object
+      properties:
+        onlyValues:
+          description: |
+            true if the property can only take one of the specified values;  
+            false if the client can specify other values.
+          type: boolean
+          default: false
+        values:
+          description: |
+            Values that the property can take. This can be either a complete
+            enumeration of allowed values, or a server-side aggregation of values (such
+            as driver initials) observed in the sessions in scope.
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: number
+              - type: integer
+              - type: boolean
+          default:
+          - string
+        minimum:
+          description: |
+            Minimum value that a property can take (inclusive). Can apply
+            to dates and strings by ordinal comparison.
+          oneOf:
+            - type: number
+            - type: string
+        maximum:
+          description: |
+            Maximum value that a property can take (inclusive). Can apply
+            to dates and strings by ordinal comparison.
+          oneOf:
+            - type: number
+            - type: string
+        exclusiveMinimum:
+          description: |
+            Minimum value that a property can take (exclusive). Can apply
+            to dates and strings by ordinal comparison.
+          oneOf:
+            - type: number
+            - type: string
+        exclusiveMaximum:
+          description: |
+            Maximum value that a property can take (exclusive). Can apply
+            to dates and strings by ordinal comparison.
+          oneOf:
+            - type: number
+            - type: string
+        minLength:
+          description: Minimum string length.
+          type: integer
+        maxLength:
+          description: Maximum string length.
+          type: integer
+        regex:
+          description: Regular expression for string validation.
+          type: string
+
+    PropertyDisplay:
+      description: Formats a property for display.
+      type: object
+      properties:
+        unit:
+          description: Unit of measure, if applicable.
+          type: string
+        format:
+          description: |
+            C-style format string, if applicable. Typically used for numeric
+            values. If unspecified, clients should display floating point properties
+            to 3 decimal places.
+          type: string
+        enum:
+          $ref: "#/components/schemas/PropertyDisplayEnum"
+
+    PropertyDisplayEnum:
+      description: Maps numeric values to text. Typically used when the value represents
+        a state or discrete option.
+      type: object
+      required:
+      - values
+      - text
+      properties:
+        values:
+          description: Mapped values.
+          type: array
+          items:
+            type: number
+        text:
+          description: |
+            Text equivalents to values. Must be the same cardinality
+            as the values property.
+          type: array
+          items:
+            type: string
+        default:
+          description: |
+            Default text if a value is not mapped. If undefined, default
+            formatting is applied as if the property were not mapped.
+          type: string
+      additionalProperties: false
+
+    PropertySummary:
+      type: object
+      required:
+      - id
+      - label
+      properties:
+        id:
+          description: Property id
+          type: string
+        label:
+          description: Label for display
+          type: string
+        description:
+          description: Extended description
+          type: string
+
+    Session:
+      type: object
+      required:
+      - identity
+      - state
+      - timestamp
+      - identifier
+      additionalProperties: true
+      properties:
+        identity:
+          description: |
+            Unique identity — which can be any format that is convenient for the server.
+
+            Good security practise for public identity strings suggests it should be something unpredictable,
+            rather than a file path or database sequence number.
+          type: string
+        state:
+          description: |
+            Indicates whether the session is expected to receive more data.
+
+            * `waiting`: Acquisition is starting, or temporarily paused
+            * `open`: Receiving data, and there may be more data to follow even if the session appears idle
+            * `closed`: No more data should be received, but metadata may be changed
+            * `truncated`: Closed without receiving all data
+            * `failed`: Closed without receiving all data as the result of a fault
+            * `abandoned`: Closed manually or by a watchdog after being left idle too long (e.g. due to an upstream crash)
+          type: string
+          enum:
+          - unknown
+          - waiting
+          - open
+          - closed
+          - truncated
+          - failed
+          - abandoned
+        timestamp:
+          description: |
+            Official session timestamp in ISO 8601, with time-zone offset if required — which ATLAS uses to cue session time rendering.
+
+            This timestamp does not have to match the actual data in the session: it could represent a time-tabled service, for example.
+          type: string
+          format: date-time
+        identifier:
+          description: |
+            Human-readable name.
+
+            This is quite similar to a filename — but is not required to be unique.  
+            Can be modified while the session is open and long after it has been closed.  
+            It is common practise to include some of the session details into the identifier for ease of reading.
+          type: string
+        startTimestamp:
+          description: |
+            Start of the telemetry (inclusive) in ISO 8601, or `null` if the session contains no data.
+
+            This property (and `"endTimestamp"`) are present primarily to make sure that the session descriptor
+            is fully usable from web applications, since the 64-bit nanosecond timestamps fall outside the
+            numeric range reliably handled by double-precision variables.
+          type: string
+          format: date-time
+        endTimestamp:
+          description: |
+            End of the telemetry (inclusive) in ISO 8601, or null if the session contains no data.
+
+            Must be present if `"startTimestamp"` is present.
+          type: string
+          format: date-time
+        timeRange:
+          $ref: "#/components/schemas/SessionTimeRange"
+        details:
+          description: |
+            Key-value metadata describing the session, which the client may use for filtering and display.
+
+            Like the `"identifier"`, these details can be modified while a session is open and long after it has been closed.
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: string
+              - type: integer
+              - type: number
+              - type: boolean
+        extDetails:
+          description: |
+            Extended session metadata, which the client may use for filtering and display. Behaves like groups of `"details"`.
+
+            Could be used to represent technical or large-scale metadata that users may not need to see by default.
+
+            Extended details are still available for search and can be requested by the client, but are typically not shown to users by default — though this is entirely down to the server implementation.
+            Session metadata, which the client may use for filtering and display.
+
+            Like the "identifier", these details can be modified while a session is open and long after it has been closed.
+          type: object          
+          additionalProperties:
+            type: object
+            additionalProperties:
+              oneOf:
+                - type: string
+                - type: integer
+                - type: number
+                - type: boolean
+        type:
+          description: |
+            Type classifier, indicating the origin or content of the session.
+          type: string
+        quality:
+          description: |
+            Quality indicator in the range `0.0` - `1.0` (worst - best).  
+            Can indicate the measured or expected completeness of the data, especially when acquired from a lossy source.
+          type: number
+          minimum: 0.0
+          maximum: 1.0
+        group:
+          description: |
+            Enables the client to organize the session into groups amongst peers.  
+            Applicable when listed amongst `"alternates"` or `"children"`. 
+
+            If the session derived from a parent as a result of model processing, the group conventionally indicates
+            the model (e.g. `"aero"`) that was used, and the `"version"` indicates subsequent iterations of the model.
+
+            ATLAS uses this grouping for visual clarity and as part of the loading heuristic when selecting `"children"`
+            to load automatically with the parent &mdash; where it should select the latest `"version"` within each group by default.
+          type: string
+        version:
+          description: |
+            _SemVer_-style version number.  
+            The client displays this version number if specified and uses it with `"group"` as part of the loading
+            heuristic for selecting `"children"` to load automatically.
+
+            When loading `"children"`, ATLAS will automatically load the latest child session in each `"group"`
+            (where specified). The latest session is determined by comparing `"version"` using _SemVer_ semantics,
+            falling back to alphanumerical comparison. If no version number is present, a child session will always be loaded by default.
+          type: string
+        children:
+          description: |
+            References the identities of child sessions, which may be loaded together with the parent session.  
+            These are usually derived from their parent as a result of model processing, but may also simply be additional optional data sets.
+
+            ATLAS organizes these children using their `"group"` property as a label, and their `"version"`
+            to indicate loading priority within each group, with the latest version (by _SemVer_) being preferred.
+            The `"group"` is conventionally used to name the model (e.g. `"aero"`) where children are the result
+            of model processing, so that the `"version"` indicates subsequent iterations of the model.
+
+            Each child session can itself have child sessions, forming a tree.
+          type: array
+          items:
+            type: string
+        alternates:
+          description: |
+            References the identities of alternate sessions, which may be loaded instead of this session.  
+            Alternates may be at a different quality, or have different metadata, or even different content.
+
+            ATLAS organizes these alternates using their `"group"` property as a label.
+            They may have a different `"version"` but this is not required.
+          type: array
+          items:
+            type: string
+        configBindings:
+          description: |
+            Binds configuration onto the session.            
+            Each configuration covers a range of channels (usually numbered contiguously from 0 or 1),
+            so the binding offsets the channels to remove the overlap.
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigBinding"
+      example:
+        identity: f10f4a19-3831-4dd6-a178-faa94931a5b0
+        state: closed
+        timestamp: '2021-05-06T18:58:56.20289+01:00'
+        identifier: 'Session Demo 06 May 2021 18:58'
+        startTimestamp: '2021-05-06T18:58:56.20289+01:00'
+        endTimestamp: '2021-05-06T19:08:56.20289+01:00'
+        timeRange:
+          startTime: 1620323936202890000
+          endTime: 1620324536202890000
+        details:
+          Lab Tech: Bob Jones
+          Run: 17
+        configBindings:
+          - identifier: 6d711dbc-5f0d-47d2-b127-8c9d20bcec01
+            channelOffset: 0
+
+    ConfigBinding:
+      description: Identifies a configuration and a channel offset to be applied to it.
+      type: object
+      required:
+      - identifier
+      - channelOffset
+      properties:
+        identifier:
+          description: |
+            References [Configuration](../devguide/configuration) that can be read from RTA, by identifier.
+
+            The same configuration can be published once and referenced across multiple sessions.          
+          type: string
+        channelOffset:
+          description: |
+            Tells the client to apply an offset to every channel in the configuration descriptor (&gt;= 0).
+
+            For example, if the configuration specifies channel `50`, and the `"channelOffset"` is `1000`,
+            then ATLAS will request data from the service using channel `1050`.
+
+            This is done so that sessions can contain configuration from multiple independently-compiled "apps",
+            and shared across sessions. This turns out to be important for
+            [scalability](../introduction/configuration.md#designed-for-scale) when sessions have 10s of thousands of parameters.
+
+            Many deployments will use a single configuration binding with no offset.          
+          type: integer
+      additionalProperties: false
+
+    SessionTimeRange:
+      description: |
+        Describes the valid time range (inclusive) in the session at nanosecond precision,
+        measured from the Unix Epoch (1970-01-01T00:00:00Z) — and therefore always in UTC.
+
+        Must be present when there is data in the session and be approximately the same
+        as `"startTimestamp"` and `"endTimestamp"` after timezone correction.
+      type: object
+      required:
+      - startTime
+      - endTime
+      properties:
+        startTime:
+          description: |
+            Time of the earliest data in the session, in nanoseconds relative to the Unix epoch.
+          type: integer
+        endTime:
+          description: |
+            Time of the latest data in the session, in nanoseconds relative to the Unix epoch.
+          type: integer
+      additionalProperties: false
+
+    SessionsPage:
+      description: Page of sessions.
+      type: object
+      required:
+        - sessions
+      properties:
+        sessions:
+          description: List of sessions.
+          type: array
+          items:
+            $ref: "#/components/schemas/Session"
+      example:
+        sessions:
+          - identity: 7a076d50-aaab-4a1c-af36-16fbc8e46f98
+            state: waiting
+            timestamp: '2021-05-24T16:21:39+00:00'
+            identifier: Another Example
+            details:
+              Run: 200
+              Lab Tech: Derek Smith
+            alternates: []
+            children: []
+            configBindings: []
+          - identity: f10f4a19-3831-4dd6-a178-faa94931a5b0
+            state: closed
+            timestamp: '2021-05-06T18:58:56.20289+01:00'
+            startTimestamp: '2021-05-06T18:58:56.20289+01:00'
+            endTimestamp: '2021-05-06T19:08:56.20289+01:00'
+            timeRange:
+              startTime: 1620323936202890000
+              endTime: 1620324536202890000
+            identifier: Session Demo 06 May 2021 18:58
+            details:
+              Run: 17
+              Lab Tech: Bob Jones
+            alternates: []
+            children: []
+            configBindings:
+              - identifier: 6d711dbc-5f0d-47d2-b127-8c9d20bcec01
+                channelOffset: 0
