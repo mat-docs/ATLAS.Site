@@ -1,7 +1,5 @@
-[data-md-color-primary="orange"]{
-    --md-typeset-a-color: #f28500
-}
-
-[data-md-color-primary="blue"]{
-    --md-typeset-a-color: #006df2
-}
+    :root  > *{
+        --md-primary-fg-color: #ED6D20;
+        --md-typeset-color: #303437;
+        --md-accent-fg-color: #148E8E;
+    }

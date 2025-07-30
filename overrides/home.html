@@ -4,251 +4,282 @@
 {% block tabs %}
 {{ super() }}
 <style>
-
-    .md-main {
-        flex-grow: 0
+    :root {
+        --primary: #ED6D20;
+        --primary-text: #303437;
+        --secondary-text: #B1B3B3;
+        --secondary: #148E8E;
+        --accent: #8FE5A6;
     }
-
-    .card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      background-color: #fff;
-      max-width: 400px;
-      margin: 0 auto;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
     }
-
-    .card-link:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      transform: translateY(-3px);
+    body{
+        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6;
+        color: var(--primary-text);
+        background: #fff;
+        overflow-x: hidden;
     }
-
-    .card-content h2 {
-        color: #333;
-        font-weight: 300;
-        font-size: 25px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: normal;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        font-family: inherit;
-    }
-
-    .card-content p {
-      margin: 0.5rem 0 0;
-      color: #555;
-    }
-
-    .md-main__inner {
+    /* Remove gradients and background animation for accessibility */
+    .bg-animation { display: none; }
+    .hero {
+        min-height: 90vh;
         display: flex;
-        height: 100%;
-    }
-
-    .tx-container {
-        padding-top: .0rem;
-        background: linear-gradient(to bottom, var(--md-primary-fg-color), rgb(171, 248, 225) 75%,#fff 99%)
-    }
-
-    .tx-hero {
-        margin: 32px 2.8rem;
-        color: var(--md-primary-bg-color);
-        justify-content: center;
-    }
-
-    .tx-hero h1 {
-        margin-bottom: 1rem;
-        color: currentColor;
-        font-weight: 700
-    }
-
-    .tx-hero__content {
-        padding-bottom: 1rem;
-        margin: 0 auto;
-    }
-
-    .tx-hero__image{
-        width:17rem;
-        height:17rem;
-        order:1;
-        padding-right: 2.5rem;
-    }
-
-    .tx-hero .md-button {
-        margin-top: .5rem;
-        margin-right: .5rem;
-        color: var(--md-primary-bg-color)
-    }
-
-    .tx-hero .md-button--primary {
-        background-color: var(--md-primary-bg-color);
-        color: hsla(280deg, 37%, 48%, 1);
-        border-color: var(--md-primary-bg-color)
-    }
-
-    .tx-hero .md-button:focus,
-    .tx-hero .md-button:hover {
-        background-color: var(--md-accent-fg-color);
-        color: var(--md-default-bg-color);
-        border-color: var(--md-accent-fg-color)
-    }
-
-    .top-hr {
-        margin-top: 42px;
-    }
-
-    @media screen and (max-width:30em) {
-        .tx-hero h1 {
-            font-size: 1.4rem
-        }
-    }
-
-    @media screen and (min-width:60em) {
-        .md-sidebar--secondary {
-            display: none
-        }
-
-        .tx-hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tx-hero__content {
-            max-width: 22rem;
-            margin-top: 3.5rem;
-            margin-bottom: 3.5rem;
-            margin-left: 1.0rem;
-            margin-right: 4.0rem;
-            align-items: center;
-        }
-    }
-
-    @media screen and (min-width:76.25em) {
-        .md-sidebar--primary {
-            display: none
-        }
-
-        .top-hr {
-            width: 100%;
-            display: flex;
-            max-width: 61rem;
-            margin-right: auto;
-            margin-left: auto;
-            padding: 0 .2rem;
-        }
-
-        .bottom-hr {
-            margin-top: 10px;
-            width: 100%;
-            display: flex;
-            max-width: 61rem;
-            margin-right: auto;
-            margin-left: auto;
-            padding: 0 .2rem;
-        }
-    }
-
-    .hr {
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        background: url('assets/swoosh/media_Banners_FINAL.jpg') center center/cover no-repeat;
         border-bottom: 1px solid #eee;
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        /* background: rgba(255,255,255,0.82); white overlay for clarity */
+        z-index: 1;
+    }
+    .hero-content {
+        display: flex;
+        align-items:flex-end;
+        justify-content: flex-end;
         width: 100%;
-        margin: 20px 0;
+        max-width: 1200px;
+        margin: 0 2rem;
+        /* padding: 2rem; */
+        z-index: 2;
+        position: relative;
+    }
+    .hero-card {
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(70px);
+        border-radius: 18px;
+        box-shadow: 0 4px 32px rgba(20,142,142,0.10);
+        padding: 2.5rem 2.5rem 2rem 2.5rem;
+        max-width: 40vw;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+    .hero-card h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02rem;
+    }
+    .hero-card p {
+        font-size: 1.2rem;
+        color: var(--primary-text);
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+    }
+    .cta-button {
+        position: relative;
+        background: none;
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        transition: color 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        overflow: hidden;
+    }
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0.3em;
+        width: 0;
+        height: 2px;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cta-button:hover,
+    .cta-button:focus {
+        color: var(--secondary);
+        outline: none;
+    }
+    .cta-button:hover::after,
+    .cta-button:focus::after {
+        width: 100%;
     }
 
-    .text-center {
-        text-align: center;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 15px;
-        font-family: 'Lato', sans-serif;
-        font-size: 23px;
-        font-weight: 300;
-        padding-bottom: 10px;
+    .cta-button:hover, .cta-button:focus {
+        transform: translateY(-2px) scale(1.03);
+        outline: none;
     }
-
-    .logos {
+    .hero-image{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 320px;
+    }
+    .hero-image img{
+        max-width: 420px;
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 4px 32px rgba(20,142,142,0.08);
+        border: 1px solid #eee;
+        background: #fff;
+        display: block;
+    }
+    .cards-section{
+        padding: 6rem 2rem;
+        background: linear-gradient(to bottom, rgba(143,229,166,0.08), rgba(255,255,255,0.98));
+        backdrop-filter: blur(10px);
+    }
+    .cards-container{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        padding-top: 2rem;
+    }
+    .feature-card{
+        background: #fff;
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1.5px solid var(--accent);
+        box-shadow: 0 8px 32px rgba(20,142,142,0.08);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        color: var(--primary-text);
+    }
+    .feature-card::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        transition: left 0.6s ease;
+    }
+    .feature-card:hover::before{
+        left: 100%;
+    }
+    .feature-card:hover{
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 60px rgba(237,109,32,0.13);
+        border-color: var(--primary);
+    }
+    .card-icon{
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-flow: row wrap;
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(237,109,32,0.10);
+    }
+    .feature-card h2{
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--primary);
+        position: relative;
+        z-index: 2;
+    }
+    .feature-card p{
+        color: var(--secondary-text);
+        line-height: 1.4;
+        position: relative;
+        z-index: 2;
+    }
+    .section-title{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0 auto;
+        letter-spacing: -0.01em;
+    }
+    .section-subtitle{
+        text-align: center;
+        font-size: 1.25rem;
+        color: var(--primary-text);
+        max-width: 600px;
         margin: 0 auto;
     }
-
-    .logos img {
-        flex: 1 1 auto;
-        padding: 25px;
-        max-height: 130px;
-        vertical-align: middle;
+    .fade-in{
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.6s ease;
     }
-
-    .hr-logos {
-        margin-top: 0;
-        margin-bottom: 30px;
-    }
-
-    .md-footer-meta__inner {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 1.0rem;
-    }
-
-    .md-footer-social {
-        padding-top: 20px;
+    @media (max-width: 900px) {
+        .hero-content {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .hero-card {
+            max-width: 100%;
+            padding: 1.5rem 1rem;
+        }
     }
 </style>
-
-<!-- Main site Entry button descriptions -->
-<section class="tx-container">
-    <div class="md-grid md-typeset">
-      <div class="tx-hero">
-        <div class="tx-hero__image">
-          <img src="assets/product-layers.png" draggable="false">
+<div class="bg-animation"></div>
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-card">
+            <h1>ATLAS</h1>
+            <p>Unlock the power of advanced data processing with our comprehensive platform designed to suite all of your analytical needs and scale with your business.</p>
+            <a href="getting-started/introduction" class="cta-button"><span>Get Started</span><span style="font-size: 1.2rem;">→</span></a>
         </div>
-        <div class="tx-hero__content">
-          <h1>ATLAS</h1>
-          <p>Learn more about how to use and extend ATLAS to suite all of your data processing needs.</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
-            Get started
-          </a>
-        </div>
-      </div>
     </div>
 </section>
-
-<!-- Main site box descriptions -->
-<div class="top-hr">
-
-<a href="https://example.com" class="card-link">
-    <div class="card-content">
-        <h2>Get Started with ATLAS</h2>
-        <p>Explore the platform and learn how to make the most of its features.</p>
+<section class="cards-section">
+    <div class="fade-in">
+        <h2 class="section-title">Everything you need</h2>
+        <p class="section-subtitle">Discover tools and resources to accelerate your data processing journey.</p>
     </div>
-</a>
-
-<a href="https://example.com" class="card-link">
-    <div class="card-content">
-        <h2>Explore Developer Resources</h2>
-        <p>Explore the platform and learn how to make the most of its features.</p>
+    <div class="cards-container">
+        <a href="getting-started/introduction" class="feature-card fade-in">
+            <div class="card-icon">🚀</div>
+            <h2>
+                Get Started with ATLAS
+            </h2>
+            <p>Jump right in with our getting started guide. Learn about the fundamentals and get your first workbook up and running in minutes.</p>
+        </a>
+        <a href="developer-resources/" class="feature-card fade-in">
+            <div class="card-icon">💡</div>
+            <h2>
+                Developer Resources
+            </h2>
+            <p>Access APIs, SDKs, and documentation to build and extend ATLAS for your needs.</p>
+        </a>
+        <a href="extending-atlas/secu4/open_streaming_architecture/" class="feature-card fade-in">
+            <div class="card-icon">🧩</div>
+            <h2>
+                Extend ATLAS
+            </h2>
+            <p>Integrate with third-party tools and discover how to customize ATLAS for your workflows.</p>
+        </a>
     </div>
-</a>
-
-<a href="https://example.com" class="card-link">
-    <div class="card-content">
-        <h2>Expand your ATLAS setup</h2>
-        <p>Explore the platform and learn how to make the most of its features.</p>
-    </div>
-</a>
-</div>
-
+</section>
 
 {% endblock %}
 {% block content %}{% endblock %}

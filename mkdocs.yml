@@ -1,4 +1,4 @@
-site_name: ATLAS Documentation
+site_name: ATLAS Suite
 site_url: https://atlas.mclarenapplied.com/
 edit_uri: edit/main/docs/
 repo_url: https://github.com/mat-docs/ATLAS.Site
@@ -10,8 +10,8 @@ theme:
   custom_dir: overrides
   palette:
     scheme: default
-    primary: 'orange'
-    accent: 'blue'
+    primary: custom
+    accent: custom
   logo: assets/swoosh/logo.png
   favicon: assets/swoosh/favicon.png
   features:
@@ -293,3 +293,4 @@ extra:
 
 plugins:
   - blog
+  - search
