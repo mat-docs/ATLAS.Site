@@ -293,3 +293,4 @@ extra:
 
 plugins:
   - blog
+  - search
