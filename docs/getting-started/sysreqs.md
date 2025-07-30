@@ -2,7 +2,7 @@
 
 ## Operating System
 
-* Windows 10 Professional or Enterprise (64 bit)
+* Windows 11 Professional or Enterprise (64 bit)
 
 ## Recommended Hardware
 
