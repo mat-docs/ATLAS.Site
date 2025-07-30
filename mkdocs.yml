@@ -156,8 +156,14 @@ nav:
         - Setup Guide: developer-resources/atlas/nuget/setup.md
       - SQL Race API: 
         - Overview: developer-resources/atlas/sql-race/index.md
-        - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
+        - Getting Started: developer-resources/atlas/sql-race/integration.md
         - .NET6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
+        - Worked Examples:
+          - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Functions: developer-resources/atlas/sql-race/examples/functions.md
+          - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
+          - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
+          - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
