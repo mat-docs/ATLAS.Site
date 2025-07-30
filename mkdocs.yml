@@ -124,7 +124,15 @@ nav:
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/index.md
     - ATLAS: 
-      - SQLRace API: developer-resources/atlas/sqlrace.md
+      - SQLRace API: 
+        - Overview: developer-resources/atlas/sql-race/index.md
+        - Getting Started: developer-resources/atlas/sql-race/integration.md
+        - Worked Examples:
+          - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Functions: developer-resources/atlas/sql-race/examples/functions.md
+          - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
+          - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
+          - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
