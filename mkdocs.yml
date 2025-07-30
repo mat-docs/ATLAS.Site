@@ -165,6 +165,7 @@ nav:
         - .NET6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
         - Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
         - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
+        - .NET6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
         - Worked Examples:
           - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
           - Functions: developer-resources/atlas/sql-race/examples/functions.md
