@@ -9,16 +9,21 @@ Welcome to the new Documentation Site for the ATLAS Product Suite.
 
 <!-- more -->
 
-We have spent some time redesigning the structure of the ATLAS documentation site based off feedback from users that documentation is hard to find. This redesign makes it easier to search across the full ATLAS suite for information. 
+We’ve redesigned the structure of the ATLAS documentation based on user feedback that information was difficult to locate. The new site makes it easier to search across the full ATLAS suite and find what you need quickly.
 
 ## What's New?
 
-- We have combined several sites together into one so you can search across the written documentation that has been produced and retrieve results faster.
-- We have adjusted the structure of the documentation to separate API documentation from user guides. 
-- Each product in the product suite has it's own respected area, making it easier to find information you need without having to guess the header it was written under. 
+- **Unified Search:** Multiple documentation sources have been consolidated into one searchable site for faster, more accurate results.
+
+- **Clear Structure:** API documentation is now separated from user guides, making it easier to navigate based on your needs.
+
+- **Product-Specific Areas:** Each product in the suite has its own dedicated section, so you no longer need to guess where content might be hidden.
 
 ## What's Coming Up?
 
-As we continue to expand on the documentation to cover all ATLAS products, you will see new sections appear and new guides in existing products. 
+We’re actively expanding the site to cover all ATLAS products and improve on the quality of documentation. Expect new sections and updated guides to appear regularly.
 
-Feedback is always appreciated.
+Your feedback is always appreciated. It helps us improve and evolve the documentation to better serve your needs.
+
+!!! tip "Interested in ATLAS training?"
+    We offer structured training sessions across the full range of ATLAS products. If this is something you're interested in, training@mclarenapplied.com and we'll organise an initial consultation to better understand your needs and plan a comprehensive session for you and your team.
