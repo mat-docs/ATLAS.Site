@@ -1,7 +1,7 @@
 site_name: ATLAS Product Suite
 site_url: https://atlas.mclarenapplied.com/
 edit_uri: edit/main/docs/
-repo_url: https://github.com/mat-docs/ATLAS.Site
+# repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
 site_description: '"Comprehensive technical documentation for McLaren ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
