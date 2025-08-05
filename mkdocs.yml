@@ -1,4 +1,4 @@
-site_name: ATLAS Suite
+site_name: ATLAS Product Suite
 site_url: https://atlas.mclarenapplied.com/
 edit_uri: edit/main/docs/
 repo_url: https://github.com/mat-docs/ATLAS.Site
@@ -12,8 +12,8 @@ theme:
     scheme: default
     primary: custom
     accent: custom
-  logo: assets/swoosh/logo.png
-  favicon: assets/swoosh/favicon.png
+  logo: assets/swoosh/motion_applied_logo_white.svg
+  favicon: assets/swoosh/motion_applied_logo.svg
   features:
     - navigation.sections
     - navigation.expand
@@ -43,36 +43,36 @@ nav:
     - Security: getting-started/security.md
     - System Requirements: getting-started/sysreqs.md
     - Support: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
-  - Distribute & Capture: 
-    - System Monitor: 
-      - Projects: distribute-and-capture/system-monitor/projects.md 
-      - Configuring the ECU: distribute-and-capture/system-monitor/configuring-ecu.md
-      - Configuring the Logger: distribute-and-capture/system-monitor/configuring-logger.md
-      - Integrating with ATLAS: distribute-and-capture/system-monitor/integrating-with-atlas.md
-    - ATLAS Data Server: 
-      - Recorders: distribute-and-capture/ads/recorders.md
-      - Integrating with System Monitor: distribute-and-capture/ads/system-monitor.md
-      - Remote Data Server: distribute-and-capture/ads/rds.md
+  # - Distribute & Capture: 
+  #   - System Monitor: 
+  #     - Projects: distribute-and-capture/system-monitor/projects.md 
+  #     - Configuring the ECU: distribute-and-capture/system-monitor/configuring-ecu.md
+  #     - Configuring the Logger: distribute-and-capture/system-monitor/configuring-logger.md
+  #     - Integrating with ATLAS: distribute-and-capture/system-monitor/integrating-with-atlas.md
+  #   - ATLAS Data Server: 
+  #     - Recorders: distribute-and-capture/ads/recorders.md
+  #     - Integrating with System Monitor: distribute-and-capture/ads/system-monitor.md
+  #     - Remote Data Server: distribute-and-capture/ads/rds.md
   - Process:
-    - vTAG: 
-      - Overview: process/vtag/introduction.md
-      - Integrating with ADS: process/vtag/integrating-with-ads.md
-      - Running Simulink Models: process/vtag/simulink.md
+    # - vTAG: 
+    #   - Overview: process/vtag/introduction.md
+    #   - Integrating with ADS: process/vtag/integrating-with-ads.md
+    #   - Running Simulink Models: process/vtag/simulink.md
     - SECU4:
       - Overview: process/secu4/index.md 
       - Virtual Parameter Service: process/secu4/vps.md
       - Bridge Service: process/secu4/bridge-service.md
       - Parquet Support: process/secu4/parquet.md
-  - Store:
-    - SQLRace Server: store/sqlrace/index.md
+  # - Store:
+  #   - SQLRace Server: store/sqlrace/index.md
   - Visualise: 
     - ATLAS: 
       - Overview: visualise/atlas/index.md
       - System Operation: 
         - Mouse Actions: visualise/atlas/system-operation/mouse.md
         - Keyboard Shortcuts: visualise/atlas/system-operation/keyboard.md
-      - Handling Data: 
-        - Overview: visualise/atlas/handling-data/index.md
+      - Handling Data:
+        # - Overview: visualise/atlas/handling-data/index.md
         - Recorders: 
           - USB Recorder: visualise/atlas/handling-data/recorders/usb-logger.md
           - NASCAR Telemetry Recorder: visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
@@ -90,8 +90,8 @@ nav:
         - Laps and Markers:
           - Markers: visualise/atlas/handling-data/laps-markers/markers.md
           - Laps: visualise/atlas/handling-data/laps-markers/laps.md
-      - Time and Position: visualise/atlas/index.md
-      - Parameters: visualise/atlas/index.md
+      # - Time and Position: visualise/atlas/index.md
+      # - Parameters: visualise/atlas/index.md
       - Functions: 
         - Overview: visualise/atlas/functions/index.md
         - Processing: visualise/atlas/functions/processing.md
@@ -99,14 +99,14 @@ nav:
         - Tutorial: visualise/atlas/functions/tutorial.md
       - Displays: 
         - Scatterplot: visualise/atlas/displays/scatterplot.md
-      - Alarms: visualise/atlas/index.md
+      # - Alarms: visualise/atlas/index.md
       - Troubleshooting: 
         - Profiling: visualise/atlas/troubleshooting/profiling.md
   - Developer Resources:
     - Overview: developer-resources/index.md
-    - System Monitor: 
-      - COM API: developer-resources/system-monitor/automation.md
-    - vTAG: developer-resources/vtag/index.md
+    # - System Monitor: 
+      # - COM API: developer-resources/system-monitor/automation.md
+    # - vTAG: developer-resources/vtag/index.md
     - SECU4: 
       - Stream API: 
         - Overview:                   developer-resources/secu4/stream_api/index.md
@@ -124,7 +124,9 @@ nav:
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/index.md
     - ATLAS: 
-      - SQLRace API: developer-resources/atlas/sqlrace.md
+      - SQLRace API: 
+        - Overview: developer-resources/atlas/sql-race/index.md
+        - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
@@ -151,9 +153,9 @@ nav:
             -  developer-resources/atlas/display-api/mvvm.md
             -  developer-resources/atlas/display-api/prerequisites.md
         - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
-      - Automation API: developer-resources/atlas/automation.md
+      # - Automation API: developer-resources/atlas/automation.md
     - RTA: 
-      - Overview: developer-resources/rta/worked-guide/index.md
+      - Introduction: developer-resources/rta/worked-guide/index.md
       - Services Reference:
         - Overview:                   developer-resources/rta/services/index.md
         - Server:
@@ -235,16 +237,6 @@ nav:
     - SECU4: 
       - Open Streaming Architecture:
           - Overview:                     extending-atlas/secu4/open_streaming_architecture/index.md
-          - Bridge Service:               extending-atlas/secu4/open_streaming_architecture/bridge_service/index.md
-          - Stream API:
-            - Overview:                   extending-atlas/secu4/open_streaming_architecture/stream_api/index.md
-            - Stream API Client:          extending-atlas/secu4/open_streaming_architecture/stream_api/stream_client.md
-            - Stream API Server:          extending-atlas/secu4/open_streaming_architecture/stream_api/stream_server.md
-            - Key Generator Service:      extending-atlas/secu4/open_streaming_architecture/stream_api/key_generator.md
-            - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
-          - Suppport Library:             extending-atlas/secu4/open_streaming_architecture/support_library/index.md
-          - Protocol Documentation:       extending-atlas/secu4/open_streaming_architecture/docs.md
-          - Open Source Repositories:     https://github.com/Software-Products
     - RTA: 
       - Introduction:
         - Overview: extending-atlas/rta/index.md

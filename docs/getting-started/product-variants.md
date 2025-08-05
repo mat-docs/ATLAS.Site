@@ -16,10 +16,10 @@ ATLAS GT offers all common features within the software, while advanced add-ons 
 
 ATLAS Data Platform is the full, top-end variant of the product family including all add-ons and targeting customers willing to get the most out of their ATLAS experience
 
-
+<!-- 
 ## Comparison Matrix
 
-![ATLAS Variants](assets/variants.png)
+![ATLAS Variants](assets/variants.png) -->
 
 ## Add-ons
 

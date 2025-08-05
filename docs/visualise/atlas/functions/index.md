@@ -10,7 +10,7 @@ Functions are ideal for:
 
 ---
 
-## 🔍 Why Use Functions?
+## Why Use Functions?
 
 | Use Case | Example |
 |----------|---------|
@@ -21,7 +21,7 @@ Functions are ideal for:
 
 ---
 
-## ✍️ Anatomy of a Function
+## Anatomy of a Function
 
 - **Parameters**: Referenced using `$`, e.g. `$RPM`.
 - **Constants**: Global values defined outside the function.
@@ -31,7 +31,7 @@ Functions are ideal for:
 
 ---
 
-## 🧠 Function Properties Explained
+## Function Properties Explained
 
 ### General Properties
 
@@ -55,7 +55,7 @@ Functions are ideal for:
 
 ---
 
-## 🔧 Using the Function Parameter Browser
+## Using the Function Parameter Browser
 
 This panel lets you search and insert:
 
@@ -71,7 +71,7 @@ This panel lets you search and insert:
 
 ---
 
-## 🧮 Built-in Processors
+## Built-in Processors
 
 Processors are pre-compiled functions that run faster than interpreted FDL code.
 
