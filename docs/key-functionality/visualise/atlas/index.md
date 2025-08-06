@@ -14,4 +14,4 @@ Key features include:
 
 - **Automation Support**: Through the ATLAS Automation API, users can automate session loading, display configuration, and parameter management using .NET-compatible languages like C#, VBA, and MATLAB.
 
-The client operates as a plugin-based composite application, allowing extensibility and integration with custom display modules. It is optimised for performance and supports service-oriented architecture principles to streamline user workflows. For more information on how to create your own plugins read the [Display API Documentation](../../developer-resources/atlas/display-api/index.md)
+The client operates as a plugin-based composite application, allowing extensibility and integration with custom display modules. It is optimised for performance and supports service-oriented architecture principles to streamline user workflows. For more information on how to create your own plugins read the [Display API Documentation](../../../developer-resources/atlas/display-api/index.md)

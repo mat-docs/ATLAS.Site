@@ -24,7 +24,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
     * Resampling and Interpolation
     * Statistics
     * Virtual Parameters
-    * Functions (C# and FDL, including [processor routines](../../manual/functions/processors.md))
+    * Functions (C# and FDL, including [processor routines](../../../key-functionality/visualise/atlas/functions/processing.md))
 
 !!! note
 
@@ -47,7 +47,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
     * Reading and writing events
     * Reading and writing data
     * Calculating lap statistics
-    * Adding and reading [Markers](../../manual/articles/markers.md)
+    * Adding and reading [Markers](../../../key-functionality/visualise/atlas/handling-data/laps-markers/markers.md)
 
 [MAT.SqlRace.StandaloneRecorder](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.StandaloneRecorder)
 :   * Embedding the ATLAS Data Server Telemetry (DST) recorder
@@ -55,7 +55,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
     * Writing augmented data back into the live session
 
 [MAT.SqlRace.Functions.HelloDotNet](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
-:   * Writing a [Function DLL](../../manual/functions/dlls.md), for use in the API and in ATLAS
+:   * Writing a [Function DLL](../../../key-functionality/visualise/atlas/functions/using-dlls.md), for use in the API and in ATLAS
 
 [MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.FileLoaderSample)
 :   * Writing a Session Loader DLL to read a third-party file format (CSV example)
