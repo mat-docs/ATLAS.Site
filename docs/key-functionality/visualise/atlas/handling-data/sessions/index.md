@@ -8,10 +8,12 @@ Each Session is automatically created and stored in an SQLRace database as it is
 ## Types of Sessions
 There are two primary types of Sessions in ATLAS:
 
-Historic Sessions
+**Historic Sessions**
+
 These are Sessions that have already been recorded and stored. They can be loaded at any time for review and analysis.
 
-Telemetry Sessions
+**Telemetry Sessions**
+
 These are live Sessions that are displayed in real-time as data is received from the vehicle.
 
 !!! warning
@@ -24,17 +26,23 @@ Sessions are the foundation of all data analysis in ATLAS. They allow engineers 
 - Compare data across different runs or configurations
 - Identify trends, anomalies, or failures
 - Share insights with other team members
+
 Sessions can be combined, compared, and manipulated in various ways to support these goals. The tools used to manage Sessions include:
 
-Session Browser: The main interface for loading, recording, and editing Sessions.
-Composite Sessions: Merged Sessions that combine multiple data recordings into one.
-Compare Sets: Groups of Sessions loaded together for side-by-side analysis.
-Key Concepts
-Term	Definition
-Session	A dataset recorded from a vehicle, stored in an SQLRace database.
-Historic Session	A previously recorded Session.
-Telemetry Session	A live Session streamed in real time.
-Workbook	The environment in ATLAS where Sessions are visualised and analysed.
-Session Browser	The tool used to manage Sessions.
-Composite Session	A combination of multiple Sessions treated as one.
-Compare Set	A group of Sessions loaded together for comparison.
+- Session Browser: The main interface for loading, recording, and editing Sessions.
+
+- Composite Sessions: Merged Sessions that combine multiple data recordings into one.
+
+- Compare Sets: Groups of Sessions loaded together for side-by-side analysis.
+
+### Key Concepts
+
+| Term              | Definition                                                                 |
+|-------------------|----------------------------------------------------------------------------|
+| Session           | A dataset recorded from a vehicle, stored in an SQLRace database.          |
+| Historic Session  | A previously recorded Session.                                             |
+| Telemetry Session | A live Session streamed in real time.                                     |
+| Workbook          | The environment in ATLAS where Sessions are visualised and analysed.       |
+| Session Browser   | The tool used to manage Sessions.                                          |
+| Composite Session | A combination of multiple Sessions treated as one.                         |
+| Compare Set       | A group of Sessions loaded together for comparison.                        |

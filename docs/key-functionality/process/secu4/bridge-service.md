@@ -23,7 +23,7 @@ Once the data is published on Kafka, users can use the Stream API to consume the
 
 ## UNIX Timestamps
 
-Timestamps from McLaren Applied ECUs are relative to midnight local time. To convert the timestamps to UNIX epoch time in UTC, 
+Timestamps from Motion Applied ECUs are relative to midnight local time. To convert the timestamps to UNIX epoch time in UTC, 
 the date and the local timezone offset on the machine hosting the bridge service is used. 
 
 !!! warning

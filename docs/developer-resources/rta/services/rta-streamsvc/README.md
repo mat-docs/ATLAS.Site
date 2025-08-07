@@ -2,7 +2,7 @@
 
 This service is part of the RTA Toolkit Services suite.
 
-It provides a WebSocket for streaming session updates so that McLaren ATLAS can display live data.
+It provides a WebSocket for streaming session updates so that Motion Applied ATLAS can display live data.
 
 It reads data from [Redis](https://redis.io/). There is no gRPC interface, and the outward-facing WebSocket interface should be exposed to users either directly or via the **Gateway Service**.
 

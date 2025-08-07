@@ -3,6 +3,7 @@
 **Functions** in ATLAS are user-defined calculations that transform raw telemetry data into meaningful, derived parameters. They are written in a scripting language called **Function Definition Language (FDL)** and can be used just like any other parameter in displays, dashboards, and analysis workflows.
 
 Functions are ideal for:
+
 - Creating custom metrics (e.g. converting speed from m/s to km/h).
 - Filtering or smoothing noisy data.
 - Performing conditional logic or statistical analysis.

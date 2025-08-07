@@ -1,5 +1,3 @@
-## What Are Laps?
-
 In ATLAS, a Lap is a defined segment of time within a telemetry session—typically corresponding to a vehicle completing a circuit. But laps are not just for motorsport. They are a powerful structuring tool for any time-series data stream where repeated cycles or phases occur.
 
 Laps allow users to:
@@ -23,8 +21,6 @@ The selected session details are visible as a tooltip by hovering over the speci
 
 The number of session details that a user can add can be defined in Tools > Options > Plugins > F1 Timeline, the 
 maximum number of session details allowed is 20. 
-
-
 
 
 ## Why Use Laps?
@@ -156,21 +152,6 @@ Laps can be used to:
 - Log events tied to lap transitions (e.g. pit entry, system reset, driver change).
 
 This enables context-aware alerting, reducing false positives and improving signal-to-noise ratio.
-
-### Machine Learning and Predictive Modelling
-
-Laps provide natural segmentation for training and validating models:
-
-- Use laps as labelled windows for supervised learning.
-- Extract features per lap (e.g. lap time, energy usage, tyre degradation).
-- Predict future lap outcomes based on historical lap data.
-
-Laps are ideal for feeding into models that predict failures, optimise strategy, or classify driving styles.
-
-### Integration with ADS and vTAG
-
-!!! warning
-    TODO: Confirm implementation details.
 
 ### Distance-Based Analysis
 

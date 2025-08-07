@@ -8,7 +8,7 @@ Teams use ATLAS to:
 
 - Stream live telemetry from ECUs, sensors, and gearboxes.
 - Analyse powertrain and gearbox performance in real time.
-- Securely share configuration files and telemetry across consortium members using RDA2 licensing and encryption2.
+- Securely share configuration files and telemetry across consortium members using RDA licensing and encryption.
 
 This ensures consistent control across hardware generations and protects proprietary data while enabling collaborative development.
 
@@ -24,11 +24,10 @@ These capabilities help teams optimise energy usage and performance under strict
 
 ## Aerospace and Automotive R&D: Simulation and Integration
 
-Engineering teams use ATLAS for system integration and test telemetry in aerospace and automotive domains5. For example:
+Engineering teams use ATLAS for system integration and test telemetry in aerospace and automotive domains. For example:
 
-- Wind tunnel data analysis for Red Bull Racing and Alpine F111.
+- Wind tunnel data analysis for Red Bull Racing and Alpine F1.
 - Real-time cloud infrastructure for track and simulator environments.
-- Integration with Jupyter notebooks and edge computing for embedded analytics.
 
 These applications support rigorous testing and validation workflows across complex systems.
 

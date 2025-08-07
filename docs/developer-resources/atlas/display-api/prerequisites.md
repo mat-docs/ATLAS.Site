@@ -12,7 +12,7 @@
 
 ## ATLAS
 
-- A recent version ATLAS 10 should be installed for testing custom displays, see [McLaren Applied Software Portal](https://www.mclarenelectronics.com/Portal)
+- A recent version ATLAS 10 should be installed for testing custom displays, see [Motion Applied Software Portal](https://www.mclarenelectronics.com/Portal)
 
 ## Required Knowledge
 

@@ -38,7 +38,7 @@ _Can you use a time-series database, such as [InfluxDB](https://www.influxdata.c
 _Can you use a columnar file format, like [Parquet](http://parquet.apache.org/)?_
 : Slow to ingest and query, and will likely require some specialized ingest tooling to buffer and organize the data before it is written. But if you don't have strict ingest latency or query latency requirements, you can have the flexibility to use the same data storage with _ATLAS_ and Big Data tools like [Apache Spark](http://spark.apache.org/) or [Amazon Athena](http://spark.apache.org/).
 
-If McLaren don't provide a service for your existing format, perhaps we can help you build one?
+If Motion Applied don't provide a service for your existing format, perhaps we can help you build one?
 Refer to our developer documentation for more information.
 
 You might prefer this **Data Service** if you need:
@@ -49,7 +49,7 @@ You might prefer this **Data Service** if you need:
 * To store data as it arrives without a slow finalization stage
 * To work with minimal supporting infrastructure
 * Support for more data types than double-precision
-* McLaren ECU-specific channel types, such as slow-row data
+* Motion Applied ECU-specific channel types, such as slow-row data
 
 ## Usage
 

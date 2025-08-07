@@ -23,7 +23,7 @@ Please use this feature only when specifically requested by the development team
 3. Perform the actions that are required to be profiled.
 4. Stop the profiler by navigating back through the Tools menu. 
 5. Navigate to the snapshot folder via `Tools > Performance Profiler > View Snapshot Folder`.
-6. Send the \*.dtp and the \*.dtp.000# to your McLaren Applied support representative. 
+6. Send the \*.dtp and the \*.dtp.000# to your Motion Applied support representative. 
 
 ## Capturing Memory Profile
 1. Navigate to `Tools > Performance Profiler > Memory > Start`.
@@ -38,4 +38,4 @@ Please use this feature only when specifically requested by the development team
 4. Create snapshot as required via `Tools > Performance Profiler > Memory > Snapshot`. 
 5. Stop the profiler by navigating back through the Tools menu. 
 6. Navigate to the snapshot folder via `Tools > Performance Profiler > View Snapshot Folder`
-7. Send the *.dmw to your McLaren Applied support representative.
+7. Send the *.dmw to your Motion Applied support representative.

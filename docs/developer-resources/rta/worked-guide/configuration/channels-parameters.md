@@ -6,7 +6,7 @@ Each parameter can actually be an aggregate of multiple channels &mdash; for exa
 
 !!! example
 
-    McLaren hardware loggers can capture data at multiple rates, using triggers to define conditions for high-rate collection.
+    Motion Applied hardware loggers can capture data at multiple rates, using triggers to define conditions for high-rate collection.
 
     For example, when logging twisting forces within a gearbox, high-rate sampling is only required when changing gear, and can be triggered for a period by the gear-change event.
     

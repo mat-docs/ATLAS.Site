@@ -1,4 +1,4 @@
-# Using the McLaren Applied USB Logger with ATLAS
+# Using the Motion Applied USB Logger with ATLAS
 
 This guide provides a step-by-step overview of how to use a USB Logger system to collect, transfer, and visualise sensor data efficiently. It covers setup on the vehicle, data offloading procedures, and how to import and decode the data in ATLAS. Designed for flexibility, the system supports a range of operational environments.
 
@@ -8,10 +8,10 @@ This guide provides a step-by-step overview of how to use a USB Logger system to
 
 - USB Logger Recorder License.
 - ATLAS version 11.4.3.XXX or later.
-- McLaren Applied USB Logger unit.
+- Motion Applied USB Logger unit.
 - TAG320 or VCU-500. 
 
-If you're interested in how McLaren Applied can advance your data systems, contact [sales@mclarenapplied.com](mailto:sales@mclarenapplied.com).
+If you're interested in how Motion Applied can advance your data systems, contact [sales@mclarenapplied.com](mailto:sales@mclarenapplied.com).
 
 ---
 

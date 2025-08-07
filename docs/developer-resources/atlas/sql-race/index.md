@@ -13,7 +13,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
 
     * Read ATLAS SSN files
     * Read and Write SSN2 files and shared MS SQL Server telemetry databases
-    * Record telemetry from McLaren hardware, simulations, and third-party protocols
+    * Record telemetry from Motion Applied hardware, simulations, and third-party protocols
         * Monitor and extract the live telemetry
         * Augment the recording with additional data
     * Read data from third-party files

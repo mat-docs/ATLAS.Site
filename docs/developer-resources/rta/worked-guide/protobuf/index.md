@@ -16,7 +16,7 @@ RTA models size/performance-sensitive data in [Google Protocol Buffers](https://
 
     Memory allocation _is_ still a noticeable factor on a profiler &mdash; but typically only when all other sources of allocation and inefficiency have been eliminated.
 
-These schemas are pre-compiled in the _MAT.OCS.RTA.Model_ library, which is available via the McLaren [NuGet Packages](../../downloads.md#nuget-binaries).
+These schemas are pre-compiled in the _MAT.OCS.RTA.Model_ library, which is available via the Motion Applied [NuGet Packages](../../downloads.md#nuget-binaries).
 
 If you need to compile them yourself for your preferred language, create this directory structure:
 

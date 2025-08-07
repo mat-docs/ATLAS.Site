@@ -71,12 +71,12 @@ You can load Sessions into a Set using the Session List in the Session Browser:
 1. Double-click a Session to add it to the currently selected Set.
 2. Drag and drop a Session into a Set.
 3. Right-click a Session and choose:
-4. Add to New Set: Creates a new Set and adds the Session.
-5. Add to Set: Adds the Session to an existing Set.
-6. Drag one Session onto another in the Set list to create a Composite Session.
-7. Select multiple Sessions using Shift or Ctrl + Click, then:
-8. Right-click and choose Append and Add to New Set.
-9. Right-click and choose Append and Add to Set.
+    - Add to New Set: Creates a new Set and adds the Session.
+    - Add to Set: Adds the Session to an existing Set.
+4. Drag one Session onto another in the Set list to create a Composite Session.
+5. Select multiple Sessions using Shift or `Ctrl + Click`, then:
+    - Right-click and choose Append and Add to New Set.
+    - Right-click and choose Append and Add to Set.
 
 
 ## What is a Compare Set?
@@ -96,6 +96,7 @@ You can create a Compare Set in several ways:
     - Drag them into the Sets panel.
 
 Adding to an Existing Compare Set:
+
 1. Drag a Session onto an existing Set in the Sets panel.
 2. Select multiple Sessions and drag them onto an existing Set.
 

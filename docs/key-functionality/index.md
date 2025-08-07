@@ -3,7 +3,7 @@ ATLAS (Advance Telemetry Linked Acquisition System) is a powerful software platf
 !!! tip "Tips for New Users"
     - Start with a simple session file and explore the display tools.
     - Don’t worry about acronyms, focus on what you want to see or understand.
-    - Use the built-in help or reach out to your team for examples and templates.
+    - Use the built-in help (F1) or reach out to your team for examples and templates.
     - ATLAS is modular, learn one part at a time.
 
 ## Core Concepts
@@ -25,8 +25,6 @@ When you first open ATLAS, you’ll typically:
 - Load a historical session file (often called an .ssn file).
 
 - Build a display to view the data—think of this like setting up your dashboard.
-
-- ATLAS includes a “System Monitor” to help you manage projects and devices, and a tool called ADS (ATLAS Data Server) to connect to real-time data sources 1.
 
 ### 3. Distribute and Capture
 
@@ -58,7 +56,7 @@ Data can be stored in:
 
 - SSN2 files: Local files for quick access.
 
-You can use SQLRace Monitor Studio to manage and share data across teams.
+You can use SQLRace Management Studio to manage and share data across teams.
 
 ### 6. Visualise
 

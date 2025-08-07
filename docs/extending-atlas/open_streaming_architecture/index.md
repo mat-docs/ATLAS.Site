@@ -8,7 +8,7 @@ messages.
 
 ## Components
 
-### [Stream API](stream_api/index.md)
+### [Stream API](../../developer-resources/secu4/stream_api/index.md)
 A standard API to expose streaming data from SECU units and abstract away proprietary 
 implementation details. Consumers of this API will be able to write software that 
 interfaces with any viewer, network protocol, or storage technology of their choice. 
@@ -17,7 +17,7 @@ This will be integrated with a protocol for streaming engineering (calibrated)
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
 
-### [Bridge Service](bridge_service/index.md)
+### [Bridge Service](../../developer-resources/secu4/bridge_service/index.md)
 Standalone service that decodes a raw stream of quads from an ADS, converting the data 
 to engineering values then into the Stream Protocol via the Stream API. Will include 
 components to manage sessions, configuration, metadata etc. All RDA protected data will 
@@ -28,7 +28,7 @@ components will only receive data available to the team.
 Virtual parameters are defined as simple FDL functions in the ECU logging config, and 
 are traditionally calculated on demand by clients rather than the values being persisted
 like other parameters. However, this requires knowledge of the proprietary FDL grammar, 
-so a service will be developed as part of the McLaren Applied Bridge Service to 
+so a service will be developed as part of the Motion Applied Bridge Service to 
 calculate virtual parameters in real time and written to the broker, eliminating the 
 need for downstream clients to recalculate them.
 

@@ -3,6 +3,7 @@
 ## Purpose of the Session Browser
 
 The Session Browser is the primary interface in ATLAS for managing telemetry data Sessions. It allows users to:
+
 - Load previously recorded (Historic) Sessions
 - Record new (Live) Sessions
 - Configure and manage data Recorders
@@ -23,11 +24,11 @@ Click the Session Browser icon on the ATLAS toolbar.
 
 **Menu Bar**
 
-Navigate to View > Session Browser.
+Navigate to `View > Session Browser`.
 
 **Keyboard Shortcut**
 
-Press Ctrl + L on your keyboard.
+Press `Ctrl + L` on your keyboard.
 
 Once opened, the Session Browser will appear within the ATLAS interface.
 
@@ -102,7 +103,7 @@ You can:
 - Search for Sessions using the search box
 - Right-click to add Sessions to new or existing Sets
 - Drag Sessions into Sets or onto other Sessions to create Composite Sessions
-- Select multiple Sessions using Shift + Click or Ctrl + Click
+- Select multiple Sessions using `Shift + Click` or `Ctrl + Click`
 
 ### 5. Compare Sets List
 

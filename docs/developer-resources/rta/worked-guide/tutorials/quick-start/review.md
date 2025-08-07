@@ -11,7 +11,7 @@ You can also connect to existing stores using a [Data Service as an adapter](../
 
 ## Importing NuGet Packages
 
-The project imports [NuGet Packages](../../../downloads.md#nuget-packages) from the McLaren GitHub feed:
+The project imports [NuGet Packages](../../../downloads.md#nuget-packages) from the Motion Applied GitHub feed:
 
 ```xml
   <ItemGroup>

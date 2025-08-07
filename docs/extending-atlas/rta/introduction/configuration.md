@@ -13,7 +13,7 @@ Most time-series databases can do these, too &mdash; but ATLAS has some addition
 
 ATLAS is designed for large sets of parameters, and many samples.
 
-A typical session from a [McLaren TAG-320B ECU](https://www.mclaren.com/applied/catalogue/item/electronic-control-unit-tag-320B/) on a Formula One car contains 50,000 - 60,000 parameters. Of these, around 4,000 are sampled at up to 1 KHz, with the remainder being densely-packed snapshots of embedded memory captured every few seconds.
+A typical session from a [Motion Applied TAG-320B ECU](https://www.mclaren.com/applied/catalogue/item/electronic-control-unit-tag-320B/) on a Formula One car contains 50,000 - 60,000 parameters. Of these, around 4,000 are sampled at up to 1 KHz, with the remainder being densely-packed snapshots of embedded memory captured every few seconds.
 
 A race-length session contains about 2,000,000,000 samples.
 

@@ -1909,7 +1909,7 @@ Types of formula. Can be extended to support other languages in the future
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | FORMULA_TYPE_UNSPECIFIED | 0 | Unspecified |
-| FORMULA_TYPE_FDL | 1 | Mclaren Applied proprietary FDL, used for virtual parameters with System Monitor |
+| FORMULA_TYPE_FDL | 1 | Motion Applied proprietary FDL, used for virtual parameters with System Monitor |
 | FORMULA_TYPE_CSHARP | 2 | An open format translated from FDL to C# |
 
 
