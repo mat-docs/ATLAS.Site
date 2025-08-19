@@ -100,6 +100,10 @@ nav:
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/index.md
     - ATLAS: 
+      - Overview: developer-resources/atlas/index.md
+      - Nuget: 
+        - Overview: developer-resources/atlas/nuget/index.md
+        - Setup Guide: developer-resources/atlas/nuget/setup.md
       - SQLRace API: 
         - Overview: developer-resources/atlas/sql-race/index.md
         - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
