@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Protobuf Schemas
 
 RTA models size/performance-sensitive data in [Google Protocol Buffers](https://developers.google.com/protocol-buffers).

@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Microservices &mdash; Walkthrough
 
 This tutorial converts the [Quick-Start Tutorial](../quick-start/index.md) deployment from [RTA Server](../../../services/rta-server/README.md) into microservices.

@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Live Streaming &mdash; Walkthrough
 
 This tutorial demonstrates live streaming to ATLAS, using [InfluxDB](https://www.influxdata.com/products/influxdb/), and building on the architecture from [Tutorial 03](../influx/index.md).

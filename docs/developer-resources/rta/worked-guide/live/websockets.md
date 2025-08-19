@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # WebSocket Protocol
 
 The ATLAS client opens a dedicated [WebSocket](https://datatracker.ietf.org/doc/html/rfc6455) connection for each [Session](../sessions/index.md) in the `#!json "open"` state.

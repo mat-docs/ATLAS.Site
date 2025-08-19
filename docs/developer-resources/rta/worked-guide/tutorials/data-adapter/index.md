@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Creating a Custom Data Adapter &mdash; Walkthrough
 
 This tutorial demonstrates creating a Data Adapter service, to support a custom data source.

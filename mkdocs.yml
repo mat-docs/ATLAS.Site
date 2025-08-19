@@ -27,7 +27,9 @@ theme:
     - content.code.copy
     - content.tabs.link
     - search.suggest
-    - search.highlight
+  icon:
+    tag:
+      prototype: fontawesome/solid/flask
 
 extra_css:
   - stylesheets/extra.css
@@ -265,7 +267,10 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@mclarenapplied.com
+  tags:
+    prototype: prototype
 
 plugins:
   - blog
   - search
+  - tags
