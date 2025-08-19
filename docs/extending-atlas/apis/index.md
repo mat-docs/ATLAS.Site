@@ -10,10 +10,10 @@ Provides direct access to telemetry databases. Used for in-process data extracti
 
 Enables creation of custom visualisations with native ATLAS look and feel.
 
-#### [Automation API](../developer-resources/atlas/automation.md)
- 
-Enables programmatic control of ATLAS via WCF services. Allows automation of session loading, display creation, parameter manipulation, and transient data injection.
-
 #### [Stream API](../developer-resources/secu4/stream_api/index.md)
 
 Built on gRPC and Protobuf for real-time telemetry streaming. Supports both reading and writing of telemetry packets.
+
+#### [Configuration API](../../developer-resources/secu4/configuration_api/index.md)
+
+The Configuration API offers a cross-platform gRPC interface for ECU programming and monitoring, supporting integration with clients in multiple languages.

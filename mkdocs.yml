@@ -213,9 +213,10 @@ nav:
           - Overview: developer-resources/rta/api/index.md
       - FAQ: developer-resources/rta/worked-guide/faq.md
   - Extensibility:
-    - API Overview: extending-atlas/api-overview.md
+    - APIs: 
+      - Overview: extending-atlas/apis/index.md
     - Streaming Architecture: 
-          - Overview:                     extending-atlas/open_streaming_architecture/index.md
+          - Overview: extending-atlas/open_streaming_architecture/index.md
     - Remote Telemetry Architecture (RTA): 
         - Overview: extending-atlas/rta/index.md
         - Architectures: extending-atlas/rta/introduction/architectures.md
