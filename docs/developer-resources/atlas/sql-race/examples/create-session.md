@@ -1,5 +1,5 @@
 
-# Creating a `.ssn2` Session from Scratch
+# Creating an SSN2 Session from Scratch
 
 This guide walks you through the process of creating a new **session file (`.ssn2`)** using the **SQLRace API**. You'll learn how to initialize the environment, create a session, add metadata, generate parameter data, and define laps.
 
@@ -40,7 +40,7 @@ This guide walks you through the process of creating a new **session file (`.ssn
 
 ## Step 1: Initialize SQLRace
 
-This initializes the SQLRace core system required for session handling.
+This initializes the SQLRace core system required for session handling and directs the initialiser towards the SQLRace License to validate there is a valid license in place. This is a required step and none of your SQLRace API scripts will work without an active SQLRace License. You can check that you have the correct license by opening License Manager from your start menu. 
 
 === "C#"
 
