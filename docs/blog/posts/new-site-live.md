@@ -1,6 +1,6 @@
 ---
 date:
-  created: 2025-08-12
+  created: 2025-08-26
 ---
 
 # New Documentation Site Now Live!
