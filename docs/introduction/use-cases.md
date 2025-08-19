@@ -22,15 +22,6 @@ ATLAS powers telemetry and control systems for Formula E and Extreme E, supporti
 
 These capabilities help teams optimise energy usage and performance under strict sustainability constraints.
 
-## Aerospace and Automotive R&D: Simulation and Integration
-
-Engineering teams use ATLAS for system integration and test telemetry in aerospace and automotive domains. For example:
-
-- Wind tunnel data analysis for Red Bull Racing and Alpine F1.
-- Real-time cloud infrastructure for track and simulator environments.
-
-These applications support rigorous testing and validation workflows across complex systems.
-
 ## NASCAR: Custom Telemetry Recorder and GPS Integration
 
 ATLAS has been tailored for NASCAR with a dedicated telemetry recorder that supports Vector GPS data and custom configuration formats. Teams benefit from:
