@@ -9,7 +9,7 @@ A valid ATLAS and SQLRace license is required to use the SQLRace API. Coding lan
 
 ## Importing the APIs
 ### C# NuGet Packages
-The SQLRace API is available as a NuGet package to registered users found here: [McLaren Applied NuGet Repository](https://github.com/mat-docs/packages).
+The SQLRace API is available as a NuGet package to registered users found here: [Motion Applied NuGet Repository](https://github.com/mat-docs/packages).
 
 ### Python and MATLAB
 For Python and MATLAB, the API DLLs can be directly imported and declared in the code. ATLAS installation is required.
@@ -74,7 +74,7 @@ For Python and MATLAB, the API DLLs can be directly imported and declared in the
     * Reading and writing events
     * Reading and writing data
     * Calculating lap statistics
-    * Adding and reading [Markers](../../../visualise/atlas/handling-data/laps-markers/markers.md)
+    * Adding and reading [Markers](../../../key-functionality/visualise/atlas/handling-data/laps-markers/markers.md)
 
 [MAT.SqlRace.StandaloneRecorder](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.StandaloneRecorder)
 :   * Embedding the ATLAS Data Server Telemetry (DST) recorder
@@ -82,7 +82,7 @@ For Python and MATLAB, the API DLLs can be directly imported and declared in the
     * Writing augmented data back into the live session
 
 [MAT.SqlRace.Functions.HelloDotNet](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
-:   * Writing a [Function DLL](../../../visualise/atlas/functions/using-dlls.md), for use in the API and in ATLAS
+:   * Writing a [Function DLL](../../../key-functionality/visualise/atlas/functions/using-dlls.md), for use in the API and in ATLAS
 
 [MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.FileLoaderSample)
 :   * Writing a Session Loader DLL to read a third-party file format (CSV example)

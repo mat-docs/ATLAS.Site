@@ -85,6 +85,11 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - System Monitor:
+      - COM API:
+        - Overview: developer-resources/system-monitor/index.md
+        - API Methods: developer-resources/system-monitor/api-methods.md
+        - API Usage: developer-resources/system-monitor/api-usage.md
     - SECU4: 
       - Stream API: 
         - Overview:                   developer-resources/secu4/stream_api/index.md
