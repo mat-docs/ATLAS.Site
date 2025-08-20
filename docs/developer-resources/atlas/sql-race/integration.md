@@ -1,18 +1,50 @@
-# System Requirements
-
-A valid ATLAS and SQLRace license is required to use the SQLRace API. Coding languages such as C#, MATLAB, Python, and C++ are commonly used. Other languages that are compatible with WCF APIs can be used as well.
+# Getting Started with the SQLRace API
 
 ## Prerequisites
 
-* Visual Studio 2019 or later
+* Visual Studio 2019 or later (for C#)
+* MATLAB 2020b or later (for MATLAB)
+* Python 3.7 or later (for Python)
+* Python IDE such as PyCharm or Visual Studio Code (for Python)
 * .NET 6 or later
+* ATLAS 10 installed on your machine
+* A valid ATLAS and SQLRace license
+
+!!! tip 
+    For more information on licenses, please get in touch with your Motion Applied representative or [contact us](mailto:sales@mclarenapplied.com).
+
+## Environment Setup
+
+Select the programming language you want to use for your project. The SQLRace API supports multiple languages, including C#, Python, and MATLAB. Below are the steps to set up your environment for each language.
+
+=== "C#"
+
+    1. Open Visual Studio
+    2. Create a new project
+    3. Add the NuGet package: `MAT.OCS.SQLRace.Domain`. For more information on how to add NuGet packages, refer to the [NuGet documentation](../nuget/setup.md).
+    4. Create a new C# file in the root of your project and copy the sample code
+    5. Or clone the sample code into the root
+    6. Change the variables at the top of the script to connect to your database
+
+=== "Python"
+
+    1. Open PyCharm
+    3. Create a new project 
+    4. Add the package dependency: 'pythonnet' 
+    5. Create a new Python file main.py in the root of your project and copy the sample code
+    6. Or clone the sample code into the root
+    7. Change the variables at the top of the script to connect to your database
+
+=== "MATLAB"
+
+***TBC***
 
 ## Importing the APIs
 ### C# NuGet Packages
 The SQLRace API is available as a NuGet package to registered users found here: [Motion Applied NuGet Repository](https://github.com/mat-docs/packages).
 
 ### Python and MATLAB
-For Python and MATLAB, the API DLLs can be directly imported and declared in the code. ATLAS installation is required.
+For Python and MATLAB, the API DLLs can be directly imported and declared in the code.
 
 === "Python"
 
@@ -64,30 +96,6 @@ For Python and MATLAB, the API DLLs can be directly imported and declared in the
         import MESL.SqlRace.Domain.Infrastructure.DataPipeline.*
     ```
 
-## Code Samples Index
+## Example Code
 
-[MAT.SQLRace.HelloData](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.HelloData)
-:   * Searching and loading sessions
-    * Loading a live session recording into a shared database
-    * Loading multiple sessions together as a composite
-    * Loading SSN files and associate sessions
-    * Reading and writing events
-    * Reading and writing data
-    * Calculating lap statistics
-    * Adding and reading [Markers](../../../key-functionality/visualise/atlas/handling-data/laps-markers/markers.md)
-
-[MAT.SqlRace.StandaloneRecorder](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.StandaloneRecorder)
-:   * Embedding the ATLAS Data Server Telemetry (DST) recorder
-    * Monitoring live data from the recorder
-    * Writing augmented data back into the live session
-
-[MAT.SqlRace.Functions.HelloDotNet](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
-:   * Writing a [Function DLL](../../../key-functionality/visualise/atlas/functions/using-dlls.md), for use in the API and in ATLAS
-
-[MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.FileLoaderSample)
-:   * Writing a Session Loader DLL to read a third-party file format (CSV example)
-
-[Python](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/Python)
-:   * Loading a session
-    * Reading events
-    * Reading data
+Several example projects are available to help you get started along with walkthrough explanations. These examples cover a range of functionalities provided by the SQLRace API, including reading and writing data, session management, and using functions. For easy access, the examples are hosted on GitHub in the [MAT.OCS.SQLRace.Examples](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples) repository. Each example is structured to demonstrate specific features of the SQLRace API, making it easier for you to understand how to implement them in your own projects. 
