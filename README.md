@@ -1,8 +1,8 @@
 # ATLAS Documentation Portal
 
-[Deploy Link](https://applied-atlas-docs.netlify.app/)
+[Deploy Link](https://atlas.mclarenapplied.com/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/68ac14f5-0f35-40f1-8fad-7678f979e1c1/deploy-status)](https://app.netlify.com/projects/applied-atlas-docs/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cfd0eb9e-0c60-479f-863a-5b63057c7881/deploy-status)](https://app.netlify.com/projects/mclaren-atlas-docs/deploys)
 
 ## Setup
 

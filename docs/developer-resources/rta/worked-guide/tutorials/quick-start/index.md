@@ -1,8 +1,11 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Quick-Start &mdash; Walkthrough
 
 This tutorial creates a simple data environment for ATLAS to connect to.
 
-At the end, you'll have a sample data loader using functionality from McLaren's [implementation toolkit](../../../services/index.md).
+At the end, you'll have a sample data loader using functionality from Motion Applied's [implementation toolkit](../../../services/index.md).
 
 In this tutorial, you:
 
@@ -12,7 +15,7 @@ In this tutorial, you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md/#nuget-packages) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use Motion Applied [NuGet packages](../../../downloads.md/#nuget-packages) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.
@@ -193,7 +196,7 @@ You will need a free GitHub account.
 
 ### Setup the NuGet Package feed
 
-The McLaren GitHub site has [instructions for setting up the feed](https://github.com/mat-docs/packages) in Visual Studio.
+The Motion Applied GitHub site has [instructions for setting up the feed](https://github.com/mat-docs/packages) in Visual Studio.
 
 Use your GitHub account to create a PAT (access token) with the `read:packages` permission, and [modify the `NuGet.Config` file](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry#authenticating-with-a-personal-access-token) in the sample project to match.
 
@@ -269,7 +272,7 @@ Right-click on **Sources** and select **Service Connections...**
 
     If you don't see this option, your ATLAS licence does not have the _RTA Data Service Connections_ feature.
 
-    Please [Contact](https://www.mclaren.com/applied/contact/) your sales rep or McLaren Field Application Engineer.
+    Please [Contact](https://www.mclaren.com/applied/contact/) your sales rep or Motion Applied Field Application Engineer.
 
 From the **Service Connection Manager** dialog, add a new connection like this:
 

@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Introduction to RTA
 
 ATLAS _Remote Telemetry Architecture_ (RTA) defines web services to let you load telemetry directly from your existing storage:

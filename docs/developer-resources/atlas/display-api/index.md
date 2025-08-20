@@ -42,7 +42,7 @@ The Display API is a thin wrapper over these internal APIs, providing a stable a
 
     However, as ATLAS continues to be developed, we reserve the right to change the internal APIs as we see fit without regard for backwards compatibility, There is a high chance that future releases of ATLAS will become incompatible with custom display plugins that use internal APIs, with the most likely consequence being crashes on startup.
 
-    Before calling internal APIs, please contact McLaren Applied for advice, whereby alternative APIs may be recommended, or future enhancements to the Display API will be considered.
+    Before calling internal APIs, please contact Motion Applied for advice, whereby alternative APIs may be recommended, or future enhancements to the Display API will be considered.
 
 ## Display API Features
 

@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Session Model
 
 This page describes all the properties on the RTA JSON Session model.  

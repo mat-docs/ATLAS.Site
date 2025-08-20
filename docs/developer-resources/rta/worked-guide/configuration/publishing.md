@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Publishing to the Toolkit Config Service
 
 The [gRPC API](../../services/rta-configsvc/grpc.md) provides two service calls to publish configuration:

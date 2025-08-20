@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Prerequisites
 
 Before completing these tutorials, you'll need a few things.
@@ -7,7 +10,7 @@ Before completing these tutorials, you'll need a few things.
 * ATLAS 2021-R3 or later
 
 You'll need an ATLAS Licence with the _RTA Data Service Connections_ feature.  
-[Contact](https://www.mclaren.com/applied/contact/) your sales rep or McLaren Field Application Engineer if you don't have this.
+[Contact](https://www.mclaren.com/applied/contact/) your sales rep or Motion Applied Field Application Engineer if you don't have this.
 
 ## PostgreSQL
 

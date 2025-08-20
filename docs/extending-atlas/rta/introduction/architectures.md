@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Architecture Patterns
 
 The [RTA API Specification](../../../developer-resources/rta/api/index.md) does not require any specific architecture or technology stack &mdash; but there are some common patterns.

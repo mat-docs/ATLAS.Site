@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Creating a Custom Data Adapter &mdash; Walkthrough
 
 This tutorial demonstrates creating a Data Adapter service, to support a custom data source.
@@ -13,7 +16,7 @@ In this tutorial you:
 
 !!! tip
 
-    These code samples are in C# for .NET 5.0, and use McLaren [NuGet packages](../../../downloads.md#nuget-binaries) to keep things as simple as possible. 
+    These code samples are in C# for .NET 5.0, and use Motion Applied [NuGet packages](../../../downloads.md#nuget-binaries) to keep things as simple as possible. 
 
     We recommend you follow this tutorial even if you are planning to do your integration in another language.  
     The concepts should translate very easily once you have a working example.
