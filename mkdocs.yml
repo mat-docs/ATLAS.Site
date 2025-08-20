@@ -85,6 +85,11 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - System Monitor:
+      - COM API:
+        - Overview: developer-resources/system-monitor/index.md
+        - API Methods: developer-resources/system-monitor/api-methods.md
+        - API Usage: developer-resources/system-monitor/api-usage.md
     - SECU4: 
       - Stream API: 
         - Overview:                   developer-resources/secu4/stream_api/index.md
@@ -108,7 +113,14 @@ nav:
         - Setup Guide: developer-resources/atlas/nuget/setup.md
       - SQLRace API: 
         - Overview: developer-resources/atlas/sql-race/index.md
-        - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
+        - Getting Started: developer-resources/atlas/sql-race/integration.md
+        - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
+        - Worked Examples:
+          - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Functions: developer-resources/atlas/sql-race/examples/functions.md
+          - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
+          - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
+          - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
