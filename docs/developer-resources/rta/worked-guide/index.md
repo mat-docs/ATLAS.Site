@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Overview
 
 This section is a detailed guide to the [RTA API](../api/index.md), [Toolkit Services](../services/index.md) and their [gRPC](https://grpc.io/) APIs.

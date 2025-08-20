@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Parameter Groups &mdash; Making a Parameter Tree
 
 Parameters can be arranged in a tree.

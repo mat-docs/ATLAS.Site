@@ -1,9 +1,9 @@
-site_name: ATLAS Suite
+site_name: ATLAS Product Suite
 site_url: https://atlas.mclarenapplied.com/
 edit_uri: edit/main/docs/
-repo_url: https://github.com/mat-docs/ATLAS.Site
+# repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
-site_description: '"Comprehensive technical documentation for McLaren ATLAS. Covering custom displays, data integration, APIs, and developer tools'
+site_description: '"Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
 theme:
   name: material
@@ -12,8 +12,8 @@ theme:
     scheme: default
     primary: custom
     accent: custom
-  logo: assets/swoosh/logo.png
-  favicon: assets/swoosh/favicon.png
+  logo: assets/swoosh/motion_applied_logo_white.svg
+  favicon: assets/swoosh/motion_applied_logo.svg
   features:
     - navigation.sections
     - navigation.expand
@@ -27,7 +27,9 @@ theme:
     - content.code.copy
     - content.tabs.link
     - search.suggest
-    - search.highlight
+  icon:
+    tag:
+      prototype: fontawesome/solid/flask
 
 extra_css:
   - stylesheets/extra.css
@@ -35,78 +37,54 @@ extra_css:
 copyright: Copyright &copy; 2025 Motion Applied Ltd.
 
 nav:
+  - Introduction:
+    - Overview: introduction/index.md
+    - Use Cases in Motorsport and Engineering: introduction/use-cases.md
+    - Eco-System Overview: introduction/eco-system.md
+  - Key Functionality:
+    - Overview: key-functionality/index.md
+    - Process:
+      - SECU4:
+        - Overview: key-functionality/process/secu4/index.md 
+        - Virtual Parameter Service: key-functionality/process/secu4/vps.md
+        - Bridge Service: key-functionality/process/secu4/bridge-service.md
+        - Parquet Support: key-functionality/process/secu4/parquet.md
+    - Visualisation: 
+      - Overview: key-functionality/visualise/atlas/index.md
+      - ATLAS: 
+        - System Operation: 
+          - Mouse Actions: key-functionality/visualise/atlas/system-operation/mouse.md
+          - Keyboard Shortcuts: key-functionality/visualise/atlas/system-operation/keyboard.md
+        - Handling Data:
+          - Recorders: 
+            # - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
+            - NASCAR Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
+            - Data Server Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/data-server.md
+            - File Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/file-telemetry.md
+            - Ethernet File Telemetry: key-functionality/visualise/atlas/handling-data/recorders/ethernet-file.md
+            - Ethernet Multi Session Offload: key-functionality/visualise/atlas/handling-data/recorders/ethernet-mso.md
+            - Ethernet Offload: key-functionality/visualise/atlas/handling-data/recorders/ethernet-offload.md
+            - Stream Recorder: key-functionality/visualise/atlas/handling-data/recorders/stream-recorder.md
+          - Sessions:
+            - Overview: key-functionality/visualise/atlas/handling-data/sessions/index.md
+            - Session Browser: key-functionality/visualise/atlas/handling-data/sessions/browser.md
+            - Loading Sessions: key-functionality/visualise/atlas/handling-data/sessions/loading-sessions.md
+            - Changing Properties: key-functionality/visualise/atlas/handling-data/sessions/properties.md
+          - Laps and Markers:
+            - Markers: key-functionality/visualise/atlas/handling-data/laps-markers/markers.md
+            - Laps: key-functionality/visualise/atlas/handling-data/laps-markers/laps.md
+        - Functions: 
+          - Overview: key-functionality/visualise/atlas/functions/index.md
+          - Processing: key-functionality/visualise/atlas/functions/processing.md
+          - Using DLLs: key-functionality/visualise/atlas/functions/using-dlls.md
+        - Displays: 
+          - Scatterplot: key-functionality/visualise/atlas/displays/scatterplot.md
   - Getting Started: 
-    - Introduction: getting-started/introduction.md
     - Quick Start Guide: getting-started/quick-start.md
-    - Product Variants and Packages: getting-started/product-variants.md
-    - Core Concepts: getting-started/core-concepts.md
     - Security: getting-started/security.md
     - System Requirements: getting-started/sysreqs.md
-    - Support: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
-  - Distribute & Capture: 
-    - System Monitor: 
-      - Projects: distribute-and-capture/system-monitor/projects.md 
-      - Configuring the ECU: distribute-and-capture/system-monitor/configuring-ecu.md
-      - Configuring the Logger: distribute-and-capture/system-monitor/configuring-logger.md
-      - Integrating with ATLAS: distribute-and-capture/system-monitor/integrating-with-atlas.md
-    - ATLAS Data Server: 
-      - Recorders: distribute-and-capture/ads/recorders.md
-      - Integrating with System Monitor: distribute-and-capture/ads/system-monitor.md
-      - Remote Data Server: distribute-and-capture/ads/rds.md
-  - Process:
-    - vTAG: 
-      - Overview: process/vtag/introduction.md
-      - Integrating with ADS: process/vtag/integrating-with-ads.md
-      - Running Simulink Models: process/vtag/simulink.md
-    - SECU4:
-      - Overview: process/secu4/index.md 
-      - Virtual Parameter Service: process/secu4/vps.md
-      - Bridge Service: process/secu4/bridge-service.md
-      - Parquet Support: process/secu4/parquet.md
-  - Store:
-    - SQLRace Server: store/sqlrace/index.md
-  - Visualise: 
-    - ATLAS: 
-      - Overview: visualise/atlas/index.md
-      - System Operation: 
-        - Mouse Actions: visualise/atlas/system-operation/mouse.md
-        - Keyboard Shortcuts: visualise/atlas/system-operation/keyboard.md
-      - Handling Data: 
-        - Overview: visualise/atlas/handling-data/index.md
-        - Recorders: 
-          - USB Recorder: visualise/atlas/handling-data/recorders/usb-logger.md
-          - NASCAR Telemetry Recorder: visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
-          - Data Server Telemetry Recorder: visualise/atlas/handling-data/recorders/data-server.md
-          - File Telemetry Recorder: visualise/atlas/handling-data/recorders/file-telemetry.md
-          - Ethernet File Telemetry: visualise/atlas/handling-data/recorders/ethernet-file.md
-          - Ethernet Multi Session Offload: visualise/atlas/handling-data/recorders/ethernet-mso.md
-          - Ethernet Offload: visualise/atlas/handling-data/recorders/ethernet-offload.md
-          - Stream Recorder: visualise/atlas/handling-data/recorders/stream-recorder.md
-        - Sessions:
-          - Overview: visualise/atlas/handling-data/sessions/index.md
-          - Session Browser: visualise/atlas/handling-data/sessions/browser.md
-          - Loading Sessions: visualise/atlas/handling-data/sessions/loading-sessions.md
-          - Changing Properties: visualise/atlas/handling-data/sessions/properties.md
-        - Laps and Markers:
-          - Markers: visualise/atlas/handling-data/laps-markers/markers.md
-          - Laps: visualise/atlas/handling-data/laps-markers/laps.md
-      - Time and Position: visualise/atlas/index.md
-      - Parameters: visualise/atlas/index.md
-      - Functions: 
-        - Overview: visualise/atlas/functions/index.md
-        - Processing: visualise/atlas/functions/processing.md
-        - Using DLLs: visualise/atlas/functions/using-dlls.md
-        - Tutorial: visualise/atlas/functions/tutorial.md
-      - Displays: 
-        - Scatterplot: visualise/atlas/displays/scatterplot.md
-      - Alarms: visualise/atlas/index.md
-      - Troubleshooting: 
-        - Profiling: visualise/atlas/troubleshooting/profiling.md
   - Developer Resources:
     - Overview: developer-resources/index.md
-    - System Monitor: 
-      - COM API: developer-resources/system-monitor/automation.md
-    - vTAG: developer-resources/vtag/index.md
     - SECU4: 
       - Stream API: 
         - Overview:                   developer-resources/secu4/stream_api/index.md
@@ -124,7 +102,13 @@ nav:
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/index.md
     - ATLAS: 
-      - SQLRace API: developer-resources/atlas/sqlrace.md
+      - Overview: developer-resources/atlas/index.md
+      - Nuget: 
+        - Overview: developer-resources/atlas/nuget/index.md
+        - Setup Guide: developer-resources/atlas/nuget/setup.md
+      - SQLRace API: 
+        - Overview: developer-resources/atlas/sql-race/index.md
+        - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
@@ -151,9 +135,8 @@ nav:
             -  developer-resources/atlas/display-api/mvvm.md
             -  developer-resources/atlas/display-api/prerequisites.md
         - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
-      - Automation API: developer-resources/atlas/automation.md
     - RTA: 
-      - Overview: developer-resources/rta/worked-guide/index.md
+      - Introduction: developer-resources/rta/worked-guide/index.md
       - Services Reference:
         - Overview:                   developer-resources/rta/services/index.md
         - Server:
@@ -231,29 +214,23 @@ nav:
         - REST API: 
           - Overview: developer-resources/rta/api/index.md
       - FAQ: developer-resources/rta/worked-guide/faq.md
-  - Extending ATLAS:
-    - SECU4: 
-      - Open Streaming Architecture:
-          - Overview:                     extending-atlas/secu4/open_streaming_architecture/index.md
-          - Bridge Service:               extending-atlas/secu4/open_streaming_architecture/bridge_service/index.md
-          - Stream API:
-            - Overview:                   extending-atlas/secu4/open_streaming_architecture/stream_api/index.md
-            - Stream API Client:          extending-atlas/secu4/open_streaming_architecture/stream_api/stream_client.md
-            - Stream API Server:          extending-atlas/secu4/open_streaming_architecture/stream_api/stream_server.md
-            - Key Generator Service:      extending-atlas/secu4/open_streaming_architecture/stream_api/key_generator.md
-            - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
-          - Suppport Library:             extending-atlas/secu4/open_streaming_architecture/support_library/index.md
-          - Protocol Documentation:       extending-atlas/secu4/open_streaming_architecture/docs.md
-          - Open Source Repositories:     https://github.com/Software-Products
-    - RTA: 
-      - Introduction:
+  - Extensibility:
+    - APIs: 
+      - Overview: extending-atlas/apis/index.md
+    - Streaming Architecture: 
+          - Overview: extending-atlas/open_streaming_architecture/index.md
+    - Remote Telemetry Architecture (RTA): 
         - Overview: extending-atlas/rta/index.md
         - Architectures: extending-atlas/rta/introduction/architectures.md
         - Data Services: extending-atlas/rta/introduction/data-services.md
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
-  - News: blog/index.md
+  - News and Release Notes: blog/index.md
   - Downloads: https://portal.mclarenapplied.com/
+  - Support: 
+    - Troubleshooting: 
+      - Profiling: key-functionality/visualise/atlas/troubleshooting/profiling.md
+    - Zendesk: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
 
 
 markdown_extensions:
@@ -285,12 +262,15 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/mat-docs/ATLAS.Site
+      link: https://github.com/mat-docs/
     - icon: fontawesome/brands/linkedin
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@mclarenapplied.com
+  tags:
+    prototype: prototype
 
 plugins:
   - blog
   - search
+  - tags

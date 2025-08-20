@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Data Services
 
 Data Services read samples and events from a telemetry store, and serve them to ATLAS.
@@ -15,13 +18,13 @@ _Example deployment, with supporting [Gateway Service](../../../developer-resour
 
 <object type="image/svg+xml" data="../assets/data-services/data-adapter.svg" class="diagram" title="Architecture diagram showing a data adapter service"></object>
 
-The [Developer Guide](../../../developer-resources/rta/worked-guide/index.md) includes a walkthrough demonstrating the process of [writing a Data Adapter Service](../../../developer-resources/rta/worked-guide/tutorials/data-adapter/index.md), which can be written from scratch in any framework using the [API Specification](../../../developer-resources/r../../../developer-resources/rta/api/index.md), or built in [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core) taking advantage of McLaren's [library support](../../../developer-resources/rta/downloads.md).
+The [Developer Guide](../../../developer-resources/rta/worked-guide/index.md) includes a walkthrough demonstrating the process of [writing a Data Adapter Service](../../../developer-resources/rta/worked-guide/tutorials/data-adapter/index.md), which can be written from scratch in any framework using the [API Specification](../../../developer-resources/r../../../developer-resources/rta/api/index.md), or built in [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core) taking advantage of Motion Applied's [library support](../../../developer-resources/rta/downloads.md).
 
 Development time can be as little as a few hours for a prototype, up to a few weeks for an efficient, production-grade service.
 
 ## Toolkit Services
 
-McLaren currently provide two data services in the [services toolkit](../../../developer-resources/rta/services/index.md):
+Motion Applied currently provide two data services in the [services toolkit](../../../developer-resources/rta/services/index.md):
 
 [RTA Data Service](../../../developer-resources/rta/services/rta-datasvc/README.md)
 : Read/write storage optimized for RTA, backed by either a file system, or [Amazon S3](https://aws.amazon.com/s3/) and [DynamoDB](https://aws.amazon.com/dynamodb/).  

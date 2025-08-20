@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Chunks
 
 The [RTA API](../../api/index.md) streams data to the client in _Chunks_.

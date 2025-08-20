@@ -1,2 +1,2 @@
-# News
+# News and Release Notes
 

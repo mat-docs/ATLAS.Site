@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Schema Mappings
 
 Schema Mappings describe transformations from a data store schema to the RTA domain model.

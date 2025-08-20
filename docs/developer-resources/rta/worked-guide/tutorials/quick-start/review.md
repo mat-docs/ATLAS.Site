@@ -1,3 +1,6 @@
+
+!!! danger "Prototype Functionality"
+    RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # Quick-Start &mdash; Review
 
 !!! info
@@ -11,7 +14,7 @@ You can also connect to existing stores using a [Data Service as an adapter](../
 
 ## Importing NuGet Packages
 
-The project imports [NuGet Packages](../../../downloads.md#nuget-packages) from the McLaren GitHub feed:
+The project imports [NuGet Packages](../../../downloads.md#nuget-packages) from the Motion Applied GitHub feed:
 
 ```xml
   <ItemGroup>
