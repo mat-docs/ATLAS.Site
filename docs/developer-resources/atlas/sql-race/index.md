@@ -31,3 +31,5 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
     The ATLAS Automation API also provides data access, but the SQL Race API is more direct and will yield better performance.
 
 [Code Samples](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples){ .md-button } [API Reference](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/){ .md-button }
+
+Coding languages such as C#, MATLAB, Python, and C++ are commonly used. Other languages that are compatible with WCF APIs can be used as well. 
