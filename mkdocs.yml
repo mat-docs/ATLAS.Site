@@ -262,7 +262,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/mat-docs/ATLAS.Site
+      link: https://github.com/mat-docs/
     - icon: fontawesome/brands/linkedin
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane

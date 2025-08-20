@@ -1,12 +1,11 @@
 ---
 date:
-  created: 2025-08-26
+  created: 2025-08-20
 ---
 
 # New Documentation Site Now Live!
 
 Welcome to the new Documentation Site for the ATLAS Product Suite.
-
 <!-- more -->
 
 We’ve redesigned the structure of the ATLAS documentation based on user feedback that information was difficult to locate. The new site makes it easier to search across the full ATLAS suite and find what you need quickly.

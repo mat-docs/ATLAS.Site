@@ -13,8 +13,6 @@ RDA is a security layer within ATLAS that governs access to protected data strea
 
 **Third-Party Encryption Support:** RDA can be extended to support encryption from external sources, adding an additional layer of protection for integrated systems.
 
-**Automated Testing:** RDA functionality is continuously validated through automated regression testing, ensuring reliability and compliance with evolving security standards 1.
-
 ## Why It Matters
 
 Whether you're monitoring system performance, analysing telemetry, or integrating with external platforms, RDA ensures that your data remains protected. It’s part of our commitment to delivering secure, scalable, and trustworthy solutions for every customer.
