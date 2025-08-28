@@ -43,6 +43,10 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - Key Functionality:
     - Overview: key-functionality/index.md
+    - Store:
+      - Overview: key-functionality/store/sqlrace/index.md
+      - SQL Race:
+        - Getting Started: key-functionality/store/sqlrace/installation.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
