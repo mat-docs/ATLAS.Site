@@ -47,6 +47,7 @@ nav:
       - Overview: key-functionality/store/sqlrace/index.md
       - SQL Race:
         - Getting Started: key-functionality/store/sqlrace/installation.md
+        - Performance Guide: key-functionality/store/sqlrace/performance.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
