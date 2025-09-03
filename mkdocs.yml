@@ -109,6 +109,7 @@ nav:
       - SQLRace API: 
         - Overview: developer-resources/atlas/sql-race/index.md
         - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
+        - .NET6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
