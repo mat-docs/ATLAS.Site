@@ -92,6 +92,7 @@ nav:
         - Stream API Server:          developer-resources/secu4/stream_api/stream_server.md
         - Key Generator Service:      developer-resources/secu4/stream_api/key_generator.md
         - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+        - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
       - Configuration API: 
