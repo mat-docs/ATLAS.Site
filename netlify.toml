@@ -37,7 +37,6 @@ publish = "site"
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-
 [[redirects]]
   from = "https://atlas.mclarenapplied.com/*"
   to = "https://atlas.motionapplied.com/:splat"
