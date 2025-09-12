@@ -43,11 +43,15 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - Key Functionality:
     - Overview: key-functionality/index.md
-    - Store:
+    - Store and Distribute:
       - Overview: key-functionality/store/sqlrace/index.md
       - SQL Race:
         - Getting Started: key-functionality/store/sqlrace/installation.md
         - Performance Guide: key-functionality/store/sqlrace/performance.md
+        - SQLRace vs SQLite: key-functionality/store/sqlrace/comparison.md
+      - Data Server:
+        - Overview: key-functionality/store/ads/index.md
+        # - Getting Started: key-functionality/store/ads/installation.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
