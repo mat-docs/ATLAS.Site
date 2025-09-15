@@ -1,6 +1,6 @@
 # ATLAS for NASCAR Telemetry
 
-ATLAS can be used for receiving and visualising Telemetric data from NASCAR’s Event Racing Data Platform. It is designed to connect to the data feed delivered live via JSON messages published from NATS.io message broker. The integration provides complete ATLAS data analysis functionality for use with the data from NASCAR. ATLAS currently supports all of the information collected to the CAN bus from Motion Applied Applied’s TAG-400N.
+ATLAS can be used for receiving and visualising Telemetric data from NASCAR’s Event Racing Data Platform. It is designed to connect to the data feed delivered live via JSON messages published from NATS.io message broker. The integration provides complete ATLAS data analysis functionality for use with the data from NASCAR. ATLAS currently supports all of the information collected to the CAN bus from Motion Applied’s TAG-400N.
 
 ## Prerequisites
 * Access to live NATS data feed from NASCAR. Request Subscriber Access from NASCAR by emailing [data.engineering@nascar.com](mailto:data.engineering@nascar.com)
