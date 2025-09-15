@@ -268,7 +268,7 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
-      link: mailto:sales@mclarenapplied.com
+      link: mailto:sales@motionapplied.com
   tags:
     prototype: prototype
 
