@@ -1,5 +1,5 @@
 site_name: ATLAS Product Suite
-site_url: https://atlas.mclarenapplied.com/
+site_url: https://atlas.motionapplied.com/
 edit_uri: edit/main/docs/
 # repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
@@ -228,7 +228,7 @@ nav:
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
   - News and Release Notes: blog/index.md
-  - Downloads: https://portal.mclarenapplied.com/
+  - Downloads: https://portal.motionapplied.com/
   - Support: 
     - Troubleshooting: 
       - Profiling: key-functionality/visualise/atlas/troubleshooting/profiling.md
@@ -268,7 +268,7 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
-      link: mailto:sales@mclarenapplied.com
+      link: mailto:sales@motionapplied.com
   tags:
     prototype: prototype
 

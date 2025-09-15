@@ -25,4 +25,4 @@ We’re actively expanding the site to cover all ATLAS products and improve on t
 Your feedback is always appreciated. It helps us improve and evolve the documentation to better serve your needs.
 
 !!! tip "Interested in ATLAS training?"
-    We offer structured training sessions across the full range of ATLAS products. If this is something you're interested in, [contact us](mailto:training@mclarenapplied.com) and we'll organise an initial consultation to better understand your needs and plan a comprehensive session for you and your team.
+    We offer structured training sessions across the full range of ATLAS products. If this is something you're interested in, [contact us](mailto:training@motionapplied.com) and we'll organise an initial consultation to better understand your needs and plan a comprehensive session for you and your team.
