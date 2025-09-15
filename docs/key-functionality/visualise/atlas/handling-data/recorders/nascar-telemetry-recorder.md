@@ -5,7 +5,7 @@ ATLAS can be used for receiving and visualising Telemetric data from NASCAR’s 
 ## Prerequisites
 * Access to live NATS data feed from NASCAR. Request Subscriber Access from NASCAR by emailing [data.engineering@nascar.com](mailto:data.engineering@nascar.com)
 * ATLAS v11.3.1.540 or higher, which can be downloaded via our Motion Applied Portal [https://portal.motionapplied.com/](https://portal.motionapplied.com/)
-* ATLAS Licence with NASCAR Telemetry Recorder add-on. Please contact [sales@mclarenapplied.com](mailto:sales@mclarenapplied.com)
+* ATLAS Licence with NASCAR Telemetry Recorder add-on. Please contact [sales@motionapplied.com](mailto:sales@motionapplied.com)
 
 ## Setup
 Once ATLAS has been installed and licensed:
