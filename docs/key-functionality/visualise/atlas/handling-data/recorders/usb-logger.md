@@ -2,8 +2,6 @@
 
 This guide provides a step-by-step overview of how to use a USB Logger system to collect, transfer, and visualise sensor data efficiently. It covers setup on the vehicle, data offloading procedures, and how to import and decode the data in ATLAS. Designed for flexibility, the system supports a range of operational environments.
 
----
-
 ## Prerequisites
 
 - USB Logger Recorder License.
@@ -35,9 +33,7 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
     You can change the logger’s IP address in the `logger_config.jsonc` file under the `ethernet_settings` section.  
     The Logger IP address must be in the **same range** as the ECU IP address.
 
----
-
-**2. Configure Logging from the ECU
+**2. Configure Logging from the ECU**
 
 - Open **System Monitor**, connect to the TAG unit (e.g. TAG-320, TAG-510, or TAG-700), and in the **Explorer** tab navigate to: `BIOS > Data Acquisition > Telemetry > TLM-Px`.
 
@@ -46,21 +42,15 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
 !!! tip 
     While the parameter may appear as `NTAG320TLMPxIPAddress` on TAG-320 units, other models like TAG-510 or TAG-700 may use a slightly different prefix. To ensure compatibility, look for the `TLMPxIPAddress` field under the **Telemetry > TLM-Px** section in the BIOS tree. This structure is consistent across supported TAG units.
 
-
-
 - In ATLAS, go to **Tools > Options > System Monitor Folders** and set up the folders containing the required ECU configuration files (e.g., PGVs).
 
 !!! info
     When the vehicle is powered on, the ECU will automatically begin logging data to the USB drive. Depending on session length, multiple `.bin` files may be generated.
 
----
-
 **3. Swapping the USB**
 
 - When the vehicle enters the pit, remove the used USB and insert a new one.
 - The ECU will continue logging to the new USB without interruption.
-
----
 
 **4. Insert the USB into a PC**
 
@@ -73,8 +63,6 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
     Even if you accidentally delete the `logger_config.jsonc` file from the USB, the logger will **continue recording** using the last configuration it stored locally.
 
     When you plug the USB back into the logger it will **automatically restore the latest version** of `logger_config.jsonc` onto the USB. You can then **review or update the configuration** as needed.
-
----
 
 **5. Add a USB Logger Recorder in ATLAS**
 
@@ -94,7 +82,7 @@ ATLAS will automatically detect and import multiple `.bin` files as separate ses
 
 !!! note
     When specifying the folder path, ensure that all required `bin` files are located directly within that directory. ATLAS will not process files located in subfolders.
----
+
 
 **6. Start the Recorder**
 
@@ -107,7 +95,7 @@ ATLAS will automatically detect and import multiple `.bin` files as separate ses
 !!! warning
     The USB Logger Recorder does not record in the same way as other recorders. Behind the scenes it replays existing data and generates a historical session file from the replay.
     As a result you cannot drag the USB Logger recorder into a Set until it has finished converting the data. This recorder is **not** used for real-time replay.
----
+
 
 **7. Using the Data**
 
