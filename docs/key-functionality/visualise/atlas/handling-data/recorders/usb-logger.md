@@ -11,7 +11,7 @@ This guide provides a step-by-step overview of how to use a USB Logger system to
 - Motion Applied USB Logger unit.
 - TAG320 or VCU-500. 
 
-If you're interested in how Motion Applied can advance your data systems, contact [sales@mclarenapplied.com](mailto:sales@mclarenapplied.com).
+If you're interested in how Motion Applied can advance your data systems, contact [sales@motionapplied.com](mailto:sales@motionapplied.com).
 
 ---
 
