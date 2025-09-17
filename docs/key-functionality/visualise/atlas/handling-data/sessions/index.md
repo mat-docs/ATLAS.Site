@@ -3,7 +3,7 @@ A Session in ATLAS is a structured collection of data samples recorded from a ve
 
 Live, via telemetry (wireless transmission), or
 Offline, via a wirelink (physical connection).
-Each Session is automatically created and stored in an SQLRace database as it is recorded. This database replaces the older .ssn file format used in previous versions of ATLAS. However, legacy .ssn files can still be loaded for analysis and comparison.
+Each Session is automatically created and stored in an SQL Race database as it is recorded. This database replaces the older .ssn file format used in previous versions of ATLAS. However, legacy .ssn files can still be loaded for analysis and comparison.
 
 ## Types of Sessions
 There are two primary types of Sessions in ATLAS:
@@ -39,7 +39,7 @@ Sessions can be combined, compared, and manipulated in various ways to support t
 
 | Term              | Definition                                                                 |
 |-------------------|----------------------------------------------------------------------------|
-| Session           | A dataset recorded from a vehicle, stored in an SQLRace database.          |
+| Session           | A dataset recorded from a vehicle, stored in an SQL Race database.          |
 | Historic Session  | A previously recorded Session.                                             |
 | Telemetry Session | A live Session streamed in real time.                                     |
 | Workbook          | The environment in ATLAS where Sessions are visualised and analysed.       |

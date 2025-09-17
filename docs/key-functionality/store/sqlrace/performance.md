@@ -1,6 +1,6 @@
 # Performance Guide
 
-This guide covers settings on how to get the most out of your SQLRace installation by adjusting settings for better performance. 
+This guide covers settings on how to get the most out of your SQL Race installation by adjusting settings for better performance. 
 
 ## Cache Settings
 
@@ -80,7 +80,7 @@ machine has enough available RAM.
 
 Caching data is a technique used to improve the performance and efficiency of applications. It involves storing frequently accessed data in a temporary storage location, such as memory or disk, which is faster to access than the original source. This reduces the time and resources needed to fetch data repeatedly from the main storage.
 
-Consider deleting the SQLRace cache folder improved performance, better disk space management, reduced startup time, and enhanced stability by resolving issues related to corrupted cache files.
+Consider deleting the SQL Race cache folder improved performance, better disk space management, reduced startup time, and enhanced stability by resolving issues related to corrupted cache files.
 
 ## C# Garbage Collection
 
@@ -89,9 +89,9 @@ C# uses an automatic memory management system called garbage collection (GC), ma
 The GC periodically checks for objects no longer in use by examining the application’s roots, such as static fields, local variables, and CPU registers. Unreachable objects are considered garbage, and their memory is reclaimed. After reclaiming memory, the GC compacts the remaining objects to reduce fragmentation and make memory 
 allocation more efficient.
 
-### SQLRace and Memory Disposal
+### SQL Race and Memory Disposal
 
-SQLRace doesn’t release memory immediately when a session is disposed. Instead, the garbage collector (GC) plays a crucial role in managing memory. Typically, resources are released after about 5 minutes. However, if the system requires memory sooner, the GC will release the resources earlier to accommodate the demand. 
+SQL Race doesn’t release memory immediately when a session is disposed. Instead, the garbage collector (GC) plays a crucial role in managing memory. Typically, resources are released after about 5 minutes. However, if the system requires memory sooner, the GC will release the resources earlier to accommodate the demand. 
 
 This approach helps optimize memory usage and ensures that the system runs efficiently.
 

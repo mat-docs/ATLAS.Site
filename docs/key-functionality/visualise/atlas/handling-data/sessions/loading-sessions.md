@@ -1,7 +1,7 @@
 
 ## [What is a Recorder?](../recorders/usb-logger.md)
 
-A Recorder in ATLAS is a tool that captures live telemetry data from a vehicle and stores it in an SQLRace database. Recorders are configured and managed through the Session Browser.
+A Recorder in ATLAS is a tool that captures live telemetry data from a vehicle and stores it in an SQL Race database. Recorders are configured and managed through the Session Browser.
 
 Supported Recorder Types
 You can choose from several Recorder types depending on your data acquisition setup:
@@ -63,7 +63,7 @@ Composite Sessions created via Append mode are displayed as a single timeline in
 
 ## What is a Historic Session?
 
-A Historic Session is a previously recorded Session stored in the SQLRace database. These Sessions can be loaded into ATLAS for review, comparison, or further analysis.
+A Historic Session is a previously recorded Session stored in the SQL Race database. These Sessions can be loaded into ATLAS for review, comparison, or further analysis.
 
 Loading Methods
 You can load Sessions into a Set using the Session List in the Session Browser:
