@@ -1,8 +1,8 @@
 # Overview
 
-SQLRace is the session database engine used by ATLAS to manage telemetry data. It provides a structured way to store, retrieve and manipulate session data, supporting both real-time and historical analysis. SQLRace integrates tightly with the tools in the ATLAS product suite, enabling efficient data handling. 
+SQL Race is the session data access layer used by ATLAS to manage telemetry data. It provides a structured way to store, retrieve and manipulate session data, supporting both real-time and historical analysis. SQL Race integrates tightly with the tools in the ATLAS product suite, enabling efficient data handling, and customisation via the [SQL Race API](../../../developer-resources/atlas/sql-race/index.md).
 
-SQLRace is a custom SQL Server implementation specific for data store. It supports MS SQL Replication where replication of data is required over multiple sites. 
+SQL Race Database is a custom SQL Server implementation specific for data store. It supports MS SQL Replication where replication of data is required over multiple sites. 
 
 ## Core Capabilities
 
@@ -16,11 +16,11 @@ SQLRace is a custom SQL Server implementation specific for data store. It suppor
 
     ---
 
-    Learn how to install SQL Server and SQLRace Database.
+    Learn how to install SQL Server and SQL Race Database.
 
     [→ Getting started](installation.md)
 
--    __Start using the SQLRace API__
+-    __Start using the SQL Race API__
 
     ---
 

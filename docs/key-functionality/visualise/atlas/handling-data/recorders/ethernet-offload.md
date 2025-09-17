@@ -25,7 +25,7 @@ Car Definition must be loaded.
 
     - Export Config as Text / M Files
 
-    - SQLRace Database Type
+    - SQL Race Database Type
 
     - Export Folder
 

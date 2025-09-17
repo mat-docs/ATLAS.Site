@@ -40,14 +40,14 @@ The Session Browser is divided into six main panels, each serving a specific fun
 This panel allows you to define where ATLAS should look for Sessions. Supported sources include:
 
 - Folders on your local machine or network
-- SQLRace databases
+- SQL Race databases
 - RTA service connections (requires an RTA licence)
 
 To add a new source:
 
 1. Click the Add Data Source button or right-click the Sources panel.
 2. Choose one of the following:
-    - Connection Manager: For SQLRace databases
+    - Connection Manager: For SQL Race databases
     - Folder Manager: For local or network folders
     - Service Connection Manager: For RTA hosts
 
