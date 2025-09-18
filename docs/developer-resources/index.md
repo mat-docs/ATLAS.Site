@@ -11,7 +11,7 @@ Welcome to the Developer Resources section! This area provides everything you ne
 
 Explore the available API documentation:
 
-- [SQLRace API](./atlas/sql-race/index.md)
+- [SQL Race API](./atlas/sql-race/index.md)
 - [Display API](./atlas/display-api/index.md)
 - [Bridge Service](./secu4/bridge_service/index.md)
 - [Support Library](./secu4/support_library/index.md)

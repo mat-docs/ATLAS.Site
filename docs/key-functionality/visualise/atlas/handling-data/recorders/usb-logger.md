@@ -119,7 +119,7 @@ ATLAS will automatically detect and import multiple `.bin` files as separate ses
 Depending on the selected database engine:
 
 - **SQLite**: Share the exported `.ssn` file via a network drive.
-- **SQLRace**: Team members with access to the database can view the session directly.
+- **SQL Race**: Team members with access to the database can view the session directly.
 
 ---
 
@@ -143,4 +143,4 @@ Enables data retrieval without needing direct physical access to the ECU.
 Provides a fast alternative to telemetry for transferring session data.
 
 **Scalable for Small Teams**
-Runs directly on an engineer’s PC without requiring advanced setup. Can be integrated into larger systems later using tools like the SQLRace API.
+Runs directly on an engineer’s PC without requiring advanced setup. Can be integrated into larger systems later using tools like the SQL Race API.

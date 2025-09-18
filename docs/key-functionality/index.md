@@ -52,11 +52,11 @@ You can also compare multiple sessions side-by-side to spot trends or issues.
 
 Data can be stored in:
 
-- SQLRace: A database system for large-scale data storage.
+- SQL Race: A database system for large-scale data storage.
 
 - SSN2 files: Local files for quick access.
 
-You can use SQLRace Management Studio to manage and share data across teams.
+You can use SQL Race Management Studio to manage and share data across teams.
 
 ### 6. Visualise
 
@@ -77,5 +77,5 @@ ATLAS includes a set of tools that work together to help you collect, analyse, a
 | System Monitor  | Manages projects and hardware connections | When programming ECUs |
 | ADS | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
 | vTAG    | Runs virtual models and integrates results  | When running Simulink models with real-world data |
-| SQLRace    | Stores and manages large datasets | For persistent storage |
+| SQL Race    | Stores and manages large datasets | For persistent storage |
 | ATLAS    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |

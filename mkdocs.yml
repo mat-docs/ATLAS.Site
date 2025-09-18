@@ -43,6 +43,15 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - Key Functionality:
     - Overview: key-functionality/index.md
+    - Store and Distribute:
+      - SQL Race:
+        - Overview: key-functionality/store/sqlrace/index.md
+        - Getting Started: key-functionality/store/sqlrace/installation.md
+        - Performance Guide: key-functionality/store/sqlrace/performance.md
+        - SQL Race, SQLite & SSN2: key-functionality/store/sqlrace/comparison.md
+      - Data Server:
+        - Overview: key-functionality/store/ads/index.md
+        # - Getting Started: key-functionality/store/ads/installation.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
@@ -107,7 +116,7 @@ nav:
       - Nuget: 
         - Overview: developer-resources/atlas/nuget/index.md
         - Setup Guide: developer-resources/atlas/nuget/setup.md
-      - SQLRace API: 
+      - SQL Race API: 
         - Overview: developer-resources/atlas/sql-race/index.md
         - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
         - .NET6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
