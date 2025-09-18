@@ -20,7 +20,10 @@ SQL Race is a proprietary database access layer developed by Motion Applied, des
 
 ## SQLite
 
-SQLite is an embedded database used for simpler, local data storage needs. It does not require a separate server process.
+SQLite is a SQL database used for simpler, local data storage needs embedded within ATLAS. It does not require a separate server process. The only way to create SQLite session (SSNDB) is using an ATLAS Recorder (`Database Engine = SQLite`) or directly through SRMS (SQL Race Management Studio). 
+
+!!! tip
+    ATLAS uses SQLite cache for storing telemetry or recorded data as local (temporary) cache. Users can move the data from local cache (SQLite) to SSN2 or SQL Race Database (using SRMS) if the data needs to be persisted. 
 
 **Key Features:**
 
