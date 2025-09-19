@@ -129,17 +129,19 @@ On your local machine, launch SSMS and use the following connection string: **{I
 
 Use Windows Authentication as the authentication method, the Windows Credential that we have set up earlier means that when you connect to the remote it will use that credential instead. 
 
-If you encounter this error message:
+!!! tip
+    If you encounter this error message:
 
-![ATLAS](assets/connect_server_error.png){: style="width:100%;"}
+    ![ATLAS](assets/connect_server_error.png){: style="width:100%;"}
 
-That means your local machine cannot connect to the remote server. Ensure that remote connect is enabled and the protocols and port numbers are set correctly as outlined above. 
+     That means your local machine cannot connect to the remote server. Ensure that remote connect is enabled and the protocols and port numbers are set correctly as outlined above. 
 
-If you encounter this error message:
+!!! tip
+    If you encounter this error message:
 
-![ATLAS](assets/connect_server_error2.png){: style="width:100%;"}
+    ![ATLAS](assets/connect_server_error2.png){: style="width:100%;"}
 
-Check your Windows Credential, this could be because the local credentials were passed, or because the username didn't include the domain prefix or used the wrong domain name. Double check all of the properties of the stored credential and recreate it if you need to (you can modify the username and password, but if the server name is wrong, you'll need to re-create it).
+    Check your Windows Credential, this could be because the local credentials were passed, or because the username didn't include the domain prefix or used the wrong domain name. Double check all of the properties of the stored credential and recreate it if you need to (you can modify the username and password, but if the server name is wrong, you'll need to re-create it).
 
 #### Enter connection details in ATLAS
 
@@ -153,9 +155,7 @@ The server’s name will not be present in the dropdown. But after entering the 
 
 ![ATLAS](assets/a10connection_manager.png){: style="width:100%;"}
 
-This should also create a line like this in the ConnectionManagerV3:
-
-![ATLAS](assets/connection_manager_file.png){: style="width:100%;"}
+This should also create a corresponding entry in the the ```C:\Users\...\Documents\McLaren Electronic Systems\SQL Race Server\Config\ConnectionManagerV3.config``` file.
 
 #### Using the SQLRace API
 
@@ -163,7 +163,9 @@ To read and write to databases cross domain, an entry would be required for the 
 
 In the code, the connection string to be used for the SessionManager should be:
 
-```const string ConnectionString = @"Data Source=tcp:10.1.162.152\LOCAL,1433; TransparentNetworkIPResolution = False; Initial Catalog=SQLRACE02_155;Integrated Security=True;";```
+```
+const string ConnectionString = @"Data Source=tcp:10.1.162.152\LOCAL,1433; TransparentNetworkIPResolution = False; Initial Catalog=SQLRACE02_155;Integrated Security=True;";
+```
 
 #### Access to the filestream
 
