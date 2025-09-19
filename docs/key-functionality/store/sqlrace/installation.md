@@ -63,13 +63,16 @@ Leave all default options and click **Install**.
 
 ### Setting Filestream
 
-SQL Race doesn't use native filestreams, so you must create your own directory. Create a new folder on your C: drive called `SQLRace_FileStream`. When connecting to SQL Race Database from a remote machine, you'll need to access the folder you just created. Right click on the folder, go to **Properties > Sharing > Advanced Sharing**, check **Share this folder**, and click **Permissions**. Ensure that the user you are connecting with has at least **Read/Write** permissions.
+SQL Race doesn't use native filestreams, so you must create your own directory. Create a new folder on your C: drive called `SQLRace_FileStream`. When connecting to SQL Race Database from a remote machine, you'll need to access the folder you just created. Right click on the folder, go to **Properties > Sharing > Advanced Sharing**, check **Share this folder**, and click **Permissions**. Ensure that the user you are connecting with has at least **Read/Write** permissions. 
 
 ![FileStream Permissions](assets/permissions.png){: style="width:50%;"}
 
 The folder will be available on the network at `\\YOUR_COMPUTER_NAME\SQLRace_FileStream`.
 
 ![Manual Filestream](assets/manual_filestream.png){: style="width:50%;"}
+
+!!! note
+    If the user accessing the filestream is in a different AD group then follow the steps [here](#cross-domain-access) to enable cross domain access.
 
 ## Connecting to SQL Race Database from ATLAS
 
