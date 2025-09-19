@@ -86,6 +86,9 @@ nav:
           - Overview: key-functionality/visualise/atlas/functions/index.md
           - Processing: key-functionality/visualise/atlas/functions/processing.md
           - Using DLLs: key-functionality/visualise/atlas/functions/using-dlls.md
+        - Alarms:
+          - Overview: key-functionality/visualise/atlas/alarms/index.md
+          - Using Alarms: key-functionality/visualise/atlas/alarms/using-alarms.md
         - Displays: 
           - Scatterplot: key-functionality/visualise/atlas/displays/scatterplot.md
   - Getting Started: 
