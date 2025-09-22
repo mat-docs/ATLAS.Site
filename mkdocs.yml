@@ -90,7 +90,26 @@ nav:
           - Overview: key-functionality/visualise/atlas/alarms/index.md
           - Using Alarms: key-functionality/visualise/atlas/alarms/using-alarms.md
         - Displays: 
+          - Overview: key-functionality/visualise/atlas/displays/index.md
+          - Bar: key-functionality/visualise/atlas/displays/bar.md
+          - Bit: key-functionality/visualise/atlas/displays/bit.md
+          - Block: key-functionality/visualise/atlas/displays/block.md
+          - Circuit: key-functionality/visualise/atlas/displays/circuit.md
+          - Countdown: key-functionality/visualise/atlas/displays/countdown.md
+          - Error: key-functionality/visualise/atlas/displays/error.md
+          - Event: key-functionality/visualise/atlas/displays/event.md
+          - Histogram: key-functionality/visualise/atlas/displays/histogram.md
+          - Loadmap: key-functionality/visualise/atlas/displays/loadmap.md
+          - Map: key-functionality/visualise/atlas/displays/map.md
+          - Notepad: key-functionality/visualise/atlas/displays/notepad.md
+          - Numeric: key-functionality/visualise/atlas/displays/numeric.md
+          - Dash: key-functionality/visualise/atlas/displays/pcu.md
           - Scatterplot: key-functionality/visualise/atlas/displays/scatterplot.md
+          - Summary: key-functionality/visualise/atlas/displays/summary.md
+          - Surface Map: key-functionality/visualise/atlas/displays/surface.md
+          - Video: key-functionality/visualise/atlas/displays/video.md
+          - Waveform: key-functionality/visualise/atlas/displays/waveform.md
+          - Web Display: key-functionality/visualise/atlas/displays/web.md
   - Getting Started: 
     - Quick Start Guide: getting-started/quick-start.md
     - Security: getting-started/security.md
