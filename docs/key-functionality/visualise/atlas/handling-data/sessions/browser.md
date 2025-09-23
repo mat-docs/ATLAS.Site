@@ -36,6 +36,8 @@ Once opened, the Session Browser will appear within the ATLAS interface.
 
 The Session Browser is divided into six main panels, each serving a specific function:
 
+![Session Layout](assets/session-browser.png)
+
 ### 1. Session Sources
 This panel allows you to define where ATLAS should look for Sessions. Supported sources include:
 
@@ -77,7 +79,7 @@ This panel is used to configure and manage data Recorders for capturing live tel
 - TCP Listener Recorder
 - NASCAR Recorder (requires NASCAR licence)
 
-#### Recorder Modes
+**Recorder Modes**
 
 When adding a Recorder to a Set, you can define its behaviour:
 

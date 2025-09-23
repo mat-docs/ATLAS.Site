@@ -64,6 +64,10 @@ nav:
         - System Operation: 
           - Mouse Actions: key-functionality/visualise/atlas/system-operation/mouse.md
           - Keyboard Shortcuts: key-functionality/visualise/atlas/system-operation/keyboard.md
+        - Time and Position:
+          - Overview: key-functionality/visualise/atlas/time-and-position/index.md
+          - Timebase and Timeline: key-functionality/visualise/atlas/time-and-position/time.md
+          - Go To: key-functionality/visualise/atlas/time-and-position/go-to.md
         - Handling Data:
           - Recorders: 
             # - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
@@ -79,6 +83,8 @@ nav:
             - Session Browser: key-functionality/visualise/atlas/handling-data/sessions/browser.md
             - Loading Sessions: key-functionality/visualise/atlas/handling-data/sessions/loading-sessions.md
             - Changing Properties: key-functionality/visualise/atlas/handling-data/sessions/properties.md
+            - Database Connection Manager: key-functionality/visualise/atlas/handling-data/sessions/database-connection.md
+            - Service Connection Manager: key-functionality/visualise/atlas/handling-data/sessions/service-connection.md
           - Laps and Markers:
             - Markers: key-functionality/visualise/atlas/handling-data/laps-markers/markers.md
             - Laps: key-functionality/visualise/atlas/handling-data/laps-markers/laps.md
