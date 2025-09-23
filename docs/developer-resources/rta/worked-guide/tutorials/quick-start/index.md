@@ -272,7 +272,7 @@ Right-click on **Sources** and select **Service Connections...**
 
     If you don't see this option, your ATLAS licence does not have the _RTA Data Service Connections_ feature.
 
-    Please [Contact](https://www.mclaren.com/applied/contact/) your sales rep or Motion Applied Field Application Engineer.
+    Please [Contact](mailto:sales@motionapplied.com) your sales rep or Motion Applied Field Application Engineer.
 
 From the **Service Connection Manager** dialog, add a new connection like this:
 

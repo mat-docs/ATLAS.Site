@@ -57,4 +57,4 @@ If you do not have any central telemetry database or file archive, RTA may not b
   This option is popular in motorsport and eSports.
 
 Some plugin development will be required for both these capabilities.  
-[Contact us](https://www.mclaren.com/applied/contact/) for a more in-depth technical discussion.
+[Contact us](mailto:sales@motionapplied.com) for a more in-depth technical discussion.

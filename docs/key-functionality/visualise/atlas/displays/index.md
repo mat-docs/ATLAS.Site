@@ -9,27 +9,27 @@ Adding data into a display: After opening a display, use the Parameter Browser t
 
 ## Display Comparison
 
-| Display Type   | What It Shows / Primary Capabilities | Key Features & Usage |
-|----------------|-------------------------------------|----------------------|
-| [**Waveform**](waveform.md)   | Multi-parameter time/distance traces with advanced analysis tools. | Visualise multiple signals (e.g., speed, throttle, brake) as traces over time or distance. Supports up to 100 parameters. Interactive legend, reference cursor, autoscale, event markers, live telemetry, context menu, keyboard shortcuts. |
-| [**Scatterplot**](scatterplot.md)| 2D plot of Y vs X, with optional Z-axis colour mapping. | Plot relationships between two/three parameters. Up to five parameter sets. Best-fit/reference lines, interactive editing, custom draw styles, grid/axis labelling. |
-| [**Histogram**](histogram.md)  | Distribution of a single parameter against time or distance. | Shows time/distance spent in each value range. Spectral/cumulative modes, adjustable bins, auto-refresh, context menu. |
-| [**Loadmap**](loadmap.md)    | Pseudo-3D heatmap of time spent in ranges of one parameter vs. another. | Visualise time spent in combinations of two parameters. Adjustable buckets, colour bar, lap refresh. |
-| [**SurfaceMap**](surface.md) | Interactive 3D graph based on two parameters mapped onto a mesh (.3d file). | Visualise surfaces (e.g., torque map). Mesh/data points in 3D, rotate/zoom, axis/grid customisation, requires .3d file. |
-| [**Numeric**](numeric.md)    | Instantaneous numeric readout for up to 40 parameters. | Shows live values, auto-sizing, colour thresholds, rich formatting, double-click to edit. |
-| [**Bar**](bar.md)        | Combined pictorial and numeric display of up to 12 parameters. | Vertical bars with numeric values, real-time updates, double-click to format, custom refresh/background. |
-| [**Block Bar**](block.md)  | Minimalistic bar for a single parameter. | Quick graphic visualisation, conditional/gradient colouring, orientation options. Useful for dashboards. |
-| [**Bit**](bit.md)        | Status bits of one or more parameters, with custom on/off colours and labels. | Visualise boolean/status flags, configure bits/captions/colours, supports .bcg files, layout options. |
-| [**Summary**](summary.md)    | Lap-based statistics for selected parameters, as a table or plot. | Shows stats per lap (Min, Max, Mean, etc.), table or plot, resizable columns, snapshot export. |
-| [**Circuit**](circuit.md)    | Track map from a circuit definition file, with car position and sectors/segments. | Shows car position, sectors/segments, shaded timebase, circuit editor, colour matches session tag. |
-| [**PCU Dash**](pcu.md)   | Simulator of the McLaren Applied PCU Dash (steering wheel display). | Replicates real dash, supports multiple types, auto-load config, alignment/background options. |
-| [**Event**](event.md)      | ECU events (from program version files), with priority and parameter snapshots. | Shows events by priority, timestamp, group, ID, description, tabs for filtering, masking, row colouring. |
-| [**Error**](error.md)      | ECU errors during live connection, with status and timestamps. | Lists errors with status, name, description, timestamp, double-click to jump, filtering/masking, formatting. |
-| [**Notepad**](notepad.md)    | Free-text notes for checklists and session details. | Store notes/checklists, custom fonts/colours, snapshot/copy, workflow documentation. |
-| [**Bing Map**](map.md)   | Satellite map of the current location and surroundings. | Visualise GPS data, zoom/scale, GPS formats, lock map centre, track location context. |
-| [**Web Browser**](web.md)| Embedded browser for web-based information. | Display live feeds/web content, set URL, show/hide controls, suppress script errors. |
-| [**Countdown Timer**](countdown.md) | Configurable countdown clock or time offset display. | Set countdown/offset, custom text, font/colour/background options, session timing/reminders. |
-| [**Video**](video.md) | Video display for related video (e.g., in-car camera) alongside session data. | Play synchronised video, enable via Preview Features, useful for driver analysis/event correlation. |
+| Display Type   | What It Shows / Primary Capabilities | Key Features & Usage | Max Parameters |
+|----------------|-------------------------------------|----------------------|---------------|
+| [**Waveform**](waveform.md)   | Multi-parameter time/distance traces with advanced analysis tools. | Visualise multiple signals (e.g., speed, throttle, brake) as traces over time or distance. Interactive legend, reference cursor, autoscale, event markers, live telemetry, context menu, keyboard shortcuts. | 100 (default, adjustable) |
+| [**Scatterplot**](scatterplot.md)| 2D plot of Y vs X, with optional Z-axis colour mapping. | Plot relationships between two/three parameters. Up to five parameter sets. Best-fit/reference lines, interactive editing, custom draw styles, grid/axis labelling. | 24 |
+| [**Histogram**](histogram.md)  | Distribution of a single parameter against time or distance. | Shows time/distance spent in each value range. Spectral/cumulative modes, adjustable bins, auto-refresh, context menu. | 1 |
+| [**Loadmap**](loadmap.md)    | Pseudo-3D heatmap of time spent in ranges of one parameter vs. another. | Visualise time spent in combinations of two parameters. Adjustable buckets, colour bar, lap refresh. | 2 |
+| [**SurfaceMap**](surface.md) | Interactive 3D graph based on two parameters mapped onto a mesh (.3d file). | Visualise surfaces (e.g., torque map). Mesh/data points in 3D, rotate/zoom, axis/grid customisation, requires .3d file. | 2 |
+| [**Numeric**](numeric.md)    | Instantaneous numeric readout for up to 40 parameters. | Shows live values, auto-sizing, colour thresholds, rich formatting, double-click to edit. | 40 |
+| [**Bar**](bar.md)        | Combined pictorial and numeric display of up to 12 parameters. | Vertical bars with numeric values, real-time updates, double-click to format, custom refresh/background. | 16 |
+| [**Block Bar**](block.md)  | Minimalistic bar for a single parameter. | Quick graphic visualisation, conditional/gradient colouring, orientation options. Useful for dashboards. | 1 |
+| [**Bit**](bit.md)        | Status bits of one or more parameters, with custom on/off colours and labels. | Visualise boolean/status flags, configure bits/captions/colours, supports .bcg files, layout options. | 20 |
+| [**Summary**](summary.md)    | Lap-based statistics for selected parameters, as a table or plot. | Shows stats per lap (Min, Max, Mean, etc.), table or plot, resizable columns, snapshot export. | Not specified |
+| [**Circuit**](circuit.md)    | Track map from a circuit definition file, with car position and sectors/segments. | Shows car position, sectors/segments, shaded timebase, circuit editor, colour matches session tag. | 1 |
+| [**PCU Dash**](pcu.md)   | Simulator of the Motion Applied PCU Dash (steering wheel display). | Replicates real dash, supports multiple types, auto-load config, alignment/background options. | Default only |
+| [**Event**](event.md)      | ECU events (from program version files), with priority and parameter snapshots. | Shows events by priority, timestamp, group, ID, description, tabs for filtering, masking, row colouring. | 100 |
+| [**Error**](error.md)      | ECU errors during live connection, with status and timestamps. | Lists errors with status, name, description, timestamp, double-click to jump, filtering/masking, formatting. | 0 |
+| [**Notepad**](notepad.md)    | Free-text notes for checklists and session details. | Store notes/checklists, custom fonts/colours, snapshot/copy, workflow documentation. | Not applicable |
+| [**Bing Map**](map.md)   | Satellite map of the current location and surroundings. | Visualise GPS data, zoom/scale, GPS formats, lock map centre, track location context. | Not applicable |
+| [**Web Browser**](web.md)| Embedded browser for web-based information. | Display live feeds/web content, set URL, show/hide controls, suppress script errors. | Not applicable |
+| [**Countdown Timer**](countdown.md) | Configurable countdown clock or time offset display. | Set countdown/offset, custom text, font/colour/background options, session timing/reminders. | 0 |
+| [**Video**](video.md) | Video display for related video (e.g., in-car camera) alongside session data. | Play synchronised video, enable via Preview Features, useful for driver analysis/event correlation. | 0 |
 
 ## Display Tools
 
