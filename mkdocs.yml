@@ -82,8 +82,12 @@ nav:
           - Laps and Markers:
             - Markers: key-functionality/visualise/atlas/handling-data/laps-markers/markers.md
             - Laps: key-functionality/visualise/atlas/handling-data/laps-markers/laps.md
+          - Exporting:
+            - Overview: key-functionality/visualise/atlas/handling-data/export/index.md
+            - Export Manager: key-functionality/visualise/atlas/handling-data/export/export-manager.md
         - Functions: 
           - Overview: key-functionality/visualise/atlas/functions/index.md
+          - Function Editor: key-functionality/visualise/atlas/functions/function-editor.md
           - Processing: key-functionality/visualise/atlas/functions/processing.md
           - Using DLLs: key-functionality/visualise/atlas/functions/using-dlls.md
         - Alarms:
