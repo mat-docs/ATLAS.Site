@@ -1,6 +1,6 @@
 # PCU Dash Display
 
-A simulator of the McLaren Applied PCU Dash (as fitted to steering wheels). Supports multiple dash product types; auto‑loads a raw file if present (per Options). Positioning/alignment controls help fit the simulator to the display window.
+A simulator of the Motion Applied PCU Dash (as fitted to steering wheels). Supports multiple dash product types; auto‑loads a raw file if present (per Options). Positioning/alignment controls help fit the simulator to the display window.
 
 ![PCU Dash Display](assets/pcu-dash.png)
 
