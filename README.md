@@ -32,6 +32,37 @@ As part of the new structure the following guidelines should be considered when 
 
 ### User Guides
 
+This guide outlines the structure, content expectation and best practices for contributing to the User Guide section of the ATLAS documentation site. It's designed to provide a consistent structure for quick understanding of the ATLAS eco-system and product suite for a non-technical user. 
+
+**You Audience**
+- Prospect wanting to find out about ATLAS's capabilities
+- Current customer wanting to find out about the entire ATLAS eco-system and how other product offerings can be utilised to achieve specific goals
+- Current user wanting to find out about how to perform a specific action, or get help with any of the ATLAS products
+
+User guides can be found under `Key Functionality` heading. At the moment this is the structure, intended to allow the user to follow data through the ATLAS ecosystem:
+- Configuration: System Monitor
+- Store and Distribute: SQL Race, SRMS, ADS, RDS
+- Process: SECU, vTAG Server, MCT Toolbox
+- Visualise: ATLAS
+
+*Note: Some of these sections do not exist currently as we migrate existing documentation to this site.*
+
+When creating content under Key Functionality:
+- Writing for Main Users.
+- This includes overviews of the main products being offered.
+- This should be heavy on screenshots / video tutorials as they're easier to follow and digest
+- Each new product should fit somewhere in the data pipeline, and should get its own area.
+
+> What's the difference between Key Functionality and Extending ATLAS?
+> 
+> Extending ATLAS is intended for explaining architectural solutions. At the moment we have SECU and RTA. When contributing to Extending ATLAS:
+>	- Writing for a mix, this is mainly for decision makers of systems
+>	- This is high level architecture discussions
+>	- Filled with best practises and recommendations of usage
+>    - This should have architectural or system diagrams to help readers understand the overall structure. 
+
+*Note: If we have not fully released a solution, we should put a disclaimer at the top that content can change depending on feedback and roadmap changes (see RTA guide for an example of this).* 
+
 ### Developer Resources
 
 This guide outlines the structure, content expectations, and best practices for contributing to the Developer Documentation for any product. It is designed to ensure consistency, clarity, and ease of use for developers integrating with our systems.
