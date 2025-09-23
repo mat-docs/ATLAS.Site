@@ -7,6 +7,8 @@ Laps allow users to:
 - Anchor analysis to specific time windows
 - Drive automation in dashboards, alarms, and reports
 
+![Laps](assets/laps.png)
+
 **Timeline Session Details**
 
 From ATLAS 11.2.3.460 onwards, users can now add information from session details to the Timeline. 
@@ -22,10 +24,10 @@ The selected session details are visible as a tooltip by hovering over the speci
 The number of session details that a user can add can be defined in Tools > Options > Plugins > F1 Timeline, the 
 maximum number of session details allowed is 20. 
 
-
 ## Why Use Laps?
 
 Laps are essential when:
+
 - You want to compare multiple runs of the same test or event
 - You need to isolate performance during specific phases (e.g. warm-up, cooldown, pit stops)
 - You’re building dashboards or reports that rely on consistent time windows

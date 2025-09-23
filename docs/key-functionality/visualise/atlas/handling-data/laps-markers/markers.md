@@ -11,6 +11,8 @@ describe what the marker represents. The following properties are available for 
 - Start Timestamp \- An optional point in the session where this range of interest begins. If not specified the start of the session is implied.
 - End Timestamp \- An optional point in the session where this range of interest ends. If not specified the end of the session is implied.
 
+![Markers](assets/markers.png)
+
 !!! tip
     To create a marker which represents a specific point in time the start and end time properties can be set to the same value.
 
