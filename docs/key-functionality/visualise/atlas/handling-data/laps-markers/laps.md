@@ -1,3 +1,5 @@
+# Laps
+
 In ATLAS, a Lap is a defined segment of time within a telemetry session—typically corresponding to a vehicle completing a circuit. But laps are not just for motorsport. They are a powerful structuring tool for any time-series data stream where repeated cycles or phases occur.
 
 Laps allow users to:
@@ -8,6 +10,9 @@ Laps allow users to:
 - Drive automation in dashboards, alarms, and reports
 
 ![Laps](assets/laps.png)
+
+!!! tip 
+    In LIVE mode the dialog is showing the list of the laps recorded so far,but does not allow to make changes. The duration of the last lap will not be up to date in LIVE mode. As soon as the recording ends and session becomes HISTORICAL, the data will be up to date and editing will be enabled.
 
 **Timeline Session Details**
 
@@ -56,11 +61,11 @@ You can define laps manually using the Laps and Markers Editor. This is useful w
 
 Manual laps can be:
 
-*Precise:* down to the millisecond
+- *Precise:* down to the millisecond
 
-*Flexible: *placed anywhere in the session
+- *Flexible: *placed anywhere in the session
 
-*Named:* with custom labels like “Out Lap”, “Pit Entry”, “Cool Down”
+- *Named:* with custom labels like “Out Lap”, “Pit Entry”, “Cool Down”
 
 **3. Session Navigation**
 
@@ -97,9 +102,9 @@ Laps can be used to:
 
 ATLAS supports special lap types:
 
-*Out Lap:* typically the first lap after leaving the pits
+- *Out Lap:* typically the first lap after leaving the pits
 
-*In Lap:* the final lap before returning to the pits
+- *In Lap:* the final lap before returning to the pits
 
 These are useful for:
 
