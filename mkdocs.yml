@@ -64,6 +64,9 @@ nav:
         - System Operation: 
           - Mouse Actions: key-functionality/visualise/atlas/system-operation/mouse.md
           - Keyboard Shortcuts: key-functionality/visualise/atlas/system-operation/keyboard.md
+          - Options: key-functionality/visualise/atlas/system-operation/options.md
+          - Workbooks: key-functionality/visualise/atlas/system-operation/workbook.md
+          - Toolbar: key-functionality/visualise/atlas/system-operation/toolbar.md
         - Time and Position:
           - Overview: key-functionality/visualise/atlas/time-and-position/index.md
           - Timebase and Timeline: key-functionality/visualise/atlas/time-and-position/time.md
