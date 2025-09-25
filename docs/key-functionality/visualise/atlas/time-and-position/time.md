@@ -90,4 +90,4 @@ Hover over the session identifier in the Timeline to see session details. Custom
 
 ![Session Details](assets/session-details.png)
 
-![Select Details](assets/add-more.png.png)
+![Select Details](assets/add-more.png)
