@@ -48,38 +48,40 @@ Parameter Aliasing lets you assign custom names to Parameters.
 - **Replace Mode:** Substitute original names with a new name in the same group.
 
 ```
-  <Alias mode="Replace">
-
-      <OriginalNames>
-
-        <Name>vCar:Chassis</Name>
-
-      </OriginalNames>
-
-      <NewName>Speed</NewName>
-
-  </Alias>
+  <AliasingConfiguration>
+      <Aliases>
+        <Alias mode="Replace">
+            <OriginalNames>
+              <Name>vCar:Chassis</Name>
+            </OriginalNames>
+            <NewName>Speed</NewName>
+        </Alias>
+      </Aliases>
+  </AliasingConfiguration>
 ```
 
 - **Pick Mode:** Link a new name to one of several source names, with priority order.
 
 ```
-<Alias mode="Pick">
-
-      <OriginalNames>
-
-        <Name>Speed:Chassis</Name>
-
-        <Name>CoverageSq:ATLAS</Name>
-
-      </OriginalNames>
-
-      <NewName>GForce</NewName>
-
-</Alias>
+  <AliasingConfiguration>
+      <Aliases>
+        <Alias mode="Pick">
+            <OriginalNames>
+              <Name>Speed:Chassis</Name>
+              <Name>CoverageSq:ATLAS</Name>
+            </OriginalNames>
+            <NewName>GForce</NewName>
+        </Alias>
+      </Aliases>
+  </AliasingConfiguration>
 ```
 
 Configure aliasing in `aliasing.config` saved at `%userprofile%\documents\McLaren Applied Technologies\`.
+
+!!! warning   
+  After making changes to `aliasing.config`, you must restart ATLAS for the new aliases to take effect.
+
+If a parameter (e.g., `pBrake`) is already present in your workbook and you create an alias (e.g., `BrakePressure`), `pBrake` will remain in the workbook but will no longer be searchable in the Parameter Browser. Only the alias name (`BrakePressure`) will be available for searching. To remove the old parameter name from your workbook, you need to delete it manually.
 
 ## Application Groups
 
