@@ -1,3 +1,8 @@
+
+---
+date: 2025-09-30
+---
+
 # MESL.SQLRace.API 2.1.25251.6-dev
 
 **For use with the ATLASSessionToParquet converter only.**
