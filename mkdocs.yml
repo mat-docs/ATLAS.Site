@@ -43,6 +43,9 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - Key Functionality:
     - Overview: key-functionality/index.md
+    - Configuration:
+      - System Monitor:
+        - Overview: key-functionality/configure/system-monitor/index.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
