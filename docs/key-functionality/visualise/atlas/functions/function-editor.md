@@ -96,30 +96,33 @@ Insert Parameters in code with the $ prefix (e.g., $Vcar). Type $ then Ctrl+Spac
 
 Define variables by assignment—no declarations needed; scope is per Function. Array subscripts can be expressions. Names can include letters, digits, and underscores, and must not clash with a Constant name.
 
+```
+for (i = 0; i < 3; i++) { 
+cyl[i] = 0;
+}
+ 
+```
+
 **Expressions and Operators**
 
 Expressions compute values using operators with a defined precedence (compatible with POSIX bc). Arithmetic (+ - * / % ^), relational (< <= > >= == !=), boolean (! && ||), bitwise (& ~ | >> <<), unary minus, and increment/decrement forms are supported. Parentheses () force evaluation order. Compound assignments (op=) evaluate the left side once (useful with arrays).
 
 **Statements and Control Flow**
 
-Statements control the sequence of evaluation of Expressions. You can use
+Statements control the sequence of evaluation of Expressions.
 
-```
-if (...) [else ...]
+| Statement                | Description                                                                                                                                                                                                                   |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `if (expression) statement1 [else statement2]` | Evaluates `expression`. If non-zero, executes `statement1`; if zero and `else` is present, executes `statement2`. The `else` clause is optional.                                                                  |
+| `while (expression) statement`                 | Executes `statement` repeatedly while `expression` is non-zero. Evaluates `expression` before each iteration. Loop ends if `expression` is zero or a `break` is executed.                                         |
+| `for ([expression1]; [expression2]; [expression3]) statement` | Controls repeated execution of `statement`. `expression1` initializes the loop (first pass only). `expression2` is checked before each iteration; if non-zero, executes `statement`. After each iteration, `expression3` is evaluated. If `expression2` is missing, it defaults to `1`. |
+| `break`                   | Causes a forced exit from the most recent enclosing `while` or `for` loop.                                                                                                            |
+| `continue`                | (Extension) Causes the most recent enclosing `for` loop to start the next iteration.                                                                                                   |
+| `return(expression)`      | Returns the value of `expression` from a function. Always return a value from the first executed function, as Displays use it.                                                         |
+| `= null`                  | `null` is a special value meaning "not a number". Displays will not plot or calculate with `null` values.                                                                             |
 
-while (...)
-
-for ([e1];[e2];[e3])
-
-break
-
-continue (extension)
-
-return(expression)
-```
-
-Newlines (or `;`) separate statements; you can hide a newline with `\\`. 
-
+> Parentheses `{ }` define a compound statement, allowing multiple statements to be grouped for execution within another statement.
+> Newlines (or `;`) separate statements; you can hide a newline with `\\`. 
 
 !!! note "null means “not a number”"
     Displays don’t plot or compute with null.
