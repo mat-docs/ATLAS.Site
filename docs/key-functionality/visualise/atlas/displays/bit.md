@@ -47,19 +47,22 @@ Each line in the `.bcg` file configures bits for a specific parameter. All bit d
 
 **Format:**
 ```
-ParameterName,BitNumber,Show(1|0),Caption,OffColour(COLORREF),OnColour(COLORREF),OffLabel,OnLabel,BitNumber,Show(1|0),Caption,OffColour(COLORREF),OnColour(COLORREF),OffLabel,OnLabel,...
+ParameterName,BitNumber,Show(1|0),Caption,OffColor(decimal),OnColor(decimal),OffLabel,OnLabel,BitNumber,Show(1|0),Caption,OffColor(decimal),OnColor(decimal),OffLabel,OnLabel,...
 ```
 
 - `ParameterName`: Name of the parameter.
 - `BitNumber`: Zero-based index of the bit.
 - `Show`: `1` to show, `0` to hide.
 - `Caption`: Text caption for the bit.
-- `OffColour` / `OnColour`: Colour when bit is off/on, using C++ `COLORREF` format (`0x00RRGGBB`).
+- `OffColor` / `OnColor`: Color when bit is off/on, as a decimal value of the C++ `COLORREF` format (`0x00BBGGRR` reordered to `0x00RRGGBB` and converted to decimal).
 - `OffLabel` / `OnLabel`: Text label when bit is off/on.
 
 **Example:**
 ```
-Status,0,1,Power,0x00FF0000,0x0000FF00,Off,On,1,1,Error,0x00FF0000,0x0000FF00,No,Yes
+Status,0,1,Power,255,65280,Off,On,1,1,Error,255,65280,No,Yes
 ```
 
-> **Note:** The Bit Display will use the `.bcg` file only after you double-click the display and check the **Use bit config file?** option. The display will then refresh with the new configuration.
+For custom colors, convert the hex value to decimal after reordering. For example, `0x00877D7C` becomes `0x007C7D87` and is written as `8158599`.
+
+!!! note
+    The Bit Display will use the `.bcg` file only after you double-click the display and check the **Use bit config file?** option. The display will then refresh with the new configuration.
