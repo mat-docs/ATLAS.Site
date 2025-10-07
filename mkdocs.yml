@@ -41,7 +41,7 @@ nav:
     - Overview: introduction/index.md
     - Use Cases in Motorsport and Engineering: introduction/use-cases.md
     - Eco-System Overview: introduction/eco-system.md
-  - Key Functionality:
+  - User Guides:
     - Overview: key-functionality/index.md
     - Store and Distribute:
       - SQL Race:
