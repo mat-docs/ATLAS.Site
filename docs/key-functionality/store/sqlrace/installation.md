@@ -57,7 +57,7 @@ You can find the latest version of SQL Race Database on the [Portal](https://por
 
 Download and run the installer, accepting the license agreement. The installer should automatically detect your SQL Server instance. If it doesn't, you can manually enter the instance name you specified during installation (e.g. `SERVER_NAME\INSTANCE_NAME`).
 
-![SQL Race](assets/SQLRace.png){: style="width:75%;"}
+![SQL Race](assets/sqlrace.png){: style="width:75%;"}
 
 Leave all default options and click **Install**. 
 

@@ -25,15 +25,15 @@ Once added, the Recorder appears in the Recorders panel.
 
 ### Starting a Recording
 
-To begin recording:
-
-1. Click Start on the Recorder.
+To begin recording Click Start on the Recorder.
     - Depending on the Recorder type, data may begin streaming immediately or wait for a trigger.
 
 !!! note
     Starting a Recorder does not automatically load the Session into a Set. You must manually add the Session to a Set to view and analyse it.
 
 When a Recorder is added to a Set, you must define its mode. This determines how new recordings are handled in relation to existing Sessions.
+
+![Recorder Modes](assets/recorder.png)
 
 **Mode: Create**
 
@@ -86,6 +86,8 @@ A Compare Set is a group of one or more Sessions (or Composite Sessions) loaded 
 - Analysing performance trends
 - Identifying anomalies or inconsistencies
 
+![Compare Set Example](assets/compare-set.png)
+
 You can create a Compare Set in several ways:
 
 1. Double-click a Session in the Session List.
@@ -115,14 +117,18 @@ Customising the Compare Sets View
 
 ## What is a Composite Session?
 
-A Composite Session is a single Session formed by appending multiple Sessions together. This is useful for:
+A Composite Session (also known as an Appended Session) is a single Session formed by appending multiple Sessions together. This is useful for:
 
 - Continuous data collection across multiple runs
 - Reducing clutter by merging related Sessions
 - Aligning data for comparative analysis
+
+![Composite Session Example](assets/composite-set.png)
 
 Creating Composite Sessions
 
 - Historic Data: Load a Session into a Set, then drag additional Sessions onto it.
 - Live Data: Use a Recorder in Append mode. Each new recording is automatically appended to the previous one.
 Composite Sessions appear as a single timeline in ATLAS, with green separators marking the boundaries between original Sessions.
+
+![timeline](assets/timeline.png)

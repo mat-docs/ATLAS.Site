@@ -1,0 +1,68 @@
+# Bit Display
+
+Status bits of one or more parameters, with configurable On/Off colours, labels, and captions per bit. You can pick which bits are active for each parameter.
+
+![Bit Display](assets/bit-display.png)
+
+## Adding a Bit Display
+
+To add a Bit Display to a Page do one of the following:
+
+- Click the Bit Display button on the DisplayToolbar.
+
+- Click `File > New > Display` and select Bit Display.
+
+- Press `Ctrl + Q` twice to use the QuickAccess Assistant and select New Bit Display.
+
+
+To select which Bits you want to show for each Parameter:
+
+1. Right click the column on the Display for the required Parameter.
+
+2. Select Show Bit Options or Double Click a Parameter name on the Display headers
+
+3. Choose from the following options for each Bit:
+
+
+| Option      | Description                                             | Default Value      |
+|-------------|--------------------------------------------------------|--------------------|
+| **Active**  | Whether the Bit is shown or not                        | —                  |
+| **Caption** | Text caption for that Bit                              | —                  |
+| **OffColour** | Colour displayed when that Bit is off                 | Red                |
+| **OffLabel**  | Text label displayed when that Bit is off             | —                  |
+| **OnColour**  | Colour displayed when that Bit is on                  | Green              |
+| **OnLabel**   | Text label displayed when that Bit is on              | —                  |
+
+
+You can also quickly set up your Bit Display by loading a `.bcg` (Bit Configuration) file.
+
+### Using a Bit Configuration File
+
+- The location of the `.bcg` file can be set in **Tools > Options > Plugins > Bit Display**.
+- Each Bit Display can be configured using the same `.bcg` file, with settings based on the parameter shown.
+
+#### File Format
+
+Each line in the `.bcg` file configures bits for a specific parameter. All bit definitions for a parameter must be on the same line.
+
+**Format:**
+```
+ParameterName,BitNumber,Show(1|0),Caption,OffColor(decimal),OnColor(decimal),OffLabel,OnLabel,BitNumber,Show(1|0),Caption,OffColor(decimal),OnColor(decimal),OffLabel,OnLabel,...
+```
+
+- `ParameterName`: Name of the parameter.
+- `BitNumber`: Zero-based index of the bit.
+- `Show`: `1` to show, `0` to hide.
+- `Caption`: Text caption for the bit.
+- `OffColor` / `OnColor`: Color when bit is off/on, as a decimal value of the C++ `COLORREF` format (`0x00BBGGRR` reordered to `0x00RRGGBB` and converted to decimal).
+- `OffLabel` / `OnLabel`: Text label when bit is off/on.
+
+**Example:**
+```
+Status,0,1,Power,255,65280,Off,On,1,1,Error,255,65280,No,Yes
+```
+
+For custom colors, convert the hex value to decimal after reordering. For example, `0x00877D7C` becomes `0x007C7D87` and is written as `8158599`.
+
+!!! note
+    The Bit Display will use the `.bcg` file only after you double-click the display and check the **Use bit config file?** option. The display will then refresh with the new configuration.
