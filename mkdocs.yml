@@ -46,6 +46,7 @@ nav:
     - Configuration:
       - System Monitor:
         - Overview: key-functionality/configure/system-monitor/index.md
+        - Getting Started: key-functionality/configure/system-monitor/installation.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
@@ -283,6 +284,7 @@ extra:
       link: mailto:sales@motionapplied.com
   tags:
     prototype: prototype
+  generator: false
 
 plugins:
   - blog
