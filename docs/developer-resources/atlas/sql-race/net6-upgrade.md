@@ -16,7 +16,6 @@ Portability Analyzer. For C# there is also the .NET Upgrade Assistant to upgrade
 * Replace old style packages.config with project file-based package references
 * Update dependencies as required to support at least .NET Standard
 
-
 There might be instances when certain dependencies may have to be updated/replaced, e.g., if it is no longer supported 
 in .NET 6. Useful sites:
 
