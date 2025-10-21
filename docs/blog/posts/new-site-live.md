@@ -1,6 +1,8 @@
 ---
 date:
   created: 2025-08-20
+categories:
+  - Announcement
 ---
 
 # New Documentation Site Now Live!
