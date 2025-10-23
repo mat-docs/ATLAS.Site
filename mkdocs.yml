@@ -46,7 +46,55 @@ nav:
     - Configuration:
       - System Monitor:
         - Overview: key-functionality/configure/system-monitor/index.md
-        - Getting Started: key-functionality/configure/system-monitor/installation.md
+        - Getting Started: 
+          - Overview: key-functionality/configure/system-monitor/getting-started/index.md
+          - RDA: key-functionality/configure/system-monitor/getting-started/rda.md
+        - Using System Monitor:
+          - Overview: key-functionality/configure/system-monitor/using-sm/index.md
+          - Menus: key-functionality/configure/system-monitor/using-sm/menus.md
+          - Windows and Parameters: key-functionality/configure/system-monitor/using-sm/windows-parameters.md
+          - Configuration and Advanced Settings: key-functionality/configure/system-monitor/using-sm/advanced.md
+          - Projects:
+            - Overview: key-functionality/configure/system-monitor/projects/index.md
+            - Project Setup: 
+              - Customer Base: key-functionality/configure/system-monitor/projects/project-setup.md
+              - Unit.Def Files: key-functionality/configure/system-monitor/projects/unit-def.md
+            - Program and Data Versions:
+              - Creating Versions: key-functionality/configure/system-monitor/projects/program-data-versions.md
+              - File Types: key-functionality/configure/system-monitor/projects/file-types.md
+            - Application Management: key-functionality/configure/system-monitor/projects/applications.md
+            - Data Version Development: key-functionality/configure/system-monitor/projects/data-version-development.md
+            - ECU Communications: key-functionality/configure/system-monitor/projects/ecu-communication.md
+            - File Operations: key-functionality/configure/system-monitor/projects/file-operations.md
+            - Logging and Sensors: key-functionality/configure/system-monitor/projects/logging-sensors.md
+            - MATLAB Integration: key-functionality/configure/system-monitor/projects/matlab.md
+          - Displays:
+            - Overview: key-functionality/configure/system-monitor/using-sm/display/index.md
+            - Numeric: key-functionality/configure/system-monitor/using-sm/display/numeric.md
+            - Bar: key-functionality/configure/system-monitor/using-sm/display/bar.md
+            - Error: key-functionality/configure/system-monitor/using-sm/display/error.md
+            - Event: key-functionality/configure/system-monitor/using-sm/display/event.md
+            - Grid: key-functionality/configure/system-monitor/using-sm/display/grid.md
+            - Oscilloscope: key-functionality/configure/system-monitor/using-sm/display/oscilloscope.md
+            - Signal Sampling: key-functionality/configure/system-monitor/using-sm/display/signal.md
+            - Alarms: key-functionality/configure/system-monitor/using-sm/display/alarms.md
+        - Data Acquisition: 
+          - Overview: key-functionality/configure/system-monitor/data-acquisition/index.md
+          - Logging:
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/logging/index.md
+            - Logging Types: key-functionality/configure/system-monitor/data-acquisition/logging/logging-types.md
+            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+          - CAN: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/can/index.md
+            - CAN Configurations: key-functionality/configure/system-monitor/data-acquisition/can/configuration.md
+          - Sensors: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
+            - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
+            - Input Signal Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/input-signals.md
+        - Hardware: key-functionality/configure/system-monitor/hardware/index.md
+        - History Report: 
+          - Overview: key-functionality/configure/system-monitor/history-report/index.md
+          - Details: key-functionality/configure/system-monitor/history-report/history-details.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md

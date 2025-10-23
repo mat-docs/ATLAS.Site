@@ -1,6 +1,6 @@
 # Overview
 
-System Monitor is a software application for interfacing with Electronic Control Units (ECUs) and related systems. It supports trackside support, unit optimisation, dyno testing, development, and production. The application is optimised for TAGtronic systems but can be adapted for third-party controllers with hardware modifications.
+System Monitor is a software application for interfacing with Electronic Control Units (ECUs) and related systems. It supports trackside support, unit optimisation, dyno testing, development, and production. The application is optimised for Motion Applied systems but can be adapted for third-party controllers with hardware modifications.
 
 ## Key Features
 
@@ -18,7 +18,7 @@ System Monitor is a software application for interfacing with Electronic Control
     - Access real-time data for diagnostics.
 
 - **Data Logging Configuration**
-    - Set up and manage data logging on TAGtronic ECUs.
+    - Set up and manage data logging on TAG ECUs.
     - Customise logging for specific needs.
 
 - **Sensor Configuration**
