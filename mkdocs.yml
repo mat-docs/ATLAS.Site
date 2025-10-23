@@ -104,6 +104,7 @@ nav:
           - Testbed Message Window:  key-functionality/configure/system-monitor/testbed/testbed-message-window.md
           - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
         - Hardware: key-functionality/configure/system-monitor/hardware/index.md
+        - Developer Functions:  key-functionality/configure/system-monitor/developer-functions/index.md
         - History Report: 
           - Overview: key-functionality/configure/system-monitor/history-report/index.md
           - Details: key-functionality/configure/system-monitor/history-report/history-details.md
