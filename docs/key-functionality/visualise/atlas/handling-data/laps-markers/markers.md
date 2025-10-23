@@ -1,68 +1,113 @@
 # Markers
 
-## Overview
+Markers define specific points or ranges of time within a session and are fully customizable. Each marker can include annotations and labels to describe its purpose.
 
-Markers are used to define a specific time or a time range within a session. They are completely customisable and can contain zero or more annotations to
-describe what the marker represents. The following properties are available for each marker:
+**Marker Properties:**
+- **Type:** Group/category of the marker.
+- **Label:** Short summary of the marker.
+- **Description:** Detailed explanation.
+- **Start Timestamp:** Optional start time (defaults to session start if omitted).
+- **End Timestamp:** Optional end time (defaults to session end if omitted).
 
-- Marker Type \- A string defining which group of markers this instance belongs to.
-- Label \- A short, human readable summary of what the marker represents.
-- Description \- A longer form human readable explanation of what the marker represents.
-- Start Timestamp \- An optional point in the session where this range of interest begins. If not specified the start of the session is implied.
-- End Timestamp \- An optional point in the session where this range of interest ends. If not specified the end of the session is implied.
+![Markers](assets/markers.png)
 
 !!! tip
-    To create a marker which represents a specific point in time the start and end time properties can be set to the same value.
+    To represent a single point in time, set both start and end timestamps to the same value.
 
-Each marker can have any number of labels associated with it to provide additional custom information. Marker labels have the following properties:
+**Marker Labels:**  
+Markers can have multiple labels for additional information. Label properties include:
+- **Name:** Computer-readable reference.
+- **Label:** Human-readable summary.
+- **Description:** Detailed explanation.
+- **Value:** Associated value.
+- **Format:** Display format (e.g., `%.3f` for three decimal places).
+- **Unit:** Measurement unit.
 
-- Name \- A short, computer readable name for referencing the label in code.
-- Label \- A short, human readable summary of what the label represents.
-- Description \- A detailed, human readable explanation of what the label represents.
-- Value \- A value associated with this marker.
-- Format \- The C-Style format string used when displaying the value to the user e.g. `%.3f` for a real number displayed to 3 decimal places.
-- Unit \- The definition of the units that the value is measured in.
+Labels are optional and can be used in any combination.
 
-None of these properties are mandatory and they can be used in any combination e.g. using only the label or using just the value and units.
-
-The user can review and select markers using the timeline. If labels are present they will be displayed in the tooltip when hovering over the marker in
-the drop down list. The following image shows an example of a marker with labels that was created using the SQL Race API as described below.
+When reviewing markers in the timeline, labels appear in tooltips on hover. Example:
 
 ![Marker labels example](assets/markers-demo.png)
 
-## Code Example
+## Adding Markers Programmatically
 
-Markers can be added programmatically such as by a simulation model or separate analysis tool. An example of how to add a marker with some associated labels is shown below. A working sample of this code is provided in the introductory SQL Race API documentation available [here](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/blob/master/MAT.SQLRace.HelloData/Program.cs)
+Markers can be added via code, such as in simulation models or analysis tools. Example using the SQL Race API:
 
-!!! example
-    ```c#
-    var marker = new Marker(markerStartTime, markerEndTime, "High Wind", "windSpeedData",
-        "A period during which the wind was sustained above 9 m/s");
+```c#
+var marker = new Marker(markerStartTime, markerEndTime, "High Wind", "windSpeedData",
+    "A period during which the wind was sustained above 9 m/s");
 
-    marker.AddLabel(
-        new MarkerLabel
-        {
-            Label = "Average Speed",
-            Description = "An average sustained wind speed during this time period",
-            Value = "9.6382834",
-            Format = "%.2f",
-            Unit = "m/s",
-            Name = "windSpeedDataHighVelocity01"
-        });    
-        
-    marker.AddLabel(
-        new MarkerLabel
-        {
-            Label = "Direction",
-            Description = "The direction of the wind during this time period",
-            Value = "323",
-            Format = "%i",
-            Unit = "deg",
-            Name = "windSpeedDataHighDirection01"
-        });
+marker.AddLabel(
+    new MarkerLabel
+    {
+        Label = "Average Speed",
+        Description = "An average sustained wind speed during this time period",
+        Value = "9.6382834",
+        Format = "%.2f",
+        Unit = "m/s",
+        Name = "windSpeedDataHighVelocity01"
+    });    
 
-    session.Markers.Add(marker);
-    ```
+marker.AddLabel(
+    new MarkerLabel
+    {
+        Label = "Direction",
+        Description = "The direction of the wind during this time period",
+        Value = "323",
+        Format = "%i",
+        Unit = "deg",
+        Name = "windSpeedDataHighDirection01"
+    });
+
+session.Markers.Add(marker);
+```
+
+> **Reference:** See the [Marker class documentation](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Marker.html).
+
+## Using the Markers Tab
+
+The Markers tab in the Laps And Markers Editor displays markers for the active session. Users can:
+
+1. **Add** a new marker
+2. **Delete** the selected marker
+3. **Go To** the selected marker
+4. **Edit** the selected marker
 
 !!! note
-    The SQL Race API definition of the Marker class is available [here](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Marker.html)
+    In LIVE mode, markers cannot be added, deleted, or edited. Editing is enabled once the session is HISTORICAL.
+
+### Marker Types
+
+- **Point Marker:** Represents a single time point (only Start time set).
+- **Range Marker:** Represents a time range (both Start and End times set).
+
+### Adding a Marker
+
+- Click **New** to enable editing.
+- By default, the Range checkbox is unticked (point marker).
+- Start time defaults to the current cursor time.
+- Edit the following fields:
+  - **Label:** Marker name
+  - **Description:** Optional
+  - **Range:** Tick for range marker
+  - **Start time:** Set as needed
+  - **End time:** Enabled for range markers
+
+Edit times by typing, using arrows, or dropdown controls.  
+Use the cursor button to set times to the cursor position.  
+Reset button restores default/previous values.
+
+Click **Save** to add the marker to the list.
+
+### Marker Selection and Management
+
+- **Delete:** Select a marker and press Delete to remove it.
+- **Go To:** Select a marker and press Go To to move the cursor (to the time point for point markers, or midpoint for range markers).
+- **Edit:** Select a marker, update details, and press Save to apply changes.
+
+Markers are also available in the Laps dropdown.  
+Point markers show label and time; range markers show label and duration.
+
+!!! tip
+    Transient markers can be added via Alarms (see Alarm Set Marker).
+
