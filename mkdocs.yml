@@ -103,6 +103,12 @@ nav:
           - Testbed Properties:  key-functionality/configure/system-monitor/testbed/testbed-properties.md
           - Testbed Message Window:  key-functionality/configure/system-monitor/testbed/testbed-message-window.md
           - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
+        - ECU Control:
+          - Overview:  key-functionality/configure/system-monitor/ecu-control/index.md
+          - ECU Operations: key-functionality/configure/system-monitor/ecu-control/ecu-operations.md
+          - ECU Memory: key-functionality/configure/system-monitor/ecu-control/ecu-memory.md
+          - Programming Data: key-functionality/configure/system-monitor/ecu-control/programming-data.md
+          - Diagnostics Status: key-functionality/configure/system-monitor/ecu-control/diagnostics-status.md
         - Hardware: key-functionality/configure/system-monitor/hardware/index.md
         - Developer Functions:  key-functionality/configure/system-monitor/developer-functions/index.md
         - History Report: 
