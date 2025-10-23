@@ -1,7 +1,7 @@
 site_name: ATLAS Product Suite
 site_url: https://atlas.motionapplied.com/
+repo_url: https://github.com/mat-docs/ATLAS.Site
 edit_uri: edit/main/docs/
-# repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
 site_description: '"Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
@@ -132,7 +132,7 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
-    - SECU4: 
+    - SECU4:
       - Stream API: 
         - Overview:                   developer-resources/secu4/stream_api/index.md
         - Stream API Client:          developer-resources/secu4/stream_api/stream_client.md
@@ -274,7 +274,8 @@ nav:
         - Data Services: extending-atlas/rta/introduction/data-services.md
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
-  - News and Release Notes: blog/index.md
+  - News and Release Notes: 
+    - blog/index.md
   - Downloads: https://portal.motionapplied.com/
   - Support: 
     - Troubleshooting: 
@@ -316,10 +317,22 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@motionapplied.com
-  tags:
-    prototype: prototype
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  consent:
+  title: Cookie consent
+  description: >- 
+    We use cookies to recognize your repeated visits and preferences, as well
+    as to measure the effectiveness of our documentation and whether users
+    find what they're searching for. With your consent, you're helping us to
+    make our documentation better.
+  cookies:
+    analytics:
+      name: Google Analytics
+      checked: true
 
 plugins:
-  - blog
   - search
   - tags
+  - blog
