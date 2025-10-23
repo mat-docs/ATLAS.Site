@@ -15,6 +15,73 @@ The Adjustment Board is a box with four high‑precision rotary switches. System
 
 All controls operate the same; the knobs differ in size to aid identification. Turning clockwise increases the assigned parameter; turning counter‑clockwise decreases it.
 
+### Configuration
+
+To configure the Adjustment Board:
+
+1. Open the **Pot Board Configuration** dialog:
+   - Navigate to `Tools > Pot Board > Configure`
+   - Shortcut: `CTRL + SHIFT + F1`
+
+2. Assign parameters to controls:
+   - Drag parameters from the **Parameter Explorer** to the corresponding row in the configuration window.
+   - Each row corresponds to a labelled control on the board.
+
+3. Remove assignments:
+   - Right-click a parameter in the configuration window and select **Remove**.
+
+4. Assign a control to the **Maths Bar**:
+   - Right-click a row and select **Maths Bar**.
+   - Turning the assigned control adjusts the selected editable parameter.
+
+### Adjustment Groups
+
+Parameters are assigned in groups of four, matching the four physical controls on the board. These groups are defined in the `Pot.ini` file used during program version creation.
+
+- The active group is selected in the **Adjustment Board Configuration** dialog.
+- Group names and assignments can be edited in the **Adjustment Board Groups** dialog.
+
+### Supported Parameter Types
+- **Scalar Editable Parameters**: Turning a knob is equivalent to changing the parameter value manually.
+- Each parameter includes an **Adjustment Properties** tab to define:
+  - **Step size**
+  - **Zero value**
+
+### Keyboard Operation
+
+The keyboard can replicate Adjustment Board functionality:
+
+- **Increase value**:
+  - Hold `CTRL` and press a number key (1–4)
+- **Decrease value**:
+  - Hold `CTRL + SHIFT` and press a number key (1–4)
+
+> Use the number keys on the main keyboard, not the number pad.
+
+Step size is defined in the **Adjustment Sheet** of the Parameter Properties.
+
+### Pot Board Properties
+
+To configure the connection between System Monitor and the Adjustment Board:
+
+1. Open the **Window Properties** dialog:
+   - Shortcut: `ALT + Enter`
+2. Navigate to the **Pot Board** tab.
+3. Select connection type:
+   - **CA Card**
+   - **Serial Port** (COM1 or COM2)
+
+> The serial port is configured automatically to suit the board, regardless of Windows settings.
+
+### Adjustment Board Menu Commands
+
+Located under `Tools > Pot Board`:
+
+- **Configure**: Opens the configuration dialog (`CTRL + SHIFT + F1`)
+- **Enable**: Activates the controls (`CTRL + SHIFT + F2`)
+- **Reset Adjustments**: Function depends on parameter type (`CTRL + SHIFT + F3`)
+- **Recent Files**: Lists recently opened configuration files
+
 ### Available types
 
 #### VE‑80

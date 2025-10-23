@@ -91,6 +91,12 @@ nav:
             - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
             - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
             - Input Signal Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/input-signals.md
+        - Tuning:
+          - Overview:  key-functionality/configure/system-monitor/tuning/index.md
+          - Editable Parameters: key-functionality/configure/system-monitor/tuning/editable-parameters.md
+          - Changing Values:  key-functionality/configure/system-monitor/tuning/changing-values.md
+          - Graphical Maps:  key-functionality/configure/system-monitor/tuning/graphical-maps.md
+          - Live Tune:  key-functionality/configure/system-monitor/tuning/live-tune.md
         - Hardware: key-functionality/configure/system-monitor/hardware/index.md
         - History Report: 
           - Overview: key-functionality/configure/system-monitor/history-report/index.md
