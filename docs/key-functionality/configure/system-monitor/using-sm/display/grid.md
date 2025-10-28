@@ -1,6 +1,8 @@
 # Grid Display
 The Grid Display is a flexible, spreadsheet-style layout that allows text and attributes of Measurement or Scalar Parameters to be placed in cells. It is commonly used to create customised views for specific operations.
 
+![Grid](assets/grid.png)
+
 ## Features
 
 - Editable Parameters can be highlighted using a different background colour.
@@ -23,10 +25,12 @@ To disable Edit Mode, clear the checkbox in the Numeric Grid tab of the Window P
 ## Creating a Grid Window
 1. Select: `Desktop > Window > Grid`
 2. Configure:
-   - **Rows and Columns**: Set initial size.
-   - **General Panel**:
-     - Edit Mode: Toggle cell editing.
-     - Gridlines: Show/hide gridlines.
+    - **Rows and Columns**: Set initial size.
+    - **General Panel**:
+        - Edit Mode: Toggle cell editing.
+        - Gridlines: Show/hide gridlines.
+
+![Create Grid](assets/create-grid.png)
 
 Click **OK** to create the window. Cells must be configured individually.
 
@@ -34,10 +38,11 @@ Click **OK** to create the window. Cells must be configured individually.
 
 - **Single**: Click or use cursor keys.
 - **Multiple**:
-  - Mouse: SHIFT or CTRL + click.
-  - Keyboard: SHIFT or CTRL + cursor keys + SPACE.
+    - Mouse: SHIFT or CTRL + click.
+    - Keyboard: SHIFT or CTRL + cursor keys + SPACE.
 
-> Note: Non-continuous blocks cannot be copied.
+!!! note
+    Non-continuous blocks cannot be copied.
 
 ## Cell Properties
 
@@ -53,19 +58,23 @@ To edit a cell:
 - **Empty**: Clears cell.
 - **Text**: Enter free text.
 - **Parameter**:
-  - Select a parameter.
-  - Choose attribute to display (e.g. Engineering value).
-  - Optional bit masking for logical display.
+    - Select a parameter.
+    - Choose attribute to display (e.g. Engineering value).
+    - Optional bit masking for logical display.
+
+![Cell Contents](assets/cell-content.png)
 
 ### Formatting Tab
 
 - **Justification**: Set text alignment.
 - **Borders**: Add thick borders.
 - **Colours**:
-  - Use default or custom background colour.
+    - Use default or custom background colour.
+
+![Cell Formatting](assets/cell-formatting.png)
 
 ## Insert/Delete Rows or Columns
 
 - Use Grid Cell Context Menu:
-  - **Insert**: Specify number and placement.
-  - **Delete**: Remove selected rows/columns or cell contents.
+    - **Insert**: Specify number and placement.
+    - **Delete**: Remove selected rows/columns or cell contents.

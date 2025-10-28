@@ -2,6 +2,8 @@
 
 Events report status changes in the control system and include a timestamp. They are defined by the Event File in the Program Version.
 
+![Event](assets/event.png)
+
 ## Features
 
 - Events are displayed in order of receipt (most recent at bottom).
@@ -36,6 +38,8 @@ Each event appears as a row with:
 
 - Use the Mask tab in Window Properties.
 - Mask by:
-- **Group**: Entire application group.
-- **Individual Events**
-- **Priority Level**: Low, Medium, High, All
+    - **Group**: Entire application group.
+    - **Individual Events**
+    - **Priority Level**: Low, Medium, High, All
+
+![Event Mask](assets/event-mask.png)

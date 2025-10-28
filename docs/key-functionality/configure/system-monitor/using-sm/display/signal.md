@@ -2,6 +2,8 @@
 
 A signal sampling display can be added to a page by selecting **Desktop > Window > Signal Sampling**.
 
+![Signal Display](assets/signal.png)
+
 The signal sampling tool allows one or more input signal parameters to be sampled either independently or simultaneously. Parameters can be added to the display by dragging them into the display from the parameter explorer. They can be deleted either by selecting the parameter in the display and pressing the ‘delete’ key or via the parameter explorer.
 
 Multiple signal sampling displays can be displayed on one page.

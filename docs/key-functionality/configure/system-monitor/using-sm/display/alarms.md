@@ -36,6 +36,8 @@ Each alarm is listed with its message text. Alarms are active when their checkbo
 - **Properties**: Opens the Alarm Properties dialog for the selected alarm.
 - **Remove**: Deletes the selected alarm.
 
+![Setup](assets/alarm-setup.png)
+
 ## Alarm Properties
 
 The Alarm Properties dialog defines the behaviour of an alarm. It includes two tabs:
@@ -50,8 +52,12 @@ The trigger is a logical formula comparing one or more Measurement Parameters wi
 - Use mathematical operators to build the condition.
 - Example: `RPM > 8000 AND Throttle > 90%`
 
+![Trigger](assets/trigger.png)
+
 ### Action Tab
 Defines the response when the trigger condition becomes TRUE. Multiple actions can be combined.
+
+![Action](assets/alarm-properties.png)
 
 **Available Actions**
 

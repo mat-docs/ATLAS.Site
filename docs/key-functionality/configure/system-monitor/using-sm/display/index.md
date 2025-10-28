@@ -28,3 +28,7 @@ A spreadsheet-style layout allowing placement of text and parameter attributes i
 
 ### [Signal Sampling](signal.md)
 Provides functionality to sample or zero one or more input signal parameters.
+
+## Adding Display Windows
+
+Display windows can be added to a System Monitor page via the menu: `Desktop > Window > [Display Type]`
