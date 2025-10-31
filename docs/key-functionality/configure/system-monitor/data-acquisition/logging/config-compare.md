@@ -23,14 +23,11 @@ System Monitor uses configuration files to manage logging setups for Live, Remot
 !!! warning
     Parameters not defined in the current system description are discarded during upload.
 
-# Remote Configuration Compare
+## Remote Configuration Compare
 
-System Monitor allows comparison and merging of Remote Logging configurations.
+System Monitor allows comparison and merging of Remote Logging configurations. Select `Logging > Remote Configuration Compare`
 
-## Access
-- Select `Logging > Remote Configuration Compare`
-
-## Features
+### Features
 
 - Load/unload secondary configuration
 - View differences in logging slots and parameters
@@ -40,17 +37,17 @@ System Monitor allows comparison and merging of Remote Logging configurations.
   - Channel (all parameters)
   - Cell (individual values)
 
-## Tabs
+### Tabs
 
-### Config Tab
+#### Config Tab
 
 - Highlights differences in sampling rates
 - Colour-coded for clarity
 - Context menu for merging
 
-### Triggers Tab
+#### Triggers Tab
 - Displays trigger differences
 - Merge options:
-  - `<<` to merge
-  - `X` to undo
-  - `Next` / `Prev` to cycle
+    - `<<` to merge
+    - `X` to undo
+    - `Next` / `Prev` to cycle
