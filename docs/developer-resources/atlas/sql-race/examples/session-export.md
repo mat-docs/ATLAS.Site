@@ -17,14 +17,11 @@ The `SessionManager` class provides functionality to export sessions into local 
 
 #### **Key Methods**
 
-- `sessionManager.ExportSession(sessionKey, connectionString)`  
-  Exports the session and returns a `FragmentedMemoryStream` containing the session data.
+[SessionManager.ExportSession()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.SessionManager.html#MESL_SqlRace_Domain_SessionManager_ExportSession_MAT_OCS_Core_SessionKey_System_String_)
 
-- `sessionManager.ImportSession(fragmentedMemoryStream)`  
-  Uses the exported stream to recreate the session with all relevant data and configuration.
+[SessionManager.ImportSession()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.SessionManager.html#MESL_SqlRace_Domain_SessionManager_ImportSession_System_String_System_IO_Stream_MAT_OCS_Core_SessionKey_)
 
 ---
-
 
 !!! Failure "Important: Do not use ExportSession alone to create a session file"
 
@@ -35,34 +32,11 @@ The `SessionManager` class provides functionality to export sessions into local 
     1. Export the session into a `FragmentedMemoryStream` using `ExportSession`.
     2. Then use `ImportSession` to properly populate and finalize the session file.
 
-    
-### **SessionManager.ExportSession Method**
-
-#### **Declaration**
-=== "C#"
-    ```csharp
-    public FragmentedMemoryStream ExportSession(SessionKey sessionKey, string connectionString)
-    ```
-
-#### **Parameters**
-
-| Type                          | Name              | Description           |
-|-------------------------------|-------------------|-----------------------|
-| `MAT.OCS.Core.SessionKey`     | `sessionKey`      | The session key.      |
-| `System.String`               | `connectionString`| The connection string.|
-
-#### **Returns**
-
-| Type                                         | Description                                |
-|----------------------------------------------|--------------------------------------------|
-| `MESL.SqlRace.Common.FragmentedMemoryStream` | The `FragmentedMemoryStream` containing the exported session. |
-
 ### Example SQLRace Session to SSN2
 
 Basic example that shows how to export to SSN2 from a SQLRace Database session.
 
 Load a session from a SQLRace Database:
-
 
 === "C#"
 
