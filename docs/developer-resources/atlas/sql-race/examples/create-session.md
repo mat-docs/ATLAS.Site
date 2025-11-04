@@ -21,20 +21,17 @@ This guide walks you through the process of creating a new **session file (`.ssn
 ## Summary of Steps
 
 1. **Initialize SQLRace**
-2. **Create SessionManager**
-3. **Generate SessionKey**
-4. **Create Session**
-5. **Add Metadata**
-6. **Configure Time**
-7. **Define Channels & Parameters**
-8. **Add Conversions**
-9. **Group Parameters**
-10. **Add Sample Data**
-11. **Add Laps**
-12. **Add Constants**
-13. **Add CAN Data**
-14. **Commit & Close**
-
+2. **Create a New Session**
+3. **Create Session Configuration**
+4. **Add Session Metadata**
+5. **Configure Conversions**
+6. **Add Channels and Parameters**
+7. **Define Event Metadata**
+8. **Write Parameter and Event Data**
+9. **Add Laps**
+10. **Add Constants**
+11. **Add CAN Data**
+12. **Finalize Session**
 
 ---
 
@@ -94,40 +91,14 @@ Creates a unique session at the specified location.
     clientSession = SessionManager.CreateSessionManager().CreateSession(connectionString, sessionKey, sessionDescription, DateTime.Now, "TAG-310");
     ```
 
+[SessionManager.CreateSession()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.SessionManager.html#MESL_SqlRace_Domain_SessionManager_CreateSession_System_String_MAT_OCS_Core_SessionKey_System_String_System_DateTime_System_String_)
 
-- Class: MESL.SqlRace.Domain.SessionManager
-- Method: CreateSession(...)
-- Returns: IClientSession
-- Arguments:
-    - SessionKey: Unique identifier for the session.
-    - connectionString: SQLite connection string.
-    - sessionName: Name of the session.
-    - dateOfRecording: Start time.
-    - sessionType: A string label for the session type.
+!!! info
+    Use the following connection strings to create your session, whether it's SSN2, SSNDB, or SQLRace:
 
-
-=== "C#"
-
-    ```csharp
-    public static IClientSession CreateSession(SessionKey sessionKey, string connectionString, string sessionName, DateTime dateOfRecording, string sessionType)
-    ```
-
-=== "Python"
-
-    ```python
-    ```
-
-
-=== "MATLAB"
-
-    ```matlab
-    ```
-
-
-!!! warning
-    To generate a SQLRace Session instead, the connection string will need to be adjusted accordingly.
-    
-        connectionStringSQLRACE = f"Data Source=MCLA-42765X3\LOCAL;Initial Catalog=SQLRACE01;Integrated Security=True"
+        connectionStringSSN2 = r"DbEngine=SQLite;Data Source=C:\Path\To\session.ssn2;"
+        connectionStringSSNDB = r"DbEngine=SQLite;Data Source=C:\Path\To\local_db.ssndb;PRAGMA journal_mode=WAL;"
+        connectionStringSQLRACE = r"Data Source=MCLA-42765X3\LOCAL;Initial Catalog=SQLRACE01;Integrated Security=True;"
 
 
 
@@ -170,14 +141,14 @@ The following is an example of using the ConfigurationSetManager to add a shared
 
     ```csharp
     // Define names and IDs
-    const string parameterName = "myParam";
-    const string applicationGroupName = "myApp";
-    const string parameterIdentifier = $"{parameterName}:{applicationGroupName}";
-    const string conversionFunctionName = $"CONV_{parameterName}:{applicationGroupName}";
-    const string parameterGroupIdentifier = "myParamGroup";
-    const string parameterSubGroupIdentifier = "myParamSubGroup";
-    const uint parameterNameChannelId = 999998;
-    const int applicationGroupId = 998;
+    string parameterName = "myParam";
+    string applicationGroupName = "myApp";
+    string parameterIdentifier = $"{parameterName}:{applicationGroupName}";
+    string conversionFunctionName = $"CONV_{parameterName}:{applicationGroupName}";
+    string parameterGroupIdentifier = "myParamGroup";
+    string parameterSubGroupIdentifier = "myParamSubGroup";
+    uint parameterNameChannelId = 999998;
+    int applicationGroupId = 998;
 
     // Create configuration set
     ConfigurationSetManager configurationSetManager = ConfigurationSetManager.CreateConfigurationSetManager();
@@ -345,6 +316,8 @@ The following is an example of using the ConfigurationSetManager to add a shared
     end
     ```
 
+[ConfigurationSetManager.Create()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSetManager.html#MESL_SqlRace_Domain_ConfigurationSetManager_Create_MAT_OCS_Core_SessionKey_System_String_System_String_System_String_System_Boolean_System_Boolean_)
+
 ### UseConfigurationSets Method
 
 === "C#"
@@ -373,7 +346,9 @@ The following is an example of using the ConfigurationSetManager to add a shared
     metadata = session.UseConfigurationSets(kvpList);
     ```
 
-## Step 3: Add Session Metadata
+[Session.UseConfigurationSets()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_UseConfigurationSets_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_UInt32___)
+
+## Step 4: Add Session Metadata
 
 
 Metadata allows tracking of essential session attributes (e.g., driver, event, date, etc.). Session metadata can be configured adding **SessionDataItem** objects into the **session.Items**. 
@@ -416,10 +391,11 @@ Metadata allows tracking of essential session attributes (e.g., driver, event, d
     session.Items.Add(SessionDataItem("Fuel level in gallons", 56.45));
     ```
 
+[Class SessionDataItemsCollection<T>](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.SessionDataItemsCollection-1.html)
 
 ---
 
-## Step 4: Configure Conversions
+## Step 5: Configure Conversions
 
 Add conversion logic (e.g., rational and table conversions) for later use by parameters.
 
@@ -459,9 +435,13 @@ Add conversion logic (e.g., rational and table conversions) for later use by par
             "5.2f"));
     ```
 
+[ConfigurationSet.AddConversion()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSet.html#MESL_SqlRace_Domain_ConfigurationSet_AddConversion_MESL_SqlRace_Domain_ConversionBase_)
+
+[Class ConversionBase](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConversionBase.html)
+
 ---
 
-## Step 5: Add Channels and Parameters
+## Step 6: Add Channels and Parameters
 
 Set up channels and map them to parameters that will receive time-series data.
 
@@ -559,6 +539,13 @@ Set up channels and map them to parameters that will receive time-series data.
     configurationSet.AddParameter(myParam);
     ```
 
+[Class Channel](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Channel.html)
+
+[Class Parameter](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Parameter.html)
+
+[ConfigurationSet.AddChannel()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSet.html#MESL_SqlRace_Domain_ConfigurationSet_AddChannel_MESL_SqlRace_Domain_IChannel_)
+
+[ConfigurationSet.AddParameter()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSet.html#MESL_SqlRace_Domain_ConfigurationSet_AddParameter_MESL_SqlRace_Domain_ParameterBase_)
 
 ??? note "Available Data Types"
 
@@ -574,12 +561,9 @@ Set up channels and map them to parameters that will receive time-series data.
     | `Unsigned32Bit`              | Unsigned 32 bits of data.            |
     | `Unsigned8Bit`               | Unsigned 8 bits of data.             |
 
-
-
-
 ---
 
-## Step 6: Define Event Metadata
+## Step 7: Define Event Metadata
 
 Events let you log significant occurrences during a session (e.g., start, end, pit stops).
 
@@ -635,10 +619,13 @@ Events let you log significant occurrences during a session (e.g., start, end, p
 
     ```
 
+[Class EventDefinition](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.EventDefinition.html)
+
+[ConfigurationSet.AddEventDefinition()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSet.html#MESL_SqlRace_Domain_ConfigurationSet_AddEventDefinition_MESL_SqlRace_Domain_EventDefinition_)
 
 ---
 
-## Step 7: Write Parameter and Event Data
+## Step 8: Write Parameter and Event Data
 
 
 Adds time-stamped numeric data to your session’s channels and logs events using IDs and timestamps.
@@ -681,10 +668,13 @@ Adds time-stamped numeric data to your session’s channels and logs events usin
     session.Events.AddEventData(1, "Group1", timestamp, eventData, true, "Status Text");
     ```
 
+[Session.AddChannelData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_AddChannelData_System_UInt32_System_Int64_System_Int32_System_Byte___)
+
+[Session.Events.AddEventData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.EventCollection.html#MESL_SqlRace_Domain_Collections_EventCollection_AddEventData_System_Int32_System_String_System_Int64_System_Collections_Generic_IList_System_Double__)
 
 ---
 
-## Step 8: Add Laps and Constants
+## Step 9: Add Laps
 
 Lap data enrich your session context with performance and environmental data.
 
@@ -707,11 +697,14 @@ Lap data enrich your session context with performance and environmental data.
     session.LapCollection.Add(Lap(lapTimestamp, 1, 0, "Lap1", true));
     ```
 
+[Interface ILapCollection](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.ILapCollection.html)
+
+[Class Lap](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Lap.html#MESL_SqlRace_Domain_Lap__ctor_System_Int64_System_Int16_System_Byte_System_String_System_Boolean_)
 
 ---
 
 
-## Step 8: Add Constants
+## Step 10: Add Constants
 
 Constants enrich your session context with performance and environmental data.
 
@@ -735,42 +728,69 @@ Constants enrich your session context with performance and environmental data.
     session.Constants.Add(Constant("Race Start car weight", 653.92, "Car weight", "kg", "5.2f"));
     ```
 
+[Session.Constants - SessionDataItemsCollection<Constant>](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_Constants)
+
+[Class Constant](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Constant.html)
+
 --- 
 
-## Step 9: Add CAN Data
+## Step 11: Add CAN Data
 
 CAN Data can be added thogh the CAN Collection object. CAN Collection only accepts RAW CAN messages.
 
 === "C#"
 
     ```csharp
-
+    long timeStamp = 1627845123456;
+    byte isReceived = 1;
+    ushort busId = 99;
+    uint canId = 123456;
+    byte[] message = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+    session.CanData.AddCanData(timeStamp, isReceived, busId, canId, message);
     ```
 
 === "Python"
 
     ```python
-        timeStamp = Int64(1627845123456)
-        isReceived = Byte(1)  # 1 for received, 0 for transmitted
-        busId = UInt16(99)
-        canId = UInt32(123456)
-        message = Array.CreateInstance(Byte, 4)
-        message[0] = Byte(0x01)
-        message[1] = Byte(0x02)
-        message[2] = Byte(0x03)
-        message[3] = Byte(0x04)
-        message[4] = Byte(0x05)
-        message[5] = Byte(0x06)
-        message[6] = Byte(0x07)
-        message[7] = Byte(0x08)
-        session.CanData.AddCanData(timeStamp, isReceived, busId, canId, message)
+    timeStamp = Int64(1627845123456)
+    isReceived = Byte(1)  # 1 for received, 0 for transmitted
+    busId = UInt16(99)
+    canId = UInt32(123456)
+    message = Array.CreateInstance(Byte, 8)
+    message[0] = Byte(0x01)
+    message[1] = Byte(0x02)
+    message[2] = Byte(0x03)
+    message[3] = Byte(0x04)
+    message[4] = Byte(0x05)
+    message[5] = Byte(0x06)
+    message[6] = Byte(0x07)
+    message[7] = Byte(0x08)
+    session.CanData.AddCanData(timeStamp, isReceived, busId, canId, message)
     ```
 
 
 === "MATLAB"
 
     ```matlab
+    timeStamp = int64(1627845123456);
+    isReceived = uint8(1);
+    busId = uint16(99);
+    canId = uint32(123456);
+    message = NET.createArray('System.Byte', 8);
+    message(1) = uint8(1);
+    message(2) = uint8(2);
+    message(3) = uint8(3);
+    message(4) = uint8(4);
+    message(5) = uint8(5);
+    message(6) = uint8(6);
+    message(7) = uint8(7);
+    message(8) = uint8(8);
+    session.CanData.AddCanData(timeStamp, isReceived, busId, canId, message);
     ```
+
+[Session.CanData](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_CanData)
+
+[Session.CanData.AddCanData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.CanCollection.html#MESL_SqlRace_Domain_Collections_CanCollection_AddCanData_System_Int64_System_Byte_System_UInt16_System_UInt32_System_Byte___)
 
 --- 
 
@@ -784,7 +804,7 @@ CAN Data can be added thogh the CAN Collection object. CAN Collection only accep
 
 
 
-## Step 10: Finalize Session
+## Step 12: Finalize Session
 
 
 Close the session to ensure all data is written and saved to the `.ssn2` file.
@@ -811,6 +831,15 @@ Close the session to ensure all data is written and saved to the `.ssn2` file.
     session.EndData();
     clientSession.Close();
     ```
+
+[Session.EndData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_EndData)
+
+[ClientSession.Close()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ClientSession.html#MESL_SqlRace_Domain_ClientSession_Close)
+
+!!! warning
+    EndData() is needed for the session's state to be properly updated to 'Historical', otherwise it would be stuck as 'LiveNotInServer' or 'Live'.
+
+    Close() or Dispose() is used to free system resources and reduce memory leaks.
 
 ---
 
