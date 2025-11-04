@@ -184,3 +184,103 @@ Session States are used to identify whether a session is currently live and havi
     sessionManager = SessionManager.CreateSessionManager();
     clientSession = sessionManager.Load(SessionKey.Parse(sessionKeyGUID), connectionString);
     ```
+
+### Filter Sessions with QueryManager and Load
+=== "C#"
+
+    ``` csharp
+    const string serverName = @"SQLServer\InstanceName";
+    const string dbName = "DatabaseName";
+    const string connectionString = $@"server={serverName};Initial Catalog={dbName};Trusted_Connection=True";
+
+    var filter = new ScalarFilter("Car", MatchingRule.EqualTo, "1", true);
+
+    var compositeFilter = new CompositeFilter(CombineType.AND);
+    compositeFilter.Add(new ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.GreaterThanOrEquals, "2025-07-14 00:00:00.000", true));
+    compositeFilter.Add(new ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.LessThan, "2025-07-18 23:00:00.000", true));
+
+    var qm = QueryManager.CreateQueryManager(connectionString);
+    qm.Filter = filter;
+    var queryResult = qm.ExecuteQuery();
+
+    var sessionManager = SessionManager.CreateSessionManager();
+
+    foreach (var sessionSummary in queryResult)
+    {
+        var clientSession = sessionManager.Load(sessionSummary.Key, connectionString);
+    }
+    ```
+
+=== "Python"
+
+    ``` python
+    server_name = r"SQLServer\InstanceName"
+    db_name = "DatabaseName"
+    connection_string = rf"server={serverName};Initial Catalog={dbName};Trusted_Connection=True"
+    
+    # filter by session data item
+    item_filter = ScalarFilter("Car", MatchingRule.EqualTo, "1", True)
+
+    # Using a composite filter
+    composite_filter = CompositeFilter(CombineType.AND)
+    composite_filter.Add(ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.GreaterThanOrEquals, "2025-07-14 00:00:00.000", True))
+    composite_filter.Add(ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.LessThan, "2025-07-18 23:00:00.000", True))
+
+    qm = QueryManager.CreateQueryManager(connection_string)
+    qm.Filter = item_filter
+    queryResult = qm.ExecuteQuery()  # Returns a list of Session Summaries
+
+    session_manager = SessionManager.CreateSessionManager()
+
+    for session_summary in queryResult:
+        client_session = session_manager.Load(session_summary.Key, connection_string)
+    
+    ```
+
+=== "MATLAB"
+  
+    ``` matlab
+    serverName = "SQLServer\InstanceName";
+    dbName = "DatabaseName";
+    connectionString = sprintf('server=%s;Initial Catalog=%s;Trusted_Connection=True;', serverName, dbName);
+
+    filter = ScalarFilter("Car", MatchingRule.EqualTo, "1", true);
+
+    compositeFilter = CompositeFilter(CombineType.AND);
+    compositeFilter.Add(ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.GreaterThanOrEquals, "2025-07-14 00:00:00.000", true));
+    compositeFilter.Add(ScalarFilter(SessionFieldIdentifiers.SessionStartDateTime, MatchingRule.LessThan, "2025-07-18 23:00:00.000", true));
+
+    qm = QueryManager.CreateQueryManager(connectionString);
+    qm.Filter = filter;
+    queryResult = qm.ExecuteQuery();
+
+    % Get IEnumerable.GetEnumerator() via reflection and invoke it
+    t = queryResult.GetType();
+    ienumIface = t.GetInterface('System.Collections.IEnumerable'); % the non-generic interface
+    assert(~isempty(ienumIface), 'Object does not implement System.Collections.IEnumerable');
+
+    miGetEnum = ienumIface.GetMethod('GetEnumerator'); % MethodInfo
+    emptyArgs = NET.createArray('System.Object', 0);
+    en = miGetEnum.Invoke(queryResult, emptyArgs); % returns an IEnumerator (explicit impl)
+
+    % Prepare reflection handles for IEnumerator.MoveNext and IEnumerator.Current
+    ienumeratorT = System.Type.GetType('System.Collections.IEnumerator');
+    miMoveNext = ienumeratorT.GetMethod('MoveNext'); % MethodInfo for bool MoveNext()
+    propCurrent = ienumeratorT.GetProperty('Current'); % PropertyInfo for object Current {get;}
+    miGetCurrent = propCurrent.GetGetMethod(); % MethodInfo for getter
+
+    % Walk the sequence using interface methods
+    summaries = {}; % MATLAB cell array to collect MESL.SqlRace.Domain.SessionSummary objects
+
+    while miMoveNext.Invoke(en, emptyArgs) % calls IEnumerator.MoveNext()
+        curr = miGetCurrent.Invoke(en, emptyArgs); % calls IEnumerator.get_Current()
+        summaries{end+1} = curr;
+    end
+
+    sessionManager = SessionManager.CreateSessionManager();
+
+    for j = 1:numel(summaries)
+        ss = summaries{j};  % MESL.SqlRace.Domain.SessionSummary
+        clientSession = sessionManager.Load(ss.Key, connectionString);
+    end
+    ```
