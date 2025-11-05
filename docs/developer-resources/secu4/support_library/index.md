@@ -1,190 +1,319 @@
-# Support Library Service
+# MA DataPlatforms Streaming Support Library - Documentation
 
-The Support Library Service is a critical component of the SECU4 streaming architecture, providing robust data buffering and interpolation capabilities for real-time telemetry data processing.
+Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Support Library. This documentation is organized in an MkDocs-friendly format for easy navigation and readability.
 
-## Overview
+## Documentation Structure
 
-The Support Library Service acts as an intermediary layer between the Stream API and data consumers, offering:
+### Getting Started
+- **[Main Overview](index.md)** - Introduction, architecture, and quick start guide
 
-- Reading 
-- Buffering
-- Interpolation
+### Module Documentation
 
-## Architecture
+#### Core Modules (Independent)
+1. **[Session Manager Module](session-manager.md)** - Session lifecycle management
+   - Create and manage sessions
+   - Session metadata and associations
+   - Live session tracking
+   - Events and notifications
 
-> **Note:** The gRPC interface for the Support Library is planned and will be implemented soon.
+2. **[Data Format Manager Module](data-format-manager.md)** - Data format definitions
+   - Parameter format management
+   - Event format management
+   - Automatic ID generation
+   - Format querying
 
-![Support Library Architecture](./support_library_architecture.png)
+#### Data Flow Modules (Dependent)
+3. **[Writer Module](writer-module.md)** - Packet writing to broker
+   - Write data packets
+   - Publish session information
+   - Multiple stream support
+   - Packet types and serialization
 
-## Key Features
+4. **[Reader Module](reader-module.md)** - Packet reading from broker
+   - Live and historical reading
+   - Stream filtering
+   - Coverage tracking
+   - Event system
+   - Configuration options
 
-### Buffering Module
+5. **[Buffering Module](buffering-module.md)** - Sample buffering and merging
+   - Packet buffering
+   - Data merging strategies
+   - Sample extraction
+   - Sliding window processing
+   - Dynamic parameter subscription
 
-The buffering module provides two distinct data handling approaches:
+6. **[Interpolation Module](interpolation-module.md)** - Data interpolation and subscription
+   - Custom frequency subscriptions
+   - Automatic interpolation/decimation
+   - Batch result delivery
+   - Multiple subscription management
 
-#### Sample Data Buffering
-- Single parameter per `SampleData` object
-- Multiple samples and timestamps per parameter
-- Supports various data types:
-    - Events
-    - Markers
-    - CAN Data
-    - Errors
+### Reference
+- **[API Reference](api-reference.md)** - Complete API reference with all interfaces, methods, and types
 
-#### Timestamp Data Buffering
-- Multiple parameters per timestamp
-- Unified timestamp-based processing
-- Same data type support as Sample Data
+## Quick Navigation by Task
 
-### Interpolation Module
+### I want to...
 
-The interpolation module provides:
+**Create and manage sessions**
+→ See [Session Manager Module](session-manager.md)
 
-- Default statistical processing:
-    - First value
-    - Last value
-    - Mean
-    - Minimum
-    - Maximum
-- Custom processor support
-- Configurable processing frequencies
+**Define data formats for my parameters**
+→ See [Data Format Manager Module](data-format-manager.md)
 
-## Configuration
+**Write telemetry data to Kafka**
+→ See [Writer Module](writer-module.md)
 
-### Buffering Configuration
+**Read live or historical data**
+→ See [Reader Module](reader-module.md)
+
+**Buffer and merge packet data into samples**
+→ See [Buffering Module](buffering-module.md)
+
+**Subscribe to data at custom frequencies**
+→ See [Interpolation Module](interpolation-module.md)
+
+**Find specific API details**
+→ See [API Reference](api-reference.md)
+
+## Architecture Overview
+
+![Architecture Diagram](images/architecture-diagram.svg)
+
+## Key Concepts
+
+### Module Dependencies
+
+**Independent Core Modules:**
+- Session Manager
+- Data Format Manager
+
+**Pipeline Modules:**
+- Reader Module → Buffering Module → Interpolation Module
+
+### Data Flow
+
+1. **Writing**: Session → Data Format → Writer → Kafka
+2. **Reading**: Kafka → Reader → Buffering → Interpolation → Application
+
+### Common Workflows
+
+#### Write Data Workflow
+1. Initialize Support Library
+2. Create Session (Session Manager)
+3. Define Data Formats (Data Format Manager)
+4. Write Packets (Writer Module)
+5. End Session
+
+#### Read Live Data Workflow
+1. Initialize Support Library
+2. Monitor for Live Sessions (Session Manager)
+3. Create Reader for Session (Reader Module)
+4. Create Sample Reader (Buffering Module)
+5. Subscribe to Interpolated Data (Interpolation Module)
+
+#### Read Historical Data Workflow
+1. Initialize Support Library
+2. Query Available Sessions (Session Manager)
+3. Create Reader for Session (Reader Module)
+4. Process Packets or Samples
+
+## Code Examples
+
+### Minimal Example
 
 ```csharp
-var bufferingConfig = new BufferingConfiguration(
-    subscribedParameters: parameters,
-    bufferingWindowLength: 3000,
-    slidingWindowPercentage: 5,
-    includeMarkerData: true,
-    includeEventData: true,
-    includeErrorData: true,
-    includeCanData: true
-);
+// Initialize
+var supportLibApi = new SupportLibApiFactory().Create(logger, config, retryPolicy);
+await supportLibApi.InitialiseAsync(cancellationToken);
+supportLibApi.Start();
+
+// Create session
+var sessionApi = supportLibApi.GetSessionManagerApi();
+var sessionService = sessionApi.CreateService().Data;
+sessionService.Initialise();
+sessionService.Start();
+
+var session = sessionService.CreateNewSession(
+    new SessionCreationDto(dataSource: "MyDataSource"));
 ```
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `SubscribedParameters` | List of parameters to subscribe to | null (all parameters) |
-| `BufferingWindowLength` | Window length in milliseconds | 3000 ms |
-| `SlidingWindowPercentage` | Window sliding interval percentage | 5% |
-| `IncludeMarkerData` | Include marker data | false |
-| `IncludeEventData` | Include event data | false |
-| `IncludeErrorData` | Include error data | false |
-| `IncludeCanData` | Include CAN data | false |
-
-### Interpolation Configuration
+### Full Pipeline Example
 
 ```csharp
-supportLibApi.InterpolationSubscribe(
-    subscriptionKey: "unique-key",
-    parameterIdentifiers: parameters,
-    subscriptionFrequencyHz: 2,
-    handler: interpolationResultHandler,
-    deliveryFrequencyHz: 2
-);
+// Create full data reading pipeline
+var packetReader = readerApi.CreateService(dataSource, sessionKey).Data;
+var sampleReader = sampleReaderApi.CreateService(bufferingConfig).Data;
+var dataReader = dataReaderApi.CreateService().Data;
+
+// Connect pipeline
+sampleReader.SetReaderService(packetReader);
+dataReader.SetSampleReaderService(sampleReader);
+
+// Subscribe to interpolated data
+dataReader.Subscribe(
+    subscriptionKey: "MySubscription",
+    parameterIdentifiers: new[] { "Speed", "RPM" },
+    subscriptionFrequencyHz: 100.0,
+    handler: myHandler);
+
+// Initialize and start
+packetReader.Initialise();
+sampleReader.Initialise();
+dataReader.Initialise();
+
+dataReader.Start();
+sampleReader.Start();
+packetReader.Start();
 ```
 
-| Parameter | Description |
-|-----------|-------------|
-| `SubscriptionKey` | Unique identifier for the interpolation |
-| `ParameterIdentifiers` | List of parameters to process |
-| `SubscriptionFrequencyHz` | Data processing frequency |
-| `Handler` | Result handler implementation |
-| `DeliveryFrequencyHz` | Result delivery frequency |
+## Configuration Reference
 
-## Integration
+### Initialization Configuration
 
-### Stream API Integration
+- **StreamingApiConfiguration**: Kafka broker and topic configuration
+- **RetryPolicy**: Connection retry behavior
 
-```csharp
-var streamApiConfig = new StreamingApiConfiguration(
-    StreamCreationStrategy.TopicBased,
-    "localhost:9092",
-    new List<string>()
-);
-```
-### Session Reading Configuration
- 
-The Support Library provides robust session reading capabilities from the broker through the `PacketReadingConfiguration`:
- 
-```csharp
-var packetReadingConfig = new PacketReadingConfiguration(
-    sessionIdentifierPattern: "*",  // Matches all sessions
-    readingType: ReadingType.Live,
-    streams: new List<string>
-    {
-        "Chassis"  // Example stream
-    });
-```
- 
-| Parameter | Description |
-|-----------|-------------|
-| `SessionIdentifierPattern` | Pattern to match session identifiers (e.g., "*" for all sessions) |
-| `ReadingType` | Type of reading (e.g., Live) |
-| `Streams` | List of streams to read from the broker |
- 
-The session reading configuration allows you to:
-- Filter specific sessions using pattern matching
-- Choose between different reading types (e.g., Live)
-- Select specific streams to read from
-- Integrate with the buffering and interpolation modules for data processing
-  
+### Module Configurations
+
+- **PacketReadingConfiguration**: Reader behavior (live/historical, streams, timeout)
+- **BufferingConfiguration**: Window size, sliding percentage, merge strategy
+- **SessionCreationDto**: Session metadata and properties
+
+## Event System
+
+All modules provide rich event systems for tracking:
+- Session lifecycle events
+- Data availability events
+- Reading/writing progress events
+- Error and state change events
+
+See individual module documentation for specific events.
+
 ## Best Practices
 
-1. **Buffering Configuration**
-     - Adjust window length based on data rate
-     - Consider memory usage when including additional data types
-     - Monitor system performance with different sliding window percentages
+1. **Initialize in Order**: Core modules → Dependent modules
+2. **Start in Reverse**: Start dependent modules before their dependencies
+3. **Check Results**: Always validate `ApiResult.Success` before using data
+4. **Subscribe to Events**: Attach event handlers before starting services
+5. **Clean Up**: Stop services in reverse order of starting
+6. **Error Handling**: Wrap handler logic in try-catch blocks
+7. **Resource Management**: Dispose/unsubscribe when done
 
-2. **Interpolation Configuration**
-     - Match frequencies to data requirements
-     - Consider system resources when processing multiple parameters
-     - Use appropriate handlers for different data types
+## Common Patterns
 
-3. **Error Handling**
-     - Implement proper error logging
-     - Handle connection failures gracefully
-     - Monitor buffer overflow conditions
-
-## Example Usage
+### Service Creation Pattern
 
 ```csharp
-// Initialize components
-var supportLibApi = new SupportLibApiFactory().Create(
-    streamApiConfig,
-    packetReadingConfig,
-    bufferingConfig,
-    logger,
-    sampleDataHandler,
-    timestampDataHandler
-);
+var result = moduleApi.CreateService(/* config */);
+if (result.Success && result.Data != null)
+{
+    var service = result.Data;
+    service.Initialise();
+    service.Start();
+}
+```
 
-// Start processing
-supportLibApi.Initiate();
-Task.Run(() => supportLibApi.Start());
+### Handler Pattern
 
-// Subscribe to data
-supportLibApi.BufferingSubscribe(subscribedParameters);
-supportLibApi.InterpolationSubscribe(subscriptionKey, parameters, 2, handler, 2);
+```csharp
+public class MyHandler : IHandler<IReceivedPacketDto>
+{
+    public void Handle(IReceivedPacketDto packet)
+    {
+        // Process packet
+    }
+}
+```
+
+### Pipeline Setup Pattern
+
+```csharp
+// Create → Connect → Initialize → Start
+var reader = CreateReader();
+var buffer = CreateBuffer();
+var interpolator = CreateInterpolator();
+
+buffer.SetReaderService(reader);
+interpolator.SetSampleReaderService(buffer);
+
+reader.Initialise();
+buffer.Initialise();
+interpolator.Initialise();
+
+interpolator.Start();
+buffer.Start();
+reader.Start();
 ```
 
 ## Troubleshooting
 
-Common issues and solutions:
+### Common Issues
 
-1. **High Memory Usage**
-     - Reduce buffering window length
-     - Filter subscribed parameters
-     - Adjust sliding window percentage
+**Issue: Service creation fails**
+- Check that Support Library is initialized
+- Verify configuration parameters
+- Check logs for specific error messages
 
-3. **Data Latency**
-     - Check Stream API connection
-     - Verify buffer configuration
-     - Monitor system resources
+**Issue: No data received**
+- Verify session exists and is active
+- Check stream names match
+- Ensure handlers are added before starting
+- Verify subscription parameters match available data
 
-## Related Components
+**Issue: High latency**
+- Reduce buffering window length
+- Increase sliding window percentage
+- Reduce subscription frequencies
 
-- [Stream API Documentation](../stream_api/index.md)
+**Issue: Missing samples**
+- Increase buffering window length
+- Check coverage cursors for gaps
+- Verify parameter subscriptions
+
+## Support
+
+For issues, questions, or contributions, please contact the development team.
+
+## License
+
+Copyright (c) Motion Applied Ltd.
+
+---
+
+**Last Updated**: October 2025  
+**Version**: 1.0
+
+## MkDocs Configuration
+
+To use with MkDocs, create a `mkdocs.yml` file:
+
+```yaml
+site_name: MA DataPlatforms Streaming Support Library
+nav:
+  - Home: index.md
+  - Modules:
+    - Session Manager: session-manager.md
+    - Data Format Manager: data-format-manager.md
+    - Writer Module: writer-module.md
+    - Reader Module: reader-module.md
+    - Buffering Module: buffering-module.md
+    - Interpolation Module: interpolation-module.md
+  - Reference:
+    - API Reference: api-reference.md
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+```
+
+Then run:
+```bash
+mkdocs serve
+```
