@@ -134,7 +134,7 @@ nav:
     - Overview: developer-resources/index.md
     - SECU4:
       - Stream API: 
-        - Home: developer-resources/secu4/stream_api/index.md
+        - Overview: developer-resources/secu4/stream_api/index.md
         - Getting Started:
           - Overview: developer-resources/secu4/stream_api/reference docs/getting-started/overview.md
           - Quick Start: developer-resources/secu4/stream_api/reference docs/getting-started/quick-start.md
