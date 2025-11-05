@@ -1,44 +1,85 @@
-# Stream API
+# Motion Applied Stream API
 
-The Stream API is responsible for publishing and consuming data from the Kafka broker. Created under the 
-[gRPC framework](https://grpc.io/), it allows clients to communicate to a server which handles the Kafka communication.
+<img src="../images/malogo.png" width="300" align="right" /><br><br><br>
 
-The server and the client can be deployed locally within the same application or the server can be deployed remotely 
-with the docker image provided.
+The Stream API is a high-performance component that manages real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture. It provides a gRPC-based interface that enables any programming language to interact with live data streams efficiently.
 
-Four components are currently available for evaluation:
+!!! info "API Documentation"
+    For complete technical documentation, visit the [Open Streaming Architecture Documentation](https://atlas.motionapplied.com/developer-resources/secu4/docs/).
 
-1. Stream API Remote Server as [docker image](https://hub.docker.com/r/mclarenapplied/streaming-proto-server-host) 
-2. Stream API Remote Client as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.Client.Remote)
-3. Stream API Local Server as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.ServerComponent)
-4. Stream API Local Client as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.Client.Local)
+## Overview
 
-## Batching Responses
+The Stream API enables real-time data streaming with the following key features:
 
-When a high amount of messages is processed at the same time, the overhead can be significant and the bandwidth can be 
-more efficiently utilised by batching the responses. 
+- **High-performance streaming**: Optimized for low-latency, high-throughput data transmission
+- **Multi-language support**: gRPC-based interface accessible from any programming language
+- **Session management**: Create, manage, and monitor data sessions
+- **Data format management**: Define and manage parameter and event schemas
+- **Connection pooling**: Efficient connection management for multiple clients
+- **Flexible deployment**: Self-hosted or Docker-based server deployment
 
-The configuration on the server side corresponds to the behaviour when consuming off the broker, whereas 
-the configuration on the client side corresponds to the behaviour when producing to the broker.
+### Key Benefits
 
-## Compression
+- **Real-time processing**: Stream data with minimal latency
+- **Scalability**: Handle thousands of concurrent connections
+- **Reliability**: Built-in error handling and recovery mechanisms
+- **Flexibility**: Support for both partition-based and topic-based routing strategies
 
-The Stream API Server handles the message compression, with `zstd` compression applied as 
-the producer compression type.
-The recommended compression setting on the broker is `producer`.
+## Architecture
 
-## Sample Implementation
+### Core Components
 
-### Simple stream produce consumer
-In this scenario, a custom data producer can publish data onto the broker via the
-Stream API Client and the Stream API Server. 
+The Stream API consists of five main services:
 
-The Stream API Client is an in-process API, so in this implementation, the producer and the
-Stream API Client can be in the same application. The Stream API Client will establish a 
-gRPC channel with the Server to transfer the data to be published to the broker. 
+1. **[Session Management Service](services/session-management.md)**: Handles session lifecycle and state management
+2. **[Connection Management Service](services/connection-management.md)**: Manages client connections to data streams
+3. **[Packet Writer Service](services/packet-writer.md)**: Publishes data and info packets (single or batch)
+4. **[Packet Reader Service](services/packet-reader.md)**: Reads all packets, essentials, or filtered data packets
+5. **[Data Format Management Service](services/data-format-management.md)**: Manages parameter and event format definitions
 
-The same combination of Stream API Server and Stream API Client can be used to 
-retrieve the same data from the broker.
+### Deployment Models
 
-![Architecture of simple stream producer consumer](../assets/stream_architecture_light.png#only-light)
-![Architecture of simple stream producer consumer](../assets/stream_architecture_dark.png#only-dark)
+=== "Local Self-Hosted"
+
+    ```csharp
+    // Embed the Stream API server directly in your application
+    var streamConfiguration = new StreamingApiConfiguration(
+        StreamCreationStrategy.TopicBased,
+        "localhost:9092",
+        partitionMappings,
+        integrateDataFormatManagement: true,
+        integrateSessionManagement: true,
+        batchingResponses: false);
+
+    StreamingApiClient.Initialise(streamConfiguration, cancellationTokenProvider, 
+        brokerChecker, loggingProvider);
+    ```
+
+=== "Remote Docker Server"
+
+    ```bash
+    # Run the Stream API server in Docker
+    docker run -p 13579:13579 -p 10010:10010 \
+      -v ./Configs:/app/Configs \
+      atlasplatformdocker/streaming-proto-server-host:latest
+    ```
+
+## Quick Start
+
+Get started with the Stream API in minutes:
+
+1. **[Install the client](getting-started/installation.md)** for your programming language
+2. **[Configure the server](configuration/server-config.md)** or use Docker
+3. **[Follow the quick start guide](getting-started/quick-start.md)** for your first integration
+4. **[Explore examples](examples/telemetry-example.md)** for real-world scenarios
+
+## Next Steps
+
+- [📚 Getting Started Guide](getting-started/overview.md)
+- [🔧 Configuration Options](configuration/server-config.md)
+- [📖 API Reference](reference/api-reference.md)
+- [� Docker Setup](configuration/docker-setup.md)
+
+---
+
+© 2025 Motion Applied Ltd. All rights reserved.
