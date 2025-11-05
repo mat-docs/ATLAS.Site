@@ -134,11 +134,27 @@ nav:
     - Overview: developer-resources/index.md
     - SECU4:
       - Stream API: 
-        - Overview:                   developer-resources/secu4/stream_api/index.md
-        - Stream API Client:          developer-resources/secu4/stream_api/stream_client.md
-        - Stream API Server:          developer-resources/secu4/stream_api/stream_server.md
-        - Key Generator Service:      developer-resources/secu4/stream_api/key_generator.md
-        - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+        - Home: developer-resources/secu4/stream_api/index.md
+        - Getting Started:
+          - Overview: developer-resources/secu4/stream_api/reference docs/getting-started/overview.md
+          - Quick Start: developer-resources/secu4/stream_api/reference docs/getting-started/quick-start.md
+          - Installation: developer-resources/secu4/stream_api/reference docs/getting-started/installation.md
+        - Services:
+          - Session Management: developer-resources/secu4/stream_api/reference docs/services/session-management.md
+          - Connection Management: developer-resources/secu4/stream_api/reference docs/services/connection-management.md
+          - Packet Writer: developer-resources/secu4/stream_api/reference docs/services/packet-writer.md
+          - Packet Reader: developer-resources/secu4/stream_api/reference docs/services/packet-reader.md
+          - Data Format Management: developer-resources/secu4/stream_api/reference docs/services/data-format-management.md
+        - Configuration:
+          - Server Configuration: developer-resources/secu4/stream_api/reference docs/configuration/server-config.md
+          - Docker Setup: developer-resources/secu4/stream_api/reference docs/configuration/docker-setup.md
+        - Examples:    
+          - Telemetry Example: developer-resources/secu4/stream_api/reference docs/examples/telemetry-example.md
+          - Custom Messages: developer-resources/secu4/stream_api/reference docs/examples/custom-messages.md
+        - Reference:
+          - API Reference: developer-resources/secu4/stream_api/reference docs/reference/api-reference.md
+          - Error Handling: developer-resources/secu4/stream_api/reference docs/reference/error-handling.md
+        - Troubleshooting: developer-resources/secu4/stream_api/reference docs/reference/troubleshooting.md
         - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
