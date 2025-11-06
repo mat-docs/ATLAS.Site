@@ -5,81 +5,81 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 ## Documentation Structure
 
 ### Getting Started
-- **[Main Overview](developer-resources/secu4/support_library/reference docs/index.md)** - Introduction, architecture, and quick start guide
+- **[Main Overview](index.md)** - Introduction, architecture, and quick start guide
 
 ### Module Documentation
 
 #### Core Modules (Independent)
-1. **[Session Manager Module](developer-resources/secu4/support_library/reference docs/session-manager.md)** - Session lifecycle management
+1. **[Session Manager Module](session-manager.md)** - Session lifecycle management
    - Create and manage sessions
    - Session metadata and associations
    - Live session tracking
    - Events and notifications
 
-2. **[Data Format Manager Module](developer-resources/secu4/support_library/reference docs/data-format-manager.md)** - Data format definitions
+2. **[Data Format Manager Module](data-format-manager.md)** - Data format definitions
    - Parameter format management
    - Event format management
    - Automatic ID generation
    - Format querying
 
 #### Data Flow Modules (Dependent)
-3. **[Writer Module](developer-resources/secu4/support_library/reference docs/writer-module.md)** - Packet writing to broker
+3. **[Writer Module](writer-module.md)** - Packet writing to broker
    - Write data packets
    - Publish session information
    - Multiple stream support
    - Packet types and serialization
 
-4. **[Reader Module](developer-resources/secu4/support_library/reference docs/reader-module.md)** - Packet reading from broker
+4. **[Reader Module](reader-module.md)** - Packet reading from broker
    - Live and historical reading
    - Stream filtering
    - Coverage tracking
    - Event system
    - Configuration options
 
-5. **[Buffering Module](developer-resources/secu4/support_library/reference docs/buffering-module.md)** - Sample buffering and merging
+5. **[Buffering Module](buffering-module.md)** - Sample buffering and merging
    - Packet buffering
    - Data merging strategies
    - Sample extraction
    - Sliding window processing
    - Dynamic parameter subscription
 
-6. **[Interpolation Module](developer-resources/secu4/support_library/reference docs/interpolation-module.md)** - Data interpolation and subscription
+6. **[Interpolation Module](interpolation-module.md)** - Data interpolation and subscription
    - Custom frequency subscriptions
    - Automatic interpolation/decimation
    - Batch result delivery
    - Multiple subscription management
 
 ### Reference
-- **[API Reference](developer-resources/secu4/support_library/reference docs/api-reference.md)** - Complete API reference with all interfaces, methods, and types
+- **[API Reference](api-reference.md)** - Complete API reference with all interfaces, methods, and types
 
 ## Quick Navigation by Task
 
 ### I want to...
 
 **Create and manage sessions**
-→ See [Session Manager Module](developer-resources/secu4/support_library/reference docs/session-manager.md)
+→ See [Session Manager Module](session-manager.md)
 
 **Define data formats for my parameters**
-→ See [Data Format Manager Module](developer-resources/secu4/support_library/reference docs/data-format-manager.md)
+→ See [Data Format Manager Module](data-format-manager.md)
 
 **Write telemetry data to Kafka**
-→ See [Writer Module](developer-resources/secu4/support_library/reference docs/writer-module.md)
+→ See [Writer Module](writer-module.md)
 
 **Read live or historical data**
-→ See [Reader Module](developer-resources/secu4/support_library/reference docs/reader-module.md)
+→ See [Reader Module](reader-module.md)
 
 **Buffer and merge packet data into samples**
-→ See [Buffering Module](developer-resources/secu4/support_library/reference docs/buffering-module.md)
+→ See [Buffering Module](buffering-module.md)
 
 **Subscribe to data at custom frequencies**
-→ See [Interpolation Module](developer-resources/secu4/support_library/reference docs/interpolation-module.md)
+→ See [Interpolation Module](interpolation-module.md)
 
 **Find specific API details**
-→ See [API Reference](developer-resources/secu4/support_library/reference docs/api-reference.md)
+→ See [API Reference](api-reference.md)
 
 ## Architecture Overview
 
-![Architecture Diagram](developer-resources/secu4/support_library/reference docs/images/architecture-diagram.svg)
+![Architecture Diagram](images/architecture-diagram.svg)
 
 ## Key Concepts
 
