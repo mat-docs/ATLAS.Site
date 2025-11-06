@@ -148,6 +148,7 @@ nav:
         - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
         - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
+        - Overview: developer-resources/secu4/support_library/reference docs/index.md
         - Home: developer-resources/secu4/support_library/index.md
         - Core Modules:
           - Session Manager: developer-resources/secu4/support_library/reference docs/session-manager.md
