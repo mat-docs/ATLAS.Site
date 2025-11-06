@@ -1,85 +1,135 @@
-## Overview
+# MA DataPlatforms Streaming Support Library - Documentation
 
-This library provides a modular architecture for session management, data format handling, packet reading/writing, data buffering, merging, and interpolation.
+Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Support Library.
 
-## 📚 Documentation
+## Documentation Structure
 
-**Complete documentation is available in the [docs](docs/) folder.**
-
-### Quick Links
-
-- **[Getting Started Guide](docs/index.md)** - Architecture overview, installation, and quick examples
-- **[API Reference](docs/api-reference.md)** - Complete API documentation
+### Getting Started
+- **[Main Overview](developer-resources/secu4/support_library/reference docs/index.md)** - Introduction, architecture, and quick start guide
 
 ### Module Documentation
 
-- [Session Manager Module](docs/session-manager.md) - Session lifecycle management
-- [Data Format Manager Module](docs/data-format-manager.md) - Parameter and event format definitions
-- [Writer Module](docs/writer-module.md) - Packet writing to Kafka
-- [Reader Module](docs/reader-module.md) - Packet reading from Kafka
-- [Buffering Module](docs/buffering-module.md) - Data buffering and merging
-- [Interpolation Module](docs/interpolation-module.md) - Custom frequency subscriptions
+#### Core Modules (Independent)
+1. **[Session Manager Module](developer-resources/secu4/support_library/reference docs/session-manager.md)** - Session lifecycle management
+   - Create and manage sessions
+   - Session metadata and associations
+   - Live session tracking
+   - Events and notifications
 
-### Additional Resources
+2. **[Data Format Manager Module](developer-resources/secu4/support_library/reference docs/data-format-manager.md)** - Data format definitions
+   - Parameter format management
+   - Event format management
+   - Automatic ID generation
+   - Format querying
 
-- [Documentation Index](docs/README.md) - Full documentation navigation
-- [Troubleshooting Guide](docs/README.md#troubleshooting) - Common issues and solutions
+#### Data Flow Modules (Dependent)
+3. **[Writer Module](developer-resources/secu4/support_library/reference docs/writer-module.md)** - Packet writing to broker
+   - Write data packets
+   - Publish session information
+   - Multiple stream support
+   - Packet types and serialization
 
-## Key Features
+4. **[Reader Module](developer-resources/secu4/support_library/reference docs/reader-module.md)** - Packet reading from broker
+   - Live and historical reading
+   - Stream filtering
+   - Coverage tracking
+   - Event system
+   - Configuration options
 
-- **Session Management**: Create, track, and manage live and historical sessions with metadata
-- **Data Format Management**: Define and manage parameter and event data formats
-- **Packet Reading/Writing**: Stream packets to and from Kafka brokers
-- **Buffering & Merging**: Buffer incoming data packets and merge them into time-aligned samples
-- **Interpolation**: Subscribe to parameters at custom frequencies with automatic interpolation
-- **Event-Driven Architecture**: Rich event system for tracking session lifecycle and data processing
-- **Kafka Integration**: Built-in support for Kafka-based streaming
-- **Prometheus Metrics**: Built-in monitoring and metrics support
+5. **[Buffering Module](developer-resources/secu4/support_library/reference docs/buffering-module.md)** - Sample buffering and merging
+   - Packet buffering
+   - Data merging strategies
+   - Sample extraction
+   - Sliding window processing
+   - Dynamic parameter subscription
 
-## Getting Started
+6. **[Interpolation Module](developer-resources/secu4/support_library/reference docs/interpolation-module.md)** - Data interpolation and subscription
+   - Custom frequency subscriptions
+   - Automatic interpolation/decimation
+   - Batch result delivery
+   - Multiple subscription management
 
-### Prerequisites
+### Reference
+- **[API Reference](developer-resources/secu4/support_library/reference docs/api-reference.md)** - Complete API reference with all interfaces, methods, and types
 
-- .NET 8.0 SDK or later
-- Kafka broker (configured and accessible)
-- Visual Studio 2022 or later / VS Code with C# extension
+## Quick Navigation by Task
 
-### Installation
+### I want to...
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd MA.DataPlatforms.Streaming.Support.Library
+**Create and manage sessions**
+→ See [Session Manager Module](developer-resources/secu4/support_library/reference docs/session-manager.md)
 
-# Restore dependencies
-dotnet restore
+**Define data formats for my parameters**
+→ See [Data Format Manager Module](developer-resources/secu4/support_library/reference docs/data-format-manager.md)
 
-# Build the solution
-dotnet build
-```
+**Write telemetry data to Kafka**
+→ See [Writer Module](developer-resources/secu4/support_library/reference docs/writer-module.md)
 
-### Quick Example
+**Read live or historical data**
+→ See [Reader Module](developer-resources/secu4/support_library/reference docs/reader-module.md)
+
+**Buffer and merge packet data into samples**
+→ See [Buffering Module](developer-resources/secu4/support_library/reference docs/buffering-module.md)
+
+**Subscribe to data at custom frequencies**
+→ See [Interpolation Module](developer-resources/secu4/support_library/reference docs/interpolation-module.md)
+
+**Find specific API details**
+→ See [API Reference](developer-resources/secu4/support_library/reference docs/api-reference.md)
+
+## Architecture Overview
+
+![Architecture Diagram](developer-resources/secu4/support_library/reference docs/images/architecture-diagram.svg)
+
+## Key Concepts
+
+### Module Dependencies
+
+**Independent Core Modules:**
+- Session Manager
+- Data Format Manager
+
+**Pipeline Modules:**
+- Reader Module → Buffering Module → Interpolation Module
+
+### Data Flow
+
+1. **Writing**: Session → Data Format → Writer → Kafka
+2. **Reading**: Kafka → Reader → Buffering → Interpolation → Application
+
+### Common Workflows
+
+#### Write Data Workflow
+1. Initialize Support Library
+2. Create Session (Session Manager)
+3. Define Data Formats (Data Format Manager)
+4. Write Packets (Writer Module)
+5. End Session
+
+#### Read Live Data Workflow
+1. Initialize Support Library
+2. Monitor for Live Sessions (Session Manager)
+3. Create Reader for Session (Reader Module)
+4. Create Sample Reader (Buffering Module)
+5. Subscribe to Interpolated Data (Interpolation Module)
+
+#### Read Historical Data Workflow
+1. Initialize Support Library
+2. Query Available Sessions (Session Manager)
+3. Create Reader for Session (Reader Module)
+4. Process Packets or Samples
+
+## Code Examples
+
+### Minimal Example
 
 ```csharp
-using MA.DataPlatforms.Streaming.Support.Lib.Core.Abstractions;
-using MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts;
-using MA.Streaming.Core.Configs;
-
-// Initialize the library
-var streamApiConfig = new StreamingApiConfiguration(
-    StreamCreationStrategy.PartitionBased,
-    "localhost:9094",
-    new string[] { });
-
-var supportLibApi = new SupportLibApiFactory().Create(
-    logger,
-    streamApiConfig,
-    new RetryPolicy(10, TimeSpan.FromSeconds(5), RetryMode.Finite));
-
+// Initialize
+var supportLibApi = new SupportLibApiFactory().Create(logger, config, retryPolicy);
 await supportLibApi.InitialiseAsync(cancellationToken);
 supportLibApi.Start();
 
-// Create a session
+// Create session
 var sessionApi = supportLibApi.GetSessionManagerApi();
 var sessionService = sessionApi.CreateService().Data;
 sessionService.Initialise();
@@ -89,110 +139,181 @@ var session = sessionService.CreateNewSession(
     new SessionCreationDto(dataSource: "MyDataSource"));
 ```
 
-See the [Getting Started Guide](docs/index.md) for complete examples.
+### Full Pipeline Example
 
-## Build and Test
+```csharp
+// Create full data reading pipeline
+var packetReader = readerApi.CreateService(dataSource, sessionKey).Data;
+var sampleReader = sampleReaderApi.CreateService(bufferingConfig).Data;
+var dataReader = dataReaderApi.CreateService().Data;
 
-### Build the Solution
+// Connect pipeline
+sampleReader.SetReaderService(packetReader);
+dataReader.SetSampleReaderService(sampleReader);
 
-```bash
-# Build all projects
-dotnet build
+// Subscribe to interpolated data
+dataReader.Subscribe(
+    subscriptionKey: "MySubscription",
+    parameterIdentifiers: new[] { "Speed", "RPM" },
+    subscriptionFrequencyHz: 100.0,
+    handler: myHandler);
 
-# Build specific project
-dotnet build MA.DataPlatforms.Streaming.Support.Lib.Core/MA.DataPlatforms.Streaming.Support.Lib.Core.csproj
+// Initialize and start
+packetReader.Initialise();
+sampleReader.Initialise();
+dataReader.Initialise();
+
+dataReader.Start();
+sampleReader.Start();
+packetReader.Start();
 ```
 
-### Run Tests
+## Configuration Reference
 
-```bash
-# Run all tests
-dotnet test
+### Initialization Configuration
 
-# Run specific test project
-dotnet test MA.DataPlatforms.Streaming.Support.Lib.UnitTests/MA.DataPlatforms.Streaming.Support.Lib.UnitTests.csproj
+- **StreamingApiConfiguration**: Kafka broker and topic configuration
+- **RetryPolicy**: Connection retry behavior
 
-# Run integration tests
-dotnet test MA.DataPlatforms.Streaming.Support.Lib.IntegrationTests/MA.DataPlatforms.Streaming.Support.Lib.IntegrationTests.csproj
+### Module Configurations
+
+- **PacketReadingConfiguration**: Reader behavior (live/historical, streams, timeout)
+- **BufferingConfiguration**: Window size, sliding percentage, merge strategy
+- **SessionCreationDto**: Session metadata and properties
+
+## Event System
+
+All modules provide rich event systems for tracking:
+- Session lifecycle events
+- Data availability events
+- Reading/writing progress events
+- Error and state change events
+
+See individual module documentation for specific events.
+
+## Best Practices
+
+1. **Initialize in Order**: Core modules → Dependent modules
+2. **Start in Reverse**: Start dependent modules before their dependencies
+3. **Check Results**: Always validate `ApiResult.Success` before using data
+4. **Subscribe to Events**: Attach event handlers before starting services
+5. **Clean Up**: Stop services in reverse order of starting
+6. **Error Handling**: Wrap handler logic in try-catch blocks
+7. **Resource Management**: Dispose/unsubscribe when done
+
+## Common Patterns
+
+### Service Creation Pattern
+
+```csharp
+var result = moduleApi.CreateService(/* config */);
+if (result.Success && result.Data != null)
+{
+    var service = result.Data;
+    service.Initialise();
+    service.Start();
+}
 ```
 
-### Run E2E Samples
+### Handler Pattern
 
-```bash
-cd MA.DataPlatforms.Streaming.Support.Lib.UsageSample
-dotnet run
+```csharp
+public class MyHandler : IHandler<IReceivedPacketDto>
+{
+    public void Handle(IReceivedPacketDto packet)
+    {
+        // Process packet
+    }
+}
 ```
 
-## Project Structure
+### Pipeline Setup Pattern
 
-```
-MA.DataPlatforms.Streaming.Support.Library/
-├── MA.DataPlatforms.Streaming.Support.Lib.Core/          # Core library
-├── MA.DataPlatforms.Streaming.Support.Lib.Protocol/      # Protocol definitions
-├── MA.DataPlatforms.Streaming.Support.Lib.Helper/        # Helper utilities
-├── MA.DataPlatforms.Streaming.Support.Lib.UnitTests/     # Unit tests
-├── MA.DataPlatforms.Streaming.Support.Lib.IntegrationTests/  # Integration tests
-├── MA.DataPlatforms.Streaming.Support.Lib.Telemetry.UnitTests/  # Telemetry tests
-├── MA.DataPlatforms.Streaming.Support.Lib.E2E.Samples/   # End-to-end samples
-├── MA.DataPlatforms.Streaming.Support.Lib.UsageSample/   # Usage examples
-├── MA.DataPlatforms.Streaming.Support.Lib.ExternalAPI/   # External API samples
-└── docs/                                                  # Documentation
-```
+```csharp
+// Create → Connect → Initialize → Start
+var reader = CreateReader();
+var buffer = CreateBuffer();
+var interpolator = CreateInterpolator();
 
-## Architecture
+buffer.SetReaderService(reader);
+interpolator.SetSampleReaderService(buffer);
 
-The library follows a modular, pipeline-based architecture:
+reader.Initialise();
+buffer.Initialise();
+interpolator.Initialise();
 
-```
-Support Library API
-├── Session Manager (Core Module)
-├── Data Format Manager (Core Module)
-├── Writer Module
-└── Reader Module → Buffering Module → Interpolation Module
+interpolator.Start();
+buffer.Start();
+reader.Start();
 ```
 
-### Module Overview
+## Troubleshooting
 
-- **Session Manager**: Manage session lifecycle, metadata, and associations
-- **Data Format Manager**: Define parameter and event formats with automatic ID generation
-- **Writer Module**: Write packets to Kafka broker
-- **Reader Module**: Read packets from Kafka (live or historical)
-- **Buffering Module**: Buffer and merge packets into time-aligned samples
-- **Interpolation Module**: Subscribe to data at custom frequencies with interpolation
+### Common Issues
 
-See [Architecture Documentation](docs/index.md#architecture) for details.
+**Issue: Service creation fails**
+- Check that Support Library is initialized
+- Verify configuration parameters
+- Check logs for specific error messages
 
-## Contributing
+**Issue: No data received**
+- Verify session exists and is active
+- Check stream names match
+- Ensure handlers are added before starting
+- Verify subscription parameters match available data
 
-We welcome contributions! Please follow these guidelines:
+**Issue: High latency**
+- Reduce buffering window length
+- Increase sliding window percentage
+- Reduce subscription frequencies
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+**Issue: Missing samples**
+- Increase buffering window length
+- Check coverage cursors for gaps
+- Verify parameter subscriptions
 
-### Coding Standards
+## Support
 
-- Follow C# coding conventions
-- Write unit tests for new features
-- Update documentation for API changes
-- Ensure all tests pass before submitting PR
+For issues, questions, or contributions, please contact the development team.
 
 ## License
 
 Copyright (c) Motion Applied Ltd.
 
-## Support
-
-For issues, questions, or feature requests:
-- 📖 Check the [Documentation](docs/README.md)
-- 🔍 Review [API Reference](docs/api-reference.md)
-- 🚀 See [Getting Started Guide](docs/index.md)
-- 💡 Browse [Troubleshooting Guide](docs/README.md#troubleshooting)
-- 📧 Contact the development team
-
 ---
 
-**Version**: 1.0  
-**Last Updated**: October 2025
+**Last Updated**: October 2025  
+**Version**: 1.0
+
+## MkDocs Configuration
+
+To use with MkDocs, create a `mkdocs.yml` file:
+
+```yaml
+site_name: MA DataPlatforms Streaming Support Library
+nav:
+  - Home: index.md
+  - Modules:
+    - Session Manager: session-manager.md
+    - Data Format Manager: data-format-manager.md
+    - Writer Module: writer-module.md
+    - Reader Module: reader-module.md
+    - Buffering Module: buffering-module.md
+    - Interpolation Module: interpolation-module.md
+  - Reference:
+    - API Reference: api-reference.md
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+```
+
+Then run:
+```bash
+mkdocs serve
+```
