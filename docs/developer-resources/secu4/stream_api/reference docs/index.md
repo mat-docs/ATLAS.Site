@@ -21,8 +21,6 @@ The Stream API enables real-time data streaming with the following key features:
 ### Key Benefits
 
 - **Real-time processing**: Stream data with minimal latency
-- **Scalability**: Handle thousands of concurrent connections
-- **Reliability**: Built-in error handling and recovery mechanisms
 - **Flexibility**: Support for both partition-based and topic-based routing strategies
 
 ## Architecture

@@ -1,4 +1,4 @@
-The Stream API is a high-performance component that manages real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture. It provides a gRPC-based interface that enables any programming language to interact with live data streams efficiently.
+The Stream API is a component that manages real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture. It provides a gRPC-based interface that enables any programming language to interact with live data streams efficiently.
 
 For more information, see [Open Streaming Architecture Documentation](https://atlas.motionapplied.com/developer-resources/secu4/docs/)
 
@@ -29,8 +29,6 @@ The Stream API enables real-time data streaming with the following key features:
 ### Key Benefits
 
 - **Real-time processing**: Stream data with minimal latency
-- **Scalability**: Handle thousands of concurrent connections
-- **Reliability**: Built-in error handling and recovery mechanisms
 - **Flexibility**: Support for both partition-based and topic-based routing strategies
 
 ## Architecture
@@ -91,7 +89,7 @@ For other programming languages, use the proto files from the [MA.DataPlatforms.
 var configuration = new StreamingApiConfiguration(
     StreamCreationStrategy.TopicBased,
     "localhost:9092",
-    new[] { new PartitionMapping("Stream1", 1) });
+    []);
 
 StreamingApiClient.Initialise(configuration, tokenProvider, brokerChecker, loggingProvider);
 
@@ -191,7 +189,7 @@ services:
       - kafka 
 
   stream-api-server:
-    image: atlasplatformdocker/streaming-proto-server-host-dev:latest
+    image: atlasplatformdocker/streaming-proto-server-host:latest
     container_name: stream-api-server
     networks:
       kafka_net_interal:
@@ -207,7 +205,7 @@ services:
       - ./configs:/app/Configs
 
   key-generator:
-    image: atlasplatformdocker/keygenerator-proto-server-dev:latest
+    image: atlasplatformdocker/keygenerator-proto-server:latest
     container_name: key-generator-server
     networks:
       kafka_net_interal:
@@ -239,8 +237,7 @@ Manages the lifecycle of data sessions, including creation, monitoring, and term
 
 #### Key Features
 - Session creation with metadata
-- Session state tracking
-- Automatic session cleanup
+- Session info manipulation
 - Session information updates
 
 #### Example Usage
@@ -283,9 +280,7 @@ Handles client connections to data sessions with unique connection tracking.
 
 #### Key Features
 - Unique connection ID assignment
-- Connection validation
 - Connection state management
-- Automatic connection cleanup
 
 #### Example Usage
 ```csharp
@@ -326,7 +321,6 @@ Enables high-performance data publishing to Kafka topics with support for both i
 - Batch packet writing
 - Essential packet handling
 - Stream-based routing
-- Automatic data format registration
 
 #### Example Usage
 ```csharp
@@ -381,7 +375,6 @@ Provides flexible data consumption with three reading modes: all packets, essent
 - **ReadPackets**: Continuous streaming of all packet types
 - **ReadEssentials**: Essential packets only (config, metadata)
 - **ReadDataPackets**: Filtered data packets using regex patterns
-- Multi-connection support for parallel processing
 
 #### Example Usage
 ```csharp

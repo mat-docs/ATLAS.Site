@@ -1,6 +1,6 @@
 # Connection Management Service
 
-The Connection Management Service handles client connections to data sessions with unique connection tracking and efficient resource management.
+The Connection Management Service handles client connections to sessions in the broker.
 
 ## Overview
 
@@ -335,7 +335,6 @@ public async Task<Connection> GetOrCreateConnection()
 
 ### Resource Management
 - Always close connections when done
-- Use `using` statements for automatic cleanup
 - Monitor connection count and duration
 
 ### Error Handling

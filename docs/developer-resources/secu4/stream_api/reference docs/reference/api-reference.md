@@ -952,21 +952,6 @@ catch (RpcException ex)
 }
 ```
 
-## Rate Limiting and Quotas
-
-### Connection Limits
-
-- Maximum concurrent connections per client: 100
-- Maximum streams per connection: 50
-- Maximum packet size: 64MB
-- Maximum batch size: 1000 packets
-
-### Throttling
-
-- Write rate limit: 10,000 packets/second per connection
-- Read rate limit: 50,000 packets/second per connection
-- Connection creation rate: 10/second per client
-
 ## Monitoring and Metrics (Optional)
 
 ### Prometheus Metrics

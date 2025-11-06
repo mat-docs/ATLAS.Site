@@ -226,34 +226,6 @@ public class ContinuousDataStreamer
 }
 ```
 
-## Data Types and Packet Structure
-
-### Packet Types
-
-```csharp
-// Different packet types for different data
-public enum PacketType
-{
-    PeriodicData,    // Regular sensor readings
-    Event,           // Discrete events (lap start, gear change)
-    Marker,          // Time markers and annotations
-    Config,          // Configuration changes
-    Alert            // System alerts and warnings
-}
-```
-
-### Packet Content Formats
-
-```csharp
-// Protocol Buffer packet
-var protoData = new TelemetryData { /* populate fields */ };
-var protoPacket = new Packet
-{
-    Content = protoData.ToByteString(),
-    Type = "ProtobufData"
-};
-```
-
 ## Performance Optimization
 
 ### Batching Strategies
@@ -486,6 +458,7 @@ public class MetricsCollector
 - Implement proper error handling
 - Use structured logging for debugging
 - Monitor system resources
+- Ensure to write all data before closing the session.
 
 ## See Also
 

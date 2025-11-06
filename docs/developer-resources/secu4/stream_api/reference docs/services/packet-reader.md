@@ -9,7 +9,6 @@ The service offers flexible data consumption modes:
 - **All packets**: Continuous consumption of all packet types via `ReadPackets`
 - **Essential packets**: Read only configuration and metadata via `ReadEssentials`
 - **Filtered data packets**: Consume specific parameters using regex patterns via `ReadDataPackets`
-- **Real-time streaming**: Continuous data consumption from live streams
 
 ## Key Features
 
@@ -17,7 +16,6 @@ The service offers flexible data consumption modes:
 - **ReadPackets**: Continuous streaming of all packet types
 - **ReadEssentials**: Essential packets only (config, metadata)
 - **ReadDataPackets**: Filtered data packets using regex patterns
-- Multi-connection support for parallel processing
 
 ### Performance
 - Low-latency data delivery
