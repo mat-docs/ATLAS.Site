@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Interpolation Module, also known as the Data Reader or Data API Module, provides advanced data processing capabilities by subscribing to parameters at custom frequencies and performing automatic interpolation or decimation. This module pipelines with the Sample Reader output and enables applications to receive data at their desired sampling rates regardless of the original data frequency.
+The Interpolation Module, also known as the Data Reader or Data API Module, provides data by subscribing to parameters at custom frequencies and performing automatic interpolation or decimation. This module pipelines with the Sample Reader output and enables applications to receive data at their desired sampling rates regardless of the original data frequency.
 
 ## Key Features
 

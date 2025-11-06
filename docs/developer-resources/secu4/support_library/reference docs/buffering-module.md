@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Buffering Module, also known as the Sample Reader Module, is a critical component that pipelines with the Packet Reader Module. It buffers incoming packets, merges data segments, and extracts time-aligned samples from the raw packet stream. This module transforms packet-level data into sample-level data suitable for analysis and visualization.
+The Buffering Module, also known as the Sample Reader Module, is a component that pipelines with the Packet Reader Module. It buffers incoming packets, merges data segments, and extracts time-aligned samples from the raw packet stream. This module transforms packet-level data into sample-level data suitable for analysis and visualization.
 
 ## Key Features
 

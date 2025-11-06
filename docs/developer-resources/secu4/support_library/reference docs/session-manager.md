@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Session Manager Module is one of the two independent core modules in the Support Library. It provides comprehensive session lifecycle management, including session creation, metadata management, session associations, and real-time notifications for session state changes.
+The Session Manager Module is one of the two independent core modules in the Support Library. It provides session lifecycle management, including session creation, metadata management, session associations, and real-time notifications for session state changes.
 
 ## Key Features
 

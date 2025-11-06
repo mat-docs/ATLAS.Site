@@ -691,7 +691,7 @@ public void WriteMarker(string sessionKey, string markerLabel, ulong timestamp)
 
 4. **Use Appropriate Streams**: Organize data into logical streams (e.g., "Telemetry", "Events", "Markers").
 
-5. **Send Session Lifecycle Packets**: Always send NewSessionPacket at start and EndOfSessionPacket at end.
+5. **Send Session Lifecycle Packets**: Always send NewSessionPacket at start and EndOfSessionPacket at end of each stream.
 
 6. **Define Formats First**: Create data formats before sending data packets that reference them.
 

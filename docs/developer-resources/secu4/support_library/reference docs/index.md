@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MA DataPlatforms Streaming Support Library is a comprehensive .NET library designed to facilitate real-time and historical data streaming for motorsport telemetry and data analysis applications. The library provides a modular architecture for session management, data format handling, packet reading/writing, data buffering, merging, and interpolation.
+The MA DataPlatforms Streaming Support Library is a .NET library designed to facilitate real-time and historical data streaming for motorsport telemetry and data analysis applications. The library provides a modular architecture for session management, data format handling, packet reading/writing, data buffering, merging, and interpolation.
 
 ## Key Features
 
@@ -511,9 +511,9 @@ The library supports various data streaming scenarios:
 - **Data Analysis**: Buffer, merge, and interpolate data for analysis applications
 - **Multi-Session Association**: Link related sessions using session GUIDs
 
-## Support and Contributing
+## Support
 
-For issues, questions, or contributions, please refer to the project repository.
+For issues or questions, please send email to atlas10@motionapplied.com
 
 ## License
 

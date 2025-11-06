@@ -274,7 +274,7 @@ reader.Start();
 
 ## Support
 
-For issues, questions, or contributions, please contact the development team.
+For issues or questions, please send email to atlas10@motionapplied.com
 
 ## License
 
@@ -284,36 +284,3 @@ Copyright (c) Motion Applied Ltd.
 
 **Last Updated**: October 2025  
 **Version**: 1.0
-
-## MkDocs Configuration
-
-To use with MkDocs, create a `mkdocs.yml` file:
-
-```yaml
-site_name: MA DataPlatforms Streaming Support Library
-nav:
-  - Home: index.md
-  - Modules:
-    - Session Manager: session-manager.md
-    - Data Format Manager: data-format-manager.md
-    - Writer Module: writer-module.md
-    - Reader Module: reader-module.md
-    - Buffering Module: buffering-module.md
-    - Interpolation Module: interpolation-module.md
-  - Reference:
-    - API Reference: api-reference.md
-
-theme:
-  name: material
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - toc.integrate
-    - search.suggest
-    - search.highlight
-```
-
-Then run:
-```bash
-mkdocs serve
-```

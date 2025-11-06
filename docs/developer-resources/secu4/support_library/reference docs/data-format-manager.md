@@ -107,8 +107,6 @@ if (result.Success && result.Data != null)
 
 ```
 
-**Note**: The parameter order in the input list doesn't matter; the same parameters in any order will produce the same format ID.
-
 ### GetParametersList
 
 Retrieves the parameter list for a given format ID.
