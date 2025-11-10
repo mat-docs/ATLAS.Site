@@ -164,7 +164,18 @@ nav:
         - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
         - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
-        - Overview: developer-resources/secu4/support_library/index.md
+        - Overview: developer-resources/secu4/support_library/reference docs/index.md
+        # - Home: developer-resources/secu4/support_library/index.md
+        - Core Modules:
+          - Session Manager: developer-resources/secu4/support_library/reference docs/session-manager.md
+          - Data Format Manager: developer-resources/secu4/support_library/reference docs/data-format-manager.md
+        - Data Flow Modules:
+          - Writer Module: developer-resources/secu4/support_library/reference docs/writer-module.md
+          - Reader Module: developer-resources/secu4/support_library/reference docs/reader-module.md
+          - Buffering Module: developer-resources/secu4/support_library/reference docs/buffering-module.md
+          - Interpolation Module: developer-resources/secu4/support_library/reference docs/interpolation-module.md
+        - Reference:
+          - API Reference: developer-resources/secu4/support_library/reference docs/api-reference.md
     - ATLAS: 
       - Overview: developer-resources/atlas/index.md
       - Nuget: 

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 970">
+  <defs>
+    <style>
+      .api-box { fill: #4A90E2; stroke: #2E5C8A; stroke-width: 2; }
+      .core-box { fill: #50C878; stroke: #2E7D4E; stroke-width: 2; }
+      .module-box { fill: #9370DB; stroke: #6A4C9C; stroke-width: 2; }
+      .pipeline-box { fill: #FFA500; stroke: #CC8400; stroke-width: 2; }
+      .text { fill: white; font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; font-weight: bold; }
+      .small-text { fill: white; font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; }
+      .bullet-text { fill: #333; font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; }
+      .label-text { fill: #333; font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; }
+      .line { stroke: #555; stroke-width: 2.5; }
+      .arrow { stroke: #555; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#555" />
+    </marker>
+  </defs>
+  
+  <!-- Main API Box at top -->
+  <rect x="250" y="20" width="450" height="75" class="api-box" rx="8"/>
+  <text x="475" y="48" text-anchor="middle" class="text">Support Library API</text>
+  <text x="475" y="72" text-anchor="middle" class="small-text">(ISupportLibApi)</text>
+  
+  <!-- Main vertical line from API -->
+  <line x1="475" y1="95" x2="475" y2="130" class="line"/>
+  
+  <!-- Session Manager Module -->
+  <line x1="80" y1="130" x2="475" y2="130" class="line"/>
+  <line x1="80" y1="130" x2="120" y2="130" class="arrow"/>
+  
+  <rect x="120" y="115" width="380" height="60" class="core-box" rx="6"/>
+  <text x="135" y="135" class="text">Session Manager Module</text>
+  <text x="135" y="155" class="small-text">(Independent Core Module)</text>
+  
+  <text x="135" y="200" class="bullet-text">• Create/End Sessions</text>
+  <text x="135" y="220" class="bullet-text">• Track Session Lifecycle</text>
+  <text x="135" y="240" class="bullet-text">• Manage Session Metadata</text>
+  
+  <!-- Data Format Manager Module -->
+  <line x1="80" y1="270" x2="475" y2="270" class="line"/>
+  <line x1="80" y1="270" x2="120" y2="270" class="arrow"/>
+  
+  <rect x="120" y="255" width="380" height="60" class="core-box" rx="6"/>
+  <text x="135" y="275" class="text">Data Format Manager Module</text>
+  <text x="135" y="295" class="small-text">(Independent Core Module)</text>
+  
+  <text x="135" y="340" class="bullet-text">• Define Parameters</text>
+  <text x="135" y="360" class="bullet-text">• Define Events</text>
+  <text x="135" y="380" class="bullet-text">• Generate Format IDs</text>
+  
+  <!-- Writer Module -->
+  <line x1="80" y1="410" x2="475" y2="410" class="line"/>
+  <line x1="80" y1="410" x2="120" y2="410" class="arrow"/>
+  
+  <rect x="120" y="395" width="380" height="60" class="module-box" rx="6"/>
+  <text x="135" y="415" class="text">Writer Module</text>
+  <text x="135" y="435" class="small-text">(Packet Writing)</text>
+  
+  <text x="135" y="480" class="bullet-text">• Write Packets to Broker</text>
+  <text x="135" y="500" class="bullet-text">• Publish Session Info</text>
+  
+  <!-- Reader Module -->
+  <line x1="80" y1="530" x2="475" y2="530" class="line"/>
+  <line x1="80" y1="530" x2="120" y2="530" class="arrow"/>
+  
+  <rect x="120" y="515" width="380" height="60" class="pipeline-box" rx="6"/>
+  <text x="135" y="535" class="text">Reader Module</text>
+  <text x="135" y="555" class="small-text">(Packet Reading)</text>
+  
+  <text x="135" y="600" class="bullet-text">• Read from Broker</text>
+  <text x="135" y="620" class="bullet-text">• Live/Historical Reading</text>
+  <text x="135" y="640" class="bullet-text">• Auto-start or Manual Start</text>
+  
+  <!-- Line from Reader to Sample Reader -->
+  <line x1="300" y1="575" x2="300" y2="665" class="line"/>
+  <line x1="300" y1="665" x2="340" y2="665" class="arrow"/>
+  
+  <!-- Sample Reader Module (indented further) -->
+  <rect x="340" y="650" width="420" height="60" class="pipeline-box" rx="6"/>
+  <text x="355" y="670" class="text">Sample Reader Module</text>
+  <text x="355" y="690" class="small-text">(Buffering)</text>
+  
+  <text x="355" y="735" class="bullet-text">• Buffer Packets</text>
+  <text x="355" y="755" class="bullet-text">• Merge Data Segments</text>
+  <text x="355" y="775" class="bullet-text">• Extract Samples</text>
+  
+  <!-- Line from Sample Reader to Data Reader -->
+  <line x1="550" y1="710" x2="550" y2="800" class="line"/>
+  <line x1="550" y1="800" x2="590" y2="800" class="arrow"/>
+  
+  <!-- Data Reader Module (indented even further) -->
+  <rect x="590" y="785" width="330" height="60" class="pipeline-box" rx="6"/>
+  <text x="605" y="805" class="text">Data Reader Module</text>
+  <text x="605" y="825" class="small-text">(Interpolation)</text>
+  
+  <text x="605" y="870" class="bullet-text">• Subscribe at Custom Frequencies</text>
+  <text x="605" y="890" class="bullet-text">• Interpolate/Decimate Samples</text>
+  <text x="605" y="910" class="bullet-text">• Deliver Results in Batches</text>
+  
+  <!-- Legend -->
+  <g transform="translate(50, 920)">
+    <rect x="0" y="0" width="22" height="22" class="core-box" rx="2"/>
+    <text x="32" y="16" class="label-text">Independent Core Modules</text>
+    
+    <rect x="240" y="0" width="22" height="22" class="module-box" rx="2"/>
+    <text x="272" y="16" class="label-text">Writer Module</text>
+    
+    <rect x="420" y="0" width="22" height="22" class="pipeline-box" rx="2"/>
+    <text x="452" y="16" class="label-text">Pipeline Modules (Reader → Sample Reader → Data Reader)</text>
+  </g>
+</svg>
