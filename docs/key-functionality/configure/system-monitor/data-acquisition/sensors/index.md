@@ -2,83 +2,37 @@
 
 Configure and calibrate sensors in TAGtronic systems to convert physical properties into electrical signals for logging and analysis.
 
-## Sensor Types
+System Monitor has the following facilities to configure the way that Sensors are used:
 
-- Program Version sensors - Configure via Sensors & Actuators tool
-- External inputs - Configure via External Inputs Configuration tool
+- Sensors & Actuators - Used to apply Calibration data to sensors, enable/disable individual sensors and enter values for sensor constants. Used on sensors and actuators defined in the Program Version.
+- External Inputs Configuration - Used to configure sensor inputs and apply Calibration data to sensors connected to the ECU. Used on sensors that are not defined in the Program Version. Also used to configure systems using communication links such as TAG Sensor Bus or CAN.
+- Sensor Calibration Tool - Used to view and edit sensor calibration curves.
 
 ## Configuration Tools
 
-### Sensors & Actuators
+### [Sensors & Actuators](./sensors-and-actuators.md)
 For Program Version defined sensors:
 - Apply calibrations
 - Enable/disable sensors
 - Assign serial numbers
 - Set sensor constants
 
-> **Note:** Requires associated Sensor Set file
+!!! note
+    Requires associated Sensor Set file
 
-### External Inputs Configuration 
+### [External Inputs Configuration](./external.md) 
 For non-Program Version sensors:
 - Set up input sources and buses
 - Configure and assign sensors
 - Apply calibrations
 - Supports drag-and-drop
 
-## Software Calibration
+## [Software Calibration](./software-calibrated-sensors.md)
 
 TAGtronic systems use lookup tables for software calibration:
 - `.dat` files contain calibration data
 - Convert to `.bcf` using `Sbinary.exe`
 - Store in Multi-Application Base root
 
-> **Important:** Sbinary must be configured in Advanced Settings
-
-## Calibration Tool
-
-Access via: `Sensors > Live Calibration`
-
-Features:
-- View/edit calibration curves
-- Manual and live calibration support
-- Voltage to engineering value mapping
-
-### Live Calibration Process
-1. Connect sensor in External Inputs
-2. Apply known loads
-3. Put ECU online
-4. Select parameter
-5. Enter values at voltage points
-6. Save calibration
-
-## Sensor Management
-
-### Calibration Data
-- Use Get Sensor Data Utility for McLaren Applied sensors
-- Connect to TAG network
-- Run gs utility
-- Enter codes and serial numbers
-
-!!! warning
-    Do not manually edit .dat files
-
-### Sensor Sets
-- Store in \SenSets\ directory
-- Save as XXXXXnnn.set
-- Upload/download via Unit Status
-
-### Serial Numbers
-- Assign via dropdown
-- Support sequential assignment
-- Check for duplicates
-- Also configurable in External Inputs
-
-### Constants
-- Enter in Sensors & Actuators
-- Organize on separate tabs
-- Download with Sensor Set
-
-### Enable/Disable
-- Control via Enable/Disable dialog
-- Affects connected ECU only
-- Changes not stored in Sensor Set
+!!! important
+    Sbinary must be configured in Advanced Settings

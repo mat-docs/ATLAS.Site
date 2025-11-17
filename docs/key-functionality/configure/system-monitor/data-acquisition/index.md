@@ -9,18 +9,6 @@ System Monitor provides tools grouped into two main categories:
 - **Logging**: Configure how data is acquired and stored by the ECU, including live streaming, memory-based logging, and telemetry.
 - **Sensors**: Set up and calibrate sensors connected to the ECU, including both software-calibrated and externally configured sensors.
 
-## Supported Hardware
-
-System Monitor is optimised for the following TAG hardware:
-
-- **TAG-300 / MCU-300**: Distributed control units for engine and chassis respectively.
-- **TAG 3.8 Family**: Engine control units with optional data logging.
-- **DLU (DATALab Logging Unit)**: Stores data for later upload via wirelink.
-
-## Integration with ATLAS
-
-System Monitor works closely with ATLAS for session analysis. Depending on the logging method, session files are either generated directly or uploaded from the ECU for post-processing.
-
 ## Logging Methods
 
 System Monitor supports three primary logging methods:

@@ -89,7 +89,9 @@ nav:
           - Sensors: 
             - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
             - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
-            - Input Signal Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/input-signals.md
+            - Software Calibrated Sensors: key-functionality/configure/system-monitor/data-acquisition/sensors/software-calibrated-sensors.md
+            - Sensors and Actuators: key-functionality/configure/system-monitor/data-acquisition/sensors/sensors-and-actuators.md
+            - Obtaining Sensor Calibration Data: key-functionality/configure/system-monitor/data-acquisition/sensors/sensor-calibration-data.md
         - Tuning:
           - Overview:  key-functionality/configure/system-monitor/tuning/index.md
           - Editable Parameters: key-functionality/configure/system-monitor/tuning/editable-parameters.md
