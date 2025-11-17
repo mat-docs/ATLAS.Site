@@ -9,5 +9,3 @@ System Monitor is a software tool used for real-time data monitoring, parameter 
 - Customisable desktop layout with multiple window types
 - Logging and export of data
 - Integration with Data Wizard and other analysis tools
-
-Use the sections below to navigate through menus, windows, parameters, and configuration options.

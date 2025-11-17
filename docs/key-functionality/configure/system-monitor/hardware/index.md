@@ -1,13 +1,3 @@
-## PC requirements
-
-| Component | Minimum | Recommended |
-|---|---|---|
-| **Processor** | Intel Core Duo, 2 GHz | Intel Core i7 |
-| **Memory** | 1 GB | 8 GB or more |
-| **Disk space** | HDD with 200 GB free | High-capacity SSD (512 GB+) |
-| **Operating system** | Windows 10 | Windows 10 |
-| **Installation / data transfer** | CD‑ROM drive, FTP site | CD‑ROM drive, FTP site |
-| **Power supply** | Rapid battery recharge recommended (not trickle charge) while applications are running | Rapid battery recharge recommended (not trickle charge) while applications are running |
 
 ## Adjustment board
 

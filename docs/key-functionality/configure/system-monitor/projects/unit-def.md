@@ -1,8 +1,9 @@
 # Unit.Def Files
 
-Unit.Def files are XML-based configuration files that define project options. They replace the legacy Multi-Application and Customer Base structure.
+Unit.Def files are XML-based configuration files that define project options. They replace the legacy Multi-Application and Customer Base structure. There can be one Unit.Def file per folder and it is applied toprojects opened in that folder. The absence of a Unit.Def file will result in System Monitor resortingto default options for any projects located in the folder.
 
 ## Configuration
+
 - One Unit.Def file per folder.
 - Applied to all projects in that folder.
 - Managed via `File > Manage Unit.Def Files…` (only when no project is loaded).

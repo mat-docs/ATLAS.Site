@@ -12,8 +12,9 @@ This guide helps you install and start using System Monitor. Below are the minim
 | **Installation/Data Transfer** | CD-ROM drive, FTP site | CD-ROM drive, FTP site    |
 | **Power Supply**  | Rapid battery recharge recommended (not trickle charge) while applications are running | Rapid battery recharge recommended (not trickle charge) while applications are running |
 
-
 ## 1. Install System Monitor
+
+Download the System Monitor installer from the [Motion Applied Portal](https://portal.mclarenapplied.com/portal/Downloads/Software#System%20Monitor) and run the .msi file to begin the installation. 
 
 Three installation types are available:
 
@@ -43,31 +44,18 @@ Available options:
 
 ## 2. Insert Your CA-Card or Licence Dongle
 
-
 System Monitor can be licensed by:
 
 - Communications adapter card (CA-card)
 - Dongle
 - Network card address
 
-Licensing via dongle or network card allows activities without an ECU connected. Dongles are available in USB format.
-
-Licences purchased from Motion Applied are tied to a specific dongle, CA card, or network card serial number. The licence determines available functions and supported ECU types.
-
-You may need a Custom Installation to configure your computer for licences.
-
-Licence codes control feature access. All features are present, but only licensed modules are unlocked. New licences unlock additional features.
-
-### Licence Checking
-
-System Monitor checks licences when commands are selected. If a command is not licensed, you are prompted to add a licence or cancel. Adding a licence rechecks and executes the command if licensed.
-
 ### Adding a Licence
 
 Open the Add Licence dialog via **Help > Add Licence** or **Add Licence** in the Licence Required dialog.
 
 !!! note
-    Later versions use a Licence File stored locally, defining teams and options. Licences are managed online at [Motion Applied Portal](https://portal.motionapplied.com/)
+    Later versions use a Licence File stored locally, defining teams and options. Licences are managed online at [Motion Applied Portal](https://portal.motionapplied.com/).
 
 The window lists added devices (type and serial number). Select a device to view its licence profile.
 
@@ -81,9 +69,7 @@ The window lists added devices (type and serial number). Select a device to view
 
 Applications listed under a team are unrestricted for that team.
 
-## 3. Load ECU and Project Management Files
-
-## 4. Connect Your ECU
+![Licence](./assets/licence.png)
 
 ## 5. Start System Monitor
 
@@ -94,7 +80,7 @@ Customer bases control file access to prevent incorrect ECU programming. Associa
 - Select **File > Select Base**.
 - Choose a Multi-Application Base and click **OK**.
 
-## 7. Create a New Program Version for Each Customer Base
+## 7. [Create a New Program Version for Each Customer Base](../projects/program-data-versions.md)
 
 Define Program and Data Version files for each Application in the Multi-Application Base.
 
@@ -102,7 +88,7 @@ Define Program and Data Version files for each Application in the Multi-Applicat
 - In the dialog, select **Program Version** and click **OK**.
 - Choose files to include in the Program Version.
 
-## 8. Create a Project
+## 8. [Create a Project](../projects/file-operations.md)
 
 A Project links all files needed to work on an ECU.
 
@@ -110,6 +96,10 @@ A Project links all files needed to work on an ECU.
 - Choose **Project** and click **OK**.
 - Complete the sequence of dialog boxes to define the Project, connection method, Desktop filename, and Program Version for each Customer Base.
 
-## 9. Use Your Desktop to Tune and Configure Your ECU
+## 9. [Connect to the ECU](../projects/ecu-communication.md)
 
-Some tasks may be completed by your ECU manufacturer, who can supply the necessary files.
+Manage the ECU connection the project uses.
+
+- Select **ECU > Connect**.
+- Choose the connection method (IP, HDLC, CAN).
+- Click **Connect**.

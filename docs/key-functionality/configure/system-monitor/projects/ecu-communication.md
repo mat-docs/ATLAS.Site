@@ -1,6 +1,6 @@
-# ECU Communication and Configuration
+# ECU Connection
 
-System Monitor supports multiple methods for connecting to an ECU. Each ECU must have a unique IP address when connected over Ethernet.
+The Connections tab is used to view and modify the way System Monitor is connected to the ECU. To open the Connections tab select: **File > Properties > Connections** or use the ECU Menu.
 
 ## Connection Methods
 - **IP (Ethernet)** – TCP/IP connection
@@ -18,6 +18,8 @@ System Monitor supports multiple methods for connecting to an ECU. Each ECU must
 ## Unit Definition
 Defines ECU identity and IP configuration.
 
+![Connections Dialog](./assets/connection.png)
+
 ### Adding a Unit Definition
 1. Click `Add`.
 2. Enter a name.
@@ -33,7 +35,9 @@ Defines ECU identity and IP configuration.
 
 ## Spare Unit
 
-Used for transferring settings from the main ECU.
+Typically, development and Tuning is done using one unit and it may be necessary to transfer the settings (Program and Data versions) to another unit. If the ECUs communicate over an Ethernet network, each unit has an unique IP Address so that the unit(s) designated as the spare will have different address(es) from the unit(s) designated as main.
+
+The Unit Definition for the Spare unit is defined for the Project in the New Project - Connections dialog box or the Project Properties dialog box, Connections tab.
 
 ### Programming the Spare Unit
 

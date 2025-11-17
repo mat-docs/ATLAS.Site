@@ -64,10 +64,9 @@ nav:
               - File Types: key-functionality/configure/system-monitor/projects/file-types.md
             - Application Management: key-functionality/configure/system-monitor/projects/applications.md
             - Data Version Development: key-functionality/configure/system-monitor/projects/data-version-development.md
-            - ECU Communications: key-functionality/configure/system-monitor/projects/ecu-communication.md
+            - Data Wizard: key-functionality/configure/system-monitor/projects/data-wizard.md
+            - ECU Connection: key-functionality/configure/system-monitor/projects/ecu-communication.md
             - File Operations: key-functionality/configure/system-monitor/projects/file-operations.md
-            - Logging and Sensors: key-functionality/configure/system-monitor/projects/logging-sensors.md
-            - MATLAB Integration: key-functionality/configure/system-monitor/projects/matlab.md
           - Displays:
             - Overview: key-functionality/configure/system-monitor/using-sm/display/index.md
             - Numeric: key-functionality/configure/system-monitor/using-sm/display/numeric.md

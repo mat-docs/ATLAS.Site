@@ -4,24 +4,24 @@ System Monitor is a software application for interfacing with Electronic Control
 
 ## Key Features
 
-- **ECU Program Management**
+**ECU Program Management**
     - Upload and download ECU program files.
     - Ensure the latest program versions are available.
 
-- **Tuning**
+**Tuning**
     - View and modify editable ECU parameters.
     - Apply changes instantly (Live Tune) or offline.
     - Supports automatic tuning with a Testbed.
 
-- **Parameter Information Display**
+**Parameter Information Display**
     - Monitor measurement parameters for live feedback.
     - Access real-time data for diagnostics.
 
-- **Data Logging Configuration**
+**Data Logging Configuration**
     - Set up and manage data logging on TAG ECUs.
     - Customise logging for specific needs.
 
-- **Sensor Configuration**
+**Sensor Configuration**
     - Calibrate sensors and actuators connected to the ECU.
     - Configure the DATALab system for advanced sensor management.
 
