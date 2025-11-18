@@ -6,7 +6,6 @@ System Monitor uses various file types for ECU configuration, logging, and tunin
 
 1. Select `File > New`. The File New dialog box opens.  
 2. In the Document list, select **Project** and click **OK**. The Project dialog box opens.  
-3. ![New Project dialog](image/New_Project_1.gif)  
 4. Enter a filename in the **Filename** text box, or browse for a path or an existing project filename (browsing is limited to the Multi‑Application Base directory).  
 5. Enter a **Comment** and **Notes**, if required.  
 6. Click **Next** to continue. The Connection dialog box opens — see *New Project - Connections* for further instructions.

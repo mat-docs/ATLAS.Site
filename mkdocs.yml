@@ -81,8 +81,11 @@ nav:
           - Overview: key-functionality/configure/system-monitor/data-acquisition/index.md
           - Logging:
             - Overview: key-functionality/configure/system-monitor/data-acquisition/logging/index.md
-            - Logging Types: key-functionality/configure/system-monitor/data-acquisition/logging/logging-types.md
-            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+            - Live Logging: key-functionality/configure/system-monitor/data-acquisition/logging/live-logging.md
+            - Remote Logging: key-functionality/configure/system-monitor/data-acquisition/logging/remote-logging.md
+            - Burst Logging: key-functionality/configure/system-monitor/data-acquisition/logging/burst-logging.md
+            - Remote Configuration Compare: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/logging-config.md
           - CAN: 
             - Overview: key-functionality/configure/system-monitor/data-acquisition/can/index.md
             - CAN Configurations: key-functionality/configure/system-monitor/data-acquisition/can/configuration.md
