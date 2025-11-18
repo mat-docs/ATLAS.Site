@@ -1,97 +1,131 @@
 # Changing Parameter Values
 
-Editable Parameters can be modified within System Monitor, provided the ASAP file allows it and the application is active and not read-only.
+Each Parameter is defined in the ASAP file by the ECU manufacturer. The ASAP file either permits or prevents System Monitor from changing the values of an Editable Parameter. If the Editable Parameter values are prevented from being changed, the edit boxes are disabled.
 
-## General Editing
+You can only change values of parameters in an Application that is Active and not Read Only.
 
-To change a value:
-1. Select the parameter value.
-2. Enter a new value.
-3. Accepted values change colour (default: red/blue).
+When a value is changed and accepted, its colour changes to the Greater than / Less than colour (default red/blue) as appropriate. These colours are defined in the Display tab of the Window Properties dialog box. The Scalar Display uses arrow icons to show the direction of value changes.
 
-> Values can also be changed in Graphical Maps.
+## Editing options
+- Edit commands are available on the Edit Context Menu.
+- Use the Maths Bar to carry out mathematical operations on the selected value or values.
+- The Breakpoint Values of 1-Axis and 2-Axis Maps can be edited if required.
+- To restore values to their original values, select: Edit > Restore or use the Windows Context menu.
 
+## Parameter Edit Mode
 
-## Edit Mode
+A single value of an Editable Parameter can be displayed with Edit Mode either On or Off. Entering a new value turns Edit Mode on and the value is overwritten. Edit Mode is turned on when a single cell is selected using the mouse.
 
-Edit Mode controls how values are selected and modified.
+![Edit Bar](./assets/edit-bar.png)
 
-### Edit Mode On
+**Edit Mode On**
+
 - Only the text is highlighted.
-- One cell can be selected.
-- Edit Context Menu is available.
-- Copy only sends the value to clipboard.
+- Only one cell can be selected.
+- The Edit Context Menu is available.
+- If Copy is selected, only the value is sent to the clipboard. Paste and Paste Special can only paste the value as text.
 
-### Edit Mode Off
-- Entire cell or row is highlighted.
-- Multiple cells can be selected.
-- Windows Context Menu is available.
-- Copy includes parameter reference.
+To turn Edit Mode Off, press ESC or ENTER.
 
-> Press `ESC` or `ENTER` to exit Edit Mode.
+**Edit Mode Off**
 
+- The whole cell (or row in Scalar or String Windows) is highlighted.
+- Blocks of cells can be selected.
+- The Windows Context Menu is available.
+- If Copy is selected, the value plus a reference to the original parameter is copied to the clipboard. All Paste and Paste Special options can be used.
 
-## Editing Methods
+Pressing a cursor key while the cell is in Edit mode selects the next cell in the direction of the arrow with Edit Mode off.
 
-### By Mouse
-- Click on a value and enter a new one.
-- Use the Edit Bar to modify Breakpoints or Output values.
+If multiple values are selected, Edit mode is always off. Editing a number overwrites the first (top left) of the multiple values.
 
-### By Keyboard
-- Use cursor keys to select a value.
-- Use `TAB` to cycle through Edit Bar fields.
+**Changing Parameter Values by Mouse**
 
-## Selecting Multiple Values
+Click on the value to be changed and enter a new number to overwrite the existing value. Alternatively, select the appropriate text box in the Edit Bar and enter a new value.
 
-### Mouse
-- Click and drag to select a rectangle.
-- Use `SHIFT` to select corners.
-- Use `CTRL` for non-continuous selection (cannot be copied).
+To select more than one value do one of the following:
 
-### Keyboard
-- Use `SHIFT` and cursor keys to select a block.
-- Use `CTRL + SPACE` for non-continuous selection.
+- Click and Drag to select a continuous rectangle of values. (If the value is in Edit Mode press ESC before dragging)
+- Click on a corner of the rectangle of values you want to select. Hold down the SHIFT key and click on the opposite corner
+- To select non-continuous values, hold down the CTRL key while clicking on values. (Non-continuous blocks of values cannot be copied.)
 
-> Entering a value overwrites the first (top-left) selected cell.
+If multiple values are selected, entering a value overwrites the first (top left) of the multiple values.
+
+The Maths Bar operates on all the selected values.
+
+!!! note
+    It is also possible to change values by dragging with a mouse in a Graphical Map.
 
 
-## Maths Bar
+**Changing Parameter Values by Keyboard**
 
-The **Maths Bar** allows mathematical operations on selected values.
+Select the value to be changed using the cursor keys and enter a new number to overwrite the existing value. Alternatively, use the TAB key to cycle through the edit boxes in the Edit Bar.
 
+2 axis Map Edit Bar
+
+To select more than one value:
+
+- Using the cursor keys, select a cell at a corner of the rectangle of values you want to select. Hold down the SHIFT key and select a cell at the opposite corner.
+- To select non-continuous values, hold down the CTRL key while using the cursor keys, press the SPACE bar to include values. (Non-continuous blocks of values cannot be copied.)
+
+If multiple values are selected, entering a new value overwrites the first (top left) of the multiple values. The Maths Bar operates on all the selected values.
 
 ## Value Limit Warning
 
-Each parameter has upper and lower limits defined in the ASAP file.
+Each Parameter has an upper and lower limit that is set in the ASAP file. The limits can be viewed in the Conversion tab of the Parameter Properties dialog box.
 
-If a value exceeds limits:
-- A warning dialog appears.
-- You can:
-  - Accept the adjusted value.
-  - Enter a new valid value.
-  - Apply changes to all values (`OK to All`).
-  - Cancel the change.
+![Limit Warning](./assets/limit-warning.png)
 
+If a value is changed so that it is outside the limits, the Limit Warning dialog box opens.
 
-## Breakpoint Editing
-### Mouse
-- Click on column (X-axis) or row (Y-axis) headers.
-- Enter new values directly or via Edit Bar.
+The Upper and Lower limits are shown in the Limits panel. If the Parameter Properties can be edited, the Upper and Lower limits text boxes are editable and the limits can be changed.
 
-### Keyboard
-- Use cursor keys and `TAB` to navigate and edit.
+In the Value panel:
 
+- Entered — Shows the out-of-range number that was entered. If you edit this box to a number that is within range, the new number is accepted when you click OK.
+- Adjusted — System Monitor automatically suggests a new number, which is the value of the limit nearest to the out-of-range number that was entered. If you click OK without editing a number in the Entered text box, the Adjusted number is accepted.
+
+Buttons:
+
+- OK — Replaces the selected value with the value in the Entered text box provided it is within limits.
+  - If the value in the Entered text box is not within limits, the selected value is replaced by the value in the Adjusted text box.
+  - If multiple values are being changed, steps through the values one at a time.
+- OK to All — Available for multiple values only. As OK but applies the same change to all the values.
+- Cancel — The change is ignored and the original value is restored.
+
+## Changing Breakpoint Values
+
+### Mouse operation
+To select an X-axis Breakpoint click on the column header. To select a Y-axis Breakpoint click on the row. When a cell is selected, it changes to Edit Mode. Enter a new value to overwrite the existing value.
+
+!!! note
+    If Orientation is selected in the Window System Menu, the axes are rotated.
+
+Alternatively, click on the appropriate edit box in the Edit Bar. Select the required breakpoint edit box and overwrite the value.
+
+### Keyboard operation
+
+Use the cursor keys to select a cell that uses the breakpoint that you want to change.
+
+Use the TAB key to cycle through the edit boxes in the Edit Bar. The TAB key then returns to the value in the map table.
+
+Select the breakpoint that you want to change and enter a new value to overwrite the existing value.
 
 ## Breakpoint Warning
 
-Changing a Breakpoint affects all parameters using that axis.
+Changing Breakpoint values affects the axis wherever it is used, not just in the current Window. If the axis is used by other Parameters, System Monitor displays a Breakpoint Warning.
 
-- A warning is shown listing affected parameters.
-- Option to suppress future warnings for the axis.
+![Breakpoint Warning](./assets/breakpoint-warning.png)
 
+To prevent this box from being displayed again, select: Don’t show this Warning again for this Axis.
+
+Click List to display a list of all the Parameters that use the axis that you are editing to help you to determine the effect of the change.
 
 ## Breakpoint Monotony
-Breakpoints must follow a monotonic order (increasing or decreasing).
 
-- Set in the ASAP file.
-- If violated, a warning is shown and the value is rejected.
+All Breakpoint values must either increase or decrease along the axis. This restriction is called Monotony. The direction of monotony is set in the ASAP file and can be viewed in General tab of the Axis Properties dialog box.
+
+This means that a breakpoint value cannot be higher than the next highest value or lower than the next lowest. If you enter a value that breaks this rule, a warning is shown and the value is not accepted.
+
+Click OK to close the warning.
+
+The new value that was entered is replaced by the original value. Only values that are within the surrounding breakpoint values can be accepted.

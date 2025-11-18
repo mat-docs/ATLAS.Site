@@ -1,82 +1,65 @@
 # Live Tune
-Live Tune enables real-time synchronisation between the **Edit Buffer** and the **ECU RAM**, allowing immediate application of parameter changes.
 
-## Enabling Live Tune
+When Live Tune is on, the Edit Buffer and the ECU RAM are kept synchronised — any changes in the Edit Buffer are downloaded to the ECU as soon as they occur.
 
-To toggle Live Tune:
-- Select `ECU > Live Updates`
-- Status is shown on the **Comms Bar**
+![Live Tune](./assets/live-tune.png)
 
-> Changes affect ECU RAM only. The ECU must be running from RAM for changes to take effect.
+## Toggling Live Tune
+To toggle Live Tune on and off select: ECU > Live Updates.  
+The status of Live Tune is shown on the Comms Bar.
 
-## Memory Mode
+!!! note
+    The data changes only affect the ECU RAM. To apply the changes to the vehicle systems, the ECU must be operating from RAM. The type of memory being used by the ECU is selected from the Run from ROM and Run from RAM commands on the ECU Menu.
 
-The ECU memory mode can be selected via:
-- `Run from ROM`
-- `Run from RAM`
+## If the Data Version Does Not Match
+If the Data Version in the Edit Buffer does not match the one in the ECU, the following message is opened for each Application when you start Live Updates. The message presents these options:
 
-> Live Tune is only available if permitted by the **Customer Base Advanced Settings**.
+- **Sync SM to Unit**  
+  Synchronises the files in System Monitor to match those in the Unit. The specified files are opened in System Monitor, replacing those that are already open. If a file cannot be found, a new file is created using the filename and modification information taken from the unit. Uploads data and places it in the Edit Buffer. Files and data which are the same as already in System Monitor are not uploaded.
 
+- **Reprogram**  
+  Reprograms the ECU then downloads the data changes in the Edit Buffer to the ECU.
 
-## Syncing and Reprogramming
+- **Force Complete Reprogram**  
+  Forces a Complete Reprogram then downloads the data changes in the Edit Buffer to the ECU.
 
-When starting Live Updates, if the Data Version in the Edit Buffer differs from the ECU:
+- **Ignore**  
+  Closes the message box. No changes are made. The download process continues with the next Application.
 
-### Options
-- **Sync SM to Unit**: Opens matching files in System Monitor.
-- **Reprogram**: Reprograms ECU and downloads changes.
-- **Force Complete Reprogram**: Performs full reprogram and downloads changes.
-- **Ignore**: Skips changes for current application.
-- **Cancel**: Aborts the process.
+- **Cancel**  
+  Closes the message box. No changes are made.
 
+# Live Auto Tune
 
-## Live Auto Tune
+Live Auto Tune assists with manual testbed tuning. It is used in conjunction with Live Tune and the Adjustment Board.
 
-Live Auto Tune supports manual testbed tuning and works with Live Tune and the Adjustment Board.
+## Definition File and Parameters
+The Live Auto Tune Definition File defines a set of Live Auto Tune Parameters. A Live Auto Tune Parameter defines a group of 2‑axis maps and an adjustment parameter. The maps in a Live Auto Tune Parameter share the same axes (for example, throttle position vs engine speed).
 
-### Definition File
-- Defines a set of **Live Auto Tune Parameters**
-- Each parameter includes:
-  - A group of 2-axis maps
-  - An adjustment parameter
+Typically, Live Auto Tune Parameters are provided for:
+- ignition,
+- injection quantity,
+- injection end angle, and
+- nominal lambda.
 
-### Typical Parameters
-- Ignition
-- Injection quantity
-- Injection end angle
-- Nominal lambda
-- Boost pressure (for turbo engines)
-- Waste gate control
+Turbocharged engines may have additional parameters for boost pressure and waste gate control.
 
-### Tune Groups
-- Maps are grouped by operating conditions:
-  - Optimum Power
-  - Minimum Consumption
-  - Wet Racing
+The Parameter Properties - Live Auto Tune Sheet gives information about the selected Live Auto Tune Parameter.
 
-### Z Axis Selection
-- Tune Group selection can be based on:
-  - ECU calculation
-  - Measurement parameter value
-  - Driver input via cockpit switch
+## Tune Groups and Z Axis
+The Live Auto Tune Parameters all have the same number of maps in a set order (e.g. 1, 2, 3). The group of maps at the same level in all the Live Auto Tune Parameters is called a Tune Group. Typically, the Tune Groups are selected for different operating conditions such as “Optimum Power”, “Minimum Consumption” or “Wet Racing”.
 
+The active Tune Group can be selected by:
+- the result of a calculation in the ECU,
+- the value of a measurement parameter, or
+- the driver using a cockpit‑mounted switch.
 
-## Adjustment Application
+The index that selects the Tune Group is called the Z axis.
 
-During a test:
-- Indexes and controls select a value on one of the maps.
-- The **Adjustment Parameter** is applied to this value.
-- If linked to the Adjustment Board, turning the control applies the adjustment.
+## Operation and Adjustments
+As a test is run, the various indexes and controls select a value on one of the maps in each Live Auto Tune Parameter. The Adjustment Parameter is then applied to this value. If the Adjustment Parameter is associated with a control on the Adjustment Board, turning the control applies the adjustment. The way in which the adjustment is applied is defined by the Correction type in the Parameter Properties.
 
-### Correction Type
-- Defined in the **Parameter Properties**
-
-### Breakpoint Tolerances
-- Override individual map tolerances
-- Defined in the **Live Auto Tune Sheet**
-
+To ensure that a value is selected properly, the Live Auto Tune Parameter defines breakpoint tolerances which override the breakpoint tolerances set for each map (see Parameter Properties - 1‑Axis Map Sheet).
 
 ## Saving Adjustments
-
-To save changes:
-- Select `ECU > Save Auto Tune Adjustment`
+When you are satisfied with the changes, update the data version in the ECU by selecting: ECU > Save Auto Tune Adjustment.
