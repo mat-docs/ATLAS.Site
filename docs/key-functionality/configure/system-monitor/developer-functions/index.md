@@ -8,8 +8,6 @@ System Monitor includes various features available for experienced operators. Th
 - **Settings** — Changes various System Monitor configuration settings.
 - **FIA Upload** — A utility for verifying that the code in the ECU meets FIA requirements.
 
----
-
 ## Diagnostics
 
 Diagnostics provides information for embedded software developers and can be useful for troubleshooting the operation of the ECU and of System Monitor itself.
@@ -22,11 +20,7 @@ The following tools are available:
 - **Single Message** — Allows messages to be sent to the ECU and to view the response. (Shortcut: `ALT+M`)
 - **Force Complete Reprogram** — Downloads all the data and code for the ECU whether it has changed or not. (Shortcut: `ALT+C`)
 
-Only available when an ECU is connected. See ECU On-Line.
-
-See Also: Developer Functions; ECU Control
-
----
+Only available when an ECU is connected.
 
 ## System Log
 
@@ -39,7 +33,7 @@ The following files are created:
 - `Pgv_xxx.txt` — log of messages generated when Creating Program Versions.
 - `Cmd_xxx.txt` — log of commands issued from Menu commands or ActiveX.
 - `Warn_xxx.txt` — log of warnings, in particular Parameters dropped from configurations, etc.
-- `Unit_xxx.txt` — log of communications with the unit. See ECU On-Line.
+- `Unit_xxx.txt` — log of communications with the unit.
 
 Where `xxx` is the username of the person logged onto the computer running System Monitor.
 
@@ -60,15 +54,9 @@ The following file is created:
 
 All log files are in ASCII format and can be read by any text editor.
 
-See Also: Developer Functions; Event Log
-
 ### Error Messages During Operation
 
 The messages linked to this topic should not occur during normal operation. They indicate that there may be a problem with your System Monitor installation or with your ASAP or Hex files.
-
-Please contact Technical Support for more information.
-
----
 
 ## Productivity Tools
 
@@ -76,8 +64,6 @@ Productivity Tools allow repetitive processes to be automated and also provide l
 
 - **Custom Menus** — Run applications other than System Monitor from menu commands in System Monitor.
 - **Macros** — Record and play back sequences of keystrokes.
-
-See Also: Developer Functions
 
 ### Custom Menus
 
@@ -110,7 +96,8 @@ The menu entries appear in the Tools menu in the same order as they appear in th
 
 System Monitor includes a facility to record keystrokes and to replay them as Macros. Macros are stored in the Windows Registry as part of the System Monitor application and are available to all Projects.
 
-Note: Mouse movements are not recorded.
+!!! note
+    Mouse movements are not recorded.
 
 To open the Macros dialog box, select: Tools > Macros.
 
@@ -132,12 +119,8 @@ To play or stop a macro:
 - To play a macro, select it from the Macros list and click Play. Alternatively, you can play a macro by pressing the shortcut key sequence; the Macro dialog box must be closed.
 - To stop a macro that is playing, press `CTRL+ESC`.
 
----
-
 ## FIA Upload
 
-System Monitor includes a utility for verifying that the code in the ECU meets FIA requirements. The utility is a separate program that runs outside System Monitor. It is installed with System Monitor in the same location as the System Monitor files (see Installation).
+System Monitor includes a utility for verifying that the code in the ECU meets FIA requirements. The utility is a separate program that runs outside System Monitor. It is installed with System Monitor in the same location as the System Monitor files.
 
 For more information on using the FIA Upload utility, please contact Technical Support and ask for the Working Practice Document “Uploading Code and Data for FIA Software Checks” TWPD0066.
-
-See Also: Developer Functions
