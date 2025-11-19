@@ -1,93 +1,76 @@
-# Programming & Data Management
+The changes made during Tuning are stored as a Data Version in the Edit Buffer.
 
-This section covers how System Monitor handles ECU programming, data versioning, and synchronisation between the Edit Buffer and the ECU.
+Only the Active Applications can be Tuned.
 
----
+## Live Tune modes
 
-## Reprogramming the ECU
+The Data Version may be transferred to the ECU in one of two ways:
 
-The ECU ROM contains:
+- **Live Tune On**  
+    As soon as an Editable Parameter is changed, the new value is loaded into RAM.
 
-- **Program**: Controller programs from the Program Version file.
-- **Data**: Editable parameters stored in a Data Version file.
-- **Configurations**: Includes remote logging, burst logging, sensor calibration, and external inputs.
+- **Live Tune Off**  
 
-### Reprogramming Steps
-
-1. Select: `ECU > Reprogram Unit`
-2. Choose applications in the dialog box
-3. Optionally enable **Merged program sequences**
-4. Click **OK** to begin
-
-> ⚠️ **Caution**: Cancelling mid-process may leave the ECU in an inconsistent state.
-
-### Reprogram All
-
-- Reprograms all code and data areas for all applications
-- Downloads logging configuration
-- One-stop reprogramming facility
-
----
-
-## Force Complete Reprogram
-
-- Select: `Tools > Force Complete Reprogram`
-- Downloads all program code, data, and configurations regardless of changes
-- Intended for embedded code diagnostics
-
----
-
-## Data Changes in the ECU
-
-Changes made during tuning are stored in the **Edit Buffer**.
-
-### Live Tune Modes
-
-- **Live Tune On**: Changes are immediately loaded into RAM
-- **Live Tune Off**: Changes are stored in the Edit Buffer and must be downloaded manually
-
-> Note: Changes only affect RAM. ECU must be running from RAM to apply them.
-
----
+!!! note
+    The data changes only affect the ECU RAM. To apply the changes to the vehicle systems, the ECU must be operating from RAM.
 
 ## Downloading Data to the ECU
 
-Synchronises RAM with the Edit Buffer.
+The difference between the data in the Edit Buffer and the RAM are detected and loaded into RAM to make the contents of the RAM match the Edit Buffer when the **Download Data Changes** command is selected.
 
-- Select: `ECU > Download Data Changes`
+The command only acts on the Active Applications.
 
-### If mismatches are detected:
+### Download Data Changes
 
-- **Sync SM to Unit**: Load ECU files into System Monitor
-- **Reprogram**: Reprogram ECU and download changes
-- **Force Complete Reprogram**: Full reprogram and download
-- **Ignore**: Skip changes
-- **Cancel**: Abort process
+Select: **ECU > Download Data Changes.**
 
----
+![Download Data Changes Dialog](./assets/download-data-changes.png)
+
+If either the Program Version or the Data Version in the Edit Buffer do not match those in the ECU, a message is displayed with the following options:
+
+- **Sync SM to Unit**  
+    Synchronises the files in System Monitor to match those in the Unit. The specified files are opened in System Monitor, replacing those that are already open. If a file cannot be found, a new file is created using the filename and modification information taken from the unit. Uploads data and places it in the Edit Buffer. Files and data which are the same as already in System Monitor are not uploaded.
+
+- **Reprogram**  
+    Reprograms the ECU then downloads the data changes in the Edit Buffer to the ECU.
+
+- **Force Complete Reprogram**  
+    Forces a Complete Reprogram then downloads the data changes in the Edit Buffer to the ECU.
+
+- **Ignore**  
+    Closes the message box. No changes are made. The download process continues with the next Application.
+
+- **Cancel**  
+    Closes the message box. No changes are made.
 
 ## Uploading Data from the ECU
-- Select: `ECU > Upload Data`
-- Loads ECU Data Version into the Edit Buffer
-- Prompts user to save as a new Data Version file
 
----
+Select: **ECU > Upload Data** to load the Data Version in the ECU into the System Monitor Edit Buffer. You are prompted to save the contents of the Edit Buffer as a new Data Version File.
+
+The command only acts on the Active Applications.
 
 ## Undo Data Changes
 
-Three options available:
+Data changes can be undone using the following ECU menu options:
 
-- **Undo in Unit**: Reverts changes in ECU only
-- **Undo in Unit and Edit Buffer**: Reverts both
-- **Undo in Edit Buffer**: Reverts changes in System Monitor only
+- **Undo Data Changes in the Unit**  
+    Undo data changes that have been downloaded to the ECU but do not undo the changes in the Edit Buffer.
 
-> Note: Undo only works for changes made since the last save.
+- **Undo Data Changes in the Unit and Edit Buffer**  
+    Undo data changes downloaded to the ECU and undo changes in the Edit Buffer.
 
----
+- **Undo Data Changes in the Edit Buffer**  
+    Undo data changes in the Edit Buffer. Changes downloaded to the ECU will not be undone.
+
+!!! note
+    The Undo Data Changes commands can only undo changes made since the Data Version was last saved.
 
 ## Reset ROM
 
-- Overwrites Edit Buffer with original Data Version
-- Reprograms ECU with Edit Buffer contents
-- Copies Data Version from ROM to RAM
+The **Reset Data to ROM** command in the ECU menu does the following:
 
+1. Overwrites the contents of the Edit Buffer with the Data Version that was used to open the Project. This is equivalent to restoring all values.  
+2. Reprograms the ECU with the contents of the Edit Buffer.  
+3. Sends a signal to the ECU to copy the Data Version from the ROM to the RAM.
+
+The command only acts on the Active Applications.
