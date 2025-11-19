@@ -101,11 +101,10 @@ nav:
           - Changing Values:  key-functionality/configure/system-monitor/tuning/changing-values.md
           - Graphical Maps:  key-functionality/configure/system-monitor/tuning/graphical-maps.md
           - Live Tune:  key-functionality/configure/system-monitor/tuning/live-tune.md
-        - Testbed Operation:
+        - PUMA Integration:
           - Overview: key-functionality/configure/system-monitor/testbed/index.md
-          - System Monitor & PUMA:  key-functionality/configure/system-monitor/testbed/system-monitor-puma.md
+          - Testbed Operations:  key-functionality/configure/system-monitor/testbed/system-monitor-puma.md
           - Testbed Properties:  key-functionality/configure/system-monitor/testbed/testbed-properties.md
-          - Testbed Message Window:  key-functionality/configure/system-monitor/testbed/testbed-message-window.md
           - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
         - ECU Control:
           - Overview:  key-functionality/configure/system-monitor/ecu-control/index.md

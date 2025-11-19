@@ -1,160 +1,69 @@
-# Testbed properties
+# Testbed Properties
+
+System Monitor must be configured to operate with the testbed.  
+To open the Testbed Properties dialog box select: Tools > Testbed > Configure.
 
 ## Link
 
-The **Link** tab in the Testbed Properties dialog allows configuration of the communication link between System Monitor and the AVL PUMA testbed.
+Configure the link between PUMA and System Monitor on the **Link** tab.
 
-### Accessing the Link Tab
+![Link](./assets/link.png)
 
-Navigate to:  
-`Tools > Testbed > Configure`  
-Then select the **Link** tab.
+The tab has the following controls:
 
-### Link Modes
+- **Mode** 
+    - **Measurement** — PUMA can take measurements from System Monitor. System Monitor only responds to the Initialisation and Data Acquisition commands sent by PUMA.
+    - **Full Operation** — System Monitor responds to all the commands sent by PUMA.
 
-Choose the desired mode from the dropdown list:
+- **Comms Setup** — Opens the Serial Comm Setup dialog box. The default settings are chosen to suit most applications.
 
-- **Measurement**  
-  - System Monitor responds only to Initialisation and Data Acquisition commands.
-  - Suitable for basic data collection.
+If the setup is not working, check that it conforms to the requirements of your testbed. The setup is saved as part of the Project settings, so it may need to be edited for each project on which it is used.
 
-- **Full Operation**  
-  - System Monitor responds to all commands from PUMA.
-  - Enables full tuning and control capabilities.
+## Watchdog
 
-### Serial Communication Setup
+Configure the watchdogs on the link between PUMA and System Monitor on the **Watchdog** tab.
 
-Click **Comms Setup** to open the Serial Comm Setup dialog.
+![Watchdog](./assets/watchdog.png)
 
-- Default settings are suitable for most applications.
-- If communication fails, verify settings against your testbed requirements.
-- Settings are saved per project and may need adjustment for each use case.
+**Message Timeout panel**
 
-> Note: The link configuration is stored as part of the project settings.
+- **Time Between** — Enter the timeout period. Range: 0.1 to 36,000 seconds. Resolution: 0.1 seconds. Default: 300 seconds.
+- **Enabled?** — When checked, the link is terminated if the time between messages exceeds the value in the Time Between field. The link is re‑established by the PUMA testbed.
 
-##  Watchdog
+**Byte Timeout**
 
-The **Watchdog** tab in the Testbed Properties dialog allows configuration of timeout behaviour between System Monitor and the PUMA testbed.
+- **Time Between** — System Monitor sends a request to the PUMA testbed to repeat the last command if the time between bytes of the same message is greater than the value in this field. Range: 0.1 to 100 seconds. Resolution: 0.1 seconds. Default: 1 second. This feature is always enabled.
 
-### Accessing the Watchdog Tab
-
-Navigate to:  
-`Tools > Testbed > Configure`  
-Then select the **Watchdog** tab.
-
-### Message Timeout
-
-#### Controls
-
-- **Time Between**  
-  - Defines the maximum allowable time between messages.
-  - Range: `0.1 to 36000 seconds`  
-  - Resolution: `0.1 seconds`  
-  - Default: `300 seconds`
-
-- **Enabled?**  
-  - If checked, the link is terminated when the timeout is exceeded.
-  - The link is automatically re-established by the PUMA testbed.
-
-### Byte Timeout
-
-#### Controls
-
-- **Time Between**  
-  - Defines the maximum allowable time between bytes of the same message.
-  - Range: `0.1 to 100 seconds`  
-  - Resolution: `0.1 seconds`  
-  - Default: `1 second`
-
-> Note: Byte Timeout is always enabled.
-
-⚠️ **Important:**  
-Watchdog properties cannot be modified while the Testbed Link is enabled.
-
-See also:  
-- testbed-properties-link.md
+!!! note
+    The Watchdog properties cannot be changed while the Testbed Link is Enabled.
 
 ## Debug
 
-The **Debug** tab in the Testbed Properties dialog allows configuration of the debug file used to log communication between System Monitor and the PUMA testbed.
+Use the **Debug** tab to configure the Debug file.
 
-### Accessing the Debug Tab
+![Debug](./assets/debug.png)
 
-Navigate to:  
-`Tools > Testbed > Configure`  
-Then select the **Debug** tab.
+- **Debug Enabled?** — When checked, the text that appears in the Testbed Message window is copied to the Debug file. If the file already exists, text is appended to it.
+- **Debug file** — Enter or browse for the name and path of the file where you want to save the debug information. There is no default path but the default file name is `tb_debug.txt`.
 
-### Debug Settings
-- **Debug Enabled?**  
-  - When checked, all text shown in the Testbed Message Window is copied to the debug file.
-  - If the file already exists, new entries are appended.
-
-- **Debug File**  
-  - Specify the name and path of the file where debug information will be saved.
-  - Default filename: `tb_debug.txt`  
-  - No default path is provided.
-
-> ⚠️ The debug filename cannot be changed while the Testbed Link is enabled.  
-> However, debug logging can still be toggled on or off.
-
-### Use Case
-
-Enabling debug logging is useful for:
-- Diagnosing communication issues
-- Tracking command sequences
-- Reviewing parameter exchanges
+The debug filename cannot be changed if the Testbed Link is Enabled, but debug may be switched on or off.
 
 ## Commands
 
-The **Commands** tab in the Testbed Properties dialog allows configuration of how System Monitor responds to commands issued by the PUMA testbed.
+Use the **Commands** tab to configure the way System Monitor responds to [PUMA commands](puma-commands.md).
 
-### Accessing the Commands Tab
+![Commands](./assets/commands.png)
 
-Navigate to:  
-`Tools > Testbed > Configure`  
-Then select the **Commands** tab.
+- **Send command confirmation to PUMA?** — When PUMA sends System Monitor a command, it expects a reply within a certain time. If System Monitor cannot execute the command and reply within that time, a command confirmation message may be sent in place of the reply. This gives System Monitor longer to execute the command and allows the definitive reply to be sent later.  
+    - When a command check box is selected, that command will be confirmed before the definitive reply is sent.
 
-### Command Confirmation
-
-- **Send command confirmation to PUMA?**  
-  - When enabled, System Monitor sends a confirmation message before the definitive reply.
-  - This is useful when System Monitor cannot complete a command within the expected time.
-  - The confirmation extends the time available for execution and allows the reply to be sent later.
-
-> Each command has a checkbox. If selected, that command will be confirmed before the reply is sent.
-
-### Command Naming
-- **View as**  
-  - PUMA and System Monitor use different command names.
-  - You can choose to view commands using either:
-    - PUMA terminology
-    - System Monitor equivalents
-
-This setting helps align the interface with the user's preferred terminology or protocol documentation.
+- **View as** — PUMA uses different command names to System Monitor. Commands can be viewed either as the PUMA command names or as their System Monitor equivalents.
 
 ## Translate
 
-The **Translate** tab in the Testbed Properties dialog allows configuration of parameter identifier translation between System Monitor and the PUMA testbed.
+Use the **Translate** tab to configure the correspondence between System Monitor and PUMA parameter identifiers.
 
-### Accessing the Translate Tab
-Navigate to:  
-`Tools > Testbed > Configure`  
-Then select the **Translate** tab.
+![Translate](./assets/translate.png)
 
-### Translation Settings
-
-- **Command translation enabled?**  
-  - When selected, System Monitor translates parameter identifiers between its own format and PUMA’s format.
-  - This applies to both incoming and outgoing commands.
-
-- **Translation file**  
-  - Specify the path and filename of the translation file.
-  - This file contains the equivalence list used for identifier mapping.
-
-> The translation file ensures compatibility between differing naming conventions used by System Monitor and PUMA.
-
-### Use Case
-
-This feature is essential when:
-- Integrating systems with differing parameter naming schemes
-- Ensuring consistent interpretation of commands and data
+- **Command translation enabled?** — When selected, the parameter identifiers used by PUMA are translated to those used by System Monitor and vice‑versa.
+- **Translation file** — Enter or browse for the name and path of the file where System Monitor can find the equivalents list to translate the parameter identifiers.

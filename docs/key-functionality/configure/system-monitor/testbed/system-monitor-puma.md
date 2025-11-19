@@ -1,46 +1,68 @@
-# System Monitor & PUMA Integration
+Select: Tools > Testbed to access the Testbed sub-menu.
 
-System Monitor communicates with the AVL PUMA testbed system via a serial port using a software protocol. This integration enables automated tuning workflows.
+- **Configure** — Opens the Testbed Properties dialog box (Shortcut CTRL+SHIFT+F5)  
+- **Enable Link** — Switches the Testbed Link on and off (Shortcut CTRL+SHIFT+F6)  
+- **Message Window** — Opens the Testbed Message window (Shortcut CTRL+SHIFT+F7)
 
-## Communication Protocol
+## Link
 
-PUMA issues commands to System Monitor and receives replies. Supported operations include:
+Selecting/deselecting the **Enable Link** command (Tools menu) switches the link between System Monitor and the testbed on and off.
 
-- Reading and modifying editable parameters
-- Downloading parameters to the ECU
-- Acquiring measurement parameters
-- Selecting parameter description and binary data files
+- When the link is enabled, the ECU is put On-Line.
+- Note: If Full Operation mode is selected on the Testbed Properties → Link tab, Live Tune is also enabled.
+- If the ECU is taken Off-line or Live Tune is disabled, the Testbed link is automatically disabled.
+- When the link is enabled, `PUMA enabled` is displayed on the Status Bar.
 
-> Note: Only one project and one embedded data file can be active at a time.
+System Monitor windows can be used to monitor parameter values while the link is enabled. The status of the link, and the information passing across it, are shown on the Testbed Message Window.
 
-## Parameter Management
-- **Editable Parameters**: Can be read and changed
-- **Measurement Parameters**: Can be acquired
-- **Project Files**: Contain parameter descriptions
-- **Embedded Data Files**: Contain binary data
+The parameters that System Monitor acquires from the ECU are defined in the Live Logging Configuration. Ensure that Auto Configuration is On so that the correct data is available to send to the testbed and to display on the screen.
 
-## Link Control
+## Message
 
-Use the following commands from `Tools > Testbed`:
+To open the Testbed Message window select Tools > Testbed > Message Window.
 
-- **Enable Link**: Activates communication between System Monitor and the testbed
-- **Message Window**: Displays communication logs
-- **Configure**: Opens the Testbed Properties dialog
+![Testbed Message Window](./assets/message-window.png)
 
-### Link Status Indicators
+The window shows information about the communication between System Monitor and the testbed. It consists of the following areas.
 
-- **Enabled**: Link selected, no data received
-- **Disabled**: Link not selected
-- **Active**: Link selected, data received
-- **Inactive**: Link selected, but timeout occurred
+### Parameters Bar
 
-When the link is enabled:
-- ECU goes online
-- "PUMA enabled" appears in the status bar
-- Live Tune is enabled if Full Operation mode is selected
+PUMA defines a single block of parameters, and declares the rate at which it will request those parameters.
 
-If the ECU goes offline or Live Tune is disabled, the link is automatically disabled.
+The Parameters Bar displays the following:
 
-## Live Logging Configuration
+- **Params** — the number of parameters in the block  
+- **Rate** — the rate at which these parameters will be requested
 
-System Monitor acquires ECU parameters based on the Live Logging Configuration. Ensure **Auto Configuration** is enabled to send and display correct data.
+### Message Window
+
+Shows the information which is being transferred between System Monitor and the testbed as follows:
+
+- **Commands** — Mnemonics received from the testbed, for example: ‘Select Parameters for Acquisition’. 
+- **Arguments** — Information associated with a Command, for example: `Rate: 1s Params: Speed, Gear, Revs..`  
+- **Messages** — Mnemonics sent in reply to a request for parameter values, for example: ‘Reply to Acquire Parameters’  
+- **Parameter** — Identifiers and values (in engineering units) of parameters associated with a Message.  
+- **Debug** — When Debug is on requests repetition of the last message from PUMA to System Monitor or System Monitor to PUMA. Also requests acknowledgements from System Monitor to PUMA that the last message was received.  
+- **Watchdog** — When Watchdog is on watchdog time-outs are shown in the following form:
+    - `Byte timeout <bto>`, where `bto` is the byte timeout value.  
+    - `Message timeout <mto>`, where `mto` is the message timeout value.  
+- **Errors** — possible values are:
+    - Command not executed  
+    - Error during execution `<txt>`, where `<txt>` gives details of the command arguments in error, or the external error that occurred  
+    - Command not available
+
+### Status Bar
+
+- **Link** — Indicates the link status:
+    - **enabled** — Link is selected, but no bytes have been received  
+    - **disabled** — Link is not selected  
+    - **active** — Link is selected, and bytes have been received  
+    - **inactive** — Link is selected, but a message timeout has occurred
+- **Bytes** — the number of bytes since (and including) the last Init command.  
+- **Message** — Indicates the current message status:
+    - **waiting** — Waiting for a command  
+    - **received** — Received a command, not yet sent a confirmation or definitive reply  
+    - **confirmed** — Sent a confirmation, not yet sent a definitive reply  
+    - **replied** — Sent a definitive reply, waiting for handshake  
+    - **repeat** — Waiting for PUMA to repeat a command after a byte timeout
+- **Last Error** — Shows the last error that occurred. This is displayed even if the link has since recovered from the error.

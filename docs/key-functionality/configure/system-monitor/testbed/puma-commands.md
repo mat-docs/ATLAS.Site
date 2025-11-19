@@ -9,9 +9,7 @@ All values exchanged use engineering units for:
 - Plausible physical limits
 - Minimum increments
 
----
-
-## 1. Initialisation Commands
+## Initialisation Commands
 
 ### `Init`
 Initialises System Monitor for a PUMA tuning session.
@@ -26,9 +24,7 @@ Sent by PUMA to declare protocol version and identify itself.
 - If version is V2.0 or later: System Monitor replies with its version (V7.0)
 - If version is V1.0 or sub-version: System Monitor replies with `command not available` error and rejects all subsequent commands
 
----
-
-## 2. Configuration Commands
+## Configuration Commands
 
 ### `Select Project and Embedded Data`
 Must follow an `Init` command.
@@ -61,9 +57,7 @@ Changes the filename for future saves.
 - Does not save data
 - If filename is invalid, returns `error during execution`
 
----
-
-## 3. Map Manipulation Commands
+## Map Manipulation Commands
 
 ### `Select Map`
 PUMA nominates a map to read or modify.
@@ -109,9 +103,8 @@ Returns error if:
 - Grid range is off-map
 - Values are capped if outside limits (no error sent)
 
----
+## Scalar Manipulation Commands
 
-## 4. Scalar Manipulation Commands
 ### `Get Scalar from System Monitor`
 PUMA must send:
 - LUN = 1
@@ -133,9 +126,7 @@ Returns error if:
 - Parameter is not editable
 - Value is capped if outside limits (no error sent)
 
----
-
-## 5. Data Acquisition Commands
+## Data Acquisition Commands
 
 ### `Select Parameters for Acquisition`
 Specifies parameters to be acquired.
@@ -164,7 +155,8 @@ Switches ECU mode.
 - No data is downloaded
 - `Acquire Parameters` commands are rejected
 
-> ⚠️ Caution: Switching modes without saving may result in data loss.
+!!! warning
+    Switching modes without saving may result in data loss.
 
 ### `Acquire Parameters`
 Requests current values for selected parameters.
@@ -174,9 +166,7 @@ Returns:
 
 If offline, returns `command not executed`.
 
----
-
-## 6. Special Parameters
+## Special Parameters
 
 ### `APS_Errors`
 
@@ -191,8 +181,6 @@ Returns `error during execution`
 #### `Select Parameters for Acquisition`
 Includes error count in response to `Acquire Parameters`
 
----
-
 ### `APS_LinkOK`
 
 #### `Get Scalar`
@@ -206,9 +194,7 @@ Returns `error during execution`
 #### `Select Parameters for Acquisition`
 Includes link status (1 = active, 0 = inactive)
 
----
-
-## 7. Unsupported Commands
+## Unsupported Commands
 
 System Monitor does **not** support the following PUMA commands:
 
@@ -230,9 +216,7 @@ System Monitor does **not** support the following PUMA commands:
 - `Reset Device`
 - `Set Format`
 
----
-
-## 8. Error Handling
+## Error Handling
 
 System Monitor may return the following errors:
 
@@ -248,9 +232,7 @@ System Monitor may return the following errors:
 > All errors include an error code and comment.  
 > Errors are visible in the Testbed Message Window.
 
----
-
-## 9. PUMA Errors
+## PUMA Errors
 
 Although PUMA is designed for unattended tuning, commands may occasionally fail. System Monitor can return the following error messages:
 
@@ -277,12 +259,6 @@ Although PUMA is designed for unattended tuning, commands may occasionally fail.
 - Errors are displayed in the **Testbed Message Window**
 - The **Last Error** field in the status bar shows the most recent error, even if the link has recovered
 
-> ⚠️ Reminder: System Monitor only supports one project at a time.  
-> The LUN parameter must always be set to `1`. Any other value will trigger an `error during execution`.
-
----
-
-## Notes
-
-- Only one project may be active at a time
-- LUN must always be set to `1`; other values will trigger an error
+!!! reminder
+    System Monitor only supports one project at a time.  
+    The LUN parameter must always be set to `1`. Any other value will trigger an `error during execution`.
