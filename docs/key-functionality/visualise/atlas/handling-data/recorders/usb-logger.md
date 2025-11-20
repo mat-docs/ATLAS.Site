@@ -1,6 +1,6 @@
 # USB Logger and Recorder
 
-<!-- md:version v11.4.3.X -->
+<!-- md:version v11.4.4.X -->
 
 This guide provides a step-by-step overview of how to use a USB Logger system to collect, transfer, and visualise sensor data efficiently. It covers setup on the vehicle, data offloading procedures, and how to import and decode the data in ATLAS. Designed for flexibility, the system supports a range of operational environments.
 

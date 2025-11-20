@@ -1,7 +1,7 @@
 site_name: ATLAS Product Suite
 site_url: https://atlas.motionapplied.com/
+repo_url: https://github.com/mat-docs/ATLAS.Site
 edit_uri: edit/main/docs/
-# repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
 site_description: '"Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
@@ -135,13 +135,29 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
-    - SECU4: 
+    - SECU4:
       - Stream API: 
-        - Overview:                   developer-resources/secu4/stream_api/index.md
-        - Stream API Client:          developer-resources/secu4/stream_api/stream_client.md
-        - Stream API Server:          developer-resources/secu4/stream_api/stream_server.md
-        - Key Generator Service:      developer-resources/secu4/stream_api/key_generator.md
-        - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+        - Overview: developer-resources/secu4/stream_api/index.md
+        - Getting Started:
+          - Overview: developer-resources/secu4/stream_api/reference docs/getting-started/overview.md
+          - Quick Start: developer-resources/secu4/stream_api/reference docs/getting-started/quick-start.md
+          - Installation: developer-resources/secu4/stream_api/reference docs/getting-started/installation.md
+        - Services:
+          - Session Management: developer-resources/secu4/stream_api/reference docs/services/session-management.md
+          - Connection Management: developer-resources/secu4/stream_api/reference docs/services/connection-management.md
+          - Packet Writer: developer-resources/secu4/stream_api/reference docs/services/packet-writer.md
+          - Packet Reader: developer-resources/secu4/stream_api/reference docs/services/packet-reader.md
+          - Data Format Management: developer-resources/secu4/stream_api/reference docs/services/data-format-management.md
+        - Configuration:
+          - Server Configuration: developer-resources/secu4/stream_api/reference docs/configuration/server-config.md
+          - Docker Setup: developer-resources/secu4/stream_api/reference docs/configuration/docker-setup.md
+        - Examples:    
+          - Telemetry Example: developer-resources/secu4/stream_api/reference docs/examples/telemetry-example.md
+          - Custom Messages: developer-resources/secu4/stream_api/reference docs/examples/custom-messages.md
+        - Reference:
+          - API Reference: developer-resources/secu4/stream_api/reference docs/reference/api-reference.md
+          - Error Handling: developer-resources/secu4/stream_api/reference docs/reference/error-handling.md
+        - Troubleshooting: developer-resources/secu4/stream_api/reference docs/reference/troubleshooting.md
         - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
@@ -151,7 +167,18 @@ nav:
         - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
         - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
-        - Overview: developer-resources/secu4/support_library/index.md
+        - Overview: developer-resources/secu4/support_library/reference docs/index.md
+        # - Home: developer-resources/secu4/support_library/index.md
+        - Core Modules:
+          - Session Manager: developer-resources/secu4/support_library/reference docs/session-manager.md
+          - Data Format Manager: developer-resources/secu4/support_library/reference docs/data-format-manager.md
+        - Data Flow Modules:
+          - Writer Module: developer-resources/secu4/support_library/reference docs/writer-module.md
+          - Reader Module: developer-resources/secu4/support_library/reference docs/reader-module.md
+          - Buffering Module: developer-resources/secu4/support_library/reference docs/buffering-module.md
+          - Interpolation Module: developer-resources/secu4/support_library/reference docs/interpolation-module.md
+        - Reference:
+          - API Reference: developer-resources/secu4/support_library/reference docs/api-reference.md
     - ATLAS: 
       - Overview: developer-resources/atlas/index.md
       - Nuget: 
@@ -277,7 +304,8 @@ nav:
         - Data Services: extending-atlas/rta/introduction/data-services.md
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
-  - News and Release Notes: blog/index.md
+  - News and Release Notes: 
+    - blog/index.md
   - Downloads: https://portal.motionapplied.com/
   - Support: 
     - Troubleshooting: 
@@ -323,10 +351,22 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@motionapplied.com
-  tags:
-    prototype: prototype
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  consent:
+  title: Cookie consent
+  description: >- 
+    We use cookies to recognize your repeated visits and preferences, as well
+    as to measure the effectiveness of our documentation and whether users
+    find what they're searching for. With your consent, you're helping us to
+    make our documentation better.
+  cookies:
+    analytics:
+      name: Google Analytics
+      checked: true
 
 plugins:
-  - blog
   - search
   - tags
+  - blog
