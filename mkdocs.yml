@@ -34,6 +34,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+hooks:
+  - overrides/hooks/shortcodes.py
+
 copyright: Copyright &copy; 2025 Motion Applied Ltd.
 
 nav:
@@ -73,7 +76,7 @@ nav:
           - Go To: key-functionality/visualise/atlas/time-and-position/go-to.md
         - Handling Data:
           - Recorders: 
-            # - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
+            - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
             - NASCAR Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
             - Data Server Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/data-server.md
             - File Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/file-telemetry.md
@@ -315,6 +318,10 @@ markdown_extensions:
   - admonition
   - attr_list
   - codehilite
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - def_list
   - footnotes
   - toc:
