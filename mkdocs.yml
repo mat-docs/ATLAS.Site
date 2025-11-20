@@ -132,6 +132,12 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - System Monitor:
+      - Active X: 
+        - Overview: developer-resources/system-monitor/active-x/index.md
+        - Methods: developer-resources/system-monitor/active-x/methods.md
+        - Examples:
+          - Using SendMessage() to send a Read RAM message to the ECU: developer-resources/system-monitor/active-x/examples/example-1.md
     - SECU4:
       - Stream API: 
         - Overview: developer-resources/secu4/stream_api/index.md
