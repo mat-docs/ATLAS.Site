@@ -24,6 +24,7 @@ Applications can override the configuration file name. If the settings have neve
     <Setting name="MaximumTimeInMemoryBeforeFlushingingInSeconds" desc="MaximumTimeInMemoryBeforeFlushingingInSeconds" readonly="false" value="300" type="1" />
     <Setting name="MaximumTimeInMemoryBeforeFreeingInSeconds" desc="MaximumTimeInMemoryBeforeFreeingInSeconds" readonly="false" value="300" type="1" />
     <Setting name="ParameterDataPoolingSize" desc="ParameterDataPoolingSize" readonly="false" value="512" type="1" />
+</item>
 ```
 
  To modify the settings, change the value for each setting in the XML.
