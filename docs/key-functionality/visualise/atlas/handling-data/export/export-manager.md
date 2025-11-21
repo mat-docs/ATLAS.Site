@@ -50,20 +50,25 @@ Use the Export Manager to streamline your data export process and ensure you get
 
 ### Removing Team Security
 
-As of version XXXXXX, Export Manager now allows users who own applications to remove team security during export. This enables sharing sessions with trusted external parties (e.g., suppliers) using a generic ATLAS license.
+As of version XXXXXX, Export Manager now allows users to remove team security during export. This enables sharing sessions with trusted external parties (e.g., suppliers) using a generic ATLAS license.
 
-!!! note
-    Only parameters accessible by the export license are included. Exported sessions retain RDA restrictions even if opened with a different license.
+!!! info
+    - Consortium selection only affects who can open the exported session. As a member of the original consortium, you can choose how data is restricted during export.
+    - The exported session will only include parameters you have access to under your current license.
+    - RDA restrictions always remain applied, regardless of consortium changes or “No Consortium” selection.
+    - This feature is only available when exporting to SQLRace or SSN2 formats.
 
+![Export Manager Consortium Options](assets/team-restrictions.png)
 
 **How to Remove Team Security During Export:**
 
 1. Open Export Manager and create a new export configuration.
-2. Select session(s) to export.
-3. Choose format: SSN2 or SQLRace.
-4. If you are the app owner:
-    - Select consortium or No Team Restriction.
+2. Select the session(s) you want to export.
+3. Choose the export format: SSN2 or SQLRace.
+4. Select consortium restriction options:
+    - Unchanged – Keeps the current consortium setting from the selected session. This option will change based on the session chosen.
+    - No Consortium – Removes all team restrictions. The exported session can be opened by any ATLAS license.
+    - Specific Consortium – Locks the export configuration to one consortium only, even if you later change the session.
 5. Confirm export options:
     - If “All Parameters” is selected, RDA-locked parameters will not be exported.
-6. Click Export.
-
+6. Click Export or Save.
