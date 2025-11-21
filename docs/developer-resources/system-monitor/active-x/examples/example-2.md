@@ -43,3 +43,11 @@ Sub Main
     Set SmApi = Nothing
 End Sub
 ```
+
+### Sample Output
+
+```
+BiosAC_Hiside1ScaledUpper = 2.64
+Adding 10% to BiosAC_Hiside1ScaledUpper
+BiosAC_Hiside1ScaledUpper = 2.904
+```
