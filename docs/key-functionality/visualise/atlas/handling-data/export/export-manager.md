@@ -47,3 +47,23 @@ The Export Manager helps you extract and save session data for analysis, reporti
     - Click "Export" to run the export immediately. Progress is shown next to the Export button.
 
 Use the Export Manager to streamline your data export process and ensure you get the data you need, in the format you want.
+
+### Removing Team Security
+
+As of version XXXXXX, Export Manager now allows users who own applications to remove team security during export. This enables sharing sessions with trusted external parties (e.g., suppliers) using a generic ATLAS license.
+
+!!! note
+    Only parameters accessible by the export license are included. Exported sessions retain RDA restrictions even if opened with a different license.
+
+
+**How to Remove Team Security During Export:**
+
+1. Open Export Manager and create a new export configuration.
+2. Select session(s) to export.
+3. Choose format: SSN2 or SQLRace.
+4. If you are the app owner:
+    - Select consortium or No Team Restriction.
+5. Confirm export options:
+    - If “All Parameters” is selected, RDA-locked parameters will not be exported.
+6. Click Export.
+
