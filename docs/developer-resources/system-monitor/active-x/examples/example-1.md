@@ -17,15 +17,22 @@ Sub Main
 
     'Reply message must be declared with ReDim – SM-V7 will dynamically allocate
     'to match response size. Size used here is ignored, so can be 0
-    ReDim aReply(0) As Integer
 
+    Dim aReply(0) As Integer
+    Dim vaiantReply As Variant
+    variantReply = aReply
+    
     'Timeout
     Dim Timeout As Integer
-    Timout = 400
-
+    Timeout = 400
+    
+    'Retries
+    Dim wTries As Integer
+    wTries = 3
+    
     'Send the message
     Dim Err As Long
-    Err = SmApi.SendMessage(0, aSend, aReply, Timeout)
+    Err = SmApi.SendMessageEx(App, aSend, variantReply, Timeout, wTries)
 
     'Print error code
     Debug.Print "Error code = ";
