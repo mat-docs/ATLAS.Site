@@ -2893,7 +2893,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to create. - One of FileType.Virtuals FileType.LoggingConfig or FileType.Can. |
+| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to create. - One of FileType.Virtuals, FileType.LoggingConfig or FileType.Can. |
 | file_path | [string](#string) |  | The path of the file to create. |
 | save_existing | [bool](#bool) |  | Whether to save the existing file. |
 | overwrite | [bool](#bool) |  | Whether to overwrite an existing file with the same path. |
@@ -3018,7 +3018,7 @@ System Monitor Trigger Types
 | dtv_path | [string](#string) |  | Filename and full path of DTV file. |
 | export_path | [string](#string) |  | Filename and full path of exported file. |
 | data_only | [bool](#bool) |  | True if only data is to be exported, false to export data and definitions. |
-| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. One or more of: ParameterType.scalar for all scalar parameters ParameterType.axis_1 for all 1Axis parameters ParameterType.axis_2 for all 2Axis parameters ParameterType.array for all array parameters ParameterType.string for all string parameters ParameterType.Can for all CAN parameters ParameterType.Virtual for all virtual parameters ParameterType.Axis for all axis parameters ParameterType.Input for all input parameters ParameterType.Measurement for all measurement parameters |
+| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. - One or more of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 
 
 
@@ -3036,7 +3036,7 @@ System Monitor Trigger Types
 | app_id | [uint32](#uint32) |  | Application Id. |
 | export_path | [string](#string) |  | Filename and full path. |
 | data_only | [bool](#bool) |  | True if only data is to be exported, false to export data and definitions. |
-| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. One or more of: ParameterType.scalar for all scalar parameters ParameterType.axis_1 for all 1Axis parameters ParameterType.axis_2 for all 2Axis parameters ParameterType.array for all array parameters ParameterType.string for all string parameters ParameterType.Can for all CAN parameters ParameterType.Virtual for all virtual parameters ParameterType.Axis for all axis parameters ParameterType.Input for all input parameters ParameterType.Measurement for all measurement parameters |
+| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. - One or more of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 
 
 
