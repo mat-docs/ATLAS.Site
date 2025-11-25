@@ -120,7 +120,6 @@
     - [TextConversion](#system_monitor_parameter-TextConversion)
     - [TextConversionReply](#system_monitor_parameter-TextConversionReply)
     - [TextConversionRequest](#system_monitor_parameter-TextConversionRequest)
-    - [TypeRequest](#system_monitor_parameter-TypeRequest)
     - [UndoRequest](#system_monitor_parameter-UndoRequest)
     - [ValueReply](#system_monitor_parameter-ValueReply)
     - [WarningLimitsReply](#system_monitor_parameter-WarningLimitsReply)
@@ -1275,7 +1274,7 @@ System Monitor Trigger Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | app_id | [uint32](#uint32) |  | Id of the application |
-| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Optional: Use ParameterType.Undefined for ALL |
+| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. - One of ParameterType.Undefined, ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 
 
 
@@ -1575,7 +1574,7 @@ System Monitor Trigger Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Id of the conversion. |
-| type | [system_monitor_common.ConversionType](#system_monitor_common-ConversionType) |  | Type of the conversion. |
+| type | [system_monitor_common.ConversionType](#system_monitor_common-ConversionType) |  | Type of the conversion. - One of ConversionType.Rational, ConversionType.Table, ConversionType.Text or ConversionType.Formula. |
 
 
 
@@ -1887,7 +1886,7 @@ System Monitor Trigger Types
 | Id | [string](#string) |  | Id of the parameter |
 | name | [string](#string) |  | Name of the parameter. |
 | description | [string](#string) |  | Description of the parameter. |
-| type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Type of the parameter. |
+| type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. - One of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Axis or ParameterType.Measurement. |
 | units | [string](#string) |  | Units of the parameter. |
 | format | [string](#string) |  | Format used to display the parameter&#39;s values. |
 | conversion_id | [string](#string) |  | Id of the conversion rule for the parameter. |
@@ -1949,7 +1948,7 @@ System Monitor Trigger Types
 | ----- | ---- | ----- | ----------- |
 | app_id | [uint32](#uint32) |  | Id of the application |
 | parameter_id | [string](#string) |  | Id of the parameter. |
-| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Data type of the parameter. |
+| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. - One of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 
 
 
@@ -2254,21 +2253,6 @@ System Monitor Trigger Types
 
 
 
-<a name="system_monitor_parameter-TypeRequest"></a>
-
-### TypeRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. |
-
-
-
-
-
-
 <a name="system_monitor_parameter-UndoRequest"></a>
 
 ### UndoRequest
@@ -2562,7 +2546,7 @@ System Monitor Trigger Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parameter_id | [string](#string) |  | Parameter id. |
-| type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter type. |
+| type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. - One of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 | reason1 | [ReasonCode](#system_monitor_project-ReasonCode) |  | Reason codes for difference between the parameter in the application in memory and the first DTV supplied. |
 | reason2 | [ReasonCode](#system_monitor_project-ReasonCode) |  | Reason codes for difference between the parameter in the application in memory and the second DTV supplied. |
 
@@ -2854,7 +2838,7 @@ System Monitor Trigger Types
 | ----- | ---- | ----- | ----------- |
 | app_id | [uint32](#uint32) |  | Application Id. |
 | parameter_id | [string](#string) |  | Parameter Id. |
-| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. |
+| data_type | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) |  | Parameter data type. - One of ParameterType.scalar, ParameterType.axis_1, ParameterType.axis_2, ParameterType.array, ParameterType.string, ParameterType.Can, ParameterType.Virtual, ParameterType.Axis, ParameterType.Input or ParameterType.Measurement. |
 | return_code | [system_monitor_common.ErrorCode](#system_monitor_common-ErrorCode) |  | Return code. |
 
 
@@ -2893,7 +2877,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | File type. |
+| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | File name of requested type. - One of FileType.Project, FileType.Desktop, FileType.Virtuals, FileType.LoggingConfig or FileType.Can. |
 | slot | [uint32](#uint32) |  | Slot index (1-8). Only required for FileType.LoggingConfig and FileType.Can |
 
 
@@ -2909,7 +2893,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to create. |
+| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to create. - One of FileType.Virtuals FileType.LoggingConfig or FileType.Can. |
 | file_path | [string](#string) |  | The path of the file to create. |
 | save_existing | [bool](#bool) |  | Whether to save the existing file. |
 | overwrite | [bool](#bool) |  | Whether to overwrite an existing file with the same path. |
@@ -2927,7 +2911,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | The type of file to open. |
+| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | The type of file to open. - One of FileType.Desktop, FileType.Virtuals, FileType.LoggingConfig or FileType.Can. |
 | file_path | [string](#string) |  | The path of the file to open. |
 | slot | [uint32](#uint32) |  | Slot index. Only required when loading Logging and CAN configuration (1-8). |
 | activate | [bool](#bool) |  | True to set active. Only required when loading Logging and CAN configuration (1-8). |
@@ -2961,7 +2945,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to save. |
+| file_type | [system_monitor_common.FileType](#system_monitor_common-FileType) |  | Type of file to save. - One of FileType.Desktop, FileType.Virtuals, FileType.LoggingConfig or FileType.Can. |
 | file_path | [string](#string) |  | The path of the file to save. |
 | comment | [string](#string) |  | File comments. |
 | notes | [string](#string) |  | File notes. |
@@ -3034,7 +3018,7 @@ System Monitor Trigger Types
 | dtv_path | [string](#string) |  | Filename and full path of DTV file. |
 | export_path | [string](#string) |  | Filename and full path of exported file. |
 | data_only | [bool](#bool) |  | True if only data is to be exported, false to export data and definitions. |
-| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Data types included in export. |
+| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. One or more of: ParameterType.scalar for all scalar parameters ParameterType.axis_1 for all 1Axis parameters ParameterType.axis_2 for all 2Axis parameters ParameterType.array for all array parameters ParameterType.string for all string parameters ParameterType.Can for all CAN parameters ParameterType.Virtual for all virtual parameters ParameterType.Axis for all axis parameters ParameterType.Input for all input parameters ParameterType.Measurement for all measurement parameters |
 
 
 
@@ -3052,7 +3036,7 @@ System Monitor Trigger Types
 | app_id | [uint32](#uint32) |  | Application Id. |
 | export_path | [string](#string) |  | Filename and full path. |
 | data_only | [bool](#bool) |  | True if only data is to be exported, false to export data and definitions. |
-| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Data types included in export. |
+| data_types | [system_monitor_common.ParameterType](#system_monitor_common-ParameterType) | repeated | Parameter data types included in export. One or more of: ParameterType.scalar for all scalar parameters ParameterType.axis_1 for all 1Axis parameters ParameterType.axis_2 for all 2Axis parameters ParameterType.array for all array parameters ParameterType.string for all string parameters ParameterType.Can for all CAN parameters ParameterType.Virtual for all virtual parameters ParameterType.Axis for all axis parameters ParameterType.Input for all input parameters ParameterType.Measurement for all measurement parameters |
 
 
 
