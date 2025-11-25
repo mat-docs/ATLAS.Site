@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-* Visual Studio 2019 or later (for C#)
+* Visual Studio 2022 or later (for C#)
 * MATLAB 2020b or later (for MATLAB)
 * Python 3.7 or later (for Python)
 * Python IDE such as PyCharm or Visual Studio Code (for Python)
-* .NET 6 or later
+* .NET 8 or later
 * ATLAS 10 installed on your machine
 * A valid ATLAS and SQLRace license
 
