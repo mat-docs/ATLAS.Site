@@ -50,7 +50,7 @@ Use the Export Manager to streamline your data export process and ensure you get
 
 ### Removing Team Security
 
-As of version XXXXXX, Export Manager now allows users to remove team security during export. This enables sharing sessions with trusted external parties (e.g., suppliers) using a generic ATLAS license.
+As of version 11.4.4.371, Export Manager now allows users to remove team security during export. This enables sharing sessions with trusted external parties (e.g., suppliers) using a generic ATLAS license.
 
 !!! info
     - Consortium selection only affects who can open the exported session. As a member of the original consortium, you can choose how data is restricted during export.
