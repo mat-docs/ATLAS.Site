@@ -1,3 +1,4 @@
 site
 .venv/
 main.py
+/.vs
