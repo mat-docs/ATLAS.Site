@@ -46,6 +46,80 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - User Guides:
     - Overview: key-functionality/index.md
+    - Configuration:
+      - System Monitor:
+        - Overview: key-functionality/configure/system-monitor/index.md
+        - Getting Started: 
+          - Overview: key-functionality/configure/system-monitor/getting-started/index.md
+          - RDA: key-functionality/configure/system-monitor/getting-started/rda.md
+        - Using System Monitor:
+          - Overview: key-functionality/configure/system-monitor/using-sm/index.md
+          - Menus: key-functionality/configure/system-monitor/using-sm/menus.md
+          - Windows and Parameters: key-functionality/configure/system-monitor/using-sm/windows-parameters.md
+          - Configuration and Advanced Settings: key-functionality/configure/system-monitor/using-sm/advanced.md
+          - Projects:
+            - Overview: key-functionality/configure/system-monitor/projects/index.md
+            - Project Setup: 
+              - Customer Base: key-functionality/configure/system-monitor/projects/project-setup.md
+              - Unit.Def Files: key-functionality/configure/system-monitor/projects/unit-def.md
+            - Program and Data Versions:
+              - Creating Versions: key-functionality/configure/system-monitor/projects/program-data-versions.md
+              - File Types: key-functionality/configure/system-monitor/projects/file-types.md
+            - Application Management: key-functionality/configure/system-monitor/projects/applications.md
+            - Data Version Development: key-functionality/configure/system-monitor/projects/data-version-development.md
+            - Data Wizard: key-functionality/configure/system-monitor/projects/data-wizard.md
+            - ECU Connection: key-functionality/configure/system-monitor/projects/ecu-communication.md
+            - File Operations: key-functionality/configure/system-monitor/projects/file-operations.md
+          - Displays:
+            - Overview: key-functionality/configure/system-monitor/using-sm/display/index.md
+            - Numeric: key-functionality/configure/system-monitor/using-sm/display/numeric.md
+            - Bar: key-functionality/configure/system-monitor/using-sm/display/bar.md
+            - Error: key-functionality/configure/system-monitor/using-sm/display/error.md
+            - Event: key-functionality/configure/system-monitor/using-sm/display/event.md
+            - Grid: key-functionality/configure/system-monitor/using-sm/display/grid.md
+            - Oscilloscope: key-functionality/configure/system-monitor/using-sm/display/oscilloscope.md
+            - Signal Sampling: key-functionality/configure/system-monitor/using-sm/display/signal.md
+            - Alarms: key-functionality/configure/system-monitor/using-sm/display/alarms.md
+        - Data Acquisition: 
+          - Overview: key-functionality/configure/system-monitor/data-acquisition/index.md
+          - Logging:
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/logging/index.md
+            - Live Logging: key-functionality/configure/system-monitor/data-acquisition/logging/live-logging.md
+            - Remote Logging: key-functionality/configure/system-monitor/data-acquisition/logging/remote-logging.md
+            - Burst Logging: key-functionality/configure/system-monitor/data-acquisition/logging/burst-logging.md
+            - Remote Configuration Compare: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/logging-config.md
+          - CAN: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/can/index.md
+            - CAN Configurations: key-functionality/configure/system-monitor/data-acquisition/can/configuration.md
+          - Sensors: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
+            - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
+            - Software Calibrated Sensors: key-functionality/configure/system-monitor/data-acquisition/sensors/software-calibrated-sensors.md
+            - Sensors and Actuators: key-functionality/configure/system-monitor/data-acquisition/sensors/sensors-and-actuators.md
+            - Obtaining Sensor Calibration Data: key-functionality/configure/system-monitor/data-acquisition/sensors/sensor-calibration-data.md
+        - Tuning:
+          - Overview:  key-functionality/configure/system-monitor/tuning/index.md
+          - Editable Parameters: key-functionality/configure/system-monitor/tuning/editable-parameters.md
+          - Changing Values:  key-functionality/configure/system-monitor/tuning/changing-values.md
+          - Graphical Maps:  key-functionality/configure/system-monitor/tuning/graphical-maps.md
+          - Live Tune:  key-functionality/configure/system-monitor/tuning/live-tune.md
+        - PUMA Integration:
+          - Overview: key-functionality/configure/system-monitor/testbed/index.md
+          - Testbed Operations:  key-functionality/configure/system-monitor/testbed/system-monitor-puma.md
+          - Testbed Properties:  key-functionality/configure/system-monitor/testbed/testbed-properties.md
+          - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
+        - ECU Control:
+          - Overview:  key-functionality/configure/system-monitor/ecu-control/index.md
+          - ECU Operations: key-functionality/configure/system-monitor/ecu-control/ecu-operations.md
+          - ECU Memory: key-functionality/configure/system-monitor/ecu-control/ecu-memory.md
+          - Programming Data: key-functionality/configure/system-monitor/ecu-control/programming-data.md
+          - Diagnostics Status: key-functionality/configure/system-monitor/ecu-control/diagnostics-status.md
+        - Hardware: key-functionality/configure/system-monitor/hardware/index.md
+        - Developer Functions:  key-functionality/configure/system-monitor/developer-functions/index.md
+        - History Report: 
+          - Overview: key-functionality/configure/system-monitor/history-report/index.md
+          - Details: key-functionality/configure/system-monitor/history-report/history-details.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
@@ -351,6 +425,9 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@motionapplied.com
+  tags:
+    prototype: prototype
+  generator: false
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
