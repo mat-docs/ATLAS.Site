@@ -209,6 +209,16 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - System Monitor:
+      - Active X: 
+        - Overview: developer-resources/system-monitor/active-x/index.md
+        - Methods: developer-resources/system-monitor/active-x/methods.md
+        - Examples:
+          - Using SendMessage() to send a Read RAM message to the ECU: developer-resources/system-monitor/active-x/examples/example-1.md
+          - Getting and Setting the Value of a Scalar Editable Parameter: developer-resources/system-monitor/active-x/examples/example-2.md
+          - Getting Values From a 1-Axis Map, Axis, Array and 2-Axis Map: developer-resources/system-monitor/active-x/examples/example-3.md
+          - Manipulating the Values in a 1-Axis Map: developer-resources/system-monitor/active-x/examples/example-4.md
+          - Demonstrating functions GetValue2AxisMap and SetValue2AxisMap: developer-resources/system-monitor/active-x/examples/example-5.md
     - SECU4:
       - Stream API: 
         - Overview: developer-resources/secu4/stream_api/index.md
