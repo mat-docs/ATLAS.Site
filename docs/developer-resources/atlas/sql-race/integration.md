@@ -35,10 +35,6 @@ Select the programming language you want to use for your project. The SQLRace AP
     6. Or clone the sample code into the root
     7. Change the variables at the top of the script to connect to your database
 
-=== "MATLAB"
-
-    ***TBC***
-
 ## Importing the APIs
 ### C# NuGet Packages
 The SQLRace API is available as a NuGet package to registered users found here: [Motion Applied NuGet Repository](https://github.com/mat-docs/packages).
