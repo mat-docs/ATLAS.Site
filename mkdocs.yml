@@ -1,7 +1,7 @@
 site_name: ATLAS Product Suite
 site_url: https://atlas.motionapplied.com/
+repo_url: https://github.com/mat-docs/ATLAS.Site
 edit_uri: edit/main/docs/
-# repo_url: https://github.com/mat-docs/ATLAS.Site
 docs_dir: 'docs'
 site_description: '"Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
@@ -34,6 +34,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+hooks:
+  - overrides/hooks/shortcodes.py
+
 copyright: Copyright &copy; 2025 Motion Applied Ltd.
 
 nav:
@@ -43,6 +46,80 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - User Guides:
     - Overview: key-functionality/index.md
+    - Configuration:
+      - System Monitor:
+        - Overview: key-functionality/configure/system-monitor/index.md
+        - Getting Started: 
+          - Overview: key-functionality/configure/system-monitor/getting-started/index.md
+          - RDA: key-functionality/configure/system-monitor/getting-started/rda.md
+        - Using System Monitor:
+          - Overview: key-functionality/configure/system-monitor/using-sm/index.md
+          - Menus: key-functionality/configure/system-monitor/using-sm/menus.md
+          - Windows and Parameters: key-functionality/configure/system-monitor/using-sm/windows-parameters.md
+          - Configuration and Advanced Settings: key-functionality/configure/system-monitor/using-sm/advanced.md
+          - Projects:
+            - Overview: key-functionality/configure/system-monitor/projects/index.md
+            - Project Setup: 
+              - Customer Base: key-functionality/configure/system-monitor/projects/project-setup.md
+              - Unit.Def Files: key-functionality/configure/system-monitor/projects/unit-def.md
+            - Program and Data Versions:
+              - Creating Versions: key-functionality/configure/system-monitor/projects/program-data-versions.md
+              - File Types: key-functionality/configure/system-monitor/projects/file-types.md
+            - Application Management: key-functionality/configure/system-monitor/projects/applications.md
+            - Data Version Development: key-functionality/configure/system-monitor/projects/data-version-development.md
+            - Data Wizard: key-functionality/configure/system-monitor/projects/data-wizard.md
+            - ECU Connection: key-functionality/configure/system-monitor/projects/ecu-communication.md
+            - File Operations: key-functionality/configure/system-monitor/projects/file-operations.md
+          - Displays:
+            - Overview: key-functionality/configure/system-monitor/using-sm/display/index.md
+            - Numeric: key-functionality/configure/system-monitor/using-sm/display/numeric.md
+            - Bar: key-functionality/configure/system-monitor/using-sm/display/bar.md
+            - Error: key-functionality/configure/system-monitor/using-sm/display/error.md
+            - Event: key-functionality/configure/system-monitor/using-sm/display/event.md
+            - Grid: key-functionality/configure/system-monitor/using-sm/display/grid.md
+            - Oscilloscope: key-functionality/configure/system-monitor/using-sm/display/oscilloscope.md
+            - Signal Sampling: key-functionality/configure/system-monitor/using-sm/display/signal.md
+            - Alarms: key-functionality/configure/system-monitor/using-sm/display/alarms.md
+        - Data Acquisition: 
+          - Overview: key-functionality/configure/system-monitor/data-acquisition/index.md
+          - Logging:
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/logging/index.md
+            - Live Logging: key-functionality/configure/system-monitor/data-acquisition/logging/live-logging.md
+            - Remote Logging: key-functionality/configure/system-monitor/data-acquisition/logging/remote-logging.md
+            - Burst Logging: key-functionality/configure/system-monitor/data-acquisition/logging/burst-logging.md
+            - Remote Configuration Compare: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/logging-config.md
+          - CAN: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/can/index.md
+            - CAN Configurations: key-functionality/configure/system-monitor/data-acquisition/can/configuration.md
+          - Sensors: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
+            - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
+            - Software Calibrated Sensors: key-functionality/configure/system-monitor/data-acquisition/sensors/software-calibrated-sensors.md
+            - Sensors and Actuators: key-functionality/configure/system-monitor/data-acquisition/sensors/sensors-and-actuators.md
+            - Obtaining Sensor Calibration Data: key-functionality/configure/system-monitor/data-acquisition/sensors/sensor-calibration-data.md
+        - Tuning:
+          - Overview:  key-functionality/configure/system-monitor/tuning/index.md
+          - Editable Parameters: key-functionality/configure/system-monitor/tuning/editable-parameters.md
+          - Changing Values:  key-functionality/configure/system-monitor/tuning/changing-values.md
+          - Graphical Maps:  key-functionality/configure/system-monitor/tuning/graphical-maps.md
+          - Live Tune:  key-functionality/configure/system-monitor/tuning/live-tune.md
+        - PUMA Integration:
+          - Overview: key-functionality/configure/system-monitor/testbed/index.md
+          - Testbed Operations:  key-functionality/configure/system-monitor/testbed/system-monitor-puma.md
+          - Testbed Properties:  key-functionality/configure/system-monitor/testbed/testbed-properties.md
+          - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
+        - ECU Control:
+          - Overview:  key-functionality/configure/system-monitor/ecu-control/index.md
+          - ECU Operations: key-functionality/configure/system-monitor/ecu-control/ecu-operations.md
+          - ECU Memory: key-functionality/configure/system-monitor/ecu-control/ecu-memory.md
+          - Programming Data: key-functionality/configure/system-monitor/ecu-control/programming-data.md
+          - Diagnostics Status: key-functionality/configure/system-monitor/ecu-control/diagnostics-status.md
+        - Hardware: key-functionality/configure/system-monitor/hardware/index.md
+        - Developer Functions:  key-functionality/configure/system-monitor/developer-functions/index.md
+        - History Report: 
+          - Overview: key-functionality/configure/system-monitor/history-report/index.md
+          - Details: key-functionality/configure/system-monitor/history-report/history-details.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
@@ -73,7 +150,7 @@ nav:
           - Go To: key-functionality/visualise/atlas/time-and-position/go-to.md
         - Handling Data:
           - Recorders: 
-            # - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
+            - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
             - NASCAR Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
             - Data Server Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/data-server.md
             - File Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/file-telemetry.md
@@ -132,18 +209,39 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
-    # - System Monitor: 
-    #   - Automation API:
-    #     - Overview: developer-resources/system-monitor/index.md
-    #     - Reference:  developer-resources/system-monitor/api-methods.md
-    #     - Example:  developer-resources/system-monitor/api-usage.md
-    - SECU4: 
+    - System Monitor:
+      - Active X: 
+        - Overview: developer-resources/system-monitor/active-x/index.md
+        - Methods: developer-resources/system-monitor/active-x/methods.md
+        - Examples:
+          - Using SendMessage() to send a Read RAM message to the ECU: developer-resources/system-monitor/active-x/examples/example-1.md
+          - Getting and Setting the Value of a Scalar Editable Parameter: developer-resources/system-monitor/active-x/examples/example-2.md
+          - Getting Values From a 1-Axis Map, Axis, Array and 2-Axis Map: developer-resources/system-monitor/active-x/examples/example-3.md
+          - Manipulating the Values in a 1-Axis Map: developer-resources/system-monitor/active-x/examples/example-4.md
+          - Demonstrating functions GetValue2AxisMap and SetValue2AxisMap: developer-resources/system-monitor/active-x/examples/example-5.md
+    - SECU4:
       - Stream API: 
-        - Overview:                   developer-resources/secu4/stream_api/index.md
-        - Stream API Client:          developer-resources/secu4/stream_api/stream_client.md
-        - Stream API Server:          developer-resources/secu4/stream_api/stream_server.md
-        - Key Generator Service:      developer-resources/secu4/stream_api/key_generator.md
-        - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+        - Overview: developer-resources/secu4/stream_api/index.md
+        - Getting Started:
+          - Overview: developer-resources/secu4/stream_api/reference docs/getting-started/overview.md
+          - Quick Start: developer-resources/secu4/stream_api/reference docs/getting-started/quick-start.md
+          - Installation: developer-resources/secu4/stream_api/reference docs/getting-started/installation.md
+        - Services:
+          - Session Management: developer-resources/secu4/stream_api/reference docs/services/session-management.md
+          - Connection Management: developer-resources/secu4/stream_api/reference docs/services/connection-management.md
+          - Packet Writer: developer-resources/secu4/stream_api/reference docs/services/packet-writer.md
+          - Packet Reader: developer-resources/secu4/stream_api/reference docs/services/packet-reader.md
+          - Data Format Management: developer-resources/secu4/stream_api/reference docs/services/data-format-management.md
+        - Configuration:
+          - Server Configuration: developer-resources/secu4/stream_api/reference docs/configuration/server-config.md
+          - Docker Setup: developer-resources/secu4/stream_api/reference docs/configuration/docker-setup.md
+        - Examples:    
+          - Telemetry Example: developer-resources/secu4/stream_api/reference docs/examples/telemetry-example.md
+          - Custom Messages: developer-resources/secu4/stream_api/reference docs/examples/custom-messages.md
+        - Reference:
+          - API Reference: developer-resources/secu4/stream_api/reference docs/reference/api-reference.md
+          - Error Handling: developer-resources/secu4/stream_api/reference docs/reference/error-handling.md
+        - Troubleshooting: developer-resources/secu4/stream_api/reference docs/reference/troubleshooting.md
         - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
@@ -153,7 +251,18 @@ nav:
         - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
         - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
-        - Overview: developer-resources/secu4/support_library/index.md
+        - Overview: developer-resources/secu4/support_library/reference docs/index.md
+        # - Home: developer-resources/secu4/support_library/index.md
+        - Core Modules:
+          - Session Manager: developer-resources/secu4/support_library/reference docs/session-manager.md
+          - Data Format Manager: developer-resources/secu4/support_library/reference docs/data-format-manager.md
+        - Data Flow Modules:
+          - Writer Module: developer-resources/secu4/support_library/reference docs/writer-module.md
+          - Reader Module: developer-resources/secu4/support_library/reference docs/reader-module.md
+          - Buffering Module: developer-resources/secu4/support_library/reference docs/buffering-module.md
+          - Interpolation Module: developer-resources/secu4/support_library/reference docs/interpolation-module.md
+        - Reference:
+          - API Reference: developer-resources/secu4/support_library/reference docs/api-reference.md
     - ATLAS: 
       - Overview: developer-resources/atlas/index.md
       - Nuget: 
@@ -295,7 +404,8 @@ nav:
         - Data Services: extending-atlas/rta/introduction/data-services.md
         - Sessions: extending-atlas/rta/introduction/sessions.md
         - Configuration: extending-atlas/rta/introduction/configuration.md
-  - News and Release Notes: blog/index.md
+  - News and Release Notes: 
+    - blog/index.md
   - Downloads: https://portal.motionapplied.com/
   - Support: 
     - Troubleshooting: 
@@ -308,6 +418,10 @@ markdown_extensions:
   - admonition
   - attr_list
   - codehilite
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - def_list
   - footnotes
   - toc:
@@ -339,8 +453,23 @@ extra:
       link: mailto:sales@motionapplied.com
   tags:
     prototype: prototype
+  generator: false
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  consent:
+  title: Cookie consent
+  description: >- 
+    We use cookies to recognize your repeated visits and preferences, as well
+    as to measure the effectiveness of our documentation and whether users
+    find what they're searching for. With your consent, you're helping us to
+    make our documentation better.
+  cookies:
+    analytics:
+      name: Google Analytics
+      checked: true
 
 plugins:
-  - blog
   - search
   - tags
+  - blog

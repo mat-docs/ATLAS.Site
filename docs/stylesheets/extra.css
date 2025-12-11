@@ -3,3 +3,20 @@
         --md-typeset-color: #303437;
         --md-accent-fg-color: #148E8E;
     }
+
+.mdx-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin: 0 .35rem .35rem 0;
+  padding: .15rem .5rem;
+  border-radius: 999px;
+  font-size: .85em;
+  line-height: 1.6;
+  color: var(--md-primary-fg-text);
+  background: var(--md-primary-fg-color--lightest);
+  border: 1px solid var(--md-primary-fg-color--lighter);
+  white-space: nowrap;
+}
+.mdx-badge__icon { display: inline-flex; }
+.mdx-badge__text { opacity: .9; }

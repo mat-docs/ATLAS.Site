@@ -1,19 +1,13 @@
-# Using the Motion Applied USB Logger with ATLAS
+# USB Logger and Recorder
 
 This guide provides a step-by-step overview of how to use a USB Logger system to collect, transfer, and visualise sensor data efficiently. It covers setup on the vehicle, data offloading procedures, and how to import and decode the data in ATLAS. Designed for flexibility, the system supports a range of operational environments.
 
----
-
 ## Prerequisites
 
-- USB Logger Recorder License.
-- ATLAS version 11.4.3.XXX or later.
 - Motion Applied USB Logger unit.
-- TAG320 or VCU-500. 
+- ATLAS Version 11.4.4.349-W47 or later.
 
 If you're interested in how Motion Applied can advance your data systems, contact [sales@motionapplied.com](mailto:sales@motionapplied.com).
-
----
 
 ## Setup
 
@@ -35,9 +29,7 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
     You can change the logger’s IP address in the `logger_config.jsonc` file under the `ethernet_settings` section.  
     The Logger IP address must be in the **same range** as the ECU IP address.
 
----
-
-**2. Configure Logging from the ECU
+**2. Configure Logging from the ECU**
 
 - Open **System Monitor**, connect to the TAG unit (e.g. TAG-320, TAG-510, or TAG-700), and in the **Explorer** tab navigate to: `BIOS > Data Acquisition > Telemetry > TLM-Px`.
 
@@ -46,21 +38,15 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
 !!! tip 
     While the parameter may appear as `NTAG320TLMPxIPAddress` on TAG-320 units, other models like TAG-510 or TAG-700 may use a slightly different prefix. To ensure compatibility, look for the `TLMPxIPAddress` field under the **Telemetry > TLM-Px** section in the BIOS tree. This structure is consistent across supported TAG units.
 
-
-
 - In ATLAS, go to **Tools > Options > System Monitor Folders** and set up the folders containing the required ECU configuration files (e.g., PGVs).
 
 !!! info
     When the vehicle is powered on, the ECU will automatically begin logging data to the USB drive. Depending on session length, multiple `.bin` files may be generated.
 
----
-
 **3. Swapping the USB**
 
 - When the vehicle enters the pit, remove the used USB and insert a new one.
 - The ECU will continue logging to the new USB without interruption.
-
----
 
 **4. Insert the USB into a PC**
 
@@ -74,8 +60,6 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
 
     When you plug the USB back into the logger it will **automatically restore the latest version** of `logger_config.jsonc` onto the USB. You can then **review or update the configuration** as needed.
 
----
-
 **5. Add a USB Logger Recorder in ATLAS**
 
 - Launch **ATLAS**.
@@ -83,31 +67,45 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
 
 ![New Recorder](assets/usb-logger/usb_logger_1.png){: style="width:75%;"}
 
-- Set the following:
-    - **Database engine** (where the data will be stored)
-    - **Folder path** to the copied `.bin` file(s)
-    - **Auto Export SSN2** *(optional)* to automatically export the created sessions to SSN2 once processing is complete. 
+Set the following:
 
-![New Recorder](assets/usb-logger/usb_logger_2.png){: style="width:50%;"}
+- **Database engine** (where the data will be stored)
+- **Auto Export SSN2** *(optional)* to automatically export the created sessions to SSN2 once processing is complete. 
 
-ATLAS will automatically detect and import multiple `.bin` files as separate sessions. 
+<video autoplay loop muted playsinline>
+<source src="../assets/usb-logger/usb_logger_1.mp4" type="video/mp4">
+</video>
+
+Go to the USB Logger Bin File(s) tab and set:
+
+- **Folder path** to the `.bin` file(s)
+- **Select the bin files** you wish to import.
+
+<video autoplay loop muted playsinline>
+<source src="../assets/usb-logger/usb_logger_2.mp4" type="video/mp4">
+</video>
+
+ATLAS will automatically detect and import multiple `.bin` files found in the folder as separate sessions. 
 
 !!! note
     When specifying the folder path, ensure that all required `bin` files are located directly within that directory. ATLAS will not process files located in subfolders.
----
 
 **6. Start the Recorder**
 
 - The recorder will process each binary file individually, creating a new session per `bin` file. If *Auto Export SSN2* was selected when configuring the recorder it will export the converted `.ssn` files to the export folder after processing is finished.
-- You can monitor progress via the status bar located in the bottom-right corner of ATLAS.
+
+<video autoplay loop muted playsinline>
+<source src="../assets/usb-logger/usb_logger_3.mp4" type="video/mp4">
+</video>
+
+- You can monitor progress via the status bar located in the bottom-right corner of ATLAS or in the recorder itself.
 
 ![New Recorder](assets/usb-logger/usb_logger_3.png){: style="width:75%;"}
-
 
 !!! warning
     The USB Logger Recorder does not record in the same way as other recorders. Behind the scenes it replays existing data and generates a historical session file from the replay.
     As a result you cannot drag the USB Logger recorder into a Set until it has finished converting the data. This recorder is **not** used for real-time replay.
----
+
 
 **7. Using the Data**
 
@@ -120,8 +118,6 @@ Depending on the selected database engine:
 
 - **SQLite**: Share the exported `.ssn` file via a network drive.
 - **SQL Race**: Team members with access to the database can view the session directly.
-
----
 
 ## Use Cases
 
