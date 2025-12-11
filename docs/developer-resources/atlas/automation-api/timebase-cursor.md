@@ -1,6 +1,4 @@
 
-## `TimeBaseServiceClient` Class
-
 The `TimeBaseServiceClient` class is  used to interact with time-based automation services. It provides a rich set of methods for manipulating time bases and cursors in ATLAS. Both the cursor and the TimeBase can be adjusted, set and retrieved. 
 
 !!! info "Understanding the TimeBase in ATLAS"
@@ -13,12 +11,10 @@ The `TimeBaseServiceClient` class is  used to interact with time-based automatio
 
     To set the full session TimeBase, use `Session.StartTime` and `Session.EndTime` with the `SetTimeBase` method.
 
-
-
 ### Time Base Manipulation
 
 <figure markdown="span">
-  ![Image title](TimeBase.png){ width="800" }
+  ![Image title](assets/TimeBase.png){ width="800" }
   <figcaption>ATLAS TimeBase</figcaption>
 </figure>
 

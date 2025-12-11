@@ -1,6 +1,6 @@
 # Working with Functions
 
-There different ways to work with functions in the SQLRace API. Existing FDL functions can be exposed through the API as FunctionParameters. Functions can also be defined from scratch in code.
+There different ways to work with functions in the SQLRace API. Existing FDL functions can be exposed through the API as FunctionParameters. Functions can also be defined from scratch in code. In addition to functions written in ATLAS's Function Definition Language (FDL) ATLAS 10 is able to call external interpreters to evaluate functions written in alternative languages. 
 
 ## Exposing ATLAS Functions Through the API
 The API's License Program Name will need to be changed to the name of your ATLAS license. This will either be 'ATLAS 10 Premium' or 'ATLAS 10 Data Platform.' By default this is set to 'SQLRace.' The `LicenceProgramName` property needs to be set prior to the `Core.Initialize()` statement. Upon changing the license program name, the functions you have defined will be exposed through the session and can be used as any other parameter would.
@@ -223,7 +223,8 @@ The function properties match those you would specify when creating a function f
 
 Remember to assign “this” to the ImplementationDefinition.
 
-Note: RelativePath can be set to override the location of the function within the parameter browser.
+!!! note
+    RelativePath can be set to override the location of the function within the parameter browser.
 
 and executed in:
 ``` csharp
@@ -362,8 +363,8 @@ namespace MAT.SqlRace.Functions.HelloDotNet
     }
 }
 ```
-### Additional Notes
-#### Calculation Mode
+**Additional Notes**
+
 ``` csharp
 functionDefinition.CalculationModeInfoDefinition.Mode = CalculationMode.FixedFrequency;
 ```
@@ -382,12 +383,31 @@ If you use `FixedFrequency`, the following line is used to set the Frequency (Ex
 functionDefinition.CalculationModeInfoDefinition.Frequency = 1;
 ```
 
-### Additional Resources
-[Zendesk Article on .NET functions](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115000977025--Net-Functions)
-
 [GitHub Example](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
 
 ## C# Embedded .XFNs
+
+There are two methods to call .NET functions, one way is to write a Dynamic Link Library (.DLL) containing the functions' implementations the other is to embed the C# code directly into an .XFN file. A C# .NET function can be implemented directly in a specially constructed .XFN file.  Each .XFN function file can implement multiple function outputs. 
+
+The .XFN file must be in the ATLAS 10 Functions directory: `%HOMEPATH%\Documents\McLaren Electronic Systems\SQL Race\Functions`
+
+To try this example:
+
+1. Download the SinAndCosOfSteeringWheelAngle.xfn file attached to this example and place it in the functions directory. 
+2. Start ATLAS 10 (or if it is already running, restart it).
+3. Only one input parameter is referenced by the function aSteerWheel:Chassis so for the function to calculate, data containing this parameter must be loaded.
+4. Two output parameters are calculated steerWheelSin:FunctionParameters and steerWheelCos:FunctionParameters.  These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
+
+Firstly the InputParameters section defines which ATLAS parameter identifiers are to be sourced by the .NET function. There should be an Identifier line for each input parameter to the function.
+
+The OutputParameters section defines the output function parameter properties for each value the .NET function calculates. Each OutputParameter must have a Name, Description, Units, Format, DisplayMin and DisplayMax. Your .NET function can define more than one output parameter. The calculation defaults should be left as they are.
+
+The FunctionCode section defines the actual function implementation in C#.  At the top of the implementation the three using statements bring the required types into the namespace without using their fully qualified names.  The IFunction interface comes from MESL.SqlRace.Domain.Functions so this must be imported.  In this example System is needed for the maths functions and System.Collections.Generic is not actually needed as no collections defined by this are being used (List<> for example). 
+
+The function must define a class which implements the IFunction interface.  It may be named anything you want but it is best practice to have it match the name of the XFN file which contains the class.  Because each function is compiled separately there should be no name clashes though. 
+
+The interface requires an Execute() method which is called by ATLAS to calculate the function values.  It is inside this method where the named output parameters get assigned their calculated values.  The class can contain other methods which are called by Execute() to perform the actual calculations. 
+
 ### Code Example
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -469,10 +489,46 @@ functionDefinition.CalculationModeInfoDefinition.Frequency = 1;
 </Xfn2Function>
 ```
 
-### Additional Resources
-[Zendesk Article on C# embedded .XFNs](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115003677929--NET-Functions-in-C-embedded-in-XFN)
-
 ## MATLAB Embedded .XFNs
+
+A MATLAB function comprises at least two parts; an .XFN file which gives ATLAS 10 an XML interface to the MATLAB function and a .M file which contains the actual MATLAB script implementation. .M files can call one another so it is possible to have multiple .M files making up a single definition.
+
+The .XFN file must be in the ATLAS 10 Functions directory: `%HOMEPATH%\Documents\McLaren Electronic Systems\SQL Race\Functions`
+
+The .M files are referenced by absolute path from the .XFN file so can be located anywhere. All .M files which make up a single function definition however must be in the same folder or in folders on the MATLAB path. In this example they will be placed in the ATLAS 10 Functions directory like the .XFN file above.
+
+1. The three files in this example are CalculateSlipRatios.xfn, calculateslipratios.m and slipratio.m, download these and place them all in the functions directory.
+2. Edit the CalculateSlipRatios.xfn file in any normal text editor, find the <FilePath>...</FilePath> line and edit it so the correct, absolute path to the calculateslipratios.m file is in the inner pair of square brackets.
+3. Start ATLAS 10 (or if it is already running, restart it).
+4. Four ATLAS input parameters are referenced; `vCar:Chassis`, `vWheelFL:Chassis`, `vWheelFR:Chassis`, `vWheelRL:Chassis` and `vWheelRR:Chassis` so for the function to calculate, data containing these parameters must be loaded.
+5. Four output parameters are calculated: `rSlipRatioFL:Functions`, `rSlipRatioFR:Functions`, `rSlipRatioRL:Functions` and `rSlipRatioRR:Functions`. These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
+
+### The .XFN File
+
+Firstly the InputParameters section defines which ATLAS parameter identifiers are to be sourced by the MATLAB function. There should be an Identifier line for each input parameter to the function.
+
+The OutputParameters section defines the output function parameter properties for each value the MATLAB function calculates. Each OutputParameter must have a Name, Description, Units, Format, DisplayMin and DisplayMax. Your MATLAB function can define more than one output parameter.
+
+The calculation defaults should be left as they are, these will be described in more detail in later Help documents.
+
+The FilePath line is the link between ATLAS and the MATLAB .M file which contains the implementation in MATLAB script. This is an absolute path.
+
+The InputMappings section defines how the ATLAS input parameter identifiers appear to MATLAB in the .M script. In this example the input parameter `vCar:Chassis` is translated to a MATLAB variable named simply vCar which is referenced in the code. There must be a Mapping entry for each of the Identifiers lines in the InputParameters section.
+
+The OutputMappings section defines how the MATLAB output parameters appear to ATLAS 10 in the Parameter Browser. In this example the MATLAB variable output by the script rSlipRatioFL will appear with the `rSlipRatioFL:Functions` identifier in ATLAS. There must be a Mapping entry for each of the OutputParameter entries in the OutputParameters section.
+
+### The .M File
+
+The absolute basic .M file just assigns values to the OutputParameter Mapping MATLAB variable names. Our slightly more complicated example uses a MATLAB function call, referencing the input variables as arguments and assigns the function return to the output variable names. Any valid MATLAB code can appear in the .M files.
+
+So in our example the .XFN function definition references calculateslipratios.m
+
+![MATLAB1](../assets/MATLABImplementation1.png)
+
+This calls the MATLAB function `slipratio()` using the input parameter names as the function arguments and assigns the function return to the four output variables. The actual calculation is done inside slipratio.m which defines a standard function in MATLAB
+
+![MATLAB2](../assets/MATLABImplementation2.png)
+
 ### Code Example
 **CalculateSlipRatio.xfn**
 ```xml
@@ -597,5 +653,3 @@ function slipRatio = slipratio(vCar, vWheel)
 end
 ```
 
-## Additional Resources
-[Zendesk Article on MATLAB embedded .XFNs](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115003372109-MATLAB-Functions)

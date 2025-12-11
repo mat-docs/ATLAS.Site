@@ -1,11 +1,6 @@
 
-##  Creating a Parameter Data Access
-
-### `ParameterDataAccessServiceClient` Class
 
 The `ParameterDataAccessServiceClient` class is the entry point for accessing parameter data from a session. It provides a variety of methods to retrieve, navigate, and analyze time-series data.
-
----
 
 ##  Available Methods
 
@@ -18,7 +13,6 @@ The `ParameterDataAccessServiceClient` class is the entry point for accessing pa
 | `GetWeightedDataStatistics(SessionId, String, Int64, Int64, StatisticOption)` | Retrieves weighted statistics over a time range. |
 | `GetWeightedDataStatisticsVba(SessionId, String, Double, Double, StatisticOption)` | VBA-compatible version of `GetWeightedDataStatistics`. |
 
----
 
 ###  **Data Navigation**
 
@@ -29,7 +23,6 @@ The `ParameterDataAccessServiceClient` class is the entry point for accessing pa
 | `SetSampleIncrement(SessionId, String, Int64)` | Sets the increment between samples. |
 | `SetSampleIncrementVba(SessionId, String, Double)` | VBA-compatible version of `SetSampleIncrement`. |
 
----
 
 ###  **Sample Retrieval**
 
@@ -44,7 +37,6 @@ The `ParameterDataAccessServiceClient` class is the entry point for accessing pa
 | `GetPreviousSamples(SessionId, String, Int64)` | Retrieves the previous N samples. |
 | `GetPreviousSamplesVba(SessionId, String, Int32)` | VBA-compatible version of `GetPreviousSamples`. |
 
----
 
 ###  **Sample Count Estimation**
 
@@ -52,10 +44,6 @@ The `ParameterDataAccessServiceClient` class is the entry point for accessing pa
 |--------|-------------|
 | `GetSamplesCountEstimate(SessionId, String, Int64, Int64)` | Estimates the number of samples in a time range. |
 | `GetSamplesCountEstimateVba(SessionId, String, Double, Double)` | VBA-compatible version of `GetSamplesCountEstimate`. |
-
----
-
-
 
 ## Usage Example
 

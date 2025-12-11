@@ -3,9 +3,6 @@
 
 This guide walks you through the process of creating a new **session file (`.ssn2`)** using the **SQLRace API**. You'll learn how to initialize the environment, create a session, add metadata, generate parameter data, and define laps.
 
-
----
-
 ???+ tip
     Make sure you have:
 
@@ -15,29 +12,9 @@ This guide walks you through the process of creating a new **session file (`.ssn
     - Configured your NuGet source to include the **McLaren Applied GitHub packages**:
         [https://github.com/mat-docs/packages](https://github.com/mat-docs/packages)
 
----
-
-
-## Summary of Steps
-
-1. **Initialize SQLRace**
-2. **Create a New Session**
-3. **Create Session Configuration**
-4. **Add Session Metadata**
-5. **Configure Conversions**
-6. **Add Channels and Parameters**
-7. **Define Event Metadata**
-8. **Write Parameter and Event Data**
-9. **Add Laps**
-10. **Add Constants**
-11. **Add CAN Data**
-12. **Finalize Session**
-
----
-
 ## Step 1: Initialize SQLRace
 
-This initializes the SQLRace core system required for session handling and directs the initialiser towards the SQLRace License to validate there is a valid license in place. This is a required step and none of your SQLRace API scripts will work without an active SQLRace License. You can check that you have the correct license by opening License Manager from your start menu. 
+This is a required step and scripts will work without an active SQLRace License. You can check that you have the correct license by opening License Manager from your start menu. 
 
 === "C#"
 
@@ -60,9 +37,6 @@ This initializes the SQLRace core system required for session handling and direc
     NET.setStaticProperty('MESL.SqlRace.Domain.Core.LicenceProgramName', 'SQLRace');
     Core.Initialize();
     ```
-
-
----
 
 ## Step 2: Create a New Session
 
@@ -100,24 +74,15 @@ Creates a unique session at the specified location.
         connectionStringSSNDB = r"DbEngine=SQLite;Data Source=C:\Path\To\local_db.ssndb;PRAGMA journal_mode=WAL;"
         connectionStringSQLRACE = r"Data Source=MCLA-42765X3\LOCAL;Initial Catalog=SQLRACE01;Integrated Security=True;"
 
-
-
----
-
-
 ## Step 3: Create Session Configuration
 
-Create a configuration set for the session. Configuration will be saved when Commit() is called on this configuration set.
+Create a configuration set for the session. Configuration will be saved when Commit() is called on this configuration set. If a configuration set is not created then the parameters will not be part of any structured groups.
 
-> 💡 **Tip**  
-> Configuration can be created independently and shared across multiple sessions (non-session specific) using the `ConfigurationSetManager`.  
-> This improves session creation and load time.
+!!! tip 
+    Configuration can be created independently and shared across multiple sessions (non-session specific) using the `ConfigurationSetManager`. This improves session creation and load time.
 
-> ⚠️ **Deprecated**  
-> Configuration can also be added directly to a session using `CreateConfiguration()`.  
-> This method is **deprecated** and should **not** be used.
-
----
+!!! warning "Deprecated Method"
+    Configuration can also be added directly to a session using `CreateConfiguration()`. This method is **deprecated** and should **not** be used.
 
 ???+  "Configuration Set Components"
 
@@ -353,15 +318,15 @@ The following is an example of using the ConfigurationSetManager to add a shared
 
 Metadata allows tracking of essential session attributes (e.g., driver, event, date, etc.). Session metadata can be configured adding **SessionDataItem** objects into the **session.Items**. 
 
-> 💡 **Tip**  
->The **SessionDataItem** supports the following data types for values:
+!!! tip 
+    The **SessionDataItem** supports the following data types for values:
 
->- String – For textual data
->- Double – For floating-point numbers
->- Long – For large integer values
->- Boolean – For true/false flags
->- DateTime – For date and time values
->- Byte[] – For binary data
+        - String – For textual data
+        - Double – For floating-point numbers
+        - Long – For large integer values
+        - Boolean – For true/false flags
+        - DateTime – For date and time values
+        - Byte[] – For binary data
 
 
 === "C#"
@@ -393,7 +358,6 @@ Metadata allows tracking of essential session attributes (e.g., driver, event, d
 
 [Class SessionDataItemsCollection<T>](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.SessionDataItemsCollection-1.html)
 
----
 
 ## Step 5: Configure Conversions
 
@@ -439,11 +403,10 @@ Add conversion logic (e.g., rational and table conversions) for later use by par
 
 [Class ConversionBase](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConversionBase.html)
 
----
 
 ## Step 6: Add Channels and Parameters
 
-Set up channels and map them to parameters that will receive time-series data.
+Set up channels and map them to parameters that will receive time-series data. For more information on channels and parameters, see [Understanding Channels and Parameters](../../../../key-functionality/configure/system-monitor/data-acquisition/logging/logging-config.md).
 
 === "C#"
 
@@ -561,8 +524,6 @@ Set up channels and map them to parameters that will receive time-series data.
     | `Unsigned32Bit`              | Unsigned 32 bits of data.            |
     | `Unsigned8Bit`               | Unsigned 8 bits of data.             |
 
----
-
 ## Step 7: Define Event Metadata
 
 Events let you log significant occurrences during a session (e.g., start, end, pit stops).
@@ -623,8 +584,6 @@ Events let you log significant occurrences during a session (e.g., start, end, p
 
 [ConfigurationSet.AddEventDefinition()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.ConfigurationSet.html#MESL_SqlRace_Domain_ConfigurationSet_AddEventDefinition_MESL_SqlRace_Domain_EventDefinition_)
 
----
-
 ## Step 8: Write Parameter and Event Data
 
 
@@ -672,8 +631,6 @@ Adds time-stamped numeric data to your session’s channels and logs events usin
 
 [Session.Events.AddEventData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.EventCollection.html#MESL_SqlRace_Domain_Collections_EventCollection_AddEventData_System_Int32_System_String_System_Int64_System_Collections_Generic_IList_System_Double__)
 
----
-
 ## Step 9: Add Laps
 
 Lap data enrich your session context with performance and environmental data.
@@ -700,9 +657,6 @@ Lap data enrich your session context with performance and environmental data.
 [Interface ILapCollection](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.ILapCollection.html)
 
 [Class Lap](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Lap.html#MESL_SqlRace_Domain_Lap__ctor_System_Int64_System_Int16_System_Byte_System_String_System_Boolean_)
-
----
-
 
 ## Step 10: Add Constants
 
@@ -731,8 +685,6 @@ Constants enrich your session context with performance and environmental data.
 [Session.Constants - SessionDataItemsCollection<Constant>](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Session.html#MESL_SqlRace_Domain_Session_Constants)
 
 [Class Constant](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Constant.html)
-
---- 
 
 ## Step 11: Add CAN Data
 
@@ -792,17 +744,12 @@ CAN Data can be added thogh the CAN Collection object. CAN Collection only accep
 
 [Session.CanData.AddCanData()](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/MESL.SqlRace.Domain.Collections.CanCollection.html#MESL_SqlRace_Domain_Collections_CanCollection_AddCanData_System_Int64_System_Byte_System_UInt16_System_UInt32_System_Byte___)
 
---- 
-
-
 !!! warning
     Only SSN2 and SQLRace Sessions support CAN data, SSN sessions do not contain any CAN data.
     
 
 !!! tip
     Sessions generated from a TAG-320 or TAG-700 will only contain CAN data from the PCU-8D or PCU-700.
-
-
 
 ## Step 12: Finalize Session
 
@@ -841,9 +788,7 @@ Close the session to ensure all data is written and saved to the `.ssn2` file.
 
     Close() or Dispose() is used to free system resources and reduce memory leaks.
 
----
-
-## ✅ Summary
+## Summary
 
 By following these steps, you can build a comprehensive `.ssn2` session file with:
 

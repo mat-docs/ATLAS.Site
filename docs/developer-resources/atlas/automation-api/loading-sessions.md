@@ -1,7 +1,5 @@
-### Loading Sessions to ATLAS
 
-Sessions can be programatically loaded and unloaded into ATLAS, including associate sessions. Additional sessions can be appended. 
-
+Sessions can be programmatically loaded and unloaded into ATLAS, including associate sessions. Additional sessions can be appended. 
 
 !!! warning 
     
@@ -86,11 +84,8 @@ Basic example that shows how to load a single session into ATLAS.
 
 
 
-!!! information 
-        ###⚡ Improve Session Loading with Events
+!!! information "Improve Session Loading with Events"
         When working with session files in ATLAS, it's important to know **when a session is fully loaded**. Instead of relying on manual checks or delays, you can use the **`OnSessionLoaded` event** provided by the `ApplicationServiceClient`.
-
-        ###  How to Use It
  
                 // Subscribe to the event
                 applicationServiceClient.OnSessionLoaded += SessionLoaded;

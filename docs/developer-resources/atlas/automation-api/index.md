@@ -4,9 +4,7 @@ The Automation API is a WCF-based interface that enables seamless interaction wi
 
 It also allows automated loading and unloading of data into ATLAS.
 
-ATLAS (Advanced Telemetry Linked Acquisition System) is a sophisticated software package developed by McLaren Applied to capture, distribute, display, and analyze data from control systems—especially in motorsport and automotive applications.
-
----
+ATLAS (Advanced Telemetry Linked Acquisition System) is a sophisticated software package developed by Motion Applied to capture, distribute, display, and analyze data from control systems—especially in motorsport and automotive applications.
 
 ## Capabilities
 
@@ -41,9 +39,7 @@ ATLAS (Advanced Telemetry Linked Acquisition System) is a sophisticated software
 
 [Code Samples](https://github.com/mat-docs/Atlas.AutomationAPI.Examples){ .md-button } [API Reference](https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/api/index.html){ .md-button }
 
-.
-
-## ATLAS Automation API – Classes and Methods
+## Classes and Methods
 
 The ATLAS Automation API is composed of several service clients, each responsible for a specific area of functionality such as session management, workbook automation, telemetry recording, and data access. These classes expose methods that allow developers to programmatically control and interact with the ATLAS environment, enabling powerful automation and integration scenarios.
 

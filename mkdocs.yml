@@ -160,9 +160,9 @@ nav:
         - Overview: developer-resources/atlas/nuget/index.md
         - Setup Guide: developer-resources/atlas/nuget/setup.md
 
-      - ATLAS Automation API:
+      - Automation API:
         - Overview: developer-resources/atlas/automation-api/index.md
-        - Getting Started: developer-resources/atlas/automation-api/getting-started.md
+        - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md
         - Loading Sessions: developer-resources/atlas/automation-api/loading-sessions.md
         - Working With Displays: developer-resources/atlas/automation-api/working-with-displays.md
         - Timebase and Cursor Point: developer-resources/atlas/automation-api/timebase-cursor.md

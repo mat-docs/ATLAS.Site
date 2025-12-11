@@ -2,7 +2,7 @@
 
 This guide demonstrates how to add a transient parameter to an ATLAS session, retrieve data from an existing parameter, perform a transformation, and write the result to the new transient parameter.
 
-## Overview
+Overview:
 
 1. Create a transient parameter.
 2. Retrieve the time base and source parameter (`vCar`).
@@ -10,14 +10,13 @@ This guide demonstrates how to add a transient parameter to an ATLAS session, re
 4. Read the data and apply a transformation (`vCar * 2`).
 5. Write the transformed data to the transient parameter.
 
-## Parameters
+**Parameters**
 
 - **DemoDisplayName**: `"Demo Waveform"`
 - **ParameterName**: `"vCar:Chassis"`
 - **TransientParameterName**: `"vCar2 Demo"`
 - **Range**: `0` to `800`
 
----
 
 ## Define Transient Parameter Metadata
 
@@ -285,7 +284,7 @@ Finally, the transformed data is written to the transient parameter. This makes 
     ```
 
 <figure markdown="span">
-  ![Image title](Transient.png){ width="1200" }
+  ![Image title](assets/Transient.png){ width="1200" }
   <figcaption>ATLAS Transient Parameter</figcaption>
 </figure>
 

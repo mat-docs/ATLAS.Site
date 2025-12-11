@@ -64,16 +64,15 @@ following command
 dotnetenv('core')
 ```
 
-!!! warning 
+!!! warning "MATLAB R2024b with .NET 6"
+
+    MATLAB R2024b has a known issue with .NET6.
     
-    There is a known bug for MATLAB R2024b with .NET 6. 
+    To patch:
 
-
-To patch:
-
-From a .NET 6 installation, copy ijwhost.dll from
-`./packs/Microsoft.NETCore.App.Host.win-x64/6.0.XX/runtimes/win-x64/native/ijwhost.dll`
-into <matlabroot>/bin/win64 (replace existing).
+    From a .NET 6 installation, copy ijwhost.dll from
+    `./packs/Microsoft.NETCore.App.Host.win-x64/6.0.XX/runtimes/win-x64/native/ijwhost.dll`
+    into <matlabroot>/bin/win64 (replace existing).
 
 
 The runtime configuration file for the .NET runtime can be found

@@ -1,18 +1,14 @@
-# ATLAS Automation API
+# Extracting sessions
 
 One of the fundamental operations in the ATLAS Automation API is retrieving an already loaded session from ATLAS. 
 
-### The example below demonstrates how to:
+The example below demonstrates how to:
 - Obtain a list of Sets
 - Select a specific Set
 - Extract all sessions loaded into that Set
 
 This will return a list of sessions. In the example, basic information such as `Session.Name` and `Session.Id` is extracted from each session.
 
-
-## Examples
-
-### Getting Sessions From ATLAS
 === "C#"
 
     ``` csharp

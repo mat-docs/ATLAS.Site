@@ -1,6 +1,6 @@
 # Session Loading
 
-The SQLRace API can load sessions either locally, from an SSNDB, or from an SQLRace database. (Expand on this)
+The SQLRace API can load sessions either locally, from an SSNDB, or from an SQLRace database.
 
 !!! info "SSN File Loading"
     SSN files are read-only.

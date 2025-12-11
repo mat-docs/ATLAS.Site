@@ -2,8 +2,6 @@
 
 This guide explains how to interact with **Displays** in a workbook using the provided service clients. You'll learn how to retrieve displays, filter them, and modify their properties such as color.
 
----
-
 ???+ tip
     Before working with displays, and depending on the needs, ensure you have:
 
@@ -14,8 +12,6 @@ This guide explains how to interact with **Displays** in a workbook using the pr
         - `DisplayServiceClient`
         - `SessionServiceClient`
 
-
----
 
 ### Retrieve Pages from the Workbook
 
@@ -39,11 +35,7 @@ This guide explains how to interact with **Displays** in a workbook using the pr
             fprintf('Total amount of pages to be processed: %d\n', length(pages));
     ```
 
----
-
 ### Iterate Through Pages and Displays
-
-#### Python
 
 === "C#"
     ```csharp
@@ -67,10 +59,6 @@ This guide explains how to interact with **Displays** in a workbook using the pr
                 displays = pageServiceClient.GetDisplaysOfPage(page.Id);
             end
     ```
-
-
-
----
 
 ### Filter and Process Waveform Displays
 
@@ -105,9 +93,6 @@ This guide explains how to interact with **Displays** in a workbook using the pr
     ```
 
 
-
----
-
 ### Retrieve Display Parameters
 
 === "C#"
@@ -135,9 +120,6 @@ This guide explains how to interact with **Displays** in a workbook using the pr
                 fprintf('Parameter Name: %s\n', p.Name);
             end
     ```
-
----
-
 
 ### Modify Display Properties
 
@@ -301,9 +283,6 @@ Check if each parameter is in your dictionary and modify its properties:
                 end
             end
     ```
-
----
-
 
 
 ??? tip "Other Display Properties"
