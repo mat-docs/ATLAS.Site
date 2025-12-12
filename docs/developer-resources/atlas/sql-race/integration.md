@@ -12,7 +12,7 @@
 
 !!! tip 
     For more information on licenses, please get in touch with your Motion Applied representative or [contact us](mailto:sales@motionapplied.com).
-
+    
 ## Environment Setup
 
 Select the programming language you want to use for your project. The SQLRace API supports multiple languages, including C#, Python, and MATLAB. Below are the steps to set up your environment for each language.
@@ -34,10 +34,6 @@ Select the programming language you want to use for your project. The SQLRace AP
     5. Create a new Python file main.py in the root of your project and copy the sample code
     6. Or clone the sample code into the root
     7. Change the variables at the top of the script to connect to your database
-
-=== "MATLAB"
-
-***TBC***
 
 ## Importing the APIs
 ### C# NuGet Packages
