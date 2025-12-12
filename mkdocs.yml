@@ -46,6 +46,80 @@ nav:
     - Eco-System Overview: introduction/eco-system.md
   - User Guides:
     - Overview: key-functionality/index.md
+    - Configuration:
+      - System Monitor:
+        - Overview: key-functionality/configure/system-monitor/index.md
+        - Getting Started: 
+          - Overview: key-functionality/configure/system-monitor/getting-started/index.md
+          - RDA: key-functionality/configure/system-monitor/getting-started/rda.md
+        - Using System Monitor:
+          - Overview: key-functionality/configure/system-monitor/using-sm/index.md
+          - Menus: key-functionality/configure/system-monitor/using-sm/menus.md
+          - Windows and Parameters: key-functionality/configure/system-monitor/using-sm/windows-parameters.md
+          - Configuration and Advanced Settings: key-functionality/configure/system-monitor/using-sm/advanced.md
+          - Projects:
+            - Overview: key-functionality/configure/system-monitor/projects/index.md
+            - Project Setup: 
+              - Customer Base: key-functionality/configure/system-monitor/projects/project-setup.md
+              - Unit.Def Files: key-functionality/configure/system-monitor/projects/unit-def.md
+            - Program and Data Versions:
+              - Creating Versions: key-functionality/configure/system-monitor/projects/program-data-versions.md
+              - File Types: key-functionality/configure/system-monitor/projects/file-types.md
+            - Application Management: key-functionality/configure/system-monitor/projects/applications.md
+            - Data Version Development: key-functionality/configure/system-monitor/projects/data-version-development.md
+            - Data Wizard: key-functionality/configure/system-monitor/projects/data-wizard.md
+            - ECU Connection: key-functionality/configure/system-monitor/projects/ecu-communication.md
+            - File Operations: key-functionality/configure/system-monitor/projects/file-operations.md
+          - Displays:
+            - Overview: key-functionality/configure/system-monitor/using-sm/display/index.md
+            - Numeric: key-functionality/configure/system-monitor/using-sm/display/numeric.md
+            - Bar: key-functionality/configure/system-monitor/using-sm/display/bar.md
+            - Error: key-functionality/configure/system-monitor/using-sm/display/error.md
+            - Event: key-functionality/configure/system-monitor/using-sm/display/event.md
+            - Grid: key-functionality/configure/system-monitor/using-sm/display/grid.md
+            - Oscilloscope: key-functionality/configure/system-monitor/using-sm/display/oscilloscope.md
+            - Signal Sampling: key-functionality/configure/system-monitor/using-sm/display/signal.md
+            - Alarms: key-functionality/configure/system-monitor/using-sm/display/alarms.md
+        - Data Acquisition: 
+          - Overview: key-functionality/configure/system-monitor/data-acquisition/index.md
+          - Logging:
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/logging/index.md
+            - Live Logging: key-functionality/configure/system-monitor/data-acquisition/logging/live-logging.md
+            - Remote Logging: key-functionality/configure/system-monitor/data-acquisition/logging/remote-logging.md
+            - Burst Logging: key-functionality/configure/system-monitor/data-acquisition/logging/burst-logging.md
+            - Remote Configuration Compare: key-functionality/configure/system-monitor/data-acquisition/logging/config-compare.md
+            - Logging Configuration: key-functionality/configure/system-monitor/data-acquisition/logging/logging-config.md
+          - CAN: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/can/index.md
+            - CAN Configurations: key-functionality/configure/system-monitor/data-acquisition/can/configuration.md
+          - Sensors: 
+            - Overview: key-functionality/configure/system-monitor/data-acquisition/sensors/index.md
+            - External Configuration: key-functionality/configure/system-monitor/data-acquisition/sensors/external.md
+            - Software Calibrated Sensors: key-functionality/configure/system-monitor/data-acquisition/sensors/software-calibrated-sensors.md
+            - Sensors and Actuators: key-functionality/configure/system-monitor/data-acquisition/sensors/sensors-and-actuators.md
+            - Obtaining Sensor Calibration Data: key-functionality/configure/system-monitor/data-acquisition/sensors/sensor-calibration-data.md
+        - Tuning:
+          - Overview:  key-functionality/configure/system-monitor/tuning/index.md
+          - Editable Parameters: key-functionality/configure/system-monitor/tuning/editable-parameters.md
+          - Changing Values:  key-functionality/configure/system-monitor/tuning/changing-values.md
+          - Graphical Maps:  key-functionality/configure/system-monitor/tuning/graphical-maps.md
+          - Live Tune:  key-functionality/configure/system-monitor/tuning/live-tune.md
+        - PUMA Integration:
+          - Overview: key-functionality/configure/system-monitor/testbed/index.md
+          - Testbed Operations:  key-functionality/configure/system-monitor/testbed/system-monitor-puma.md
+          - Testbed Properties:  key-functionality/configure/system-monitor/testbed/testbed-properties.md
+          - PUMA Commands:  key-functionality/configure/system-monitor/testbed/puma-commands.md
+        - ECU Control:
+          - Overview:  key-functionality/configure/system-monitor/ecu-control/index.md
+          - ECU Operations: key-functionality/configure/system-monitor/ecu-control/ecu-operations.md
+          - ECU Memory: key-functionality/configure/system-monitor/ecu-control/ecu-memory.md
+          - Programming Data: key-functionality/configure/system-monitor/ecu-control/programming-data.md
+          - Diagnostics Status: key-functionality/configure/system-monitor/ecu-control/diagnostics-status.md
+        - Hardware: key-functionality/configure/system-monitor/hardware/index.md
+        - Developer Functions:  key-functionality/configure/system-monitor/developer-functions/index.md
+        - History Report: 
+          - Overview: key-functionality/configure/system-monitor/history-report/index.md
+          - Details: key-functionality/configure/system-monitor/history-report/history-details.md
     - Store and Distribute:
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
@@ -135,6 +209,16 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - System Monitor:
+      - Active X: 
+        - Overview: developer-resources/system-monitor/active-x/index.md
+        - Methods: developer-resources/system-monitor/active-x/methods.md
+        - Examples:
+          - Using SendMessage() to send a Read RAM message to the ECU: developer-resources/system-monitor/active-x/examples/example-1.md
+          - Getting and Setting the Value of a Scalar Editable Parameter: developer-resources/system-monitor/active-x/examples/example-2.md
+          - Getting Values From a 1-Axis Map, Axis, Array and 2-Axis Map: developer-resources/system-monitor/active-x/examples/example-3.md
+          - Manipulating the Values in a 1-Axis Map: developer-resources/system-monitor/active-x/examples/example-4.md
+          - Demonstrating functions GetValue2AxisMap and SetValue2AxisMap: developer-resources/system-monitor/active-x/examples/example-5.md
     - SECU4:
       - Stream API: 
         - Overview: developer-resources/secu4/stream_api/index.md
@@ -184,11 +268,27 @@ nav:
       - Nuget: 
         - Overview: developer-resources/atlas/nuget/index.md
         - Setup Guide: developer-resources/atlas/nuget/setup.md
+
+      - Automation API:
+        - Overview: developer-resources/atlas/automation-api/index.md
+        - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md
+        - Loading Sessions: developer-resources/atlas/automation-api/loading-sessions.md
+        - Working With Displays: developer-resources/atlas/automation-api/working-with-displays.md
+        - Timebase and Cursor Point: developer-resources/atlas/automation-api/timebase-cursor.md
+        - Working With Data: developer-resources/atlas/automation-api/working-with-data.md
+        - Transient Parameters: developer-resources/atlas/automation-api/writing-transient-parameters.md
       - SQL Race API: 
         - Overview: developer-resources/atlas/sql-race/index.md
-        - Parameter Data Access: developer-resources/atlas/sql-race/parameter-data-access.md
+        - Getting Started: developer-resources/atlas/sql-race/integration.md
         - .NET 6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
         - .NET 8 Upgrade: developer-resources/atlas/sql-race/net8-upgrade.md
+        - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
+        - Worked Examples:
+          - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Functions: developer-resources/atlas/sql-race/examples/functions.md
+          - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
+          - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
+          - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
@@ -352,6 +452,9 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@motionapplied.com
+  tags:
+    prototype: prototype
+  generator: false
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY

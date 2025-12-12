@@ -46,13 +46,30 @@ length of the requested sample size, regardless of the number of values requeste
 
 As an example, when there are only 100 samples left between the cursor and the end of 
 the session, and the sample size requested is larger than 100. The first 100 
-data status will be `Sample`, and the remaining `DataStatus` will be `AfterEnd`. 
+data status will be `Sample`, and the remaining `DataStatus` will be `AfterEnd`.
+
 
 The property `ParameterValues.SampleCount` can be used to check the number of valid 
 samples within the returned array.
 
 * Samples that represents values as measured by the data logger will have data status `Sample`.
 * Data that are interpolated will have data status `Interpolated`.
+
+
+
+| **DataStatusType** | **Description** |
+|--------------------|-----------------|
+| `Missing`          | No sample is available. *(Should be excluded from processing)* |
+| `Sample`           | A valid sample exists within the current sample period. *(Recommended for processing)* |
+| `Default`          | The sensor failed and the ECU returned a default value. |
+| `BeforeStart`      | Data was requested before the first available sample. |
+| `AfterEnd`         | Data was requested after the last available sample. |
+| `Incomplete`       | The sample interval includes missing samples. |
+| `Interpolated`     | The sample has been interpolated. |
+| `Pending`          | The sample is being processed by a function processor. |
+| `Gap`              | There is a gap in the data (e.g., in repeating lap compare mode). |
+
+
 
 !!! warning 
     

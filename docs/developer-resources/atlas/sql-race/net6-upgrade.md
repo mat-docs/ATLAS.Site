@@ -20,7 +20,6 @@ Portability Analyzer. For C# there is also the .NET Upgrade Assistant to upgrade
 * Replace old style packages.config with project file-based package references
 * Update dependencies as required to support at least .NET Standard
 
-
 There might be instances when certain dependencies may have to be updated/replaced, e.g., if it is no longer supported 
 in .NET 6. Useful sites:
 
@@ -44,6 +43,21 @@ in .NET 6. Useful sites:
 [https://docs.microsoft.com/en-us/dotnet/standard/analyzers/platform-compat-analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/platform-compat-analyzer)
 
 ## MATLAB
+## Targeting a Specific .NET Version
+### MATLAB R2025a or newer
+For MATLAB R2025a or newer, you can target a specific .NET Core version and specify required frameworks directly when initializing the environment. This is especially important if your code or dependencies require assemblies such as Microsoft.Extensions.Caching.Memory, which is included in Microsoft.AspNetCore.App.
+
+Example:
+```matlab
+ne = dotnetenv("core", Version="6", Frameworks="Microsoft.AspNetCore.App");
+```
+You can also define multiple frameworks if needed:
+```matlab
+ne = dotnetenv("core", Version="6", Frameworks=["Microsoft.AspNetCore.App", "Microsoft.NETCore.App"]);
+```
+
+### MATLAB R2024b and older
+
 
 MATLAB versions earlier than 2022b do not support the .NET core runtime.
 
@@ -52,6 +66,17 @@ following command
 ```matlab
 dotnetenv('core')
 ```
+
+!!! warning "MATLAB R2024b with .NET 6"
+
+    MATLAB R2024b has a known issue with .NET6.
+    
+    To patch:
+
+    From a .NET 6 installation, copy ijwhost.dll from
+    `./packs/Microsoft.NETCore.App.Host.win-x64/6.0.XX/runtimes/win-x64/native/ijwhost.dll`
+    into <matlabroot>/bin/win64 (replace existing).
+
 
 The runtime configuration file for the .NET runtime can be found
 in `matlabroot/bin/win64/dotnetcli_netcore.runtimeconfig.json`.
