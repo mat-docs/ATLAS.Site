@@ -1,36 +1,37 @@
-# .NET 6 Upgrade
+# .NET 8 Upgrade
 
-!!! warning
+The ATLAS client (`11.4.4.349-W47`) and SQL RACE (`2.1.25308.1-ci`) is now updated to .NET 8,.
 
-    From ATLAS (`11.4.4.349-W47`) and SQL RACE (`2.1.25308.1-ci`) please see [.NET 8 Upgrade](./net8-upgrade.md)
+Users will need to consider upgrading any custom plugins or scripts they might have written to this framework.
 
-ATLAS client is now updated to .NET 6. 
-
-Users will need to consider upgrading any custom plugins or scripts they might have written. 
-Provided the custom ATLAS plugin does not use any .NET Framework libraries that are no longer supported in .NET 6, 
+Provided the custom ATLAS plugin does not use any .NET libraries that are no longer supported in .NET 8, 
 they should still work with this release of ATLAS, but this is not something we can guarantee. You may find it necessary
-to recompile against .NET 6. 
+to recompile against .NET 8. 
 
 ## C\#
 
-You may wish to determine any initial portability concerns using the Platform Compatibility Analyzer and .NET 
-Portability Analyzer. For C# there is also the .NET Upgrade Assistant to upgrade projects, this will:
+You may wish to determine any initial portability concerns using the  [Platform Compatibility Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/platform-compat-analyzer) and [.NET 
+Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer). For C# there is also the [.NET Upgrade Assistant](https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview) to upgrade projects, this will:
 
 * Upgrade to new project format
 * Replace old style packages.config with project file-based package references
 * Update dependencies as required to support at least .NET Standard
 
-There might be instances when certain dependencies may have to be updated/replaced, e.g., if it is no longer supported 
-in .NET 6. Useful sites:
+There might be instances when certain dependencies may have to be updated/replaced, e.g. if it is no longer supported 
+in .NET 8. Useful sites:
 
 ### Porting Guides
+
 [https://docs.microsoft.com/en-us/dotnet/core/porting/](https://docs.microsoft.com/en-us/dotnet/core/porting/)
 
 [https://docs.microsoft.com/en-gb/dotnet/core/porting/net-framework-tech-unavailable](https://docs.microsoft.com/en-gb/dotnet/core/porting/net-framework-tech-unavailable)
 
 [https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting)
 
-### .NET Upgrade Assistants
+[https://learn.microsoft.com/en-us/dotnet/desktop/wpf/migration/](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/migration/)
+
+
+### .NET Upgrade Assistant
 
 [https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview](https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview)
 
@@ -43,62 +44,41 @@ in .NET 6. Useful sites:
 [https://docs.microsoft.com/en-us/dotnet/standard/analyzers/platform-compat-analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/platform-compat-analyzer)
 
 ## MATLAB
-## Targeting a Specific .NET Version
-### MATLAB R2025a or newer
-For MATLAB R2025a or newer, you can target a specific .NET Core version and specify required frameworks directly when initializing the environment. This is especially important if your code or dependencies require assemblies such as Microsoft.Extensions.Caching.Memory, which is included in Microsoft.AspNetCore.App.
 
-Example:
-```matlab
-ne = dotnetenv("core", Version="6", Frameworks="Microsoft.AspNetCore.App");
-```
-You can also define multiple frameworks if needed:
-```matlab
-ne = dotnetenv("core", Version="6", Frameworks=["Microsoft.AspNetCore.App", "Microsoft.NETCore.App"]);
-```
+For compatability with .NET 8, you will beed to run R2023a or higher as this will support .NET 6 or higher.
 
-### MATLAB R2024b and older
-
-
-MATLAB versions earlier than 2022b do not support the .NET core runtime.
-
-The default .NET runtime for MATLAB versions 2022b can be configured to .NET Core with the 
-following command
+The default .NET runtime for MATLAB can be configured to .NET Core with the following command, where it will choose the latest installed version.
 ```matlab
 dotnetenv('core')
 ```
 
-!!! warning "MATLAB R2024b with .NET 6"
-
-    MATLAB R2024b has a known issue with .NET6.
-    
-    To patch:
-
-    From a .NET 6 installation, copy ijwhost.dll from
-    `./packs/Microsoft.NETCore.App.Host.win-x64/6.0.XX/runtimes/win-x64/native/ijwhost.dll`
-    into <matlabroot>/bin/win64 (replace existing).
-
+If you have newer .NET runtime environments (> .NET 8) then it is advised to state the version.
+```matlab
+dotnetenv("core",Version="8");
+```
 
 The runtime configuration file for the .NET runtime can be found
 in `matlabroot/bin/win64/dotnetcli_netcore.runtimeconfig.json`.
 With this file, MATLAB loads the latest appropriate assemblies compatible with SQLRace API.
+
 An example configuration for the runtime is provided below.
 ```
 {
   "runtimeOptions": {
     "rollForward": "Minor",
-    "tfm": "net6.0",
+    "tfm": "net8.0",
     "frameworks": [
       {
         "name": "Microsoft.NETCore.App",
-        "version": "6.0.0"
+        "version": "8.0.0"
       },
       {
         "name": "Microsoft.WindowsDesktop.App",
-        "version": "6.0.0"
+        "version": "8.0.0"
       },
       {
         "name": "Microsoft.AspNetCore.App",
-        "version": "6.0.0"
+        "version": "8.0.0"
       }
     ],
     "configProperties": {
@@ -111,19 +91,30 @@ An example configuration for the runtime is provided below.
 More information about calling .NET from MATLAB can be found in the 
 [MATLAB documentation](https://mathworks.com/help/matlab/call-net-from-matlab.html).
 
+!!! hint
+
+    Information on the runtime in use can be retrieved using:
+    ```matlab
+    e = dotnetenv;
+    disp(e)
+    ```
+
 ## Python
 
-The .NET core runtime can be loaded via calling `pythonnet.load` or configuring the environment variable.
+In order to run .NET in Python you need to use [pythonnet](https://github.com/pythonnet), currently this only supports python `3.7` - `3.13` with `3.14` and newer not [yet](https://github.com/pythonnet/pythonnet/issues/2610) supported.
 
-The runtime must be configured __before `clr` is imported__, otherwise the default runtime will be initialized and used. 
-Information on the runtime in use can be retrieved using `pythonnet.get_runtime_info()`).
+The runtime must be configured __before `clr` is imported__, otherwise the default runtime will be initialized and used.
 
-Calling `pythonnet.load`
+The .NET Core runtime can be loaded in code by calling `pythonnet.load` or configuring the environment variable.
+
+**In Code**
 ```python
 from pythonnet import load
+
 load("coreclr", runtime_config=r"C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Host.runtimeconfig.json")
 ```
-Via Environment Variables
+
+**Environment Variable**
 ```
 PYTHONNET_RUNTIME=coreclr
 PYTHONNET_CORECLR_RUNTIME_CONFIG=C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Host.runtimeconfig.json
@@ -131,3 +122,7 @@ PYTHONNET_CORECLR_RUNTIME_CONFIG=C:\Program Files\McLaren Applied Technologies\A
 
 More information about calling .NET from Python can be found in the 
 [pythonnet documentation](https://pythonnet.github.io/pythonnet/python.html#loading-a-runtime).
+
+!!! hint
+
+    Information on the runtime in use can be retrieved using `pythonnet.get_runtime_info()`).
