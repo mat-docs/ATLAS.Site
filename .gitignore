@@ -2,4 +2,3 @@ site
 .venv/
 main.py
 /.vs
-overrides/
