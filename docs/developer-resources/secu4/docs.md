@@ -11,6 +11,7 @@
     - [Connection](#ma-streaming-api-v1-Connection)
     - [ConnectionDetails](#ma-streaming-api-v1-ConnectionDetails)
     - [CreateSessionRequest](#ma-streaming-api-v1-CreateSessionRequest)
+    - [CreateSessionRequest.DetailsEntry](#ma-streaming-api-v1-CreateSessionRequest-DetailsEntry)
     - [CreateSessionResponse](#ma-streaming-api-v1-CreateSessionResponse)
     - [DataPacketDetails](#ma-streaming-api-v1-DataPacketDetails)
     - [DataPacketRequest](#ma-streaming-api-v1-DataPacketRequest)
@@ -72,6 +73,7 @@
     - [BoolSample](#ma-streaming-open_data-v1-BoolSample)
     - [BoolSampleList](#ma-streaming-open_data-v1-BoolSampleList)
     - [ConfigurationPacket](#ma-streaming-open_data-v1-ConfigurationPacket)
+    - [CoverageCursorInfoPacket](#ma-streaming-open_data-v1-CoverageCursorInfoPacket)
     - [DataFormatConfigurationPacket](#ma-streaming-open_data-v1-DataFormatConfigurationPacket)
     - [DataFormatDefinitionPacket](#ma-streaming-open_data-v1-DataFormatDefinitionPacket)
     - [DoubleSample](#ma-streaming-open_data-v1-DoubleSample)
@@ -248,6 +250,25 @@ Request for the creation of a new session
 | type | [string](#string) |  | Session type (defaults to &#34;Session&#34;) |
 | version | [uint32](#uint32) |  | Version (defaults to 1) |
 | utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes, defaults to 0) |
+| identifier | [string](#string) |  | Session identifier |
+| associate_session_key | [string](#string) | repeated | List of unique session key to associate to the session |
+| details | [CreateSessionRequest.DetailsEntry](#ma-streaming-api-v1-CreateSessionRequest-DetailsEntry) | repeated | Session details to update (detail name, detail value) |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-CreateSessionRequest-DetailsEntry"></a>
+
+### CreateSessionRequest.DetailsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -264,6 +285,7 @@ Response to a session creation request
 | ----- | ---- | ----- | ----------- |
 | session_key | [string](#string) |  | Unique session key |
 | new_session | [ma.streaming.open_data.v1.NewSessionPacket](#ma-streaming-open_data-v1-NewSessionPacket) |  | New session packet |
+| success | [bool](#bool) |  | Whether the create session request succeeded |
 
 
 
@@ -333,6 +355,7 @@ Response to the termination of a session
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | end_session | [ma.streaming.open_data.v1.EndOfSessionPacket](#ma-streaming-open_data-v1-EndOfSessionPacket) |  | End of session packet |
+| success | [bool](#bool) |  | Whether the end session request succeeded |
 
 
 
@@ -393,6 +416,7 @@ Response to the listing of all available sessions on the broker request
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | session_keys | [string](#string) | repeated | List of unique session keys present on the broker for the specified data source |
+| success | [bool](#bool) |  | Whether the get current session request succeeded |
 
 
 
@@ -558,6 +582,7 @@ Response to the session info request
 | essentials_offset | [int64](#int64) |  | Offset of the data source essentials topic |
 | details | [GetSessionInfoResponse.DetailsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-DetailsEntry) | repeated | Session details (detail name, detail value) |
 | utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
+| success | [bool](#bool) |  | Whether the get session info request succeeded |
 
 
 
@@ -1134,6 +1159,25 @@ Data configuration
 | parameter_definitions | [ParameterDefinition](#ma-streaming-open_data-v1-ParameterDefinition) | repeated | The parameter definitions |
 | event_definitions | [EventDefinition](#ma-streaming-open_data-v1-EventDefinition) | repeated | The event definitions |
 | group_definitions | [GroupDefinition](#ma-streaming-open_data-v1-GroupDefinition) | repeated | The group definitions |
+| partial_packet | [bool](#bool) |  | Flag to indicate if this packet is part of a larger config. |
+| packet_number | [uint32](#uint32) |  | The packet number out of the total packets sent if partial packet was set to true. |
+| total_packet_number | [uint32](#uint32) |  | The total packet number that make up the config id if partial packet was set to true. |
+
+
+
+
+
+
+<a name="ma-streaming-open_data-v1-CoverageCursorInfoPacket"></a>
+
+### CoverageCursorInfoPacket
+Coverage cursor position for a session has been updated
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data_source | [string](#string) |  | Data Source name |
+| coverage_cursor_time | [fixed64](#fixed64) |  | Coverage cursor time (nanoseconds since the UNIX epoch of 1st January 1970, UTC) |
 
 
 
@@ -1467,6 +1511,7 @@ New session has started
 | data_source | [string](#string) |  | Data Source name |
 | topic_partition_offsets | [NewSessionPacket.TopicPartitionOffsetsEntry](#ma-streaming-open_data-v1-NewSessionPacket-TopicPartitionOffsetsEntry) | repeated | The offsets into each topic / partition (key is topic name, optionally appended with a &#39;:&#39; followed by the partition number) |
 | utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
+| session_info | [SessionInfoPacket](#ma-streaming-open_data-v1-SessionInfoPacket) | optional | Session info |
 
 
 
