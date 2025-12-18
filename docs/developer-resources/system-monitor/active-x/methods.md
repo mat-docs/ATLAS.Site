@@ -402,7 +402,7 @@
 **Arguments:**  
 - `bool bSaveModified - Flag to indicate if any unsaved files in the project should be saved before exporting.`  
 ### **GenerateParamSet**
-**Description:** Generate a parameter set file.  
+**Description:** Generates a Parameter Set (.pms file) and writes it to the specified path. Contains two arguments, first being an array of strings of Parameters being sourced from your current open project and the second being a string defining file path. 
 **Arguments:**  
 - `VARIANT aszIdentifiers – Safe Array (string) of parameter identifiers to be included.`  
 - `BSTR pszFileName - Full path name of the parameter set (.pms) file.`  
