@@ -130,7 +130,9 @@ nav:
         - SQL Race, SQLite & SSN2: key-functionality/store/sqlrace/comparison.md
       - Data Server:
         - Overview: key-functionality/store/ads/index.md
-        # - Getting Started: key-functionality/store/ads/installation.md
+        - Getting Started: key-functionality/store/ads/installation.md
+        - Recorders: key-functionality/store/ads/recorders.md
+        - RDS: key-functionality/store/ads/rds.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
@@ -225,25 +227,25 @@ nav:
       - Stream API: 
         - Overview: developer-resources/secu4/stream_api/index.md
         - Getting Started:
-          - Overview: developer-resources/secu4/stream_api/reference docs/getting-started/overview.md
-          - Quick Start: developer-resources/secu4/stream_api/reference docs/getting-started/quick-start.md
-          - Installation: developer-resources/secu4/stream_api/reference docs/getting-started/installation.md
+          - Overview: developer-resources/secu4/stream_api/reference_docs/getting-started/overview.md
+          - Quick Start: developer-resources/secu4/stream_api/reference_docs/getting-started/quick-start.md
+          - Installation: developer-resources/secu4/stream_api/reference_docs/getting-started/installation.md
         - Services:
-          - Session Management: developer-resources/secu4/stream_api/reference docs/services/session-management.md
-          - Connection Management: developer-resources/secu4/stream_api/reference docs/services/connection-management.md
-          - Packet Writer: developer-resources/secu4/stream_api/reference docs/services/packet-writer.md
-          - Packet Reader: developer-resources/secu4/stream_api/reference docs/services/packet-reader.md
-          - Data Format Management: developer-resources/secu4/stream_api/reference docs/services/data-format-management.md
+          - Session Management: developer-resources/secu4/stream_api/reference_docs/services/session-management.md
+          - Connection Management: developer-resources/secu4/stream_api/reference_docs/services/connection-management.md
+          - Packet Writer: developer-resources/secu4/stream_api/reference_docs/services/packet-writer.md
+          - Packet Reader: developer-resources/secu4/stream_api/reference_docs/services/packet-reader.md
+          - Data Format Management: developer-resources/secu4/stream_api/reference_docs/services/data-format-management.md
         - Configuration:
-          - Server Configuration: developer-resources/secu4/stream_api/reference docs/configuration/server-config.md
-          - Docker Setup: developer-resources/secu4/stream_api/reference docs/configuration/docker-setup.md
+          - Server Configuration: developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md
+          - Docker Setup: developer-resources/secu4/stream_api/reference_docs/configuration/docker-setup.md
         - Examples:    
-          - Telemetry Example: developer-resources/secu4/stream_api/reference docs/examples/telemetry-example.md
-          - Custom Messages: developer-resources/secu4/stream_api/reference docs/examples/custom-messages.md
+          - Telemetry Example: developer-resources/secu4/stream_api/reference_docs/examples/telemetry-example.md
+          - Custom Messages: developer-resources/secu4/stream_api/reference_docs/examples/custom-messages.md
         - Reference:
-          - API Reference: developer-resources/secu4/stream_api/reference docs/reference/api-reference.md
-          - Error Handling: developer-resources/secu4/stream_api/reference docs/reference/error-handling.md
-        - Troubleshooting: developer-resources/secu4/stream_api/reference docs/reference/troubleshooting.md
+          - API Reference: developer-resources/secu4/stream_api/reference_docs/reference/api-reference.md
+          - Error Handling: developer-resources/secu4/stream_api/reference_docs/reference/error-handling.md
+        - Troubleshooting: developer-resources/secu4/stream_api/reference_docs/reference/troubleshooting.md
         - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
@@ -253,18 +255,18 @@ nav:
         - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
         - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
-        - Overview: developer-resources/secu4/support_library/reference docs/index.md
+        - Overview: developer-resources/secu4/support_library/reference_docs/index.md
         # - Home: developer-resources/secu4/support_library/index.md
         - Core Modules:
-          - Session Manager: developer-resources/secu4/support_library/reference docs/session-manager.md
-          - Data Format Manager: developer-resources/secu4/support_library/reference docs/data-format-manager.md
+          - Session Manager: developer-resources/secu4/support_library/reference_docs/session-manager.md
+          - Data Format Manager: developer-resources/secu4/support_library/reference_docs/data-format-manager.md
         - Data Flow Modules:
-          - Writer Module: developer-resources/secu4/support_library/reference docs/writer-module.md
-          - Reader Module: developer-resources/secu4/support_library/reference docs/reader-module.md
-          - Buffering Module: developer-resources/secu4/support_library/reference docs/buffering-module.md
-          - Interpolation Module: developer-resources/secu4/support_library/reference docs/interpolation-module.md
+          - Writer Module: developer-resources/secu4/support_library/reference_docs/writer-module.md
+          - Reader Module: developer-resources/secu4/support_library/reference_docs/reader-module.md
+          - Buffering Module: developer-resources/secu4/support_library/reference_docs/buffering-module.md
+          - Interpolation Module: developer-resources/secu4/support_library/reference_docs/interpolation-module.md
         - Reference:
-          - API Reference: developer-resources/secu4/support_library/reference docs/api-reference.md
+          - API Reference: developer-resources/secu4/support_library/reference_docs/api-reference.md
     - ATLAS: 
       - Overview: developer-resources/atlas/index.md
       - Nuget: 
