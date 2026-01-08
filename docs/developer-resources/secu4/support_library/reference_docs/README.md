@@ -276,11 +276,5 @@ reader.Start();
 
 For issues or questions, please send email to atlas10@motionapplied.com
 
-## License
-
-Copyright (c) Motion Applied Ltd.
-
----
-
 **Last Updated**: October 2025  
 **Version**: 1.0
