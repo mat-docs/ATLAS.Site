@@ -20,3 +20,7 @@
 }
 .mdx-badge__icon { display: inline-flex; }
 .mdx-badge__text { opacity: .9; }
+
+.md-grid {
+  max-width: 90vw;
+}

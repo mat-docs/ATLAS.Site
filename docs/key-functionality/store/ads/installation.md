@@ -2,15 +2,6 @@
 
 This guide walks you through installing and configuring the ATLAS Data Server (ADS) to manage and store telemetry data.
 
-## Prerequisites
-
-| Requirement      | Minimum Supported                | Recommended                   |
-|------------------|----------------------------------|-------------------------------|
-| Operating System | Windows 11                       | Windows 11                    |
-| Memory           | 1 GB                             | 8 GB or higher                |
-| Processor        | Intel Core Duo 2GHz              | Intel Core i7 Processor       |
-| Disk Space       | HDD with 200 GB free disk space  | SSD with 512 GB or more       |
-
 ## Installation Steps
 
 1. **Download the Installer**  
@@ -20,49 +11,49 @@ This guide walks you through installing and configuring the ATLAS Data Server (A
     Launch the installer and follow the on-screen instructions.
 
 3. **Configure the Server**  
-    After installation, open the ATLAS Data Server configuration tool to set server parameters, such as data storage locations.
+    After installation, open the Standalone ADS application: `Start > All > McLaren Applied Technologies > Data Server`.
 
     To add a SQLRace Database as a data source: `Tools > SQLRace > Connection Manager` and click **Add** to enter your SQL Server instance details.
 
 !!! note
     If you use ADS with SQLRace, install and configure SQLRace first. See the [SQLRace setup guide](../sqlrace/installation.md).
 
-4. **Add a Recorder**  
-    To start recording data, go to `Setup > Add` and select the recorder type. Follow the prompts to configure recorder settings.
+## Data Server Setup
 
-## Using ATLAS Data Server
+### Server Settings File
 
-- Install ATLAS with the ATLAS Data Server option selected in Custom Installation.
-- Your ATLAS license must include Wide Band Telemetry permissions.
+The Server Settings file contains all of the setup information for ATLAS Data Server. It's important to spend time configuring these settings so that you don't need to repeat the process every time you open ATLAS Data Server.
 
-### System Requirements
+1. Create a Server Settings File by creating a new file `AtlasServer.sbk` and saving it to a known location.
 
-- **Server PC:**  
-  - Must run ATLAS Data Server (ATLAS itself is optional on the server).
-- **Client PCs:**  
-  - Must run ATLAS.
-  - Set the data source to **Data Server Wirelink** or **Data Server Telemetry** in the Record dialog.
+2. Go to `Tools > Options`
 
-> Multiple Server PCs can operate on the same network. Each car transmitting simultaneously requires a separate Server.
+3. Under `Recording > General` find `Server Settings File` and enter the path to your `AtlasServer.sbk` file.
 
-## ATLAS Data Server Setup
+### Log File
 
-- Use the **Setup** button in the ATLAS Data Server dialog to open the Record dialog for managing session recordings.
-- Settings are saved for the Data Server only and do not affect ATLAS settings.
-- The settings file location is set as **Server Settings File** in the Options dialog (Recording Tab).
+The ATLAS Data Server creates a log file to record all events during operation. This log file is essential for troubleshooting and monitoring the server's performance. 
 
-> **Tip:**  
-> The Record dialog is also used in ATLAS. Many commands are shared. See the ATLAS Help for details.
+1. Under `Recording > Logging (Debug)` find Log File Folder.
 
-## Record Dialog Tabs
+2. By default the log file is created here : `C:\Documents\McLaren Electronic Systems\ATLAS 9\Log `, to update the location change the path.
 
-- **General:**  
-  ATLAS Data Server only. Configure general recording options.
-- **All:**  
-  Shared by ATLAS and ATLAS Data Server. Change settings for all configured data sources at once.
-- **Data Sources:**  
-  Add new data sources using the **Add** button. See the Interface Settings folder for details.
+### Setting up IP addresses
 
-> **Note:**  
-> The Remote Data Server recorder is specific to Remote Data Server functionality. See Interface Settings - Remote Data Server for more information.
+1. Go to `Tools > Options > Data Server`
 
+2. Find `Wide Band local address` and copy your IP address
+
+3. Click OK to save and close the Options window.
+
+### System Monitor Paths
+
+Setting up the System Monitor paths allows ATLAS Data Server to locate the necessary configuration and data files for proper processing. 
+
+1. Go to `Tools > Options > System Monitor Folders`
+
+2. In the System Monitor Base Folder field enter the path to the System Monitor project (.pgv).
+
+3. In the Logging Configuration Folder field enter the path to the logging configuration folder (LogCfgs) inside of the System Monitor project.
+
+4. Click OK to save and close the Options window.

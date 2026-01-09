@@ -515,6 +515,3 @@ The library supports various data streaming scenarios:
 
 For issues or questions, please send email to atlas10@motionapplied.com
 
-## License
-
-Copyright (c) Motion Applied Ltd.
