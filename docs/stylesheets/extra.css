@@ -22,5 +22,5 @@
 .mdx-badge__text { opacity: .9; }
 
 .md-grid {
-  max-width: initial;
+  max-width: 90vw;
 }
