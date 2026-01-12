@@ -498,8 +498,6 @@ dataReaderService.Start();
 - [Buffering Module](buffering-module.md)
 - [Interpolation Module](interpolation-module.md)
 - [API Reference](api-reference.md)
-- [Configuration Guide](configuration.md)
-- [Events Reference](events-reference.md)
 
 ## Use Cases
 

@@ -403,4 +403,3 @@ dataReaderService.Subscribe("Sub2", params, 100.0, handler, deliveryFrequencyHz:
 - [Buffering Module](buffering-module.md)
 - [Reader Module](reader-module.md)
 - [API Reference](api-reference.md)
-- [Configuration Guide](configuration.md)
