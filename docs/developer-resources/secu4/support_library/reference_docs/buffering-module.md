@@ -709,4 +709,3 @@ var analysisConfig = new BufferingConfiguration(
 - [Reader Module](reader-module.md)
 - [Interpolation Module](interpolation-module.md)
 - [API Reference](api-reference.md)
-- [Configuration Guide](configuration.md)

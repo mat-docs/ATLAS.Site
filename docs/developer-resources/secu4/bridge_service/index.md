@@ -23,8 +23,7 @@ Setup | General | General Network Settings | Name.
 Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, which can be found in 
 *../Documents/McLaren Electronic Systems/ATLAS9/BridgeService* folder. The data can be split multiple Kafka topics or 
 partitions. For more, information please refer to 
-[Stream Creation Strategy](../stream_api/stream_server.md/#stream-creation-strategy)
-
+[Stream Creation Strategy](../stream_api/reference_docs/configuration/server-config.md/#stream-creation-strategies)
 
 === "Example with StreamCreationStrategy=2 (Topic based)"
 
