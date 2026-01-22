@@ -1,17 +1,12 @@
 
 ---
-date: 2026-01-22
+date:
+  created: 2026-01-23
 categories:
   - Releases
-  - ATLAS
 tags:
-  - ATLAS Viewer
-  - Streaming Platform
-    - Stream API
-    - Stream Protocol
-    - Bridge Service
-    - Virtual Parameter Service
-    - Support Library
+  - ATLAS Client
+  - ATLAS Streaming Platform
 ---
 
 # ATLAS Release – WK04
