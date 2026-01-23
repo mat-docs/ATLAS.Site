@@ -15,7 +15,7 @@ This release brings improvements to the Virtual Parameter Service with updated s
 ## Downloads
 
 - **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/virtual-parameter-service-host/general)
-- **Windows Binary:** [Download]({{URL_VPS_WIN_BINARY}})
+- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Virtual%20Parameter%20Service/VPS%202.1.1.7/MA.DataPlatforms.VirtualParameterService.Host.zip)
 - **Documentation:** [Read docs](../../../key-functionality/process/secu4/vps.md)
 
 ## Key Improvements
