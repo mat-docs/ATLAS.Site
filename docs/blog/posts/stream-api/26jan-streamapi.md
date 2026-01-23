@@ -23,203 +23,249 @@ integrate into your applications.
 
 ## Key Improvements
 
-### 1. DOMAIN-BASED KAFKA TOPIC NAMING
+### 1. Domain-Based Kafka Topic Naming
 
-You can now organize your Kafka topics with a configurable domain prefix. 
+You can now organize your Kafka topics with a configurable domain prefix.
 
-This helps you:
-  - Keep your topics organized by environment, team, or application
-  - Easily identify which system generated the data
-  - Support multi-tenant architectures
+**What's New**
 
-What's New:
+- Configure a custom domain name through the `Domain` configuration property
+- Topics are automatically prefixed with your domain (e.g., `MyDomain.Data.SensorData`)
+- Leave it empty if you prefer to keep your existing topic naming structure
+- Works seamlessly with both topic-based and partition-based streaming strategies
 
-  - Configure a custom domain name through the 'Domain' configuration property
-  - Topics are automatically prefixed with your domain 
-    (e.g., MyDomain.Data.SensorData)
-  - Leave it empty if you prefer to keep your existing topic naming structure
-  - Works seamlessly with both topic-based and partition-based streaming 
-    strategies
+**Benefits**
 
-Example:
-  With Domain = "Production":     Production.Data.SensorData
-  With Domain = "" (empty):       Data.SensorData
+- Keep your topics organized by environment, team, or application
+- Easily identify which system generated the data
+- Support multi-tenant architectures
 
+**Examples**
 
-### 2. CONSISTENT TOPIC NAMING CONVENTIONS
+| Domain Setting | Resulting Topic |
+|----------------|-----------------|
+| `Domain = "Production"` | `Production.Data.SensorData` |
+| `Domain = ""` (empty) | `Data.SensorData` |
 
-All Kafka topics now follow a clear and consistent naming structure, making 
-it easier to identify the purpose of each topic at a glance.
+!!! tip "Multi-Environment Setup"
+    Use different domains for each environment:
+    
+    - Production: `Production.Data.SensorData`
+    - Staging: `Staging.Data.SensorData`
+    - Development: `Dev.Data.SensorData`
 
-What's New:
+### 2. Consistent Topic Naming Conventions
 
-  - System Topics now have a 'Sys' prefix:
-      * Session information: Sys.SessionInfo
-      * Status updates: Sys.Status
-      * Dead letter queue: Sys.DeadLetter
-  - Data Topics have a 'Data' prefix:
-      * Main data streams: Data.YourDataSource
-  - Essential Topics use the 'Essential' prefix:
-      * Essential data streams: Essential.YourDataSource
-  - All reserved topic names are now in camelCase format for consistency
+All Kafka topics now follow a clear and consistent naming structure, making it easier to identify the purpose of each topic at a glance.
 
-Benefits:
+**Topic Prefixes**
 
-  - Quickly identify topic types by their prefix
-  - Better organization in Kafka topic browsers
-  - Consistent naming across all environments
-  - Easier to set up monitoring and alerting rules
+| Prefix | Purpose | Examples |
+|--------|---------|----------|
+| `Sys` | System Topics | `Sys.SessionInfo`, `Sys.Status`, `Sys.DeadLetter` |
+| `Data` | Data Topics | `Data.YourDataSource` |
+| `Essential` | Essential Topics | `Essential.YourDataSource` |
 
+**Naming Format**
 
-### 3. NEW ESSENTIAL SERVICE WITH SESSION LIFECYCLE MANAGEMENT
+All reserved topic names are now in **camelCase** format for consistency.
 
-Introducing a new essential service that actively manages data delivery 
-throughout the session.
+**Benefits**
 
-What's New:
+- Quickly identify topic types by their prefix  
+- Better organization in Kafka topic browsers  
+- Consistent naming across all environments  
+- Easier to set up monitoring and alerting rules  
 
-  - Essential service now stays active for the entire duration of the session
-  - Automatically pushes data and updates to connected clients in real-time
-  - Service lifecycle is tied to the session lifecycle
-  - Remains active until explicitly closed by the client
+### 3. New Essential Service with Session Lifecycle Management
 
-Benefits:
+Introducing a new essential service that actively manages data delivery throughout the session.
 
-  - More reliable essential data delivery
-  - Real-time updates without polling
-  - Better synchronization between session state and data streams
-  - Reduced latency for critical data
+**What's New**
 
+- Essential service now stays active for the **entire duration** of the session
+- Automatically pushes data and updates to connected clients in real-time
+- Service lifecycle is tied to the session lifecycle
+- Remains active until explicitly closed by the client
 
-### 4. ENHANCED STREAM LIFECYCLE TRACKING
+**Benefits**
 
-The API now provides complete visibility into when streams start and stop, making it easier to:
+- More reliable essential data delivery
+- Real-time updates without polling
+- Better synchronization between session state and data streams
+- Reduced latency for critical data
 
-  - Monitor active streams in real-time
-  - Track stream activity across sessions
-  - Debug streaming issues with better event tracking
+!!! example "Use Case"
+    Critical race telemetry data is now guaranteed to be delivered throughout the entire session, with automatic notifications when the stream starts and stops.
 
-What's New:
+### 4. Enhanced Stream Lifecycle Tracking
 
-  - Automatic stream start notifications sent to all active streams when a 
-    session begins
-  - Automatic stream stop notifications sent when a session is closed
-  - Better tracking of stream states throughout their lifecycle
-  - Session creation and termination timestamps are now included in session 
-    information packets
+The API now provides complete visibility into when streams start and stop, making it easier to monitor and debug streaming operations.
 
+**What's New**
 
-### 5. SIMPLIFIED LOGGING INTEGRATION
+- Automatic **stream start notifications** sent to all active streams when a session begins
+- Automatic **stream stop notifications** sent when a session is closed
+- Better tracking of stream states throughout their lifecycle
+- Session creation and termination timestamps are now included in session information packets
 
-Logging has been completely refactored to give you full control over where 
-and how logs are written.
+**Benefits**
 
-What's New:
+- Monitor active streams in real-time
+- Track stream activity across sessions
+- Debug streaming issues with better event tracking
+- Build comprehensive monitoring dashboards
 
-  - Inject your own logger implementation from your host application
-  - All Streaming API logs now use your provided logger
-  - Keep streaming logs alongside your application logs in the same file
-  - No need to manage separate log configurations
-  - Full flexibility to use any logging framework (Serilog, NLog, etc.)
+!!! info "Stream Events"
+    Subscribe to `StreamStartedPacket` and `StreamStoppedPacket` events to track all stream activity in your system.
 
-Benefits:
+### 5. Simplified Logging Integration
 
-  - Unified logging across your application
-  - Easier troubleshooting with all logs in one place
-  - Less configuration overhead
+Logging has been completely refactored to give you full control over where and how logs are written.
 
-!!! note
-    If no logger is provided, the API will use a console logger with Warning level by default.
+**What's New**
 
+- **Removed hard-coded logging dependencies**
+- You now provide your own Serilog `ILogger` instance
+- Full flexibility in configuring log destinations, formats, and levels
+- Better integration with existing logging infrastructure
 
-### 6. SESSION TIMING INFORMATION
+**Migration Example**
 
-Session packets now include precise timing information:
+**Before:**
+```csharp
+// Logging was configured internally
+var streamingApi = new StreamingApi(config);
+```
 
-  - Session Creation Time: When the session was established
-  - Session Termination Time: When the session was closed
+**After:**
+```csharp
+// You provide the logger
+var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/streaming-api.log")
+    .CreateLogger();
 
-This makes it easier to:
+var streamingApi = new StreamingApi(config, logger);
+```
 
-  - Calculate session duration
-  - Track session activity patterns
-  - Generate accurate usage reports
+**Benefits**
+
+- Choose your own log destinations (console, file, database, cloud)
+- Configure log levels per component
+- Integrate with existing logging infrastructure
+- Better control over log formatting and output
+
+!!! tip "Logging Best Practices"
+    Configure different log levels for development and production:
+    
+    - **Development**: `Debug` level with console output
+    - **Production**: `Information` level with file and centralized logging
+
+## Breaking Changes
+
+**Logging Constructor Change**
+
+!!! warning "Action Required"
+    The Streaming API constructor now requires an `ILogger` parameter:
+    
+    ```csharp
+    // Old (no longer supported)
+    var api = new StreamingApi(config);
+    
+    // New (required)
+    var logger = Log.Logger; // or your configured logger
+    var api = new StreamingApi(config, logger);
+    ```
+
+## Configuration Updates
+
+**New Configuration Properties**
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `Domain` | string | "" | Domain prefix for all Kafka topics |
+
+**Updated Properties**
+
+No existing properties have changed, only new ones added.
 
 ## Migration Guide
 
-### 1. Domain Configuration (Optional)
+### Step 1: Update Logging Configuration
 
-   If you want to use domain prefixing, add the 'Domain' property to your 
-   configuration:
+1. Install Serilog if not already installed:
+   ```bash
+   dotnet add package Serilog
+   dotnet add package Serilog.Sinks.Console
+   dotnet add package Serilog.Sinks.File
+   ```
 
-   Example:
-     // Add domain prefix
-     Domain = "MyApplication"
+2. Configure your logger:
+   ```csharp
+   Log.Logger = new LoggerConfiguration()
+       .MinimumLevel.Information()
+       .WriteTo.Console()
+       .WriteTo.File("logs/streaming-api-.log", rollingInterval: RollingInterval.Day)
+       .CreateLogger();
+   ```
 
-    // Or leave empty for backward compatibility with existing configurations
+3. Pass logger to Streaming API:
+   ```csharp
+   var api = new StreamingApi(config, Log.Logger);
+   ```
 
-!!! important "BREAKING CHANGE"
-   While the configuration file format is backward compatible (existing configs 
-   will work without modification), the Kafka topic naming changes are BREAKING.
-   
-   All components that interact with Kafka topics must be updated:
-   - Consumer applications reading from these topics
-   - Monitoring and alerting systems referencing topic names
-   - Infrastructure as Code (IaC) scripts managing topics
-   - Documentation and operational runbooks
-   
-   This is a coordinated release - all systems must be updated together to 
-   maintain compatibility.
+### Step 2: Add Domain Configuration (Optional)
 
+Add a domain to your configuration:
+```json
+{
+  "StreamApiConfig": {
+    "Domain": "Production",
+    ...
+  }
+}
+```
 
-### 2 . Topic Name Updates (REQUIRED)
-   Update all references to Kafka topics in your systems:
+### Step 3: Subscribe to Lifecycle Events (Optional)
 
-   Old Topic Names          →  New Topic Names
-   ----------------             ----------------
-   SessionInfo              →  Sys.SessionInfo
-   Status                   →  Sys.Status
-   deadLetter               →  Sys.DeadLetter
-   [YourDataSource]         →  Data.[YourDataSource]
-   [YourDataSource].essentials    →  Essential.[YourDataSource]
+Listen for stream start/stop events:
+```csharp
+api.OnStreamStarted += (source, streamName, time) => 
+{
+    Console.WriteLine($"Stream {streamName} started at {time}");
+};
 
-   If using Domain configuration (e.g., Domain = "Production"):
-   SessionInfo              →  Production.Sys.SessionInfo
-   [YourDataSource]         →  Production.Data.[YourDataSource]
+api.OnStreamStopped += (source, streamName, time) => 
+{
+    Console.WriteLine($"Stream {streamName} stopped at {time}");
+};
+```
 
-   ACTION REQUIRED:
-   - Update all consumer applications to use new topic names
-   - Update Kafka topic configurations
-   - Coordinate deployment across all dependent systems
+## Compatibility
 
+| Component | Version | Compatibility |
+|-----------|---------|---------------|
+| Protocol | v2.1.1 | ✅ Required |
+| Bridge Service | January 2026 | ✅ Recommended |
+| Data Recorder | January 2026 | ✅ Recommended |
+| Support Library | January 2026 | ✅ Recommended |
 
-### 3. Logger Integration (Recommended)
-   Update your initialization code to inject your logger:
+## Upgrading
 
-   Before: Streaming API managed its own logging
+**Requirements**
 
-   After: Inject your application's logger
-     var streamingServer = StreamingServerFactory.Create(
-         configuration,
-         yourLogger  // Your ILogger instance
-     );
+- Update Protocol to v2.1.1 or later
+- Update Serilog packages to latest versions
+- .NET 6.0 or later recommended
 
-   This ensures all streaming logs appear in your application's log files.
+**Steps**:
 
-
-### 4. Session Time Tracking
-
-   Session info packets now include timing information. If you're processing 
-   these packets, you can now access:
-     - SessionCreationTime
-     - SessionTerminationTime
-
-   No code changes required, but these fields are now available for use.
-
-!!! note
-  - Existing configurations will continue to work without modification
-  - Domain configuration defaults to empty string (no prefix)
-  - Stream lifecycle notifications are automatic and require no code changes
+1. Update NuGet packages
+2. Update logging configuration in your code
+3. Add domain configuration to config files (optional)
+4. Test stream lifecycle events
+5. Deploy to production
 
 ## Support
 

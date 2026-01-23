@@ -24,119 +24,117 @@ and support for large configuration datasets.
 
 ### 1. Session Creation and Termination Time Tracking
 
-We've added the ability to track precise session creation and termination 
-times, giving you better visibility into your session lifecycle.
+We've added the ability to track precise session creation and termination times, giving you better visibility into your session lifecycle.
 
-What this means for you:
+**What this means for you**
 
-- You can now specify a custom session creation time when starting a session 
-  (if not provided, the server time is used automatically)
-- Session termination time can be recorded when ending a session 
-  (if not provided, the server time is used automatically)
-- Historical accuracy: This is especially useful when importing historical 
-  data where the actual session times differ from processing times
+- You can now specify a custom **session creation time** when starting a session  
+  *(if not provided, the server time is used automatically)*
+- **Session termination time** can be recorded when ending a session  
+  *(if not provided, the server time is used automatically)*
+- **Historical accuracy**: This is especially useful when importing historical data where the actual session times differ from processing times
 - You can retrieve these timestamps through session info queries
 
-Technical Details:
+**Technical Details**
 
-- Added creation_time field to CreateSessionRequest and NewSessionPacket
-- Added termination_time field to EndSessionRequest and EndOfSessionPacket
-- Enhanced GetSessionInfoResponse to include both creation_time and 
-  termination_time
-- Updated SessionInfoPacket to include creation_time, termination_time, 
-  and utc_offset
+New Fields Added:
+
+- `creation_time` field in `CreateSessionRequest` and `NewSessionPacket`
+- `termination_time` field in `EndSessionRequest` and `EndOfSessionPacket`
+- Enhanced `GetSessionInfoResponse` to include both `creation_time` and `termination_time`
+- Updated `SessionInfoPacket` to include `creation_time`, `termination_time`, and `utc_offset`
+
+!!! example "Use Case"
+    When replaying historical race data recorded on January 1st but processed on January 15th, you can now set the session creation time to January 1st to maintain accurate historical records.
 
 ### 2. Stream Lifecycle Notifications
 
-New stream lifecycle messages help you monitor when streams start and stop 
-in real-time.
+New stream lifecycle messages help you monitor when streams start and stop in real-time.
 
-What this means for you:
+**What this means for you**
 
-- Better observability: Know exactly when your data streams begin and end
-- Improved debugging: Easily track stream interruptions or unexpected stops
-- Enhanced monitoring: Build dashboards that display active streams and 
-  their durations
+- **Better observability**: Know exactly when your data streams begin and end
+- **Improved debugging**: Easily track stream interruptions or unexpected stops
+- **Enhanced monitoring**: Build dashboards that display active streams and their durations
 
-Technical Details:
+**Technical Details**
 
-- New StreamStartedPacket message: Notifies when a stream begins, including 
-  data source, session key, stream name, and start time
-- New StreamStoppedPacket message: Notifies when a stream ends, including 
-  data source, session key, stream name, and stop time
+New Packet Types:
+
+| Packet | Description | Includes |
+|--------|-------------|----------|
+| `StreamStartedPacket` | Notifies when a stream begins | Data source, session key, stream name, start time |
+| `StreamStoppedPacket` | Notifies when a stream ends | Data source, session key, stream name, stop time |
+
+!!! tip "Monitoring Streams"
+    Subscribe to these lifecycle events to build real-time dashboards showing active data streams and their health status.
 
 ### 3. Batch Configuration Support
 
-Configuration data can now be sent in multiple smaller packets instead of 
-one large packet, solving issues with very large configurations.
+Configuration data can now be sent in multiple smaller packets instead of one large packet, solving issues with very large configurations.
 
-What this means for you:
+**What this means for you**
 
-- Handle larger configurations: No more limitations on configuration size
-- Better performance: Reduced memory pressure when dealing with complex 
-  configurations
-- More reliable: Avoid timeouts and errors when transmitting large 
-  configuration datasets
+- **Handle larger configurations**: No more limitations on configuration size
+- **Better performance**: Reduced memory pressure when dealing with complex configurations
+- **More reliable**: Avoid timeouts and errors when transmitting large configuration datasets
 
-Technical Details:
+**Technical Details**
 
-- Added partial_packet flag to ConfigurationPacket to indicate if the packet 
-  is part of a larger configuration
-- Added packet_number field to track the sequence number of the current packet
-- Added total_packet_number field to indicate how many total packets make up 
-  the complete configuration
+New Fields in ConfigurationPacket:
 
-### 4. Synchronous Data Packet Field Naming
+| Field | Type | Description |
+|-------|------|-------------|
+| `partial_packet` | boolean | Indicates if the packet is part of a larger configuration |
+| `packet_number` | int | Sequence number of the current packet |
+| `total_packet_number` | int | Total number of packets in the complete configuration |
 
-Renamed field column to columns in SynchroDataPacket message
+**Example Flow:**
+```
+Packet 1/3: partial_packet=true, packet_number=1, total_packet_number=3
+Packet 2/3: partial_packet=true, packet_number=2, total_packet_number=3
+Packet 3/3: partial_packet=false, packet_number=3, total_packet_number=3
+```
 
-!!! danger "What this means for you"
-    - ACTION REQUIRED: If you're using the column field in SynchroDataPacket, 
-    you need to update your code to use columns (plural)
-    - This change makes the API more consistent and clearer (since it represents 
-    multiple columns)
+### 4. Bug Fix: Synchronous Data Packet Field Naming
+
+Fixed a naming inconsistency in the `SynchroDataPacket` message.
+
+!!! warning "Action Required"
+    If you're using the `column` field in `SynchroDataPacket`, you need to update your code to use `columns` (plural).
+
+This change makes the API more consistent and clearer (since it represents multiple columns).
+
+**Technical Details**
+
+- **Changed**: `column` → `columns` in `SynchroDataPacket` message
 
 ## Migration Guide
 
-### For users of SynchroDataPacket
+### Breaking Changes
 
-If your code accesses the data columns in SynchroDataPacket, update the 
-field name:
+1. **SynchroDataPacket field rename**
+   - Update all references from `column` to `columns`
+   - This affects serialization/deserialization code
 
-Before:
-  message.column[0]
+### New Features (Optional)
 
-After:
-  message.columns[0]
+1. **Session Time Tracking**
+   - Optionally set `creation_time` when creating sessions
+   - Optionally set `termination_time` when ending sessions
 
-### For users creating sessions
+2. **Stream Lifecycle Events**
+   - Subscribe to `StreamStartedPacket` and `StreamStoppedPacket` for monitoring
 
-The new creation_time field is optional. If you don't provide it, the server 
-will use its current time automatically, so no changes are required unless 
-you need custom timestamps.
+3. **Batch Configuration**
+   - Handle `partial_packet` flag for large configurations
+   - Process packets sequentially using `packet_number`
 
-### For users ending sessions
+## Compatibility
 
-The new termination_time field is optional. If you don't provide it, the 
-server will use its current time automatically.
-
-### For users processing configurations
-
-If you receive configuration packets, check the partial_packet flag. If it's 
-true, you'll need to collect and combine all packets (using packet_number and 
-total_packet_number) before processing the complete configuration.
-
-
-!!! tip "Kafka Message Size Limit"
-    By default, Kafka has a message size limit of 1MB. If you're working 
-    with large configuration datasets or data packets that might exceed this 
-    limit, you should:
-        - Use the batch configuration support (partial packets) to split large 
-        configurations into smaller chunks
-        - Configure your Kafka broker's message.max.bytes setting to allow larger 
-        messages if needed
-        - Be aware that increasing message size limits may impact broker performance 
-        and memory usage
+- ✅ Backward compatible (except for `column` → `columns` rename)
+- ✅ Works with Stream API v2.1.1.x
+- ✅ Compatible with all current client libraries after update
 
 ## Support
 

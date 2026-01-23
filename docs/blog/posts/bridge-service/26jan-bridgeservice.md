@@ -24,89 +24,97 @@ enhanced data streaming capabilities.
 
 ### 1. Updated Stream API Support
 
-The Bridge now works with the latest version of the Stream API (v2.1.1.x), 
-providing better performance and reliability when streaming telemetry data.
-
+The Bridge now works with the latest version of the Stream API (v2.1.1.x), providing better performance and reliability when streaming telemetry data.
 
 ### 2. Flexible Stream Mapping with Wildcards
 
-You can now use wildcards (*) when configuring how data streams are mapped, 
-making it much easier to set up and manage your data routing.
+You can now use wildcards (`*`) when configuring how data streams are mapped, making it much easier to set up and manage your data routing.
 
-Example:
+**Example:**
 
 Instead of configuring each stream individually:
 
-    EngineData → engine-stream
-    EngineTemperature → engine-stream
-    EnginePressure → engine-stream
+```json
+{
+  "Mappings": [
+    { "AppName": "EngineData", "Stream": "engine-stream" },
+    { "AppName": "EngineTemperature", "Stream": "engine-stream" },
+    { "AppName": "EnginePressure", "Stream": "engine-stream" }
+  ]
+}
+```
 
 You can now use a simple pattern:
 
-    Engine* → engine-stream
+```json
+{
+  "Mappings": [
+    { "AppName": "Engine*", "Stream": "engine-stream" }
+  ]
+}
+```
 
-This automatically matches all streams starting with "Engine" and routes them 
-to the correct destination.
+This automatically matches all streams starting with "Engine" and routes them to the correct destination.
 
-Popular patterns you can use:
-- Engine* - Matches all engine-related streams
-- *Telemetry - Matches any telemetry streams
-- Chassis_*_Data - Matches specific chassis data patterns
+**Popular patterns you can use:**
 
+- `Engine*` - Matches all engine-related streams
+- `*Telemetry` - Matches any telemetry streams
+- `Chassis_*_Data` - Matches specific chassis data patterns
+
+!!! success "Wildcard Benefits"
+    - Simplifies configuration management
+    - Reduces configuration file size
+    - Makes it easier to add new data sources
+    - More maintainable and readable
 
 ### 3. Better Stream Tracking
 
-The system now automatically tracks when streams start and stop, providing 
-clearer visibility into your data flow.
+The system now automatically tracks when streams start and stop, providing clearer visibility into your data flow.
 
-Benefits:
+**Benefits:**
+
 - Know exactly when data streaming begins and ends
 - Better session management and monitoring
 - More accurate time range information for each session
 
-
 ### 4. Session Time Information
 
-Each data session now includes timing information showing the earliest and 
-latest data points recorded. This information is created at the end of the 
-session when it closes. This helps you:
+Each data session now includes timing information showing the earliest and latest data points recorded. This information is created at the end of the session when it closes.
+
+**This helps you:**
+
 - Understand the full time span of your data
 - Better organize and analyze your sessions
-
+- Track session duration accurately
 
 ## Configuration Updates
 
-Some configuration settings have been simplified and enhanced:
+Some configuration settings have been simplified and enhanced.
 
-New settings:
-- Domain - You can now specify the domain for streaming connections
+### New Settings
 
-Logging improvements:
-- Now uses Serilog for Stream API configurations
+| Setting | Description |
+|---------|-------------|
+| `Domain` | You can now specify the domain for streaming connections |
+
+### Logging Improvements
+
+- Now uses **Serilog** for Stream API configurations
 - Better formatted console output to help you monitor what's happening
-- Leverages Serilog's advanced logging capabilities for more detailed 
-  diagnostics
-
+- Leverages Serilog's advanced logging capabilities for more detailed diagnostics
 
 ## What You Need to Know
 
+### If You're Using the Default Configuration
 
-**If You're Using the Default Configuration**
+!!! check "No Action Required"
+    Everything will continue to work as before with these improvements automatically applied.
 
-No action needed - everything will continue to work as before with these 
-improvements automatically applied.
+### If You're Using Custom Stream Mappings
 
-**If You're Using Custom Stream Mappings**
-
-You can optionally update your mappings to use wildcards for simpler 
-configuration. Your existing exact-match mappings will continue to work 
-perfectly.
-
-**Configuration File Updates**
-
-Some configuration options have been streamlined. If you have custom settings 
-for StreamApiPort or AdsTimeoutInSeconds, these are no longer needed and can 
-be removed.
+!!! info "Optional Improvement"
+    You can optionally update your mappings to use wildcards for simpler configuration. Your existing exact-match mappings will continue to work perfectly.
 
 ## Support
 

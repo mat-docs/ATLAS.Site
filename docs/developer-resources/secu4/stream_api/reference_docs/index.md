@@ -77,7 +77,3 @@ Get started with the Stream API in minutes:
 - [🔧 Configuration Options](configuration/server-config.md)
 - [📖 API Reference](reference/api-reference.md)
 - [� Docker Setup](configuration/docker-setup.md)
-
----
-
-© 2025 Motion Applied Ltd. All rights reserved.
