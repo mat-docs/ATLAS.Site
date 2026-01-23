@@ -12,7 +12,7 @@ The Stream Recorder supports two operational modes for consuming OSAP data from 
 
 1.** Live Mode:** Live mode begins consuming data only from the moment the Recorder starts. The Recorder attaches to the Kafka topic at the current offset and continues forward.
 
-2. **Live with Catchup Mode: **The Recorder starts at the live edge, ensuring it processes new data immediately. Simultaneously, it begins consuming all data from the start of the session. Catch‑up happens in the background, at a controlled rate, without disrupting live processing. Priority is always given to leading‑edge, real‑time data.
+2.**Live with Catchup Mode: **The Recorder starts at the live edge, ensuring it processes new data immediately. Simultaneously, it begins consuming all data from the start of the session. Catch‑up happens in the background, at a controlled rate, without disrupting live processing. Priority is always given to leading‑edge, real‑time data.
 
 ## Setup Instructions
 
