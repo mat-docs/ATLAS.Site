@@ -1,0 +1,122 @@
+---
+date:
+  created: 2026-01-23
+categories:
+  - Releases
+tags:
+  - Bridge Service
+---
+
+# Bridge Service Release: v2.1.1.21
+
+This release brings several improvements to make the Bridge service more 
+flexible and reliable, with better support for the latest Stream API and 
+enhanced data streaming capabilities.
+<!-- more -->
+
+## Downloads
+
+- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
+- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.1.21/MA.DataPlatforms.Bridge.Host.zip)
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+
+## Key Improvements
+
+### 1. Updated Stream API Support
+
+The Bridge now works with the latest version of the Stream API (v2.1.1.48), providing better performance and reliability when streaming telemetry data.
+
+### 2. Flexible Stream Mapping with Wildcards
+
+You can now use wildcards (`*`) when configuring how data streams are mapped, making it much easier to set up and manage your data routing.
+
+**Example:**
+
+Instead of configuring each stream individually:
+
+```json
+{
+  "Mappings": [
+    { "AppName": "EngineData", "Stream": "engine-stream" },
+    { "AppName": "EngineTemperature", "Stream": "engine-stream" },
+    { "AppName": "EnginePressure", "Stream": "engine-stream" }
+  ]
+}
+```
+
+You can now use a simple pattern:
+
+```json
+{
+  "Mappings": [
+    { "AppName": "Engine*", "Stream": "engine-stream" }
+  ]
+}
+```
+
+This automatically matches all streams starting with "Engine" and routes them to the correct destination.
+
+**Popular patterns you can use:**
+
+- `Engine*` - Matches all engine-related streams
+- `*Telemetry` - Matches any telemetry streams
+- `Chassis_*_Data` - Matches specific chassis data patterns
+
+!!! success "Wildcard Benefits"
+    - Simplifies configuration management
+    - Reduces configuration file size
+    - Makes it easier to add new data sources
+    - More maintainable and readable
+
+### 3. Better Stream Tracking
+
+The system now automatically tracks when streams start and stop, providing clearer visibility into your data flow.
+
+**Benefits:**
+
+- Know exactly when data streaming begins and ends
+- Better session management and monitoring
+- More accurate time range information for each session
+
+### 4. Session Time Information
+
+Each data session now includes timing information showing the earliest and latest data points recorded. This information is created at the end of the session when it closes.
+
+**This helps you:**
+
+- Understand the full time span of your data
+- Better organize and analyze your sessions
+- Track session duration accurately
+
+## Configuration Updates
+
+Some configuration settings have been simplified and enhanced.
+
+### New Settings
+
+| Setting | Description |
+|---------|-------------|
+| `Domain` | You can now specify the domain for streaming connections |
+
+### Logging Improvements
+
+- Now uses **Serilog** for Stream API configurations
+- Better formatted console output to help you monitor what's happening
+- Leverages Serilog's advanced logging capabilities for more detailed diagnostics
+
+## What You Need to Know
+
+### If You're Using the Default Configuration
+
+!!! check "No Action Required"
+    Everything will continue to work as before with these improvements automatically applied.
+
+### If You're Using Custom Stream Mappings
+
+!!! info "Optional Improvement"
+    You can optionally update your mappings to use wildcards for simpler configuration. Your existing exact-match mappings will continue to work perfectly.
+
+## Support
+
+If you have any questions about this release or need assistance with 
+migration, please contact the Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
