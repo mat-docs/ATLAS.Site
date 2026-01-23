@@ -14,8 +14,13 @@ flexible and reliable, with better support for the latest Stream API and
 enhanced data streaming capabilities.
 <!-- more -->
 
-## Key Improvements
+## Downloads
 
+- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
+- **Windows Binary:** [Download]({{URL_BRIDGE_SERVICE_WIN_BINARY}})
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+
+## Key Improvements
 
 ### 1. Updated Stream API Support
 

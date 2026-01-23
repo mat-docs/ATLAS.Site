@@ -4,7 +4,7 @@ date:
 categories:
   - Announcement
 tags:
-  - ATLAS Client
+  - ATLAS Viewer
   - Virtual Parameter Service
   - Support Library
   - Stream Protocol
@@ -12,31 +12,34 @@ tags:
   - Bridge Service
 ---
 
-# Important Compatibility Notice: Stream API Breaking Change & Required Full‑Stack Upgrade
+# ATLAS Release – WK04 2026: Compatibility Update for Streaming Architecture
 
-A major update to the Stream API introduces a breaking change affecting all components that interact with the Streaming Architecture.
+We’re pleased to announce the **WK04** release, covering:
+
+- **ATLAS Viewer** **v11.4.4.681** (WK04)
+- **ATLAS Streaming Platform** component updates (Stream API, Stream Protocol, Bridge Service, VPS, Support Library)
+
+This post provides a single place to find **all artefacts**, **release notes**, and **documentation** for the release.
 
 <!-- more -->
 
-The new Stream API includes updated Kafka topic naming, revised lifecycle behaviour, and enhanced session‑level tracking.  
-**If you plan to adopt the updated Streaming Architecture, a full‑stack upgrade is required for compatibility.**
+A major update to the Stream API introduces a breaking change affecting all components that interact with the Streaming Architecture. The new Stream API includes updated Kafka topic naming, revised lifecycle behaviour, and enhanced session‑level tracking. **If you plan to adopt the updated Streaming Architecture, a full‑stack upgrade is required for compatibility.**
 
 Existing configurations will continue to work *only if you remain on the previous Streaming Architecture*. Upgrading a single component alone will not be compatible with the new Stream API behaviour. ATLAS can also be upgraded independently as long as you are not using the Stream Recorder.
 
 ## Downloads
 
-For detailed changes to each component and guidance on updating between versions,  
-**please see the individual component release notes and the migration guides**.
+For detailed changes to each component and guidance on updating between versions, **please see the individual component release notes and the migration guides**.
 
 | Component | Download Link | Github/Docker | Documentation | Release Notes |
 |-----------|---------------|----------------|----------------|---------------|
-| ATLAS Client | | | | |
-| Virtual Parameter Service | | | | [Release Notes](26jan-vps.md) |
-| Bridge Service | | | | [Release Notes](26jan-bridge.md) |
-| ADS with Bridge Service | | | | |
-| Support Library | | | | [Release Notes](26jan-supportlibrary.md) |
-| Stream API | | | | [Release Notes](26jan-streamapi.md) |
-| Stream Protocol | | | | [Release Notes](26jan-streamprotocol.md) |
+| ATLAS Viewer | [Download installer]({{URL_ATLAS_VIEWER_INSTALLER}}) | NA |[View Documentation](../../key-functionality/visualise/atlas/index.md) | [Release Notes](client/11.4.4.691-W04.md) |
+| Virtual Parameter Service | [Download Binary]({{URL_VPS_WIN_BINARY}}) | [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/virtual-parameter-service-host/general) |[View Documentation](../../key-functionality/process/secu4/vps.md) | [Release Notes](vps/26jan-vps.md) |
+| Bridge Service | [Download Binary]({{URL_BRIDGE_SERVICE_WIN_BINARY}}) | [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general) | [View Documentation](../../developer-resources/secu4/bridge_service/index.md) | [Release Notes](bridge-service/26jan-bridge.md) |
+| ADS with Bridge Service | [Download installer](https://portal.mclarenapplied.com/portal/Downloads/Standalone%20ADS/ADS%209.87.1.4/AtlasDataServer.exe) | NA | [View Documentation](../../key-functionality/store/ads/index.md) | [Release Notes]() |
+| Support Library | NA | - [Support Library NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core)<br>- [Repository](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library)| [View Documentation](../../developer-resources/secu4/support_library/index.md) | [Release Notes](support-library/26jan-supportlibrary.md) |
+| Stream API | NA | - [Repository](https://github.com/Software-Products/MA.DataPlatforms.StreamApi)<br>- [Stream API NuGet](https://github.com/orgs/mat-docs/packages?q=&q=MA.Streaming.) | [View Documentation](../../developer-resources/secu4/stream_api/index.md) | [Release Notes](stream-api/26jan-streamapi.md) |
+| Stream Protocol | NA | - [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)<br>- [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local) | [View Documentation](../../developer-resources/secu4/stream_protocol/index.md) | [Release Notes](stream-protocol/26jan-streamprotocol.md) |
 
 ## Support
 

@@ -15,9 +15,9 @@ focusing on essential data stream management and improved buffering capabilities
 
 ## Downloads
 
-Python FFI 
-Nuget Package
-[Support Library Documentation](../../developer-resources/secu4/support_library/index.md)
+- **Python FFI (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library)
+- **NuGet Package:** [Support Library NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core)
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
 
 ## Key Improvements
 

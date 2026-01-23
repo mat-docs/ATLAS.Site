@@ -14,8 +14,9 @@ This release brings improvements to the Virtual Parameter Service with updated s
 
 ## Downloads
 
-Python FFI Github
-Nuget Package
+- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/virtual-parameter-service-host/general)
+- **Windows Binary:** [Download]({{URL_VPS_WIN_BINARY}})
+- **Documentation:** [Read docs](../../../key-functionality/process/secu4/vps.md)
 
 ## Key Improvements
 

@@ -249,6 +249,7 @@ nav:
         - Protocol Documentation: developer-resources/secu4/docs.md
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
+        - Configuration Guide: developer-resources/secu/bridge_service/configuration-guide.md
       - Configuration API: 
         - Overview: developer-resources/secu4/configuration_api/index.md
         - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos

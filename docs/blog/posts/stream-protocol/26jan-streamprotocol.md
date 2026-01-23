@@ -16,11 +16,9 @@ and support for large configuration datasets.
 
 ## Downloads
 
-Protos GitHub
-Nuget Package
-Docker
-Portal
-[Stream Protocol Documentation](../../developer-resources/secu4/stream_api/reference_docs/stream_protocol/)
+- **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
+- **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
+- **Documentation:** [Read docs](../../../developer-resources/secu4/stream_api/reference_docs/stream_protocol/)
 
 ## Key Improvements
 
