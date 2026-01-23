@@ -7,7 +7,7 @@ tags:
   - Bridge Service
 ---
 
-# Bridge Service Release: vX
+# Bridge Service Release: v2.1.1.21
 
 This release brings several improvements to make the Bridge service more 
 flexible and reliable, with better support for the latest Stream API and 
@@ -24,7 +24,7 @@ enhanced data streaming capabilities.
 
 ### 1. Updated Stream API Support
 
-The Bridge now works with the latest version of the Stream API (v2.1.1.x), providing better performance and reliability when streaming telemetry data.
+The Bridge now works with the latest version of the Stream API (v2.1.1.48), providing better performance and reliability when streaming telemetry data.
 
 ### 2. Flexible Stream Mapping with Wildcards
 
@@ -120,4 +120,3 @@ Some configuration settings have been simplified and enhanced.
 
 If you have any questions about this release or need assistance with 
 migration, please contact the Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
-

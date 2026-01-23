@@ -7,7 +7,7 @@ tags:
   - Stream Protocol
 ---
 
-# Stream Protocol Release: vX
+# Stream Protocol Release: v2.1.1.10
 
 This release includes important enhancements to the MA Data Platforms Protocol, 
 focusing on improved session management, better streaming lifecycle tracking, 
@@ -133,7 +133,7 @@ This change makes the API more consistent and clearer (since it represents multi
 ## Compatibility
 
 - ✅ Backward compatible (except for `column` → `columns` rename)
-- ✅ Works with Stream API v2.1.1.x
+- ✅ Works with Stream API v2.1.1.48
 - ✅ Compatible with all current client libraries after update
 
 ## Support

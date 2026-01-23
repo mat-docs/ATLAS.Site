@@ -7,7 +7,7 @@ tags:
   - Support Library
 ---
 
-# Support Library Release: vX
+# Support Library Release: v2.1.1.27
 
 This release introduces significant enhancements to the Support Library,
 focusing on essential data stream management and improved buffering capabilities.
@@ -76,7 +76,7 @@ The buffering module continues to provide powerful features, now accessible from
 
 ### Updated to Latest Stream API
 
-We've updated to the latest version of the MA Streaming API (v2.1.1.x) for improved compatibility and new capabilities.
+We've updated to the latest version of the MA Streaming API (v2.1.1.48) for improved compatibility and new capabilities.
 
 **What's Included**
 
@@ -115,21 +115,6 @@ void buffer_set_stream_started_callback(stream_callback callback);
 void buffer_set_stream_stopped_callback(stream_callback callback);
 void buffer_extract_samples(const char* stream_name, int64_t start_time, int64_t end_time);
 ```
-
-## Dependencies
-
-**Updated Dependencies**
-
-| Library | Previous Version | New Version |
-|---------|------------------|-------------|
-| MA Streaming API | v2.0.x | v2.1.1.x |
-| Protocol | v1.3.x | v2.1.x |
-
-**New Dependencies**
-
-| Library | Version | Purpose |
-|---------|---------|---------|
-| Serilog | Latest | Enhanced logging capabilities |
 
 ## Migration Guide
 
@@ -207,10 +192,10 @@ Integrate with:
 
 | Component | Required Version | Status |
 |-----------|------------------|--------|
-| Stream API | v2.1.1.x | ✅ Required |
-| Protocol | v2.1.x | ✅ Required |
-| Bridge Service | January 2026 | ✅ Recommended |
-| Data Recorder | January 2026 | ✅ Recommended |
+| Stream API | 2.1.1.48 | ✅ Required |
+| Protocol | 2.1.1.10 | ✅ Required |
+| Bridge Service | 2.1.1.21  | ✅ Recommended |
+| Data Recorder | 11.4.4.691-W04 | ✅ Recommended |
 
 
 ## Next Steps

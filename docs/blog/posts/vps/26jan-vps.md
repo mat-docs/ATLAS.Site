@@ -7,7 +7,7 @@ tags:
   - Virtual Parameter Service
 ---
 
-# Virtual Parameter Service Release: vX
+# Virtual Parameter Service Release: v
 
 This release brings improvements to the Virtual Parameter Service with updated streaming capabilities and enhanced logging features.
 <!-- more -->
@@ -26,7 +26,7 @@ This release brings improvements to the Virtual Parameter Service with updated s
 
 - Improved handling of data streams with clearer naming conventions
 - More consistent stream lifecycle management
-- Better integration with the latest Stream API (v2.1.1.x)
+- Better integration with the latest Stream API (v2.1.1.)
 
 **Benefits**
 
@@ -99,8 +99,8 @@ No breaking configuration changes. Optionally, you can now specify a domain:
 
 To use this release, you must update:
 
-- Stream API to v2.1.1.x or later
-- Protocol to v2.1.x or later
+- Stream API to v2.1.1. or later
+- Protocol to v2.1. or later
 
 ## Migration Guide
 

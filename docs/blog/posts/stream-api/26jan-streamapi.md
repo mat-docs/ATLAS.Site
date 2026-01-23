@@ -7,7 +7,7 @@ tags:
   - Stream API
 ---
 
-# Stream API Release: vX
+# Stream API Release: v2.1.1.48
 
 This release introduces several major improvements focused on better 
 configurability, enhanced stream lifecycle tracking, and simplified logging 
@@ -246,16 +246,16 @@ api.OnStreamStopped += (source, streamName, time) =>
 
 | Component | Version | Compatibility |
 |-----------|---------|---------------|
-| Protocol | v2.1.1 | ✅ Required |
-| Bridge Service | January 2026 | ✅ Recommended |
-| Data Recorder | January 2026 | ✅ Recommended |
-| Support Library | January 2026 | ✅ Recommended |
+| Protocol | 2.1.1.10 | ✅ Required |
+| Bridge Service | 2.1.1.21 | ✅ Recommended |
+| Data Recorder | 11.4.4.691-W04 | ✅ Recommended |
+| Support Library | 2.1.1.27 | ✅ Recommended |
 
 ## Upgrading
 
 **Requirements**
 
-- Update Protocol to v2.1.1 or later
+- Update Protocol to v2.1.1.10 or later
 - Update Serilog packages to latest versions
 - .NET 6.0 or later recommended
 
