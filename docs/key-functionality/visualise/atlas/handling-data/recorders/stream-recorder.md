@@ -1,7 +1,7 @@
 # Stream Recorder
 
 ## Purpose
-Connects to a Kafka broker to record live telemetry via the Open Data Streaming Architecture.
+Connects to a Kafka broker to record live telemetry via the [Open Data Streaming Architecture](https://atlas.motionapplied.com/developer-resources/secu4/docs/).
 
 ## Prerequisites
 Stream Server Configuration must be set up in Tools|Options|Recorders|Stream Recorder.
