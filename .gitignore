@@ -3,3 +3,4 @@ site
 main.py
 /.vs
 overrides/hooks/__pycache__/
+.cache
