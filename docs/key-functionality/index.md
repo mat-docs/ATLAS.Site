@@ -3,7 +3,6 @@ ATLAS (Advance Telemetry Linked Acquisition System) is a powerful software platf
 !!! tip "Tips for New Users"
     - Start with a simple session file and explore the display tools.
     - Don’t worry about acronyms, focus on what you want to see or understand.
-    - Use the built-in help (F1) or reach out to your team for examples and templates.
     - ATLAS is modular, learn one part at a time.
 
 ## Core Concepts
@@ -74,8 +73,8 @@ ATLAS includes a set of tools that work together to help you collect, analyse, a
 
 | Tool    | What It Does | When to use it |
 | -------- | ------- | ------- |
-| System Monitor  | Manages projects and hardware connections | When programming ECUs |
-| ADS | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
-| vTAG    | Runs virtual models and integrates results  | When running Simulink models with real-world data |
-| SQL Race    | Stores and manages large datasets | For persistent storage |
-| ATLAS    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |
+| [System Monitor](configure/system-monitor/index.md)  | Manages projects and hardware connections | When programming ECUs |
+| [ADS](key-functionality/stream/ads/index.md) | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
+| vTAG  | Runs virtual models and integrates results  | When running Simulink models with real-world data |
+| [SQL Race](key-functionality/store/sqlrace/index.md)    | Stores and manages large datasets | For persistent storage |
+| [ATLAS](key-functionality/analyse/viewer/index.md)    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |
