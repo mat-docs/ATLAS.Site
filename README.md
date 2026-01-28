@@ -24,7 +24,7 @@ Preview the docs in a local web browser as follows:
 
 On windows machine, do:
 
-    python -m mkdocs serve
+    python -m mkdocs serve --livereload
 
 ## Contribution Guidelines
 
