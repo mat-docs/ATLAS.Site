@@ -1,6 +1,6 @@
 # Introduction to vTAGServer
 
-ATLAS's vTAGServer is a control that enables you to run MATLAB Simulink simulations within ATLAS. It executes on a dedicated machine and works with an ATLAS Data Server (ADS) to supply multiple ATLAS clients with simulated data computed from the car's telemetry. The ADS creates separate actual and simulated sessions.
+vTAG Server (VTS) is a powerful tool within ATLAS that allows you to run MATLAB Simulink simulations, and view the results directly in ATLAS. It can operate in both live and historic modes, providing flexibility for data analysis and simulation.
 
 ## Key Features
 

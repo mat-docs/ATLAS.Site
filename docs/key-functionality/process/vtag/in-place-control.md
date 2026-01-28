@@ -1,6 +1,6 @@
 InPlace Control acts as the vTAG Server for both live and historic processing of ATLAS data.
 
-The InPlace Control contains 6 tabs plus a bottom control section showing Process State and Progress. All vTAGSrv settings are saved within the workbook.
+vTAG Server contains 6 tabs plus a bottom control section showing Process State and Progress. All vTAGServer settings are saved within the workbook.
 
 ## Tabs:
 - **Settings** – configure vTAGServer
@@ -99,6 +99,6 @@ Displays the log, also saved as a standard log file.
 
 
 !!! tip
-    - The Process States and the progress are shown in the 'control' part at the bottom of the InPlace Control used for the vTAGServer.
+    - The Process States and the progress are shown in the 'control' part.
     - When running live, no progress is shown. When running on Wire Link Upload or Historic, you can see the progress.
     - Note that in Historic mode the progress bar sometimes 'holds'  for a few seconds. vTAGServer is then searching for the PGV's (this will be shown in the Status Bar of ATLAS Viewer)

@@ -7,9 +7,8 @@ To use the vTAGServer in a live situation, follow these steps on the machine run
 - Add a VTS Recorder to the DataServer and set the recording configurations 
 - Create a System Monitor Project and check or configure the logging settings
 
-## Client Configuration
+## vTAG Server Setup
 
-Other ATLAS clients record data from the ADS as normal. To receive vTAG data, they must:
+Other ATLAS clients record data from the ADS as normal which includes the vTAG data via the ADS VTS recorder:
 
 - Select the layer where vTAGServer should get data from
-- Add an InPlace Display and add the vTAGSrv.ocx control via the 'add control' button
