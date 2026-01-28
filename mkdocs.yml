@@ -133,6 +133,7 @@ nav:
         - Getting Started: key-functionality/store/ads/installation.md
         - Recorders: key-functionality/store/ads/recorders.md
         - RDS: key-functionality/store/ads/rds.md
+        - Options: key-functionality/store/ads/options.md
     - Process:
       - SECU4:
         - Overview: key-functionality/process/secu4/index.md 
