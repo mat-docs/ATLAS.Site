@@ -1,6 +1,10 @@
 
 # Options Dialog
 
+To access the options dialog box, go to `Tools > Options` in ATLAS Data Server (ADS).
+
+![Options](assets/options.png)
+
 ## Recording Tab
 
 The Recording tab of the Options dialog box contains advanced settings used to configure the Recording system.
@@ -119,6 +123,8 @@ The Recording tab of the Options dialog box contains advanced settings used to c
 ## Decode DLLs Tab
 
 The Decode DLL tab is used to allocate customer-created DLLs to a data stream. A total of 15 data streams are available.
+
+![decode_DLLs](assets/decode_dll.png)
 
 | Setting | Description |
 |---------|-------------|
