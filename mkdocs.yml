@@ -142,8 +142,8 @@ nav:
       - vTAG Server:
         - Overview: key-functionality/process/vtag/index.md
         - Getting Started: key-functionality/process/vtag/getting-started.md
-        - InPlace Control: key-functionality/process/vtag/in-place-control.md
-        - Complete System: key-functionality/process/vtag/complete-system.md
+        - Operating vTAG Server: key-functionality/process/vtag/operating-vtag.md
+        - Live & Historic Usage: key-functionality/process/vtag/complete-system.md
     - Visualisation: 
       - Overview: key-functionality/visualise/atlas/index.md
       - ATLAS: 

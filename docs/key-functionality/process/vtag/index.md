@@ -1,6 +1,15 @@
 # Introduction to vTAGServer
 
-vTAG Server (VTS) is a powerful tool within ATLAS that allows you to run MATLAB Simulink simulations, and view the results directly in ATLAS. It can operate in both live and historic modes, providing flexibility for data analysis and simulation.
+vTAG Server is part of the ATLAS ecosystem and provides a way to run Simulink‑based logic on real data—either live telemetry or historic sessions—without requiring a physical ECU or embedded unit. The aim is to offload computationally expensive or non‑critical logic from hardware and to provide a safe, flexible environment for algorithm development.
+
+Many engineering teams reach a point where:
+
+- The physical unit’s CPU is at capacity.
+- Telemetry bandwidth limits how much data can be streamed.
+- Testing on real hardware introduces delays or risks.
+- They need to interrogate or transform existing session data without modifying the original datasets.
+
+vTAG Server solves these problems by acting as an external computation engine: it replays data, executes your Simulink logic on it, and publishes new derived parameters. This allows engineers to test ideas, optimise algorithms, or shift load off embedded devices.
 
 ## Key Features
 
@@ -8,20 +17,20 @@ vTAG Server (VTS) is a powerful tool within ATLAS that allows you to run MATLAB 
 - **Network Distribution**: One ATLAS Client typically runs the vTAGServer and supplies processed data (vData) to the VTS Data Recorder in the ADS, which distributes it across the network
 - **Session Processing**: In stand-alone historic use, vTAGServer processes data from a session (.ssn) file and creates vTAG data in another vTAG session (.ssv) file
 
-## Operating Modes
+!!! note "What's the difference between vTAG Server and vTAG PC?" 
+    Although vTAG Server and vTAG PC use the same build mechanism, they serve different engineering goals:
+    
+    vTAG Server:
 
-vTAGServer supports two modes:
+    - Processes real data (historic or live).
+    - Acts as an external computation engine.
+    - Suitable for validation of logic on production telemetry.
+    - Publishes outputs into the ATLAS ecosystem.
+    
+    vTAG PC:
 
-- **Live mode**: Active during live recording from the car for the whole system
-- **Historic mode**: Stand-alone operation
-
-## Integration with System Monitor and ATLAS
-
-Simulink simulations connect to System Monitor and ATLAS using blocks provided in MCT. This enables:
-
-- Real-time monitoring and tuning through System Monitor
-- Live data analysis in ATLAS during model execution
-- Reduced model development time through live parameter tuning
-- Compiled executable programs for faster execution of larger models
-- Data replay from pre-recorded or live telemetry streams
-- Automatic channel creation through vTAG Server recorder functionality
+    - A software‑in‑the‑loop emulator.
+    - Runs like an ECU but entirely on your computer.
+    - Optimised for debugging and functional testing of embedded code, not replaying data.
+    
+    Engineers typically use vTAG PC to test behaviour, and vTAG Server to test behaviour against real data.

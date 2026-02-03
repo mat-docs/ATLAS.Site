@@ -1,14 +1,17 @@
-InPlace Control acts as the vTAG Server for both live and historic processing of ATLAS data.
+# Operating vTAG Server
 
-vTAG Server contains 6 tabs plus a bottom control section showing Process State and Progress. All vTAGServer settings are saved within the workbook.
+vTAG Server contains 6 tabs plus a bottom control section showing Process State and Progress. All vTAG Server settings are saved within the workbook.
 
-## Tabs:
+vTAG Server has the following tabs:
+
 - **Settings** – configure vTAGServer
 - **Status** – view processing and recording information
 - **Reset** – vECU control
 - **APP Info** – view information on APPs
 - **Log** – view logging output
 - **Control section** – operate the model and view progress
+
+![vTAG Server](assets/vtag-server.png)
 
 ## Settings Tab
 
@@ -96,7 +99,6 @@ Displays the log, also saved as a standard log file.
 - Running Live
 - Running after Upload
 - Running Historic
-
 
 !!! tip
     - The Process States and the progress are shown in the 'control' part.
