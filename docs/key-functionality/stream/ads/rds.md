@@ -27,6 +27,18 @@ The Remote Data Server enables listening to another ADS server across different 
 !!! info "RDS Playback"
     When you enable **Sync RDS Playback File**, the system creates a playback file to recover lower-priority packets that were deprioritized during the session. This playback file can be upserted to the main session using the RDS Playback Recorder.
 
+## Remote Data Server (RDS) Options
+
+| Setting | Description |
+|---------|-------------|
+| **Allow connection** | Select to allow a Slave ADS to connect to the local ADS |
+| **Port** | Port to be used by a Slave ADS |
+| **Auto data rate** | Automatically adjusts data rate for optimum bandwidth usage |
+| **Max data rate** | Maximum data rate in Kb/s (0 = unlimited) |
+| **Min data rate** | Minimum data rate when Auto data rate is disabled |
+| **Compression** | Select to apply data compression |
+| **Data distribution** | Eliminates data banding by evenly distributing received packets |
+
 ## Data Server Telemetry Recorder
 
 The Data Server Telemetry Recorder daisy-chains multiple data servers together by mirroring the primary Data Server stream to downstream clients.
@@ -35,3 +47,4 @@ The Data Server Telemetry Recorder daisy-chains multiple data servers together b
     - **Same Network:** Can be used when all Data Servers reside on the same network
     - **Different Networks:** Must use Remote Data Server recorders instead of DST recorders for cross-network deployment
     Remote Data Server lets you listen to another ADS server on a different network over WAN. This is used by teams so that people in the factory have access to the data currently being transmitted.  
+
