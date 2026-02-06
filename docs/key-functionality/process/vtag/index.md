@@ -1,6 +1,6 @@
 # Introduction to vTAGServer
 
-vTAG Server is part of the ATLAS ecosystem and provides a way to run Simulink‑based logic on real data—either live telemetry or historic sessions—without requiring a physical ECU or embedded unit. The aim is to offload computationally expensive or non‑critical logic from hardware and to provide a safe, flexible environment for algorithm development.
+vTAG Server is part of the ATLAS ecosystem and provides a way to run Simulink‑based logic on real data—either live telemetry or historical sessions—without requiring a physical ECU or embedded unit. The aim is to offload computationally expensive or non‑critical logic from hardware and to provide a safe, flexible environment for algorithm development.
 
 Many engineering teams reach a point where:
 

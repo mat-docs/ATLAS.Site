@@ -11,7 +11,7 @@ Alarm groups contain related alarms, and all alarms in a group can be disabled i
 An alarm is defined where a condition becomes true. Alarms can be run on:
 
 - Live: Runs continuously as telemetry is received.
-- Manual: Runs on-demand over a historic session.
+- Manual: Runs on-demand over a historical session.
 - Load Session: Execute the alarm automatically on session load
 
 !!! note

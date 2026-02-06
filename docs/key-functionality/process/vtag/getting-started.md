@@ -46,7 +46,7 @@ Input → Logic → Output
 ```
 
 !!! question "What are the blocks in MCT ATLAS Toolbox?"
-    - ATLAS 10 Source – Reads a parameter from a live ADS data stream or a historic session file and provides it as an input to your Simulink model.
+    - ATLAS 10 Source – Reads a parameter from a live ADS data stream or a historical session file and provides it as an input to your Simulink model.
     - ATLAS 10 Source Type – Outputs a status code indicating whether the connected data source is live, historic, or unavailable to support diagnostics or logic switching.
     - ATLAS 10 Control – Allows you to run a Simulink simulation driven by ATLAS while a session is loaded, effectively acting as a local replacement for vTAG Server during testing. *Not required for vTAG Server.*
     - ATLAS 10 Sink – Sends Simulink‑generated signals back into ATLAS during simulation so they appear as channels in the viewer.*Not required for vTAG Server.*

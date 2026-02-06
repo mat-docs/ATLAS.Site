@@ -8,7 +8,7 @@ Each Session is automatically created and stored in an SQL Race database as it i
 ## Types of Sessions
 There are two primary types of Sessions in ATLAS:
 
-**Historic Sessions**
+**Historical Sessions**
 
 These are Sessions that have already been recorded and stored. They can be loaded at any time for review and analysis.
 
@@ -40,7 +40,7 @@ Sessions can be combined, compared, and manipulated in various ways to support t
 | Term              | Definition                                                                 |
 |-------------------|----------------------------------------------------------------------------|
 | Session           | A dataset recorded from a vehicle, stored in an SQL Race database.          |
-| Historic Session  | A previously recorded Session.                                             |
+| Historical Session  | A previously recorded Session.                                             |
 | Telemetry Session | A live Session streamed in real time.                                     |
 | Workbook          | The environment in ATLAS where Sessions are visualised and analysed.       |
 | Session Browser   | The tool used to manage Sessions.                                          |

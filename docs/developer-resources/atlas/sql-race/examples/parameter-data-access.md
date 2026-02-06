@@ -78,7 +78,7 @@ samples within the returned array.
 
 ## Examples
 
-### Getting Samples from a Historic Session
+### Getting Samples from a Historical Session
 === "C#"
 
     ``` csharp
