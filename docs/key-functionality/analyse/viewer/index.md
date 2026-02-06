@@ -1,6 +1,6 @@
-# ATLAS
+# Viewer
 
-The ATLAS client is a core component of the ATLAS ecosystem, designed for the visualisation and analysis of telemetry data. It enables users to interact with both live and historical data streams, offering real-time insights and deep analytical capabilities tailored for motorsport and other telemetry-intensive applications.
+The ATLAS Viewer is a core component of the ATLAS ecosystem, designed for the visualisation and analysis of telemetry data. It enables users to interact with both live and historical data streams, offering real-time insights and deep analytical capabilities tailored for motorsport and other telemetry-intensive applications.
 
 Key features include:
 

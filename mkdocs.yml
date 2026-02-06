@@ -34,9 +34,6 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-hooks:
-  - overrides/hooks/shortcodes.py
-
 copyright: >
   Copyright &copy; 2026 Motion Applied Ltd. - 
   <a href="#__consent">Change cookie settings</a>
@@ -122,92 +119,101 @@ nav:
         - History Report: 
           - Overview: key-functionality/configure/system-monitor/history-report/index.md
           - Details: key-functionality/configure/system-monitor/history-report/history-details.md
-    - Store and Distribute:
+    - Store:
+      - Overview: key-functionality/store/index.md
       - SQL Race:
         - Overview: key-functionality/store/sqlrace/index.md
         - Getting Started: key-functionality/store/sqlrace/installation.md
         - Performance Guide: key-functionality/store/sqlrace/performance.md
         - SQL Race, SQLite & SSN2: key-functionality/store/sqlrace/comparison.md
+    - Stream:
+      - Overview: key-functionality/stream/index.md
       - Data Server:
-        - Overview: key-functionality/store/ads/index.md
-        - Getting Started: key-functionality/store/ads/installation.md
-        - Recorders: key-functionality/store/ads/recorders.md
-        - RDS: key-functionality/store/ads/rds.md
-        - Options: key-functionality/store/ads/options.md
-    - Process:
-      - SECU4:
-        - Overview: key-functionality/process/secu4/index.md 
-        - Virtual Parameter Service: key-functionality/process/secu4/vps.md
-        - Bridge Service: key-functionality/process/secu4/bridge-service.md
-        - Parquet Support: key-functionality/process/secu4/parquet.md
-    - Visualisation: 
-      - Overview: key-functionality/visualise/atlas/index.md
-      - ATLAS: 
+        - Overview: key-functionality/stream/ads/index.md
+        - Getting Started: key-functionality/stream/ads/installation.md
+        - Recorders: key-functionality/stream/ads/recorders.md
+        - RDS: key-functionality/stream/ads/rds.md
+      - Open Streaming:
+        - Overview: key-functionality/stream/open_streaming_architecture/index.md
+    - Analyse: 
+      - Overview: key-functionality/analyse/index.md
+      - Viewer: 
+        - Overview: key-functionality/analyse/viewer/index.md
         - System Operation: 
-          - Mouse Actions: key-functionality/visualise/atlas/system-operation/mouse.md
-          - Keyboard Shortcuts: key-functionality/visualise/atlas/system-operation/keyboard.md
-          - Options: key-functionality/visualise/atlas/system-operation/options.md
-          - Workbooks: key-functionality/visualise/atlas/system-operation/workbook.md
-          - Toolbar: key-functionality/visualise/atlas/system-operation/toolbar.md
+          - Mouse Actions: key-functionality/analyse/viewer/system-operation/mouse.md
+          - Keyboard Shortcuts: key-functionality/analyse/viewer/system-operation/keyboard.md
+          - Options: key-functionality/analyse/viewer/system-operation/options.md
+          - Workbooks: key-functionality/analyse/viewer/system-operation/workbook.md
+          - Toolbar: key-functionality/analyse/viewer/system-operation/toolbar.md
         - Time and Position:
-          - Overview: key-functionality/visualise/atlas/time-and-position/index.md
-          - Timebase and Timeline: key-functionality/visualise/atlas/time-and-position/time.md
-          - Go To: key-functionality/visualise/atlas/time-and-position/go-to.md
+          - Overview: key-functionality/analyse/viewer/time-and-position/index.md
+          - Timebase and Timeline: key-functionality/analyse/viewer/time-and-position/time.md
+          - Go To: key-functionality/analyse/viewer/time-and-position/go-to.md
         - Handling Data:
           - Recorders: 
-            - USB Recorder: key-functionality/visualise/atlas/handling-data/recorders/usb-logger.md
-            - NASCAR Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/nascar-telemetry-recorder.md
-            - Data Server Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/data-server.md
-            - File Telemetry Recorder: key-functionality/visualise/atlas/handling-data/recorders/file-telemetry.md
-            - Ethernet File Telemetry: key-functionality/visualise/atlas/handling-data/recorders/ethernet-file.md
-            - Ethernet Multi Session Offload: key-functionality/visualise/atlas/handling-data/recorders/ethernet-mso.md
-            - Ethernet Offload: key-functionality/visualise/atlas/handling-data/recorders/ethernet-offload.md
-            - Stream Recorder: key-functionality/visualise/atlas/handling-data/recorders/stream-recorder.md
+            - USB Recorder: key-functionality/analyse/viewer/handling-data/recorders/usb-logger.md
+            - NASCAR Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/nascar-telemetry-recorder.md
+            - Data Server Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/data-server.md
+            - File Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/file-telemetry.md
+            - Ethernet File Telemetry: key-functionality/analyse/viewer/handling-data/recorders/ethernet-file.md
+            - Ethernet Multi Session Offload: key-functionality/analyse/viewer/handling-data/recorders/ethernet-mso.md
+            - Ethernet Offload: key-functionality/analyse/viewer/handling-data/recorders/ethernet-offload.md
+            - Stream Recorder: key-functionality/analyse/viewer/handling-data/recorders/stream-recorder.md
           - Sessions:
-            - Overview: key-functionality/visualise/atlas/handling-data/sessions/index.md
-            - Session Browser: key-functionality/visualise/atlas/handling-data/sessions/browser.md
-            - Loading Sessions: key-functionality/visualise/atlas/handling-data/sessions/loading-sessions.md
-            - Changing Properties: key-functionality/visualise/atlas/handling-data/sessions/properties.md
-            - Database Connection Manager: key-functionality/visualise/atlas/handling-data/sessions/database-connection.md
-            - Service Connection Manager: key-functionality/visualise/atlas/handling-data/sessions/service-connection.md
+            - Overview: key-functionality/analyse/viewer/handling-data/sessions/index.md
+            - Session Browser: key-functionality/analyse/viewer/handling-data/sessions/browser.md
+            - Loading Sessions: key-functionality/analyse/viewer/handling-data/sessions/loading-sessions.md
+            - Changing Properties: key-functionality/analyse/viewer/handling-data/sessions/properties.md
+            - Database Connection Manager: key-functionality/analyse/viewer/handling-data/sessions/database-connection.md
+            - Service Connection Manager: key-functionality/analyse/viewer/handling-data/sessions/service-connection.md
           - Laps and Markers:
-            - Markers: key-functionality/visualise/atlas/handling-data/laps-markers/markers.md
-            - Laps: key-functionality/visualise/atlas/handling-data/laps-markers/laps.md
+            - Markers: key-functionality/analyse/viewer/handling-data/laps-markers/markers.md
+            - Laps: key-functionality/analyse/viewer/handling-data/laps-markers/laps.md
           - Parameters:
-            - Overview: key-functionality/visualise/atlas/handling-data/parameters/index.md
-            - Using Parameters: key-functionality/visualise/atlas/handling-data/parameters/using-parameters.md
+            - Overview: key-functionality/analyse/viewer/handling-data/parameters/index.md
+            - Using Parameters: key-functionality/analyse/viewer/handling-data/parameters/using-parameters.md
           - Exporting:
-            - Overview: key-functionality/visualise/atlas/handling-data/export/index.md
-            - Export Manager: key-functionality/visualise/atlas/handling-data/export/export-manager.md
+            - Overview: key-functionality/analyse/viewer/handling-data/export/index.md
+            - Export Manager: key-functionality/analyse/viewer/handling-data/export/export-manager.md
         - Functions: 
-          - Overview: key-functionality/visualise/atlas/functions/index.md
-          - Function Editor: key-functionality/visualise/atlas/functions/function-editor.md
-          - Processors: key-functionality/visualise/atlas/functions/processing.md
-          - Using DLLs: key-functionality/visualise/atlas/functions/using-dlls.md
+          - Overview: key-functionality/analyse/viewer/functions/index.md
+          - Function Editor: key-functionality/analyse/viewer/functions/function-editor.md
+          - Processors: key-functionality/analyse/viewer/functions/processing.md
+          - Using DLLs: key-functionality/analyse/viewer/functions/using-dlls.md
         - Alarms:
-          - Overview: key-functionality/visualise/atlas/alarms/index.md
-          - Using Alarms: key-functionality/visualise/atlas/alarms/using-alarms.md
+          - Overview: key-functionality/analyse/viewer/alarms/index.md
+          - Using Alarms: key-functionality/analyse/viewer/alarms/using-alarms.md
         - Displays: 
-          - Overview: key-functionality/visualise/atlas/displays/index.md
-          - Bar: key-functionality/visualise/atlas/displays/bar.md
-          - Bit: key-functionality/visualise/atlas/displays/bit.md
-          - Block: key-functionality/visualise/atlas/displays/block.md
-          - Circuit: key-functionality/visualise/atlas/displays/circuit.md
-          - Countdown: key-functionality/visualise/atlas/displays/countdown.md
-          - Error: key-functionality/visualise/atlas/displays/error.md
-          - Event: key-functionality/visualise/atlas/displays/event.md
-          - Histogram: key-functionality/visualise/atlas/displays/histogram.md
-          - Loadmap: key-functionality/visualise/atlas/displays/loadmap.md
-          - Map: key-functionality/visualise/atlas/displays/map.md
-          - Notepad: key-functionality/visualise/atlas/displays/notepad.md
-          - Numeric: key-functionality/visualise/atlas/displays/numeric.md
-          - Dash: key-functionality/visualise/atlas/displays/pcu.md
-          - Scatterplot: key-functionality/visualise/atlas/displays/scatterplot.md
-          - Summary: key-functionality/visualise/atlas/displays/summary.md
-          - Surface Map: key-functionality/visualise/atlas/displays/surface.md
-          - Video: key-functionality/visualise/atlas/displays/video.md
-          - Waveform: key-functionality/visualise/atlas/displays/waveform.md
-          - Web Display: key-functionality/visualise/atlas/displays/web.md
+          - Overview: key-functionality/analyse/viewer/displays/index.md
+          - Bar: key-functionality/analyse/viewer/displays/bar.md
+          - Bit: key-functionality/analyse/viewer/displays/bit.md
+          - Block: key-functionality/analyse/viewer/displays/block.md
+          - Circuit: key-functionality/analyse/viewer/displays/circuit.md
+          - Countdown: key-functionality/analyse/viewer/displays/countdown.md
+          - Error: key-functionality/analyse/viewer/displays/error.md
+          - Event: key-functionality/analyse/viewer/displays/event.md
+          - Histogram: key-functionality/analyse/viewer/displays/histogram.md
+          - Loadmap: key-functionality/analyse/viewer/displays/loadmap.md
+          - Map: key-functionality/analyse/viewer/displays/map.md
+          - Notepad: key-functionality/analyse/viewer/displays/notepad.md
+          - Numeric: key-functionality/analyse/viewer/displays/numeric.md
+          - Dash: key-functionality/analyse/viewer/displays/pcu.md
+          - Scatterplot: key-functionality/analyse/viewer/displays/scatterplot.md
+          - Summary: key-functionality/analyse/viewer/displays/summary.md
+          - Surface Map: key-functionality/analyse/viewer/displays/surface.md
+          - Video: key-functionality/analyse/viewer/displays/video.md
+          - Waveform: key-functionality/analyse/viewer/displays/waveform.md
+          - Web Display: key-functionality/analyse/viewer/displays/web.md
+    - Integrate:
+      - Overview: key-functionality/integrate/index.md
+      - RTA: 
+        - Overview: key-functionality/integrate/rta/index.md
+        - Architectures: key-functionality/rta/introduction/architectures.md
+        - Data Services: key-functionality/rta/introduction/data-services.md
+        - Sessions: key-functionality/rta/introduction/sessions.md
+        - Configuration: key-functionality/rta/introduction/configuration.md
+      - APIs: 
+        - Overview: key-functionality/integrate/apis/index.md
   - Getting Started: 
     - Quick Start Guide: getting-started/quick-start.md
     - Security: getting-started/security.md
@@ -400,23 +406,12 @@ nav:
         - REST API: 
           - Overview: developer-resources/rta/api/index.md
       - FAQ: developer-resources/rta/worked-guide/faq.md
-  - Extensibility:
-    - APIs: 
-      - Overview: extending-atlas/apis/index.md
-    - Streaming Architecture: 
-          - Overview: extending-atlas/open_streaming_architecture/index.md
-    - Remote Telemetry Architecture (RTA): 
-        - Overview: extending-atlas/rta/index.md
-        - Architectures: extending-atlas/rta/introduction/architectures.md
-        - Data Services: extending-atlas/rta/introduction/data-services.md
-        - Sessions: extending-atlas/rta/introduction/sessions.md
-        - Configuration: extending-atlas/rta/introduction/configuration.md
   - News and Release Notes: 
     - blog/index.md
   - Downloads: https://portal.motionapplied.com/
   - Support: 
     - Troubleshooting: 
-      - Profiling: key-functionality/visualise/atlas/troubleshooting/profiling.md
+      - Profiling: key-functionality/analyse/viewer/troubleshooting/profiling.md
     - Zendesk: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
 
 
