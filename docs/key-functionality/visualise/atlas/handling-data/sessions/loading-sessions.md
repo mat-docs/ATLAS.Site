@@ -39,7 +39,7 @@ When a Recorder is added to a Set, you must define its mode. This determines how
 
 *Function:* Each new recording creates a new, separate Session.
 
-*Behaviour:* Previously recorded Sessions remain in the Set as Historic Sessions.
+*Behaviour:* Previously recorded Sessions remain in the Set as Historical Sessions.
 
 *Use Case:* Ideal for capturing multiple independent runs or tests.
 
@@ -61,9 +61,9 @@ When a Recorder is added to a Set, you must define its mode. This determines how
 
 Composite Sessions created via Append mode are displayed as a single timeline in ATLAS. Green line separators indicate where individual Sessions have been joined.
 
-## What is a Historic Session?
+## What is a Historical Session?
 
-A Historic Session is a previously recorded Session stored in the SQL Race database. These Sessions can be loaded into ATLAS for review, comparison, or further analysis.
+A Historical Session is a previously recorded Session stored in the SQL Race database. These Sessions can be loaded into ATLAS for review, comparison, or further analysis.
 
 Loading Methods
 You can load Sessions into a Set using the Session List in the Session Browser:
@@ -127,7 +127,7 @@ A Composite Session (also known as an Appended Session) is a single Session form
 
 Creating Composite Sessions
 
-- Historic Data: Load a Session into a Set, then drag additional Sessions onto it.
+- Historical Data: Load a Session into a Set, then drag additional Sessions onto it.
 - Live Data: Use a Recorder in Append mode. Each new recording is automatically appended to the previous one.
 Composite Sessions appear as a single timeline in ATLAS, with green separators marking the boundaries between original Sessions.
 

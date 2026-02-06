@@ -140,6 +140,11 @@ nav:
         - Virtual Parameter Service: key-functionality/process/secu4/vps.md
         - Bridge Service: key-functionality/process/secu4/bridge-service.md
         - Parquet Support: key-functionality/process/secu4/parquet.md
+      - vTAG Server:
+        - Overview: key-functionality/process/vtag/index.md
+        - Getting Started: key-functionality/process/vtag/getting-started.md
+        - Operating vTAG Server: key-functionality/process/vtag/operating-vtag.md
+        - Live & Historic Usage: key-functionality/process/vtag/complete-system.md
     - Visualisation: 
       - Overview: key-functionality/visualise/atlas/index.md
       - ATLAS: 
@@ -274,7 +279,6 @@ nav:
       - Nuget: 
         - Overview: developer-resources/atlas/nuget/index.md
         - Setup Guide: developer-resources/atlas/nuget/setup.md
-
       - Automation API:
         - Overview: developer-resources/atlas/automation-api/index.md
         - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md

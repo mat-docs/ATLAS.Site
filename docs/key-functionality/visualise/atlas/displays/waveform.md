@@ -1,6 +1,6 @@
 # Waveform Display
 
-The Waveform Display plots multiple parameters as traces against Time or Distance. It supports live telemetry and historic sessions, fast zooming, and rich formatting. Use it for:
+The Waveform Display plots multiple parameters as traces against Time or Distance. It supports live telemetry and historical sessions, fast zooming, and rich formatting. Use it for:
 
 - Braking/throttle application vs. speed, per corner or lap
 - Multi-session comparisons with Time Difference (TDiff) in Distance mode
