@@ -280,7 +280,6 @@ nav:
       - Nuget: 
         - Overview: developer-resources/atlas/nuget/index.md
         - Setup Guide: developer-resources/atlas/nuget/setup.md
-
       - Automation API:
         - Overview: developer-resources/atlas/automation-api/index.md
         - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md
@@ -459,6 +458,19 @@ extra:
   analytics:
     provider: google
     property: !ENV GOOGLE_ANALYTICS_KEY
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! 
   consent:
     title: Cookie consent
     description: >- 
