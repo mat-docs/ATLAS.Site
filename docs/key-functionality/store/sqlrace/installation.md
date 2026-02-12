@@ -4,7 +4,7 @@ This guide will cover the process of installing SQL Server, setting up a SQL Rac
 
 ## Installing SQLServer
 
-Download and install SQL Server 2019 or 2022 from the [Microsoft SQL Server Downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) page. 
+Download and install SQL Server 2017 or 2019 from the [Microsoft SQL Server Downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) page. 
 
 !!! note
     Express will work too but it has limited size so it's not recommended to use for larger datasets. 
