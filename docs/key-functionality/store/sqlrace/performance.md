@@ -4,7 +4,7 @@ This guide covers settings on how to get the most out of your SQL Race installat
 
 ## Cache Settings
 
-The SQL Race cache is a key component of SQL Race memory management, designed to optimize data access time by keeping recently added or loaded data in memory. Operations in RAM are much faster than continuously reading and writing data directly from disk. Raw channel and event data is stored in memory in “slots” created during recording new data or loading historic data.
+The SQL Race cache is a key component of SQL Race memory management, designed to optimize data access time by keeping recently added or loaded data in memory. Operations in RAM are much faster than continuously reading and writing data directly from disk. Raw channel and event data is stored in memory in “slots” created during recording new data or loading historical data.
 
 The cache settings can be modified and are stored by default in the configuration file 
 

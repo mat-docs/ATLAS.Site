@@ -1,9 +1,9 @@
-# Live & Historic Usage
+# Live & Historical Usage
 
 vTAG Server can operate in two ways depending on the data source:
 
 - **Live Mode** – processes parameters from an active ADS telemetry stream.
-- **Historic Replay Mode** – replays a previously recorded session file (SSN or SQL Race).
+- **Historical Replay Mode** – replays a previously recorded session file (SSN or SQL Race).
 
 The behaviour of your vTAG model is the same in both modes: it reads parameters via Atlas 10 Source blocks, executes the Simulink logic, and publishes outputs via Measurement Write.
 
@@ -28,7 +28,7 @@ When telemetry coverage is imperfect, some data is only available after the wire
 
 After offload, once the complete session is available:
 
-- The system can automatically switch to Historic Replay Mode.
+- The system can automatically switch to Historical Replay Mode.
 - vTAG Server can replay the session from start to finish using the full, gap‑free dataset.
 - It regenerates the entire set of derived parameters using the higher‑quality data.
 
@@ -40,11 +40,11 @@ If ATLAS detects that additional data has arrived after live recording:
 - The newly generated outputs are written to the same directory as the original VTS data.
 - The version number (iteration counter) increments automatically to distinguish reprocessed files.
 
-## Stand‑Alone Historic Usage (Full Session Replay)
+## Stand‑Alone Historical Usage (Full Session Replay)
 
 If you have access to a complete SSN or SQL Race session, you can perform a stand‑alone vTAG replay directly inside ATLAS.
 
-To run a historic replay:
+To run a historical replay:
 
 1. Open ATLAS.
 2. Load the session you want to analyse.
@@ -72,7 +72,7 @@ Where:
 - `VTS` = the identifier for the vTAG source (configurable).
 - `nnn` = iteration number (starting at 001).
 
-Each time the vTAG Server performs a fresh playback (live or historic), the version number increments.
+Each time the vTAG Server performs a fresh playback (live or historical), the version number increments.
 
 When running a replay without ADS you can enter the base session name manually. Each new playback produces a new version automatically.
 

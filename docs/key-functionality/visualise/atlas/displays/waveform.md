@@ -82,10 +82,10 @@ The Waveform Display plots multiple parameters as traces against Time or Distanc
 - **Date Markers & Show Time As:** In Time mode, show clock/lap time on X-axis
 - **Circuit Stripe:** Show Segments/Sectors across top of plot; toggle labels; choose global/overridden Circuit Definition
 
-## Live Telemetry, Historic Replay & Scrolling
+## Live Telemetry, Historical Replay & Scrolling
 
 - **Live:** Waveform scrolls/updates if Live session is in set
-- **Historic Replay:** Enable Allow Historic Replay; double-click plot to replay
+- **Historical Replay:** Enable Allow Historical Replay; double-click plot to replay
 - **Pause/Inspect:** Single-click stops scrolling and positions cursor; double-click resumes
 - **Autoscroll:** Middle mouse (or both buttons); pointer controls speed; click to exit
 - **Left-to-Right Mode (Strip Chart):**  

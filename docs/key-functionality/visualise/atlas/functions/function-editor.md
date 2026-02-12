@@ -63,7 +63,7 @@ When a Function uses multiple inputs sampled at different times, choose how ofte
 
 - Calculate Over Whole Session — compute across the entire Session. 
 - Interpolate Between Samples — interpolate values off the current sample; if off, uses most recent sample. 
-- Join Gaps Around Null — joins gaps for instantaneous Functions during recording (no effect on historic data).
+- Join Gaps Around Null — joins gaps for instantaneous Functions during recording (no effect on historical data).
 
 ![Function Properties](assets/function-properties.png)
 

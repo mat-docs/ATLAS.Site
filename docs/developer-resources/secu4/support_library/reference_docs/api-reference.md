@@ -368,7 +368,7 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
 public enum ReadingType
 {
     Live = 0,
-    Historic = 1,
+    Historical = 1,
     Both = 2
 }
 ```

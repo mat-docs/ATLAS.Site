@@ -248,7 +248,7 @@ api.OnStreamStopped += (source, streamName, time) =>
 |-----------|---------|---------------|
 | Protocol | 2.1.1.10 | ✅ Required |
 | Bridge Service | 2.1.1.21 | ✅ Recommended |
-| Data Recorder | 11.4.4.691-W04 | ✅ Recommended |
+| Data Recorder | 11.4.4.694-W04 | ✅ Recommended |
 | Support Library | 2.1.1.27 | ✅ Recommended |
 
 ## Upgrading
