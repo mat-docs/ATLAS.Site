@@ -586,7 +586,9 @@ The Bridge service uses the following priority order for logging configuration:
 *   **Issue: Performance problems**
     *   Increase `NumberWritingUnit` / `NumberProcessingUnit`.
       
-      !!! warning "Resource Requirements"
-        Increasing these values requires more system resources (CPU and memory). Setting values too high on smaller machines may lead to deadlock or threadpool starvation. **Recommended settings for an 8-core machine with 16GB RAM:**
-        * `NumberProcessingUnit`: 12
-        * `NumberWritingUnit`: 24
+
+!!! warning "Resource Requirements"
+    Increasing these values requires more system resources (CPU and memory). Setting values too high on smaller machines may lead to deadlock or threadpool starvation. **Recommended settings for an 8-core machine with 16GB RAM:**
+
+      - `NumberProcessingUnit`: 12
+      - `NumberWritingUnit`: 24
