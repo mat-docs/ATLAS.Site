@@ -4,7 +4,7 @@
 
 The Session Browser is the primary interface in ATLAS for managing telemetry data Sessions. It allows users to:
 
-- Load previously recorded (Historic) Sessions
+- Load previously recorded (Historical) Sessions
 - Record new (Live) Sessions
 - Configure and manage data Recorders
 - Combine multiple Sessions into Composite Sessions
@@ -94,7 +94,7 @@ When adding a Recorder to a Set, you can define its behaviour:
 
 This panel displays all Sessions available from the selected source. Each entry includes metadata such as:
 
-- Session type (Historic or Live)
+- Session type (Historical or Live)
 - State
 - Driver
 - Circuit

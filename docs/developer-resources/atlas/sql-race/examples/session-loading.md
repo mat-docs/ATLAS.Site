@@ -18,7 +18,7 @@ Session States are used to identify whether a session is currently live and havi
 | LiveNotInServer | Indicates a session which is live, but not available within an SQLRace server. |
 
 !!! warning "LiveNotInServer"
-    Sessions with this session state should not be loaded until its state has changed to historic. This is due to the data in the database not being up-to-date until the recording has ended and all data has been flushed.
+    Sessions with this session state should not be loaded until its state has changed to historical. This is due to the data in the database not being up-to-date until the recording has ended and all data has been flushed.
 
 ## Examples
 ### Loading a Local SSN File
