@@ -408,8 +408,7 @@ The Bridge service uses the following priority order for logging configuration:
 
 1.  **Serilog section** in `AppConfig.json` (if present) - Full customization via JSON.
 2.  **`LOG_FILE_PATH`** environment variable or `-l` command-line argument.
-3.  **Windows Registry** (Windows only) - `HKCU\SOFTWARE\McLaren Electronic Systems\ATLAS\9.0\AdsAdvancedSettings\LogFileFolder`.
-4.  **Default** - Falls back to `Logs/bridge-svc-log.txt`.
+3.  **Default** - Falls back to `Logs/bridge-svc-log.txt`.
 
 !!! important
     If you include a `Serilog` section in your `AppConfig.json`, you have full control over logging configuration. Without it, the service uses built-in defaults.
