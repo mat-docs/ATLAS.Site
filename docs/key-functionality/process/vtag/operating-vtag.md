@@ -21,16 +21,16 @@ In Live Mode you can:
 - Check/uncheck parameter options
 - Stop the model
 
-### Historic Mode
-In Historic Mode you can:
+### Historical Mode
+In Historical Mode you can:
 - Set .ssv file name
 - Set calculation period
 - Play and stop the model
 
 ### General Workflow
-1. Choose Live or Historic from the Mode list.
+1. Choose Live or Historical from the Mode list.
 2. Choose your own IP address (the machine running ATLAS).
-3. In Historic Mode, specify a session name (part used by extension manager). If omitted, the .ssv file name matches the .ssn file.
+3. In Historical Mode, specify a session name (part used by extension manager). If omitted, the .ssv file name matches the .ssn file.
 4. Define the Calculation Period:
     - Session
     - Current Lap
@@ -41,7 +41,7 @@ In Historic Mode you can:
 6. Re‑run model on cable data – when enabled, VTS recorder records during ATLAS wire‑link upload and generates a new .ssv file.
 7. Use coverage cursor (Live only) – recommended. Ensures Apps run on complete data.
 8. Channel latency (up to 4s) is considered.
-9. Auto reload historic run – automatically loads .ssv after generation.
+9. Auto reload historical run – automatically loads .ssv after generation.
 10. Delay – apply constant delay without using coverage cursor.
 
 ## Status Tab
@@ -88,7 +88,7 @@ Displays the log, also saved as a standard log file.
 ### Live Mode
 - Start/Stop the model
 
-### Historic Mode
+### Historical Mode
 - Play/Stop the model
 - Progress bar shows processing progress
 - Progress may pause temporarily while searching for PGVs
@@ -98,9 +98,9 @@ Displays the log, also saved as a standard log file.
 - Stopped on Error
 - Running Live
 - Running after Upload
-- Running Historic
+- Running Historical
 
 !!! tip
     - The Process States and the progress are shown in the 'control' part.
-    - When running live, no progress is shown. When running on Wire Link Upload or Historic, you can see the progress.
-    - Note that in Historic mode the progress bar sometimes 'holds'  for a few seconds. vTAGServer is then searching for the PGV's (this will be shown in the Status Bar of ATLAS Viewer)
+    - When running live, no progress is shown. When running on Wire Link Upload or Historical, you can see the progress.
+    - Note that in Historical mode the progress bar sometimes 'holds'  for a few seconds. vTAGServer is then searching for the PGV's (this will be shown in the Status Bar of ATLAS Viewer)

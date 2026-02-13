@@ -15,14 +15,14 @@ vTAG Server solves these problems by acting as an external computation engine: i
 
 - **Data Integration**: The complete data stream is displayed in ATLAS as if all data came from the car
 - **Network Distribution**: One ATLAS Client typically runs the vTAGServer and supplies processed data (vData) to the VTS Data Recorder in the ADS, which distributes it across the network
-- **Session Processing**: In stand-alone historic use, vTAGServer processes data from a session (.ssn) file and creates vTAG data in another vTAG session (.ssv) file
+- **Session Processing**: In stand-alone historical use, vTAGServer processes data from a session (.ssn) file and creates vTAG data in another vTAG session (.ssv) file
 
 !!! note "What's the difference between vTAG Server and vTAG PC?" 
     Although vTAG Server and vTAG PC use the same build mechanism, they serve different engineering goals:
     
     vTAG Server:
 
-    - Processes real data (historic or live).
+    - Processes real data (historical or live).
     - Acts as an external computation engine.
     - Suitable for validation of logic on production telemetry.
     - Publishes outputs into the ATLAS ecosystem.

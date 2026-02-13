@@ -115,7 +115,7 @@ To open Advanced Settings, go to **Tools > Advanced Settings**. System Monitor w
 | Read Ram View Timeout | Numeric (ms) | Timeout for Read RAM view operations. | Not specified |
 | Disable DTV backup | Y / N | If Y, DTV backup files are not created/updated after each edit (performance improvement). | N |
 | Use extended read RAM messages | Y / N | Use extended read RAMs if BIOS supports them (faster large reads). | Y |
-| Default Virtual Parameter format to XML | Y / N | If N, revert Virtual Parameter file save format to historic binary VPM format. | Y |
+| Default Virtual Parameter format to XML | Y / N | If N, revert Virtual Parameter file save format to historical binary VPM format. | Y |
 | Use extended write RAM messages | Y / N | Use extended write RAMs if BIOS supports them (faster large writes). | N |
 | Disable Search for DTV on opening PGV | Y / N | If Y, disable multi-application search after PGV change (may improve performance). | N |
 | Enable FIA lock checking | Y / N | Check for FIA-locked ECUs before reprogramming and prevent programming of not-permitted versions. | N |
