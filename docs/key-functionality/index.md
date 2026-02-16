@@ -74,7 +74,7 @@ ATLAS includes a set of tools that work together to help you collect, analyse, a
 | Tool    | What It Does | When to use it |
 | -------- | ------- | ------- |
 | [System Monitor](configure/system-monitor/index.md)  | Manages projects and hardware connections | When programming ECUs |
-| [ADS](key-functionality/stream/ads/index.md) | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
+| [ADS](stream/ads/index.md) | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
 | vTAG  | Runs virtual models and integrates results  | When running Simulink models with real-world data |
-| [SQL Race](key-functionality/store/sqlrace/index.md)    | Stores and manages large datasets | For persistent storage |
-| [ATLAS](key-functionality/analyse/viewer/index.md)    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |
+| [SQL Race](store/sqlrace/index.md)    | Stores and manages large datasets | For persistent storage |
+| [ATLAS](analyse/viewer/index.md)    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |

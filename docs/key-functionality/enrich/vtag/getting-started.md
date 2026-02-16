@@ -106,7 +106,7 @@ Check that **vTAG Server** shows active in System Monitor.
 ## 6. View in ATLAS Viewer
 
 1. Open ATLAS Viewer and a workbook.
-2. Open Session Browser (`Ctrl + L`) and add a new [Data Server Telemetry Recorder](../../visualise/atlas/handling-data/recorders/data-server.md), enable auto-record and add to set.
+2. Open Session Browser (`Ctrl + L`) and add a new [Data Server Telemetry Recorder](../../analyse/viewer/handling-data/recorders/data-server.md), enable auto-record and add to set.
 3. View your live output parameter streaming in.
 
 This setup lets you simulate a live telemetry environment without hardware.

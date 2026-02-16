@@ -42,3 +42,38 @@ publish = "site"
   to = "https://atlas.motionapplied.com/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/key-functionality/visualise/atlas/*"
+  to = "/key-functionality/analse/viewer/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/key-functionality/store/ads/*"
+  to = "/key-functionality/stream/ads/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/extending-atlas/apis/*"
+  to = "/key-functionality/integrate/apis/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/extending-atlas/rta/*"
+  to = "/key-functionality/integrate/rta/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/extending-atlas/open_streaming_architecture/*"
+  to = "/key-functionality/stream/open_streaming_architecture/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/key-functionality/process/vtag/*"
+  to = "/key-functionality/enrich/vtag/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/developer-resources/secu4/configuration_api/*"
+  to = "/developer-resources/system-monitor/configuration_api/:splat"
+  status = 301

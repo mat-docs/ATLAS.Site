@@ -900,7 +900,7 @@ System Monitor Trigger Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| estimated_time | [google.protobuf.Duration](#google-protobuf-Duration) |  | Estimated time available in recording memory |
+| estimated_time | [google.protobuf.Duration](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html) |  | Estimated time available in recording memory |
 | estimated_laps | [double](#double) |  | Estimated laps available in recording memory. |
 | return_code | [system_monitor_common.ErrorCode](#system_monitor_common-ErrorCode) |  | Return code |
 
@@ -1148,26 +1148,26 @@ System Monitor Trigger Types
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetLoggingChannelProperties | [.google.protobuf.Empty](#google-protobuf-Empty) | [ChannelPropertiesReply](#system_monitor_logging-ChannelPropertiesReply) | Gets the properties of the available logging channels |
+| GetLoggingChannelProperties | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [ChannelPropertiesReply](#system_monitor_logging-ChannelPropertiesReply) | Gets the properties of the available logging channels |
 | SetLoggingChannelProperties | [ChannelRequest](#system_monitor_logging-ChannelRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Alters the properties of any given Remote Logging channel. (COM: SetRemoteChannelProperties) |
-| GetLoggingTriggers | [.google.protobuf.Empty](#google-protobuf-Empty) | [TriggersReply](#system_monitor_logging-TriggersReply) | Retrieves the properties of all channel trigger settings |
+| GetLoggingTriggers | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [TriggersReply](#system_monitor_logging-TriggersReply) | Retrieves the properties of all channel trigger settings |
 | SetLoggingTrigger | [TriggerRequest](#system_monitor_logging-TriggerRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Modify or create a given channel&#39;s trigger condition |
-| GetLoggingWrap | [.google.protobuf.Empty](#google-protobuf-Empty) | [WrapReply](#system_monitor_logging-WrapReply) | Gets the remote logging config memory wrapping strategy |
+| GetLoggingWrap | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [WrapReply](#system_monitor_logging-WrapReply) | Gets the remote logging config memory wrapping strategy |
 | SetLoggingWrap | [WrapRequest](#system_monitor_logging-WrapRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets the remote logging config memory wrapping strategy |
-| GetLoggingOffset | [.google.protobuf.Empty](#google-protobuf-Empty) | [LoggingOffsetReply](#system_monitor_logging-LoggingOffsetReply) | Gets the remote logging config offset |
+| GetLoggingOffset | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [LoggingOffsetReply](#system_monitor_logging-LoggingOffsetReply) | Gets the remote logging config offset |
 | SetLoggingOffset | [LoggingOffsetRequest](#system_monitor_logging-LoggingOffsetRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets the remote logging config offset |
 | GetLoggingSessionDetails | [GetSessionDetailRequest](#system_monitor_logging-GetSessionDetailRequest) | [GetSessionDetailReply](#system_monitor_logging-GetSessionDetailReply) | Returns the current value of a specified session detail from the remote logging configuration |
 | SetLoggingSessionDetails | [SetSessionDetailRequest](#system_monitor_logging-SetSessionDetailRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets a specified session detail in the remote logging configuration |
-| GetLoggingDuration | [.google.protobuf.Empty](#google-protobuf-Empty) | [LoggingDurationReply](#system_monitor_logging-LoggingDurationReply) | Get the estimated length in time and number of laps available for recording in the remote logging config |
-| GetLoggingParameterDetails | [.google.protobuf.Empty](#google-protobuf-Empty) | [LoggingParametersReply](#system_monitor_logging-LoggingParametersReply) | Gets the remote logging parameter details from the config |
-| LoggingConfigDownloadInProgress | [.google.protobuf.Empty](#google-protobuf-Empty) | [DownloadProgressReply](#system_monitor_logging-DownloadProgressReply) | Gets whether a logging config download is in progress |
+| GetLoggingDuration | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [LoggingDurationReply](#system_monitor_logging-LoggingDurationReply) | Get the estimated length in time and number of laps available for recording in the remote logging config |
+| GetLoggingParameterDetails | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [LoggingParametersReply](#system_monitor_logging-LoggingParametersReply) | Gets the remote logging parameter details from the config |
+| LoggingConfigDownloadInProgress | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [DownloadProgressReply](#system_monitor_logging-DownloadProgressReply) | Gets whether a logging config download is in progress |
 | LoggingConfigDownload | [DownloadRequest](#system_monitor_logging-DownloadRequest) | [DownloadReply](#system_monitor_logging-DownloadReply) | Downloads the remote logging configuration to the ECU then reads the given measurement value to ensure configuration write is complete |
-| LoggingConfigUpload | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Uploads the remote logging configuration from the ECU |
+| LoggingConfigUpload | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Uploads the remote logging configuration from the ECU |
 | RemoveLoggingParameter | [.system_monitor_common.ParameterRequest](#system_monitor_common-ParameterRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Remove a parameter from the Remote Logging Configuration |
 | ClearAllLoggingParameters | [ClearRequest](#system_monitor_logging-ClearRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes all the parameters from the remote logging config except those used by triggers If the caller specifies a forceful removal all parameters will be removed and any &gt;On Data= trigger conditions will be reset |
-| GetLoggingSlotsUsed | [.google.protobuf.Empty](#google-protobuf-Empty) | [SlotCountReply](#system_monitor_logging-SlotCountReply) | Gets the number of logging slots |
+| GetLoggingSlotsUsed | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [SlotCountReply](#system_monitor_logging-SlotCountReply) | Gets the number of logging slots |
 | GetLoggingSlotPercentage | [.system_monitor_common.ParameterRequest](#system_monitor_common-ParameterRequest) | [SlotPercentageReply](#system_monitor_logging-SlotPercentageReply) | Gets the percentage of a logging slot used by a parameter |
-| GetECULoggingConfig | [.google.protobuf.Empty](#google-protobuf-Empty) | [ConfigReply](#system_monitor_logging-ConfigReply) | Gets the logging configuration from the ECU |
+| GetECULoggingConfig | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [ConfigReply](#system_monitor_logging-ConfigReply) | Gets the logging configuration from the ECU |
 | AddLoggingParameter | [AddParameterRequest](#system_monitor_logging-AddParameterRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Adds a parameter to the Remote Logging Configuration |
 | AddVirtualLoggingParameter | [AddVirtualParameterRequest](#system_monitor_logging-AddVirtualParameterRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Adds a virtual parameter to the Remote Logging Configuration |
 
@@ -2351,10 +2351,10 @@ System Monitor Trigger Types
 | GetModifiedParameters | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [ParameterListReply](#system_monitor_parameter-ParameterListReply) | Gets the modified parameters in a selected application |
 | GetParameterWarningLimits | [.system_monitor_common.ParameterRequest](#system_monitor_common-ParameterRequest) | [WarningLimitsReply](#system_monitor_parameter-WarningLimitsReply) | Gets the warning limits from a parameter. |
 | SetParameterWarningLimits | [WarningLimitsRequest](#system_monitor_parameter-WarningLimitsRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets the warning limits for a parameter. |
-| DeleteMinMax | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Deletes min/max values. |
+| DeleteMinMax | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Deletes min/max values. |
 | ExportInputSignals | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Exports input signals to a file. |
 | ImportInputSignals | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Imports input signals from a file. |
-| RegenerateInputSignalParameters | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Regenerate Input Signal parameters from RAW values. |
+| RegenerateInputSignalParameters | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Regenerate Input Signal parameters from RAW values. |
 | UndoDataChanges | [UndoRequest](#system_monitor_parameter-UndoRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Reset all tune buffers on the unit and/or in the edit buffer. |
 | RestoreValue | [.system_monitor_common.ParameterRequest](#system_monitor_common-ParameterRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Restore a parameter value its to original saved value. |
 | GetAxisParameterFromMap | [.system_monitor_common.ParameterRequest](#system_monitor_common-ParameterRequest) | [AxisParametersReply](#system_monitor_parameter-AxisParametersReply) | Retrieves a list of axis parameter(s) used by the map parameter in the application. |
@@ -2855,7 +2855,7 @@ System Monitor Trigger Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | saved_by | [string](#string) |  | Name of the last user to save the file. |
-| saved_on | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Date time of last file save. |
+| saved_on | [google.protobuf.Timestamp](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp.html) |  | Date time of last file save. |
 | comment | [string](#string) |  | File comments. |
 | notes | [string](#string) |  | File notes. |
 | build | [uint32](#uint32) |  | Build number of System Monitor used when saving file. |
@@ -3357,7 +3357,7 @@ System Monitor Trigger Types
 | DownloadDataChanges | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Causes any modifications made to the System Monitor edit buffer to be downloaded to the ECU. |
 | EditBufferSynced | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [SyncedReply](#system_monitor_project-SyncedReply) | Identifies whether the edit buffer is in sync with the ECU. |
 | UploadDataVersion | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Uploads specified data version to the edit buffer. |
-| GetVersionNumber | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetVersionNumberReply](#system_monitor_project-GetVersionNumberReply) | Gets the version information contained within the System Monitor executable. |
+| GetVersionNumber | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [GetVersionNumberReply](#system_monitor_project-GetVersionNumberReply) | Gets the version information contained within the System Monitor executable. |
 | GetPGVVersion | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [AppReply](#system_monitor_project-AppReply) | Gets the filepath for the .pgv of an application by Application Id. |
 | GetPGVID | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [PGVIDReply](#system_monitor_project-PGVIDReply) | Gets the program version ID of the currently loaded program version. |
 | GetDTVVersion | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [AppReply](#system_monitor_project-AppReply) | Returns the filename of the data version in the edit buffer. |
@@ -3375,9 +3375,9 @@ System Monitor Trigger Types
 | DTVSave | [DTVSaveRequest](#system_monitor_project-DTVSaveRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Saves the current data version to the specified file. |
 | DTVSaveCopy | [DTVSaveCopyRequest](#system_monitor_project-DTVSaveCopyRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Saves the current data version to the specified file, without modifying the data version in the edit buffer. |
 | DTVSaveIncrement | [DTVSaveIncrementRequest](#system_monitor_project-DTVSaveIncrementRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Increments the version number of the data version and then performs a save. |
-| GetBuildNumber | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetBuildNumberReply](#system_monitor_project-GetBuildNumberReply) | Gets the build number of System Monitor (SM-V7). Client code may be branched on the basis of build number, thereby providing a way by which a single client script can be written which works with releases of SM-V7 which have different ActiveX interfaces. |
-| GetAppDetails | [.google.protobuf.Empty](#google-protobuf-Empty) | [GetAppDetailsReply](#system_monitor_project-GetAppDetailsReply) | Gets details of the applications in the current project. |
-| GetActiveApps | [.google.protobuf.Empty](#google-protobuf-Empty) | [ActiveAppReply](#system_monitor_project-ActiveAppReply) | Gets details of all the active applications. |
+| GetBuildNumber | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [GetBuildNumberReply](#system_monitor_project-GetBuildNumberReply) | Gets the build number of System Monitor (SM-V7). Client code may be branched on the basis of build number, thereby providing a way by which a single client script can be written which works with releases of SM-V7 which have different ActiveX interfaces. |
+| GetAppDetails | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [GetAppDetailsReply](#system_monitor_project-GetAppDetailsReply) | Gets details of the applications in the current project. |
+| GetActiveApps | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [ActiveAppReply](#system_monitor_project-ActiveAppReply) | Gets details of all the active applications. |
 | SetActiveApps | [MultiAppRequest](#system_monitor_project-MultiAppRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets the active application when provided with an application ID. |
 | AddApp | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Adds the application defined by the given DTV and it&#39;s associated PGV into the project. If the application already exists in the project the error: SMAPI_ERR_INVALID_CMD (-31) will be returned. |
 | RemoveApp | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes the given application from the project. The requested application cannot be the BIOS. |
@@ -3421,16 +3421,16 @@ System Monitor Trigger Types
 | ClearEnhancedRowParameters | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Clear all parameters for given application from enhanced speed slow row data list. |
 | RegisterCANEnhancedRowParameters | [.system_monitor_common.ParametersRequest](#system_monitor_common-ParametersRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Add CAN parameters to the enhanced speed row data list. |
 | RegisterVirtualEnhancedRowParameters | [.system_monitor_common.ParametersRequest](#system_monitor_common-ParametersRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Add virtual parameters to the enhanced speed row data list. All parameters referenced by each virtual will be added to the list. |
-| ActivateEnhancedRowParameters | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Activate current enhanced speed row data list. |
+| ActivateEnhancedRowParameters | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Activate current enhanced speed row data list. |
 | DumpEvents | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Dumps the contents of the Event window to a specified file. |
 | DumpErrors | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Any errors that are currently occurring are dumped to disk. |
 | DumpRowData | [.system_monitor_common.FileRequest](#system_monitor_common-FileRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Dumps the current values of all acquired measurement parameters to disk. |
-| ClearEvents | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Clears the event window in SM-V7. |
+| ClearEvents | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Clears the event window in SM-V7. |
 | GetEvents | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [EventsReply](#system_monitor_project-EventsReply) | Gets the events defined for a given application. |
 | GetEventDetails | [EventRequest](#system_monitor_project-EventRequest) | [EventReply](#system_monitor_project-EventReply) | Gets the details for a given event defined in an application. |
 | GetErrorDefinitions | [.system_monitor_common.AppRequest](#system_monitor_common-AppRequest) | [ErrorDefinitionsReply](#system_monitor_project-ErrorDefinitionsReply) | Gets the error definitions for a given application. |
-| GetErrors | [.google.protobuf.Empty](#google-protobuf-Empty) | [ErrorReply](#system_monitor_project-ErrorReply) | Returns list of active errors. |
-| DeleteErrors | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Clears the active errors. |
+| GetErrors | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [ErrorReply](#system_monitor_project-ErrorReply) | Returns list of active errors. |
+| DeleteErrors | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Clears the active errors. |
 
  
 
@@ -3845,24 +3845,24 @@ System Monitor Trigger Types
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetStatus | [.google.protobuf.Empty](#google-protobuf-Empty) | [StatusReply](#system_monitor_system-StatusReply) | Gets the combined current status of online, live updates, link status and active app. |
+| GetStatus | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [StatusReply](#system_monitor_system-StatusReply) | Gets the combined current status of online, live updates, link status and active app. |
 | SetOnline | [OnlineRequest](#system_monitor_system-OnlineRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Turns the ECU on or off-line. |
 | SetLiveUpdate | [LiveUpdateRequest](#system_monitor_system-LiveUpdateRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Enables or disables the sending of live-updates to the ECU. |
-| GetUnitList | [.google.protobuf.Empty](#google-protobuf-Empty) | [UnitListReply](#system_monitor_system-UnitListReply) | Returns an array of cars/units defined in the carfile.ini (ie. the connections that appear in the connections dialog) |
-| GetUnitName | [.google.protobuf.Empty](#google-protobuf-Empty) | [UnitNameReply](#system_monitor_system-UnitNameReply) | Returns the name of the current car/connection. |
+| GetUnitList | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [UnitListReply](#system_monitor_system-UnitListReply) | Returns an array of cars/units defined in the carfile.ini (ie. the connections that appear in the connections dialog) |
+| GetUnitName | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [UnitNameReply](#system_monitor_system-UnitNameReply) | Returns the name of the current car/connection. |
 | GetUnitByIndex | [UnitByIndexRequest](#system_monitor_system-UnitByIndexRequest) | [UnitInfo](#system_monitor_system-UnitInfo) | Returns the index of the car/unit entry within the car/unit list (as returned by GetCarList()). Obtains connection name, type and IP address. |
 | SetUnitByIndex | [UnitByIndexTypeRequest](#system_monitor_system-UnitByIndexTypeRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets the car/unit connection based on the car/unit list (as returned by GetCarList()) |
-| GetMultiApplicationBases | [.google.protobuf.Empty](#google-protobuf-Empty) | [MultiApplicationBasesReply](#system_monitor_system-MultiApplicationBasesReply) | Gets details of all defined Multi-Application Bases. |
-| GetMultiApplicationBase | [.google.protobuf.Empty](#google-protobuf-Empty) | [MultiApplicationBaseInfo](#system_monitor_system-MultiApplicationBaseInfo) | Gets details of a specific Multi-Application Base. |
+| GetMultiApplicationBases | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [MultiApplicationBasesReply](#system_monitor_system-MultiApplicationBasesReply) | Gets details of all defined Multi-Application Bases. |
+| GetMultiApplicationBase | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [MultiApplicationBaseInfo](#system_monitor_system-MultiApplicationBaseInfo) | Gets details of a specific Multi-Application Base. |
 | SetMultiApplicationBase | [MultiApplicationBasesRequest](#system_monitor_system-MultiApplicationBasesRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Sets details of a specific Multi-Application Base. |
-| GetLicenceDetails | [.google.protobuf.Empty](#google-protobuf-Empty) | [LicenceDetailsReply](#system_monitor_system-LicenceDetailsReply) | Get the active consortium name and licence owner. |
-| GetDeviceProperties | [.google.protobuf.Empty](#google-protobuf-Empty) | [DevicePropertiesReply](#system_monitor_system-DevicePropertiesReply) | Get the properties of connected devices from the project. |
-| GetLiveLogging | [.google.protobuf.Empty](#google-protobuf-Empty) | [LiveLoggingReply](#system_monitor_system-LiveLoggingReply) | Returns whether the Live Logging is currently recording or not. |
+| GetLicenceDetails | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [LicenceDetailsReply](#system_monitor_system-LicenceDetailsReply) | Get the active consortium name and licence owner. |
+| GetDeviceProperties | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [DevicePropertiesReply](#system_monitor_system-DevicePropertiesReply) | Get the properties of connected devices from the project. |
+| GetLiveLogging | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [LiveLoggingReply](#system_monitor_system-LiveLoggingReply) | Returns whether the Live Logging is currently recording or not. |
 | SetLiveLogging | [LiveLoggingRequest](#system_monitor_system-LiveLoggingRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Starts or stops Live Logging. |
 | SetBatchMode | [BatchModeRequest](#system_monitor_system-BatchModeRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Call this to enter (or leave) batch mode. This is used when creating virtual parameters; entering batch mode before the creation of multiple Virtual Parameters and leaving batch mode afterwards. Using this method, all created/updated Virtual Parameters will only be available in System Monitor after leaving batch mode. |
 | SendMessage | [SendMessageRequest](#system_monitor_system-SendMessageRequest) | [SendMessageReply](#system_monitor_system-SendMessageReply) | Sends a message to the ECU. |
-| GetLogFolder | [.google.protobuf.Empty](#google-protobuf-Empty) | [FolderReply](#system_monitor_system-FolderReply) | Get the current log folder location. |
-| GetPPOFileName | [.google.protobuf.Empty](#google-protobuf-Empty) | [FolderReply](#system_monitor_system-FolderReply) | Get the name of the PPO file in the project. |
+| GetLogFolder | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [FolderReply](#system_monitor_system-FolderReply) | Get the current log folder location. |
+| GetPPOFileName | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [FolderReply](#system_monitor_system-FolderReply) | Get the name of the PPO file in the project. |
 | CreatePGV | [CreatePGVRequest](#system_monitor_system-CreatePGVRequest) | [CreatePGVReply](#system_monitor_system-CreatePGVReply) | Create a new PGV from ASAP2 definitions. |
 
  
@@ -4114,10 +4114,10 @@ System Monitor Trigger Types
 | SetVirtualParameter | [VirtualParameterRequest](#system_monitor_virtual-VirtualParameterRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Modify or Create a Virtual Parameter. |
 | GetVirtualParameterProperties | [.system_monitor_common.ParametersRequest](#system_monitor_common-ParametersRequest) | [VirtualParameterPropertiesReply](#system_monitor_virtual-VirtualParameterPropertiesReply) | Gets the properties of the given virtual parameters |
 | RemoveVirtualParameters | [VirtualsRequest](#system_monitor_virtual-VirtualsRequest) | [VirtualReply](#system_monitor_virtual-VirtualReply) | Removes virtual parameters. |
-| RemoveAllVirtualParameters | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes all virtual parameters. |
+| RemoveAllVirtualParameters | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes all virtual parameters. |
 | RemoveVirtualConversions | [VirtualsRequest](#system_monitor_virtual-VirtualsRequest) | [VirtualReply](#system_monitor_virtual-VirtualReply) | Removes virtual parameter conversion rules. |
-| RemoveAllVirtualConversions | [.google.protobuf.Empty](#google-protobuf-Empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes all virtual parameter conversion rules. |
-| GetVirtualParameterGroups | [.google.protobuf.Empty](#google-protobuf-Empty) | [VirtualGroupsReply](#system_monitor_virtual-VirtualGroupsReply) | Gets the virtual parameter groups. |
+| RemoveAllVirtualConversions | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [.system_monitor_common.Return](#system_monitor_common-Return) | Removes all virtual parameter conversion rules. |
+| GetVirtualParameterGroups | [.google.protobuf.Empty](https://protobuf.dev/reference/protobuf/google.protobuf/#empty) | [VirtualGroupsReply](#system_monitor_virtual-VirtualGroupsReply) | Gets the virtual parameter groups. |
 | GetVirtualParameterGroup | [VirtualGroupRequest](#system_monitor_virtual-VirtualGroupRequest) | [VirtualGroupReply](#system_monitor_virtual-VirtualGroupReply) | Gets a virtual parameter group. |
 | GetVirtualParametersInGroup | [VirtualGroupRequest](#system_monitor_virtual-VirtualGroupRequest) | [VirtualGroupsReply](#system_monitor_virtual-VirtualGroupsReply) | Gets the virtual parameters within a group. |
 | VirtualParametersExport | [VirtualExportRequest](#system_monitor_virtual-VirtualExportRequest) | [.system_monitor_common.Return](#system_monitor_common-Return) | Exports virtual parameters. |

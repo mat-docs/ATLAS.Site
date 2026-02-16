@@ -23,7 +23,7 @@ The Main Window of ATLAS is displayed when you start the program and open a Work
 
 ![Main Window](assets/main-window.png)
 
-### [Workbooks and Pages](../key-functionality/visualise/atlas/system-operation/workbook.md) 
+### [Workbooks and Pages](system-operation/workbook.md)
 
 Workbooks in ATLAS define the layout and positioning of elements on the screen. Each Workbook contains one or more Pages, and each Page can host multiple Displays. Workbooks are saved as `.wbkx` files, which store the formatting, size, and position of Displays, allowing users to create customized workspaces.
 
@@ -55,7 +55,7 @@ Right-clicking a Page tab opens a menu with options to:
 - **New Horizontal Tab Group:** Add a horizontal Page tab group.
 - **New Vertical Tab Group:** Add a vertical Page tab group.
 
-### [Sessions](../key-functionality/visualise/atlas/handling-data/sessions/index.md)
+### [Sessions](handling-data/sessions/index.md)
 
 Use the Session Browser (*CTRL + L*) to record a new session or load an existing one. The Session Browser allows you to define different sets of data to use across the Workbook. Sessions, either Live or Historical, may be combined into a single set using Compare or Append mode.
 
@@ -65,12 +65,12 @@ Access live data via Recorders. A Recorder streams raw telemetry data, and sever
 
 ![Session Browser](assets/session_browser.png)
 
-### [Displays](../key-functionality/visualise/atlas/displays/index.md)
+### [Displays](displays/index.md)
 Once data has been added, begin building your Workbook by adding Displays to Pages. Multiple types of Displays are available, each of which can be customised to meet specific requirements. Displays may be docked in various layouts to optimise visibility across the Workbook.
 
 For detailed information on types of Displays, shortcuts and different display options refer to the embedded documentation: Help > View Help (Preview) (*F1*).
 
-### [Parameters](../key-functionality/visualise/atlas/handling-data/parameters/index.md)
+### [Parameters](handling-data/parameters/index.md)
 Use the Parameter Browser (*P*) to select one or more parameters to display. Double-click a parameter or drag and drop it onto the Display. To remove a parameter, click on it and press *DELETE*.
 
 Once parameters are visible in the Display, customise the visual presentation using the Display Properties (*D*) panel. Key display options are also available by right-clicking anywhere on the Display.

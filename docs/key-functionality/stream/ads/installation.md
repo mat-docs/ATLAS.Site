@@ -16,7 +16,7 @@ This guide walks you through installing and configuring the ATLAS Data Server (A
     To add a SQLRace Database as a data source: `Tools > SQLRace > Connection Manager` and click **Add** to enter your SQL Server instance details.
 
 !!! note
-    If you use ADS with SQLRace, install and configure SQLRace first. See the [SQLRace setup guide](../sqlrace/installation.md).
+    If you use ADS with SQLRace, install and configure SQLRace first. See the [SQLRace setup guide](../../store/sqlrace/installation.md).
 
 ## Data Server Setup
 

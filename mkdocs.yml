@@ -132,13 +132,22 @@ nav:
         - Overview: key-functionality/stream/ads/index.md
         - Getting Started: key-functionality/stream/ads/installation.md
         - Recorders: key-functionality/stream/ads/recorders.md
+        - Options: key-functionality/stream/ads/options.md
         - RDS: key-functionality/stream/ads/rds.md
       - Open Streaming:
         - Overview: key-functionality/stream/open_streaming_architecture/index.md
+    - Enrich:
+      - Overview: key-functionality/enrich/index.md
+      - vTAG Server:
+        - Overview: key-functionality/enrich/vtag/index.md
+        - Getting Started: key-functionality/enrich/vtag/getting-started.md
+        - Operating vTAG Server: key-functionality/enrich/vtag/operating-vtag.md
+        - Live & Historical Usage: key-functionality/enrich/vtag/complete-system.md
     - Analyse: 
       - Overview: key-functionality/analyse/index.md
       - Viewer: 
         - Overview: key-functionality/analyse/viewer/index.md
+        - Getting Started: key-functionality/analyse/viewer/quick-start.md
         - System Operation: 
           - Mouse Actions: key-functionality/analyse/viewer/system-operation/mouse.md
           - Keyboard Shortcuts: key-functionality/analyse/viewer/system-operation/keyboard.md
@@ -208,19 +217,24 @@ nav:
       - Overview: key-functionality/integrate/index.md
       - RTA: 
         - Overview: key-functionality/integrate/rta/index.md
-        - Architectures: key-functionality/rta/introduction/architectures.md
-        - Data Services: key-functionality/rta/introduction/data-services.md
-        - Sessions: key-functionality/rta/introduction/sessions.md
-        - Configuration: key-functionality/rta/introduction/configuration.md
+        - Architectures: key-functionality/integrate/rta/introduction/architectures.md
+        - Data Services: key-functionality/integrate/rta/introduction/data-services.md
+        - Sessions: key-functionality/integrate/rta/introduction/sessions.md
+        - Configuration: key-functionality/integrate/rta/introduction/configuration.md
       - APIs: 
         - Overview: key-functionality/integrate/apis/index.md
   - Getting Started: 
-    - Quick Start Guide: getting-started/quick-start.md
+    - Choosing your System: getting-started/system-choice.md
     - Security: getting-started/security.md
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
     - System Monitor:
+      - Configuration API: 
+        - Overview: developer-resources/system-monitor/configuration_api/index.md
+        - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
+        - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
+        - Protocol Documentation:   developer-resources/system-monitor/configuration_api/docs.md
       - Active X: 
         - Overview: developer-resources/system-monitor/active-x/index.md
         - Methods: developer-resources/system-monitor/active-x/methods.md
@@ -230,7 +244,7 @@ nav:
           - Getting Values From a 1-Axis Map, Axis, Array and 2-Axis Map: developer-resources/system-monitor/active-x/examples/example-3.md
           - Manipulating the Values in a 1-Axis Map: developer-resources/system-monitor/active-x/examples/example-4.md
           - Demonstrating functions GetValue2AxisMap and SetValue2AxisMap: developer-resources/system-monitor/active-x/examples/example-5.md
-    - SECU4:
+    - Open Streaming:
       - Stream API: 
         - Overview: developer-resources/secu4/stream_api/index.md
         - Getting Started:
@@ -257,11 +271,6 @@ nav:
       - Bridge Service: 
         - Overview: developer-resources/secu4/bridge_service/index.md
         - Configuration Guide: developer-resources/secu4/bridge_service/configuration-guide.md
-      - Configuration API: 
-        - Overview: developer-resources/secu4/configuration_api/index.md
-        - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
-        - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
-        - Protocol Documentation:   developer-resources/secu4/configuration_api/docs.md
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/reference_docs/index.md
         # - Home: developer-resources/secu4/support_library/index.md

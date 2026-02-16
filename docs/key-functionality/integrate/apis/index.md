@@ -2,18 +2,18 @@ ATLAS APIs are designed with an API-first strategy, enabling seamless integratio
 
 ## Key APIs and Usage
 
-#### [SQLRace API](../../developer-resources/atlas/sql-race/index.md)
+#### [SQLRace API](../../../developer-resources/atlas/sql-race/index.md)
 
 Provides direct access to telemetry databases. Used for in-process data extraction and session creation.
 
-#### [Display API](../../developer-resources/atlas/display-api/index.md)
+#### [Display API](../../../developer-resources/atlas/display-api/index.md)
 
 Enables creation of custom visualisations with native ATLAS look and feel.
 
-#### [Stream API](../../developer-resources/secu4/stream_api/index.md)
+#### [Stream API](../../../developer-resources/secu4/stream_api/index.md)
 
 Built on gRPC and Protobuf for real-time telemetry streaming. Supports both reading and writing of telemetry packets.
 
-#### [Configuration API](../../developer-resources/secu4/configuration_api/index.md)
+#### [Configuration API](../../../developer-resources/system-monitor/configuration_api/index.md)
 
 The Configuration API offers a cross-platform gRPC interface for ECU programming and monitoring, supporting integration with clients in multiple languages.
