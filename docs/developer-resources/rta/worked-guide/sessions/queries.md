@@ -152,7 +152,7 @@ The RTA query dialect (defined by [JSON Schema](../../api/query.schema.json)) is
 ??? important "Specification Guidance"
 
     * The query language is specified by a [JSON schema](../../api/query.schema.json)
-    * Library support is provided in the _MAT.OCS.RTA.Model_ [NuGet Package](../../downloads.md#nuget-binaries)
+    * Library support is provided in the _MAT.OCS.RTA.Model_ [NuGet Package](../../downloads.md#nuget-packages)
     * ATLAS does not currently use all aspects of this dialect, but it MUST be supported in its entirety
     * Queries SHOULD be supported on as many session model properties as possible &mdash; including `"details"`
 

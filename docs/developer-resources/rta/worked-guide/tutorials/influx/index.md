@@ -3,7 +3,7 @@
     RTA was released as prototype functionality. As such, the content in these pages is subject to change based on feedback and roadmap changes.
 # InfluxDB Data Adapter &mdash; Walkthrough
 
-This tutorial stores and serves data directly from [InfluxDB](https://www.influxdata.com/products/influxdb/), using the [microservices architecture](../../../../../extending-atlas/rta/introduction/architectures.md#microservices) introduced in [Tutorial 02](../microservices/index.md).
+This tutorial stores and serves data directly from [InfluxDB](https://www.influxdata.com/products/influxdb/), using the [microservices architecture](../../../../../key-functionality/integrate/rta/introduction/architectures.md#microservices) introduced in [Tutorial 02](../microservices/index.md).
 
 At the end, you'll have ATLAS connected to a popular off-the-shelf timeseries database.
 
