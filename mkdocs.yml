@@ -43,6 +43,11 @@ nav:
     - Overview: introduction/index.md
     - Use Cases in Motorsport and Engineering: introduction/use-cases.md
     - Eco-System Overview: introduction/eco-system.md
+    - Ecosystem Guide: introduction/ecosystem-guide.md
+  - Getting Started: 
+    - Quick Start: getting-started/quick-start.md
+    - Security: getting-started/security.md
+    - System Requirements: getting-started/sysreqs.md
   - User Guides:
     - Overview: key-functionality/index.md
     - Configuration:
@@ -223,10 +228,6 @@ nav:
         - Configuration: key-functionality/integrate/rta/introduction/configuration.md
       - APIs: 
         - Overview: key-functionality/integrate/apis/index.md
-  - Getting Started: 
-    - Choosing your System: getting-started/system-choice.md
-    - Security: getting-started/security.md
-    - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
     - System Monitor:
@@ -449,7 +450,11 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.snippets:
       base_path: docs
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
 
