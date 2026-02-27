@@ -108,10 +108,10 @@ public PacketReadingConfiguration(
   - Set to appropriate size based on expected packet rate and processing speed
   - Value of 0 uses the default unbounded buffer
 - **groupId**: Kafka consumer group identifier (default: empty string = auto-generated)
-  - Use a specific group ID to control consumer group membership
-  - Multiple readers with same group ID share the load (Kafka consumer group behavior)
-  - Use different group IDs for independent readers of the same topic
-  - Empty string creates a unique consumer group per reader
+-     Use a specific group ID to control consumer group membership
+-     Multiple readers with same group ID share the load (Kafka consumer group behavior)
+-     Use different group IDs for independent readers of the same topic
+-     Empty string creates a unique consumer group per reader
 
 ### ReadingType Enum
 
