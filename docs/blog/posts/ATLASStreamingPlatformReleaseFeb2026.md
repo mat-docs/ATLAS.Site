@@ -1,6 +1,6 @@
 ---
 date:
-  created: 2026-01-23
+  created: 2026-02-27
 categories:
   - Releases
 tags:
@@ -10,7 +10,7 @@ tags:
   - Support Library
 ---
 
-# Bridge Service Release: v2.1.1.21
+# Bridge Service Release: v2.1.2.XX
 
 This release includes improvements to session management, data handling reliability, and expanded data type support.
 
