@@ -95,10 +95,12 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 ### Module Dependencies
 
 **Independent Core Modules:**
+
 - Session Manager
 - Data Format Manager
 
 **Pipeline Modules:**
+
 - Reader Module → Buffering Module → Interpolation Module
 
 ### Data Flow
@@ -261,22 +263,26 @@ reader.Start();
 ### Common Issues
 
 **Issue: Service creation fails**
-- Check that Support Library is initialized
+
+- Check that Support Library is initializedne
 - Verify configuration parameters
 - Check logs for specific error messages
 
 **Issue: No data received**
+
 - Verify session exists and is active
 - Check stream names match
 - Ensure handlers are added before starting
 - Verify subscription parameters match available data
 
 **Issue: High latency**
+
 - Reduce buffering window length
 - Increase sliding window percentage
 - Reduce subscription frequencies
 
 **Issue: Missing samples**
+
 - Increase buffering window length
 - Check coverage cursors for gaps
 - Verify parameter subscriptions

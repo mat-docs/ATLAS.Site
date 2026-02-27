@@ -809,7 +809,7 @@ public class ResumableSessionReader
     - **Warning**: Do not reuse the same static `groupId` across different sessions. Using the same consumer group ID for multiple sessions can lead to reading from incorrect offsets, missing data, or late reading as Kafka will resume from the last committed position which may be from a different session. Always include the session key or unique identifier in your group ID to avoid these issues.
 
 12. **Resumable Live Reading**:
-    - To implement fault-tolerant live reading that can resume after interruption, use `ReadingType.Live` with a session-specific `groupId` like `{customGroupId}_{sessionKey}`
+    - To implement fault-tolerant live reading that can resume after interruption, use `ReadingType.Live` with `LiveReadingType.LeadingEdge` and a session-specific `groupId` like `{customGroupId}_{sessionKey}`
     - This pattern is ideal for applications that need to process all data even after crashes or restarts
     - The reader will automatically resume from the last committed offset, avoiding data loss or duplicate processing
     - Ensure your application logic is idempotent if there's a possibility of receiving duplicate messages during recovery
