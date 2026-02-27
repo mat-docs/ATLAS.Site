@@ -14,6 +14,8 @@ tags:
 
 This release introduces updates across multiple components of the Streaming Platform, with a focus on reliability, scalability, and improved operational control.
 
+<!-- more -->
+
 ## Bridge Service v2.1.2.6
 
 ### 1. Heartbeat-Based Timeout Detection
