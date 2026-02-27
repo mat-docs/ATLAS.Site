@@ -811,7 +811,6 @@ public class ResumableSessionReader
     - To implement fault-tolerant live reading that can resume after interruption, use `ReadingType.Live` with a session-specific `groupId` like `{customGroupId}_{sessionKey}`
     - This pattern is ideal for applications that need to process all data even after crashes or restarts
     - The reader will automatically resume from the last committed offset, avoiding data loss or duplicate processing
-    - Do not use `LiveReadingType.LeadingEdge` for resumable reading as it skips historical data; use default `FromBeginning` or omit the parameter
     - Ensure your application logic is idempotent if there's a possibility of receiving duplicate messages during recovery
 
 ## Common Patterns

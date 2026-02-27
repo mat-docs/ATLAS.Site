@@ -20,8 +20,8 @@ The lifecycle of the Essentials service is tied to the session lifecycle—it st
 The Essentials Module is ideal for scenarios where you need to:
 
 - Retrieve session configuration data before processing full telemetry
-- Read parameter and event definitions from a session
-- Access session metadata and setup information
+- Read session configuration and settings
+- Access essential session metadata and setup information
 - Validate session structure before initiating full data processing
 - Build session indexes or catalogs
 
@@ -78,37 +78,27 @@ public class EssentialPacketHandler : IHandler<IReceivedPacketDto>
         // Process based on packet type
         switch (packet.Type)
         {
-            case "ParameterDataFormat":
-                HandleParameterFormat(packet);
+            case "Configuration":
+                HandleConfiguration(packet);
                 break;
-            case "EventDataFormat":
-                HandleEventFormat(packet);
-                break;
-            case "SessionDetails":
-                HandleSessionDetails(packet);
+            case "Marker":
+                HandleMarker(packet);
                 break;
         }
     }
     
-    private void HandleParameterFormat(Packet packet)
+    private void HandleConfiguration(Packet packet)
     {
-        // Parse and process parameter format definition
-        var formatData = ParameterDataFormatPacket.Parser.ParseFrom(packet.Content);
-        Console.WriteLine($"Parameter Format: {formatData.Parameters.Count} parameters");
+        // Parse and process configuration packet
+        var configData = ConfigurationPacket.Parser.ParseFrom(packet.Content);
+        Console.WriteLine($"Configuration");
     }
     
-    private void HandleEventFormat(Packet packet)
+    private void HandleMarker(Packet packet)
     {
-        // Parse and process event format definition
-        var eventData = EventDataFormatPacket.Parser.ParseFrom(packet.Content);
-        Console.WriteLine($"Event Format: {eventData.Events.Count} events");
-    }
-    
-    private void HandleSessionDetails(Packet packet)
-    {
-        // Parse and process session details
-        var details = SessionDetailsPacket.Parser.ParseFrom(packet.Content);
-        Console.WriteLine($"Session Details: {details.Details.Count} entries");
+        // Parse and process marker packet
+        var markerData = MarkerPacket.Parser.ParseFrom(packet.Content);
+        Console.WriteLine($"Marker");
     }
 }
 
@@ -249,10 +239,8 @@ else
 
 The Essentials Module reads from a dedicated "Essential" stream that contains:
 
-- **Data Format Packets**: Parameter and event definitions
 - **Configuration Packets**: Session configuration and settings
-- **Session Metadata**: Details, associations, and other metadata
-- **Stream Control Packets**: StreamStarted and StreamStopped markers
+- **Marker Packets**: Stream control and session markers
 
 ### Buffering Strategy
 
@@ -273,9 +261,9 @@ The module uses an unbounded auto-start buffer to handle essential packets effic
 
 ## Best Practices
 
-### 1. Use Before Full Data Processing
+### 1. Use Before Full Data Processing (Historic Sessions Only)
 
-Read essential packets before processing full session data to understand the session structure:
+Read essential packets before processing full session data to understand the session structure. **Note: This pattern applies to historic sessions only**, where all essentials are available upfront. For live sessions, essentials may still be arriving as the session progresses.
 
 ```csharp
 // Step 1: Read essentials to get data formats
