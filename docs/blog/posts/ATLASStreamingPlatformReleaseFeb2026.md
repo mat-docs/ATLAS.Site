@@ -54,19 +54,20 @@ PGV (Parameter Group Value) file searching now correctly terminates when a sessi
 
 ## Stream API v2.1.2.52
 
-- **GitHub:** [Repository](https://github.com/Software-Products/MA.DataPlatforms.StreamApi)
-- **NuGet Package:** [Stream API NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.)
-- **Documentation:** [Read docs](../../../developer-resources/secu4/stream_api/index.md)
+**Artifacts**
+[GitHub](https://github.com/Software-Products/MA.DataPlatforms.StreamApi) .
+[NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.) .
+[Documentation](../../../developer-resources/secu4/stream_api/index.md)
 
 ### New Features
 
-#### 1. Kafka Consumer Group Support
+#### Kafka Consumer Group Support
 You can now specify a Kafka consumer group when creating a connection. This enables:
 
 - **State Persistence** – Resume reading from the last committed offset after a restart (or from a specified offset if provided)
 - **Offset Management** – Kafka automatically tracks consumer progress
 
-#### 2. Configurable Batch Message Sizes
+#### Configurable Batch Message Sizes
 The server now supports configurable batch message sizes, allowing you to:
 
 - **Prevent gRPC Errors** – Avoid "message size exceeded" errors
@@ -77,12 +78,13 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ## Stream Protocol v2.1.2.4
 
-- **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
-- **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
-- **Documentation:** [Read docs](../../../developer-resources/secu4/docs)
+**Artifacts:**
+[GitHub](https://github.com/Software-Products/MA.DataPlatforms.Protocol) .
+[NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local) .
+[Documentation](../../../developer-resources/secu4/docs)
 
-- Protobuf definitions updated to support consumer rejoin functionality
-- Consumer group identifier is now exposed to enable rejoin behavior
+**Changes**
+- Protos updated to add support of rejoin by exposing consumer group identifier
 
 ---
 
@@ -101,13 +103,24 @@ The server now supports configurable batch message sizes, allowing you to:
 ## Indexing Service
 
 ### File Indexer v2.1.2.5
+
+**Artifact**
+[Docker](https://hub.docker.com/r/atlasplatformdocker/file-indexing-service)
+
+**Changes**
 - General-purpose file indexing and management
 
 ### Config Indexer v2.1.2.5
+
+**Artifact**
+[Docker](https://hub.docker.com/r/atlasplatformdocker/config-indexing-service)
+
+**Changes**
 - Specialized indexing and processing for CFG and PGV files
 
 For more information about the Indexing Services, see:  
 https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/
+
 ## Support
 
 If you have any questions about this release or need assistance with 
