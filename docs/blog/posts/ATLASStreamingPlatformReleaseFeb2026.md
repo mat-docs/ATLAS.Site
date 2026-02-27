@@ -10,87 +10,86 @@ tags:
   - Support Library
 ---
 
-# Bridge Service Release: v2.1.2.XX
+# Streaming Platform – Release Notes
 
-This release includes improvements to session management, data handling reliability, and expanded data type support.
+This release introduces updates across multiple components of the Streaming Platform, with a focus on reliability, scalability, and improved operational control.
 
-<!-- more -->
+---
 
-## Downloads
+## Bridge Service v2.1.2.6
 
-- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
-- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.1.21/MA.DataPlatforms.Bridge.Host.zip)
-- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+### 1. Heartbeat-Based Timeout Detection
+The Bridge now uses heartbeat monitoring for more reliable session timeout detection. This prevents premature session termination and ensures stable, continuous data streaming.
 
-## Key Enhancements
+### 2. Automatic Message Filtering
+Messages originating from stopped sessions are now automatically discarded. This prevents stale data from being processed and ensures that only data from active sessions is streamed.
 
-### 1. Improved Session Timeout Management
+### 3. Process Flow Configuration
+You can now configure how the Bridge handles data flow during high-load scenarios using one of the following strategies:
 
-**Heartbeat-Based Timeout Detection**
-
-The Bridge now uses heartbeat monitoring for more reliable session timeout detection, preventing premature timeouts and ensuring stable data streaming.
-
-**Benefits:**
-- More accurate detection of connection issues
-- Reduced false-positive timeouts
-- Better handling of network fluctuations
-
-**Automatic Message Filtering**
-
-Messages from stopped sessions are now automatically discarded, preventing stale data from being processed and ensuring only active session data is streamed.
-
-**Why this matters:**
-- Cleaner data streams with no residual messages
-- Improved data quality and reliability
-- Better resource utilization
-
-### 2. Session Data Prioritization
-
-**Process Flow Configuration**
-
-You can now configure how the Bridge handles data flow during high-load scenarios with two strategies:
-
-**Sequential Processing:**
-- Processes data in strict order (first-in, first-out)
+#### Sequential Processing
+- Processes messages in strict first-in, first-out (FIFO) order
 - Guarantees message ordering
-- Best for scenarios where order is critical
+- Best suited for scenarios where data order is critical
 
-**Drop Oldest Processing:**
+#### Drop Oldest Processing
 - Prioritizes the most recent data
 - Automatically drops older messages when buffers are full
-- Ideal for real-time applications where latest data is most important
+- Ideal for real-time applications where the latest data is most important
 
-**Configuration:**
-```json
-{
-  "ProcessFlow": "DropOldest"  // or "SequentialAll"
-}
-```
+For more information, see:  
+https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/configuration-guide/#processflow-strategies
 
-**Benefits:**
-- Better control over data flow during peak loads
-- Optimize for your specific use case (ordering vs. real-time)
-- Improved system responsiveness under pressure
+### 4. 64-bit Support for Row Data
+Added support for 64-bit row data, enabling handling of larger and more complex datasets.
 
-### 3. Double Precision Support for Row Data
+### 5. Session-Aware PGV Searching
+PGV (Parameter Group Value) file searching now correctly terminates when a session ends, improving both performance and resource utilization.
 
-**Enhanced Data Type Support**
+---
 
-Row data now fully supports double-precision floating-point numbers
+## Stream API v2.1.2.52
 
-### 4. PGV Search Optimization
+### New Features
 
-**Session-Aware PGV Searching**
+#### 1. Kafka Consumer Group Support
+You can now specify a Kafka consumer group when creating a connection. This enables:
 
-PGV (Parameter Group Value) file searching now properly terminates when a session ends, improving performance and resource usage.
+- **State Persistence** – Resume reading from the last committed offset after a restart (or from a specified offset if provided)
+- **Offset Management** – Kafka automatically tracks consumer progress
 
-**Improvements:**
-- Faster session cleanup
-- Reduced system resource consumption
-- More efficient handling of session transitions
-- Better support for back-to-back sessions
+#### 2. Configurable Batch Message Sizes
+The server now supports configurable batch message sizes, allowing you to:
 
+- **Prevent gRPC Errors** – Avoid "message size exceeded" errors
+- **Optimize Throughput** – Configure batch sizes based on your infrastructure
+- **Control Timing** – Set a maximum wait time before sending incomplete batches
 
+---
+
+## Stream Protocol v2.1.2.4
+
+- Protobuf definitions updated to support consumer rejoin functionality
+- Consumer group identifier is now exposed to enable rejoin behavior
+
+---
+
+## Support Library v2.1.2.17
+
+- Updated to leverage changes introduced in the Stream API
+
+---
+
+## Indexing Service
+
+### File Indexer v2.1.2.5
+- General-purpose file indexing and management
+
+### Config Indexer v2.1.2.5
+- Specialized indexing and processing for CFG and PGV files
+
+For more information about the Indexing Services, see:  
+https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/
 ## Support
 
 If you have any questions about this release or need assistance with 
