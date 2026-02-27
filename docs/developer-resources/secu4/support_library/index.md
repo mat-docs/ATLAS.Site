@@ -11,49 +11,49 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 
 #### Core Modules (Independent)
 1. **[Session Manager Module](reference_docs/session-manager.md)** - Session lifecycle management
-   - Create and manage sessions
-   - Session metadata and associations
-   - Live session tracking
-   - Events and notifications
+    - Create and manage sessions
+    - Session metadata and associations
+    - Live session tracking
+    - Events and notifications
 
 2. **[Data Format Manager Module](reference_docs/data-format-manager.md)** - Data format definitions
-   - Parameter format management
-   - Event format management
-   - Automatic ID generation
-   - Format querying
+    - Parameter format management
+    - Event format management
+    - Automatic ID generation
+    - Format querying
 
 #### Data Flow Modules (Dependent)
 3. **[Writer Module](reference_docs/writer-module.md)** - Packet writing to broker
-   - Write data packets
-   - Publish session information
-   - Multiple stream support
-   - Packet types and serialization
+    - Write data packets
+    - Publish session information
+    - Multiple stream support
+    - Packet types and serialization
 
 4. **[Reader Module](reference_docs/reader-module.md)** - Packet reading from broker
-   - Live and historical reading
-   - Stream filtering
-   - Coverage tracking
-   - Event system
-   - Configuration options
+    - Live and historical reading
+    - Stream filtering
+    - Coverage tracking
+    - Event system
+    - Configuration options
 
 5. **[Essentials Module](reference_docs/essentials-module.md)** - Essential packet reading
-   - Read configuration packets only
-   - Lightweight metadata retrieval
-   - Session setup information
-   - Independent of full data processing
+    - Read configuration packets only
+    - Lightweight metadata retrieval
+    - Session setup information
+    - Independent of full data processing
 
 6. **[Buffering Module](reference_docs/buffering-module.md)** - Sample buffering and merging
-   - Packet buffering
-   - Data merging strategies
-   - Sample extraction
-   - Sliding window processing
-   - Dynamic parameter subscription
+    - Packet buffering
+    - Data merging strategies
+    - Sample extraction
+    - Sliding window processing
+    - Dynamic parameter subscription
 
 7. **[Interpolation Module](reference_docs/interpolation-module.md)** - Data interpolation and subscription
-   - Custom frequency subscriptions
-   - Automatic interpolation/decimation
-   - Batch result delivery
-   - Multiple subscription management
+    - Custom frequency subscriptions
+    - Automatic interpolation/decimation
+    - Batch result delivery
+    - Multiple subscription management
 
 ### Reference
 - **[API Reference](reference_docs/api-reference.md)** - Complete API reference with all interfaces, methods, and types
