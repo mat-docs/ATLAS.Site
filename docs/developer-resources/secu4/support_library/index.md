@@ -36,14 +36,20 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
    - Event system
    - Configuration options
 
-5. **[Buffering Module](reference_docs/buffering-module.md)** - Sample buffering and merging
+5. **[Essentials Module](reference_docs/essentials-module.md)** - Essential packet reading
+   - Read configuration packets only
+   - Lightweight metadata retrieval
+   - Session setup information
+   - Independent of full data processing
+
+6. **[Buffering Module](reference_docs/buffering-module.md)** - Sample buffering and merging
    - Packet buffering
    - Data merging strategies
    - Sample extraction
    - Sliding window processing
    - Dynamic parameter subscription
 
-6. **[Interpolation Module](reference_docs/interpolation-module.md)** - Data interpolation and subscription
+7. **[Interpolation Module](reference_docs/interpolation-module.md)** - Data interpolation and subscription
    - Custom frequency subscriptions
    - Automatic interpolation/decimation
    - Batch result delivery
@@ -67,6 +73,9 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 
 **Read live or historical data**
 → See [Reader Module](reference_docs/reader-module.md)
+
+**Read only essential/configuration packets**
+→ See [Essentials Module](reference_docs/essentials-module.md)
 
 **Buffer and merge packet data into samples**
 → See [Buffering Module](reference_docs/buffering-module.md)
@@ -282,5 +291,5 @@ Copyright (c) Motion Applied Ltd.
 
 ---
 
-**Last Updated**: October 2025  
-**Version**: 1.0
+**Last Updated**: February 2026  
+**Version**: 1.1

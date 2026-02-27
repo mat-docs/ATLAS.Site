@@ -9,6 +9,7 @@ The MA DataPlatforms Streaming Support Library is a .NET library designed to fac
 - **Session Management**: Create, track, and manage live and historical sessions with metadata and associations
 - **Data Format Management**: Define and manage parameter and event data formats with automatic ID generation
 - **Packet Reading/Writing**: Stream packets to and from Kafka brokers with support for live and historical data
+- **Essential Packet Reading**: Efficiently read configuration and metadata packets without full data processing
 - **Buffering & Merging**: Buffer incoming data packets, merge them, and extract time-aligned samples
 - **Interpolation**: Subscribe to parameters at custom frequencies with automatic super-sampling or sub-sampling
 - **Event-Driven Architecture**: Rich event system for tracking session lifecycle, data availability, and processing status
@@ -30,6 +31,7 @@ The library follows a modular, pipeline-based architecture where data flows thro
 **Dependent Modules:**
 - **Writer Module**: Uses Session Manager and Data Format Manager APIs
 - **Reader Module**: Can use Session Manager and Data Format Manager for context
+- **Essentials Module**: Lightweight reader for essential/configuration packets only
 - **Sample Reader (Buffering)**: Pipelines with Reader Module
 - **Data Reader (Interpolation)**: Pipelines with Sample Reader Module
 
@@ -495,6 +497,7 @@ dataReaderService.Start();
 - [Data Format Manager Module](data-format-manager.md)
 - [Writer Module](writer-module.md)
 - [Reader Module](reader-module.md)
+- [Essentials Module](essentials-module.md)
 - [Buffering Module](buffering-module.md)
 - [Interpolation Module](interpolation-module.md)
 - [API Reference](api-reference.md)
@@ -512,4 +515,3 @@ The library supports various data streaming scenarios:
 ## Support
 
 For issues or questions, please send email to atlas10@motionapplied.com
-

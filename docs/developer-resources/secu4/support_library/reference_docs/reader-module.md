@@ -55,7 +55,10 @@ var config = new PacketReadingConfiguration(
     streams: new[] { "Telemetry", "Events" },
     excludeMainStream: false,
     inactivityTimeoutSeconds: 30,
-    sessionKey: null);
+    sessionKey: null,
+    liveReadingType: LiveReadingType.FromBeginning,
+    bufferLength: 1000,
+    groupId: "my-consumer-group");
 
 var serviceResult = readerApi.CreateService(config);
 
@@ -73,7 +76,10 @@ public PacketReadingConfiguration(
     IReadOnlyList<string>? streams = null,
     bool? excludeMainStream = false,
     uint? inactivityTimeoutSeconds = 30,
-    string? sessionKey = null)
+    string? sessionKey = null,
+    LiveReadingType? liveReadingType = null,
+    int? bufferLength = null,
+    string? groupId = null)
 
 ```
 
@@ -94,6 +100,18 @@ public PacketReadingConfiguration(
 - **sessionKey**: Specific session key to read (optional)
   - If provided, only this session is read
   - If null, pattern matching is used
+- **liveReadingType**: Type of live reading mode (default: `LiveReadingType.FromBeginning`)
+  - `LiveReadingType.FromBeginning`: Read from the start of the session
+  - `LiveReadingType.LeadingEdge`: Read only new data from the current point forward (skip historical data)
+- **bufferLength**: Size of the internal buffer for packets (default: 0 = use system default)
+  - Larger buffers can handle higher data rates but use more memory
+  - Set to appropriate size based on expected packet rate and processing speed
+  - Value of 0 uses the default unbounded buffer
+- **groupId**: Kafka consumer group identifier (default: empty string = auto-generated)
+  - Use a specific group ID to control consumer group membership
+  - Multiple readers with same group ID share the load (Kafka consumer group behavior)
+  - Use different group IDs for independent readers of the same topic
+  - Empty string creates a unique consumer group per reader
 
 ### ReadingType Enum
 
@@ -103,8 +121,32 @@ public enum ReadingType
     Live,       // Read live sessions
     Historical  // Read historical (completed) sessions
 }
-
 ```
+
+### LiveReadingType Enum
+
+```csharp
+public enum LiveReadingType
+{
+    FromBeginning = 0,  // Read live session from the beginning
+    LeadingEdge = 1     // Read live session from the current point (skip past data)
+}
+```
+
+**LiveReadingType Details:**
+
+- **FromBeginning** (default): When reading a live session, start from the beginning and process all available data, then continue with live data as it arrives. This ensures you get the complete session history.
+  
+- **LeadingEdge**: When reading a live session, skip any historical data and start reading from the current point forward. This is useful for real-time monitoring where you only care about the latest data and want to minimize latency. Also known as "tail mode" or "live-only mode".
+
+**Use Cases:**
+
+- Use `FromBeginning` when you need the complete session data (e.g., analysis, visualization)
+- Use `LeadingEdge` when you only need real-time updates (e.g., live dashboards, alerts)
+
+**Note**: `LiveReadingType` only applies when `ReadingType` is set to `Live`. It has no effect for historical session reading.
+
+
 
 ## Methods
 
@@ -505,6 +547,228 @@ public class SessionPatternReader
 
 ```
 
+### Example 4: Leading Edge Live Reading
+
+```csharp
+public class RealTimeDashboard
+{
+    public void MonitorLiveSession(ISupportLibApi supportLibApi, string dataSource, string sessionKey)
+    {
+        var readerApi = supportLibApi.GetReadingPacketApi();
+        
+        // Configure for leading edge reading - only new data
+        var config = new PacketReadingConfiguration(
+            dataSource: dataSource,
+            sessionKey: sessionKey,
+            readingType: ReadingType.Live,
+            liveReadingType: LiveReadingType.LeadingEdge,  // Skip historical data
+            inactivityTimeoutSeconds: 60);
+        
+        var result = readerApi.CreateService(config);
+        var readerService = result.Data;
+        
+        readerService.SessionReadingStarted += (sender, session) =>
+        {
+            Console.WriteLine($"Started monitoring live session from current point");
+        };
+        
+        // Process only new live data
+        readerService.AddHandler(new RealtimeDataHandler());
+        
+        readerService.Initialise();
+        readerService.Start();
+    }
+    
+    private class RealtimeDataHandler : IHandler<IReceivedPacketDto>
+    {
+        private DateTime lastUpdate = DateTime.UtcNow;
+        
+        public void Handle(IReceivedPacketDto packet)
+        {
+            var latency = DateTime.UtcNow - packet.SubmitTime;
+            Console.WriteLine($"[{DateTime.UtcNow:HH:mm:ss.fff}] Packet: {packet.Packet.Type}, Latency: {latency.TotalMilliseconds}ms");
+            lastUpdate = DateTime.UtcNow;
+        }
+    }
+}
+```
+
+### Example 5: Bounded Buffer for High-Volume Sessions
+
+```csharp
+public class HighVolumeSessionReader
+{
+    public void ReadHighVolumeSession(ISupportLibApi supportLibApi, string dataSource, string sessionKey)
+    {
+        var readerApi = supportLibApi.GetReadingPacketApi();
+        
+        // Configure with bounded buffer to control memory usage
+        var config = new PacketReadingConfiguration(
+            dataSource: dataSource,
+            sessionKey: sessionKey,
+            readingType: ReadingType.Historical,
+            bufferLength: 10000,  // Limit buffer to 10,000 packets
+            inactivityTimeoutSeconds: 30);
+        
+        var result = readerApi.CreateService(config);
+        var readerService = result.Data;
+        
+        Console.WriteLine("Reading high-volume session with bounded buffer...");
+        
+        readerService.AddHandler(new BatchProcessor());
+        
+        readerService.Initialise();
+        readerService.Start();
+    }
+    
+    private class BatchProcessor : IHandler<IReceivedPacketDto>
+    {
+        private readonly List<IReceivedPacketDto> batch = new();
+        private const int BatchSize = 1000;
+        
+        public void Handle(IReceivedPacketDto packet)
+        {
+            batch.Add(packet);
+            
+            if (batch.Count >= BatchSize)
+            {
+                ProcessBatch(batch);
+                batch.Clear();
+            }
+        }
+        
+        private void ProcessBatch(List<IReceivedPacketDto> packets)
+        {
+            Console.WriteLine($"Processing batch of {packets.Count} packets");
+            // Batch processing logic here
+        }
+    }
+}
+```
+
+### Example 6: Using Consumer Groups
+
+```csharp
+public class DistributedProcessing
+{
+    public void SetupDistributedReaders(ISupportLibApi supportLibApi, string dataSource, string sessionKey)
+    {
+        // Create multiple readers in the same consumer group for load balancing
+        var groupId = "processing-cluster-1";
+        
+        var readers = new List<IPacketReaderService>();
+        
+        for (int i = 0; i < 3; i++)
+        {
+            var config = new PacketReadingConfiguration(
+                dataSource: dataSource,
+                sessionKey: sessionKey,
+                readingType: ReadingType.Historical,
+                groupId: groupId,  // Same group ID for load balancing
+                inactivityTimeoutSeconds: 30);
+            
+            var readerApi = supportLibApi.GetReadingPacketApi();
+            var result = readerApi.CreateService(config);
+            var reader = result.Data;
+            
+            reader.AddHandler(new DistributedHandler(i));
+            reader.Initialise();
+            readers.Add(reader);
+            
+            Console.WriteLine($"Reader {i} created in consumer group '{groupId}'");
+        }
+        
+        // Start all readers - they will share the workload
+        foreach (var reader in readers)
+        {
+            reader.Start();
+        }
+        
+        Console.WriteLine("Distributed processing started - readers sharing workload via consumer group");
+    }
+    
+    private class DistributedHandler : IHandler<IReceivedPacketDto>
+    {
+        private readonly int readerId;
+        private int packetCount = 0;
+        
+        public DistributedHandler(int readerId)
+        {
+            this.readerId = readerId;
+        }
+        
+        public void Handle(IReceivedPacketDto packet)
+        {
+            packetCount++;
+            if (packetCount % 100 == 0)
+            {
+                Console.WriteLine($"Reader {readerId}: Processed {packetCount} packets");
+            }
+        }
+    }
+}
+```
+
+### Example 7: Resuming from Last Position
+
+```csharp
+public class ResumableSessionReader
+{
+    private const string CustomGroupId = "my-data-processor";
+    
+    public void StartOrResumeSession(ISupportLibApi supportLibApi, string dataSource, string sessionKey)
+    {
+        var readerApi = supportLibApi.GetReadingPacketApi();
+        
+        // Create a stable group ID combining custom group identifier and session key
+        // This allows resuming from the last committed position
+        var groupId = $"{CustomGroupId}_{sessionKey}";
+        
+        var config = new PacketReadingConfiguration(
+            dataSource: dataSource,
+            sessionKey: sessionKey,
+            readingType: ReadingType.Live,  // Use Live mode to enable resume behavior
+            groupId: groupId,  // Consistent group ID for resumption
+            inactivityTimeoutSeconds: 60);
+        
+        var result = readerApi.CreateService(config);
+        var readerService = result.Data;
+        
+        Console.WriteLine($"Starting reader with group ID: {groupId}");
+        Console.WriteLine("If this is a restart, reading will resume from last committed position");
+        
+        readerService.AddHandler(new CheckpointHandler());
+        
+        readerService.SessionReadingStarted += (sender, session) =>
+        {
+            Console.WriteLine($"Session reading started/resumed: {session.SessionKey}");
+        };
+        
+        readerService.Initialise();
+        readerService.Start();
+        
+        // When this reader restarts with the same groupId, it will automatically
+        // resume from where it left off, thanks to Kafka consumer group offsets
+    }
+    
+    private class CheckpointHandler : IHandler<IReceivedPacketDto>
+    {
+        private int processedCount = 0;
+        
+        public void Handle(IReceivedPacketDto packet)
+        {
+            processedCount++;
+            
+            // Process the packet
+            if (processedCount % 1000 == 0)
+            {
+                Console.WriteLine($"Processed {processedCount} packets (position automatically tracked by consumer group)");
+            }
+        }
+    }
+}
+```
+
 ## Best Practices
 
 1. **Subscribe to Events First**: Attach event handlers before calling `Start()` to capture all events.
@@ -522,6 +786,33 @@ public class SessionPatternReader
 7. **Thread Safety**: Handlers may be called from different threads; ensure thread-safe processing.
 
 8. **Error Handling in Handlers**: Wrap handler logic in try-catch to prevent crashes from processing errors.
+
+9. **Choose Appropriate LiveReadingType**:
+   - Use `FromBeginning` for complete session analysis and when historical context is needed
+   - Use `LeadingEdge` for real-time dashboards and alerts where only current data matters
+   - `LeadingEdge` reduces latency and memory usage for live monitoring scenarios
+
+10. **Buffer Size Configuration**:
+    - Use bounded buffers (`bufferLength > 0`) for high-volume sessions to prevent memory pressure
+    - Use unbounded buffers (default) for normal sessions where memory is not a concern
+    - Monitor memory usage and adjust buffer size based on packet rate and processing speed
+    - Ensure packet handlers are efficient to keep up with data flow; slow handlers with bounded buffers will cause backpressure
+
+11. **Consumer Groups**:
+    - Use unique `groupId` for each independent processing pipeline
+    - Share `groupId` across readers only when you want load balancing/distributed processing
+    - Leave `groupId` empty (default) for single-reader scenarios
+    - Be aware that readers in the same group will split data - they won't all receive the same packets
+    - Group ID naming: avoid spaces and follow Kafka naming principles (use alphanumeric characters, hyphens, underscores, and periods)
+    - **Resuming from last position**: To rejoin a session and continue from where you left off, use `ReadingType.Live` with a consistent `groupId` pattern like `{customGroupId}_{sessionKey}`. This leverages Kafka consumer group offsets to resume from the last committed position.
+    - **Warning**: Do not reuse the same static `groupId` across different sessions. Using the same consumer group ID for multiple sessions can lead to reading from incorrect offsets, missing data, or late reading as Kafka will resume from the last committed position which may be from a different session. Always include the session key or unique identifier in your group ID to avoid these issues.
+
+12. **Resumable Live Reading**:
+    - To implement fault-tolerant live reading that can resume after interruption, use `ReadingType.Live` with a session-specific `groupId` like `{customGroupId}_{sessionKey}`
+    - This pattern is ideal for applications that need to process all data even after crashes or restarts
+    - The reader will automatically resume from the last committed offset, avoiding data loss or duplicate processing
+    - Do not use `LiveReadingType.LeadingEdge` for resumable reading as it skips historical data; use default `FromBeginning` or omit the parameter
+    - Ensure your application logic is idempotent if there's a possibility of receiving duplicate messages during recovery
 
 ## Common Patterns
 
@@ -605,6 +896,7 @@ public class TypeDispatchingHandler : IHandler<IReceivedPacketDto>
 ## See Also
 
 - [Session Manager Module](session-manager.md)
+- [Essentials Module](essentials-module.md) - Read essential/configuration packets only
 - [Writer Module](writer-module.md)
 - [Buffering Module](buffering-module.md)
 - [API Reference](api-reference.md)
