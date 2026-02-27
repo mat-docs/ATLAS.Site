@@ -707,5 +707,6 @@ var analysisConfig = new BufferingConfiguration(
 ## See Also
 
 - [Reader Module](reader-module.md)
+- [Essentials Module](essentials-module.md)
 - [Interpolation Module](interpolation-module.md)
 - [API Reference](api-reference.md)

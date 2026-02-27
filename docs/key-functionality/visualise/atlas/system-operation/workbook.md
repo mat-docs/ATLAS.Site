@@ -73,3 +73,38 @@ The Status Bar appears at the bottom of the ATLAS Main Window and provides real-
 - **Error Count:** Indicates the number of error messages. Click to view details; right-click and select **Clear** to remove the messages.
 - **Alarms Warnings:** Shows the count of active alarms with warning status and lists the five most recent alarms. Refer to [Alarm Warnings](../alarms/index.md) for more information.
 ![Alarm Status](assets/alarm-status.png)
+
+## Importing/Exporting Configuration
+
+It's possible to export and import configurations, a useful action when you want to send your ATLAS workbook setup to another and ensure that everything is setup and immediately setup without repeated setup. 
+
+To export your configuration:
+
+1. Go to `Tools > Import/Export Configuration`
+
+2. Click `Refresh Current Configuration` 
+
+3. Select the source files you wish to include in the configuration export 
+
+4. Define a name for this profile configuration 
+
+    !!! tip
+        Make sure the name is identifiable, as multiple profiles can be part of the same configuration bundle file.
+
+5. Click `Export` to download your configuration bundle file.
+
+![Export](assets/import-export-config.png)
+
+To import a configuration:
+
+1. Go to `Tools > Import/Export Configuration`
+
+2. Click the `Import ATLAS 10 Configuration Bundle` tab
+
+3. Browse for the `.acgx` configuration bundle file
+
+4. Select from the profile you wish to import and the source files. 
+
+5. Click `Import` to begin
+
+![Import](assets/import-configuration.png)

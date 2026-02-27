@@ -11,6 +11,7 @@ This document provides a comprehensive reference for all public APIs, interfaces
 - `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.DataFormatInfoModule` - Data format management
 - `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.WritingModule` - Packet writing
 - `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.ReadingModule` - Packet reading
+- `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.Essentials` - Essential packet reading
 - `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.BufferingModule` - Sample buffering
 - `MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts.InterpolationModule` - Data interpolation
 
@@ -29,6 +30,7 @@ public interface ISupportLibApi : IServiceModel
     IDataFormatManagerModuleApi? GetDataFormatManagerApi();
     IPacketWritingModuleApi? GetWritingPacketApi();
     IPacketReadingModuleApi? GetReadingPacketApi();
+    IEssentialsModuleApi? GetEssentialsApi();
     ISampleReadingModuleApi? GetSampleReaderApi();
     IDataReadingModuleApi? GetDataReaderApi();
     
@@ -303,6 +305,40 @@ public enum InfoType
 
 ---
 
+## Essentials Module
+
+### IEssentialsModuleApi
+
+```csharp
+public interface IEssentialsModuleApi : IModuleApi
+{
+    ApiResult<IEssentialsService?> CreateService(string dataSource, string sessionKey);
+}
+```
+
+### IEssentialsService
+
+```csharp
+public interface IEssentialsService : IModuleApiService
+{
+    // Events
+    event EventHandler<ISessionInfo> ReadingEssentialsStarted;
+    event EventHandler<ISessionInfo> ReadingEssentialsCompleted;
+    
+    // Properties
+    string DataSource { get; }
+    string SessionKey { get; }
+    
+    // Methods
+    void AddHandler(IHandler<IReceivedPacketDto> handler);
+    void RemoveHandler(IHandler<IReceivedPacketDto> handler);
+}
+```
+
+**Description**: The Essentials Module provides access to essential session packets such as configuration data, data format definitions, and session metadata. It reads from the dedicated "Essential" stream which contains critical session information without the overhead of processing full telemetry data. The lifecycle of the Essentials service is tied to the session lifecycle—it starts when the session begins and completes when all essential packets have been read or the session ends.
+
+---
+
 ## Reader Module
 
 ### IPacketReadingModuleApi
@@ -350,6 +386,9 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
     public string SessionIdentifierPattern { get; }
     public ReadingType ReadingType { get; }
     public IReadOnlyList<string> Streams { get; }
+    public LiveReadingType LiveReadingType { get; }
+    public int BufferLength { get; }
+    public string GroupId { get; }
     
     public PacketReadingConfiguration(
         string? dataSource = "Default",
@@ -358,7 +397,10 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
         IReadOnlyList<string>? streams = null,
         bool? excludeMainStream = false,
         uint? inactivityTimeoutSeconds = 30,
-        string? sessionKey = null);
+        string? sessionKey = null,
+        LiveReadingType? liveReadingType = null,
+        int? bufferLength = null,
+        string? groupId = null);
 }
 ```
 
@@ -368,8 +410,18 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
 public enum ReadingType
 {
     Live = 0,
-    Historical = 1,
+    Historic = 1,
     Both = 2
+}
+```
+
+### LiveReadingType
+
+```csharp
+public enum LiveReadingType
+{
+    FromBeginning = 0,  // Read live session from the beginning
+    LeadingEdge = 1     // Read live session from current point (skip past data)
 }
 ```
 
