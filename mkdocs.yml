@@ -270,7 +270,7 @@ nav:
         - Data Flow Modules:
           - Writer Module: developer-resources/secu4/support_library/reference_docs/writer-module.md
           - Reader Module: developer-resources/secu4/support_library/reference_docs/reader-module.md
-          - Essential Module: developer-resources/secu4/support_library/reference_docs/essential-module.md
+          - Essential Module: developer-resources/secu4/support_library/reference_docs/essentials-module.md
           - Buffering Module: developer-resources/secu4/support_library/reference_docs/buffering-module.md
           - Interpolation Module: developer-resources/secu4/support_library/reference_docs/interpolation-module.md
         - Reference:
