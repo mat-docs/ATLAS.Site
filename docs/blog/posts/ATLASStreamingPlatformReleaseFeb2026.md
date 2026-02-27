@@ -18,6 +18,10 @@ This release introduces updates across multiple components of the Streaming Plat
 
 ## Bridge Service v2.1.2.6
 
+- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
+- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.1.21/MA.DataPlatforms.Bridge.Host.zip)
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+
 ### 1. Heartbeat-Based Timeout Detection
 The Bridge now uses heartbeat monitoring for more reliable session timeout detection. This prevents premature session termination and ensures stable, continuous data streaming.
 
@@ -50,6 +54,10 @@ PGV (Parameter Group Value) file searching now correctly terminates when a sessi
 
 ## Stream API v2.1.2.52
 
+- **GitHub:** [Repository](https://github.com/Software-Products/MA.DataPlatforms.StreamApi)
+- **NuGet Package:** [Stream API NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.)
+- **Documentation:** [Read docs](../../../developer-resources/secu4/stream_api/index.md)
+
 ### New Features
 
 #### 1. Kafka Consumer Group Support
@@ -69,12 +77,24 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ## Stream Protocol v2.1.2.4
 
+## Downloads
+
+- **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
+- **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
+- **Documentation:** [Read docs](../../../developer-resources/secu4/docs)
+
 - Protobuf definitions updated to support consumer rejoin functionality
 - Consumer group identifier is now exposed to enable rejoin behavior
 
 ---
 
 ## Support Library v2.1.2.17
+
+## Downloads
+
+- **Python FFI (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library)
+- **NuGet Package:** [Support Library NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core)
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
 
 - Updated to leverage changes introduced in the Stream API
 
