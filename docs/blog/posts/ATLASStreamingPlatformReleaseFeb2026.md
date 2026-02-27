@@ -19,7 +19,7 @@ This release introduces updates across multiple components of the Streaming Plat
 ## Bridge Service v2.1.2.6
 
 - **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
-- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.1.21/MA.DataPlatforms.Bridge.Host.zip)
+- **Windows Binary:** [Download](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.2.6/MA.DataPlatforms.Bridge.Host.zip)
 - **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
 
 ### 1. Heartbeat-Based Timeout Detection
@@ -77,8 +77,6 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ## Stream Protocol v2.1.2.4
 
-## Downloads
-
 - **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
 - **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
 - **Documentation:** [Read docs](../../../developer-resources/secu4/docs)
@@ -90,12 +88,12 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ## Support Library v2.1.2.17
 
-## Downloads
+**Artifacts:**  
+[GitHub](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library) ·
+[NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core) ·
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
 
-- **Python FFI (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library)
-- **NuGet Package:** [Support Library NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core)
-- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
-
+**Changes**
 - Updated to leverage changes introduced in the Stream API
 
 ---
