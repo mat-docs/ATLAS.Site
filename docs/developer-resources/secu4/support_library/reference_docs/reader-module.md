@@ -87,31 +87,31 @@ public PacketReadingConfiguration(
 
 - **dataSource**: The data source to read from (default: "Default")
 - **sessionIdentifierPattern**: Pattern for matching session identifiers
-  - Use `"*"` to match all session identifires
-  - Use specific identifier to match exact session
+    - Use `"*"` to match all session identifires
+    - Use specific identifier to match exact session
 - **readingType**: Type of reading mode
-  - `ReadingType.Live`: Monitor live sessions
-  - `ReadingType.Historical`: Read completed sessions
+    - `ReadingType.Live`: Monitor live sessions
+    - `ReadingType.Historical`: Read completed sessions
 - **streams**: List of specific streams to read (default: all streams)
-  - `null` or empty list reads all streams
-  - Specify streams like `["Telemetry", "Events"]` to filter
+    - `null` or empty list reads all streams
+    - Specify streams like `["Telemetry", "Events"]` to filter
 - **excludeMainStream**: Whether to exclude the main stream (default: false)
 - **inactivityTimeoutSeconds**: Timeout in seconds after which reading stops if no data arrives (default: 30)
 - **sessionKey**: Specific session key to read (optional)
-  - If provided, only this session is read
-  - If null, pattern matching is used
+    - If provided, only this session is read
+    - If null, pattern matching is used
 - **liveReadingType**: Type of live reading mode (default: `LiveReadingType.FromBeginning`)
-  - `LiveReadingType.FromBeginning`: Read from the start of the session
-  - `LiveReadingType.LeadingEdge`: Read only new data from the current point forward (skip historical data)
+    - `LiveReadingType.FromBeginning`: Read from the start of the session
+    - `LiveReadingType.LeadingEdge`: Read only new data from the current point forward (skip historical data)
 - **bufferLength**: Size of the internal buffer for packets (default: 0 = use system default)
-  - Larger buffers can handle higher data rates but use more memory
-  - Set to appropriate size based on expected packet rate and processing speed
-  - Value of 0 uses the default unbounded buffer
+    - Larger buffers can handle higher data rates but use more memory
+    - Set to appropriate size based on expected packet rate and processing speed
+    - Value of 0 uses the default unbounded buffer
 - **groupId**: Kafka consumer group identifier (default: empty string = auto-generated)
-  - Use a specific group ID to control consumer group membership
-  - Multiple readers with same group ID share the load (Kafka consumer group behavior)
-  - Use different group IDs for independent readers of the same topic
-  - Empty string creates a unique consumer group per reader
+    - Use a specific group ID to control consumer group membership
+    - Multiple readers with same group ID share the load (Kafka consumer group behavior)
+    - Use different group IDs for independent readers of the same topic
+    - Empty string creates a unique consumer group per reader
 
 ### ReadingType Enum
 
@@ -728,6 +728,7 @@ public class ResumableSessionReader
             dataSource: dataSource,
             sessionKey: sessionKey,
             readingType: ReadingType.Live,  // Use Live mode to enable resume behavior
+            liveReadingType = LiveReadingType.LeadingEdge,
             groupId: groupId,  // Consistent group ID for resumption
             inactivityTimeoutSeconds: 60);
         
