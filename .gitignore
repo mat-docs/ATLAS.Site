@@ -2,4 +2,10 @@ site
 .venv/
 main.py
 /.vs
+
+# Python cache files
 overrides/hooks/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
