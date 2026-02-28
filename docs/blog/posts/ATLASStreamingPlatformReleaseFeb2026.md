@@ -112,7 +112,7 @@ The server now supports configurable batch message sizes, allowing you to:
 ### Config Indexer v2.1.2.5
 
 **Artifacts:**
-[Docker](https://hub.docker.com/r/atlasplatformdocker/config-indexing-service)
+[Docker](https://hub.docker.com/r/atlasplatformdocker/config-indexing-service) .
 [Documentation](https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/#configs-service-features)
 
 **Changes**
