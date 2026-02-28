@@ -18,7 +18,7 @@ This release introduces updates across multiple components of the ATLAS Streamin
 
 ## Bridge Service v2.1.2.6
 
-**Artifacts**
+**Artifacts:**
 [Docker](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general) .
 [Windows Binary](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.2.6/MA.DataPlatforms.Bridge.Host.zip) .
 [Documentation](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
