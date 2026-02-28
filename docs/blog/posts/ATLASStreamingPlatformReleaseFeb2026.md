@@ -88,7 +88,7 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ## Support Library v2.1.2.17
 
-**Artifacts:**  
+**Artifacts:**
 [GitHub](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library) ·
 [NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core) ·
 [Documentation](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
@@ -118,6 +118,7 @@ The server now supports configurable batch message sizes, allowing you to:
 **Changes**
 - Specialized indexing and processing for CFG and PGV files
 
+---
 ## Support
 
 If you have any questions about this release or need assistance with 
