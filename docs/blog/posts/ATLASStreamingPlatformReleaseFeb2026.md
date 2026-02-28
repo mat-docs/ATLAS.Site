@@ -18,17 +18,20 @@ This release introduces updates across multiple components of the Streaming Plat
 
 ## Bridge Service v2.1.2.6
 
-- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
-- **Windows Binary:** [Download](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.2.6/MA.DataPlatforms.Bridge.Host.zip)
-- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+**Artifacts**
+[Docker](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general) .
+[Windows Binary](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.2.6/MA.DataPlatforms.Bridge.Host.zip) .
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
 
-### 1. Heartbeat-Based Timeout Detection
+**Changes**
+
+### Heartbeat-Based Timeout Detection
 The Bridge now uses heartbeat monitoring for more reliable session timeout detection. This prevents premature session termination and ensures stable, continuous data streaming.
 
-### 2. Automatic Message Filtering
+### Automatic Message Filtering
 Messages originating from stopped sessions are now automatically discarded. This prevents stale data from being processed and ensures that only data from active sessions is streamed.
 
-### 3. Process Flow Configuration
+### Process Flow Configuration
 You can now configure how the Bridge handles data flow during high-load scenarios using one of the following strategies:
 
 #### Sequential Processing
@@ -41,20 +44,17 @@ You can now configure how the Bridge handles data flow during high-load scenario
 - Automatically drops older messages when buffers are full
 - Ideal for real-time applications where the latest data is most important
 
-For more information, see:  
-https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/configuration-guide/#processflow-strategies
-
-### 4. 64-bit Support for Row Data
+### 64-bit Support for Row Data
 Added support for 64-bit row data, enabling handling of larger and more complex datasets.
 
-### 5. Session-Aware PGV Searching
+### Session-Aware PGV Searching
 PGV (Parameter Group Value) file searching now correctly terminates when a session ends, improving both performance and resource utilization.
 
 ---
 
 ## Stream API v2.1.2.52
 
-**Artifacts**
+**Artifacts:**
 [GitHub](https://github.com/Software-Products/MA.DataPlatforms.StreamApi) .
 [NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.) .
 [Documentation](../../../developer-resources/secu4/stream_api/index.md)
@@ -104,16 +104,18 @@ The server now supports configurable batch message sizes, allowing you to:
 
 ### File Indexer v2.1.2.5
 
-**Artifact**
-[Docker](https://hub.docker.com/r/atlasplatformdocker/file-indexing-service)
+**Artifacts:**
+[Docker](https://hub.docker.com/r/atlasplatformdocker/file-indexing-service) .
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/#files-service-features)
 
 **Changes**
 - General-purpose file indexing and management
 
 ### Config Indexer v2.1.2.5
 
-**Artifact**
+**Artifacts:**
 [Docker](https://hub.docker.com/r/atlasplatformdocker/config-indexing-service)
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/#configs-service-features)
 
 **Changes**
 - Specialized indexing and processing for CFG and PGV files
