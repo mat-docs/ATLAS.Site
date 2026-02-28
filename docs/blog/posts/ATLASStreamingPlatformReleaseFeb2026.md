@@ -10,9 +10,9 @@ tags:
   - Support Library
 ---
 
-# Streaming Platform – Release Notes
+# ATLAS Streaming Platform – Release Notes
 
-This release introduces updates across multiple components of the Streaming Platform, with a focus on reliability, scalability, and improved operational control.
+This release introduces updates across multiple components of the ATLAS Streaming Platform, with a focus on reliability, scalability, and improved operational control.
 
 <!-- more -->
 
