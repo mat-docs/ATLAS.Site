@@ -24,7 +24,6 @@ This release introduces updates across multiple components of the Streaming Plat
 [Documentation](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
 
 **Changes**
-
 ### Heartbeat-Based Timeout Detection
 The Bridge now uses heartbeat monitoring for more reliable session timeout detection. This prevents premature session termination and ensures stable, continuous data streaming.
 
@@ -59,15 +58,14 @@ PGV (Parameter Group Value) file searching now correctly terminates when a sessi
 [NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.) .
 [Documentation](../../../developer-resources/secu4/stream_api/index.md)
 
-### New Features
-
-#### Kafka Consumer Group Support
+**Changes**
+### Kafka Consumer Group Support
 You can now specify a Kafka consumer group when creating a connection. This enables:
 
 - **State Persistence** – Resume reading from the last committed offset after a restart (or from a specified offset if provided)
 - **Offset Management** – Kafka automatically tracks consumer progress
 
-#### Configurable Batch Message Sizes
+### Configurable Batch Message Sizes
 The server now supports configurable batch message sizes, allowing you to:
 
 - **Prevent gRPC Errors** – Avoid "message size exceeded" errors
@@ -119,9 +117,6 @@ The server now supports configurable batch message sizes, allowing you to:
 
 **Changes**
 - Specialized indexing and processing for CFG and PGV files
-
-For more information about the Indexing Services, see:  
-https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/
 
 ## Support
 
