@@ -6,7 +6,7 @@ categories:
 tags:
   - System Monitor
 ---
-# System Monitor 8.87.1.15 – Patch Release
+# System Monitor Release: v8.87.1.15
 
 We have released **System Monitor version 8.87.1.15**, a **patch update** addressing two specific issues affecting **TAG700 workflows**. This release focuses exclusively on stability and correctness improvements and does not introduce new features.
 
