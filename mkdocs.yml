@@ -148,6 +148,19 @@ nav:
         - Getting Started: key-functionality/enrich/vtag/getting-started.md
         - Operating vTAG Server: key-functionality/enrich/vtag/operating-vtag.md
         - Live & Historical Usage: key-functionality/enrich/vtag/complete-system.md
+      - Virtual Parameter Service:
+        - Overview: key-functionality/enrich/vps/index.md
+        - Getting Started: key-functionality/enrich/vps/setup-guide.md
+        - Configuration:
+            - AppConfig Reference: key-functionality/enrich/vps/configuration/appconfig-reference.md
+            - Environment Variables: key-functionality/enrich/vps/configuration/environment-variables.md
+            - Logging: key-functionality/enrich/vps/configuration/logging.md
+        - Monitoring:
+            - Metrics & Prometheus: key-functionality/enrich/vps/monitoring/metrics.md
+            - Grafana Dashboards: key-functionality/enrich/vps/monitoring/grafana.md
+        - Tools:
+            - Auditor: key-functionality/enrich/vps/tools/auditor.md
+        - Troubleshooting & FAQ: key-functionality/enrich/vps/troubleshooting.md
     - Analyse: 
       - Overview: key-functionality/analyse/index.md
       - Viewer: 
