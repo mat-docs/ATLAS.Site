@@ -7,26 +7,23 @@
     :root {
         --primary: #ED6D20;
         --primary-text: #303437;
-        --secondary-text: #B1B3B3;
+        --secondary-text: #6b6e70;
         --secondary: #148E8E;
         --accent: #F4F4F4;
+        --card-border: #e8e8e8;
     }
-    *{
-        margin:0;
-        padding:0;
-        box-sizing: border-box;
-    }
-    body{
-        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         line-height: 1.6;
         color: var(--primary-text);
         background: #fff;
         overflow-x: hidden;
     }
-    /* Remove gradients and background animation for accessibility */
-    .bg-animation { display: none; }
+
+    /* ── Hero ── */
     .hero {
-        min-height: 90vh;
+        min-height: 92vh;
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -37,47 +34,56 @@
     .hero::after {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        /* background: rgba(255,255,255,0.82); white overlay for clarity */
+        inset: 0;
         z-index: 1;
     }
     .hero-content {
         display: flex;
-        align-items:flex-end;
+        align-items: flex-end;
         justify-content: flex-end;
         width: 100%;
         max-width: 1200px;
         margin: 0 2rem;
-        /* padding: 2rem; */
         z-index: 2;
         position: relative;
     }
     .hero-card {
-        background: rgba(255,255,255,0.5);
-        backdrop-filter: blur(70px);
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(40px);
         border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(20,142,142,0.10);
-        padding: 2.5rem 2.5rem 2rem 2.5rem;
-        max-width: 40vw;
+        box-shadow: 0 2px 18px rgba(20,142,142,0.08);
+        padding: 2.4rem 2.4rem 2rem;
+        max-width: 38vw;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.2rem;
-        border: 1px solid rgba(255,255,255,0.4);
+        gap: 0.6rem;
+        border: 1px solid rgba(255,255,255,0.5);
     }
     .hero-card h1 {
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 800;
+        font-size: clamp(2.5rem, 5vw, 3.6rem);
+        font-weight: 700;
         color: var(--primary);
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02rem;
+        letter-spacing: -0.01rem;
+        margin-bottom: 0.2rem;
     }
-    .hero-card p {
-        font-size: 1.2rem;
+    .hero-card .hero-lead {
+        font-size: 1.25rem;
+        font-weight: 600;
         color: var(--primary-text);
-        margin-bottom: 1.2rem;
+        line-height: 1.5;
+    }
+    .hero-card .hero-sub {
+        font-size: 1.05rem;
+        color: var(--secondary-text);
         line-height: 1.6;
+    }
+    .cta-row {
+        display: flex;
+        gap: 1.2rem;
+        margin-top: 0.8rem;
+        flex-wrap: wrap;
     }
     .cta-button {
         position: relative;
@@ -86,199 +92,267 @@
         font-weight: 700;
         font-size: 1.1rem;
         border: none;
-        border-radius: 0;
-        box-shadow: none;
         text-decoration: none;
-        margin-top: 0.5rem;
         cursor: pointer;
-        transition: color 0.2s;
+        transition: color 0.2s, transform 0.2s;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        overflow: hidden;
+        gap: 0.4rem;
+    }
+    .cta-button:hover, .cta-button:focus {
+        color: var(--secondary);
+        transform: translateY(-2px);
+        outline: none;
     }
     .cta-button::after {
         content: '';
         position: absolute;
-        left: 0;
-        bottom: 0.3em;
-        width: 0;
-        height: 2px;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        left: 0; bottom: 0;
+        width: 0; height: 2px;
+        background: var(--secondary);
+        transition: width 0.3s ease;
     }
-    .cta-button:hover,
-    .cta-button:focus {
-        color: var(--secondary);
-        outline: none;
-    }
-    .cta-button:hover::after,
-    .cta-button:focus::after {
-        width: 100%;
-    }
+    .cta-button:hover::after, .cta-button:focus::after { width: 100%; }
 
-    .cta-button:hover, .cta-button:focus {
-        transform: translateY(-2px) scale(1.03);
-        outline: none;
-    }
-    .hero-image{
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 320px;
-    }
-    .hero-image img{
-        max-width: 420px;
-        width: 100%;
-        height: auto;
-        border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(20,142,142,0.08);
-        border: 1px solid #eee;
+    /* ── Value proposition ── */
+    .value-section {
+        padding: 5rem 2rem 2rem;
         background: #fff;
-        display: block;
     }
-    .cards-section{
-        padding: 6rem 2rem;
-        background: linear-gradient(to bottom, rgba(143,229,166,0.08), rgba(255,255,255,0.98));
-        backdrop-filter: blur(10px);
-    }
-    .cards-container{
+    .value-container {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        padding-top: 2rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        text-align: center;
     }
-    .feature-card{
+    .value-item h3 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--secondary);
+        margin-bottom: 0.6rem;
+    }
+    .value-item p {
+        font-size: 1.1rem;
+        color: var(--primary-text);
+        line-height: 1.6;
+    }
+
+    /* ── Capabilities ── */
+    .capabilities-section {
+        padding: 4rem 2rem 6rem;
+        background: linear-gradient(to bottom, rgba(20,142,142,0.04), #fff);
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+    .section-title {
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: -0.01em;
+        margin-bottom: 0.5rem;
+    }
+    .section-subtitle {
+        font-size: 1.15rem;
+        color: var(--secondary-text);
+        max-width: 620px;
+        margin: 0 auto;
+    }
+    .cap-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.6rem;
+        justify-content: center;
+    }
+    .cap-card {
         background: #fff;
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 2.5rem;
-        border: 1.5px solid var(--accent);
-        box-shadow: 0 8px 32px rgba(20,142,142,0.08);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
+        border-radius: 16px;
+        padding: 2rem 2.2rem;
+        border: 1.5px solid var(--card-border);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         text-decoration: none;
         color: var(--primary-text);
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
     }
-    .feature-card::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        transition: left 0.6s ease;
-    }
-    .feature-card:hover::before{
-        left: 100%;
-    }
-    .feature-card:hover{
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 60px rgba(237,109,32,0.13);
+    .cap-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(237,109,32,0.10);
         border-color: var(--primary);
     }
-    .card-icon{
-        width: 60px;
-        height: 60px;
+    .cap-icon {
+        width: 48px;
+        height: 48px;
         background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-radius: 15px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: #fff;
-        margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 2px 8px rgba(237,109,32,0.10);
+        flex-shrink: 0;
     }
-    .feature-card h2{
-        font-size: 1.5rem;
+    .cap-card h3 {
+        font-size: 1.3rem;
         font-weight: 700;
-        margin-bottom: 1rem;
         color: var(--primary);
-        position: relative;
-        z-index: 2;
     }
-    .feature-card p{
+    .cap-card p {
+        font-size: 0.97rem;
         color: var(--secondary-text);
-        line-height: 1.4;
-        position: relative;
-        z-index: 2;
+        line-height: 1.55;
     }
-    .section-title{
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--primary);
-        margin-bottom: 0 auto;
-        letter-spacing: -0.01em;
+    .cap-card .best-for {
+        font-size: 0.85rem;
+        color: var(--secondary);
+        font-weight: 600;
+        margin-top: auto;
+        padding-top: 0.4rem;
     }
-    .section-subtitle{
-        text-align: center;
-        font-size: 1.25rem;
-        color: var(--primary-text);
-        max-width: 600px;
+
+    /* ── Quick links ── */
+    .quicklinks-section {
+        padding: 3rem 2rem 5rem;
+        background: #fff;
+    }
+    .quicklinks-grid {
+        max-width: 1200px;
         margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.6rem;
     }
-    .fade-in{
-        opacity: 1;
-        transform: translateY(0);
-        transition: all 0.6s ease;
+    .ql-card {
+        background: var(--accent);
+        border-radius: 14px;
+        padding: 2rem 2.2rem;
+        text-decoration: none;
+        color: var(--primary-text);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
+    .ql-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 28px rgba(20,142,142,0.10);
+    }
+    .ql-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+    .ql-card p {
+        font-size: 0.95rem;
+        color: var(--secondary-text);
+        line-height: 1.5;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 900px) {
-        .hero-content {
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .hero-card {
-            max-width: 100%;
-            padding: 1.5rem 1rem;
-        }
+        .hero-content { flex-direction: column; gap: 2rem; }
+        .hero-card { max-width: 100%; padding: 1.5rem 1.2rem; }
+        .value-container { grid-template-columns: 1fr; gap: 2rem; }
     }
 </style>
-<div class="bg-animation"></div>
+
+<!-- Hero -->
 <section class="hero">
     <div class="hero-content">
         <div class="hero-card">
             <h1>ATLAS</h1>
-            <p>Unlock the power of advanced data processing with ATLAS. Designed to suite all of your analytical needs and scale with your business.</p>
-            <a href="introduction/" class="cta-button"><span>Get Started</span><span style="font-size: 1.2rem;">→</span></a>
+            <p class="hero-lead">The software behind high-performance engineering teams.</p>
+            <div class="cta-row">
+                <a href="introduction/" class="cta-button">Learn more <span>→</span></a>
+                <a href="getting-started/quick-start/" class="cta-button">Quick start <span>→</span></a>
+            </div>
         </div>
     </div>
 </section>
-<section class="cards-section">
-    <div class="fade-in">
-        <h2 class="section-title">Everything you need</h2>
-        <p class="section-subtitle">Discover tools and resources to accelerate your data processing journey.</p>
+
+<!-- Value proposition -->
+<section class="value-section">
+    <div class="value-container">
+        <div class="value-item">
+            <h3>Who we are</h3>
+            <p>ATLAS is the data platform built for you. If you operate at the limit - in motorsport, testing, and advanced engineering - we're built for you.</p>
+        </div>
+        <div class="value-item">
+            <h3>What we do</h3>
+            <p>We turn complex, high-volume, real-time telemetry into clear, actionable insight - live or post-session.</p>
+        </div>
+        <div class="value-item">
+            <h3>Why it matters</h3>
+            <p>In high-pressure environments, delayed, misunderstood, or missing data is a form of risk. ATLAS removes that risk.</p>
+        </div>
     </div>
-    <div class="cards-container">
-        <a href="getting-started/quick-start" class="feature-card fade-in">
-            <div class="card-icon">🚀</div>
-            <h2>
-                Get Started with ATLAS
-            </h2>
-            <p>Jump right in with our getting started guide. Learn about the fundamentals and get your first workbook up and running in minutes.</p>
-        </a>
-        <a href="developer-resources/" class="feature-card fade-in">
-            <div class="card-icon">💡</div>
-            <h2>
-                Developer Resources
-            </h2>
-            <p>Access APIs, SDKs, and documentation to build and extend ATLAS for your needs.</p>
-        </a>
+</section>
 
+<!-- Capabilities -->
+<section class="capabilities-section">
+    <div class="section-header">
+        <h2 class="section-title">ATLAS Families</h2>
+        <p class="section-subtitle">A modular telemetry data platform - not just a viewer. Five capability families cover the full data journey from capture to insight, so you can adopt what you need and scale over time.</p>
+    </div>
+    <div class="cap-grid">
+        <a href="key-functionality/analyse/" class="cap-card">
+            <div class="cap-icon">📊</div>
+            <h3>Analyse</h3>
+            <p>Visualise, compare, and interrogate high-frequency telemetry - live or post-run. ATLAS Viewer delivers advanced displays, alarms, functions, and virtual parameters so you can make rapid, time-critical decisions.</p>
+            <span class="best-for">Best for: analysts, performance engineers, decision speed</span>
+        </a>
+        <a href="key-functionality/store/" class="cap-card">
+            <div class="cap-icon">🗄️</div>
+            <h3>Store</h3>
+            <p>Keep telemetry organised, durable, and accessible at scale. Session management, bulk import, and database synchronisation via SQL Race Management Studio let distributed teams share consistent datasets.</p>
+            <span class="best-for">Best for: data management across users, events, or locations</span>
+        </a>
+        <a href="key-functionality/stream/" class="cap-card">
+            <div class="cap-icon">📡</div>
+            <h3>Stream</h3>
+            <p>Move live telemetry efficiently across people, systems, and sites. Low-latency, multi-client distribution built on modern streaming and microservice architecture for collaboration and remote operations.</p>
+            <span class="best-for">Best for: large or distributed teams relying on live data feeds</span>
+        </a>
+        <a href="key-functionality/integrate/" class="cap-card">
+            <div class="cap-icon">🔗</div>
+            <h3>Integrate</h3>
+            <p>Connect ATLAS into broader data ecosystems. APIs, Open Data Package, and RTA let you integrate with third-party systems and automate workflows - all without forcing migration.</p>
+            <span class="best-for">Best for: software teams, partners, and complex pipelines</span>
+        </a>
+        <a href="key-functionality/enrich/" class="cap-card">
+            <div class="cap-icon">🧪</div>
+            <h3>Enrich</h3>
+            <p>Add intelligence on top of raw telemetry. Generate derived parameters, run model-based simulation via vTAG Server, and blend real and virtual data to test scenarios without risk.</p>
+            <span class="best-for">Best for: advanced engineering, simulation, and what-if analysis</span>
+        </a>
+    </div>
+</section>
 
-        <a href="extending-atlas/apis/" class="feature-card fade-in">
-            <div class="card-icon">🧩</div>
-            <h2>
-                Extend ATLAS
-            </h2>
-            <p>Integrate with third-party tools and discover how to customize ATLAS for your workflows.</p>
+<!-- Quick links -->
+<section class="quicklinks-section">
+    <div class="section-header">
+        <h2 class="section-title">Quick links</h2>
+    </div>
+    <div class="quicklinks-grid">
+        <a href="getting-started/quick-start/" class="ql-card">
+            <h3>🚀 Getting Started</h3>
+            <p>Set up your environment and build your first workbook in minutes.</p>
+        </a>
+        <a href="developer-resources/" class="ql-card">
+            <h3>💻 Developer Resources</h3>
+            <p>APIs, SDKs, and reference documentation for building on the ATLAS platform.</p>
+        </a>
+        <a href="introduction/ecosystem-guide/" class="ql-card">
+            <h3>🗺️ Ecosystem Guide</h3>
+            <p>Understand how each ATLAS component fits together and choose the right tools for your workflow.</p>
         </a>
     </div>
 </section>
