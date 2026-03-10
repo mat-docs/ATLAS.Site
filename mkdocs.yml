@@ -158,8 +158,6 @@ nav:
         - Monitoring:
             - Metrics & Prometheus: key-functionality/enrich/vps/monitoring/metrics.md
             - Grafana Dashboards: key-functionality/enrich/vps/monitoring/grafana.md
-        - Tools:
-            - Auditor: key-functionality/enrich/vps/tools/auditor.md
         - Troubleshooting & FAQ: key-functionality/enrich/vps/troubleshooting.md
     - Analyse: 
       - Overview: key-functionality/analyse/index.md

@@ -45,7 +45,7 @@ publish = "site"
 
 [[redirects]]
   from = "/key-functionality/visualise/atlas/*"
-  to = "/key-functionality/analse/viewer/:splat"
+  to = "/key-functionality/analyse/viewer/:splat"
   status = 301
 
 [[redirects]]
@@ -71,6 +71,11 @@ publish = "site"
 [[redirects]]
   from = "/key-functionality/process/vtag/*"
   to = "/key-functionality/enrich/vtag/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/key-functionality/process/secu4/*"
+  to = "/developer-resources/secu4/:splat"
   status = 301
 
 [[redirects]]

@@ -82,7 +82,7 @@ The VPS Docker image is hosted on Docker Hub under the [ATLAS Platform Docker](h
     - Set `DataSource` to match your ADS data source.
     - Set `BrokerUrl` to point to your Kafka instance (e.g. `YOUR_MACHINE_IP:9094`).
 
-    See the [AppConfig Reference](../configuration/appconfig-reference.md) for the full schema.
+    See the [AppConfig Reference](configuration/appconfig-reference.md) for the full schema.
 
 5. **Start the stack** — Run the `reset-docker.bat` script:
 
@@ -182,7 +182,7 @@ virtual-parameter-service:
     - LOG_FILE_PATH=/logs/vps-svc-log.txt
 ```
 
-See the [Environment Variables](../configuration/environment-variables.md) reference for all supported variables.
+See the [Environment Variables](configuration/environment-variables.md) reference for all supported variables.
 
 ## Manual Deployment
 
@@ -235,4 +235,4 @@ Once the service is running:
 
 3. **Look for the data source gauge** — Search for `vps_running_gauge_of_data_sources` in the metrics output. Its value should match the number of data sources you configured.
 
-4. **Check Grafana** — Navigate to `http://localhost:3000` and import the provided dashboard. See the [Grafana Dashboards](../monitoring/grafana.md) guide for setup instructions.
+4. **Check Grafana** — Navigate to `http://localhost:3000` and import the provided dashboard. See the [Grafana Dashboards](monitoring/grafana.md) guide for setup instructions.
