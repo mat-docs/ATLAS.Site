@@ -35,7 +35,7 @@ Both projects use ASP.NET Core configuration system with JSON-based appsettings 
   "/mnt/storage/telemetry"
 ]
 ```
-- **Environment Variable**: `Directories_0`, `Directories_1`, etc.
+- **Environment Variable**: `Directories__0`, `Directories__1`, etc.
 
 #### `Extensions`
 - **Type**: Array of strings
@@ -48,7 +48,7 @@ Both projects use ASP.NET Core configuration system with JSON-based appsettings 
   ".pul"
 ]
 ```
-- **Environment Variable**: `Extensions_0`, `Extensions_1`, etc.
+- **Environment Variable**: `Extensions__0`, `Extensions__1`, etc.
 
 #### `ExcludedDirectories`
 - **Type**: Array of strings
@@ -61,7 +61,7 @@ Both projects use ASP.NET Core configuration system with JSON-based appsettings 
   "C:\\Windows"
 ]
 ```
-- **Environment Variable**: `ExcludedDirectories_0`, `ExcludedDirectories_1`, etc.
+- **Environment Variable**: `ExcludedDirectories__0`, `ExcludedDirectories__1`, etc.
 
 #### `AddFileCheckSum`
 - **Type**: Boolean
@@ -300,11 +300,11 @@ The application supports configuration through environment variables using the s
 
 | Configuration Path | Environment Variable | Example Value |
 |-------------------|---------------------|---------------|
-| `Directories:0` | `Directories_0` | `"C:\\Data"` |
-| `Directories:1` | `Directories_1` | `"D:\\Archive"` |
-| `Extensions:0` | `Extensions_0` | `".pgv"` |
-| `Extensions:1` | `Extensions_1` | `".cfg"` |
-| `ExcludedDirectories:0` | `ExcludedDirectories_0` | `"C:\\Temp"` |
+| `Directories:0` | `Directories__0` | `"C:\\Data"` |
+| `Directories:1` | `Directories__1` | `"D:\\Archive"` |
+| `Extensions:0` | `Extensions__0` | `".pgv"` |
+| `Extensions:1` | `Extensions__1` | `".cfg"` |
+| `ExcludedDirectories:0` | `ExcludedDirectories__0` | `"C:\\Temp"` |
 | `StorageType` | `StorageType` | `"1"` |
 | `AddFileCheckSum` | `AddFileCheckSum` | `"true"` |
 | `MongoDB:ConnectionString` | `MongoDb__ConnectionString` | `"mongodb://your-mongo-server:27017"` |

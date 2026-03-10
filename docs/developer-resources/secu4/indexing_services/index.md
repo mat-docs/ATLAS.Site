@@ -92,8 +92,8 @@ Comprehensive documentation is available:
 #### Environment Variables
 ```bash
 # Files Service
-Directories_0=C:\Data\Files
-Extensions_0=.pgv
+Directories__0=C:\Data\Files
+Extensions__0=.pgv
 StorageType=1
 MongoDb__ConnectionString=mongodb://your-mongo-server:27017
 
@@ -109,26 +109,40 @@ StorageType=1
 # docker-compose.yml example
 version: '3.8'
 services:
-  files-service:
-    image: files-service:latest
+  file-indexer-service:
+    image: atlasplatformdocker/file-indexing-service:latest
     ports:
-      - "5000:80"
+      - "5000:5000"
     environment:
       - StorageType=1
       - MongoDb__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_URLS='http://*:5000'
+      - Directories__0='/app/data'
+      - Extensions__0='.pgv'
+      - Extensions__1='.cfg'
+    volumes:
+      - /data:/app/data
+    depends_on:
+      - mongodb
+
+  config-indexer-service:
+    image: atlasplatformdocker/config-indexing-service:latest
+    ports:
+      - "5050:5050"
+    environment:
+      - StorageType=1
+      - MongoDb__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_URLS='http://*:5050'
+      - FileIndexerEndpoints__CfgEndpoint='http://file-indexer-service:5000'
+      - FileIndexerEndpoints__PgvEndpoint='http://file-indexer-service:5000'
+    depends_on:
+      - mongodb
+      - file-indexer-service
     volumes:
       - /data:/app/data
 
-  configs-service:
-    image: configs-service:latest
-    ports:
-      - "5050:80"
-    environment:
-      - StorageType=1
-      - MongoDb__ConnectionString=mongodb://mongo:27017
-
-  mongo:
-    image: mongo:latest
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
     ports:
       - "27017:27017"
 ```
