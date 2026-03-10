@@ -292,10 +292,16 @@ nav:
         - Data Flow Modules:
           - Writer Module: developer-resources/secu4/support_library/reference_docs/writer-module.md
           - Reader Module: developer-resources/secu4/support_library/reference_docs/reader-module.md
+          - Essential Module: developer-resources/secu4/support_library/reference_docs/essentials-module.md
           - Buffering Module: developer-resources/secu4/support_library/reference_docs/buffering-module.md
           - Interpolation Module: developer-resources/secu4/support_library/reference_docs/interpolation-module.md
         - Reference:
           - API Reference: developer-resources/secu4/support_library/reference_docs/api-reference.md
+      - Indexing Services:
+        - Overview: developer-resources/secu4/indexing_services/index.md
+        - Service Overview: developer-resources/secu4/indexing_services/service-overview.md
+        - API Documentation: developer-resources/secu4/indexing_services/api-documentation.md
+        - Configuration Guide: developer-resources/secu4/indexing_services/appsettings-configuration.md
     - ATLAS: 
       - Overview: developer-resources/atlas/index.md
       - Nuget: 

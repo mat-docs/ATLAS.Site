@@ -11,43 +11,49 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 
 #### Core Modules (Independent)
 1. **[Session Manager Module](reference_docs/session-manager.md)** - Session lifecycle management
-   - Create and manage sessions
-   - Session metadata and associations
-   - Live session tracking
-   - Events and notifications
+    - Create and manage sessions
+    - Session metadata and associations
+    - Live session tracking
+    - Events and notifications
 
 2. **[Data Format Manager Module](reference_docs/data-format-manager.md)** - Data format definitions
-   - Parameter format management
-   - Event format management
-   - Automatic ID generation
-   - Format querying
+    - Parameter format management
+    - Event format management
+    - Automatic ID generation
+    - Format querying
 
 #### Data Flow Modules (Dependent)
 3. **[Writer Module](reference_docs/writer-module.md)** - Packet writing to broker
-   - Write data packets
-   - Publish session information
-   - Multiple stream support
-   - Packet types and serialization
+    - Write data packets
+    - Publish session information
+    - Multiple stream support
+    - Packet types and serialization
 
 4. **[Reader Module](reference_docs/reader-module.md)** - Packet reading from broker
-   - Live and historical reading
-   - Stream filtering
-   - Coverage tracking
-   - Event system
-   - Configuration options
+    - Live and historical reading
+    - Stream filtering
+    - Coverage tracking
+    - Event system
+    - Configuration options
 
-5. **[Buffering Module](reference_docs/buffering-module.md)** - Sample buffering and merging
-   - Packet buffering
-   - Data merging strategies
-   - Sample extraction
-   - Sliding window processing
-   - Dynamic parameter subscription
+5. **[Essentials Module](reference_docs/essentials-module.md)** - Essential packet reading
+    - Read configuration packets only
+    - Lightweight metadata retrieval
+    - Session setup information
+    - Independent of full data processing
 
-6. **[Interpolation Module](reference_docs/interpolation-module.md)** - Data interpolation and subscription
-   - Custom frequency subscriptions
-   - Automatic interpolation/decimation
-   - Batch result delivery
-   - Multiple subscription management
+6. **[Buffering Module](reference_docs/buffering-module.md)** - Sample buffering and merging
+    - Packet buffering
+    - Data merging strategies
+    - Sample extraction
+    - Sliding window processing
+    - Dynamic parameter subscription
+
+7. **[Interpolation Module](reference_docs/interpolation-module.md)** - Data interpolation and subscription
+    - Custom frequency subscriptions
+    - Automatic interpolation/decimation
+    - Batch result delivery
+    - Multiple subscription management
 
 ### Reference
 - **[API Reference](reference_docs/api-reference.md)** - Complete API reference with all interfaces, methods, and types
@@ -68,6 +74,9 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 **Read live or historical data**
 → See [Reader Module](reference_docs/reader-module.md)
 
+**Read only essential/configuration packets**
+→ See [Essentials Module](reference_docs/essentials-module.md)
+
 **Buffer and merge packet data into samples**
 → See [Buffering Module](reference_docs/buffering-module.md)
 
@@ -86,10 +95,12 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 ### Module Dependencies
 
 **Independent Core Modules:**
+
 - Session Manager
 - Data Format Manager
 
 **Pipeline Modules:**
+
 - Reader Module → Buffering Module → Interpolation Module
 
 ### Data Flow
@@ -252,22 +263,26 @@ reader.Start();
 ### Common Issues
 
 **Issue: Service creation fails**
-- Check that Support Library is initialized
+
+- Check that Support Library is initializedne
 - Verify configuration parameters
 - Check logs for specific error messages
 
 **Issue: No data received**
+
 - Verify session exists and is active
 - Check stream names match
 - Ensure handlers are added before starting
 - Verify subscription parameters match available data
 
 **Issue: High latency**
+
 - Reduce buffering window length
 - Increase sliding window percentage
 - Reduce subscription frequencies
 
 **Issue: Missing samples**
+
 - Increase buffering window length
 - Check coverage cursors for gaps
 - Verify parameter subscriptions
@@ -282,5 +297,5 @@ Copyright (c) Motion Applied Ltd.
 
 ---
 
-**Last Updated**: October 2025  
-**Version**: 1.0
+**Last Updated**: February 2026  
+**Version**: 1.1

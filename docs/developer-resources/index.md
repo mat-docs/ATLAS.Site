@@ -16,5 +16,6 @@ Explore the available API documentation:
 - [Display API](./atlas/display-api/index.md)
 - [Bridge Service](./secu4/bridge_service/index.md)
 - [Support Library](./secu4/support_library/index.md)
+- [Indexing Services](./secu4/indexing_services/index.md)
 
 Explore the topics in this section to accelerate your development.

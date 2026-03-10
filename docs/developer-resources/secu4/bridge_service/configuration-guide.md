@@ -213,9 +213,9 @@ Each mapping entry contains:
 | `AppName` | string | Application group name or pattern (supports wildcards: `*`) |
 | `Stream` | string | Target stream name in Stream API |
 
-### Wildcard Pattern Matching (New in January 2026)
+### Wildcard Pattern Matching
 
-The `AppName` field now supports wildcard patterns using the `*` character:
+The `AppName` field supports wildcard patterns using the `*` character:
 
 *   **Exact match:** `"EngineData"` - matches only "EngineData"
 *   **Prefix match:** `"Engine*"` - matches "EngineData", "EngineTemp", "EnginePressure"
@@ -295,7 +295,7 @@ The `AppName` field now supports wildcard patterns using the `*` character:
 
 ## 3. BridgeConfig
 
-Controls core Bridge service behavior including processing units and data handling.
+Controls core Bridge service behavior including processing units, data handling, and flow control strategies.
 
 ### Properties
 
@@ -305,7 +305,27 @@ Controls core Bridge service behavior including processing units and data handli
 | `UseStringIdentifier` | boolean | false | Use string-based identifiers instead of numeric IDs |
 | `NumberWritingUnit` | int | 8 | Number of parallel writing units (threads) for Stream API |
 | `NumberProcessingUnit` | int | 4 | Number of parallel processing units for data decoding |
-| `AdsTimeoutInSeconds` | int | 720 | Timeout for ADS operations in seconds |
+| `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
+| `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
+
+### ProcessFlow Strategies
+
+The `ProcessFlow` property controls how the Bridge service handles data flow and backpressure:
+
+#### SequentialAll (Default)
+
+*   **Value:** `"SequentialAll"` or `0`
+*   **Behavior:** Processes all data sequentially without dropping any packets
+*   **Use when:** Data integrity is critical and you need to ensure every packet is processed
+*   **Impact:** May experience backpressure if downstream systems are slow
+
+#### DropOldest
+
+*   **Value:** `"DropOldest"` or `1`
+*   **Behavior:** Drops oldest unprocessed data when buffers are full, prioritizing recent data
+*   **Use when:** Real-time data is more important than historical completeness
+*   **Impact:** Better performance under load, but some data may be dropped during high traffic
+*   **Note:** Applies per-session dropping strategy to maintain data freshness
 
 ### Example Configuration
 
@@ -316,7 +336,23 @@ Controls core Bridge service behavior including processing units and data handli
     "UseStringIdentifier": true,
     "NumberWritingUnit": 16,
     "NumberProcessingUnit": 8,
-    "AdsTimeoutInSeconds": 600
+    "AdsTimeoutInSeconds": 600,
+    "ProcessFlow": "SequentialAll"
+  }
+}
+```
+
+### Example with DropOldest Flow
+
+```json
+{
+  "BridgeConfig": {
+    "DataSource": "LiveTelemetry",
+    "UseStringIdentifier": true,
+    "NumberWritingUnit": 24,
+    "NumberProcessingUnit": 12,
+    "AdsTimeoutInSeconds": 720,
+    "ProcessFlow": "DropOldest"
   }
 }
 ```
@@ -325,6 +361,8 @@ Controls core Bridge service behavior including processing units and data handli
 
 *   **`NumberWritingUnit`**: Increase for higher throughput to Stream API. Higher values use more CPU.
 *   **`NumberProcessingUnit`**: Controls parallel data decoding/processing. Increase for multi-core systems.
+*   **`AdsTimeoutInSeconds`**: Controls how long the Bridge waits without receiving data before considering a session stopped. Default is 720 seconds (12 minutes). Reduce for faster session timeout detection, increase if you expect longer gaps in data transmission.
+*   **`ProcessFlow`**: Choose `SequentialAll` when data completeness is critical, or `DropOldest` when real-time performance is more important than historical completeness.
 
 ## 4. EssentialsConfig
 
@@ -339,8 +377,9 @@ Configuration files (CFG) and Parameter Group Values (PGV) are essential for dat
 | :--- | :--- | :--- |
 | `CfgDirectoryPaths` | string[] | Array of directory paths containing CFG configuration files |
 | `PgvDirectoryPaths` | string[] | Array of directory paths containing PGV parameter files |
-> **Note:** The `RemoteConfigIndexerUrl` option is only used when the configuration indexer service is deployed and accessible.
 | `RemoteConfigIndexerUrl`| string? | Optional URL for remote configuration indexer service |
+
+> **Note:** The `RemoteConfigIndexerUrl` option is only used when a centralized configuration indexer service is deployed and accessible. When configured, the Bridge will query that URL to retrieve CFG and PGV info from the remote service. If the remote service is not available or no info is returned, it will fall back to using the local directories.
 
 ### Example Configuration
 
@@ -362,13 +401,30 @@ Configuration files (CFG) and Parameter Group Values (PGV) are essential for dat
 
 ### Using Remote Config Indexer
 
-For centralized configuration management:
+For centralized configuration management, you can specify a remote configuration indexer service URL. This allows the Bridge to query that URL to fetch configuration files from a central server. If the remote service is not available or no info is returned, it will fall back to using the local directories:
 
 ```json
 {
   "EssentialsConfig": {
     "CfgDirectoryPaths": [],
     "PgvDirectoryPaths": [],
+    "RemoteConfigIndexerUrl": "http://config-server.company.com:5050"
+  }
+}
+```
+
+**Benefits of Remote Config Indexer:**
+*   Reduced file searching and querying time - file locations are cached for faster retrieval, minimizing I/O overhead
+
+**Hybrid Configuration:**
+
+You can also use both local directories and remote indexer. If the remote service is unavailable, the Bridge will fall back to local directories:
+
+```json
+{
+  "EssentialsConfig": {
+    "CfgDirectoryPaths": ["C:\\Data\\Configs\\CFG"],
+    "PgvDirectoryPaths": ["C:\\Data\\Configs\\PGV"],
     "RemoteConfigIndexerUrl": "http://config-server.company.com:5050"
   }
 }
@@ -520,7 +576,8 @@ The Bridge service uses the following priority order for logging configuration:
     "UseStringIdentifier": true,
     "NumberWritingUnit": 16,
     "NumberProcessingUnit": 8,
-    "AdsTimeoutInSeconds": 600
+    "AdsTimeoutInSeconds": 600,
+    "ProcessFlow": "SequentialAll"
   },
   "EssentialsConfig": {
     "CfgDirectoryPaths": [
@@ -584,6 +641,21 @@ The Bridge service uses the following priority order for logging configuration:
     *   Check wildcard patterns/order.
 *   **Issue: Performance problems**
     *   Increase `NumberWritingUnit` / `NumberProcessingUnit`.
+    *   Consider using `ProcessFlow: "DropOldest"` if real-time data is more important than completeness.
+*   **Issue: Data is being dropped**
+    *   Check if `ProcessFlow` is set to `"DropOldest"`. This is the expected behavior when buffers are full.
+    *   If data completeness is critical, change to `"SequentialAll"`.
+    *   Alternatively, increase `NumberWritingUnit` and `NumberProcessingUnit` to improve throughput.
+*   **Issue: Session stops prematurely or doesn't stop**
+    *   Adjust `AdsTimeoutInSeconds` based on your data streaming pattern.
+    *   Default (720 seconds / 12 minutes) works for most scenarios.
+    *   Reduce for faster timeout detection in live scenarios.
+    *   Increase if you have legitimate gaps in data transmission.
+*   **Issue: Remote Config Indexer not working**
+    *   Verify `RemoteConfigIndexerUrl` is correct and accessible.
+    *   Check network connectivity to the config server.
+    *   Ensure the configuration indexer service is running.
+    *   Add local `CfgDirectoryPaths` and `PgvDirectoryPaths` as backup.
       
 
 !!! warning "Resource Requirements"
