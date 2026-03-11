@@ -266,10 +266,12 @@ v2 files are identified by the text `v2` as the first value in the header row. A
 
 CAN Configuration Compare :material-information-outline:{ title="Minimum Version: 8.86.2.4" } lets you inspect two `.clc` CAN configurations side‑by‑side and optionally merge any differences back into the active document before downloading the result to an ECU.
 
-1. Launch the tool
+1. Launch System Monitor
     - Ensure the project you want to update has a CAN configuration document open in System Monitor (this becomes the **Main** side of the dialog).
 2. Choose **Logging > CAN Configuration Compare** from the menu or press **Ctrl+F9**. System Monitor briefly locks communications and runs offline while the dialog is open to prevent background threads from modifying writable CAN parameters.
     - The dialog stays on top until you press **Save** (applies changes) or **Cancel** (closes without modifying the active CAN configuration).
+
+        ![CAN Configuration Compare](./assets/can-config-compare-menu.png){ width="200" }
 
     !!! info "Reading the comparison"
         - The dialog is divided into two mirrored panes. The **Main** pane (left) is read-only and always reflects the currently active CAN configuration; its text box shows the full path of that document.
@@ -284,6 +286,8 @@ CAN Configuration Compare :material-information-outline:{ title="Minimum Version
         - **Parameter detail panel** surfaces the parameter name, start bit, bit length, signed/unsigned, byte order, scaling gain/offset, multiplexer ID/value, and mask.
         - The detail panels highlight only the fields that differ.
         - Right-clicking on the Compare tree pops up a context menu that mirrors the `<`/`<<` buttons and shows tooltip text (e.g., “Merge 'MainBus' details”).
+
+        ![CAN Configuration Compare](./assets/can-config-compare-layout.png){ width="500" }
 
 3. Merging differences
     - The `<` button (Copy Selected) copies the currently highlighted Compare node into the Main tree. It works for buses, buffers, messages, and parameters. The command overwrites the selected node, and—when appropriate—adds missing messages or parameters to the Main configuration and preserves existing parameter objects.
