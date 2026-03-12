@@ -18,7 +18,7 @@ and support for large configuration datasets.
 
 - **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
 - **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
-- **Documentation:** [Read docs](../../../developer-resources/secu4/docs)
+- **Documentation:** [Read docs](../../../developer-resources/secu4/docs.md)
 
 ## Key Improvements
 

@@ -1,6 +1,6 @@
 # System Monitor Overview
 
-The System Monitor is a data display tool designed to provide feedback during tuning by visualising Measurement Parameters. While it offers basic display capabilities, more advanced analysis is available through the [ATLAS visualiser](../../../../visualise/atlas/index.md).
+The System Monitor is a data display tool designed to provide feedback during tuning by visualising Measurement Parameters. While it offers basic display capabilities, more advanced analysis is available through the [ATLAS visualiser](../../../../analyse/viewer/index.md).
 
 System Monitor presents data using various display windows, each tailored to different visualisation needs. These windows are configured to show live data from Measurement Parameters, and can be customised extensively via the Window Properties dialog.
 
