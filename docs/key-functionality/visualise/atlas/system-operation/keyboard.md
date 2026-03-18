@@ -42,10 +42,10 @@
 | ------------------------------------------------------------|---------------------------------------------------------------------------------------- |
 | ++shift+1++ … ++shift+9++                                   | Select the Compare Set for the _active display_                                         |
 | ++shift+0++                                                 | Select the Compare Set for the _active display_ (set 10*)                               |
-| ++shift+-++                                                 | Select the Compare Set for the _active display_ (set 11)                                |
-| ++shift+=++                                                 | Select the Compare Set for the _active display_ (set 12)                                |
+| ++shift++++minus++                                          | Select the Compare Set for the _active display_ (set 11)                                |
+| ++shift++++equals++                                         | Select the Compare Set for the _active display_ (set 12)                                |
 | ++shift+backspace++                                         | Select the Compare Set for the _active display_ (set 13)                                |
-| ++shift+;++                                                 | Select the Compare Set for the _active display_ (set 14)                                |
+| — ++shift+;++ —                                             | Select the Compare Set for the _active display_ (set 14)                                |
 | ++shift+'++                                                 | Select the Compare Set for the _active display_ (set 15)                                |
 | ++shift+,++                                                 | Select the Compare Set for the _active display_ (set 16)                                |
 | ++shift+.++                                                 | Select the Compare Set for the _active display_ (set 17)                                |
