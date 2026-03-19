@@ -38,15 +38,28 @@
 
 ### Associating Compare Sets
 
-| Shortcut                                                    | Description                                                                             |
-| ------------------------------------------------------------|---------------------------------------------------------------------------------------- |
-| ++shift+1++ &#8230; ++9++                                   | Select the Compare Set for the _active display_                                         |
-| ++ctrl+1++ &#8230;​ ++9++                                    | Select the Compare Set for all displays on the _active page_                            |
-| ++ctrl+f1++ &#8230; ++f9++                                  | Select the Compare Set for all displays in the _active page group_                      |
-| ++ctrl+shift+1++ &#8230; ++9++                              | Select the Compare Set for _all displays_                                               |
-| ++shift+minus++                                             | Clears the Compare Set for the _active display_                                         |
-| ++ctrl+minus++                                              | Clears the Compare Set for all displays on the _active page_                            |
-| ++ctrl+shift+minus++ <br> ++ctrl+alt+shift+minus++          | Clears the Compare Set for all displays in the active _page group_                      |
+| Shortcut															| Description                                                                             |
+| ------------------------------------------------------------------|---------------------------------------------------------------------------------------- |
+| ++shift+1++ … ++shift+9++											| Select the Compare Set for the _active display_                                         |
+| ++shift+0++														| Select the Compare Set for the _active display_ (set 10*)                               |
+| ++shift++ + ++minus++												| Select the Compare Set for the _active display_ (set 11)                                |
+| ++shift++ + ++equal++												| Select the Compare Set for the _active display_ (set 12)                                |
+| ++shift+backspace++												| Select the Compare Set for the _active display_ (set 13)                                |
+| ++shift++ + ++semicolon++											| Select the Compare Set for the _active display_ (set 14)                                |
+| ++shift++ + ++single-quote++										| Select the Compare Set for the _active display_ (set 15)                                |
+| ++shift++ + ++comma++												| Select the Compare Set for the _active display_ (set 16)                                |
+| ++shift++ + ++period++											| Select the Compare Set for the _active display_ (set 17)                                |
+| ++shift++ + ++slash++												| Select the Compare Set for the _active display_ (set 18)                                |
+| ++shift+tab++														| Select the Compare Set for the _active display_ (set 19)                                |
+| ++shift+capital++													| Select the Compare Set for the _active display_ (set 20)
+| ++ctrl+1++ … ++ctrl+9++											| Select the Compare Set for all displays on the _active page_
+| ++ctrl++ + same order of keyboard characters listed above			| Select the Compare Set for all displays on the _active page_ (sets 10-20)               |
+| ++ctrl+f1++ … ++ctrl+f9++											| Select the Compare Set for all displays in the _active page group_
+| ++ctrl+shift+1++ … ++ctrl+shift+9++								| Select the Compare Set for _all displays_
+| ++ctrl+shift++ + same order of keyboard characters listed above   | Select the Compare Set for _all displays_ (sets 10-20)                                    |
+| ++shift+delete++													| Clears the Compare Set for the _active display_                                         |
+| ++ctrl+delete++													| Clears the Compare Set for all displays on the _active page_                            |
+| ++ctrl+shift+delete++ or ++ctrl+alt+shift+delete++				| Clears the Compare Set for all displays in the active _page group_                      |
 
 ## Timeline and Navigation
 
@@ -149,3 +162,15 @@
 | ++escape++                                                  | Cancel zoom box                                                                         |
 | ++ctrl+p++                                                  | Print                                                                                   |
 | ++ctrl+shift+p++                                            | Print Preview                                                                           |
+
+### Known issue (Windows 11)
+
+The command to switch a page group to the 10th compare set (++ctrl+shift+0++) may not work on some Windows 11 systems due to a system-level language hotkey using the same combination. To restore the shortcut, disable the language hotkeys:
+
+- Open Windows Settings > Typing > Advanced keyboard settings.
+- Click "Input language hot keys".
+- Select "Between input languages" or "Keyboard layout" and click "Change Key Sequence".
+- Set "Switch keyboard layout" to "Not assigned".
+
+This change removes the OS-level binding that can block ++ctrl+shift+0++, allowing the application shortcut to work as expected.
+Also to note, for switching to set 15, on US keyboards you'll need to use the # key instead of ++single-quote++.
