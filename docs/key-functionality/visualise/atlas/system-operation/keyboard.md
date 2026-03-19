@@ -51,7 +51,7 @@
 | ++shift++ + ++.++                                           | Select the Compare Set for the _active display_ (set 17)                                |
 | ++shift++ + ++/++                                           | Select the Compare Set for the _active display_ (set 18)                                |
 | ++shift+tab++                                               | Select the Compare Set for the _active display_ (set 19)                                |
-| ++shift+capslock++                                          | Select the Compare Set for the _active display_ (set 20)                                |
+| ++shift+caps++                                              | Select the Compare Set for the _active display_ (set 20)                                |
 | ++ctrl+1++ … ++ctrl+9++                                     | Select the Compare Set for all displays on the _active page_                            |
 | ++ctrl+f1++ … ++ctrl+f9++                                   | Select the Compare Set for all displays in the _active page group_                      |
 | ++ctrl+shift+1++ … ++ctrl+shift+9++                         | Select the Compare Set for _all displays_                                               |
