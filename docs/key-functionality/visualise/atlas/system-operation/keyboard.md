@@ -165,12 +165,12 @@
 
 ### Known issue (Windows 11)
 
-The command to switch a page group to the 10th compare set (Ctrl + Shift + 0) may not work on some Windows 11 systems due to a system-level language hotkey using the same combination. To restore the shortcut, disable the language hotkeys:
+The command to switch a page group to the 10th compare set (++ctrl+shift+0++) may not work on some Windows 11 systems due to a system-level language hotkey using the same combination. To restore the shortcut, disable the language hotkeys:
 
 - Open Windows Settings > Typing > Advanced keyboard settings.
 - Click "Input language hot keys".
 - Select "Between input languages" or "Keyboard layout" and click "Change Key Sequence".
 - Set "Switch keyboard layout" to "Not assigned".
 
-This change removes the OS-level binding that can block Ctrl + Shift + 0, allowing the application shortcut to work as expected.
-Also to note, for switching to set 15, on US keyboards you'll need to use the # key instead of '.
+This change removes the OS-level binding that can block ++ctrl+shift+0++, allowing the application shortcut to work as expected.
+Also to note, for switching to set 15, on US keyboards you'll need to use the ++hashkey++ key instead of ++single-quote++.
