@@ -46,12 +46,12 @@
 | ++shift++ + ++equal++												| Select the Compare Set for the _active display_ (set 12)                                |
 | ++shift+backspace++												| Select the Compare Set for the _active display_ (set 13)                                |
 | ++shift++ + ++semicolon++											| Select the Compare Set for the _active display_ (set 14)                                |
-| ++shift++ + ++quote++												| Select the Compare Set for the _active display_ (set 15)                                |
+| ++shift++ + ++singlequote++										| Select the Compare Set for the _active display_ (set 15)                                |
 | ++shift++ + ++comma++												| Select the Compare Set for the _active display_ (set 16)                                |
 | ++shift++ + ++period++											| Select the Compare Set for the _active display_ (set 17)                                |
 | ++shift++ + ++slash++												| Select the Compare Set for the _active display_ (set 18)                                |
 | ++shift+tab++														| Select the Compare Set for the _active display_ (set 19)                                |
-| ++shift+cap++														| Select the Compare Set for the _active display_ (set 20)
+| ++shift+capital++													| Select the Compare Set for the _active display_ (set 20)
 | ++ctrl+1++ … ++ctrl+9++											| Select the Compare Set for all displays on the _active page_
 | ++ctrl++ + same order of keyboard characters listed above			| Select the Compare Set for all displays on the _active page_ (sets 10-20)               |
 | ++ctrl+f1++ … ++ctrl+f9++											| Select the Compare Set for all displays in the _active page group_
