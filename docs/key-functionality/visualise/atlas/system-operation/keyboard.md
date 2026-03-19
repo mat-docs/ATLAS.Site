@@ -45,10 +45,10 @@
 | ++shift++ + ++minus++                                       | Select the Compare Set for the _active display_ (set 11)                                |
 | ++shift++ + ++equal++                                       | Select the Compare Set for the _active display_ (set 12)                                |
 | ++shift+backspace++                                         | Select the Compare Set for the _active display_ (set 13)                                |
-| ++shift++ + ++;++                                           | Select the Compare Set for the _active display_ (set 14)                                |
-| ++shift++ + ++'++                                           | Select the Compare Set for the _active display_ (set 15)                                |
-| ++shift++ + ++,++                                           | Select the Compare Set for the _active display_ (set 16)                                |
-| ++shift++ + ++.++                                           | Select the Compare Set for the _active display_ (set 17)                                |
+| ++shift++ + ++semicolon++                                   | Select the Compare Set for the _active display_ (set 14)                                |
+| ++shift++ + ++apostrophe++                                  | Select the Compare Set for the _active display_ (set 15)                                |
+| ++shift++ + ++comma++                                       | Select the Compare Set for the _active display_ (set 16)                                |
+| ++shift++ + ++fullstop++                                    | Select the Compare Set for the _active display_ (set 17)                                |
 | ++shift++ + ++/++                                           | Select the Compare Set for the _active display_ (set 18)                                |
 | ++shift+tab++                                               | Select the Compare Set for the _active display_ (set 19)                                |
 | ++shift+caps++                                              | Select the Compare Set for the _active display_ (set 20)                                |
