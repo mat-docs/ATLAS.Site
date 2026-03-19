@@ -46,7 +46,7 @@
 | ++shift++ + ++equal++												| Select the Compare Set for the _active display_ (set 12)                                |
 | ++shift+backspace++												| Select the Compare Set for the _active display_ (set 13)                                |
 | ++shift++ + ++semicolon++											| Select the Compare Set for the _active display_ (set 14)                                |
-| ++shift++ + ++singlequote++										| Select the Compare Set for the _active display_ (set 15)                                |
+| ++shift++ + ++contraction++										| Select the Compare Set for the _active display_ (set 15)                                |
 | ++shift++ + ++comma++												| Select the Compare Set for the _active display_ (set 16)                                |
 | ++shift++ + ++period++											| Select the Compare Set for the _active display_ (set 17)                                |
 | ++shift++ + ++slash++												| Select the Compare Set for the _active display_ (set 18)                                |
@@ -173,4 +173,4 @@ The command to switch a page group to the 10th compare set (Ctrl + Shift + 0) ma
 - Set "Switch keyboard layout" to "Not assigned".
 
 This change removes the OS-level binding that can block Ctrl + Shift + 0, allowing the application shortcut to work as expected.
-Also to note, for switching to set 15, on US keyboards you'll need to use the ++hash++ key instead of ++quote++.
+Also to note, for switching to set 15, on US keyboards you'll need to use the ++pound++ key instead of ++contraction++.
