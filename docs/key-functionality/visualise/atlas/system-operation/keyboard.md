@@ -173,4 +173,4 @@ The command to switch a page group to the 10th compare set (++ctrl+shift+0++) ma
 - Set "Switch keyboard layout" to "Not assigned".
 
 This change removes the OS-level binding that can block ++ctrl+shift+0++, allowing the application shortcut to work as expected.
-Also to note, for switching to set 15, on US keyboards you'll need to use the ++number-sign++ key instead of ++single-quote++.
+Also to note, for switching to set 15, on US keyboards you'll need to use the ++numbers-sign++ key instead of ++single-quote++.
