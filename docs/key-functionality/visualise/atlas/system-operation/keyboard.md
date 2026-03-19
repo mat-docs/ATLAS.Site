@@ -48,7 +48,7 @@
 | ++shift++ + ++semicolon++											| Select the Compare Set for the _active display_ (set 14)                                |
 | ++shift++ + ++quote++												| Select the Compare Set for the _active display_ (set 15)                                |
 | ++shift++ + ++comma++												| Select the Compare Set for the _active display_ (set 16)                                |
-| ++shift++ + ++fullstop++											| Select the Compare Set for the _active display_ (set 17)                                |
+| ++shift++ + ++dot++											| Select the Compare Set for the _active display_ (set 17)                                |
 | ++shift++ + ++slash++												| Select the Compare Set for the _active display_ (set 18)                                |
 | ++shift+tab++														| Select the Compare Set for the _active display_ (set 19)                                |
 | ++shift+cap++														| Select the Compare Set for the _active display_ (set 20)
