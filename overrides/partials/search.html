@@ -9,9 +9,9 @@ https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
 <script>
 docsearch({
     container: '#docsearch',
-    appId: '{{ ALGOLIA_APP_ID }}',
+    appId: '{{ config.extra.ALGOLIA_APP_ID }}',
     indexName: 'ATLAS Docs Site',
-    apiKey: '{{ ALGOLIA_API_KEY }}',
-    askAi: '{{ ALGOLIA_ASSISTANT_ID }}',
+    apiKey: '{{ config.extra.ALGOLIA_API_KEY }}',
+    askAi: '{{ config.extra.ALGOLIA_ASSISTANT_ID }}',
 });
 </script>
