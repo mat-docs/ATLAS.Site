@@ -12,7 +12,8 @@
 --sans:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.hero,.stats,.comms-section{overflow-x:clip}
 a{color:inherit;text-decoration:none}
 .container{width:80vw;margin:0 auto;padding:0 2rem}
 
@@ -179,15 +180,99 @@ a{color:inherit;text-decoration:none}
 .cta-section p{color:var(--t2);font-size:1.05rem;margin-bottom:2rem;position:relative}
 
 /* ═══ RESPONSIVE ═══ */
+
+/* Tablet */
 @media(max-width:900px){
+.container{width:100%;padding:0 1.5rem}
 .hero-grid{grid-template-columns:1fr;text-align:center}
 .hero-text p{margin:0 auto 2rem}
 .hero-visual{height:300px}
-.hero-actions{justify-content:center}
+.hero-actions{justify-content:center;flex-wrap:wrap}
 .comms-grid{grid-template-columns:1fr}
-.fam-grid{grid-template-columns:1fr}
+.fam-grid{grid-template-columns:repeat(2,1fr)}
 .nav-links{display:none}
-.hud-grid{position:relative;top:0;right:0;margin-bottom:1rem}
+.hud-grid{position:relative;top:0;right:0;margin-bottom:1rem;justify-content:center}
+.pipeline-section{padding:5rem 0}
+.comms-section{padding:4rem 0}
+.families-section{padding:4rem 0}
+.cta-section{padding:5rem 0}
+
+/* Pipeline: allow wrapping with better spacing */
+.pipeline-nodes{gap:6px;justify-content:center}
+.p-node{padding:8px 12px;font-size:10px}
+.p-arrow{font-size:14px}
+
+/* Comms: reduce min-height */
+.comms-col{min-height:420px}
+
+/* Industry toggle: wrap on tablet */
+.hero-toggle-wrap{justify-content:center}
+.industry-toggle{flex-wrap:wrap;justify-content:center}
+}
+
+/* Mobile */
+@media(max-width:600px){
+.container{width:100%;padding:0 1rem}
+
+/* Hero */
+.hero{min-height:auto;padding:100px 0 3rem}
+.hero-grid{gap:1.5rem}
+.hero-text h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-text p{font-size:0.95rem;line-height:1.6}
+.hero-visual{height:220px}
+
+/* Industry toggle: compact pills */
+.industry-toggle{gap:1px;padding:2px;border-radius:10px}
+.industry-btn{padding:6px 10px;font-size:10px;gap:4px;border-radius:7px}
+.industry-btn .ind-icon{font-size:12px}
+
+/* HUD grid: 3 columns, smaller cells */
+.hud-grid{grid-template-columns:repeat(3,1fr);gap:3px}
+.hud-cell{padding:5px 8px;min-width:unset}
+.hud-k{font-size:7px}
+.hud-v{font-size:14px}
+
+/* Vehicle SVG: scale down */
+.car-container svg{width:200px;height:auto}
+
+/* Buttons */
+.hero-actions{gap:0.75rem}
+.btn-primary,.btn-ghost{padding:12px 20px;font-size:14px;width:100%}
+
+/* Stats */
+.stat-item{padding:14px 24px}
+.stat-val{font-size:16px}
+.stat-label{font-size:11px}
+
+/* Pipeline */
+.pipeline-section{padding:3rem 0}
+.pipeline-vis{padding:1rem;border-radius:12px}
+.pipeline-nodes{flex-direction:column;align-items:stretch;gap:0}
+.p-node{text-align:center;padding:8px 12px;font-size:10px;border-radius:6px}
+.p-arrow{transform:rotate(90deg);font-size:12px;padding:2px 0;text-align:center}
+.section-title{font-size:clamp(1.6rem,5vw,2.4rem)}
+.section-desc{font-size:0.9rem}
+
+/* Comms */
+.comms-section{padding:3rem 0}
+.comms-col{min-height:360px}
+.comms-h-label{font-size:9px}
+.bubble{max-width:260px;font-size:11.5px;padding:8px 10px}
+.bubble-name{font-size:8px}
+.av{width:22px;height:22px;font-size:8px}
+.data-tag{font-size:9px;padding:2px 6px}
+
+/* Families */
+.families-section{padding:3rem 0}
+.fam-grid{grid-template-columns:1fr;margin-top:2rem}
+.fam-card{padding:1.5rem 1.25rem}
+.fam-name{font-size:14px}
+.fam-desc{font-size:12px}
+
+/* CTA */
+.cta-section{padding:4rem 0}
+.cta-section h2{font-size:clamp(1.6rem,5vw,2.4rem)}
+.cta-section p{font-size:0.9rem}
 }
 
 @keyframes scrollpit{
