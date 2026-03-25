@@ -25,26 +25,80 @@
   max-width: 90vw;
 }
 
-#docsearch {
-    margin-left: auto;
+/* ── Hide Material's built-in search ── */
+.md-search,
+label[for="__search"] {
+  display: none !important;
 }
 
-.md-search{
-    display:none;
+/* ── DocSearch: blend into Material header ── */
+#docsearch {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .DocSearch-Button {
   background: rgba(255,255,255,0.1) !important;
-  border-radius: 4px !important;
-  color: white !important;
-  height: 2rem !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: .25rem !important;
+  color: #fff !important;
+  height: 1.75rem !important;
+  padding: 0 .5rem !important;
+  font-size: .75rem !important;
+  margin: 0 !important;
+  max-width: 10rem !important;
+  transition: background .2s, border-color .2s !important;
 }
 
-.DocSearch-Button:hover{
+.DocSearch-Button:hover {
   background: rgba(255,255,255,0.2) !important;
+  border-color: rgba(255,255,255,0.4) !important;
 }
 
-.DocSearch-Button-Placeholder,
-.DocSearch-Button .DocSearch-Search-Icon{
+.DocSearch-Button .DocSearch-Search-Icon {
+  color: rgba(255,255,255,0.8) !important;
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.DocSearch-Button-Placeholder {
+  color: rgba(255,255,255,0.6) !important;
+  font-size: .8rem !important;
+}
+
+.DocSearch-Button-Keys {
+  display: flex !important;
+  gap: .15rem;
+}
+
+.DocSearch-Button-Key {
+  background: rgba(255,255,255,0.15) !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  border-radius: .2rem !important;
+  box-shadow: none !important;
   color: rgba(255,255,255,0.7) !important;
+  font-size: .7rem !important;
+  min-width: auto !important;
+  padding: 0 .3rem !important;
+  height: 1.25rem !important;
+  line-height: 1.25rem !important;
+}
+
+/* ── Modal accent colours ── */
+.DocSearch-Modal {
+  --docsearch-primary-color: var(--md-primary-fg-color, #ED6D20) !important;
+}
+
+/* ── Responsive: icon-only on narrow screens ── */
+@media screen and (max-width: 76.25em) {
+  .DocSearch-Button-Placeholder,
+  .DocSearch-Button-Keys {
+    display: none !important;
+  }
+  .DocSearch-Button {
+    padding: 0 .5rem !important;
+    width: 2.25rem !important;
+    justify-content: center !important;
+  }
 }
