@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@4.6.0/dist/style.min.css" />
+
+<div id="docsearch"></div>
+
+
+<script src="
+https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
+"></script>
+<script>
+docsearch({
+    container: '#docsearch',
+    appId: '{{ ALGOLIA_APP_ID }}',
+    indexName: 'ATLAS Docs Site',
+    apiKey: '{{ ALGOLIA_API_KEY }}',
+    askAi: '{{ ALGOLIA_ASSISTANT_ID }}',
+});
+</script>

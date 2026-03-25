@@ -24,3 +24,27 @@
 .md-grid {
   max-width: 90vw;
 }
+
+#docsearch {
+    margin-left: auto;
+}
+
+.md-search{
+    display:none;
+}
+
+.DocSearch-Button {
+  background: rgba(255,255,255,0.1) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  height: 2rem !important;
+}
+
+.DocSearch-Button:hover{
+  background: rgba(255,255,255,0.2) !important;
+}
+
+.DocSearch-Button-Placeholder,
+.DocSearch-Button .DocSearch-Search-Icon{
+  color: rgba(255,255,255,0.7) !important;
+}
