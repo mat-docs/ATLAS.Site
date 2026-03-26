@@ -261,3 +261,49 @@ v2 files are identified by the text `v2` as the first value in the header row. A
 | 20 | Identifier | CAN Parameter unique identifier. |
 | 21 | Display Limit Low | Lower display limit. |
 | 22 | Display Limit High | Higher display limit. |
+
+## CAN Configuration Compare
+
+CAN Configuration Compare :material-information-outline:{ title="Minimum Version: 8.86.2.4" } lets you inspect two `.clc` CAN configurations side‑by‑side and optionally merge any differences back into the active document before downloading the result to an ECU.
+
+1. Launch System Monitor
+    - Ensure the project you want to update has a CAN configuration document open in System Monitor (this becomes the **Main** side of the dialog).
+2. Choose **Logging > CAN Configuration Compare** from the menu or press **Ctrl+F9**. System Monitor briefly locks communications and runs offline while the dialog is open to prevent background threads from modifying writable CAN parameters.
+    - The dialog stays on top until you press **Save** (applies changes) or **Cancel** (closes without modifying the active CAN configuration).
+
+        ![CAN Configuration Compare](./assets/can-config-compare-menu.png){ width="200" }
+
+    !!! info "Reading the comparison"
+        - The dialog is divided into two mirrored panes. The **Main** pane (left) is read-only and always reflects the currently active CAN configuration; its text box shows the full path of that document.
+        - The **Compare** pane (right) starts empty. Click the **`...`** button to open any `.clc` file. You can only open documents that use the CAN configuration template, and only the first CAN configuration inside that file is used for comparison.
+        - The **Compare** text box and label update with the loaded file name. Press **Unload** to drop the comparison document, empty the right tree, and clear the copy buttons so you can start over with another file.
+        - Check **Show Differences Only** to hide every node that matches (green items), leaving only the red nodes that carry mismatches. Unchecking the box reruns the comparison to reveal the full structure again.
+        - Both trees use color‑coding: **green** nodes match, while **red** nodes differ or are unmatched in the opposite tree. The parent branches also turn red when any child is different.
+        - Clicking a node on either side automatically selects its best match on the other tree and opens the detail panel below it. Each side hosts a dedicated detail mini-dialog, so you can inspect either bus-level, buffer-level, message-level, or parameter-level properties without leaving the window.
+        - **Bus detail panel** shows name, buffer count, global mask, link speed, controller ID, parameter address, and block size.
+        - **Buffer detail panel** shows the buffer name, receive mask, rate, number of messages, and the list order of those messages.
+        - **Message detail panel** lists the description, standard/frame flag, buffer assignment, message length, parameter count, multiplexing attributes, byte order, start bit, bit length, and the number of values.
+        - **Parameter detail panel** surfaces the parameter name, start bit, bit length, signed/unsigned, byte order, scaling gain/offset, multiplexer ID/value, and mask.
+        - The detail panels highlight only the fields that differ.
+        - Right-clicking on the Compare tree pops up a context menu that mirrors the `<`/`<<` buttons and shows tooltip text (e.g., “Merge 'MainBus' details”).
+
+        ![CAN Configuration Compare](./assets/can-config-compare-layout.png){ width="500" }
+
+3. Merging differences
+    - The `<` button (Copy Selected) copies the currently highlighted Compare node into the Main tree. It works for buses, buffers, messages, and parameters. The command overwrites the selected node, and—when appropriate—adds missing messages or parameters to the Main configuration and preserves existing parameter objects.
+    - The `<<` button (Copy All) is designed for whole branches. When you select a bus or message and press `<<`, the dialog copies that node plus every child buffer/message/parameter so the entire subtree matches the Compare side.
+    - Both buttons remain disabled until you select a **red** node in the Compare tree, and the selection also enables the detail panels for a quick sanity check.
+    - After any merge, the dialog reruns the comparison, collapses/expands the tree to refresh the view, and re-evaluates the `Show Differences Only` filter.
+
+4.  When you are happy with the merged result, click **Save** (default button) to close the dialog with `IDOK`.
+    - If System Monitor is connected to an ECU and the ECU is not running in read-only mode, you will see the prompt: _“Do you want to download a new logging configuration to the ECU?”_ Confirming that prompt pushes the merged configuration down to the ECU.
+    - If the ECU connection is not available or CAN-only behavior is enabled, System Monitor exports the merged CAN messages instead.
+    - Press **Cancel** to close the dialog without persisting any merges. The temporary configuration copy is discarded, and the active CAN configuration remains untouched.
+
+!!! tip
+    - Always load the correct base CAN configuration before opening the compare dialog—the left tree is read-only and cannot be swapped inside the dialog.
+    - Unload a compare file before selecting a different one to avoid keeping multiple documents open at the same time.
+    - You can toggle **Show Differences Only** at any time to keep the trees focused on mismatches; unchecking the box reruns the comparison and shows every node again.
+    - The Compare tree tries to match nodes by name or ID, so renamed buses/messages may still appear as differences even when the parameters inside line up.
+    - Right-click on the Compare side to see context-aware merge descriptions and to invoke the same `<`/`<<` actions without moving your mouse to the buttons.
+    - After closing the dialog with Save, use the standard System Monitor workflow to save the project and to revisit any downstream logging or download steps.
