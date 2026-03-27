@@ -2,14 +2,14 @@
 {% block tabs %}
 {{ super() }}
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
 --bg:#06080C;--s1:#0C0E14;--s2:#12141C;--brd:#1A1D26;--brd2:#252830;
---t1:#F0F1F3;--t2:#9498A5;--t3:#5A5E6E;
+--t1:#F0F1F3;--t2:#9498A5;--t3:#7C8099;
 --orange:#ED6D20;--orange2:#F59E0B;--teal:#148E8E;--blue:#3B82F6;--purple:#A855F7;--red:#EF4444;--green:#22C55E;
---sans:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',serif;
+--sans:'Montserrat',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',serif;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased}
@@ -46,10 +46,22 @@ a{color:inherit;text-decoration:none}
 .nav-cta{font-size:12px;font-weight:600;padding:8px 18px;border-radius:8px;background:var(--orange);color:#fff;transition:all 0.2s}
 .nav-cta:hover{background:#D45E18;transform:translateY(-1px)} */
 
+/* ═══ SECTION SEPARATION ═══ */
+.section-alt{background:var(--s1)}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--brd2) 20%,var(--brd2) 80%,transparent);margin:0}
+.section-glow{position:relative}
+.section-glow::after{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:min(600px,80vw);height:200px;background:radial-gradient(ellipse at center top,rgba(237,109,32,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* Vehicle glow backdrop */
+.vehicle-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;height:180px;background:radial-gradient(ellipse,rgba(237,109,32,0.06) 0%,rgba(237,109,32,0.02) 40%,transparent 70%);pointer-events:none;border-radius:50%;z-index:0}
+
+/* Pulse origin — centred in hero visual */
+.pulse-origin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1}
+
 /* ═══ HERO ═══ */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:2rem}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%}
-.hero-text h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);font-weight:400;line-height:1.05;margin-bottom:1.2rem}
+.hero-text h1{font-family:var(--sans);font-size:clamp(2rem,3.8vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem}
 .hero-text h1 em{font-style:italic;color:var(--orange)}
 .hero-text p{font-size:1.1rem;color:var(--t2);line-height:1.7;max-width:440px;margin-bottom:2rem}
 .hero-actions{display:flex;gap:1rem}
@@ -59,18 +71,24 @@ a{color:inherit;text-decoration:none}
 .btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:var(--brd2)}
 
 /* Hero visual + HUD */
-.hero-visual{position:relative;height:480px}
-.car-container{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.hud-grid{position:absolute;top:20px;right:0;display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.hud-cell{background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.04);border-radius:6px;padding:6px 12px;min-width:96px}
+.hero-visual{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.4rem;padding:1rem 0}
+.svg-wrap{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
+.car-container{position:relative;z-index:1;width:100%;max-width:440px}
+.car-container svg{width:min(440px,100%);height:auto;display:block}
+.hud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%}
+.hud-cell{background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:7px 10px;overflow:hidden}
 .hud-k{font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3)}
-.hud-v{font-family:var(--mono);font-size:18px;font-weight:600;line-height:1.3}
+.hud-v{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hud-v.or{color:var(--orange)}.hud-v.tl{color:var(--teal)}.hud-v.bl{color:var(--blue)}
+/* Mini value bar */
+.hud-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:1.5px;margin-top:6px;overflow:hidden}
+.hud-bar-fill{height:100%;width:0%;border-radius:1.5px;transition:width 0.4s ease}
+.hud-bar-fill.or{background:var(--orange)}.hud-bar-fill.tl{background:var(--teal)}.hud-bar-fill.bl{background:var(--blue)}
 
-/* Radio pulse */
-.radio-ring{position:absolute;border:1px solid rgba(245,158,11,0.25);border-radius:50%;animation:ringpulse 3s ease-out infinite;opacity:0}
-.radio-ring:nth-child(2){animation-delay:1s}.radio-ring:nth-child(3){animation-delay:2s}
-@keyframes ringpulse{0%{width:10px;height:10px;margin:-5px 0 0 -5px;opacity:0.5}100%{width:140px;height:140px;margin:-70px 0 0 -70px;opacity:0}}
+/* Radio pulse — rings only, no dot */
+.radio-ring{position:absolute;top:50%;left:50%;border:1px solid rgba(245,158,11,0.22);border-radius:50%;animation:ringpulse 4s ease-out infinite;opacity:0}
+.radio-ring:nth-child(1){animation-delay:0s}.radio-ring:nth-child(2){animation-delay:1.4s}.radio-ring:nth-child(3){animation-delay:2.8s}
+@keyframes ringpulse{0%{width:20px;height:20px;margin:-10px 0 0 -10px;opacity:0.5}100%{width:300px;height:300px;margin:-150px 0 0 -150px;opacity:0}}
 
 /* Scrolling trace line in hero */
 .hero-trace{position:absolute;bottom:0;left:0;right:0;height:60px;overflow:hidden;opacity:0.5}
@@ -87,9 +105,8 @@ a{color:inherit;text-decoration:none}
 
 /* ═══ PIPELINE SECTION ═══ */
 .pipeline-section{padding:8rem 0;position:relative}
-.pipeline-section::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--brd) 10%,var(--brd) 90%,transparent)}
 .section-label{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
-.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.12;margin-bottom:0.75rem}
+.section-title{font-family:var(--sans);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.12;letter-spacing:-0.015em;margin-bottom:0.75rem}
 .section-desc{font-size:1.05rem;color:var(--t2);max-width:520px;line-height:1.7}
 
 /* Pipeline animated diagram */
@@ -176,7 +193,7 @@ a{color:inherit;text-decoration:none}
 /* ═══ CTA ═══ */
 .cta-section{padding:8rem 0;text-align:center;position:relative}
 .cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(237,109,32,0.06) 0%,transparent 70%);pointer-events:none}
-.cta-section h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;margin-bottom:0.75rem;position:relative}
+.cta-section h2{font-family:var(--sans);font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.015em;margin-bottom:0.75rem;position:relative}
 .cta-section p{color:var(--t2);font-size:1.05rem;margin-bottom:2rem;position:relative}
 
 /* ═══ RESPONSIVE ═══ */
@@ -186,12 +203,13 @@ a{color:inherit;text-decoration:none}
 .container{width:100%;padding:0 1.5rem}
 .hero-grid{grid-template-columns:1fr;text-align:center}
 .hero-text p{margin:0 auto 2rem}
-.hero-visual{height:300px}
+.hero-visual{padding:0.5rem 0}
+.car-container svg{width:min(320px,100%)}
 .hero-actions{justify-content:center;flex-wrap:wrap}
 .comms-grid{grid-template-columns:1fr}
 .fam-grid{grid-template-columns:repeat(2,1fr)}
 .nav-links{display:none}
-.hud-grid{position:relative;top:0;right:0;margin-bottom:1rem;justify-content:center}
+.hud-grid{grid-template-columns:repeat(3,1fr)}
 .pipeline-section{padding:5rem 0}
 .comms-section{padding:4rem 0}
 .families-section{padding:4rem 0}
@@ -219,7 +237,7 @@ a{color:inherit;text-decoration:none}
 .hero-grid{gap:1.5rem}
 .hero-text h1{font-size:clamp(2rem,8vw,3rem)}
 .hero-text p{font-size:0.95rem;line-height:1.6}
-.hero-visual{height:220px}
+.hero-visual{padding:0}
 
 /* Industry toggle: compact pills */
 .industry-toggle{gap:1px;padding:2px;border-radius:10px}
@@ -233,7 +251,7 @@ a{color:inherit;text-decoration:none}
 .hud-v{font-size:14px}
 
 /* Vehicle SVG: scale down */
-.car-container svg{width:200px;height:auto}
+.car-container svg{width:min(260px,100%);max-width:unset;height:auto}
 
 /* Buttons */
 .hero-actions{gap:0.75rem}
@@ -283,25 +301,59 @@ a{color:inherit;text-decoration:none}
 0%{transform:translateY(0)}
 100%{transform:translateY(-50%)}
 }
+
+/* ═══ ACCESSIBILITY ═══ */
+/* Skip link */
+.skip-link{position:absolute;top:-48px;left:1rem;z-index:9999;padding:10px 20px;background:var(--orange);color:#fff;font-weight:700;font-size:14px;border-radius:0 0 8px 8px;text-decoration:none;transition:top 0.2s}
+.skip-link:focus{top:0;outline:2px solid #fff;outline-offset:2px}
+
+/* Visually hidden utility */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Focus indicators — visible keyboard focus on all interactive elements */
+.industry-btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:10px}
+.btn-primary:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:12px}
+.btn-ghost:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:12px}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+/* Stats ticker: pause on keyboard focus too */
+.stats-track:focus-within{animation-play-state:paused}
+
+/* Reduced motion — respect user preference */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .reveal.visible{opacity:1;transform:none}
+  .fade-content{transition:none}
+  .radio-ring{animation:none;opacity:0}
+  .stats-track{animation:none;overflow-x:auto}
+  .comms-scroll-pit,.comms-scroll-fac{animation:none;position:static}
+  .pkt{display:none}
+  .comms-dot-live{animation:none}
+}
 </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<main id="main-content">
+
 <!-- ═══ HERO ═══ -->
-<section class="hero">
+<section class="hero" aria-labelledby="hero-h1">
 <div class="container">
 <div class="hero-grid">
 <div class="hero-text">
 <!-- Industry toggle -->
 <div class="hero-toggle-wrap">
-<div class="industry-toggle" id="industry-toggle">
-<button class="industry-btn active" data-industry="motorsport"><span class="ind-icon">&#9881;</span> Motorsport</button>
-<button class="industry-btn" data-industry="aerospace"><span class="ind-icon">&#9992;</span> Aerospace</button>
-<button class="industry-btn" data-industry="research"><span class="ind-icon">&#9762;</span> Research</button>
-<button class="industry-btn" data-industry="robotics"><span class="ind-icon">&#11044;</span> Robotics</button>
+<div class="industry-toggle" id="industry-toggle" role="tablist" aria-label="Select industry">
+<button class="industry-btn active" data-industry="motorsport" role="tab" aria-selected="true"><span class="ind-icon" aria-hidden="true">&#9881;</span> Motorsport</button>
+<button class="industry-btn" data-industry="aerospace" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#9992;</span> Aerospace</button>
+<button class="industry-btn" data-industry="research" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#9762;</span> Research</button>
+<button class="industry-btn" data-industry="robotics" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#11044;</span> Robotics</button>
 </div>
 </div>
-<div class="fade-content" id="hero-copy">
+<div class="fade-content" id="hero-copy" aria-live="polite" aria-atomic="true">
 <h1 id="hero-h1">Data at the speed of the <em>race</em></h1>
 <p id="hero-p">From TAG ECU to pit wall to factory — ATLAS turns raw telemetry into split-second decisions. Live. Every lap. Every session. Every season.</p>
 </div>
@@ -311,52 +363,35 @@ a{color:inherit;text-decoration:none}
 </div>
 </div>
 <div class="hero-visual">
-<div class="hud-grid" id="hud-grid">
-<div class="hud-cell"><div class="hud-k" id="hk0">Speed</div><div class="hud-v or" id="hv0">0</div></div>
-<div class="hud-cell"><div class="hud-k" id="hk1">Gear</div><div class="hud-v tl" id="hv1">N</div></div>
-<div class="hud-cell"><div class="hud-k" id="hk2">RPM</div><div class="hud-v bl" id="hv2">0</div></div>
-<div class="hud-cell"><div class="hud-k" id="hk3">ECU temp</div><div class="hud-v or" id="hv3">42°C</div></div>
-<div class="hud-cell"><div class="hud-k" id="hk4">Lap</div><div class="hud-v tl" id="hv4">1/58</div></div>
-<div class="hud-cell"><div class="hud-k" id="hk5">Throttle</div><div class="hud-v bl" id="hv5">0%</div></div>
-</div>
-<div class="car-container" id="vehicle-svg">
-<svg width="280" height="120" viewBox="0 0 300 120" fill="none" id="svg-motorsport">
-<g opacity="0.9">
-<rect x="18" y="22" width="8" height="56" rx="2" fill="#ED6D20" opacity="0.8"/>
-<path d="M26 27L62 31V69L26 73Z" fill="#1C1E28" stroke="#ED6D20" stroke-width="0.4" opacity="0.7"/>
-<path d="M62 29L125 33V67L62 71Z" fill="#13151D" stroke="rgba(255,255,255,0.06)" stroke-width="0.4"/>
-<path d="M80 22L132 24L137 31L85 29Z" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.4"/>
-<path d="M80 78L132 76L137 69L85 71Z" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.4"/>
-<ellipse cx="148" cy="50" rx="20" ry="11" fill="#06080C" stroke="rgba(255,255,255,0.1)" stroke-width="0.4"/>
-<path d="M165 36L268 44V56L165 64Z" fill="#13151D" stroke="rgba(255,255,255,0.05)" stroke-width="0.4"/>
-<rect x="270" y="16" width="6" height="68" rx="2" fill="#ED6D20" opacity="0.65"/>
-<rect x="268" y="12" width="12" height="8" rx="1.5" fill="#1C1E28" stroke="rgba(237,109,32,0.35)" stroke-width="0.4"/>
-<rect x="268" y="80" width="12" height="8" rx="1.5" fill="#1C1E28" stroke="rgba(237,109,32,0.35)" stroke-width="0.4"/>
-<ellipse cx="66" cy="16" rx="14" ry="6" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-<ellipse cx="66" cy="84" rx="14" ry="6" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-<ellipse cx="244" cy="18" rx="12" ry="5" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-<ellipse cx="244" cy="82" rx="12" ry="5" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-<line x1="48" y1="50" x2="48" y2="36" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-<circle cx="48" cy="34" r="2.5" fill="#F59E0B"/>
-</g>
-</svg>
-<div style="position:absolute;left:46px;top:30px">
+<div class="svg-wrap">
+<div class="vehicle-glow" aria-hidden="true"></div>
+<div class="car-container" id="vehicle-svg" aria-hidden="true"></div>
+<div class="pulse-origin" aria-hidden="true">
 <div class="radio-ring"></div><div class="radio-ring"></div><div class="radio-ring"></div>
 </div>
 </div>
+<div class="hud-grid" id="hud-grid">
+<div class="hud-cell" id="hc0"><div class="hud-k" id="hk0">Speed</div><div class="hud-v or" id="hv0">0</div><div class="hud-bar"><div class="hud-bar-fill or" id="hf0"></div></div></div>
+<div class="hud-cell" id="hc1"><div class="hud-k" id="hk1">Gear</div><div class="hud-v tl" id="hv1">N</div><div class="hud-bar"><div class="hud-bar-fill tl" id="hf1"></div></div></div>
+<div class="hud-cell" id="hc2"><div class="hud-k" id="hk2">RPM</div><div class="hud-v bl" id="hv2">0</div><div class="hud-bar"><div class="hud-bar-fill bl" id="hf2"></div></div></div>
+<div class="hud-cell" id="hc3"><div class="hud-k" id="hk3">ECU temp</div><div class="hud-v or" id="hv3">42°C</div><div class="hud-bar"><div class="hud-bar-fill or" id="hf3"></div></div></div>
+<div class="hud-cell" id="hc4"><div class="hud-k" id="hk4">Lap</div><div class="hud-v tl" id="hv4">1/58</div><div class="hud-bar"><div class="hud-bar-fill tl" id="hf4"></div></div></div>
+<div class="hud-cell" id="hc5"><div class="hud-k" id="hk5">Throttle</div><div class="hud-v bl" id="hv5">0%</div><div class="hud-bar"><div class="hud-bar-fill bl" id="hf5"></div></div></div>
 </div>
 </div>
 </div>
-<div class="hero-trace"><canvas id="hero-canvas"></canvas></div>
+</div>
+<div class="hero-trace" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
 </section>
 
 <!-- ═══ STATS TICKER ═══ -->
-<section class="stats">
-<div class="stats-track" id="stats-track"></div>
+<section class="stats" aria-label="Key statistics">
+<div class="stats-track" id="stats-track" aria-live="off"></div>
 </section>
 
 <!-- ═══ PIPELINE ═══ -->
-<section class="pipeline-section" id="pipeline">
+<div class="section-divider"></div>
+<section class="pipeline-section section-glow" id="pipeline" aria-labelledby="pipe-title">
 <div class="container">
 <div class="reveal">
 <div class="section-label">The data journey</div>
@@ -364,7 +399,7 @@ a{color:inherit;text-decoration:none}
 <p class="section-desc fade-content" id="pipe-desc">Every data point travels through a purpose-built pipeline — captured on the car, transmitted live, enriched with models, stored for the season, and surfaced wherever an engineer needs it.</p>
 </div>
 <div class="pipeline-vis reveal">
-<div class="pipeline-packets" id="pipe-pkts"></div>
+<div class="pipeline-packets" id="pipe-pkts" aria-hidden="true"></div>
 <div class="pipeline-nodes fade-content" id="pipe-nodes">
 <div class="p-node p-node-or">TAG ECU<span>On car</span></div>
 <div class="p-arrow">→</div>
@@ -389,7 +424,8 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- ═══ LIVE COMMS ═══ -->
-<section class="comms-section" id="comms">
+<div class="section-divider"></div>
+<section class="comms-section section-alt" id="comms" aria-labelledby="comms-title">
 <div class="container">
 <div class="reveal">
 <div class="section-label">Live insights</div>
@@ -401,11 +437,11 @@ a{color:inherit;text-decoration:none}
 <!-- LIVE PANEL -->
 <div class="comms-col">
 <div class="comms-header">
-<div class="comms-dot comms-dot-live"></div>
+<div class="comms-dot comms-dot-live" aria-hidden="true"></div>
 <div class="comms-h-label" id="live-label">Pit wall — lap 34/58</div>
-<div class="comms-h-time" id="pit-time">14:47:12</div>
+<div class="comms-h-time" id="pit-time" aria-hidden="true">14:47:12</div>
 </div>
-<div class="comms-body">
+<div class="comms-body" aria-hidden="true">
 <div class="comms-scroll comms-scroll-pit" id="pit-scroll"></div>
 </div>
 </div>
@@ -413,11 +449,11 @@ a{color:inherit;text-decoration:none}
 <!-- REMOTE PANEL -->
 <div class="comms-col">
 <div class="comms-header">
-<div class="comms-dot comms-dot-remote"></div>
+<div class="comms-dot comms-dot-remote" aria-hidden="true"></div>
 <div class="comms-h-label" id="remote-label">Factory — remote operations</div>
-<div class="comms-h-time" id="fac-time">14:47:14</div>
+<div class="comms-h-time" id="fac-time" aria-hidden="true">14:47:14</div>
 </div>
-<div class="comms-body">
+<div class="comms-body" aria-hidden="true">
 <div class="comms-scroll comms-scroll-fac" id="fac-scroll"></div>
 </div>
 </div>
@@ -427,11 +463,12 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- ═══ FAMILIES ═══ -->
-<section class="families-section" id="families">
+<div class="section-divider"></div>
+<section class="families-section section-glow" id="families" aria-labelledby="families-title">
 <div class="container">
 <div class="reveal">
 <div class="section-label">The platform</div>
-<h2 class="section-title">Five families.<br>One data journey.</h2>
+<h2 class="section-title" id="families-title">Five families.<br>One data journey.</h2>
 <p class="section-desc">Each family handles a stage of the telemetry lifecycle. Adopt what you need, scale as you grow.</p>
 </div>
 <div class="fam-grid reveal">
@@ -470,7 +507,8 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="cta-section">
+<div class="section-divider"></div>
+<section class="cta-section section-alt" aria-labelledby="cta-h2">
 <div class="container reveal">
 <h2 id="cta-h2">Ready to operate at the limit?</h2>
 <p id="cta-p">Every millisecond of data. Every decision that matters.</p>
@@ -480,6 +518,8 @@ a{color:inherit;text-decoration:none}
 </div>
 </div>
 </section>
+
+</main><!-- /#main-content -->
 
 <script>
 /* ═══════════════════════════════════════════
@@ -504,31 +544,69 @@ const INDUSTRIES = {
       const rpm=Math.floor(6000+(spd/340)*10000+500*Math.sin(st*5));
       const temp=Math.floor(80+30*Math.sin(st*0.15)+5*Math.random());
       const thr=Math.max(0,Math.min(100,Math.floor(50+50*Math.sin(st*0.8))));
+      const lap=Math.min(58,Math.floor(st*0.08)+1);
       return [
-        spd+' km/h', String(gear), (rpm/1000).toFixed(1)+'k',
-        temp+'°C', Math.min(58,Math.floor(st*0.08)+1)+'/58', thr+'%'
+        {v:spd+' km/h', pct:spd/340},
+        {v:String(gear), pct:gear/8},
+        {v:(rpm/1000).toFixed(1)+'k', pct:(rpm-6000)/10000},
+        {v:temp+'°C', pct:(temp-60)/60},
+        {v:lap+'/58', pct:lap/58},
+        {v:thr+'%', pct:thr/100}
       ];
     },
-    svg: `<svg width="280" height="120" viewBox="0 0 300 120" fill="none">
-      <g opacity="0.9">
-      <rect x="18" y="22" width="8" height="56" rx="2" fill="#ED6D20" opacity="0.8"/>
-      <path d="M26 27L62 31V69L26 73Z" fill="#1C1E28" stroke="#ED6D20" stroke-width="0.4" opacity="0.7"/>
-      <path d="M62 29L125 33V67L62 71Z" fill="#13151D" stroke="rgba(255,255,255,0.06)" stroke-width="0.4"/>
-      <path d="M80 22L132 24L137 31L85 29Z" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.4"/>
-      <path d="M80 78L132 76L137 69L85 71Z" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.4"/>
-      <ellipse cx="148" cy="50" rx="20" ry="11" fill="#06080C" stroke="rgba(255,255,255,0.1)" stroke-width="0.4"/>
-      <path d="M165 36L268 44V56L165 64Z" fill="#13151D" stroke="rgba(255,255,255,0.05)" stroke-width="0.4"/>
-      <rect x="270" y="16" width="6" height="68" rx="2" fill="#ED6D20" opacity="0.65"/>
-      <rect x="268" y="12" width="12" height="8" rx="1.5" fill="#1C1E28" stroke="rgba(237,109,32,0.35)" stroke-width="0.4"/>
-      <rect x="268" y="80" width="12" height="8" rx="1.5" fill="#1C1E28" stroke="rgba(237,109,32,0.35)" stroke-width="0.4"/>
-      <ellipse cx="66" cy="16" rx="14" ry="6" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-      <ellipse cx="66" cy="84" rx="14" ry="6" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-      <ellipse cx="244" cy="18" rx="12" ry="5" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-      <ellipse cx="244" cy="82" rx="12" ry="5" fill="#13151D" stroke="rgba(255,255,255,0.08)" stroke-width="0.4"/>
-      <line x1="48" y1="50" x2="48" y2="36" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="48" cy="34" r="2.5" fill="#F59E0B"/>
-      </g></svg>`,
-    radioPos: {left:'46px',top:'30px'},
+    svg: `<svg viewBox="0 15 220 93" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <filter id="gl"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="gls"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <!-- F1 steering wheel -->
+      <!-- outer rim — top arc -->
+      <path d="M38 88 C38 48 68 18 110 18 C152 18 182 48 182 88" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- flat bottom -->
+      <line x1="38" y1="88" x2="52" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="52" y1="100" x2="168" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="168" y1="100" x2="182" y2="88" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- grips (thicker sections) -->
+      <path d="M38 70 C36 76 36 82 38 88" stroke="rgba(255,255,255,0.35)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M182 70 C184 76 184 82 182 88" stroke="rgba(255,255,255,0.35)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <!-- centre display -->
+      <rect x="78" y="48" width="64" height="36" rx="4" stroke="rgba(237,109,32,0.5)" stroke-width="0.7" fill="rgba(237,109,32,0.04)"/>
+      <!-- display content — gear -->
+      <text x="110" y="76" text-anchor="middle" font-family="var(--mono)" font-size="22" font-weight="700" fill="#ED6D20" opacity="0.8">5</text>
+      <!-- display labels -->
+      <text x="86" y="57" font-family="var(--mono)" font-size="5" fill="rgba(255,255,255,0.3)" letter-spacing="0.08em">RPM</text>
+      <text x="120" y="57" font-family="var(--mono)" font-size="5" fill="rgba(255,255,255,0.3)" letter-spacing="0.08em">FUEL</text>
+      <!-- RPM bar -->
+      <rect x="86" y="59" width="24" height="2" rx="1" fill="rgba(237,109,32,0.15)"/>
+      <rect x="86" y="59" width="18" height="2" rx="1" fill="rgba(237,109,32,0.5)"/>
+      <!-- fuel bar -->
+      <rect x="120" y="59" width="16" height="2" rx="1" fill="rgba(20,142,142,0.15)"/>
+      <rect x="120" y="59" width="11" height="2" rx="1" fill="rgba(20,142,142,0.5)"/>
+      <!-- LED rev lights -->
+      <circle cx="82" cy="44" r="1.8" fill="rgba(34,197,94,0.7)" filter="url(#gls)"/>
+      <circle cx="88" cy="42" r="1.8" fill="rgba(34,197,94,0.7)" filter="url(#gls)"/>
+      <circle cx="94" cy="41" r="1.8" fill="rgba(34,197,94,0.6)" filter="url(#gls)"/>
+      <circle cx="100" cy="40.5" r="1.8" fill="rgba(245,158,11,0.7)" filter="url(#gls)"/>
+      <circle cx="106" cy="40.2" r="1.8" fill="rgba(245,158,11,0.7)" filter="url(#gls)"/>
+      <circle cx="114" cy="40.2" r="1.8" fill="rgba(245,158,11,0.7)" filter="url(#gls)"/>
+      <circle cx="120" cy="40.5" r="1.8" fill="rgba(239,68,68,0.7)" filter="url(#gls)"/>
+      <circle cx="126" cy="41" r="1.8" fill="rgba(239,68,68,0.6)" filter="url(#gls)"/>
+      <circle cx="132" cy="42" r="1.8" fill="rgba(239,68,68,0.5)" filter="url(#gls)"/>
+      <circle cx="138" cy="44" r="1.8" fill="rgba(239,68,68,0.4)"/>
+      <!-- paddle shifters -->
+      <path d="M34 62 L24 56 L24 78 L34 72" stroke="rgba(255,255,255,0.15)" stroke-width="0.7" fill="rgba(255,255,255,0.03)"/>
+      <path d="M186 62 L196 56 L196 78 L186 72" stroke="rgba(255,255,255,0.15)" stroke-width="0.7" fill="rgba(255,255,255,0.03)"/>
+      <!-- rotary dials -->
+      <circle cx="66" cy="50" r="6" stroke="rgba(168,85,247,0.35)" stroke-width="0.5" fill="rgba(168,85,247,0.04)"/>
+      <line x1="66" y1="44" x2="66" y2="47" stroke="rgba(168,85,247,0.5)" stroke-width="0.6"/>
+      <circle cx="154" cy="50" r="6" stroke="rgba(20,142,142,0.35)" stroke-width="0.5" fill="rgba(20,142,142,0.04)"/>
+      <line x1="157" y1="46" x2="155" y2="48" stroke="rgba(20,142,142,0.5)" stroke-width="0.6"/>
+      <!-- buttons -->
+      <circle cx="72" cy="90" r="3" stroke="rgba(237,109,32,0.3)" stroke-width="0.5" fill="rgba(237,109,32,0.06)"/>
+      <circle cx="84" cy="94" r="3" stroke="rgba(59,130,246,0.3)" stroke-width="0.5" fill="rgba(59,130,246,0.06)"/>
+      <circle cx="136" cy="94" r="3" stroke="rgba(34,197,94,0.3)" stroke-width="0.5" fill="rgba(34,197,94,0.06)"/>
+      <circle cx="148" cy="90" r="3" stroke="rgba(239,68,68,0.3)" stroke-width="0.5" fill="rgba(239,68,68,0.06)"/>
+    </svg>`,
     pipeline: {
       desc:'Every data point travels through a purpose-built pipeline — captured on the car, transmitted live, enriched with models, stored for the season, and surfaced wherever an engineer needs it.',
       nodes:[
@@ -540,9 +618,9 @@ const INDUSTRIES = {
       ]
     },
     stats:[
-      {v:'30+',l:'Years in elite motorsport'},{v:'<1ms',l:'Telemetry latency'},{v:'1000+',l:'Parameters per session'},
+      {v:'30+',l:'Years in motorsport'},{v:'<1ms',l:'Telemetry latency'},{v:'1000+',l:'Parameters per session'},
       {v:'5',l:'Capability families'},{v:'Live',l:'Remote factory access'},{v:'∞',l:'Sessions searchable'},
-      {v:'F1',l:'Proven heritage'},{v:'Kafka',l:'Open streaming'},{v:'Simulink',l:'Model execution'}
+      {v:'F1',l:'Proven heritage'},{v:'Simulink',l:'Model execution'},{v:'Secure',l:'Team-level data isolation'}
     ],
     comms:{
       liveLabel:'Pit wall — lap 34/58',
@@ -592,43 +670,58 @@ const INDUSTRIES = {
     ],
     hudTick(st){
       const alt=Math.max(0,Math.floor(32000+8000*Math.sin(st*0.12)+500*Math.sin(st*0.7)));
-      const mach=(0.78+0.12*Math.sin(st*0.15)).toFixed(2);
-      const gload=(1.0+0.8*Math.sin(st*0.5)+0.3*Math.sin(st*2.1)).toFixed(1);
+      const machN=0.78+0.12*Math.sin(st*0.15);
+      const gloadN=1.0+0.8*Math.sin(st*0.5)+0.3*Math.sin(st*2.1);
       const egt=Math.floor(620+60*Math.sin(st*0.2)+10*Math.random());
       const fuel=Math.floor(2400+400*Math.sin(st*0.18));
       const hdg=Math.floor(((st*3)%360+360)%360);
       return [
-        alt.toLocaleString()+' ft', 'M '+mach, gload+'g',
-        egt+'°C', fuel+' kg/h', String(hdg).padStart(3,'0')+'°'
+        {v:alt.toLocaleString()+' ft', pct:alt/40000},
+        {v:'M '+machN.toFixed(2), pct:(machN-0.6)/0.4},
+        {v:gloadN.toFixed(1)+'g', pct:Math.max(0,(gloadN+0.5)/3)},
+        {v:egt+'°C', pct:(egt-560)/160},
+        {v:fuel+' kg/h', pct:(fuel-1600)/1600},
+        {v:String(hdg).padStart(3,'0')+'°', pct:hdg/360}
       ];
     },
-    svg: `<svg width="280" height="120" viewBox="0 0 300 120" fill="none">
-      <g opacity="0.9">
-      <!-- fuselage -->
-      <ellipse cx="150" cy="56" rx="120" ry="10" fill="#13151D" stroke="rgba(237,109,32,0.3)" stroke-width="0.5"/>
-      <!-- nose -->
-      <path d="M30 56 L60 50 L60 62 Z" fill="#1C1E28" stroke="#ED6D20" stroke-width="0.4"/>
-      <!-- cockpit -->
-      <ellipse cx="72" cy="53" rx="8" ry="5" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.3)" stroke-width="0.4"/>
-      <!-- wings -->
-      <path d="M130 56 L100 16 L170 16 L160 56" fill="#1C1E28" stroke="rgba(237,109,32,0.2)" stroke-width="0.4"/>
-      <path d="M130 56 L100 96 L170 96 L160 56" fill="#1C1E28" stroke="rgba(237,109,32,0.2)" stroke-width="0.4"/>
-      <!-- engines -->
-      <ellipse cx="125" cy="28" rx="10" ry="5" fill="#0C0E14" stroke="rgba(245,158,11,0.3)" stroke-width="0.5"/>
-      <ellipse cx="125" cy="84" rx="10" ry="5" fill="#0C0E14" stroke="rgba(245,158,11,0.3)" stroke-width="0.5"/>
-      <!-- tail -->
-      <path d="M260 56 L272 30 L280 30 L270 56" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.4"/>
-      <path d="M260 56 L270 56 L280 30" fill="none" stroke="rgba(237,109,32,0.15)" stroke-width="0.3"/>
-      <!-- h-stab -->
-      <path d="M255 56 L268 42 L280 42 L268 56" fill="#1C1E28" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
-      <path d="M255 56 L268 70 L280 70 L268 56" fill="#1C1E28" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
-      <!-- antenna -->
-      <line x1="145" y1="46" x2="145" y2="34" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"/>
-      <circle cx="145" cy="32" r="2" fill="#F59E0B"/>
-      </g></svg>`,
-    radioPos: {left:'143px',top:'24px'},
+    svg: `<svg viewBox="0 12 220 110" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <filter id="gla"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glas"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <!-- Aircraft yoke — W-shape control column -->
+      <!-- yoke horns -->
+      <path d="M30 60 C30 30 60 15 110 15 C160 15 190 30 190 60" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- grips -->
+      <path d="M30 55 C28 62 28 68 32 74" stroke="rgba(255,255,255,0.35)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M190 55 C192 62 192 68 188 74" stroke="rgba(255,255,255,0.35)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <!-- cross bar -->
+      <line x1="32" y1="74" x2="188" y2="74" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- column -->
+      <path d="M100 74 L95 105 C93 112 127 112 125 105 L120 74" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <!-- PFD display -->
+      <rect x="68" y="38" width="84" height="30" rx="3" stroke="rgba(59,130,246,0.45)" stroke-width="0.7" fill="rgba(59,130,246,0.04)"/>
+      <!-- artificial horizon -->
+      <line x1="74" y1="53" x2="146" y2="53" stroke="rgba(59,130,246,0.2)" stroke-width="0.4"/>
+      <path d="M100 53 L107 47 L113 47 L120 53" stroke="rgba(245,158,11,0.5)" stroke-width="0.7" fill="none"/>
+      <!-- heading -->
+      <text x="110" y="63" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="rgba(34,197,94,0.6)" letter-spacing="0.1em">HDG 270</text>
+      <!-- altitude tape -->
+      <text x="142" y="48" text-anchor="end" font-family="var(--mono)" font-size="6" fill="rgba(59,130,246,0.5)">FL320</text>
+      <!-- speed tape -->
+      <text x="78" y="48" font-family="var(--mono)" font-size="6" fill="rgba(237,109,32,0.5)">M.82</text>
+      <!-- thumb buttons on grips -->
+      <circle cx="34" cy="58" r="3" stroke="rgba(239,68,68,0.35)" stroke-width="0.5" fill="rgba(239,68,68,0.06)"/>
+      <circle cx="186" cy="58" r="3" stroke="rgba(237,109,32,0.35)" stroke-width="0.5" fill="rgba(237,109,32,0.06)"/>
+      <!-- trim switches -->
+      <rect x="24" y="64" width="6" height="4" rx="1" stroke="rgba(255,255,255,0.15)" stroke-width="0.4" fill="none"/>
+      <rect x="190" y="64" width="6" height="4" rx="1" stroke="rgba(255,255,255,0.15)" stroke-width="0.4" fill="none"/>
+      <!-- autopilot status -->
+      <rect x="90" y="28" width="40" height="8" rx="2" stroke="rgba(34,197,94,0.3)" stroke-width="0.5" fill="rgba(34,197,94,0.04)"/>
+      <text x="110" y="34" text-anchor="middle" font-family="var(--mono)" font-size="5" fill="rgba(34,197,94,0.6)" letter-spacing="0.1em">AP ENG</text>
+    </svg>`,
     pipeline: {
-      desc:'Sensor data flows from the airframe through secure links to ground operations, where models enrich it in real time — then stored across the fleet for trend analysis, fatigue tracking, and certification.',
+      desc:'Sensor data flows from the airframe through data links to ground operations, where models enrich it in real time — then stored across the fleet for trend analysis and fatigue tracking.',
       nodes:[
         {name:'FDR / DAU',sub:'On airframe',c:'or'},{name:'Satcom',sub:'Air-ground link',c:'am'},
         {name:'ADS',sub:'Ground ingest',c:'bl'},{name:'vTAG',sub:'Flight models',c:'pu'},
@@ -638,9 +731,9 @@ const INDUSTRIES = {
       ]
     },
     stats:[
-      {v:'1000+',l:'Parameters per airframe'},{v:'<1ms',l:'Telemetry latency'},{v:'Real-time',l:'In-flight monitoring'},
+      {v:'1000+',l:'Parameters per airframe'},{v:'<1ms',l:'Data latency'},{v:'Real-time',l:'In-flight monitoring'},
       {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site fleet ops'},{v:'∞',l:'Sorties searchable'},
-      {v:'MIL/DO',l:'Standards alignment'},{v:'Kafka',l:'Open streaming'},{v:'Simulink',l:'Model execution'}
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Operations centre — sortie 7 active',
@@ -687,49 +780,62 @@ const INDUSTRIES = {
     ],
     hudTick(st){
       const temp=Math.floor(312+8*Math.sin(st*0.1)+2*Math.random());
-      const pres=(155+5*Math.sin(st*0.08)+Math.random()).toFixed(1);
-      const flux=(2.4e13+1e12*Math.sin(st*0.05)).toExponential(1);
+      const presN=155+5*Math.sin(st*0.08)+Math.random();
+      const fluxN=2.4e13+1e12*Math.sin(st*0.05);
       const flow=Math.floor(18400+600*Math.sin(st*0.12));
       const power=(Math.floor(96+3*Math.sin(st*0.06)));
       const statuses=['NOMINAL','NOMINAL','NOMINAL','NOMINAL','CAUTION'];
       const status=statuses[Math.floor((st*0.1)%statuses.length)];
       return [
-        temp+'°C', pres+' bar', flux+' n/cm²',
-        flow.toLocaleString()+' l/h', power+'%', status
+        {v:temp+'°C', pct:(temp-300)/30},
+        {v:presN.toFixed(1)+' bar', pct:(presN-148)/14},
+        {v:fluxN.toExponential(1)+' n/cm²', pct:0.5+0.5*Math.sin(st*0.05)},
+        {v:flow.toLocaleString()+' l/h', pct:(flow-17000)/2000},
+        {v:power+'%', pct:power/100},
+        {v:status, pct:status==='NOMINAL'?1:0.4}
       ];
     },
-    svg: `<svg width="280" height="140" viewBox="0 0 300 140" fill="none">
-      <g opacity="0.9">
-      <!-- containment -->
-      <circle cx="120" cy="70" r="45" fill="none" stroke="rgba(237,109,32,0.25)" stroke-width="0.8"/>
-      <circle cx="120" cy="70" r="35" fill="#0C0E14" stroke="rgba(59,130,246,0.2)" stroke-width="0.5"/>
-      <circle cx="120" cy="70" r="20" fill="#13151D" stroke="rgba(168,85,247,0.25)" stroke-width="0.5"/>
-      <!-- core glow -->
-      <circle cx="120" cy="70" r="8" fill="rgba(237,109,32,0.08)"/>
-      <circle cx="120" cy="70" r="4" fill="rgba(237,109,32,0.15)"/>
-      <!-- coolant pipes -->
-      <line x1="165" y1="55" x2="220" y2="45" stroke="rgba(20,142,142,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="165" y1="85" x2="220" y2="95" stroke="rgba(59,130,246,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-      <!-- heat exchanger -->
-      <rect x="220" y="35" width="40" height="70" rx="4" fill="#13151D" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
-      <line x1="228" y1="45" x2="252" y2="45" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <line x1="228" y1="55" x2="252" y2="55" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <line x1="228" y1="65" x2="252" y2="65" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <line x1="228" y1="75" x2="252" y2="75" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <line x1="228" y1="85" x2="252" y2="85" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <line x1="228" y1="95" x2="252" y2="95" stroke="rgba(245,158,11,0.15)" stroke-width="0.4"/>
-      <!-- sensor nodes -->
-      <circle cx="83" cy="45" r="3" fill="rgba(237,109,32,0.5)"/>
-      <circle cx="157" cy="55" r="3" fill="rgba(59,130,246,0.5)"/>
-      <circle cx="95" cy="100" r="3" fill="rgba(20,142,142,0.5)"/>
-      <circle cx="145" cy="95" r="3" fill="rgba(168,85,247,0.5)"/>
-      <!-- antenna -->
-      <line x1="120" y1="25" x2="120" y2="12" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"/>
-      <circle cx="120" cy="10" r="2" fill="#F59E0B"/>
-      </g></svg>`,
-    radioPos: {left:'118px',top:'2px'},
+    svg: `<svg viewBox="0 12 220 111" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <filter id="glr"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glrs"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <!-- Control panel — gauges + indicators -->
+      <!-- main panel frame -->
+      <rect x="20" y="15" width="180" height="100" rx="6" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" fill="rgba(255,255,255,0.02)"/>
+      <!-- primary gauge (large) -->
+      <circle cx="80" cy="55" r="32" stroke="rgba(237,109,32,0.35)" stroke-width="0.7" fill="none"/>
+      <path d="M52 72 A32 32 0 0 1 52 38" stroke="rgba(237,109,32,0.15)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M52 72 A32 32 0 0 1 65 30" stroke="rgba(237,109,32,0.45)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <!-- needle -->
+      <line x1="80" y1="55" x2="67" y2="33" stroke="rgba(237,109,32,0.7)" stroke-width="0.8" stroke-linecap="round"/>
+      <circle cx="80" cy="55" r="2.5" fill="rgba(237,109,32,0.4)"/>
+      <!-- gauge label -->
+      <text x="80" y="78" text-anchor="middle" font-family="var(--mono)" font-size="5" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">TEMP °C</text>
+      <text x="80" y="68" text-anchor="middle" font-family="var(--mono)" font-size="10" font-weight="600" fill="rgba(237,109,32,0.6)">312</text>
+      <!-- secondary gauge -->
+      <circle cx="155" cy="42" r="20" stroke="rgba(59,130,246,0.3)" stroke-width="0.6" fill="none"/>
+      <path d="M138 54 A20 20 0 0 1 142 26" stroke="rgba(59,130,246,0.15)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M138 54 A20 20 0 0 1 148 25" stroke="rgba(59,130,246,0.45)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <line x1="155" y1="42" x2="149" y2="27" stroke="rgba(59,130,246,0.6)" stroke-width="0.7" stroke-linecap="round"/>
+      <circle cx="155" cy="42" r="2" fill="rgba(59,130,246,0.35)"/>
+      <text x="155" y="55" text-anchor="middle" font-family="var(--mono)" font-size="4" fill="rgba(255,255,255,0.25)" letter-spacing="0.1em">PRESSURE</text>
+      <!-- tertiary gauge -->
+      <circle cx="155" cy="85" r="16" stroke="rgba(20,142,142,0.3)" stroke-width="0.6" fill="none"/>
+      <path d="M141 94 A16 16 0 0 1 145 72" stroke="rgba(20,142,142,0.4)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <line x1="155" y1="85" x2="147" y2="74" stroke="rgba(20,142,142,0.6)" stroke-width="0.6" stroke-linecap="round"/>
+      <circle cx="155" cy="85" r="1.5" fill="rgba(20,142,142,0.35)"/>
+      <text x="155" y="96" text-anchor="middle" font-family="var(--mono)" font-size="4" fill="rgba(255,255,255,0.25)" letter-spacing="0.1em">FLOW</text>
+      <!-- status indicators row -->
+      <rect x="28" y="94" width="8" height="8" rx="1.5" stroke="rgba(34,197,94,0.3)" stroke-width="0.4" fill="rgba(34,197,94,0.12)"/>
+      <rect x="40" y="94" width="8" height="8" rx="1.5" stroke="rgba(34,197,94,0.3)" stroke-width="0.4" fill="rgba(34,197,94,0.12)"/>
+      <rect x="52" y="94" width="8" height="8" rx="1.5" stroke="rgba(245,158,11,0.3)" stroke-width="0.4" fill="rgba(245,158,11,0.1)"/>
+      <rect x="64" y="94" width="8" height="8" rx="1.5" stroke="rgba(34,197,94,0.3)" stroke-width="0.4" fill="rgba(34,197,94,0.12)"/>
+      <!-- panel label -->
+      <text x="30" y="25" font-family="var(--mono)" font-size="5" fill="rgba(255,255,255,0.2)" letter-spacing="0.12em">FACILITY MONITOR</text>
+    </svg>`,
     pipeline: {
-      desc:'Thousands of sensors feed data continuously from the facility through hardened networks, enriched with simulation models in real time, stored for regulatory compliance and long-term trend analysis.',
+      desc:'Thousands of sensors feed data continuously from the facility through dedicated networks, enriched with simulation models in real time, and stored for long-term trend analysis.',
       nodes:[
         {name:'Sensor array',sub:'Facility',c:'or'},{name:'Data bus',sub:'Hardened net',c:'am'},
         {name:'ADS',sub:'Data ingest',c:'bl'},{name:'vTAG',sub:'Physics models',c:'pu'},
@@ -741,7 +847,7 @@ const INDUSTRIES = {
     stats:[
       {v:'10,000+',l:'Parameters per facility'},{v:'<1ms',l:'Data latency'},{v:'Continuous',l:'24/7 monitoring'},
       {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site operations'},{v:'∞',l:'Campaigns searchable'},
-      {v:'Nuclear',l:'Safety-grade heritage'},{v:'Kafka',l:'Open streaming'},{v:'Simulink',l:'Model execution'}
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Control room — run 14 active',
@@ -794,43 +900,63 @@ const INDUSTRIES = {
       const modes=['AUTO','AUTO','AUTO','GUIDED','AUTO'];
       const mode=modes[Math.floor((st*0.08)%modes.length)];
       return [
-        alt+'m AGL', String(hdg).padStart(3,'0')+'°', batt+'%',
-        sig+'%', payload, mode
+        {v:alt+'m AGL', pct:alt/160},
+        {v:String(hdg).padStart(3,'0')+'°', pct:hdg/360},
+        {v:batt+'%', pct:batt/100},
+        {v:sig+'%', pct:(sig-60)/40},
+        {v:payload, pct:0.75},
+        {v:mode, pct:mode==='AUTO'?1:0.6}
       ];
     },
-    svg: `<svg width="280" height="120" viewBox="0 0 300 120" fill="none">
-      <g opacity="0.9">
-      <!-- central body -->
-      <rect x="120" y="42" width="60" height="36" rx="6" fill="#13151D" stroke="rgba(237,109,32,0.3)" stroke-width="0.5"/>
-      <!-- camera dome -->
-      <ellipse cx="150" cy="82" rx="10" ry="5" fill="#0C0E14" stroke="rgba(59,130,246,0.3)" stroke-width="0.5"/>
-      <!-- arms -->
-      <line x1="124" y1="46" x2="60" y2="22" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-      <line x1="176" y1="46" x2="240" y2="22" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-      <line x1="124" y1="74" x2="60" y2="98" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-      <line x1="176" y1="74" x2="240" y2="98" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
-      <!-- motors -->
-      <circle cx="60" cy="22" r="8" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.5"/>
-      <circle cx="240" cy="22" r="8" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.5"/>
-      <circle cx="60" cy="98" r="8" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.5"/>
-      <circle cx="240" cy="98" r="8" fill="#1C1E28" stroke="rgba(237,109,32,0.25)" stroke-width="0.5"/>
-      <!-- rotor discs -->
-      <ellipse cx="60" cy="22" rx="18" ry="4" fill="none" stroke="rgba(237,109,32,0.12)" stroke-width="0.4" stroke-dasharray="3 2"/>
-      <ellipse cx="240" cy="22" rx="18" ry="4" fill="none" stroke="rgba(237,109,32,0.12)" stroke-width="0.4" stroke-dasharray="3 2"/>
-      <ellipse cx="60" cy="98" rx="18" ry="4" fill="none" stroke="rgba(237,109,32,0.12)" stroke-width="0.4" stroke-dasharray="3 2"/>
-      <ellipse cx="240" cy="98" rx="18" ry="4" fill="none" stroke="rgba(237,109,32,0.12)" stroke-width="0.4" stroke-dasharray="3 2"/>
-      <!-- GPS antenna -->
-      <line x1="150" y1="42" x2="150" y2="28" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round"/>
-      <circle cx="150" cy="26" r="2" fill="#F59E0B"/>
-      <!-- LEDs -->
-      <circle cx="130" cy="48" r="2" fill="rgba(34,197,94,0.6)"/>
-      <circle cx="170" cy="48" r="2" fill="rgba(239,68,68,0.6)"/>
-      </g></svg>`,
-    radioPos: {left:'148px',top:'18px'},
+    svg: `<svg viewBox="0 20 220 101" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <filter id="gld"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <!-- Ground controller — dual stick + screen -->
+      <!-- controller body -->
+      <rect x="22" y="30" width="176" height="85" rx="10" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" fill="rgba(255,255,255,0.02)"/>
+      <!-- screen -->
+      <rect x="52" y="36" width="116" height="52" rx="4" stroke="rgba(237,109,32,0.4)" stroke-width="0.6" fill="rgba(237,109,32,0.03)"/>
+      <!-- map grid on screen -->
+      <line x1="58" y1="48" x2="162" y2="48" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <line x1="58" y1="58" x2="162" y2="58" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <line x1="58" y1="68" x2="162" y2="68" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <line x1="78" y1="40" x2="78" y2="84" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <line x1="110" y1="40" x2="110" y2="84" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <line x1="142" y1="40" x2="142" y2="84" stroke="rgba(255,255,255,0.04)" stroke-width="0.3"/>
+      <!-- waypoint path -->
+      <path d="M68 72 L88 52 L108 58 L130 44 L150 50 L158 46" stroke="rgba(237,109,32,0.45)" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- waypoint dots -->
+      <circle cx="88" cy="52" r="2" fill="rgba(237,109,32,0.5)" filter="url(#gld)"/>
+      <circle cx="108" cy="58" r="2" fill="rgba(237,109,32,0.5)" filter="url(#gld)"/>
+      <circle cx="130" cy="44" r="2" fill="rgba(237,109,32,0.5)" filter="url(#gld)"/>
+      <circle cx="150" cy="50" r="2" fill="rgba(237,109,32,0.5)" filter="url(#gld)"/>
+      <!-- vehicle icon on map -->
+      <path d="M68 72 L64 76 L72 76Z" fill="rgba(34,197,94,0.7)" filter="url(#gld)"/>
+      <!-- telemetry bar on screen -->
+      <rect x="55" y="78" width="30" height="3" rx="1" fill="rgba(34,197,94,0.15)"/>
+      <rect x="55" y="78" width="22" height="3" rx="1" fill="rgba(34,197,94,0.4)"/>
+      <text x="88" y="81" font-family="var(--mono)" font-size="4" fill="rgba(255,255,255,0.25)">BATT 76%</text>
+      <rect x="120" y="78" width="30" height="3" rx="1" fill="rgba(59,130,246,0.15)"/>
+      <rect x="120" y="78" width="27" height="3" rx="1" fill="rgba(59,130,246,0.4)"/>
+      <text x="153" y="81" font-family="var(--mono)" font-size="4" fill="rgba(255,255,255,0.25)">SIG 94%</text>
+      <!-- left stick -->
+      <circle cx="42" cy="100" r="9" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" fill="rgba(255,255,255,0.03)"/>
+      <circle cx="42" cy="99" r="4" stroke="rgba(255,255,255,0.2)" stroke-width="0.5" fill="rgba(255,255,255,0.04)"/>
+      <!-- right stick -->
+      <circle cx="178" cy="100" r="9" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" fill="rgba(255,255,255,0.03)"/>
+      <circle cx="179" cy="98" r="4" stroke="rgba(255,255,255,0.2)" stroke-width="0.5" fill="rgba(255,255,255,0.04)"/>
+      <!-- shoulder buttons -->
+      <rect x="30" y="24" width="24" height="5" rx="2" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" fill="none"/>
+      <rect x="166" y="24" width="24" height="5" rx="2" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" fill="none"/>
+      <!-- mode label -->
+      <rect x="82" y="92" width="56" height="12" rx="3" stroke="rgba(34,197,94,0.3)" stroke-width="0.5" fill="rgba(34,197,94,0.04)"/>
+      <text x="110" y="100" text-anchor="middle" font-family="var(--mono)" font-size="6" fill="rgba(34,197,94,0.6)" letter-spacing="0.08em">AUTO</text>
+    </svg>`,
     pipeline: {
-      desc:'Telemetry flows from autonomous platforms through encrypted links to ground stations, enriched with mission models in real time, stored for fleet-wide analysis and regulatory reporting.',
+      desc:'Telemetry flows from autonomous platforms through data links to ground stations, enriched with mission models in real time, and stored for fleet-wide analysis.',
       nodes:[
-        {name:'Flight ctrl',sub:'On vehicle',c:'or'},{name:'RF link',sub:'Encrypted',c:'am'},
+        {name:'Flight ctrl',sub:'On vehicle',c:'or'},{name:'RF link',sub:'Data link',c:'am'},
         {name:'ADS',sub:'Ground ingest',c:'bl'},{name:'vTAG',sub:'Mission models',c:'pu'},
         {name:'Viewer',sub:'Ground station',c:'or'},{name:'RDS',sub:'C2 uplink',c:'bl'},
         {name:'Kafka',sub:'Streaming',c:'tl'},{name:'SQL Race',sub:'Mission store',c:'tl'},
@@ -838,9 +964,9 @@ const INDUSTRIES = {
       ]
     },
     stats:[
-      {v:'500+',l:'Parameters per vehicle'},{v:'<5ms',l:'Command latency'},{v:'Multi-vehicle',l:'Fleet coordination'},
-      {v:'5',l:'Capability families'},{v:'Live',l:'Beyond visual range'},{v:'∞',l:'Missions searchable'},
-      {v:'BVLOS',l:'Autonomous ops'},{v:'Kafka',l:'Open streaming'},{v:'Simulink',l:'Path planning'}
+      {v:'500+',l:'Parameters per vehicle'},{v:'<1ms',l:'Data latency'},{v:'Multi-vehicle',l:'Fleet monitoring'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Remote operations'},{v:'∞',l:'Missions searchable'},
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Ground station — mission 7 active',
@@ -886,9 +1012,11 @@ function switchIndustry(id) {
   if (id === currentIndustry) return;
   currentIndustry = id;
 
-  // Toggle button state
+  // Toggle button state + ARIA
   document.querySelectorAll('.industry-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.industry === id);
+    const isActive = b.dataset.industry === id;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
   });
 
   const ind = INDUSTRIES[id];
@@ -902,26 +1030,17 @@ function switchIndustry(id) {
     document.getElementById('hero-h1').innerHTML = ind.hero.h1;
     document.getElementById('hero-p').textContent = ind.hero.p;
 
-    // HUD labels
+    // HUD labels + bar colours
     ind.hud.forEach((h, i) => {
       document.getElementById('hk' + i).textContent = h.k;
       const v = document.getElementById('hv' + i);
       v.className = 'hud-v ' + h.color;
+      const f = document.getElementById('hf' + i);
+      if(f) f.className = 'hud-bar-fill ' + h.color;
     });
 
     // SVG
-    const svgContainer = document.getElementById('vehicle-svg');
-    // Keep radio rings, replace SVG
-    const rings = svgContainer.querySelector('div');
-    svgContainer.innerHTML = ind.svg;
-    if (rings) {
-      const rDiv = document.createElement('div');
-      rDiv.style.position = 'absolute';
-      rDiv.style.left = ind.radioPos.left;
-      rDiv.style.top = ind.radioPos.top;
-      rDiv.innerHTML = '<div class="radio-ring"></div><div class="radio-ring"></div><div class="radio-ring"></div>';
-      svgContainer.appendChild(rDiv);
-    }
+    document.getElementById('vehicle-svg').innerHTML = ind.svg;
 
     // Pipeline
     document.getElementById('pipe-desc').textContent = ind.pipeline.desc;
@@ -962,8 +1081,14 @@ document.getElementById('industry-toggle').addEventListener('click', e => {
 function hudTick(){
   const ind = INDUSTRIES[currentIndustry];
   const vals = ind.hudTick(st);
-  vals.forEach((v, i) => {
-    document.getElementById('hv' + i).textContent = v;
+  vals.forEach((item, i) => {
+    const vEl = document.getElementById('hv' + i);
+    const fEl = document.getElementById('hf' + i);
+    const cEl = document.getElementById('hc' + i);
+    if(vEl && vEl.textContent !== item.v){
+      vEl.textContent = item.v;
+      if(fEl) fEl.style.width = Math.max(0,Math.min(1,item.pct))*100 + '%';
+    }
   });
   st += 0.05;
 }
@@ -993,6 +1118,7 @@ function buildStats(data) {
   ).join('');
 }
 buildStats(INDUSTRIES.motorsport.stats);
+document.getElementById('vehicle-svg').innerHTML = INDUSTRIES.motorsport.svg;
 
 /* ═══ PIPELINE PACKETS ═══ */
 const pkC=['#ED6D20','#F59E0B','#3B82F6','#148E8E','#A855F7'];
