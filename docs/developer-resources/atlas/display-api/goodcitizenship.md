@@ -9,7 +9,7 @@ A custom display should be written to look, behave and act just like the standar
 In order to be a good citizen within the ATLAS ecosystem, a custom display should
 
 - Follow [MVVM](mvvm.md)
-- Not use unsupported [private APIs](../../index.md#direct-use-of-platform-and-presentation-apis) whenever possible
+- Not use unsupported private APIs whenever possible
 - Not do processing on the UI thread
     - Use _TaskPool_ for processing and dispatch UI updates via `SynchronizationContext` instead
 - Throttle data requests

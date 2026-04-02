@@ -7,7 +7,7 @@ ATLAS/RTA _Configuration_ is a rich schema decribing the telemetry.
 
 ATLAS is designed so that a stream of telemetry might contain data from multiple devices and models, assembled by different teams &mdash; so configuration is divided into _Apps_.
 
-In the Configuration API (from the _MAT.OCS.Configuration_ [NuGet Package](../../downloads.md#nuget-binaries)), you can define one or more apps at a time, containing:
+In the Configuration API (from the _MAT.OCS.Configuration_ [NuGet Package](../../downloads.md#nuget-packages)), you can define one or more apps at a time, containing:
 
 * [Channels and Parameters](channels-parameters.md) &mdash; describing sampled data
 * [Parameter Groups](parameter-groups.md) &mdash; forming a parameter tree
@@ -18,7 +18,7 @@ Here is a simple `#!json "demo"` app, published to the Toolkit [Config Service](
 
 === "C# Sample"
 
-    All the code samples use the _MAT.OCS.Configuration_ [NuGet Package](../../downloads.md#nuget-binaries).
+    All the code samples use the _MAT.OCS.Configuration_ [NuGet Package](../../downloads.md#nuget-packages).
 
     A JSON example is provided with each sample for reference if you are working in another language.
 

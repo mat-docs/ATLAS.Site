@@ -14,7 +14,7 @@ RTA supports four data representations:
 
 [^1]: i.e. one parameter/channel at a time
 
-These are all defined in the [rta.model.data](../protobuf/model_data.md) protobuf schema. Pre-compiled classes are available for .NET in our [NuGet packages](../../downloads.md#nuget-binaries), or you can use the [protobuf compiler](https://github.com/protocolbuffers/protobuf/releases) to generate idiomatic code from the schema in a range of languages.
+These are all defined in the [rta.model.data](../protobuf/model_data.md) protobuf schema. Pre-compiled classes are available for .NET in our [NuGet packages](../../downloads.md#nuget-packages), or you can use the [protobuf compiler](https://github.com/protocolbuffers/protobuf/releases) to generate idiomatic code from the schema in a range of languages.
 
 All RTA data timestamps are measured in nanoseconds since the Unix Epoch (1970-01-01 00:00:00Z).
 

@@ -1,287 +1,949 @@
-<!-- Custom HTML site for the landing page -->
-
 {% extends "main.html" %}
 {% block tabs %}
 {{ super() }}
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-    :root {
-        --primary: #ED6D20;
-        --primary-text: #303437;
-        --secondary-text: #B1B3B3;
-        --secondary: #148E8E;
-        --accent: #F4F4F4;
-    }
-    *{
-        margin:0;
-        padding:0;
-        box-sizing: border-box;
-    }
-    body{
-        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        line-height: 1.6;
-        color: var(--primary-text);
-        background: #fff;
-        overflow-x: hidden;
-    }
-    /* Remove gradients and background animation for accessibility */
-    .bg-animation { display: none; }
-    .hero {
-        min-height: 90vh;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        position: relative;
-        background: url('assets/swoosh/media_Banners_FINAL.jpg') center center/cover no-repeat;
-        border-bottom: 1px solid #eee;
-    }
-    .hero::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        /* background: rgba(255,255,255,0.82); white overlay for clarity */
-        z-index: 1;
-    }
-    .hero-content {
-        display: flex;
-        align-items:flex-end;
-        justify-content: flex-end;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 2rem;
-        /* padding: 2rem; */
-        z-index: 2;
-        position: relative;
-    }
-    .hero-card {
-        background: rgba(255,255,255,0.5);
-        backdrop-filter: blur(70px);
-        border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(20,142,142,0.10);
-        padding: 2.5rem 2.5rem 2rem 2.5rem;
-        max-width: 40vw;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.2rem;
-        border: 1px solid rgba(255,255,255,0.4);
-    }
-    .hero-card h1 {
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 800;
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02rem;
-    }
-    .hero-card p {
-        font-size: 1.2rem;
-        color: var(--primary-text);
-        margin-bottom: 1.2rem;
-        line-height: 1.6;
-    }
-    .cta-button {
-        position: relative;
-        background: none;
-        color: var(--primary);
-        font-weight: 700;
-        font-size: 1.1rem;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        text-decoration: none;
-        margin-top: 0.5rem;
-        cursor: pointer;
-        transition: color 0.2s;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        overflow: hidden;
-    }
-    .cta-button::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0.3em;
-        width: 0;
-        height: 2px;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
-    }
-    .cta-button:hover,
-    .cta-button:focus {
-        color: var(--secondary);
-        outline: none;
-    }
-    .cta-button:hover::after,
-    .cta-button:focus::after {
-        width: 100%;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#06080C;--s1:#0C0E14;--s2:#12141C;--brd:#1A1D26;--brd2:#252830;
+--t1:#F0F1F3;--t2:#9498A5;--t3:#7C8099;
+--orange:#ED6D20;--orange2:#F59E0B;--teal:#148E8E;--blue:#3B82F6;--purple:#A855F7;--red:#EF4444;--green:#22C55E;
+--sans:'Montserrat',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--serif:'Instrument Serif',serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.hero,.stats,.comms-section{overflow-x:clip}
+a{color:inherit;text-decoration:none}
+.container{width:80vw;margin:0 auto;padding:0 2rem}
 
-    .cta-button:hover, .cta-button:focus {
-        transform: translateY(-2px) scale(1.03);
-        outline: none;
-    }
-    .hero-image{
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 320px;
-    }
-    .hero-image img{
-        max-width: 420px;
-        width: 100%;
-        height: auto;
-        border-radius: 18px;
-        box-shadow: 0 4px 32px rgba(20,142,142,0.08);
-        border: 1px solid #eee;
-        background: #fff;
-        display: block;
-    }
-    .cards-section{
-        padding: 6rem 2rem;
-        background: linear-gradient(to bottom, rgba(143,229,166,0.08), rgba(255,255,255,0.98));
-        backdrop-filter: blur(10px);
-    }
-    .cards-container{
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        padding-top: 2rem;
-    }
-    .feature-card{
-        background: #fff;
-        backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 2.5rem;
-        border: 1.5px solid var(--accent);
-        box-shadow: 0 8px 32px rgba(20,142,142,0.08);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        text-decoration: none;
-        color: var(--primary-text);
-    }
-    .feature-card::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        transition: left 0.6s ease;
-    }
-    .feature-card:hover::before{
-        left: 100%;
-    }
-    .feature-card:hover{
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 60px rgba(237,109,32,0.13);
-        border-color: var(--primary);
-    }
-    .card-icon{
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: #fff;
-        margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 2px 8px rgba(237,109,32,0.10);
-    }
-    .feature-card h2{
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--primary);
-        position: relative;
-        z-index: 2;
-    }
-    .feature-card p{
-        color: var(--secondary-text);
-        line-height: 1.4;
-        position: relative;
-        z-index: 2;
-    }
-    .section-title{
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--primary);
-        margin-bottom: 0 auto;
-        letter-spacing: -0.01em;
-    }
-    .section-subtitle{
-        text-align: center;
-        font-size: 1.25rem;
-        color: var(--primary-text);
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    .fade-in{
-        opacity: 1;
-        transform: translateY(0);
-        transition: all 0.6s ease;
-    }
-    @media (max-width: 900px) {
-        .hero-content {
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .hero-card {
-            max-width: 100%;
-            padding: 1.5rem 1rem;
-        }
-    }
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ═══ INDUSTRY TOGGLE ═══ */
+.industry-toggle{display:flex;gap:2px;background:var(--s1);border:1px solid var(--brd);border-radius:12px;padding:3px;width:fit-content}
+.industry-btn{padding:8px 18px;border-radius:9px;font-size:12px;font-weight:600;color:var(--t3);cursor:pointer;transition:all 0.3s;border:none;background:none;font-family:var(--sans);letter-spacing:0.01em;display:flex;align-items:center;gap:6px}
+.industry-btn:hover{color:var(--t2)}
+.industry-btn.active{background:var(--orange);color:#fff;box-shadow:0 2px 12px rgba(237,109,32,0.25)}
+.industry-btn .ind-icon{font-size:14px}
+.hero-toggle-wrap{display:flex;justify-content:flex-start;margin-bottom:1.5rem}
+@media(max-width:900px){
+.hero-toggle-wrap{justify-content:center}
+.industry-toggle{flex-wrap:wrap;justify-content:center}
+}
+
+/* Content transitions */
+.fade-content{transition:opacity 0.35s ease,transform 0.35s ease}
+.fade-content.switching{opacity:0;transform:translateY(6px)}
+
+/* ═══ NAV ═══ */
+/* nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(6,8,12,0.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,29,38,0.5)}
+.nav-logo{font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:0.12em;color:var(--orange)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:13px;color:var(--t2);transition:color 0.2s}
+.nav-links a:hover{color:var(--t1)}
+.nav-cta{font-size:12px;font-weight:600;padding:8px 18px;border-radius:8px;background:var(--orange);color:#fff;transition:all 0.2s}
+.nav-cta:hover{background:#D45E18;transform:translateY(-1px)} */
+
+/* ═══ SECTION SEPARATION ═══ */
+.section-alt{background:var(--s1)}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--brd2) 20%,var(--brd2) 80%,transparent);margin:0}
+.section-glow{position:relative}
+.section-glow::after{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:min(600px,80vw);height:200px;background:radial-gradient(ellipse at center top,rgba(237,109,32,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* Vehicle glow backdrop */
+.vehicle-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(237,109,32,0.08) 0%,rgba(237,109,32,0.03) 40%,transparent 70%);pointer-events:none;border-radius:50%;z-index:0}
+
+/* Pulse origin — centred in hero visual */
+.pulse-origin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1}
+
+/* ═══ HERO ═══ */
+.hero{min-height:calc(100vh - 7rem);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:1rem;padding-bottom:60px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%}
+.hero-text h1{font-family:var(--sans);font-size:clamp(2rem,3.8vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-0.02em;margin-bottom:1rem}
+.hero-text h1 em{font-style:italic;color:var(--orange)}
+.hero-text p{font-size:1.1rem;color:var(--t2);line-height:1.7;max-width:440px;margin-bottom:2rem}
+.hero-actions{display:flex;gap:1rem}
+.btn-primary{padding:14px 28px;border-radius:10px;background:var(--orange);color:#fff;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:#D45E18;transform:translateY(-2px);box-shadow:0 8px 30px rgba(237,109,32,0.25)}
+.btn-ghost{padding:14px 28px;border-radius:10px;background:rgba(255,255,255,0.04);color:var(--t1);font-weight:600;font-size:15px;border:1px solid var(--brd);cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);border-color:var(--brd2)}
+
+/* Hero visual + HUD */
+.hero-visual{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.4rem;padding:1rem 0}
+.svg-wrap{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:300px}
+.car-container{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;width:100%;max-width:440px;display:flex;align-items:center;justify-content:center}
+.car-container svg{width:min(440px,100%);height:auto;display:block}
+.hud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%}
+.hud-cell{background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:7px 10px;overflow:hidden}
+.hud-k{font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3)}
+.hud-v{font-family:var(--mono);font-size:17px;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hud-v.or{color:var(--orange)}.hud-v.tl{color:var(--teal)}.hud-v.bl{color:var(--blue)}
+/* Mini value bar */
+.hud-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:1.5px;margin-top:6px;overflow:hidden}
+.hud-bar-fill{height:100%;width:0%;border-radius:1.5px;transition:width 0.4s ease}
+.hud-bar-fill.or{background:var(--orange)}.hud-bar-fill.tl{background:var(--teal)}.hud-bar-fill.bl{background:var(--blue)}
+
+/* Radio pulse — rings only, no dot */
+.radio-ring{position:absolute;top:50%;left:50%;border:1px solid rgba(245,158,11,0.22);border-radius:50%;animation:ringpulse 4s ease-out infinite;opacity:0}
+.radio-ring:nth-child(1){animation-delay:0s}.radio-ring:nth-child(2){animation-delay:1.4s}.radio-ring:nth-child(3){animation-delay:2.8s}
+@keyframes ringpulse{0%{width:20px;height:20px;margin:-10px 0 0 -10px;opacity:0.5}100%{width:300px;height:300px;margin:-150px 0 0 -150px;opacity:0}}
+
+/* Scrolling trace line in hero */
+
+/* ═══ STATS TICKER ═══ */
+.stats{border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);background:var(--s1);overflow:hidden;position:relative}
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:10}
+.stats-track{display:flex;animation:ticker 30s linear infinite;width:max-content}
+.stats-track:hover{animation-play-state:paused}
+.stat-item{display:flex;align-items:center;gap:12px;padding:20px 40px;white-space:nowrap;border-right:1px solid var(--brd)}
+.stat-val{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--orange)}
+.stat-label{font-size:13px;color:var(--t2)}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ PIPELINE SECTION ═══ */
+.pipeline-section{padding:8rem 0;position:relative}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
+.section-title{font-family:var(--sans);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.12;letter-spacing:-0.015em;margin-bottom:0.75rem}
+.section-desc{font-size:1.05rem;color:var(--t2);line-height:1.7}
+
+/* Pipeline Figma SVG */
+.pipeline-vis{position:relative;margin:3rem 0;background:var(--s1);border:1px solid var(--brd);border-radius:16px;padding:2rem;overflow:hidden}
+.pipeline-packets{position:absolute;inset:0;z-index:1;pointer-events:none}
+.pkt{position:absolute;width:4px;height:4px;border-radius:50%;opacity:0;animation:pktflow 2.5s ease-in-out infinite}
+@keyframes pktflow{0%{left:5%;opacity:0}10%{opacity:0.8}90%{opacity:0.8}100%{left:95%;opacity:0}}
+.pipe-figma{position:relative;z-index:2;max-width:900px;margin:0 auto}
+.pipe-svg{width:100%;height:auto;display:block}
+.pipe-src-txt{opacity:0}
+.pipe-source-overlay{position:absolute;top:36.9%;left:0.3%;width:20.5%;height:24.5%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;z-index:3}
+.pipe-source-name{font-family:var(--mono);font-size:clamp(9px,1.1vw,15px);font-weight:600;color:#F0997B;text-align:center}
+.pipe-source-sub{font-family:var(--mono);font-size:clamp(7px,0.8vw,11px);color:#F0997B;opacity:0.6;text-align:center;margin-top:2px}
+/* Flowing packets overlay */
+
+/* ═══ SPLIT COMMS ═══ */
+.comms-section{padding:6rem 0;overflow:hidden}
+.comms-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem}
+.comms-col{background:var(--s1);border:1px solid var(--brd);border-radius:14px;overflow:hidden;min-height:560px;display:flex;flex-direction:column}
+.comms-header{padding:16px 20px;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.comms-dot{width:7px;height:7px;border-radius:50%}
+.comms-dot-live{background:var(--red);animation:blink 1.2s ease-in-out infinite}
+.comms-dot-remote{background:var(--teal)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.comms-h-label{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--t2)}
+.comms-h-time{font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:auto}
+.comms-body{flex:1;overflow:hidden;position:relative;padding:16px 20px}
+.comms-scroll{display:flex;flex-direction:column;gap:10px;position:absolute;width:calc(100% - 40px);animation-timing-function:linear;animation-iteration-count:infinite}
+.comms-scroll-pit{animation:scrollpit 45s linear infinite}
+.comms-scroll-fac{animation:scrollfac 50s linear infinite}
+
+.msg{display:flex;gap:8px;align-items:flex-start}
+.msg-r{flex-direction:row-reverse}
+.msg-r .bubble{border-radius:12px 4px 12px 12px}
+.av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;letter-spacing:0.03em}
+.bubble{padding:10px 14px;border-radius:4px 12px 12px 12px;font-size:12.5px;line-height:1.55;max-width:340px}
+.bubble-name{font-size:9px;font-weight:600;margin-bottom:3px;letter-spacing:0.05em;text-transform:uppercase}
+.data-tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:5px;margin-top:5px}
+
+.av-dr{background:#3D1E0E;color:#F0997B}.b-dr{background:rgba(216,90,48,0.1);color:#F5C4B3}.b-dr .bubble-name{color:#D85A30}
+.av-re{background:#0A2240;color:#85B7EB}.b-re{background:rgba(59,130,246,0.08);color:#B5D4F4}.b-re .bubble-name{color:#378ADD}
+.av-st{background:#2D1A04;color:#FAC775}.b-st{background:rgba(245,158,11,0.08);color:#FAC775}.b-st .bubble-name{color:#EF9F27}
+.av-pe{background:#052E22;color:#5DCAA5}.b-pe{background:rgba(20,142,142,0.08);color:#9FE1CB}.b-pe .bubble-name{color:#1D9E75}
+.av-ae{background:#1A1040;color:#AFA9EC}.b-ae{background:rgba(168,85,247,0.08);color:#CECBF6}.b-ae .bubble-name{color:#7F77DD}
+.av-rl{background:#2D0E0E;color:#F09595}.b-rl{background:rgba(239,68,68,0.08);color:#F7C1C1}.b-rl .bubble-name{color:#E24B4A}
+.av-he{background:#1A1A1F;color:#B4B2A9}.b-he{background:rgba(255,255,255,0.04);color:#D3D1C7}.b-he .bubble-name{color:#888780}
+.av-sys{background:var(--s2);color:var(--t3)}
+.b-sys{background:rgba(255,255,255,0.02);border:1px solid var(--brd);color:var(--t3);font-family:var(--mono);font-size:10px}
+
+/* Additional role colours for non-motorsport */
+.av-pi{background:#3D1E0E;color:#F0997B}.b-pi{background:rgba(216,90,48,0.1);color:#F5C4B3}.b-pi .bubble-name{color:#D85A30}
+.av-ft{background:#0A2240;color:#85B7EB}.b-ft{background:rgba(59,130,246,0.08);color:#B5D4F4}.b-ft .bubble-name{color:#378ADD}
+.av-gs{background:#052E22;color:#5DCAA5}.b-gs{background:rgba(20,142,142,0.08);color:#9FE1CB}.b-gs .bubble-name{color:#1D9E75}
+.av-mp{background:#1A1040;color:#AFA9EC}.b-mp{background:rgba(168,85,247,0.08);color:#CECBF6}.b-mp .bubble-name{color:#7F77DD}
+.av-se{background:#2D1A04;color:#FAC775}.b-se{background:rgba(245,158,11,0.08);color:#FAC775}.b-se .bubble-name{color:#EF9F27}
+.av-op{background:#3D1E0E;color:#F0997B}.b-op{background:rgba(216,90,48,0.1);color:#F5C4B3}.b-op .bubble-name{color:#D85A30}
+.av-cr{background:#0A2240;color:#85B7EB}.b-cr{background:rgba(59,130,246,0.08);color:#B5D4F4}.b-cr .bubble-name{color:#378ADD}
+.av-rs{background:#052E22;color:#5DCAA5}.b-rs{background:rgba(20,142,142,0.08);color:#9FE1CB}.b-rs .bubble-name{color:#1D9E75}
+.av-su{background:#1A1040;color:#AFA9EC}.b-su{background:rgba(168,85,247,0.08);color:#CECBF6}.b-su .bubble-name{color:#7F77DD}
+.av-sa{background:#2D0E0E;color:#F09595}.b-sa{background:rgba(239,68,68,0.08);color:#F7C1C1}.b-sa .bubble-name{color:#E24B4A}
+
+.dt-warn{background:rgba(239,68,68,0.12);color:#F09595}
+.dt-ok{background:rgba(34,197,94,0.12);color:#97C459}
+.dt-info{background:rgba(59,130,246,0.12);color:#85B7EB}
+.dt-pu{background:rgba(168,85,247,0.12);color:#AFA9EC}
+.dt-am{background:rgba(245,158,11,0.12);color:#FAC775}
+.dt-tl{background:rgba(20,142,142,0.12);color:#5DCAA5}
+
+/* ═══ FAMILIES ═══ */
+.families-section{padding:6rem 0}
+.fam-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--brd);border-radius:14px;overflow:hidden;margin-top:3rem;border:1px solid var(--brd)}
+.fam-card{background:var(--s1);padding:2rem 1.5rem;display:flex;flex-direction:column;gap:8px;transition:background 0.3s}
+.fam-card:hover{background:var(--s2)}
+.fam-icon{font-size:20px;margin-bottom:4px}
+.fam-name{font-size:15px;font-weight:700;color:#fff}
+.fam-desc{font-size:12.5px;color:var(--t2);line-height:1.55}
+.fam-products{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:auto;padding-top:8px}
+.fam-bar{height:2px;border-radius:1px;margin-bottom:8px}
+
+/* ═══ CTA ═══ */
+.cta-section{padding:8rem 0;text-align:center;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(237,109,32,0.06) 0%,transparent 70%);pointer-events:none}
+.cta-section h2{font-family:var(--sans);font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-0.015em;margin-bottom:0.75rem;position:relative}
+.cta-section p{color:var(--t2);font-size:1.05rem;margin-bottom:2rem;position:relative}
+
+/* ═══ RESPONSIVE ═══ */
+
+/* Tablet */
+@media(max-width:900px){
+.container{width:100%;padding:0 1.5rem}
+.hero-grid{grid-template-columns:1fr;text-align:center}
+.hero-text p{margin:0 auto 2rem}
+.hero-visual{padding:0.5rem 0}
+.car-container svg{width:min(320px,100%)}
+.hero-actions{justify-content:center;flex-wrap:wrap}
+.comms-grid{grid-template-columns:1fr}
+.fam-grid{grid-template-columns:repeat(2,1fr)}
+.nav-links{display:none}
+.hud-grid{grid-template-columns:repeat(3,1fr)}
+.pipeline-section{padding:5rem 0}
+.comms-section{padding:4rem 0}
+.families-section{padding:4rem 0}
+.cta-section{padding:5rem 0}
+
+/* Pipeline: slightly smaller on tablet */
+.pipe-svg{max-width:700px}
+
+/* Comms: reduce min-height */
+.comms-col{min-height:420px}
+
+/* Industry toggle: wrap on tablet */
+.hero-toggle-wrap{justify-content:center}
+.industry-toggle{flex-wrap:wrap;justify-content:center}
+}
+
+/* Mobile */
+@media(max-width:600px){
+.container{width:100%;padding:0 1rem}
+
+/* Hero */
+.hero{min-height:auto;padding:100px 0 3rem}
+.hero-grid{gap:1.5rem}
+.hero-text h1{font-size:clamp(2rem,8vw,3rem)}
+.hero-text p{font-size:0.95rem;line-height:1.6}
+.hero-visual{padding:0}
+
+/* Industry toggle: compact pills */
+.industry-toggle{gap:1px;padding:2px;border-radius:10px}
+.industry-btn{padding:6px 10px;font-size:10px;gap:4px;border-radius:7px}
+.industry-btn .ind-icon{font-size:12px}
+
+/* HUD grid: 3 columns, smaller cells */
+.hud-grid{grid-template-columns:repeat(3,1fr);gap:3px}
+.hud-cell{padding:5px 8px;min-width:unset}
+.hud-k{font-size:7px}
+.hud-v{font-size:14px}
+
+/* Vehicle SVG: scale down */
+.car-container svg{width:min(260px,100%);max-width:unset;height:auto}
+
+/* Buttons */
+.hero-actions{gap:0.75rem}
+.btn-primary,.btn-ghost{padding:12px 20px;font-size:14px;width:100%}
+
+/* Stats */
+.stat-item{padding:14px 24px}
+.stat-val{font-size:16px}
+.stat-label{font-size:11px}
+
+/* Pipeline */
+.pipeline-section{padding:5rem 0}
+.pipeline-vis{padding:1rem;border-radius:12px;overflow-x:auto}
+.section-title{font-size:clamp(1.6rem,5vw,2.4rem)}
+.section-desc{font-size:0.9rem}
+
+/* Comms */
+.comms-section{padding:3rem 0}
+.comms-col{min-height:360px}
+.comms-h-label{font-size:9px}
+.bubble{max-width:260px;font-size:11.5px;padding:8px 10px}
+.bubble-name{font-size:8px}
+.av{width:22px;height:22px;font-size:8px}
+.data-tag{font-size:9px;padding:2px 6px}
+
+/* Families */
+.families-section{padding:3rem 0}
+.fam-grid{grid-template-columns:1fr;margin-top:2rem}
+.fam-card{padding:1.5rem 1.25rem}
+.fam-name{font-size:14px}
+.fam-desc{font-size:12px}
+
+/* CTA */
+.cta-section{padding:4rem 0}
+.cta-section h2{font-size:clamp(1.6rem,5vw,2.4rem)}
+.cta-section p{font-size:0.9rem}
+}
+
+@keyframes scrollpit{
+0%{transform:translateY(0)}
+100%{transform:translateY(-50%)}
+}
+@keyframes scrollfac{
+0%{transform:translateY(0)}
+100%{transform:translateY(-50%)}
+}
+
+/* ═══ ACCESSIBILITY ═══ */
+/* Skip link */
+.skip-link{position:absolute;top:-48px;left:1rem;z-index:9999;padding:10px 20px;background:var(--orange);color:#fff;font-weight:700;font-size:14px;border-radius:0 0 8px 8px;text-decoration:none;transition:top 0.2s}
+.skip-link:focus{top:0;outline:2px solid #fff;outline-offset:2px}
+
+/* Visually hidden utility */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Focus indicators — visible keyboard focus on all interactive elements */
+.industry-btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:10px}
+.btn-primary:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:12px}
+.btn-ghost:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:12px}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+/* Stats ticker: pause on keyboard focus too */
+.stats-track:focus-within{animation-play-state:paused}
+
+/* Reduced motion — respect user preference */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .reveal.visible{opacity:1;transform:none}
+  .fade-content{transition:none}
+  .radio-ring{animation:none;opacity:0}
+  .stats-track{animation:none;overflow-x:auto}
+  .comms-scroll-pit,.comms-scroll-fac{animation:none;position:static}
+  .comms-dot-live{animation:none}
+}
 </style>
-<div class="bg-animation"></div>
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-card">
-            <h1>ATLAS</h1>
-            <p>Unlock the power of advanced data processing with ATLAS. Designed to suite all of your analytical needs and scale with your business.</p>
-            <a href="introduction/" class="cta-button"><span>Get Started</span><span style="font-size: 1.2rem;">→</span></a>
-        </div>
-    </div>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<main id="main-content">
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-h1">
+<div class="container">
+<div class="hero-grid">
+<div class="hero-text">
+<!-- Industry toggle -->
+<div class="hero-toggle-wrap">
+<div class="industry-toggle" id="industry-toggle" role="tablist" aria-label="Select industry">
+<button class="industry-btn active" data-industry="motorsport" role="tab" aria-selected="true"><span class="ind-icon" aria-hidden="true">&#9881;</span> Motorsport</button>
+<button class="industry-btn" data-industry="aerospace" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#9992;</span> Aerospace</button>
+<button class="industry-btn" data-industry="research" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#9762;</span> Research</button>
+<button class="industry-btn" data-industry="robotics" role="tab" aria-selected="false"><span class="ind-icon" aria-hidden="true">&#11044;</span> Robotics</button>
+</div>
+</div>
+<div class="fade-content" id="hero-copy" aria-live="polite" aria-atomic="true">
+<h1 id="hero-h1">Data at the speed of the <em>race</em></h1>
+<p id="hero-p">ATLAS moves raw telemetry from the car to the pit wall to the factory. Live, every lap, every session.</p>
+</div>
+<div class="hero-actions">
+<a href="https://atlas.motionapplied.com/getting-started/quick-start/" class="btn-primary">Get started →</a>
+<a href="#pipeline" class="btn-ghost">See the pipeline</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="svg-wrap">
+<div class="vehicle-glow" aria-hidden="true"></div>
+<div class="car-container" id="vehicle-svg" aria-hidden="true"></div>
+<div class="pulse-origin" aria-hidden="true">
+<div class="radio-ring"></div><div class="radio-ring"></div><div class="radio-ring"></div>
+</div>
+</div>
+<div class="hud-grid" id="hud-grid">
+<div class="hud-cell" id="hc0"><div class="hud-k" id="hk0">Speed</div><div class="hud-v or" id="hv0">0</div><div class="hud-bar"><div class="hud-bar-fill or" id="hf0"></div></div></div>
+<div class="hud-cell" id="hc1"><div class="hud-k" id="hk1">Gear</div><div class="hud-v tl" id="hv1">N</div><div class="hud-bar"><div class="hud-bar-fill tl" id="hf1"></div></div></div>
+<div class="hud-cell" id="hc2"><div class="hud-k" id="hk2">RPM</div><div class="hud-v bl" id="hv2">0</div><div class="hud-bar"><div class="hud-bar-fill bl" id="hf2"></div></div></div>
+<div class="hud-cell" id="hc3"><div class="hud-k" id="hk3">ECU temp</div><div class="hud-v or" id="hv3">42°C</div><div class="hud-bar"><div class="hud-bar-fill or" id="hf3"></div></div></div>
+<div class="hud-cell" id="hc4"><div class="hud-k" id="hk4">Lap</div><div class="hud-v tl" id="hv4">1/58</div><div class="hud-bar"><div class="hud-bar-fill tl" id="hf4"></div></div></div>
+<div class="hud-cell" id="hc5"><div class="hud-k" id="hk5">Throttle</div><div class="hud-v bl" id="hv5">0%</div><div class="hud-bar"><div class="hud-bar-fill bl" id="hf5"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="stats hero-stats" aria-label="Key statistics">
+<div class="stats-track" id="stats-track" aria-live="off"></div>
+</div>
 </section>
-<section class="cards-section">
-    <div class="fade-in">
-        <h2 class="section-title">Everything you need</h2>
-        <p class="section-subtitle">Discover tools and resources to accelerate your data processing journey.</p>
-    </div>
-    <div class="cards-container">
-        <a href="getting-started/quick-start" class="feature-card fade-in">
-            <div class="card-icon">🚀</div>
-            <h2>
-                Get Started with ATLAS
-            </h2>
-            <p>Jump right in with our getting started guide. Learn about the fundamentals and get your first workbook up and running in minutes.</p>
-        </a>
-        <a href="developer-resources/" class="feature-card fade-in">
-            <div class="card-icon">💡</div>
-            <h2>
-                Developer Resources
-            </h2>
-            <p>Access APIs, SDKs, and documentation to build and extend ATLAS for your needs.</p>
-        </a>
+
+<!-- ═══ PIPELINE ═══ -->
+<div class="section-divider"></div>
+<section class="pipeline-section section-glow" id="pipeline" aria-labelledby="pipe-title">
+<div class="container">
+<div class="reveal">
+<div class="section-label">The data journey</div>
+<h2 class="section-title" id="pipe-title">From sensor to insight in under a millisecond</h2>
+<p class="section-desc fade-content" id="pipe-desc">Every data point travels through a purpose-built pipeline. Captured on the car, transmitted live, enriched with models, stored for the season, and surfaced wherever an engineer needs it.</p>
+</div>
+<div class="pipeline-vis reveal">
+<div class="pipeline-packets" id="pipe-pkts" aria-hidden="true"></div>
+<div class="pipe-figma fade-content" id="pipe-nodes">
+<svg class="pipe-svg" xmlns="http://www.w3.org/2000/svg" width="1449" height="519" fill="none" viewBox="0 0 1449 519"><g filter="url(#a)"><rect width="297" height="127" x="4.5" y="191.5" fill="#ed6d20" fill-opacity=".1" stroke="#ed6d20" rx="33.5"/><path fill="#f0997b" class="pipe-src-txt" d="M86.7 249.2q-1.2 0-2-.4-.8-.3-1.3-1a3 3 0 0 1-.6-1.5h1.8q0 .6.6 1l1.5.3h.8q1 0 1.6-.5.5-.4.5-1.1t-.5-1.1-1.4-.6l-1.4-.2q-1.7-.3-2.5-1-.7-.7-.7-2.2t.9-2.2 2.8-.9h.8q1.6 0 2.5.8a3 3 0 0 1 1.2 2h-1.8q-.1-.6-.6-.8-.5-.4-1.3-.4h-.8q-1 0-1.5.4T85 241q-.1.6.4 1 .3.3 1.2.4l1.5.3q1.8.2 2.6 1 .8.7.8 2.2a3 3 0 0 1-1 2.4q-1 .9-2.9.9zm12.3 0q-1.3 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.3.5 1.5 1.5.5 2.2v3q0 1.3-.5 2.2t-1.5 1.5-2.3.5m0-1.6q1.2 0 1.8-.7.7-.5.7-2V242q0-1.2-.7-1.9t-1.8-.7-1.8.7-.7 2v2.9q0 1.3.7 1.9.6.7 1.8.7m12 1.6q-2 0-3-1.1a4 4 0 0 1-1.2-3.1v-7h1.8v7q0 1.2.6 2 .7.6 1.8.6 1 0 1.7-.7t.7-1.9v-7h1.8v7q0 2-1.2 3-1.1 1.2-3 1.2m8.2-.2v-11h1.8v2.1h.4l-.6 1.3q0-1.7.8-2.7.7-.9 2.3-.9 1.7 0 2.7 1.1a4 4 0 0 1 1 3v.6H126v-.5q0-1.3-.7-2t-1.8-.7-1.8.7q-.6.7-.6 2v7zm15.8.2q-1.2 0-2.3-.5-.9-.5-1.5-1.4-.6-1-.5-2.3v-3q0-1.3.5-2.3.6-.8 1.5-1.4t2.3-.5q2 0 3.1 1t1.2 2.8h-1.8q0-1-.7-1.6t-1.8-.6-1.8.7-.7 1.9v3q0 1.2.7 2 .6.6 1.8.6t1.8-.6.7-1.6h1.8q0 1.8-1.2 2.8t-3 1m12 0q-1.4 0-2.3-.5-1-.6-1.5-1.5t-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.2.5q1 .6 1.5 1.5t.6 2.2v2h-6.9v1q0 1.3.7 2t1.9.7q1 0 1.6-.4.7-.3.8-1.1h1.8a3 3 0 0 1-1.3 2.2 5 5 0 0 1-3 .8m2.5-6.5v-.7q0-1.3-.7-2t-1.8-.7-2 .7-.6 2v.6zm6.3.5v-1.6h6.4v1.6zm11 5.8v-11h1.8v2.1h.4l-.4.4q0-1.2.8-2a3 3 0 0 1 2.1-.7q1.7 0 2.7 1t1 2.8v7.4h-1.9v-7.2q0-1.2-.6-1.8t-1.7-.6-1.8.6q-.6.7-.6 2v7zm15.2.2a4 4 0 0 1-2.8-.9 3 3 0 0 1-1-2.4 3 3 0 0 1 1-2.4 4 4 0 0 1 2.7-.9h3.4v-1.1q0-1-.6-1.6-.6-.5-1.7-.5a3 3 0 0 0-1.6.4q-.7.4-.8 1.1h-1.8q.2-1.4 1.3-2.3t3-.8 3 1q1 1 1 2.6v7.6h-1.7v-2.1h-.3l.3-.3q0 1.2-1 1.9a4 4 0 0 1-2.4.7m.4-1.4q1.3 0 2.1-.7t.8-1.6v-1.6H182a2 2 0 0 0-1.4.5q-.6.6-.6 1.4 0 .9.7 1.5t1.7.5m7.8 1.2v-11h1.6v1.3h.4l-.3.5q0-.9.5-1.5t1.3-.5 1.5.7.5 1.9l-.6-1h.8l-.3.4q0-.9.5-1.5t1.3-.5q1.1 0 1.6.8t.6 2v8.4H198v-8.4q0-.7-.2-1t-.9-.4a1 1 0 0 0-.9.4q-.2.3-.2 1v8.4h-1.5v-8.4q0-.7-.3-1a1 1 0 0 0-.9-.4q-.5 0-.8.4-.3.3-.3 1v8.4zm16.7.2q-1.2 0-2.3-.5-.9-.6-1.5-1.5t-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.3.5q.9.6 1.5 1.5t.5 2.2v2h-6.8v1q0 1.3.6 2t2 .7q1 0 1.6-.4.6-.3.8-1.1h1.8a3 3 0 0 1-1.4 2.2 5 5 0 0 1-2.9.8m2.6-6.5v-.7q0-1.3-.7-2t-1.9-.7-1.9.7-.6 2v.6h5.2zm-93.1 34.4q-.7 0-1.2-.2l-.8-.6q-.3-.4-.3-1h1q.1.4.4.6t.9.2h.5q.6 0 1-.2.3-.3.3-.7t-.3-.7-.9-.3l-.8-.2q-1 0-1.5-.6-.5-.4-.5-1.2 0-.9.6-1.4t1.7-.5h.4q1 0 1.6.4t.7 1.2H118q0-.3-.4-.4-.3-.2-.8-.2h-.4q-.6 0-1 .2l-.2.7.3.6.7.3.9.1q1 .1 1.5.6t.5 1.3-.5 1.5-1.8.5zm7.4 0-1.4-.3q-.6-.3-.9-.9t-.3-1.3v-1.8q0-.8.3-1.3t1-.9l1.3-.3q.8 0 1.4.3l.9.9q.3.5.3 1.3v1.8q0 .8-.3 1.3-.4.6-1 .9zm0-1q.7 0 1.1-.4.4-.3.4-1.1v-1.8q0-.8-.4-1.1t-1.1-.4-1.1.4q-.4.3-.4 1.1v1.8q0 .8.4 1.1t1 .4m7.2 1q-1.2 0-1.8-.7t-.7-1.8v-4.2h1v4.2q0 .8.4 1.2t1 .4q.8 0 1.1-.4t.4-1.2v-4.2h1.1v4.2q0 1.2-.7 1.8t-1.8.7m5-.1v-6.6h1v1.3h.2l-.3.7q0-1 .4-1.6.5-.5 1.4-.5 1 0 1.7.6t.6 1.8v.4h-1v-.3q0-.8-.5-1.2-.3-.4-1-.4-.8 0-1.1.4t-.4 1.2v4.2zm9.4.1-1.4-.3q-.6-.3-.9-.8t-.3-1.4v-1.8q0-.8.3-1.4t1-.8l1.3-.3q1.2 0 1.9.6t.7 1.7h-1q-.2-.7-.5-1-.4-.4-1-.4-.8 0-1.2.4t-.4 1.2v1.8q0 .8.4 1.2t1.1.4 1-.4q.5-.3.5-1h1.1q0 1-.7 1.7t-1.9.6m7.2 0q-.8 0-1.4-.3t-.9-.9-.3-1.3v-1.8q0-.8.3-1.3t1-1l1.3-.2q.8 0 1.3.3t1 .9l.3 1.3v1.2H151v.6q0 .8.3 1.2.4.4 1.2.4.6 0 1-.2l.5-.7h1q0 .9-.8 1.3a3 3 0 0 1-1.7.5m1.5-3.9v-.4q0-.8-.4-1.2t-1.1-.4-1.2.4-.3 1.2v.3zm3.8.3v-1h3.8v1zm8.9 3.6q-.8 0-1.2-.2l-.8-.6-.4-1h1.1q0 .4.4.6.3.2.9.2h.5q.6 0 1-.2l.2-.7q0-.4-.3-.7t-.8-.3l-.9-.2q-1 0-1.4-.6-.5-.4-.5-1.2 0-.9.6-1.4t1.7-.5h.4q1 0 1.5.4t.7 1.2h-1q0-.3-.4-.4-.3-.2-.8-.2h-.4q-.6 0-1 .2l-.2.7.2.6.8.3.9.1q1 .1 1.5.6t.5 1.3-.6 1.5-1.7.5zm7.4 0q-1.2 0-1.9-.7t-.7-1.8v-4.2h1.1v4.2q0 .8.4 1.2t1 .4q.8 0 1.1-.4t.4-1.2v-4.2h1v4.2q0 1.2-.6 1.8t-1.8.7m7.5 0a2 2 0 0 1-1.3-.4q-.5-.5-.5-1.2l.3.2h-.3v1.3h-1v-8.8h1v3.5h.3l-.3.2q0-.7.5-1.2a2 2 0 0 1 1.3-.4 2 2 0 0 1 1.6.6q.6.7.6 1.8v2q0 1-.6 1.8a2 2 0 0 1-1.6.6m-.3-1q.7 0 1-.3.5-.4.5-1.2v-1.8q0-.7-.4-1.2-.5-.3-1.1-.4-.7 0-1 .4-.5.4-.5 1.2v1.8q0 .8.4 1.2t1 .4"/></g><g filter="url(#b)"><rect width="297" height="127" x="385.5" y="189.5" fill="#3b82f6" fill-opacity=".1" stroke="#3b82f6" rx="33.5"/><path fill="#85b7eb" d="M504.1 247.2q-1.5 0-2.5-.5t-1.6-1.4-.5-2.1h1.8q0 1 .7 1.7.8.7 2.1.7 1.2 0 2-.6.6-.7.7-1.8 0-.7-.5-1.5-.4-.6-1.3-1l-2-.5q-1.5-.5-2.3-1.6-.9-1-.8-2.5 0-1.2.5-2 .4-1 1.5-1.4 1-.6 2.2-.5 2 0 3.1 1 1.2 1.2 1.2 2.9h-1.8q0-1-.7-1.7t-1.8-.6-1.8.6a2 2 0 0 0-.6 1.5q0 .9.4 1.6.6.6 1.4 1l2 .6q1.5.5 2.3 1.5.8 1.1.8 2.6 0 1.2-.6 2.1t-1.6 1.4-2.3.5m13.1-.2a3 3 0 0 1-2.2-.8q-.8-.7-.8-2.1v-6.5h-3V236h3v-3.1h1.8v3.1h4.4v1.6H516v6.5q0 1.3 1.2 1.3h3v1.6zm7 0v-11h1.8v2.1h.4l-.6 1.3q0-1.7.8-2.7.8-.9 2.3-.9 1.6 0 2.7 1.1a4 4 0 0 1 1 3v.6H531v-.5q0-1.3-.7-2t-1.7-.7-1.8.7-.7 2v7zm15.8.2q-1.3 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.3.5q.9.6 1.5 1.5t.5 2.2v2h-6.8v1q0 1.3.6 2t1.9.7q1 0 1.7-.4.6-.3.8-1.1h1.8a3 3 0 0 1-1.4 2.2 5 5 0 0 1-2.9.8m2.5-6.5v-.7q0-1.3-.6-2t-1.9-.7-1.9.7-.6 2v.6h5.2zm8.5 6.5a4 4 0 0 1-2.7-.9q-1-.9-1-2.4a3 3 0 0 1 1-2.4 4 4 0 0 1 2.7-.9h3.4v-1.1q0-1-.6-1.6-.6-.5-1.7-.5a3 3 0 0 0-1.7.4q-.7.4-.7 1.1h-1.8q0-1.4 1.3-2.3 1.2-.8 2.9-.8 2 0 3 1t1 2.6v7.6h-1.7v-2.1h-.3l.3-.3q0 1.2-1 1.9a4 4 0 0 1-2.4.7m.5-1.4q1.2 0 2-.7t.9-1.6v-1.6H551a2 2 0 0 0-1.4.5q-.5.6-.5 1.4 0 .9.6 1.5t1.8.5m7.8 1.2v-11h1.6v1.3h.3l-.2.5q0-.9.4-1.5t1.4-.5 1.4.7.5 1.9l-.5-1h.8l-.4.4q0-.9.5-1.5t1.4-.5q1 0 1.6.8t.6 2v8.4H567v-8.4q0-.7-.3-1t-.8-.4a1 1 0 0 0-.9.4q-.3.3-.3 1v8.4h-1.4v-8.4q0-.7-.4-1a1 1 0 0 0-.8-.4q-.6 0-.9.4l-.2 1v8.4zM474 275l2.2-8.8h1.5l2.2 8.8h-1l-.6-2.3h-2.7l-.6 2.3zm1.8-3.2h2.2l-.6-2.7-.5-2-.4 2zm5.8 3.2v-8.8h2.3q.8 0 1.5.4.6.3 1 .9.3.5.3 1.4v3.5q0 .8-.4 1.4-.3.6-1 .9l-1.4.3zm1.1-1h1.2q.8 0 1.2-.4.5-.4.5-1.2v-3.5q0-.9-.5-1.3t-1.2-.4h-1.2zm8.7 1.1q-.8 0-1.5-.3t-1-.8-.3-1.3h1q0 .7.5 1t1.3.4 1.2-.3.4-1-.3-1l-.8-.5-1.2-.4q-.9-.3-1.4-1t-.5-1.5l.3-1.2 1-.8q.5-.3 1.3-.3 1.2 0 1.9.7t.7 1.7h-1.1q0-.7-.4-1t-1.1-.4-1.1.3-.4 1l.3.9q.3.4.8.6l1.2.3q.9.3 1.4 1t.5 1.5-.4 1.3-1 .8q-.5.3-1.3.3m11.6 1.2 4.3-11.3h1.1l-4.2 11.3zm14.6-1.3v-8.8h2.7q.8 0 1.4.4l1 .8.2 1.4q0 .8-.4 1.5t-1.3.9l1.9 3.8h-1.3l-1.7-3.7h-1.4v3.7zm1.1-4.7h1.6q.7 0 1.1-.4t.4-1.1-.4-1.2q-.4-.3-1-.4h-1.7zm6.1 4.7v-8.8h2.3q.8 0 1.4.4.7.3 1 .9.4.5.4 1.4v3.5q0 .8-.4 1.4-.3.6-1 .9l-1.4.3zm1-1h1.3q.8 0 1.2-.4.5-.4.5-1.2v-3.5q0-.9-.5-1.3t-1.2-.4h-1.2zm8.8 1.1q-.9 0-1.5-.3t-1-.8-.3-1.3h1q0 .7.5 1t1.3.4 1.1-.3q.5-.4.5-1t-.3-1l-.8-.5-1.2-.4q-.9-.3-1.4-1t-.5-1.5l.3-1.2q.3-.5 1-.8.5-.3 1.3-.3 1.1 0 1.8.7t.7 1.7h-1q0-.7-.4-1t-1.1-.4-1.1.3-.4 1 .3.9.8.6l1.2.3q.9.3 1.4 1t.4 1.5q0 .8-.3 1.3t-1 .8q-.5.3-1.4.3m11.6 1.2 4.3-11.3h1l-4.2 11.3zm14.6-1.3v-8.8h1v3.8h1.4l2-3.8h1l-2 4.3 2.2 4.5h-1.2l-2-4h-1.3v4zm9.1.1q-1 0-1.6-.5t-.6-1.5.6-1.4 1.6-.5h2v-.7q0-.6-.4-1-.3-.3-1-.3t-1 .3-.4.6h-1q0-.8.8-1.3.7-.5 1.7-.5 1.2 0 1.8.6t.7 1.6v4.5h-1v-1.3h-.2l.1-.1q0 .6-.5 1.1-.6.4-1.5.4m.3-.8q.8 0 1.2-.4.5-.4.5-1v-1h-2q-.5 0-.8.4a1 1 0 0 0-.4.8q0 .4.4.9.4.3 1 .3m6.5.7v-5h-2v-1h2v-1q0-.9.5-1.3a2 2 0 0 1 1.4-.5h1.9v1h-2q-.3 0-.5.2l-.2.5v1.2h2.7v1h-2.7v4.9zm5.7 0v-8.8h1v5h1.4l1.9-2.8h1.2l-2.2 3.1 2.3 3.5h-1.3l-2-3h-1.2v3zm9 .1q-1 0-1.6-.5t-.6-1.5.6-1.4 1.7-.5h2v-.7q0-.6-.4-1-.4-.3-1-.3t-1 .3-.4.6h-1.1q0-.8.8-1.3.6-.5 1.7-.5t1.8.6.7 1.6v4.5h-1v-1.3h-.3l.2-.1q0 .6-.5 1.1-.6.4-1.5.4m.4-.8q.7 0 1.2-.4t.5-1v-1h-2q-.6 0-.9.4l-.3.8q0 .4.4.9.4.3 1 .3"/></g><g filter="url(#c)"><rect width="297" height="127" x="766.5" y="189.5" fill="#148e8e" fill-opacity=".1" stroke="#148e8e" rx="33.5"/><path fill="#5dcaa5" d="M891.1 247.2q-1.5 0-2.5-.5t-1.6-1.4a4 4 0 0 1-.5-2.1h1.8q0 1 .7 1.7.8.7 2.1.7 1.2 0 2-.6.6-.7.7-1.8 0-.7-.5-1.5-.5-.6-1.3-1l-2-.5q-1.5-.5-2.3-1.6-.9-1-.8-2.5 0-1.2.5-2 .4-1 1.5-1.4 1-.6 2.2-.5 2 0 3.1 1 1.2 1.2 1.2 2.9h-1.8q0-1-.7-1.7t-1.8-.6-1.8.6a2 2 0 0 0-.6 1.5q0 .9.4 1.6.5.6 1.4 1l2 .6q1.5.5 2.3 1.5.8 1.1.8 2.6 0 1.2-.6 2.1t-1.6 1.4-2.3.5m13.1-.2a3 3 0 0 1-2.2-.8q-.8-.7-.8-2.1v-6.5h-3V236h3v-3.1h1.8v3.1h4.4v1.6H903v6.5q0 1.3 1.2 1.3h3v1.6zm10.8.2q-1.3 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.3.5 1.5 1.5.5 2.2v3q0 1.3-.5 2.2t-1.5 1.5-2.3.5m0-1.6q1.2 0 1.8-.7.7-.5.7-2V240q0-1.2-.7-1.9t-1.8-.7-1.8.7-.7 2v2.9q0 1.3.7 1.9.6.7 1.8.7m8.2 1.4v-11h1.8v2.1h.4l-.6 1.3q0-1.7.8-2.7.8-.9 2.3-.9 1.6 0 2.7 1.1a4 4 0 0 1 1 3v.6H930v-.5q0-1.3-.7-2t-1.7-.7-1.8.7-.7 2v7zm15.8.2q-1.3 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.2.5q1 .6 1.5 1.5t.6 2.2v2h-6.9v1q0 1.3.7 2t1.9.7q1 0 1.7-.4.6-.3.7-1.1h1.8a3 3 0 0 1-1.3 2.2 5 5 0 0 1-3 .8m2.5-6.5v-.7q0-1.3-.6-2t-2-.7q-1.1 0-1.8.7t-.7 2v.6h5.3zm-76.7 34.4q-.8 0-1.5-.3t-1-.8-.3-1.3h1q0 .7.5 1t1.3.4 1.2-.3.4-1-.3-1-.8-.5l-1.2-.4q-.9-.3-1.4-1t-.5-1.5q0-.6.4-1.2.3-.5.9-.8.5-.3 1.3-.3 1.2 0 1.9.7t.7 1.7h-1.1q0-.7-.4-1t-1.1-.4-1.1.3-.4 1l.3.9q.3.4.8.6l1.2.3q.9.3 1.4 1t.5 1.5-.4 1.3q-.3.5-1 .8-.5.3-1.3.3m8.6 2-1.3-2h.1-.3l-1.4-.3q-.6-.3-.9-.9-.3-.5-.3-1.4v-3.8q0-.8.3-1.4t1-.9l1.3-.3q.9 0 1.4.3.6.4 1 1 .3.5.3 1.3v3.8q0 .9-.4 1.4-.3.6-1 1l1.4 2.3zm-1.5-3q.8.1 1.2-.4t.4-1.2v-3.8q0-.7-.4-1.2t-1.2-.4-1.1.4-.4 1.2v3.8q0 .8.4 1.2.5.5 1.1.5m5 .9v-8.8h1v7.8h4v1zm14.1 0v-8.8h2.7q.9 0 1.4.4l1 .8.2 1.4q0 .8-.4 1.5t-1.3.9l1.9 3.8H895l-1.7-3.7H892v3.7zm1.1-4.7h1.6q.7 0 1.1-.4t.4-1.1-.4-1.2q-.4-.3-1-.4H892zm8 4.8q-1 0-1.6-.5t-.6-1.5.6-1.4q.7-.5 1.6-.5h2v-.7q0-.6-.3-1-.4-.3-1-.3t-1 .3q-.5.2-.5.6h-1q0-.8.7-1.3t1.8-.5 1.8.6q.6.6.6 1.6v4.5h-1v-1.3h-.2l.2-.1q0 .6-.6 1.1-.5.4-1.5.4m.3-.8q.8 0 1.3-.4t.5-1v-1h-2q-.6 0-1 .4l-.2.8.3.9q.5.3 1.1.3m7.6.8-1.4-.3-1-.8q-.3-.6-.3-1.4v-1.8q0-.8.4-1.4.3-.5.9-.8l1.4-.3q1 0 1.8.6.7.6.7 1.7h-1q0-.7-.5-1t-1-.4-1.2.4q-.4.5-.4 1.2v1.8q0 .8.4 1.2t1.2.4q.6 0 1-.4.4-.3.4-1h1.1q0 1-.7 1.7t-1.8.6m7.1 0q-.8 0-1.4-.3t-.9-.9-.3-1.3v-1.8q0-.8.3-1.3.4-.6 1-1l1.3-.2q.8 0 1.4.3t.9.9.3 1.3v1.2h-4.1v.6q0 .8.4 1.2.3.4 1.1.4.6 0 1-.2t.5-.7h1q0 .9-.8 1.3a3 3 0 0 1-1.7.5m1.5-3.9v-.4q0-.8-.4-1.2-.3-.4-1.1-.4t-1.1.4q-.4.5-.4 1.2v.3zm10.2 5.1L931 265h1l-4.2 11.3zm17.1-1.2q-.7 0-1.5-.3-.6-.2-.9-.8l-.4-1.3h1.1q0 .7.5 1t1.2.4 1.2-.3.4-1-.2-1-.9-.5l-1.1-.4q-1-.3-1.4-1-.5-.6-.5-1.5 0-.6.3-1.2t.9-.8q.5-.3 1.4-.3 1 0 1.8.7.7.6.7 1.7h-1q0-.7-.5-1t-1-.4q-.8 0-1.1.3-.4.4-.4 1t.3.9.8.6l1.2.3q.9.3 1.3 1t.5 1.5q0 .8-.3 1.3-.4.5-1 .8t-1.4.3m7.2 0q-.7 0-1.5-.3-.6-.2-1-.8l-.3-1.3h1.1q0 .7.5 1t1.2.4 1.2-.3.4-1-.3-1-.8-.5l-1.1-.4q-1-.3-1.4-1-.5-.6-.5-1.5 0-.6.3-1.2t.9-.8q.5-.3 1.4-.3 1 0 1.8.7.7.6.7 1.7h-1q0-.7-.5-1t-1-.4-1.2.3-.3 1 .3.9.8.6l1.2.3q.9.3 1.3 1t.5 1.5q0 .8-.3 1.3-.4.5-1 .8t-1.4.3m4.7-.1v-8.8h1.4l2.7 7.5-.1-2.5v-5h1v8.8h-1.4l-2.7-7.5.1 2.6v4.9zm7.2 0V274l2.6-2.8 1-1.3q.4-.6.4-1.1 0-.8-.4-1.2t-1.1-.4q-.9 0-1.3.4t-.4 1.2h-1q0-.8.3-1.4t1-.9l1.4-.3q.8 0 1.3.3t1 .9l.2 1.3q.1.8-.4 1.5t-1.3 1.7l-2.1 2.2h4v1z"/></g><g filter="url(#d)"><rect width="297" height="127" x="766.5" y="383.5" fill="#f59e0b" fill-opacity=".1" stroke="#f59e0b" rx="33.5"/><path fill="#fac775" d="M863.1 441v-1.6h3V428h-3v-1.6h7.8v1.6h-3v11.4h3v1.6zm11.8 0v-11h1.8v2.1h.3l-.3.4q0-1.2.7-2a3 3 0 0 1 2.2-.7q1.7 0 2.6 1t1 2.8v7.4h-1.8v-7.2q0-1.2-.6-1.8t-1.7-.6q-1.2 0-1.8.6t-.6 2v7zm17.3 0a3 3 0 0 1-2.2-.8q-.8-.7-.8-2.1v-6.5h-3V430h3v-3.1h1.8v3.1h4.4v1.6H891v6.5q0 1.3 1.2 1.3h3v1.6zm10.8.2q-1.3 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.3.5q.9.6 1.5 1.5t.5 2.2v2h-6.8v1q0 1.3.6 2t2 .7q1 0 1.6-.4.6-.3.8-1.1h1.8a3 3 0 0 1-1.4 2.2 5 5 0 0 1-2.9.8m2.6-6.5v-.7q0-1.3-.7-2t-1.9-.7-1.9.7-.6 2v.6zm6.6 9.9V443h3.5q.9 0 1.2-.4.4-.4.4-1.2V438h-.3l.4-.3q0 1.2-.8 1.9t-2.2.7q-1.7 0-2.7-1.1-1-1-1-3v-2.3q0-2 1-3t2.7-1.1q1.4 0 2.2.7t.8 1.9l-.4-.3h.4V430h1.7v11.4a3 3 0 0 1-.9 2.3q-.9.9-2.5.9zm2.8-5.9q1 0 1.7-.7t.7-1.9V434q0-1.2-.7-2-.6-.6-1.7-.6t-1.8.6-.6 2v2.1q0 1.3.6 2t1.8.6m8.2 2.3v-11h1.8v2.1h.4l-.6 1.3q0-1.7.8-2.7.8-.9 2.3-.9 1.6 0 2.7 1.1a4 4 0 0 1 1 3v.6H930v-.5q0-1.3-.7-2t-1.7-.7-1.8.7-.7 2v7zm14.8.2a4 4 0 0 1-2.7-.9q-1-.9-1-2.4a3 3 0 0 1 1-2.4 4 4 0 0 1 2.7-.9h3.4v-1.1q0-1-.6-1.6-.6-.5-1.8-.5a3 3 0 0 0-1.6.4q-.6.4-.8 1.1h-1.8q.3-1.5 1.4-2.3t2.9-.8q2 0 3 1t1 2.6v7.6h-1.7v-2.1h-.3l.3-.3q0 1.2-1 1.9a4 4 0 0 1-2.4.7m.5-1.4q1.2 0 2-.7t.9-1.6v-1.6H938a2 2 0 0 0-1.4.5q-.5.6-.5 1.4 0 .9.6 1.5t1.8.5m13.7 1.2a3 3 0 0 1-2.2-.8q-.8-.7-.8-2.1v-6.5H946V430h3v-3.1h1.9v3.1h4.4v1.6H951v6.5q0 1.3 1.2 1.3h3v1.6zm10.8.2q-1.4 0-2.3-.5t-1.5-1.5-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.2.5q1 .6 1.5 1.5t.6 2.2v2h-6.9v1q0 1.3.7 2t1.9.7q1 0 1.7-.4.6-.3.7-1.1h1.8a3 3 0 0 1-1.3 2.2 5 5 0 0 1-3 .8m2.5-6.5v-.7q0-1.3-.6-2t-2-.7q-1.1 0-1.8.7t-.7 2v.6h5.3zm-110 34.3v-8.8h2.8q.8 0 1.3.4l1 .8q.3.6.3 1.4t-.5 1.5q-.4.6-1.3.9l1.9 3.8h-1.3l-1.7-3.7h-1.4v3.7zm1.1-4.7h1.7q.6 0 1-.4t.4-1.1q.1-.7-.4-1.2-.4-.3-1-.4h-1.7zm8.1 4.7v-7.8h-2.4v-1h5.9v1h-2.4v7.8zm4.7 0 2.3-8.8h1.5l2.2 8.8h-1l-.6-2.3H871l-.6 2.3zm2-3.2h2.1l-.6-2.7-.5-2-.4 2zm12.7 4.5 4.3-11.3h1.1l-4.2 11.3zm14.1-1.3 2.3-8.8h1.4l2.3 8.8h-1l-.7-2.3h-2.6l-.6 2.3zm2-3.2h2.1l-.7-2.7-.4-2-.4 2zm5.7 3.2v-8.8h2.8q.9 0 1.4.4.6.3 1 .9.3.5.3 1.3t-.3 1.4q-.4.6-1 .9l-1.4.3H907v3.6zm1-4.6h1.8q.8 0 1.2-.4t.4-1.2q0-.7-.4-1.2t-1.2-.4H907zm6.4 4.6v-1h1.8v-6.8h-1.8v-1h4.6v1h-1.7v6.8h1.7v1zm9.3.1q-.7 0-1.2-.2l-.8-.6q-.3-.4-.3-1h1q.1.4.4.6t.9.2h.5q.6 0 1-.2.3-.3.3-.7t-.3-.7-.9-.3l-.8-.2q-1 0-1.5-.6-.5-.4-.5-1.2 0-.9.6-1.4t1.7-.5h.4q1 0 1.6.4t.7 1.2h-1.1q0-.3-.4-.4-.2-.2-.8-.2h-.4q-.6 0-1 .2l-.2.7q0 .3.3.6l.7.3.9.1q1 .1 1.5.6t.5 1.3-.5 1.5-1.8.5zm11.9 1.2 4.2-11.3h1.2l-4.3 11.3zm17.1-1.2q-.7 0-1.5-.3-.6-.2-1-.8l-.3-1.3h1.1q0 .7.5 1t1.2.4 1.2-.3.4-1-.3-1-.8-.5l-1.1-.4q-1-.3-1.4-1-.5-.6-.5-1.5 0-.6.3-1.2t.9-.8q.5-.3 1.4-.3 1 0 1.8.7.7.6.7 1.7h-1q0-.7-.5-1t-1-.4-1.2.3-.3 1 .3.9.8.6l1.2.3q.9.3 1.3 1t.5 1.5q0 .8-.3 1.3-.4.5-1 .8t-1.4.3m4.7-.1v-8.8h2.2q.9 0 1.5.4.6.3 1 .9.3.5.3 1.4v3.5q0 .8-.3 1.4-.4.6-1 .9l-1.5.3zm1-1h1.2q.9 0 1.3-.4t.4-1.2v-3.5q0-.9-.4-1.3t-1.3-.4h-1.1zm6.2 1v-8.8h1v3.8h1.4l1.9-3.8h1.2l-2.2 4.3 2.3 4.5h-1.2l-2-4h-1.3v4zm9.5.1q-.7 0-1.2-.2l-.8-.6-.4-1h1.1q0 .4.4.6.3.2.9.2h.5q.6 0 1-.2l.2-.7q0-.4-.3-.7t-.8-.3l-.9-.2q-1 0-1.4-.6-.5-.4-.5-1.2 0-.9.6-1.4t1.7-.5h.4q1 0 1.5.4t.7 1.2h-1l-.4-.4q-.3-.2-.8-.2h-.4q-.7 0-1 .2l-.2.7.2.6.8.3.9.1q1 .1 1.5.6t.5 1.3-.6 1.5-1.7.5z"/></g><g filter="url(#e)"><rect width="297" height="127" x="1147.5" y="189.5" fill="#ed6d20" fill-opacity=".1" stroke="#ed6d20" rx="33.5"/><path fill="#f0997b" d="m1255 247 3.8-14.6h2.5l3.7 14.6h-1.8l-1-3.9h-4.4l-1 3.9zm3.2-5.4h3.7l-1.2-4.5-.5-2.1-.2-1.2-.7 3.3zm9.7 5.4v-11h1.8v2.1h.3l-.3.4q0-1.2.7-2a3 3 0 0 1 2.2-.7q1.7 0 2.6 1t1 2.8v7.4h-1.8v-7.2q0-1.2-.6-1.8t-1.7-.6-1.8.6-.6 2v7zm15.1.2a4 4 0 0 1-2.7-.9q-1-.9-1-2.4a3 3 0 0 1 1-2.4 4 4 0 0 1 2.7-.9h3.4v-1.1q0-1-.6-1.6-.6-.5-1.7-.5a3 3 0 0 0-1.7.4q-.7.4-.7 1.1h-1.8q0-1.4 1.3-2.3 1.2-.8 3-.8t3 1q1 1 1 2.6v7.6h-1.7v-2.1h-.3l.3-.3q0 1.2-1 1.9a4 4 0 0 1-2.5.7m.5-1.4q1.2 0 2-.7 1-.7 1-1.6v-1.6h-3.5a2 2 0 0 0-1.4.5q-.5.6-.5 1.4 0 .9.6 1.5t1.8.5m14 1.2q-1 0-1.7-.4-.7-.3-1.1-1t-.4-1.7V234h-3.7v-1.6h5.5v11.5q0 .7.4 1 .3.5 1 .5h3.5v1.6zm8 3.6 1.7-4.3-4.1-10.3h2l2.6 6.8.2.8.2.8.2-.8.3-.8 2.4-6.8h1.9l-5.4 14.6zm14.2-3.4q-1.2 0-2-.4-.9-.3-1.3-1a3 3 0 0 1-.6-1.5h1.8q0 .6.6 1l1.5.3h.8q1 0 1.6-.5.5-.4.5-1.1t-.5-1.1-1.4-.6l-1.5-.2q-1.5-.3-2.4-1-.7-.7-.7-2.2t.9-2.2q.9-.9 2.8-.9h.8q1.6 0 2.5.8a3 3 0 0 1 1.2 2h-1.8q-.1-.6-.6-.8-.6-.4-1.3-.4h-.8q-1 0-1.5.4t-.5 1.2q0 .6.5 1 .3.3 1.2.4l1.5.3q1.8.2 2.6 1 .8.7.8 2.2a3 3 0 0 1-1 2.4q-.9.9-3 .9zm12.3 0q-1.4 0-2.3-.5t-1.5-1.5q-.5-1-.5-2.2v-3q0-1.3.5-2.2t1.5-1.5 2.3-.5 2.2.5q1 .6 1.5 1.5t.6 2.2v2h-6.9v1q0 1.3.7 2t1.9.7q1 0 1.7-.4.6-.3.7-1.1h1.8a3 3 0 0 1-1.3 2.2 5 5 0 0 1-3 .8m2.5-6.5v-.7q0-1.3-.6-2t-2-.7q-1.1 0-1.8.7t-.7 2v.6h5.3zm-57.1 34.3-2.3-8.8h1.1l1.5 6 .3 1.2.1.8.2-.8.3-1.2 1.4-6h1.1l-2.2 8.8zm5.3 0v-1h2.4v-4.6h-2v-1h3v5.6h2.3v1zm2.8-7.8q-.5 0-.6-.2l-.3-.5q0-.4.3-.6t.6-.2q.5 0 .6.2.3.2.2.6t-.2.5zm7 8q-.8 0-1.4-.4-.5-.3-.9-.9-.3-.6-.3-1.3v-1.8q0-.8.3-1.3l1-1 1.3-.2q.8 0 1.4.3t.9.9.3 1.3v1.2h-4.1v.6q0 .8.4 1.2.3.4 1.1.4.7 0 1-.2t.5-.7h1q0 .9-.8 1.3a3 3 0 0 1-1.7.5m1.5-4v-.4q0-.8-.4-1.2-.3-.4-1.1-.4t-1.1.4q-.4.5-.4 1.2v.3zm3.6 3.8-1-6.6h.9l.6 4.7.1.6v.5l.2-.5v-.6l.8-4.7h1l.8 4.7v.6l.1.5v-.5l.2-.6.7-4.7h.9l-1.1 6.6h-1.2l-.7-4.6-.1-.6-.1-.6v.6l-.2.6-.7 4.6zm9.3.1q-.8 0-1.4-.3t-.9-.9-.3-1.3v-1.8q0-.8.3-1.3t1-1l1.3-.2q.8 0 1.4.3t.8.9.4 1.3v1.2h-4.1v.6q0 .8.4 1.2.3.4 1.1.4.7 0 1-.2t.5-.7h1q0 .9-.8 1.3a3 3 0 0 1-1.7.5m1.5-3.9v-.4q0-.8-.4-1.2-.3-.4-1.1-.4t-1.1.4-.4 1.2v.3zm3.4 3.8v-6.6h1v1.3h.3l-.3.7q0-1 .4-1.6.5-.5 1.4-.5 1 0 1.7.6t.6 1.8v.4h-1v-.3q0-.8-.5-1.2-.3-.4-1-.4t-1.1.4-.4 1.2v4.2z"/></g><g filter="url(#f)"><rect width="297" height="127" x="573.5" y=".5" fill="#a855f7" fill-opacity=".1" stroke="#a855f7" rx="33.5"/><path fill="#afa9ec" d="M688 58V43.4h8.4V45h-6.6v4.6h6v1.6h-6v5.2h6.6V58zm11.9 0V47h1.8v2.1h.3l-.3.4q0-1.2.7-2a3 3 0 0 1 2.2-.7q1.7 0 2.6 1t1 2.8V58h-1.8v-7.2q0-1.2-.6-1.8t-1.7-.6q-1.2 0-1.8.6t-.6 2v7zm12.3 0V47h1.8v2.1h.4l-.6 1.3q0-1.7.8-2.7.8-.9 2.3-.9 1.6 0 2.7 1.1a4 4 0 0 1 1 3v.6H719V51q0-1.3-.7-2t-1.7-.7-1.8.7-.7 2v7zm11.5 0v-1.6h3.9v-7.8h-3.4V47h5.2v9.4h3.7V58zm4.6-13q-.6 0-1-.3-.4-.4-.4-1t.4-.9 1-.3 1 .3.4 1-.4.9q-.4.3-1 .3m11.8 13.2q-1.5 0-2.3-.5-1-.5-1.6-1.4-.5-1-.5-2.3v-3q0-1.3.5-2.3t1.6-1.4 2.3-.5q1.9 0 3 1t1.3 2.8h-1.8q0-1-.8-1.6-.6-.6-1.7-.6t-2 .7q-.6.6-.6 1.9v3q0 1.2.7 2 .6.6 1.9.6 1 0 1.7-.6t.8-1.6h1.8q0 1.8-1.3 2.8-1.1 1-3 1m7.7-.2V43.4h1.8v5.7h.4l-.4.4q0-1.2.8-2a3 3 0 0 1 2.2-.7q1.6 0 2.6 1t1 2.8V58h-1.8v-7.2q0-1.2-.7-1.8t-1.7-.7-1.7.7-.7 2v7zm-58.9 28-2.2-6.6h1l1.6 4.4.3 1.4.4-1.4 1.5-4.4h1l-2.1 6.6zm7.4 0v-7.8h-2.4v-1h5.9v1h-2.4V86zm4.7 0 2.3-8.8h1.4L707 86h-1l-.7-2.3h-2.6L702 86zm2-3.2h2.1l-.7-2.7-.4-2-.4 2zm8.3 3.3-1.4-.3-1-.8-.2-1.4v-4q0-.8.3-1.3t.9-.9l1.4-.3q.8 0 1.3.3t1 .9l.2 1.3h-1q0-.7-.5-1.1t-1-.4-1.2.4-.4 1.1v4q0 .8.4 1.2t1.2.4q.6 0 1-.4t.4-1.2v-1H711v-1h2.8v2q0 .8-.3 1.3t-.9 1zm11.6 1.2 4.3-11.3h1.1L724 87.3zm16.3-1.3-2.2-8.8h1.1l1.5 6 .4 2 .4-2 1.5-6h1l-2.2 8.8zm5.5 0v-8.8h2.8q.8 0 1.4.4.6.3 1 .9.3.5.3 1.3t-.4 1.4-.9.9l-1.4.3h-1.7V86zm1-4.6h1.8q.8 0 1.1-.4.5-.5.5-1.2t-.5-1.2-1-.4h-1.8zm8.7 4.7q-.8 0-1.5-.3t-1-.8l-.3-1.3h1.1q0 .7.5 1t1.2.4 1.2-.3.4-1-.3-1q-.2-.3-.8-.5l-1.1-.4q-1-.3-1.4-1-.5-.6-.5-1.5 0-.6.3-1.2t.9-.8q.5-.3 1.4-.3 1 0 1.8.7.7.6.7 1.7h-1q0-.7-.5-1t-1-.4-1.2.3q-.3.3-.3 1 0 .4.3.9t.8.6l1.2.3q.9.3 1.3 1 .6.7.5 1.5t-.3 1.3q-.4.5-1 .8t-1.4.3"/></g><g filter="url(#g)"><path fill="#1f1f1f" d="M384.4 254.4q1.2-1.4 0-2.8l-12.7-12.7a2 2 0 1 0-2.8 2.8l11.3 11.3-11.3 11.3a2 2 0 1 0 2.8 2.8zM302 253v2h81v-4h-81z"/></g><g filter="url(#h)"><path fill="#1f1f1f" d="M765.4 254.4q1.2-1.4 0-2.8l-12.7-12.7a2 2 0 1 0-2.8 2.8l11.3 11.3-11.3 11.3a2 2 0 1 0 2.8 2.8zM683 253v2h81v-4h-81z"/></g><g filter="url(#i)"><path fill="#1f1f1f" d="M1146.4 254.4q1.2-1.4 0-2.8l-12.7-12.7a2 2 0 0 0-2.8 2.8l11.3 11.3-11.3 11.3a2 2 0 0 0 2.8 2.8zM1064 253v2h81v-4h-81z"/></g><g filter="url(#j)"><path fill="#1f1f1f" d="M532.6 188.4c.8.8 2 .8 2.8 0l12.7-12.7a2 2 0 1 0-2.8-2.8L534 184.2l-11.3-11.3a2 2 0 1 0-2.8 2.8zM534 64h-2v123h4V64z"/></g><g filter="url(#k)"><path fill="#1f1f1f" d="M725.4 128.6a2 2 0 0 0-2.8 0L710 141.4a2 2 0 0 0 2.8 2.8l11.2-11.4 11.4 11.3a2 2 0 0 0 2.8-2.9zM725 253h2l-1-123h-4l1 123z"/></g><g filter="url(#l)"><path fill="#1f1f1f" d="M913.4 317.6a2 2 0 0 0-2.8 0l-12.7 12.7a2 2 0 0 0 2.8 2.8l11.3-11.3 11.3 11.3a2 2 0 0 0 2.9-2.8zM912 379h2v-60h-4v60z"/></g><g filter="url(#m)"><path fill="#1f1f1f" d="M910.6 382.3c.8.8 2 .8 2.8 0l12.7-12.7a2 2 0 1 0-2.8-2.8L912 378l-11.3-11.3a2 2 0 0 0-2.8 2.8zM912 319h-2v61.9h4V319z"/></g><g filter="url(#n)"><path stroke="#1f1f1f" stroke-width="4" d="M573 66h-39"/></g><defs><filter id="a" width="306" height="136" x="0" y="191" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.929412 0 0 0 0 0.427451 0 0 0 0 0.12549 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="b" width="306" height="136" x="381" y="189" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.231373 0 0 0 0 0.509804 0 0 0 0 0.964706 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="c" width="306" height="136" x="762" y="189" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.0784314 0 0 0 0 0.556863 0 0 0 0 0.556863 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="d" width="306" height="136" x="762" y="383" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.960784 0 0 0 0 0.619608 0 0 0 0 0.0431373 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="e" width="306" height="136" x="1143" y="189" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.929412 0 0 0 0 0.427451 0 0 0 0 0.12549 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="f" width="306" height="136" x="569" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0.658824 0 0 0 0 0.333333 0 0 0 0 0.968627 0 0 0 0.1 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="g" width="91" height="37.5" x="298" y="238.3" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="h" width="91" height="37.5" x="679" y="238.3" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="i" width="91" height="37.5" x="1060" y="238.3" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="j" width="37.5" height="133" x="515.3" y="64" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="k" width="37.5" height="133" x="705.4" y="128" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="l" width="37.5" height="70" x="893.3" y="317" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="m" width="37.5" height="71.9" x="893.3" y="319" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter><filter id="n" width="47" height="12" x="530" y="64" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1_126"/><feBlend in="SourceGraphic" in2="effect1_dropShadow_1_126" result="shape"/></filter></defs></svg>
+<div class="pipe-source-overlay" id="pipe-source">
+<div class="pipe-source-name" id="pipe-source-name">TAG ECU</div>
+<div class="pipe-source-sub" id="pipe-source-sub">On car</div>
+</div>
 
 
-        <a href="extending-atlas/apis/" class="feature-card fade-in">
-            <div class="card-icon">🧩</div>
-            <h2>
-                Extend ATLAS
-            </h2>
-            <p>Integrate with third-party tools and discover how to customize ATLAS for your workflows.</p>
-        </a>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </section>
+
+<!-- ═══ LIVE COMMS ═══ -->
+<div class="section-divider"></div>
+<section class="comms-section section-alt" id="comms" aria-labelledby="comms-title">
+<div class="container">
+<div class="reveal">
+<div class="section-label">Live insights</div>
+<h2 class="section-title fade-content" id="comms-title">Two rooms. Same data. Different decisions.</h2>
+<p class="section-desc fade-content" id="comms-desc">The pit wall reacts in seconds. The factory connects dots across seasons. Both live, both running ATLAS.</p>
+</div>
+<div class="comms-grid reveal">
+
+<!-- LIVE PANEL -->
+<div class="comms-col">
+<div class="comms-header">
+<div class="comms-dot comms-dot-live" aria-hidden="true"></div>
+<div class="comms-h-label" id="live-label">Pit wall, lap 34/58</div>
+<div class="comms-h-time" id="pit-time" aria-hidden="true">14:47:12</div>
+</div>
+<div class="comms-body" aria-hidden="true">
+<div class="comms-scroll comms-scroll-pit" id="pit-scroll"></div>
+</div>
+</div>
+
+<!-- REMOTE PANEL -->
+<div class="comms-col">
+<div class="comms-header">
+<div class="comms-dot comms-dot-remote" aria-hidden="true"></div>
+<div class="comms-h-label" id="remote-label">Factory, remote operations</div>
+<div class="comms-h-time" id="fac-time" aria-hidden="true">14:47:14</div>
+</div>
+<div class="comms-body" aria-hidden="true">
+<div class="comms-scroll comms-scroll-fac" id="fac-scroll"></div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ═══ FAMILIES ═══ -->
+<div class="section-divider"></div>
+<section class="families-section section-glow" id="families" aria-labelledby="families-title">
+<div class="container">
+<div class="reveal">
+<div class="section-label">The platform</div>
+<h2 class="section-title" id="families-title">Five families. One data journey.</h2>
+<p class="section-desc">Each family handles a stage of the telemetry lifecycle. Adopt what you need, scale as you grow.</p>
+</div>
+<div class="fam-grid reveal">
+<div class="fam-card">
+<div class="fam-bar" style="background:var(--orange)"></div>
+<div class="fam-name">Analyse</div>
+<div class="fam-desc">Visualise, compare, and interrogate telemetry live or post-run. Advanced displays, alarms, and virtual parameters.</div>
+<div class="fam-products">Viewer · Functions · Displays</div>
+</div>
+<div class="fam-card">
+<div class="fam-bar" style="background:var(--blue)"></div>
+<div class="fam-name">Stream</div>
+<div class="fam-desc">Move live telemetry across people, systems, and sites. Low-latency distribution for collaboration and remote ops.</div>
+<div class="fam-products">ADS · RDS · Open Streaming</div>
+</div>
+<div class="fam-card">
+<div class="fam-bar" style="background:var(--purple)"></div>
+<div class="fam-name">Enrich</div>
+<div class="fam-desc">Run Simulink models against live data. Generate virtual parameters. Blend real and simulated to test scenarios.</div>
+<div class="fam-products">vTAG · VPS</div>
+</div>
+<div class="fam-card">
+<div class="fam-bar" style="background:var(--teal)"></div>
+<div class="fam-name">Store</div>
+<div class="fam-desc">Keep telemetry organised, durable, and accessible at scale. Session management across teams and locations.</div>
+<div class="fam-products">SQL Race · SSN2</div>
+</div>
+<div class="fam-card">
+<div class="fam-bar" style="background:var(--orange2)"></div>
+<div class="fam-name">Integrate</div>
+<div class="fam-desc">Connect ATLAS to broader data ecosystems. APIs, open formats, and RTA for third-party automation.</div>
+<div class="fam-products">RTA · APIs · SDKs</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div class="section-divider"></div>
+<section class="cta-section section-alt" aria-labelledby="cta-h2">
+<div class="container reveal">
+<h2 id="cta-h2">Ready to operate at the limit?</h2>
+<p id="cta-p">Every millisecond of data. Every decision that matters.</p>
+<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+<a href="https://www.motionapplied.com/contact" class="btn-primary">Contact sales →</a>
+<a href="https://atlas.motionapplied.com/getting-started/quick-start/" class="btn-ghost">Read the docs</a>
+</div>
+</div>
+</section>
+
+</main><!-- /#main-content -->
+
+<script>
+/* ═══════════════════════════════════════════
+   INDUSTRY CONTENT DATA
+   ═══════════════════════════════════════════ */
+
+const INDUSTRIES = {
+
+  motorsport: {
+    hero: {
+      h1: 'Data at the speed of the <em>race</em>',
+      p: 'ATLAS moves raw telemetry from the car to the pit wall to the factory. Live, every lap, every session.'
+    },
+    hud: [
+      {k:'Speed',  color:'or'}, {k:'Gear',   color:'tl'},
+      {k:'RPM',    color:'bl'}, {k:'ECU temp',color:'or'},
+      {k:'Lap',    color:'tl'}, {k:'Throttle',color:'bl'}
+    ],
+    hudTick(st){
+      const spd=Math.max(65,Math.min(340,Math.floor(180+120*Math.sin(st*0.3)+20*Math.sin(st*1.7))));
+      const gear=spd<100?2:spd<150?3:spd<200?4:spd<260?5:spd<310?6:7;
+      const rpm=Math.floor(6000+(spd/340)*10000+500*Math.sin(st*5));
+      const temp=Math.floor(80+30*Math.sin(st*0.15)+5*Math.random());
+      const thr=Math.max(0,Math.min(100,Math.floor(50+50*Math.sin(st*0.8))));
+      const lap=Math.min(58,Math.floor(st*0.08)+1);
+      return [
+        {v:spd+' km/h', pct:spd/340},
+        {v:String(gear), pct:gear/8},
+        {v:(rpm/1000).toFixed(1)+'k', pct:(rpm-6000)/10000},
+        {v:temp+'°C', pct:(temp-60)/60},
+        {v:lap+'/58', pct:lap/58},
+        {v:thr+'%', pct:thr/100}
+      ];
+    },
+    svg: `<svg style="width:100%;max-width:320px;height:auto;display:block;filter:drop-shadow(0 0 40px rgba(237,109,32,0.08)) brightness(1.1)" xmlns="http://www.w3.org/2000/svg" width="512" height="341" viewBox="0 0 512 341"><path fill="#484848" d="m80 111 8-16c6-9 22-31 33-34 5-1 23 1 28 2l31 3 30 2a843 843 0 0 0 121-2l36-4 19-1 9 3q21 16 32 41l3 5 1 1q6 9 7 19l4 15a198 198 0 0 1 2 73q-3 23-11 45c-2 4 1 11-2 15-5 5-21-1-26-5l-1-3-2-10 5-15q4-18 3-36 0-5-3-8c-7-7-14-3-22-3h-1l-2-2-8 3q-8 6-6 16l2 11c-2 15-17 17-28 20l-9 2-20 1v3l-2 5c-5 4-16 6-22 4l-4-2q-3-3-8-3a295 295 0 0 0-49 1l-4 2q-3 4-9 3c-4 0-13-2-16-5q-3-3-2-8-13 0-25-2l-4-1-2-1q-12-1-21-9-4-4-4-10c0-10 5-21-5-27l-8-3-2 2c-9 0-16-4-23 3q-3 4-3 8-1 18 3 35 3 7 4 16c1 2 0 11-2 13-4 3-15 7-20 7l-6-1c-3-5 0-11-2-16l-4-13-6-25a202 202 0 0 1 0-78l5-17q1-10 6-18zm288 18c4 0 16 1 20 3l4 2c3 4 2 19 3 25q11-10 5-23l-4-4v-6q-3-8-12-12-10-1-17 6zm-251 30c0-5 0-21 3-25l4-2c4-2 14-3 19-3l1-1 1-8q-7-7-17-6a15 15 0 0 0-9 7l-3 5v5l-4 5c-5 7-1 18 5 23"/><path fill="#484848" d="m79 112 1-1c3 2 0 13 12 19l8 2c7-1 12-7 16-6v5l-4 5c-5 7-1 18 5 23 5 4 12 2 15 6 1 5-2 18-2 24l-1 7-2 2c-9 0-16-4-23 3q-3 4-3 8-1 18 3 35 3 7 4 16c1 2 0 11-2 13-4 3-15 7-20 7l-6-1c-3-5 0-11-2-16l-4-13-6-25a202 202 0 0 1 0-78l5-17q2-10 6-18"/><path fill="#2a2a2a" d="m79 112 1-1c3 2 0 13 12 19l8 2c7-1 12-7 16-6v5l-4 5c-5 7-1 18 5 23 5 4 12 2 15 6 1 5-2 18-2 24l-1 7-2 2c-9 0-16-4-23 3q-3 4-3 8-1 18 3 35 3 7 4 16c1 2 0 11-2 13-4 3-15 7-20 7l-6-1 10-2q7-1 13-5c-5-8-5-12-7-21q-6-27-7-54-1-28 9-53 2-6 7-11c-13 2-24-4-25-18z"/><path fill="#484848" d="M117 159c5 4 12 2 15 6 1 5-2 18-2 24l-1 7-2 2v-7c0-4 3-23 2-26-1-2-7-2-9-3zm315-48q6 9 7 19l4 15a198 198 0 0 1 2 73q-3 23-11 45c-2 4 1 11-2 15-5 5-21-1-26-5l-1-3-2-10 5-15q4-18 3-36 0-5-3-8c-7-7-14-3-22-3h-1l-2-2v-5c-1-6-4-20-2-26 2-4 9-2 14-6q11-10 5-23l-4-4q-2-4 0-5l1-1c2-1 7 3 9 4l4 2 9-2c13-5 9-17 13-19"/><path fill="#2a2a2a" d="M432 111q1 7-2 12-7 12-20 10h-3c15 15 16 49 15 69q0 25-6 49c-2 9-2 13-7 21q8 5 17 6h6c-5 5-21-1-26-5l-1-3-2-10 5-15q4-18 3-36 0-5-3-8c-7-7-14-3-22-3h-1l-2-2v-5c-1-6-4-20-2-26 2-4 9-2 14-6q11-10 5-23l-4-4q-2-4 0-5l1-1c2-1 7 3 9 4l4 2 9-2c13-5 9-17 13-19"/><path fill="#484848" d="M381 165c2-4 9-2 14-6-3 4-12 3-12 8l2 19v12l-2-2v-5c-1-6-4-20-2-26"/><path fill="#2a2a2a" d="M371 226c-2 0-6 6-7 8q-9 7-17 0-3-5-4-11l-7-48q-1-8 3-15 8-6 15 0 3 3 8 3l7-1 2 2 10 1c-2 6 1 20 2 26v5l-8 3q-8 6-6 16z"/><path fill="#a09e9f" d="M345 161a8 8 0 1 1 3 15 8 8 0 1 1-3-15"/><path fill="#2a2a2a" d="M343 166q6 1 2 6-5-1-2-6"/><path fill="#a09e9f" d="M343 167q4 0 2 4h-1z"/><path fill="#2a2a2a" d="m349 165 1 1-1 1v4q0-3-2-5z"/><path fill="#a09e9f" d="M350 190q6 0 8 7a8 8 0 0 1-8 8 8 8 0 0 1-8-7 8 8 0 0 1 8-8"/><path fill="#2a2a2a" d="M350 199v-4c2 1 0 4 2 4v-4h1v1l2-2v1l-1 2 1 2v1l-2-2v1c-2 2-3-1-5 0v1h-2c-1-3 1-4-2-5h5z"/><path fill="#2a2a2a" d="M346 200c-1-3 1-4-2-5h4l-1 5z"/><path fill="#a09e9f" d="m348 195-1 5h-1q0-3 2-5"/><path fill="#2a2a2a" d="M142 162h13q6-6 14-5 4 1 6 6l1 4-1 14-5 35q0 8-3 15c-2 5-10 8-15 5q-6-4-10-10c0-10 5-21-5-27l-8-3 1-7c0-6 3-19 2-24q5 0 10-3"/><path fill="#a09e9f" d="M161 190a8 8 0 0 1 8 7 8 8 0 0 1-6 8 8 8 0 0 1-9-7 8 8 0 0 1 7-8"/><path fill="#2a2a2a" d="M159 194q6 2 1 6-6-2-1-6"/><path fill="#a09e9f" d="M159 195q4 1 1 4l-1-1z"/><path fill="#2a2a2a" d="M163 195v2l3-2-2 2 1 3v1l-2-3-1 2h-1z"/><path fill="#d3d4d9" d="m160 166 2 2v-2h1v4l-1-1-1 1v-1l-1 1zm7 0h2q2 2 0 4l-1-1-1 1z"/><path fill="#d3d4d9" d="M171 166v1l2-1v1l-1 1 1 2q-1 1-2-1l-1 2q-1-2 1-5m-6 0q2 2 1 3h-3z"/><path fill="#1f1f1f" d="m198 249 26-2 35-1 30 1 25 2v3l-2 5c-5 4-16 6-22 4l-4-2q-3-3-8-3a295 295 0 0 0-49 1l-4 2q-3 4-9 3c-4 0-13-2-16-5q-2-3-2-8m170-120c4 0 16 1 20 3l4 2c3 4 2 19 3 25-5 4-12 2-14 6l-10-1-2-2zm-251 30c0-5 0-21 3-25l4-2c4-2 14-3 19-3h1l-2 33q-5 3-10 3c-3-4-10-2-15-6"/><path fill="#2a2a2a" d="M243 82h2q35-1 70 1l14 2q3 3 4 8l6 5 1 8v23c-1 3-8 4-9 9v31c0 3 1 15-2 17l-13 1-7 2H203l-7-2c-3-1-12 0-14-2-2-1-1-10-1-12v-22q2-10-4-18-4-1-5-6v-25c0-6 4-5 7-9 2-2 1-8 5-8q29-4 59-3"/><path fill="#1f1f1f" d="M195 96h126q6 1 5 7v69q-1 6-7 5H191l-4-2-1-6v-68q1-6 9-5"/><path fill="#484848" d="M190 99h132l1 1v69q0 3-2 5H192l-3-1v-71z"/><path fill="#f1d64a" d="M253 84h6v4h-6z"/><path fill="#e43434" d="M279 84h6v4h-6z"/><path fill="#f8a437" d="M270 84h6v4h-5z"/><path fill="#f1d64a" d="M244 84h6v4h-6zm18 0h6v4h-6z"/><path fill="#e43434" d="M288 84h6v5h-6z"/><path fill="#51ba7d" d="M218 84h6v5h-6zm-18 1h6v5h-6z"/><path fill="#e43434" d="M297 85h6v4h-6z"/><path fill="#bdce53" d="M235 84h6v4h-6z"/><path fill="#51ba7d" d="M226 84h6v4h-6zm-17 1h6v4h-6z"/><path fill="#e43434" d="M306 85h6v5h-6z"/><path fill="#2a2a2a" d="M147 67c8-1 8 4 10 9q3 7 10 8 5-1 8 3c2 6-7 5-9 10v7c2 5 0 12-6 13q-7 2-13-3l-8-5q-15-6-32-10c-5-1-8-9-5-14 6-12 23-3 33-6 7-3 6-10 12-12"/><path fill="#51ba7d" d="M111 82a8 8 0 0 1 8 6 8 8 0 0 1-6 9 8 8 0 0 1-9-7 8 8 0 0 1 7-8"/><path fill="#2a2a2a" d="M109 85h2l2 5 1-5h1v8h-2l-2-5-1 5h-1z"/><path fill="#a09e9f" d="M155 99a8 8 0 1 1 3 15 8 8 0 0 1-9-6 8 8 0 0 1 6-9"/><path fill="#2a2a2a" d="M153 103h2q2 2 0 6l-4-1zm6 3-2 3v-5l1 4 1-4 1 1v3h1l-1 2h-1zm1 2 2-3z"/><path fill="#476baa" d="M134 87a8 8 0 0 1 9 6 8 8 0 0 1-6 9 8 8 0 0 1-3-15"/><path fill="#d3d4d9" d="m137 93 1-2c3 0 3 5 1 6q-2 1-3-1z"/><path fill="#476baa" d="M138 92q3 2 1 4h-1z"/><path fill="#d3d4d9" d="m136 96-1 1-1-4v-1l2-1 1 2z"/><path fill="#5185c1" d="m136 91 1 2-1 3z"/><path fill="#2a2a2a" d="M362 67c9 0 7 9 14 11 9 3 19-1 28 1q8 5 6 15c-2 7-12 6-18 8l-16 6-18 10c-6 2-14-4-13-10l1-10q-2-5-8-7c-5-8 7-6 12-9 8-4 3-13 12-15"/><path fill="#a09e9f" d="m399 82 7 3a8 8 0 0 1 1 8l-6 4a8 8 0 0 1-9-7 8 8 0 0 1 7-8"/><path fill="#2a2a2a" d="M396 85q4-1 5 3-1 2-3 2l-1 2zm5 0 1 1v5l3 1h-4z"/><path fill="#a09e9f" d="M354 99a8 8 0 1 1 3 15 8 8 0 0 1-3-15"/><path fill="#2a2a2a" d="M351 104q3-1 4 1 0 2-3 3v2zm7-1q2 0 2 2zq-3 3 0 4l2-2v1h1c-2 5-9-1-3-4"/><path fill="#476baa" d="M375 87q8-1 9 6a8 8 0 0 1-6 9 8 8 0 0 1-9-6 8 8 0 0 1 6-9"/><path fill="#d3d4d9" d="M380 90v7l-1 1v-5l-2-1zm-6 2h1v1l2 1-2 1v2l-1-1q0-2-2-2z"/><path fill="#1f1f1f" d="M189 234a18 18 0 0 1-2-19 18 18 0 0 1 20-10 18 18 0 0 1 14 16 18 18 0 0 1-11 18 18 18 0 0 1-21-5"/><path fill="#bdce53" d="M203 205a18 18 0 0 1 18 16 18 18 0 0 1-11 18 18 18 0 0 1-21-5l4-3 6 4q6 1 10-1a13 13 0 0 0 6-8q2-6-1-10-3-5-9-6h-2z"/><path fill="#f1d64a" d="M203 205h4q0 3-2 5h-2z"/><path fill="#3fb0ac" d="M189 234a18 18 0 0 1-2-19 18 18 0 0 1 16-10v5h-1q-5 0-8 3a13 13 0 0 0-4 10q0 4 3 8z"/><path fill="#a09e9f" d="M202 210h1l1 11h-2z"/><path fill="#1f1f1f" d="M308 205a18 18 0 1 1-16 24 18 18 0 0 1 2-16 18 18 0 0 1 14-8"/><path fill="#5185c1" d="M308 205a18 18 0 1 1-16 24l5-1 5 6a13 13 0 0 0 10 1 13 13 0 0 0 8-6 12 12 0 0 0 1-10l-5-7h-1q-3-2-7-2z"/><path fill="#c1af79" d="M292 229a18 18 0 0 1 2-16 18 18 0 0 1 14-8v5q-14 2-11 18z"/><path fill="#a09e9f" d="m315 212-6 10-2-2zm38-77q0-4 4-3h7v3l1 4v13l-10 1-1-2z"/><path fill="#585858" d="M365 139v13l-10 1 2-1h1v-3h7v-9z"/><path fill="#1f1f1f" d="M365 139v13l-10 1 2-1h7l1-3v-9z"/><path fill="#585858" d="M365 143h-7v-2l7-1v7zm-8-11h7v3l-7-1z"/><path fill="#727172" d="M353 135q0-4 4-3v2z"/><path fill="#a09e9f" d="m148 134 1-2 4-1q7-1 6 4l-1 17h-9l2 1c-7 3-4-14-4-14z"/><path fill="#585858" d="m148 134 1-2 4-1q7-1 6 4zm1 18 2 1c-7 3-4-14-4-14v10h7v3z"/><path fill="#2a2a2a" d="m149 152 2 1c-7 3-4-14-4-14v7q-1 5 2 6"/><path fill="#585858" d="M147 140h8v3h-8z"/><path fill="#1f1f1f" d="M111 207v-3c2-2 22-5 26-5 10 6 5 17 5 27q0 6 4 10 9 7 21 9l2 1-5 4c-1 3-16 9-18 8l-1-3-15 3-11 1q-5-2-7-6l-8-37q-1-7 7-9m264-8c4 0 24 3 26 5v3q7 1 7 9l-3 13-3 16q0 7-5 12-7 3-15 1l-15-3-1 3c-2 1-16-5-17-7l-6-5c11-3 26-5 28-20l-2-11q-2-10 6-16"/></svg>`,
+    pipeline: {
+      desc:'Captured on the car, streamed live to the pit wall and factory, enriched with models, stored for the season.',
+      source:'TAG ECU',sourceSub:'On car'
+    },
+    stats:[
+      {v:'30+',l:'Years in motorsport'},{v:'<1ms',l:'Telemetry latency'},{v:'1000+',l:'Parameters per session'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Remote factory access'},{v:'∞',l:'Sessions searchable'},
+      {v:'F1',l:'Proven heritage'},{v:'Simulink',l:'Model execution'},{v:'Secure',l:'Team-level data isolation'}
+    ],
+    comms:{
+      liveLabel:'Pit wall, lap 34/58',
+      remoteLabel:'Factory, remote operations',
+      title:'Two rooms. Same data.<br>Different decisions.',
+      desc:'The pit wall reacts in seconds. The factory connects dots across seasons. Both live, both running ATLAS.',
+      liveMsgs:[
+        {from:'dr',name:'Driver',text:'Something doesn\'t feel right on the front wing. Entry to turn 6 is loose.',align:'l'},
+        {from:'re',name:'Race engineer',text:'Copy. Pulling it up. Front downforce dropped since lap 31.',align:'r',tag:'Front DF: -4.2% since L31',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nFrontWingDF below threshold. 3 consecutive laps',align:'l',sys:true,tc:'dt-warn'},
+        {from:'st',name:'Strategist',text:'If we\'ve lost that aero, the undercut doesn\'t work. Recalculating pit window.',align:'l',tag:'Pit window: L36→L38',tc:'dt-info'},
+        {from:'re',name:'Race engineer',text:'vTAG confirms. predicted lap time loss 0.3s compounding. Endplate deflection consistent with damage.',align:'r',tag:'vTAG: +0.3s/lap projected',tc:'dt-pu'},
+        {from:'dr',name:'Driver',text:'Rear is also starting to move around. These tyres are done.',align:'l'},
+        {from:'re',name:'Race engineer',text:'We can see it. Rear left surface temp climbing. Box this lap, plan C.',align:'r',tag:'RL surface: 142°C ↑',tc:'dt-warn'},
+        {from:'dr',name:'Driver',text:'Box box. Copy.',align:'l'},
+        {from:'sys',name:'ATLAS',text:'Pit stop initiated. timer started. Strategy plan C loaded.',align:'l',sys:true,tc:'dt-ok'},
+        {from:'st',name:'Strategist',text:'Hamilton is on a 2-stop too. If we get a clean out-lap we clear him.',align:'l',tag:'Gap to HAM: 1.8s',tc:'dt-am'},
+        {from:'re',name:'Race engineer',text:'Good stop. 2.3 seconds. You\'re clear of Hamilton. Push now.',align:'r',tag:'Pit stop: 2.3s',tc:'dt-ok'},
+        {from:'dr',name:'Driver',text:'Car feels much better. Front end is alive again.',align:'l'},
+      ],
+      remoteMsgs:[
+        {from:'pe',name:'Performance engineer',text:'I\'m seeing the front wing drop from here too. Pulling up the Barcelona session. we had something similar in FP2.',align:'l',tag:'Searching: front wing events',tc:'dt-info'},
+        {from:'ae',name:'Aero engineer',text:'Barcelona was a different endplate spec, but the deflection shape looks very similar at yaw angles above 4°.',align:'r',tag:'Yaw threshold: >4°',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 3 matching sessions found. Barcelona FP2, Imola Q1, Bahrain test day 2',align:'l',sys:true,tc:'dt-tl'},
+        {from:'pe',name:'Performance engineer',text:'All three show the same signature. This isn\'t contact damage. it\'s a structural weakness.',align:'l',tag:'Pattern match: 4 events',tc:'dt-warn'},
+        {from:'rl',name:'Reliability engineer',text:'Cross-referencing with tunnel data via RTA. The FEA model predicted flex at exactly this yaw angle.',align:'r',tag:'FEA correlation: 94%',tc:'dt-pu'},
+        {from:'he',name:'Head of engineering',text:'So we\'ve been treating a design flaw as random contact damage. How many races has this cost us?',align:'l'},
+        {from:'pe',name:'Performance engineer',text:'Conservative estimate: 12-15 points across the season. The Imola DNF was likely this failing under sustained load.',align:'r',tag:'Estimated cost: 12-15 pts',tc:'dt-warn'},
+        {from:'ae',name:'Aero engineer',text:'I\'ve already started a revised endplate in CAD. Running it through vTAG against all four sessions now.',align:'l',tag:'vTAG sim: queued',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'vTAG batch simulation started. 4 sessions × new endplate spec. ETA: 14 minutes.',align:'l',sys:true,tc:'dt-tl'},
+        {from:'rl',name:'Reliability engineer',text:'If it\'s yaw-dependent, Monaco and Singapore won\'t trigger it. But Silverstone and Spa absolutely will.',align:'r',tag:'Risk circuits: SIL, SPA',tc:'dt-warn'},
+        {from:'he',name:'Head of engineering',text:'Agreed. Fast-track the new spec. I want validation by Wednesday and the part on the car by Friday practice.',align:'l',tag:'Target: Friday FP1',tc:'dt-ok'},
+      ]
+    },
+    cta:{h2:'Ready to operate at the limit?',p:'Every millisecond of data. Every decision that matters.'}
+  },
+
+  aerospace: {
+    hero: {
+      h1: 'Data at the speed of <em>flight</em>',
+      p: 'ATLAS moves flight data from the airframe to operations to fleet engineering. Real-time, every sortie, every airframe.'
+    },
+    hud: [
+      {k:'Altitude', color:'or'}, {k:'Mach',    color:'tl'},
+      {k:'G-Load',   color:'bl'}, {k:'EGT',     color:'or'},
+      {k:'Fuel flow', color:'tl'}, {k:'Heading', color:'bl'}
+    ],
+    hudTick(st){
+      const alt=Math.max(0,Math.floor(32000+8000*Math.sin(st*0.12)+500*Math.sin(st*0.7)));
+      const machN=0.78+0.12*Math.sin(st*0.15);
+      const gloadN=1.0+0.8*Math.sin(st*0.5)+0.3*Math.sin(st*2.1);
+      const egt=Math.floor(620+60*Math.sin(st*0.2)+10*Math.random());
+      const fuel=Math.floor(2400+400*Math.sin(st*0.18));
+      const hdg=Math.floor(((st*3)%360+360)%360);
+      return [
+        {v:alt.toLocaleString()+' ft', pct:alt/40000},
+        {v:'M '+machN.toFixed(2), pct:(machN-0.6)/0.4},
+        {v:gloadN.toFixed(1)+'g', pct:Math.max(0,(gloadN+0.5)/3)},
+        {v:egt+'°C', pct:(egt-560)/160},
+        {v:fuel+' kg/h', pct:(fuel-1600)/1600},
+        {v:String(hdg).padStart(3,'0')+'°', pct:hdg/360}
+      ];
+    },
+    svg: `<svg style="width:100%;max-width:320px;height:auto;display:block;filter:drop-shadow(0 0 40px rgba(237,109,32,0.08)) brightness(1.1)" xmlns="http://www.w3.org/2000/svg" width="512" height="341" viewBox="0 0 512 341"><path fill="#313c43" d="M178 152q2 5 7 6 11-2 20-6c11-2 11-9 13-18l5-18c3-16 1-16 17-16h30c5 0 14-2 17 3l2 9 4 18 4 15q4 7 12 8l17 5 4-1q3-2 4-6l8 2 16 3q-1 13-10 21l-9 3h-14l-25-2h-17v2q3 10-6 10l-44-1c-6 0-5-8-4-11l-38 1-18 1-9-3q-10-9-10-21zm99 1 2-2v-33l-1-2h-43l-2 1v34q3 3 6 2z"/><path fill="#21292e" d="M229 178h54v4h-54zm5-64h26l19 1 2 2v27c0 3 1 10-3 10h-45l-2-2v-36zm43 39 2-2v-33l-1-2h-43l-2 1v34q3 3 6 2z"/><path fill="#313c43" d="M235 116h43l1 2-2 35h-38l-6-2-1-2zm16 9h11v-3h-11zm-13 0h11v-3h-11z"/><path fill="#f93131" d="M264 143h11v3h-11zm0-10h11v3h-11z"/><path fill="#a9e756" d="M238 143h11v3h-11z"/><path fill="#4bf45f" d="M238 133h11v3h-11z"/><path fill="#fdbd67" d="M251 138h11v3h-11z"/><path fill="#4bf45f" d="M238 127h11v3h-11z"/><path fill="#fdbd67" d="M251 143h11v3h-11z"/><path fill="#4bf45f" d="M238 138h9q3 0 2 3h-11zm13-16h11v3h-11z"/><path fill="#fdbd67" d="M251 133h11v3h-11z"/><path fill="#f93131" d="M264 138h11v3h-11z"/><path fill="#4bf45f" d="M238 122h11v3h-11z"/><path fill="#49525a" d="M280 104a2 2 0 1 1 1 5 2 2 0 0 1-1-5m-49 0a2 2 0 1 1-1 4 2 2 0 0 1 1-4m49 65a2 2 0 1 1 1 4 2 2 0 0 1-1-4m-49 0a2 2 0 0 1 3 2 2 2 0 0 1-5 0z"/><path fill="#313c43" d="M253 192h24v89c0 18 1 17-16 17h-21q-5-2-5-6v-99l2-1z"/><path fill="#49525a" d="M237 192h16l-9 1 1 73v32h-5q-5-2-5-6v-99z"/><path fill="#313c43" d="M240 298q-5-2-5-6v-99l2-1 2 1 1 11zm-86-144c-6-3-4-18-4-23q4-40 20-76c6-13 6-14 18-6l10 7q3 7 0 14v1c2 3 7 10 3 13l-10 2c-2 3-7 3-6 8 0 4 4 7 1 10q-4 3-4 8c1 4 5 8 2 12-2 2-7 5-6 9 2 7 9 9 0 16l-13 2z"/><path fill="#21292e" d="M198 56q3 7 0 14v1c2 3 7 10 3 13q-5 3-10 2c-2 3-7 3-6 8 0 4 4 7 1 10q-4 3-4 8c1 4 5 8 2 12-2 2-7 5-6 9 2 7 9 9 0 16l-13 2c0-14 6-34 9-48l1-13 9-13 9-15z"/><path fill="#313c43" d="M198 71c2 3 7 10 3 13q-5 3-10 2z"/><path fill="#886949" d="m174 68 5 2a6 6 0 0 1-4 9 6 6 0 0 1-1-11"/><path fill="#fdbd67" d="M174 70a3 3 0 0 1 4 4 3 3 0 0 1-6 0 3 3 0 0 1 2-4m6-16 4 1a4 4 0 0 1-2 6 4 4 0 0 1-2-7"/><path fill="#313c43" d="M315 56q3-5 10-8c2-1 9-7 11-4q5 6 6 11 18 40 20 82c0 4 1 15-4 16l-12-2-12-2c-9-6-2-10 0-16 1-4-4-7-6-9-3-4 1-8 2-12q0-5-4-8c-3-3 1-7 1-10 1-5-4-5-6-8q-5 0-9-2c-5-3 0-10 2-13q-3-8 1-15"/><path fill="#21292e" d="m315 56 4 6 5 9 13 18 1 15c2 12 10 36 8 47l-12-2c-9-6-2-10 0-16 1-4-4-7-6-9-3-4 1-8 2-12q0-5-4-8c-3-3 1-7 1-10 1-5-4-5-6-8q-5 1-9-2c-5-3 0-10 2-13q-3-8 1-15"/><path fill="#313c43" d="m314 71 6 12 1 3q-5 1-9-2c-5-3 0-10 2-13"/><path fill="#886949" d="M336 68a6 6 0 0 1 2 11 6 6 0 1 1-2-11"/><path fill="#fdbd67" d="M336 70a3 3 0 1 1 2 7 3 3 0 1 1-2-7m-6-16a4 4 0 0 1 4 4 4 4 0 0 1-7 1 4 4 0 0 1 3-5"/><path fill="#07f8f3" d="M178 149v3l-24 4v-2l11-3zm156 0 12 2 12 2v3l-16-3-8-2z"/></svg>`,
+    pipeline: {
+      desc:'Captured on the airframe, streamed to ops and fleet engineering, enriched with flight models, stored across the fleet.',
+      source:'FDR / DAU',sourceSub:'On airframe'
+    },
+    stats:[
+      {v:'1000+',l:'Parameters per airframe'},{v:'<1ms',l:'Data latency'},{v:'Real-time',l:'In-flight monitoring'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site fleet ops'},{v:'∞',l:'Sorties searchable'},
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
+    ],
+    comms:{
+      liveLabel:'Operations centre, sortie 7 active',
+      remoteLabel:'Fleet engineering, remote analysis',
+      title:'Ops centre and fleet desk.<br>Same data. Different focus.',
+      desc:'The ops centre monitors live sorties. Fleet engineering finds patterns across airframes and flight hours. Both live, both running ATLAS.',
+      liveMsgs:[
+        {from:'pi',name:'Pilot',text:'Getting some vibration through the stick at high alpha. Feels structural, not aero.',align:'l'},
+        {from:'ft',name:'Flight test engineer',text:'Copy. EGT and vibration spectra are nominal. Pulling structural loads overlay now.',align:'r',tag:'Vib band: 42Hz ↑',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nVibeSpectrum_42Hz above threshold. sustained 12 seconds',align:'l',sys:true,tc:'dt-warn'},
+        {from:'ft',name:'Flight test engineer',text:'That 42Hz peak correlates with the starboard engine mount. Not critical but we should log a maintenance flag.',align:'r',tag:'Engine mount resonance',tc:'dt-pu'},
+        {from:'pi',name:'Pilot',text:'Reducing to 0.82 Mach. Vibration subsiding.',align:'l'},
+        {from:'ft',name:'Flight test engineer',text:'Confirmed. vibration dropped below threshold at M 0.82. Speed-dependent. Logging flight condition.',align:'r',tag:'Clear below M 0.82',tc:'dt-ok'},
+        {from:'sys',name:'ATLAS',text:'Flight condition logged. Maintenance flag raised: starboard engine mount inspection.',align:'l',sys:true,tc:'dt-am'},
+        {from:'se',name:'Safety engineer',text:'Fuel state is comfortable. Recommend completing the test card at reduced Mach and RTB.',align:'l',tag:'Fuel: 4,200 kg remaining',tc:'dt-ok'},
+        {from:'ft',name:'Flight test engineer',text:'Agreed. Pilot, continue test points 4 through 7 at M 0.80. Skip point 8.',align:'r'},
+        {from:'pi',name:'Pilot',text:'Copy. Proceeding with modified card. Turning onto heading 270 for point 4.',align:'l'},
+      ],
+      remoteMsgs:[
+        {from:'pe',name:'Structures engineer',text:'I\'m seeing that 42Hz signature from here. Cross-referencing against fleet vibration database.',align:'l',tag:'Fleet DB: querying',tc:'dt-info'},
+        {from:'ae',name:'Propulsion engineer',text:'This looks like the same mount resonance we saw on tail number 004 last quarter. Different airframe, same behaviour.',align:'r',tag:'Match: TN-004 event',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 5 matching events found across 3 airframes. all starboard engine mount, 38-45Hz band',align:'l',sys:true,tc:'dt-tl'},
+        {from:'pe',name:'Structures engineer',text:'Five events across three airframes. This is a fleet-wide concern, not a one-off. We need to pull the FEM results.',align:'l',tag:'Fleet pattern: 5 events',tc:'dt-warn'},
+        {from:'rl',name:'Fatigue engineer',text:'FEM predicted resonance at exactly this frequency under high-alpha loading. Original analysis assumed it wouldn\'t be sustained.',align:'r',tag:'FEM correlation: 91%',tc:'dt-pu'},
+        {from:'he',name:'Chief engineer',text:'So the model was right but the operational assumption was wrong. How many flight hours before this becomes structural?',align:'l'},
+        {from:'rl',name:'Fatigue engineer',text:'Based on the duty cycle from ATLAS data: approximately 800 hours to first inspection threshold. Three airframes are already past 600.',align:'r',tag:'Time to threshold: 800 hrs',tc:'dt-warn'},
+        {from:'pe',name:'Structures engineer',text:'Running the revised mount design through vTAG against all five recorded events now.',align:'l',tag:'vTAG sim: queued',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'vTAG batch simulation started. 5 events × revised mount spec. ETA: 18 minutes.',align:'l',sys:true,tc:'dt-tl'},
+        {from:'he',name:'Chief engineer',text:'Issue a fleet-wide inspection directive. Revised mount goes into next scheduled maintenance. No aircraft grounded yet, but I want data from every sortie flagged.',align:'l',tag:'Fleet directive issued',tc:'dt-ok'},
+      ]
+    },
+    cta:{h2:'Ready to see across your fleet?',p:'Every parameter. Every sortie. Every airframe.'}
+  },
+
+  research: {
+    hero: {
+      h1: 'Data at the speed of <em>discovery</em>',
+      p: 'ATLAS moves high-frequency sensor data from the facility to the control room to the analysis lab. Continuous, every run, every campaign.'
+    },
+    hud: [
+      {k:'Temp',     color:'or'}, {k:'Pressure', color:'tl'},
+      {k:'Neutron flux',color:'bl'},{k:'Flow rate',color:'or'},
+      {k:'Power',    color:'tl'}, {k:'Status',   color:'bl'}
+    ],
+    hudTick(st){
+      const temp=Math.floor(312+8*Math.sin(st*0.1)+2*Math.random());
+      const presN=155+5*Math.sin(st*0.08)+Math.random();
+      const fluxN=2.4e13+1e12*Math.sin(st*0.05);
+      const flow=Math.floor(18400+600*Math.sin(st*0.12));
+      const power=(Math.floor(96+3*Math.sin(st*0.06)));
+      const statuses=['NOMINAL','NOMINAL','NOMINAL','NOMINAL','CAUTION'];
+      const status=statuses[Math.floor((st*0.1)%statuses.length)];
+      return [
+        {v:temp+'°C', pct:(temp-300)/30},
+        {v:presN.toFixed(1)+' bar', pct:(presN-148)/14},
+        {v:fluxN.toExponential(1)+' n/cm²', pct:0.5+0.5*Math.sin(st*0.05)},
+        {v:flow.toLocaleString()+' l/h', pct:(flow-17000)/2000},
+        {v:power+'%', pct:power/100},
+        {v:status, pct:status==='NOMINAL'?1:0.4}
+      ];
+    },
+    svg: `<svg style="width:100%;max-width:320px;height:auto;display:block;filter:drop-shadow(0 0 40px rgba(237,109,32,0.08)) brightness(1.1)" xmlns="http://www.w3.org/2000/svg" width="512" height="341" viewBox="0 0 512 341"><path fill="#2e2e2e" d="m136 70 15-1h216l4 1q4 2 4 6v194l-4 3-17 1H188l-53-1-3-3V77q-1-6 4-7"/><path fill="#4f4e4e" d="M185 89a33 33 0 1 1 6 65 33 33 0 0 1-6-65"/><path fill="#2e2e2e" d="M185 93a28 28 0 1 1 6 57 28 28 0 0 1-6-57"/><path fill="#d4d4d3" d="M186 96a26 26 0 1 1 4 51 26 26 0 0 1-4-51"/><path fill="#2e2e2e" d="M191 119v5c-6 4-10-7-2-7z"/><path fill="#e4624f" d="M189 117c4-2 10-10 14-12l-12 14z"/><path fill="#4f4e4e" d="M193 136a2 2 0 1 1-1 3zm-10 0 1 3a2 2 0 0 1-3-2zm1-29q2 0 3 2l-1 1-2 2z"/><path fill="#212121" d="M200 127q1 2-1 3-3-1 0-4"/><path fill="#2e2e2e" d="M203 127q2 2 1 4h-1q-2-2 0-4"/><path fill="#c8c8c8" d="M203 128v3z"/><path fill="#4f4e4e" d="m168 107 5 4q-3-1-5-4m39 0-5 3v-1zm-43 13h5v1h-3z"/><path fill="#2e2e2e" d="m189 107 1 1h-1l1 2-1 1-1-1h1l-1-2z"/><path fill="#4f4e4e" d="M188 97v5-6m19 24h5v1zm-36 11-3 3-1-1zm33-1 5 3v1l-3-2zm-27-30 3 5-1-1zm22 0q0 3-2 5v-1zm-25 27 1 1h-1l-1 1 1 2h1-1l-1-1z"/><path fill="#212121" d="M197 127v3l-1-3zm-6-20v3l-1-1z"/><path fill="#4f4e4e" d="m204 103-2 2zm-13-5v2h-1zm-12 1 1 3h-1zm17 0-1 3-1-1zm-28 31-1 1h-1z"/><path fill="#2e2e2e" d="M209 118h3z"/><path fill="#4f4e4e" d="m185 98 1 2z"/><path fill="#2e2e2e" d="m209 125 3 1zm-35-23 2 2z"/><path fill="#4f4e4e" d="m164 117 3 1zm151-29a33 33 0 1 1 6 66 33 33 0 0 1-6-66"/><path fill="#2e2e2e" d="M316 93a28 28 0 1 1 4 57 28 28 0 0 1-4-57"/><path fill="#d4d4d3" d="M316 96a26 26 0 1 1 4 51 26 26 0 0 1-4-51"/><path fill="#2e2e2e" d="m321 119-1 5h-5l-1-5a4 4 0 0 1 7 0"/><path fill="#e4624f" d="m330 107-9 11-2-2z"/><path fill="#4f4e4e" d="M312 136a2 2 0 1 1 0 3zm10 0a2 2 0 0 1 2 3 2 2 0 1 1-2-3m-8-29 3 1-1 2-2 1z"/><path fill="#212121" d="M330 127q2 2-1 3-3-1 0-4"/><path fill="#212121" d="M333 127q1 1-1 3h-1z"/><path fill="#d4d4d3" d="m333 128-1 2v-3"/><path fill="#4f4e4e" d="m298 107 5 4h-1q-3-1-4-4m39 0-4 3v-1zm-36 24-3 3-1-1zm-7-11h5v1zm13-20 2 5h-1zm10-3q2 3 1 5h-1z"/><path fill="#212121" d="M318 107v-1zh-1l2 2-1 1-1-1h1v-1h-1z"/><path fill="#4f4e4e" d="m328 100-2 5h-1z"/><path fill="#e4624f" d="m330 107 4-4z"/><path fill="#2e2e2e" d="M337 120h5v1h-1z"/><path fill="#4f4e4e" d="m334 131 5 2h-1zm-31-4 1 1-1 2 1 1h-1z"/><path fill="#212121" d="M320 107h1v4l-1-1zm7 20v3h-1v-3z"/><path fill="#2e2e2e" d="m304 102 2 2z"/><path fill="#212121" d="M323 98v3z"/><path fill="#4f4e4e" d="m326 99-1 3v-1z"/><path fill="#2e2e2e" d="M309 99v3z"/><path fill="#4f4e4e" d="m335 105-2 2zm-20-7v2zm-21 19 3 1z"/><path fill="#2e2e2e" d="m295 112 3 1z"/><path fill="#4f4e4e" d="m295 115 3 1z"/><path fill="#2e2e2e" d="m339 125 3 1z"/><path fill="#4f4e4e" d="m338 127 3 1zm-44-4h3zm43 7 2 1zm-85-1q5-1 9 1a21 21 0 0 1 11 12q4 10-2 20h-34q-9-17 5-30 5-3 11-3"/><path fill="#d4d4d3" d="m240 158-2-5c-3-10 3-20 12-22a17 17 0 0 1 13 3 17 17 0 0 1 8 10c0 3 0 12-3 13h-2c-5-7-15-8-21-2l-3 2z"/><path fill="#2e2e2e" d="m240 158-2-5c-3-10 3-20 12-22a17 17 0 0 1 13 3 17 17 0 0 1 8 10c0 3 0 12-3 13h-1l2-5a16 16 0 0 0-2-12 16 16 0 0 0-10-7c-14-3-23 13-16 24"/><path fill="#4f4e4e" d="m255 147-1 2h-2l-1-2a2 2 0 0 1 4 0"/><path fill="#e4624f" d="M254 146c2-2 6-7 8-7z"/><path fill="#c8c8c8" d="m263 139 1 2-1 1-1-2z"/><path fill="#2e2e2e" d="M253 135v4zm-14 13h4z"/><path fill="#d4d4d3" d="M256 157a1 1 0 1 1 1 1 1 1 0 0 1-1-2m-7 1a1 1 0 1 1 1 2 1 1 0 0 1-1-2"/><path fill="#4f4e4e" d="M250 90a16 16 0 1 1 6 32 16 16 0 0 1-6-32"/><path fill="#2e2e2e" d="M252 92a14 14 0 1 1 3 28 14 14 0 0 1-3-28"/><path fill="#d4d4d3" d="M251 94a12 12 0 0 1 4 24 12 12 0 0 1-11-4 12 12 0 0 1-2-12 12 12 0 0 1 9-8"/><path fill="#2e2e2e" d="M248 112h10v3h-10z"/><path fill="#d4d4d3" d="M249 114h7l1 1zm0-2h8v1h-7z"/><path fill="#2e2e2e" d="m255 106-3 1a2 2 0 0 1 2-3z"/><path fill="#e4624f" d="m254 104 7-5c-1 2-6 5-6 7z"/><path fill="#c8c8c8" d="m245 98 2 1v1h-2l-1-1z"/><path fill="#4f4e4e" d="M253 95v3zm-12 11 4 1zm-9 66 42 1 1 2v11l-1 2h-9l-33-1-1-7z"/><path fill="#212121" d="M237 175h14v10h-14z"/><path fill="#62a2c3" d="M238 176h12v7l-12 1z"/><path fill="#212121" d="M255 175h15v10h-15z"/><path fill="#e4624f" d="M263 176h5v8l-6-1h-5l-1-7z"/><path fill="#4f4e4e" d="M202 165a13 13 0 1 1 4 27 13 13 0 0 1-4-27"/><path fill="#2e2e2e" d="M203 168a11 11 0 1 1 3 22 11 11 0 0 1-3-22"/><path fill="#d4d4d3" d="M198 171a10 10 0 0 1 13 0 10 10 0 0 1 2 13 10 10 0 0 1-12 4 10 10 0 0 1-3-17"/><path fill="#c8c8c8" d="m198 171 2 2-1 1-1-1v1h-1v4l-3 1v-1z"/><path fill="#4f4e4e" d="M200 183h8v3h-8z"/><path fill="#d4d4d3" d="M201 183h6l1 1zm-1 2h7z"/><path fill="#2e2e2e" d="m206 179-2 1-1-1v-1l2-1z"/><path fill="#e4624f" d="m205 177 5-4-4 6z"/><path fill="#c8c8c8" d="M212 177h1l-1 3-1-1z"/><path fill="#706f6f" d="M204 170v2z"/><path fill="#4f4e4e" d="M335 165a13 13 0 1 1 3 27 13 13 0 0 1-3-27"/><path fill="#2e2e2e" d="M335 168a11 11 0 0 1 3 22 11 11 0 0 1-10-4 11 11 0 0 1-2-11 11 11 0 0 1 9-7"/><path fill="#c8c8c8" d="M335 169a10 10 0 1 1 3 20 10 10 0 0 1-3-20"/><path fill="#4f4e4e" d="M332 183h8v3h-7z"/><path fill="#d4d4d3" d="M333 185h7zm0-2 7 1q-4 1-7-1"/><path fill="#2e2e2e" d="m338 178-1 2h-1l-1-1v-1l2-1z"/><path fill="#e4624f" d="m337 177 5-4-4 5z"/><path fill="#706f6f" d="M327 179h3z"/><path fill="#4f4e4e" d="M168 165a13 13 0 1 1 3 27 13 13 0 0 1-3-27"/><path fill="#2e2e2e" d="M168 168a11 11 0 1 1-7 18 11 11 0 0 1-2-11 11 11 0 0 1 9-7"/><path fill="#c8c8c8" d="M160 175a10 10 0 1 1 0 2z"/><path fill="#d4d4d3" d="M160 175q2 1 2 4-2 0-2-2z"/><path fill="#4f4e4e" d="M166 183h7v3h-7z"/><path fill="#d4d4d3" d="m166 183 7 1h-6z"/><path fill="#c8c8c8" d="M166 185h7z"/><path fill="#2e2e2e" d="M169 178a1 1 0 0 1 2 1 1 1 0 1 1-2-1"/><path fill="#e4624f" d="M169 178v-8l1 8z"/><path fill="#4f4e4e" d="M300 166a13 13 0 1 1 3 26 13 13 0 0 1-3-26"/><path fill="#2e2e2e" d="M300 168a11 11 0 1 1 3 22 11 11 0 0 1-3-22"/><path fill="#c8c8c8" d="M300 169a10 10 0 1 1 4 20 10 10 0 0 1-4-20"/><path fill="#4f4e4e" d="M298 183h8v3h-8z"/><path fill="#d4d4d3" d="m298 183 7 1h-5zm0 2h7z"/><path fill="#4f4e4e" d="M301 177a1 1 0 1 1 1 3 1 1 0 0 1-1-3"/><path fill="#e4624f" d="m296 174 5 3-1 1z"/><path fill="#706f6f" d="M292 179h3z"/><path fill="#212121" d="M184 232h17v24l-1 1h-17v-25z"/><path fill="#4f4e4e" d="M193 235h6v19h-14v-10h8z"/><path fill="#2e2e2e" d="M193 235h6v19-11l-6 1zm-8 0h5v9h-5z"/><path fill="#212121" d="M152 232h19v16l-1 9h-18z"/><path fill="#4f4e4e" d="M163 235h6v12l-1 7h-14v-19h6v9h3z"/><path fill="#2e2e2e" d="M154 235h6v9h-6v10zm9 0h6v12l-1 7v-11l-5 1z"/><path fill="#212121" d="M247 232h15v25h-18v-25z"/><path fill="#4f4e4e" d="M254 235h6v19h-14v-10h8z"/><path fill="#2e2e2e" d="M254 235h6v19-11l-6 1zm-8 0h6v9h-6z"/><path fill="#212121" d="M216 232h16l-1 24-2 1h-16v-25z"/><path fill="#4f4e4e" d="m215 243 6 1h8v10h-14z"/><path fill="#2e2e2e" d="M215 235h6v9l-6-1zm9 0h6l-1 9h-5z"/><path fill="#212121" d="M274 232h19l-1 24-18 1z"/><path fill="#4f4e4e" d="m285 244 5-1v11h-14v-11l6 1z"/><path fill="#2e2e2e" d="M285 235h6l-1 8-5 1zm-9 0h6v9l-6-1z"/><path fill="#212121" d="M343 236a10 10 0 1 1 3 20 10 10 0 0 1-3-20"/><path fill="#4f4e4e" d="M343 238a7 7 0 0 1 3 15 7 7 0 0 1-9-6 7 7 0 0 1 6-9"/><path fill="#212121" d="M313 236a10 10 0 1 1 3 20 10 10 0 0 1-3-20"/><path fill="#4f4e4e" d="M313 238a7 7 0 0 1 9 7 7 7 0 0 1-7 8 7 7 0 0 1-8-6 7 7 0 0 1 6-9"/><path fill="#212121" d="M337 206h17v12h-17z"/><path fill="#e4624f" d="M339 208h13v8h-13z"/><path fill="#212121" d="M152 206h17v12h-17z"/><path fill="#62a2c3" d="M154 208h13v8h-13z"/><path fill="#212121" d="M256 206h16v12h-17z"/><path fill="#74b556" d="m257 207 13 1v8h-13z"/><path fill="#212121" d="M193 206h17v12h-17z"/><path fill="#e4624f" d="M195 208h13v8h-13z"/><path fill="#212121" d="M276 206h16v12h-16z"/><path fill="#e4624f" d="M277 208h14v8h-14z"/><path fill="#212121" d="M234 206h17v12h-17z"/><path fill="#74b556" d="M236 208h13v8h-13z"/><path fill="#212121" d="M172 206h17v12h-17z"/><path fill="#62a2c3" d="M174 208h14v8h-14z"/><path fill="#212121" d="M214 206h17l-1 12h-16z"/><path fill="#e4624f" d="M215 208h14v8h-14z"/><path fill="#212121" d="M296 206h17v12h-17z"/><path fill="#62a2c3" d="M298 208h13v8h-13z"/><path fill="#212121" d="M317 206h17v12h-17z"/><path fill="#62a2c3" d="m319 207 13 1v8h-13z"/><path fill="#212121" d="M360 255a4 4 0 0 1 2 8 4 4 0 1 1-2-8m0-176a4 4 0 1 1 1 8 4 4 0 0 1-1-8M144 255l4 1a4 4 0 0 1-1 7 4 4 0 0 1-3-8m0-175 4 1a4 4 0 0 1-2 6 4 4 0 0 1-2-7"/><path fill="#c8c8c8" d="M156 226h10l3 1-2 1h-13q0-3 2-2m68 0q4-1 6 1v1h-8q-4 1-7-1v-1zm-34 0h9v2h-15l1-2zm55 0h15l1 2h-15zm31 0h15v2h-15z"/><path fill="#62a2c3" d="M313 227a3 3 0 1 1 2 5 3 3 0 0 1-2-5m30 0a3 3 0 1 1 2 5 3 3 0 0 1-2-5"/></svg>`,
+    pipeline: {
+      desc:'Captured at the sensor array, streamed to the control room and analysis lab, enriched with physics models, stored per campaign.',
+      source:'Sensor array',sourceSub:'Facility'
+    },
+    stats:[
+      {v:'10,000+',l:'Parameters per facility'},{v:'<1ms',l:'Data latency'},{v:'Continuous',l:'24/7 monitoring'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site operations'},{v:'∞',l:'Campaigns searchable'},
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
+    ],
+    comms:{
+      liveLabel:'Control room, run 14 active',
+      remoteLabel:'Analysis lab, remote research',
+      title:'Control room and research lab.<br>Same data. Different timescales.',
+      desc:'The control room monitors live operations second by second. The analysis lab finds patterns across campaigns and years. Both live, both running ATLAS.',
+      liveMsgs:[
+        {from:'op',name:'Reactor operator',text:'Seeing a slow drift on primary coolant loop B temperature. Up 2 degrees over the last 30 minutes.',align:'l'},
+        {from:'cr',name:'Control room supervisor',text:'Copy. Pulling up the thermal hydraulics overlay. Loop A is stable. this is B only.',align:'r',tag:'Loop B: +2.1°C drift',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Trend alarm: nPrimaryLoopB_Temp increasing 0.07°C/min. projected to reach caution threshold in 28 minutes',align:'l',sys:true,tc:'dt-warn'},
+        {from:'cr',name:'Control room supervisor',text:'vTAG model says this is consistent with reduced flow in the secondary side. Checking pump B2.',align:'r',tag:'vTAG: flow restriction model',tc:'dt-pu'},
+        {from:'op',name:'Reactor operator',text:'Pump B2 discharge pressure is down 3%. Could be cavitation or a valve position issue.',align:'l',tag:'Pump B2: -3% ΔP',tc:'dt-am'},
+        {from:'cr',name:'Control room supervisor',text:'Switching to backup pump B3. Operator, confirm transfer and monitor for transient.',align:'r'},
+        {from:'sys',name:'ATLAS',text:'Pump transfer B2→B3 complete. Primary loop B temperature stabilising.',align:'l',sys:true,tc:'dt-ok'},
+        {from:'op',name:'Reactor operator',text:'Transfer clean. Loop B temp already dropping. Back to nominal in about 5 minutes.',align:'l',tag:'Loop B: stabilising',tc:'dt-ok'},
+        {from:'sa',name:'Safety engineer',text:'Logging the event. No safety system actuation. Good catch on the trend.',align:'l',tag:'Event logged: nominal',tc:'dt-ok'},
+      ],
+      remoteMsgs:[
+        {from:'rs',name:'Research scientist',text:'That loop B drift matches something we saw in campaign 12. Pulling up the historical data.',align:'l',tag:'Searching: loop B events',tc:'dt-info'},
+        {from:'su',name:'Systems engineer',text:'Campaign 12 was 18 months ago. different fuel cycle. But the thermal signature is almost identical.',align:'r',tag:'Match: Campaign 12',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 4 matching thermal drift events found. Campaigns 8, 12, 19, and current',align:'l',sys:true,tc:'dt-tl'},
+        {from:'rs',name:'Research scientist',text:'All four events occurred within the first 200 hours after a secondary loop maintenance window. This is a post-maintenance issue.',align:'l',tag:'Pattern: post-maintenance',tc:'dt-warn'},
+        {from:'su',name:'Systems engineer',text:'Checking the maintenance logs via RTA integration. The valve alignment procedure changed between campaigns 12 and 19.',align:'r',tag:'Procedure delta found',tc:'dt-pu'},
+        {from:'he',name:'Technical director',text:'So the new procedure is introducing a subtle misalignment. How long before it self-corrects through thermal cycling?',align:'l'},
+        {from:'rs',name:'Research scientist',text:'Based on the four data sets. roughly 180-220 operating hours. But pump cavitation risk remains elevated during that window.',align:'r',tag:'Risk window: 180-220 hrs',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'vTAG simulation started. revised valve alignment procedure × 4 campaign data sets. ETA: 22 minutes.',align:'l',sys:true,tc:'dt-tl'},
+        {from:'he',name:'Technical director',text:'Revert to the original alignment procedure for the next maintenance window. And flag every facility running the new procedure.',align:'l',tag:'Procedure reversion ordered',tc:'dt-ok'},
+      ]
+    },
+    cta:{h2:'Ready to see across your facility?',p:'Every sensor. Every campaign. Every parameter.'}
+  },
+
+  robotics: {
+    hero: {
+      h1: 'Data at the speed of the <em>mission</em>',
+      p: 'ATLAS moves platform telemetry from the vehicle to the ground station to mission HQ. Live, every sortie, every vehicle.'
+    },
+    hud: [
+      {k:'Altitude', color:'or'}, {k:'Heading', color:'tl'},
+      {k:'Battery',  color:'bl'}, {k:'Signal',  color:'or'},
+      {k:'Payload',  color:'tl'}, {k:'Mode',    color:'bl'}
+    ],
+    hudTick(st){
+      const alt=Math.max(0,Math.floor(120+40*Math.sin(st*0.2)+10*Math.sin(st*0.9)));
+      const hdg=Math.floor(((st*5)%360+360)%360);
+      const batt=Math.max(15,Math.floor(78-st*0.03+5*Math.sin(st*0.1)));
+      const sig=Math.max(60,Math.min(99,Math.floor(92+5*Math.sin(st*0.3)+3*Math.random())));
+      const payloads=['LiDAR','Thermal','RGB','LiDAR'];
+      const payload=payloads[Math.floor((st*0.05)%payloads.length)];
+      const modes=['AUTO','AUTO','AUTO','GUIDED','AUTO'];
+      const mode=modes[Math.floor((st*0.08)%modes.length)];
+      return [
+        {v:alt+'m AGL', pct:alt/160},
+        {v:String(hdg).padStart(3,'0')+'°', pct:hdg/360},
+        {v:batt+'%', pct:batt/100},
+        {v:sig+'%', pct:(sig-60)/40},
+        {v:payload, pct:0.75},
+        {v:mode, pct:mode==='AUTO'?1:0.6}
+      ];
+    },
+    svg: `<svg style="width:100%;max-width:320px;height:auto;display:block;filter:drop-shadow(0 0 40px rgba(237,109,32,0.08)) brightness(1.1)" xmlns="http://www.w3.org/2000/svg" width="512" height="341" viewBox="0 0 512 341"><path fill="#313030" d="M246 162h16c11 0 15-3 15 10h45q11-2 20 4 1-4 4-3h1l3-1 6 4 1 1c0 4 3 3 1 7 11 6 11 9 11 21q3-1 3 3l1 16v54l-1 11v6c-2 13-13 17-24 16l-1 4-7 1c-5-1-10 2-9-5H182l-1 4q-4 2-10 1-8 1-7-5-8 1-17-4-6-4-7-12v-6l-1-10v-71q0-4 4-3l1-12q3-7 10-9v-5q0-2 2-3l6-4 4 1q4 0 4 2 9-4 19-3h42v-2c0-10 7-8 15-8"/><path fill="#504f4f" d="M246 162h16c11 0 15-3 15 10h23q-1 6-7 11l-4 1h-30l-40-1c-4-1-6-8-8-11h20v-2c0-10 7-8 15-8"/><path fill="#313030" d="M246 162h16c11 0 15-3 15 10h-46v-2c0-10 7-8 15-8"/><path fill="#222" d="M369 205q3-1 3 3l1 16v54l-1 11q-5 2-5-4v-78zm-226 0 2 2v80l-1 2h-4l-1-10v-71q0-4 4-3"/><path fill="#569047" d="m346 173 3-1 6 4 1 1c0 4 3 3 1 7l-16-8q1-4 4-3"/><path fill="#ef704e" d="m346 173 3-1 6 4 1 1v2z"/><path fill="#569047" d="m162 172 4 1q4-1 4 2l-16 9v-5q0-2 2-3z"/><path fill="#ef704e" d="m162 172 4 1-12 6q0-2 2-3z"/><path fill="#222" d="M164 311h18l-1 4q-4 2-10 1-8 1-7-5m167 0h17l-1 4-7 1c-5-1-10 2-9-5"/><path fill="#504f4f" d="M328 207a33 33 0 1 1 9 66 33 33 0 0 1-9-66"/><path fill="#222" d="M330 212a28 28 0 1 1 6 56 28 28 0 0 1-6-56"/><path fill="#504f4f" d="M314 227h37v26h-37z"/><path fill="#ef704e" d="M331 233a7 7 0 0 1 4 14 7 7 0 0 1-9-5 7 7 0 0 1 5-9"/><path fill="#f8f7f8" d="M331 235a5 5 0 0 1 7 3 5 5 0 0 1-4 7l-5-1a5 5 0 0 1 2-9"/><path fill="#313030" d="M332 236a4 4 0 0 1 1 7 4 4 0 1 1-1-7"/><path fill="#504f4f" d="M175 207a33 33 0 1 1 8 66 33 33 0 0 1-8-66"/><path fill="#222" d="M176 212a28 28 0 1 1 6 55 28 28 0 0 1-6-55"/><path fill="#504f4f" d="M176 227h21v26h-36v-26z"/><path fill="#ef704e" d="M177 233a7 7 0 0 1 7 2 7 7 0 0 1-3 12 7 7 0 0 1-4-14"/><path fill="#f8f7f8" d="M178 235a5 5 0 1 1 2 10 5 5 0 0 1-2-10"/><path fill="#313030" d="M179 236a4 4 0 0 1 0 7l-3-1a4 4 0 0 1 3-6"/><path fill="#222" d="M225 192h65q5 1 5 7v27q-1 6-7 6h-55c-6 0-17 2-17-7v-27q2-7 9-6"/><path fill="#7299ad" d="M223 196h66l2 2-2 30h-62q-4 1-6-3l-1-9v-18z"/><path fill="#f8f7f8" d="M239 209h2l-3 4q2 3 1 6l-3-4q-3 3-3 5l-1-2-2-2h3l1-2-4-4h1q2-1 6 1zm30-7c6 0 4 2 4 5q1 3-2 5c-6 0-2-4-4-8z"/><path fill="#7299ad" d="m269 203 2 1 1 2h-3zm0 5h2l1 2h-3z"/><path fill="#f8f7f8" d="M224 223h29v2h-28zm34 0h28l1 2h-29zm25-13 3 1v11l-3-1zm-5-12h9v4h-9zm-53 0h8v4h-8zm36 4q7 0 5 5v4l-4 1-1-2h4v-2h-3v-1l3-1v-2l-3-1zm-9 0 2 4q2 1 2-3h1v5l-1 3-1-3c-1-1-6 1-3-6m28 11h2v9l-2-1zm-4 2c2 0 1 5 1 7h-2zm-4 2 2 1 1 4q-4 0-3-5m-3 2h2v3h-2z"/><path fill="#504f4f" d="M196 283h119q4 1 3 6 1 5-3 7l-28 1h-78l-13-1-2-2v-9z"/><path fill="#f2d278" d="M296 287h12q2 3 1 5h-8q-4 1-5-2zm-79 0h7q2 3 1 5c-2 0-9 1-9-2zm-14 0h7q2 3 1 5h-5q-6 0-3-5"/><path fill="#504f4f" d="M224 237h1q10 0 9 10v16h-5v-19l-2-3c-7-1-6 6-6 10v12h-5c1-5-1-18 2-22q2-4 6-4m62-1c9 1 9 9 9 16v11h-5v-20l-3-2q-3 0-5 3v19h-5l1-20q1-6 8-7m-86-52a9 9 0 1 1 3 17 9 9 0 0 1-3-17"/><path fill="#626161" d="m201 187 5 2a5 5 0 0 1-4 9 5 5 0 0 1-1-11"/><path fill="#504f4f" d="M161 187a9 9 0 0 1 2 18 9 9 0 0 1-8-4l-1-8a9 9 0 0 1 7-6"/><path fill="#626161" d="M161 191a5 5 0 1 1 3 10 5 5 0 0 1-3-10"/><path fill="#504f4f" d="M310 184a9 9 0 1 1 3 17 9 9 0 0 1-3-17"/><path fill="#626161" d="M310 187a5 5 0 0 1 2 11 5 5 0 1 1-2-11"/><path fill="#504f4f" d="M349 187a9 9 0 0 1 2 18 9 9 0 0 1-8-4 9 9 0 0 1-1-9 9 9 0 0 1 7-5"/><path fill="#626161" d="M348 191a5 5 0 0 1 3 10l-5-1a5 5 0 0 1 2-9"/><path fill="#504f4f" d="M265 247q3 0 4 3c0 3 1 18-1 19q0 3-3 2l-1-1-2-1v-20zm-19 0 2 2v20l-2 2q-6-1-5-6l1-16zm81-65h8v17h-8v-5l1-5z"/><path fill="#222" d="M327 182h8v7l-1-1h-6v1z"/><path fill="#313030" d="m328 188 1-3q2-2 5-1v4z"/><path fill="#222" d="M327 194q4 4 8 0v5h-8z"/><path fill="#504f4f" d="M177 182h8v17h-8z"/><path fill="#222" d="M177 182h8v7l-2-1h-5l-1 1z"/><path fill="#313030" d="M178 184h5v4h-5z"/><path fill="#222" d="M177 194q4 4 8 0v5h-8z"/><path fill="#504f4f" d="M285 257c6-1 4 7 4 11l-2 3q-5-1-4-7 0-5 2-7m-61 0q3 0 4 2v8l-2 4q-2 1-3-2-2-5-1-11zm26-218q-5-2-2-8l4-3h8l2 4v5l-2 3v59l3 16v48h-16v-48l3-20 1-20zm100 133 7-15 2-2 3 1 2 2c1 3-6 14-8 18zm-194 4-3-7-5-9q0-5 5-5l1 1 8 16z"/></svg>`,
+    pipeline: {
+      desc:'Captured on the vehicle, streamed to the ground station and mission HQ, enriched with mission models, stored per fleet.',
+      source:'Flight ctrl',sourceSub:'On vehicle'
+    },
+    stats:[
+      {v:'500+',l:'Parameters per vehicle'},{v:'<1ms',l:'Data latency'},{v:'Multi-vehicle',l:'Fleet monitoring'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Remote operations'},{v:'∞',l:'Missions searchable'},
+      {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
+    ],
+    comms:{
+      liveLabel:'Ground station, mission 7 active',
+      remoteLabel:'Mission HQ, fleet operations',
+      title:'Ground station and mission HQ.<br>Same data. Different scope.',
+      desc:'The ground station manages live vehicles. Mission HQ coordinates across the fleet and optimises operations. Both live, both running ATLAS.',
+      liveMsgs:[
+        {from:'op',name:'UAV operator',text:'Vehicle 3 is reporting higher than expected motor current on motor 2. Flight is stable but I want to flag it.',align:'l'},
+        {from:'gs',name:'Ground station lead',text:'Copy. Pulling up the propulsion overlay. Motors 1, 3, 4 are nominal. Motor 2 is drawing 15% above baseline.',align:'r',tag:'Motor 2: +15% current',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nMotor2_Current above threshold. sustained for 4 minutes',align:'l',sys:true,tc:'dt-warn'},
+        {from:'gs',name:'Ground station lead',text:'vTAG model suggests bearing wear or prop imbalance. Not flight-critical yet but degrading efficiency.',align:'r',tag:'vTAG: bearing wear model',tc:'dt-pu'},
+        {from:'op',name:'UAV operator',text:'Battery is burning faster than planned. Estimate 6 minutes less endurance on this sortie.',align:'l',tag:'Endurance: -6 min',tc:'dt-am'},
+        {from:'gs',name:'Ground station lead',text:'Shorten the survey leg by two waypoints. Complete the priority area and RTB for motor inspection.',align:'r'},
+        {from:'sys',name:'ATLAS',text:'Mission plan updated. 2 waypoints removed. New RTB time: 14:52.',align:'l',sys:true,tc:'dt-ok'},
+        {from:'op',name:'UAV operator',text:'Acknowledged. Vehicle 3 proceeding to waypoint 8, then direct RTB. LiDAR coverage on priority zone will be 100%.',align:'l',tag:'Priority zone: 100%',tc:'dt-ok'},
+        {from:'gs',name:'Ground station lead',text:'Good. Vehicle 5 can pick up the dropped waypoints on its next sortie. No coverage gap.',align:'r',tag:'V5 tasking updated',tc:'dt-ok'},
+      ],
+      remoteMsgs:[
+        {from:'mp',name:'Mission planner',text:'Motor 2 issue on Vehicle 3. I\'m seeing similar current signatures in the fleet database. Pulling historical.',align:'l',tag:'Fleet DB: querying',tc:'dt-info'},
+        {from:'se',name:'Fleet engineer',text:'We had the same pattern on Vehicle 1 six weeks ago. Different motor position but same bearing supplier.',align:'r',tag:'Match: V1 motor 4',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 7 motor current anomalies found across fleet. all Supplier B bearings, 200-300 flight hour range',align:'l',sys:true,tc:'dt-tl'},
+        {from:'mp',name:'Mission planner',text:'Seven events, all the same supplier, all in the same hour range. This is a batch quality issue.',align:'l',tag:'Pattern: Supplier B batch',tc:'dt-warn'},
+        {from:'se',name:'Fleet engineer',text:'Checking procurement records. These bearings came from a single lot delivered in Q3. We have 12 more installed across the fleet.',align:'r',tag:'12 bearings at risk',tc:'dt-warn'},
+        {from:'he',name:'Fleet director',text:'What\'s the failure mode? Gradual degradation or risk of sudden seizure?',align:'l'},
+        {from:'se',name:'Fleet engineer',text:'Based on ATLAS data: gradual. Current increases linearly then plateaus. No sudden failures in any of the 7 events. But efficiency drops 20% by hour 350.',align:'r',tag:'Failure mode: gradual',tc:'dt-pu'},
+        {from:'sys',name:'ATLAS',text:'vTAG simulation: revised maintenance interval × fleet data. Optimal replacement at 250 flight hours.',align:'l',sys:true,tc:'dt-tl'},
+        {from:'he',name:'Fleet director',text:'Replace all Supplier B bearings at next scheduled maintenance. Any vehicle past 250 hours gets pulled from the roster until done.',align:'l',tag:'Fleet directive issued',tc:'dt-ok'},
+        {from:'mp',name:'Mission planner',text:'That\'s 3 vehicles grounded temporarily. Adjusting mission schedule. we can cover all commitments with the remaining fleet.',align:'r',tag:'Schedule adjusted',tc:'dt-ok'},
+      ]
+    },
+    cta:{h2:'Ready to command your fleet?',p:'Every vehicle. Every mission. Every parameter.'}
+  }
+};
+
+/* ═══════════════════════════════════════════
+   STATE & DOM REFS
+   ═══════════════════════════════════════════ */
+let currentIndustry = 'motorsport';
+let st = 0;
+
+/* ═══ SWITCH INDUSTRY ═══ */
+function switchIndustry(id) {
+  if (id === currentIndustry) return;
+  currentIndustry = id;
+
+  // Toggle button state + ARIA
+  document.querySelectorAll('.industry-btn').forEach(b => {
+    const isActive = b.dataset.industry === id;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+
+  const ind = INDUSTRIES[id];
+
+  // Fade out switchable elements
+  const fades = document.querySelectorAll('.fade-content');
+  fades.forEach(el => el.classList.add('switching'));
+
+  setTimeout(() => {
+    // Hero
+    document.getElementById('hero-h1').innerHTML = ind.hero.h1;
+    document.getElementById('hero-p').textContent = ind.hero.p;
+
+    // HUD labels + bar colours
+    ind.hud.forEach((h, i) => {
+      document.getElementById('hk' + i).textContent = h.k;
+      const v = document.getElementById('hv' + i);
+      v.className = 'hud-v ' + h.color;
+      const f = document.getElementById('hf' + i);
+      if(f) f.className = 'hud-bar-fill ' + h.color;
+    });
+
+    // SVG
+    document.getElementById('vehicle-svg').innerHTML = ind.svg;
+
+    // Pipeline
+    document.getElementById('pipe-desc').textContent = ind.pipeline.desc;
+    document.getElementById('pipe-source-name').textContent = ind.pipeline.source;
+    document.getElementById('pipe-source-sub').textContent = ind.pipeline.sourceSub;
+
+    // Stats
+    buildStats(ind.stats);
+
+    // Comms
+    document.getElementById('live-label').textContent = ind.comms.liveLabel;
+    document.getElementById('remote-label').textContent = ind.comms.remoteLabel;
+    document.getElementById('comms-title').innerHTML = ind.comms.title;
+    document.getElementById('comms-desc').textContent = ind.comms.desc;
+    fillScroll('pit-scroll', ind.comms.liveMsgs);
+    fillScroll('fac-scroll', ind.comms.remoteMsgs);
+
+    // CTA
+    document.getElementById('cta-h2').textContent = ind.cta.h2;
+    document.getElementById('cta-p').textContent = ind.cta.p;
+
+    // Fade back in
+    fades.forEach(el => el.classList.remove('switching'));
+  }, 350);
+}
+
+// Wire up toggle buttons
+document.getElementById('industry-toggle').addEventListener('click', e => {
+  const btn = e.target.closest('.industry-btn');
+  if (btn) switchIndustry(btn.dataset.industry);
+});
+
+/* ═══ TELEMETRY SIM ═══ */
+function hudTick(){
+  const ind = INDUSTRIES[currentIndustry];
+  const vals = ind.hudTick(st);
+  vals.forEach((item, i) => {
+    const vEl = document.getElementById('hv' + i);
+    const fEl = document.getElementById('hf' + i);
+    const cEl = document.getElementById('hc' + i);
+    if(vEl && vEl.textContent !== item.v){
+      vEl.textContent = item.v;
+      if(fEl) fEl.style.width = Math.max(0,Math.min(1,item.pct))*100 + '%';
+    }
+  });
+  st += 0.05;
+}
+
+
+/* ═══ STATS TICKER ═══ */
+function buildStats(data) {
+  const stEl = document.getElementById('stats-track');
+  const doubled = [...data, ...data];
+  stEl.innerHTML = doubled.map(s =>
+    `<div class="stat-item"><span class="stat-val">${s.v}</span><span class="stat-label">${s.l}</span></div>`
+  ).join('');
+}
+buildStats(INDUSTRIES.motorsport.stats);
+document.getElementById('vehicle-svg').innerHTML = INDUSTRIES.motorsport.svg;
+
+
+/* ═══ PIPELINE PACKETS ═══ */
+const pkC=['#ED6D20','#F59E0B','#3B82F6','#148E8E','#A855F7'];
+const pkEl=document.getElementById('pipe-pkts');
+function spawnPipePacket(){
+const d=document.createElement('div');d.className='pkt';
+d.style.background=pkC[Math.floor(Math.random()*pkC.length)];
+d.style.top=(20+Math.random()*60)+'%';
+d.style.animationDuration=(1.5+Math.random()*2)+'s';
+d.style.animationDelay=(Math.random()*0.5)+'s';
+pkEl.appendChild(d);
+setTimeout(()=>d.remove(),4000);
+}
+setInterval(spawnPipePacket,300);
+
+/* ═══ CHAT MESSAGES ═══ */
+function buildMsg(m){
+const isR=m.align==='r';
+const avClass=m.sys?'av-sys':`av-${m.from}`;
+const bClass=m.sys?'b-sys':`b-${m.from}`;
+let html=`<div class="msg${isR?' msg-r':''}">`;
+html+=`<div class="av ${avClass}">${m.sys?'◆':m.from.toUpperCase()}</div>`;
+html+=`<div class="bubble ${bClass}">`;
+if(!m.sys)html+=`<div class="bubble-name">${m.name}</div>`;
+html+=m.text;
+if(m.tag)html+=`<div class="data-tag ${m.tc||''}">${m.tag}</div>`;
+html+=`</div></div>`;
+return html;
+}
+
+function fillScroll(id,msgs){
+const el=document.getElementById(id);
+let h='';
+msgs.forEach(m=>h+=buildMsg(m));
+msgs.forEach(m=>h+=buildMsg(m));
+el.innerHTML=h;
+}
+fillScroll('pit-scroll',INDUSTRIES.motorsport.comms.liveMsgs);
+fillScroll('fac-scroll',INDUSTRIES.motorsport.comms.remoteMsgs);
+
+/* Time tickers */
+let pitSec=47*60+12,facSec=47*60+14;
+function tickTimes(){
+pitSec++;facSec++;
+const ps=pitSec%60,pm=Math.floor(pitSec/60)%60,ph=14;
+const fs=facSec%60,fm=Math.floor(facSec/60)%60,fh=14;
+document.getElementById('pit-time').textContent=`${ph}:${String(pm).padStart(2,'0')}:${String(ps).padStart(2,'0')}`;
+document.getElementById('fac-time').textContent=`${fh}:${String(fm).padStart(2,'0')}:${String(fs).padStart(2,'0')}`;
+}
+setInterval(tickTimes,1000);
+
+/* ═══ SCROLL REVEAL ═══ */
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ═══ MAIN LOOP ═══ */
+function loop(){hudTick();requestAnimationFrame(loop)}
+loop();
+</script>
 
 {% endblock %}
 {% block content %}{% endblock %}
