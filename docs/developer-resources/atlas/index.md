@@ -19,3 +19,12 @@ Get the libraries from our [GitHub packages feed](nuget/index.md).
     * _Concepts and Design Patterns_
     * _Tutorials with Code Samples_
     * _API Reference_
+
+[Pandlas — Python Bridge to ATLAS](./pandlas/index.md)
+:   _Write Pandas DataFrames directly to ATLAS sessions, including:_
+
+    * _Fixed-rate and multi-rate data channels_
+    * _Variable-rate (synchro) data from GPS, CAN, and irregular sources_
+    * _Events, markers, and lap boundaries_
+    * _Live streaming from APIs and sensors_
+    * _Session metadata, parameter groups, and text channels_

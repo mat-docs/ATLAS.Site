@@ -29,11 +29,11 @@ Select the programming language you want to use for your project. The SQLRace AP
 === "Python"
 
     1. Open PyCharm
-    3. Create a new project 
-    4. Add the package dependency: 'pythonnet' 
-    5. Create a new Python file main.py in the root of your project and copy the sample code
-    6. Or clone the sample code into the root
-    7. Change the variables at the top of the script to connect to your database
+    2. Create a new project 
+    3. Add the package dependency: 'pythonnet' 
+    4. Create a new Python file main.py in the root of your project and copy the sample code
+    5. Or clone the sample code into the root
+    6. Change the variables at the top of the script to connect to your database
 
 ## Importing the APIs
 ### C# NuGet Packages

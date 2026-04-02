@@ -25,6 +25,7 @@ theme:
     - navigation.indexes 
     - navigation.top
     - content.code.copy
+    - content.code.annotate
     - content.tabs.link
     - search.suggest
   icon:
@@ -305,6 +306,15 @@ nav:
           - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
           - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
           - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
+      - Pandlas (Python):
+        - Overview: developer-resources/atlas/pandlas/index.md
+        - Getting Started: developer-resources/atlas/pandlas/getting-started.md
+        - API Reference: developer-resources/atlas/pandlas/api-reference.md
+        - Examples:
+          - Multi-Rate Sessions: developer-resources/atlas/pandlas/examples/multirate.md
+          - Events & Markers: developer-resources/atlas/pandlas/examples/events.md
+          - Live Streaming: developer-resources/atlas/pandlas/examples/live-streaming.md
+          - Synchro Data: developer-resources/atlas/pandlas/examples/synchro.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md

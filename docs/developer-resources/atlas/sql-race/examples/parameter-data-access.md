@@ -119,14 +119,14 @@ samples within the returned array.
     ``` python
     # Local database connection string and session key for data already recorded
     connection_string = r"DbEngine=SQLite;Data Source=C:\session01.ssndb;Pooling=false;"
-    sessionKey = SessionKey.Parse("7DD05707-EAA2-4A36-BB8A-E2327AA52BFC")
+    session_key = SessionKey.Parse("7DD05707-EAA2-4A36-BB8A-E2327AA52BFC")
     
     # Initialise SQLRace API
     Core.Initialize()
     session_manager = SessionManager.CreateSessionManager()
     
     # Load existing session
-    client_session = session_manager.Load(sessionKey, connection_string)
+    client_session = session_manager.Load(session_key, connection_string)
     
     # Obtain the session
     session = client_session.Session
@@ -399,17 +399,17 @@ A dictionary with the parameter identifier can be used to achieve this.
     ```python
     # Local database connection string and session key for data already recorded
     connection_string = r"DbEngine=SQLite;Data Source=C:\session01.ssndb;Pooling=false;"
-    sessionKey = SessionKey.Parse("7DD05707-EAA2-4A36-BB8A-E2327AA52BFC")
+    session_key = SessionKey.Parse("7DD05707-EAA2-4A36-BB8A-E2327AA52BFC")
 
     # List of parameter identifiers to obtain samples from
-    parameterIdentifiers = ["vCar:Chassis", "nEngine:FIA"]
+    parameter_identifiers = ["vCar:Chassis", "nEngine:FIA"]
     
     # Initialise SQLRace API
     Core.Initialize()
     session_manager = SessionManager.CreateSessionManager()
 
     # Load existing session
-    client_session = session_manager.Load(sessionKey, connection_string)
+    client_session = session_manager.Load(session_key, connection_string)
     
     # Create the pda cache
     pda_cache = {}
@@ -418,13 +418,13 @@ A dictionary with the parameter identifier can be used to achieve this.
     session = client_session.Session
 
     for lap in session.LapCollection:
-        for parameterIdentifier in parameterIdentifiers:
+        for parameter_identifier in parameter_identifiers:
             # Open and cache PDA
-            if parameterIdentifier in pda_cache:
-                pda = pda_cache[parameterIdentifier]
+            if parameter_identifier in pda_cache:
+                pda = pda_cache[parameter_identifier]
             else:
-                pda = session.CreateParameterDataAccess(parameterIdentifier)
-                pda_cache[parameterIdentifier] = pda
+                pda = session.CreateParameterDataAccess(parameter_identifier)
+                pda_cache[parameter_identifier] = pda
         
             # Go to the start of the session
             pda.GoTo(lap.StartTime)

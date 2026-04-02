@@ -1,6 +1,6 @@
 # .NET 8 Upgrade
 
-The ATLAS client (`11.4.4.349-W47`) and SQL RACE (`2.1.25308.1-ci`) is now updated to .NET 8,.
+The ATLAS client (`11.4.4.349-W47`) and SQL RACE (`2.1.25308.1-ci`) is now updated to .NET 8.
 
 Users will need to consider upgrading any custom plugins or scripts they might have written to this framework.
 
@@ -45,24 +45,56 @@ in .NET 8. Useful sites:
 
 ## MATLAB
 
-For compatability with .NET 8, you will beed to run R2023a or higher as this will support .NET 6 or higher.
+For compatibility with .NET 8, you will need to run MATLAB R2023a or higher as this will support .NET 6 or higher.
 
-The default .NET runtime for MATLAB can be configured to .NET Core with the following command, where it will choose the latest installed version.
+### Targeting a Specific .NET Version
+
+#### MATLAB R2025a or newer
+
+For MATLAB R2025a or newer, you can target a specific .NET Core version and specify required frameworks directly when initializing the environment. This is especially important if your code or dependencies require assemblies such as `Microsoft.Extensions.Caching.Memory`, which is included in `Microsoft.AspNetCore.App`.
+
+Example:
+```matlab
+ne = dotnetenv("core", Version="8", Frameworks="Microsoft.AspNetCore.App");
+```
+You can also define multiple frameworks if needed:
+```matlab
+ne = dotnetenv("core", Version="8", Frameworks=["Microsoft.AspNetCore.App", "Microsoft.NETCore.App"]);
+```
+
+#### MATLAB R2024b and older
+
+MATLAB versions earlier than R2023a do not support the .NET 8 runtime.
+
+The default .NET runtime for MATLAB R2023a+ can be configured to .NET Core with the following command:
 ```matlab
 dotnetenv('core')
 ```
 
-If you have newer .NET runtime environments (> .NET 8) then it is advised to state the version.
+If you have newer .NET runtime environments (> .NET 8) then it is advised to state the version explicitly:
 ```matlab
-dotnetenv("core",Version="8");
+dotnetenv("core", Version="8");
 ```
+
+### Known Issues and Patches
+
+!!! warning "MATLAB R2024b with .NET 8"
+
+    MATLAB R2024b may have issues loading the .NET 8 runtime. If you experience problems, 
+    verify the `ijwhost.dll` in `<matlabroot>/bin/win64` is compatible with .NET 8.
+    
+    From a .NET 8 installation, copy `ijwhost.dll` from
+    `./packs/Microsoft.NETCore.App.Host.win-x64/8.0.XX/runtimes/win-x64/native/ijwhost.dll`
+    into `<matlabroot>/bin/win64` (replace existing).
+
+### Runtime Configuration
 
 The runtime configuration file for the .NET runtime can be found
 in `matlabroot/bin/win64/dotnetcli_netcore.runtimeconfig.json`.
 With this file, MATLAB loads the latest appropriate assemblies compatible with SQLRace API.
 
 An example configuration for the runtime is provided below.
-```
+```json
 {
   "runtimeOptions": {
     "rollForward": "Minor",
@@ -125,4 +157,4 @@ More information about calling .NET from Python can be found in the
 
 !!! hint
 
-    Information on the runtime in use can be retrieved using `pythonnet.get_runtime_info()`).
+    Information on the runtime in use can be retrieved using `pythonnet.get_runtime_info()`.
