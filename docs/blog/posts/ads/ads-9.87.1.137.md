@@ -6,7 +6,7 @@ categories:
 tags:
   - ADS
 ---
-# ATLAS Data Service Release: v9.87.1.137
+# ATLAS Data Server Release: v9.87.1.137
 
 This release focuses on stability, installer reliability, and recorder correctness, addressing a number of customer‑reported issues identified. No new user‑facing features are introduced.
 
