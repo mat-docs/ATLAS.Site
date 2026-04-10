@@ -432,6 +432,7 @@ nav:
         - REST API: 
           - Overview: developer-resources/rta/api/index.md
       - FAQ: developer-resources/rta/worked-guide/faq.md
+    - ATLAS Dev Hub: https://github.com/atlas-dev-hub
   - News and Release Notes: 
     - blog/index.md
   - Downloads: https://portal.motionapplied.com/
