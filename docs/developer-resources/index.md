@@ -7,9 +7,9 @@ Welcome to the Developer Resources section! This area provides everything you ne
 - **Best Practices:** Coding standards, review guidelines, and tips for effective collaboration.
 - **Reference Materials:** API documentation, architecture overviews, and troubleshooting resources.
 
-## Developer Hub
+## Developer Community
 
-Looking for community examples and projects? Check out the [ATLAS Developer Hub](https://github.com/atlas-dev-hub) on GitHub. This is the home for community-contributed examples, custom implementations, and collaborative projects that utilize our APIs. Whether you're building a custom dashboard, creating a new tool, or sharing insights, the Developer Hub is the place to showcase your work and connect with other developers.
+Looking for community examples and projects? Check out the [ATLAS Developer Community](https://github.com/atlas-dev-hub) on GitHub. This is the home for community-contributed examples, custom implementations, and collaborative projects that utilize our APIs. Whether you're building a custom dashboard, creating a new tool, or sharing insights, the Developer Community is the place to showcase your work and connect with other developers.
 
 For official documentation and curated examples, you're in the right place. For open source products like the Stream API and Protocol definitions, visit [Software Products](https://github.com/Software-Products).
 
