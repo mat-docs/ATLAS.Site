@@ -2,6 +2,10 @@
 
 System Monitor includes tools to configure Controller Area Network (CAN) messages for data logging. These messages can be transmitted to external units or received and logged internally using CAN buffers.
 
+## CAN FD Support
+
+System Monitor supports **CAN FD (Controller Area Network with Flexible Data-rate)**, enabling higher-bandwidth CAN communication with data payloads up to **64 bytes** per message (compared to the classic CAN limit of 8 bytes). CAN FD is available on hardware units that advertise CAN FD capability in their controller descriptions. For configuration steps, see [CAN FD](configuration.md#can-fd).
+
 ## Configuration Dialog Box
 
 The CAN Configuration dialog box is used to configure:
