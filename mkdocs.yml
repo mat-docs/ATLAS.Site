@@ -210,6 +210,7 @@ nav:
           - Using Alarms: key-functionality/analyse/viewer/alarms/using-alarms.md
         - Displays: 
           - Overview: key-functionality/analyse/viewer/displays/index.md
+          - Working with Displays: key-functionality/analyse/viewer/displays/essentials.md
           - Bar: key-functionality/analyse/viewer/displays/bar.md
           - Bit: key-functionality/analyse/viewer/displays/bit.md
           - Block: key-functionality/analyse/viewer/displays/block.md
