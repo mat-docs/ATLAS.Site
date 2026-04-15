@@ -36,7 +36,14 @@ Connections represent individual client access points to data streams. The servi
 ### Basic Connection Operations
 
 ```csharp
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
 
 // Create new connection
 var connection = await connectionManager.NewConnectionAsync(new NewConnectionRequest

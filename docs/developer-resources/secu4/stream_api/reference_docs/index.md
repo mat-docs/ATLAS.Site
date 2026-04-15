@@ -49,8 +49,9 @@ The Stream API consists of five main services:
         integrateSessionManagement: true,
         batchingResponses: false);
 
-    StreamingApiClient.Initialise(streamConfiguration, cancellationTokenProvider, 
+    var streamingApiClient = StreamingApiClientFactory.Create(streamConfiguration, cancellationTokenProvider, 
         brokerChecker, loggingProvider);
+    streamingApiClient.Initialise();
     ```
 
 === "Remote Docker Server"
