@@ -56,8 +56,9 @@ var streamConfiguration = new StreamingApiConfiguration(
     integrateSessionManagement: true,
     batchingResponses: false);
 
-StreamingApiClient.Initialise(streamConfiguration, cancellationTokenProvider, 
+var streamingApiClient = StreamingApiClientFactory.Create(streamConfiguration, cancellationTokenProvider, 
     brokerChecker, loggingProvider);
+streamingApiClient.Initialise();
 ```
 
 #### Remote Docker Server
@@ -91,12 +92,13 @@ var configuration = new StreamingApiConfiguration(
     "localhost:9092",
     []);
 
-StreamingApiClient.Initialise(configuration, tokenProvider, brokerChecker, loggingProvider);
+var streamingApiClient = StreamingApiClientFactory.Create(configuration, tokenProvider, brokerChecker, loggingProvider);
+streamingApiClient.Initialise();
 
 // Get service clients
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
-var packetWriter = StreamingApiClient.GetPacketWriterClient();
-var packetReader = StreamingApiClient.GetPacketReaderClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
+var packetWriter = streamingApiClient.GetPacketWriterClient();
+var packetReader = streamingApiClient.GetPacketReaderClient();
 
 // Create connection
 var connection = await connectionManager.NewConnectionAsync(new NewConnectionRequest
@@ -242,7 +244,7 @@ Manages the lifecycle of data sessions, including creation, monitoring, and term
 
 #### Example Usage
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagementClient();
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 
 // Create a new session
 var newSession = await sessionManager.CreateSessionAsync(new CreateSessionRequest
@@ -284,7 +286,7 @@ Handles client connections to data sessions with unique connection tracking.
 
 #### Example Usage
 ```csharp
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
 
 // Create new connection
 var connection = await connectionManager.NewConnectionAsync(new NewConnectionRequest
@@ -324,7 +326,7 @@ Enables high-performance data publishing to Kafka topics with support for both i
 
 #### Example Usage
 ```csharp
-var packetWriter = StreamingApiClient.GetPacketWriterClient();
+var packetWriter = streamingApiClient.GetPacketWriterClient();
 
 // Write single packet
 await packetWriter.WriteDataPacketAsync(new WriteDataPacketRequest
@@ -378,7 +380,7 @@ Provides flexible data consumption with three reading modes: all packets, essent
 
 #### Example Usage
 ```csharp
-var packetReader = StreamingApiClient.GetPacketReaderClient();
+var packetReader = streamingApiClient.GetPacketReaderClient();
 
 // Read all packets
 var readStream = packetReader.ReadPackets(new ReadPacketsRequest
@@ -427,7 +429,7 @@ Manages data schemas for parameters and events, enabling efficient data serializ
 
 #### Example Usage
 ```csharp
-var dataFormatManager = StreamingApiClient.GetDataFormatManagerClient();
+var dataFormatManager = streamingApiClient.GetDataFormatManagerClient();
 
 // Register parameter data format
 var parameterFormat = await dataFormatManager.GetParameterDataFormatIdAsync(
@@ -555,7 +557,7 @@ public class TelemetryExample
         var readingTask = StartReading(connection);
         
         // 5. Write telemetry data
-        await WriteTelemtryData();
+        await WriteTelemetryData();
         
         // 6. Wait for reading to complete
         await readingTask;
@@ -578,13 +580,19 @@ public class TelemetryExample
         var brokerChecker = new KafkaBrokerAvailabilityChecker();
         var loggingProvider = new LoggingDirectoryProvider("");
 
-        StreamingApiClient.Initialise(configuration, tokenProvider, brokerChecker, loggingProvider);
+        var streamingApiClient = StreamingApiClientFactory.Create(
+            configuration,
+            tokenProvider,
+            brokerChecker,
+            loggingProvider
+        )
+        streamingApiClient.Initialise()
 
         // Get service clients
-        packetWriter = StreamingApiClient.GetPacketWriterClient();
-        packetReader = StreamingApiClient.GetPacketReaderClient();
-        connectionManager = StreamingApiClient.GetConnectionManagerClient();
-        dataFormatManager = StreamingApiClient.GetDataFormatManagerClient();
+        packetWriter = streamingApiClient.GetPacketWriterClient();
+        packetReader = streamingApiClient.GetPacketReaderClient();
+        connectionManager = streamingApiClient.GetConnectionManagerClient();
+        dataFormatManager = streamingApiClient.GetDataFormatManagerClient();
     }
 
     private async Task<NewConnectionResponse> CreateConnection()
@@ -648,7 +656,7 @@ public class TelemetryExample
         }
     }
 
-    private async Task WriteTelemtryData()
+    private async Task WriteTelemetryData()
     {
         var sessionKey = $"Session_{DateTime.UtcNow:yyyyMMdd_HHmmss}";
         var random = new Random();

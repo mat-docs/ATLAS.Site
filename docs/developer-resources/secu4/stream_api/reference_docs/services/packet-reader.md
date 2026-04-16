@@ -28,7 +28,14 @@ The service offers flexible data consumption modes:
 ### Basic Stream Reading
 
 ```csharp
-var packetReader = StreamingApiClient.GetPacketReaderClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var packetReader = streamingApiClient.GetPacketReaderClient();
 
 // Start reading all packets from a connection
 var readRequest = new ReadPacketsRequest

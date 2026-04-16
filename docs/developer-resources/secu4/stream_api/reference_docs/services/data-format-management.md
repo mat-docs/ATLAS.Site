@@ -20,7 +20,14 @@ This service provides:
 ### Register Data Format
 #### Parameter List
 ```csharp
-var formatManager = StreamingApiClient.GetDataFormatManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var formatManager = streamingApiClient.GetDataFormatManagerClient();
 
 var parameterListFormatRequest = new GetParameterDataFormatIdRequest
 {
@@ -35,7 +42,14 @@ var dataFormatIdentifier = response.DataFormatIdentifier;
 #### Event Identifier
 
 ```csharp
-var formatManager = StreamingApiClient.GetDataFormatManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var formatManager = streamingApiClient.GetDataFormatManagerClient();
 
 var formatRequest = new GetEventDataFormatIdRequest
 {
@@ -49,7 +63,14 @@ var dataFormatIdentifier = response.DataFormatIdentifier;
 ### Get Data Format Definition
 #### Parameter List
 ```csharp
-var formatManager = StreamingApiClient.GetDataFormatManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var formatManager = streamingApiClient.GetDataFormatManagerClient();
 
 var dataFormatIdentifier = 123456UL;
 var dataFormatResponse = await formatManager.GetParametersListAsync(new GetParametersListRequest
@@ -63,7 +84,14 @@ var parameterList = dataFormatResponse.Parameters;
 
 #### Event Identifier
 ```csharp
-var formatManager = StreamingApiClient.GetDataFormatManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var formatManager = streamingApiClient.GetDataFormatManagerClient();
 
 var dataFormatIdentifier = 123456UL;
 var dataFormatResponse = await formatManager.GetEventAsync(new GetEventRequest

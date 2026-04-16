@@ -111,7 +111,14 @@ sudo ufw status
 **Diagnosis:**
 ```csharp
 // Check available sessions
-var sessionManager = StreamingApiClient.GetSessionManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 var sessions = await sessionManager.ListActiveSessionsAsync(new ListActiveSessionsRequest());
 ```
 

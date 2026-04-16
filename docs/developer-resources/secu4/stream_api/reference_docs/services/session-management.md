@@ -35,7 +35,14 @@ Sessions represent logical groupings of data streams with associated metadata. T
 ### Basic Session Operations
 
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 
 // Create a new session
 var newSessionResponse = sessionManager.CreateSession(new CreateSessionRequest
@@ -153,7 +160,7 @@ var sessionInfo = await sessionManager.GetSessionInfoAsync(
     });
 
 // List all sessions
-var activeSessions = await sessionManager.GetCurrentSessionsAsync(new GetCurrentSessionsRequest());
+var activeSessions = await sessionManager.GetCurrentSessionsAsync(new GetCurrentSessionsRequest() { DataSource = "DataSource" });
 ```
 
 ### Session Notifications
@@ -165,7 +172,14 @@ The Session Management Service provides real-time notification streams that push
 Subscribe to receive notifications when new sessions are created for a specific data source:
 
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagementClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 
 // Create a streaming call to receive session start notifications
 var startNotificationStream = sessionManager.GetSessionStartNotification(
@@ -191,7 +205,14 @@ await foreach (var notification in startNotificationStream.ResponseStream.ReadAl
 Subscribe to receive notifications when sessions are terminated:
 
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagementClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 
 // Create a streaming call to receive session stop notifications
 var stopNotificationStream = sessionManager.GetSessionStopNotification(
@@ -217,7 +238,14 @@ await foreach (var notification in stopNotificationStream.ResponseStream.ReadAll
 Monitor both session start and stop events concurrently:
 
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagementClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 var cancellationToken = new CancellationToken();
 
 // Start monitoring session lifecycle
