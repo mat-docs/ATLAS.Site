@@ -160,7 +160,7 @@ var sessionInfo = await sessionManager.GetSessionInfoAsync(
     });
 
 // List all sessions
-var activeSessions = await sessionManager.GetCurrentSessionsAsync(new GetCurrentSessionsRequest());
+var activeSessions = await sessionManager.GetCurrentSessionsAsync(new GetCurrentSessionsRequest() { DataSource = "DataSource" });
 ```
 
 ### Session Notifications
