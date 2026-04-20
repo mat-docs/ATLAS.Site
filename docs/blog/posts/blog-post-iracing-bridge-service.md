@@ -1,25 +1,21 @@
 ---
 date:
-  created: 2026-04-20
+  created: 2026-04-24
 categories:
   - Blog
 ---
 
-# I Got iRacing Telemetry Streaming into ATLAS Viewer. Here's How.
+# How I Got iRacing Telemetry Streaming into ATLAS Viewer
 
-This started because I asked our designated sim racer, Oli, if he had any SSN2 files from his runs I could pull into ATLAS and poke at. I just wanted some real telemetry to play with in the tool I spend my days working on.
+This started because I asked our designated sim racer, Oli, if he had any SSN2 files from his runs I could pull into ATLAS and poke at. He did not send me SSN2 files. He sent me a link to the iRacing SDK and down the rabbit hole I went. Three days later, I had a working bridge service that streams live iRacing telemetry into ATLAS through the Stream API.
 
-He did not send me SSN2 files. He sent me a link to the iRacing SDK.
-
-3 days later I had learned to drive a GT3 car around Spa with a mouse and keyboard (badly), discovered that iRacing publishes ~200 telemetry channels through Windows shared memory, and written a Python bridge that pushes all of it into ATLAS live at 60 Hz. Speed, throttle, brake, 52 tyre channels, lap markers — the same pipeline F1 and IndyCar teams use for real cars, but plugged into a sim.
+<!-- more -->
 
 ```
 iRacing (shared memory) → pyirsdk → Python Bridge → Stream API (gRPC) → Kafka → ATLAS
 ```
 
 **This post is everything I learned getting it working.** Including the parts where I was misreading the protocol and had to work backwards from Kafka to figure out what the library actually wanted.
-
-<!-- more -->
 
 ## The setup
 
@@ -295,13 +291,80 @@ The key insight: ATLAS needs the _packet_ to contain contiguous samples with an 
 
 I also added incrementing packet IDs to every `Packet` wrapper — another pattern from the sample writer that I'd been missing. Small thing, but the sample code does it for a reason.
 
+## The bits I still had wrong
+
+With the bridge streaming smoothly, I asked one of our engineers to review the code for anything that wouldn't survive contact with production. He came back with a PR that made three changes — each one solving a real problem I hadn't noticed yet.
+
+### Sample timestamps should come from the reader, not the sender
+
+Attempt 3 above arrives at an arithmetic anchor: initialise `first_timestamp_ns` once, advance it by `interval_ns * batch_size` after every send. Gapless by construction. Works.
+
+But it's gapless in a slightly dishonest way. The timestamps describe a perfectly uniform grid; the actual reads don't land on that grid because of OS sleep jitter in the read loop. For most traces it doesn't matter — ATLAS renders them smooth either way. For anything that correlates across parameters at high resolution, it does.
+
+The better pattern, which he pointed out iRacing's hardware pacing actually supports: stamp each sample at the moment of the `freeze_var_buffer_latest` call, carry that timestamp on a `SampleValue` dataclass, and derive each batch's `start_time` from the first sample. Because iRacing's shared memory updates at a hardware-paced 60 Hz, consecutive reads *are* ~16.67 ms apart in practice — the timestamps are gapless **and** honest about when each sample was actually taken.
+
+```python
+# inside iracing_reader.py
+timestamp_ns = int(time.time() * 1e9)
+for key in keys:
+    result[key] = SampleValue(timestamp_ns, key, float(self._ir[key]))
+```
+
+```python
+# inside bridge_engine, when flushing the batch
+first_timestamp_ns = batch[keys[0]][0].timestamp
+atlas.send_periodic_data(batch, first_timestamp_ns, interval_ns)
+```
+
+### Lap detection belongs with the reader, not the batcher
+
+I had `LapDetector.update()` running in the bridge engine, using `time.time_ns()` at the moment a lap was detected. Periodic data used the arithmetic anchor from Attempt 3. Two clocks — and they drift apart over the course of a session.
+
+Why it matters: SQLRace interprets each `MarkerPacket.timestamp` relative to the sample range of the data stream. If a marker's timestamp lands outside any `PeriodicDataPacket`'s range, SQLRace silently drops it. `send_marker` still returns success because the gRPC write was accepted. Laps just quietly stop appearing once the clocks have drifted apart.
+
+The fix is structural: move the lap detector into the iRacing reader, pass it the `SampleValue`-typed telemetry dict, and stamp each marker with the timestamp of the *sample* that triggered it. One clock, not two — no opportunity to drift because there's only one source of time in the bridge.
+
+```python
+# inside iracing_reader.py
+marker_events = self.lap_detector.update(result)
+return TelemetryList(result, marker_events)
+```
+
+```python
+# inside lap_detector.py — timestamp comes from the triggering sample
+events.append(MarkerEvent(
+    timestamp_ns=lap_sample_value.timestamp,
+    ...
+))
+```
+
+### gRPC sends shouldn't block the reader
+
+The original loop did everything on one thread: collect a batch, send it, collect the next one. Works until a gRPC write stalls — network hiccup, Stream API GC pause, Kafka rebalance. On a single-threaded loop, a stalled send pauses the reader, which means the next batch collects late, which means timestamps drift or samples get dropped from iRacing's rolling buffer.
+
+The fix: a small `ThreadPoolExecutor` drains completed batches into the Stream API in parallel with the read loop. The reader's only job is to collect samples at the correct rate and hand off batches; workers handle the gRPC writes.
+
+```python
+executor = ThreadPoolExecutor(max_workers=10)
+
+# in the read loop:
+executor.submit(self._send_data, batch, marker_events, keys, last_telemetry)
+
+# on shutdown:
+executor.shutdown()
+```
+
+This composes naturally with per-sample timestamps from the first fix. Because every sample already carries its own read-time timestamp, workers can send out of order without anything drifting — the timestamps are fixed at read time, not at send time.
+
+None of these were things I'd have caught on my own. All three were obvious once he'd flagged them. The real value of code review on something like this is exactly this pattern: someone who knows what "production" actually means for the downstream system points at the places where "it works" and "it will keep working" are different things.
+
 ## The result
 
 Live iRacing telemetry in ATLAS. Speed, throttle, brake traces drawing in real time. Tyre temps evolving over a stint. Lap markers dropping as I cross the line. The full professional motorsport analysis workflow — running off a sim.
 
 The gap between professional tooling and sim racing is smaller than I thought. The Streaming Support Library doesn't care where the data comes from; it just needs the right packets in the right order. iRacing is what I plugged in, but the same pattern works for anything that produces time-series data — a kart data logger, a cycling power meter, a drone flight controller. If it has numbers and timestamps, it can go into ATLAS.
 
-The whole thing is open source. `docker compose up -d --wait`, run the bridge, point ATLAS at `localhost:9092`, and go racing.
+The whole thing is available for you to use. `docker compose up -d --wait`, run the bridge, point ATLAS at `localhost:9092`, and go racing. (or just start the batch script if you want to skip the command line)
 
 ## What's next
 
