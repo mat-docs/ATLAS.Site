@@ -366,6 +366,8 @@ The gap between professional tooling and sim racing is smaller than I thought. T
 
 The whole thing is available for you to use. `docker compose up -d --wait`, run the bridge, point ATLAS at `localhost:9092`, and go racing. (or just start the batch script if you want to skip the command line)
 
+![ATLAS Viewer showing iRacing telemetry traces, with lap markers and tyre temperature curves](assets/iracing.gif)
+
 ## What's next
 
 I want to see what other people do with this — different sims, different data sources, different sports entirely. If you've built something with the Streaming Support Library, or you're trying to and hitting walls (development walls, not track ones), we'd love to hear about it in the [Developer Community](https://github.com/atlas-dev-hub/). 
