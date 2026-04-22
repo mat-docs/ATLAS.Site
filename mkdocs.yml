@@ -251,6 +251,7 @@ nav:
       - Active X: 
         - Overview: developer-resources/system-monitor/active-x/index.md
         - Methods: developer-resources/system-monitor/active-x/methods.md
+        - Error Codes: developer-resources/system-monitor/active-x/error.md
         - Examples:
           - Using SendMessage() to send a Read RAM message to the ECU: developer-resources/system-monitor/active-x/examples/example-1.md
           - Getting and Setting the Value of a Scalar Editable Parameter: developer-resources/system-monitor/active-x/examples/example-2.md
