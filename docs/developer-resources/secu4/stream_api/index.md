@@ -249,30 +249,24 @@ var sessionManager = streamingApiClient.GetSessionManagementClient();
 // Create a new session
 var newSession = await sessionManager.CreateSessionAsync(new CreateSessionRequest
 {
-    SessionKey = "unique-session-id",
     DataSource = "sensor-data",
-    SessionInfo = new SessionInfoPacket
-    {
-        Type = "Test Session",
-        Version = 1,
-        Identifier = "test-001"
-    }
+    Type = "Test Session",
+    Version = 1,
+    Identifier = "test-001"
 });
 
-// Update session information
-await sessionManager.UpdateSessionInfoAsync(new UpdateSessionInfoRequest
+// Update session details
+await sessionManager.UpdateSessionDetailsAsync(new UpdateSessionDetailsRequest
 {
-    SessionKey = "unique-session-id",
-    SessionInfo = new SessionInfoPacket
-    {
-        Details = { {"status", "active"}, {"participant", "driver-123"} }
-    }
+    SessionKey = newSession.SessionKey,
+    Details = { {"status", "active"}, {"participant", "driver-123"} }
 });
 
 // End session
 await sessionManager.EndSessionAsync(new EndSessionRequest
 {
-    SessionKey = "unique-session-id"
+    DataSource = "sensor-data",
+    SessionKey = newSession.SessionKey
 });
 ```
 
@@ -471,17 +465,18 @@ Configure the Stream API server using the AppConfig.json file:
 
 ```json
 {
-  "StreamCreationStrategy": 2,
-  "BrokerUrl": "kafka:9092",
-  "PartitionMappings": [],
-  "StreamApiPort": 13579,
-  "IntegrateSessionManagement": true,
-  "IntegrateDataFormatManagement": true,
-  "UseRemoteKeyGenerator": true,
-  "RemoteKeyGeneratorServiceAddress": "key-generator-service:15379",
-  "BatchingResponses": false,
-  "PrometheusMetricPort": 10010,
-  "InitialisationTimeoutSeconds": 5
+  "StreamApiConfig": {
+    "StreamCreationStrategy": 2,
+    "BrokerUrl": "kafka:9092",
+    "PartitionMappings": [],
+    "StreamApiPort": 13579,
+    "IntegrateSessionManagement": true,
+    "IntegrateDataFormatManagement": true,
+    "UseRemoteKeyGenerator": true,
+    "RemoteKeyGeneratorServiceAddress": "key-generator-service:15379",
+    "BatchingResponses": false,
+    "InitialisationTimeoutSeconds": 5
+  }
 }
 ```
 
@@ -489,7 +484,7 @@ Configure the Stream API server using the AppConfig.json file:
 
 | Parameter | Type | Description | Default |
 |-----------|------|-------------|---------|
-| `StreamCreationStrategy` | `int` | 1=Partition-based, 2=Topic-based | 2 |
+| `StreamCreationStrategy` | `int` | 1=Partition-based, 2=Topic-based | 1 |
 | `BrokerUrl` | `string` | Kafka broker connection string | Required |
 | `PartitionMappings` | `array` | Stream to partition mappings | `[]` |
 | `StreamApiPort` | `int` | gRPC server port | 13579 |
@@ -497,32 +492,43 @@ Configure the Stream API server using the AppConfig.json file:
 | `IntegrateDataFormatManagement` | `bool` | Enable data format management | true |
 | `UseRemoteKeyGenerator` | `bool` | Use external key generator | false |
 | `BatchingResponses` | `bool` | Enable response batching | false |
-| `PrometheusMetricPort` | `int` | Metrics endpoint port | 10010 |
+| `BatchingSizesKb` | `int` | Maximum batch size in KB | 4096 |
+| `BatchingTimeMs` | `int` | Maximum time before flushing a batch (ms) | 50 |
 | `InitialisationTimeoutSeconds` | `uint` | Service startup timeout | 3 |
+| `TerminationTimeoutSeconds` | `uint` | Graceful termination timeout | 1 |
+| `Domain` | `string` | Kafka topic domain prefix | "" |
+| `EnableGrpcReflection` | `bool` | Enable gRPC server reflection | false |
+
+!!! note "Prometheus Metrics Port"
+    The Prometheus metrics port is configured via the `PROMETHEUS_METRIC_PORT` environment variable, not in `AppConfig.json`.
 
 ### Stream Creation Strategies
 
 #### Topic-Based Strategy (Strategy 2)
-Each stream maps to a separate Kafka topic, providing better isolation and scalability. This is the default strategy. PartitionMappings are not used in this mode.
+Each stream maps to a separate Kafka topic, providing better isolation and scalability. PartitionMappings are not used in this mode.
 
 ```json
 {
-  "StreamCreationStrategy": 2,
-  "PartitionMappings": []
+  "StreamApiConfig": {
+    "StreamCreationStrategy": 2,
+    "PartitionMappings": []
+  }
 }
 ```
 
 #### Partition-Based Strategy (Strategy 1)
-All streams use the same topic but different partitions, suitable for related data streams. Requires PartitionMappings configuration to specify which stream goes to which partition.
+All streams use the same topic but different partitions, suitable for related data streams. This is the default strategy. Requires PartitionMappings configuration to specify which stream goes to which partition.
 
 ```json
 {
-  "StreamCreationStrategy": 1,
-  "PartitionMappings": [
-    {"Stream": "Engine", "Partition": 1},
-    {"Stream": "Brakes", "Partition": 2},
-    {"Stream": "Suspension", "Partition": 3}
-  ]
+  "StreamApiConfig": {
+    "StreamCreationStrategy": 1,
+    "PartitionMappings": [
+      {"Stream": "Engine", "Partition": 1},
+      {"Stream": "Brakes", "Partition": 2},
+      {"Stream": "Suspension", "Partition": 3}
+    ]
+  }
 }
 ```
 
