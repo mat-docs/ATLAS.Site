@@ -128,20 +128,12 @@ Multiple streams can share the same topic but are distributed across different p
 ```json
 {
   "StreamApiConfig": {
-    "StreamCreationStrategy": "PartitionBased",
+    "StreamCreationStrategy": 1,
     "BrokerUrl": "kafka-broker.company.com:9092",
     "Domain": "Production",
     "PartitionMappings": [
-      {
-        "DataSource": "SensorGroup1",
-        "Topic": "TelemetryData",
-        "NumPartitions": 10
-      },
-      {
-        "DataSource": "SensorGroup2",
-        "Topic": "TelemetryData",
-        "NumPartitions": 5
-      }
+      { "Stream": "SensorGroup1", "Partition": 1 },
+      { "Stream": "SensorGroup2", "Partition": 2 }
     ]
   }
 }
@@ -164,50 +156,48 @@ Multiple streams can share the same topic but are distributed across different p
 
 ## Partition Mappings
 
-When using **Partition-Based Streaming**, you must define partition mappings that specify how streams are distributed across Kafka topics and partitions.
+When using **Partition-Based Streaming**, you must define partition mappings that assign each stream to a specific Kafka partition number.
 
 ### PartitionMapping Structure
 
 ```csharp
 public class PartitionMapping
 {
-    public string DataSource { get; set; }
-    public string Topic { get; set; }
-    public int NumPartitions { get; set; }
+    public string Stream { get; }
+
+    public int Partition { get; }
 }
 ```
+
+Each `PartitionMapping` maps a **stream name** to a **Kafka partition number**. Every stream used with Partition-Based strategy must have a corresponding mapping.
 
 ### Example Configuration
 
 ```json
 {
-  "PartitionMappings": [
-    {
-      "DataSource": "EngineData",
-      "Topic": "Production.Data.Engine",
-      "NumPartitions": 10
-    },
-    {
-      "DataSource": "ChassisData",
-      "Topic": "Production.Data.Chassis",
-      "NumPartitions": 5
-    }
-  ]
+  "StreamApiConfig": {
+    "StreamCreationStrategy": 1,
+    "PartitionMappings": [
+      { "Stream": "EngineData", "Partition": 1 },
+      { "Stream": "ChassisData", "Partition": 2 },
+      { "Stream": "AerodynamicsData", "Partition": 3 }
+    ]
+  }
 }
 ```
 
 ### Best Practices
 
-!!! tip "Partition Sizing"
-    - Start with fewer partitions and scale up as needed
-    - Consider your throughput requirements
-    - More partitions = better parallelism but more overhead
-    - Typical range: 3-10 partitions per topic
+!!! tip "Partition Assignment"
+    - Do **not** use partition 0
+    - Assign each stream a unique partition number
+    - Plan partition numbers upfront — they identify where data is stored
+    - Keep a clear mapping document for your stream-to-partition assignments
 
 !!! warning "Planning Considerations"
-    - Partitions cannot be decreased after creation
-    - Plan for growth in your data volume
-    - Consider consumer parallelism needs
+    - Every stream used in Partition-Based mode must have an entry in `PartitionMappings`
+    - Partition numbers must be within the configured partition count for the Kafka topic
+    - Streams without a mapping will not route correctly
 
 ## Domain Configuration
 
