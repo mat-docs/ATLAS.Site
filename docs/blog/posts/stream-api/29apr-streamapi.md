@@ -7,7 +7,7 @@ tags:
   - Stream API
 ---
 
-# Stream API Release: vXXXX
+# Stream API Release: v2.1.2.92
 
 This release brings a fix for a race condition that caused session details to update inconsistently.
 
@@ -17,7 +17,6 @@ This release brings a fix for a race condition that caused session details to up
 
 - **GitHub:** [Repository](https://github.com/Software-Products/MA.DataPlatforms.StreamApi)
 - **NuGet Package:** [Stream API NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.)
-- **Documentation:** [Read docs](../../../developer-resources/secu4/stream_api/index.md)
 
 ## Bug Fixes
 

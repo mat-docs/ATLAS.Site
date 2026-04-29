@@ -6,19 +6,18 @@ categories:
 tags:
   - Bridge Service
 ---
-# Bridge Service Release: vXXX
+# Bridge Service Release: v2.1.3.3
 
-This release brings independent tuning for live and offload data processing, offload stream isolation, ADS-aligned lifecycle behaviour, and a fix for lost error packets.
+This release brings independent tuning for live and offload data processing, and a fix for lost error packets.
 
 <!-- more -->
 
 ## Downloads
 
-- **Docker:** [Container image]()
-- **Windows Binary:** [Download]()
-- **Documentation:** [Read docs]()
+- **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
+- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.3.3/MA.DataPlatforms.Bridge.Host.zip)
 
-## What's New
+## New Features
 
 ### Separate Performance Tuning for Live and Offload Processing
 
