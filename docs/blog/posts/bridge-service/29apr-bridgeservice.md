@@ -21,20 +21,20 @@ This release brings independent tuning for live and offload data processing, and
 
 ### Separate Performance Tuning for Live and Offload Processing
 
-You can now independently control how much processing power is dedicated to **live data** versus **offload (historical) data** using two separate settings:
+You can now independently control how much processing power is dedicated to **live data** versus **offload data** using two separate settings:
 
 - **`LiveConcurrencyFactor`** — Controls how many live data items are processed in parallel.
 - **`OffloadConcurrencyFactor`** — Controls how many offload data items are processed in parallel.
 
-This allows you to prioritise live data throughput while still efficiently processing historical data in the background.
+This allows you to prioritise live data throughput while still efficiently processing an offload in the background.
 
 ### Offload Processing Control
 
-Two new options give you full control over how the Bridge handles offload (missing/historical) data:
+Two new options give you full control over how the Bridge handles offloaded data:
 
-- **`OffloadProcessing`** — When enabled (`true`), the Bridge will process any missing or historical data that needs to be recovered. When disabled (`false`), offload data is discarded, which can be useful if you only care about live data and want to reduce resource usage.
+- **`OffloadProcessing`** — When enabled (`true`), the Bridge will process any missing or offloaded data that needs to be recovered. When disabled (`false`), offload data is discarded, which can be useful if you only care about live data and want to reduce resource usage.
 
-- **`OffloadStream`** — When set, offload data is published to a separate stream from live data. This keeps historical data recovery traffic isolated from your real-time data feed, preventing offload processing from impacting live data consumers.
+- **`OffloadStream`** — When set, offload data is published to a separate stream from live data. This keeps offloaded data recovery traffic isolated from your real-time data feed, preventing offload processing from impacting live data consumers.
 
 !!! note
     Regardless of whether offload processing is enabled or not, when an offload begins the Bridge publishes an "Offload Started" marker notification. This lets downstream consumers know that an offload has started and when it began.
