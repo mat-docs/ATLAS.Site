@@ -21,9 +21,7 @@ This release brings independent tuning for live and offload data processing, and
 
 ### Separate Performance Tuning for Live and Offload Processing
 
-Previously, the Bridge used a single concurrency setting (`ConcurrencyFactor`) for all data processing. This meant live and offload workloads shared the same resource allocation, making it difficult to optimise for different data processing needs.
-
-Now, you can independently control how much processing power is dedicated to **live data** versus **offload (historical) data** using two separate settings:
+You can now independently control how much processing power is dedicated to **live data** versus **offload (historical) data** using two separate settings:
 
 - **`LiveConcurrencyFactor`** — Controls how many live data items are processed in parallel.
 - **`OffloadConcurrencyFactor`** — Controls how many offload data items are processed in parallel.
