@@ -24,6 +24,6 @@ This release is a patch update addressing two specific issues. This release focu
 
 Resolved an issue where Bridge Service fails to start when launched via ADS due to invalid port format (":9697") causing a startup exception.
 
-### Missing Error Packets in Subsequent Runs
+### UTC/local time mismatch in condition check stops telemetry after initial log
 
-Timezone mismatch in condition check (UTC vs local time) caused telemetry streaming to stall after initial log in certain races.
+Fixed an issue with a timezone mismatch in condition check (UTC vs local time) caused telemetry streaming to stall after initial log in certain conditions.
