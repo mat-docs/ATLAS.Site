@@ -248,9 +248,26 @@ def get_product(title):
     }
 
 # ── Escape ─────────────────────────────────────────────────────────────────────
+_UNICODE_MAP = str.maketrans({
+    "\u2014": "--",   # em dash —
+    "\u2013": "-",    # en dash –
+    "\u2010": "-",    # hyphen ‐
+    "\u2011": "-",    # non-breaking hyphen ‑
+    "\u2012": "-",    # figure dash ‒
+    "\u2018": "'",    # left single quote '
+    "\u2019": "'",    # right single quote '
+    "\u201c": '"',    # left double quote "
+    "\u201d": '"',    # right double quote "
+    "\u2026": "...",  # ellipsis …
+    "\u00a0": " ",    # non-breaking space
+    "\u2022": "&bull;",  # bullet •
+})
+
 def esc(t):
-    return (str(t).replace("&","&amp;").replace("<","&lt;")
-                  .replace(">","&gt;").replace('"',"&quot;"))
+    t = str(t).translate(_UNICODE_MAP)
+    return (t.replace("&","&amp;").replace("<","&lt;")
+             .replace(">","&gt;").replace('"',"&quot;")
+             .replace("&amp;bull;", "&bull;"))
 
 # ── Canvas callbacks ───────────────────────────────────────────────────────────
 def _logo(c):
@@ -567,14 +584,19 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
     def _table(tok):
         rows = []
         for grp in (tok.get("children") or []):
-            for tr in (grp.get("children") or []):
+            if grp.get("type") == "table_head":
                 row = []
-                is_head = grp.get("type") == "table_head"
-                for cell in (tr.get("children") or []):
-                    txt = inl(cell.get("children",[]))
-                    sty = st["th"] if is_head else st["td"]
-                    row.append(Paragraph(f"<b>{txt}</b>" if is_head else txt, sty))
+                for cell in (grp.get("children") or []):
+                    txt = inl(cell.get("children", []))
+                    row.append(Paragraph(f"<b>{txt}</b>", st["th"]))
                 if row: rows.append(row)
+            elif grp.get("type") == "table_body":
+                for tr in (grp.get("children") or []):
+                    row = []
+                    for cell in (tr.get("children") or []):
+                        txt = inl(cell.get("children", []))
+                        row.append(Paragraph(txt, st["td"]))
+                    if row: rows.append(row)
         if not rows: return
         nc = max(len(r) for r in rows)
         t = Table(rows, colWidths=[CW/nc]*nc, repeatRows=1, hAlign="LEFT")
@@ -810,7 +832,7 @@ def build_pdf(md_src, out_path):
     if eval_notice:
         print(f"  Eval    : yes")
 
-    tokens = mistune.create_markdown(renderer=None)(content)
+    tokens = mistune.create_markdown(renderer=None, plugins=["table"])(content)
     st     = make_styles()
     story  = build_story(tokens, st, prod, meta["summary"],
                           meta["date"], eval_notice=eval_notice)
