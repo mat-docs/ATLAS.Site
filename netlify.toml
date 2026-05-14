@@ -28,6 +28,18 @@ publish = "site"
     Cache-Control = "public, max-age=300"
 
 [[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
   for = "search/search_index.json"
   [headers.values]
     Cache-Control = "public, max-age=300"
