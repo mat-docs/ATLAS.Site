@@ -449,8 +449,8 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
         "representative for assistance.", st["body_indent"]))
     story.append(Paragraph(
         "Submit bugs and suggestions for future releases through the "
-        '<font color="#E8631A"><link href="https://mclarenappliedtechnologies.zendesk.com/hc/en-us">'
-        'ATLAS Zendesk Portal</link></font>.', st["body_indent"]))
+        '<font color="#E8631A"><link href="https://portal.motionapplied.com/Tickets/New">'
+        'ATLAS Support Portal</link></font>.', st["body_indent"]))
 
     # ── Section 2: System Requirements (if product has them) ──────────────────
     if product_info.get("sysreq_table"):
@@ -526,8 +526,8 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
             "ATLAS 10 includes Microsoft Azure\u2019s Application Insights\u00a9 to capture "
             "and detect performance anomalies automatically by gathering exceptions and "
             "performance metrics. No data or workbooks will be captured as part of this. "
-            "For more information, please refer to the Zendesk article on ATLAS 10 Application "
-            "Insights. This option is on by default and may be disabled via "
+            "For more information, please contact Support at the Motion Applied Support Portal. "
+            "This option is on by default and may be disabled via "
             "ATLAS \u2192 Tools \u2192 \u2018Allow collection of Metric and Error data\u2019.",
             st["body"]))
 

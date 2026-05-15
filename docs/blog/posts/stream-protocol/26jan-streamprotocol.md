@@ -139,4 +139,4 @@ This change makes the API more consistent and clearer (since it represents multi
 ## Support
 
 If you have any questions about this release or need assistance with 
-migration, please contact the Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
+migration, please contact the Support via [Portal](https://portal.motionapplied.com/Tickets/New).

@@ -43,4 +43,4 @@ Implemented better error handling when where SQL Race fails to write CAN data to
 Improved SSN2 offload performance from ADS by optimising SQLite write and journaling behaviour, significantly reducing offload times for large sessions. This change applies only to SSN2 and does not affect SSNDB.
 
 ## Support
-If you have any questions about this release or need assistance with upgrading or validation, please contact Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
+If you have any questions about this release or need assistance with upgrading or validation, please contact Support via [Portal](https://portal.motionapplied.com/Tickets/New).
