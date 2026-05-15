@@ -1,14 +1,10 @@
 ---
 title: "Support Portal Migration - Moving from Zendesk to Motion Applied Portal"
-date: 2026-05-16
-authors:
-  - name: "Motion Applied"
-    description: "ATLAS Team"
+date:
+  created: 2026-05-15
 categories:
   - Announcements
 ---
-
-## We're Moving Our Support Portal!
 
 We're excited to announce that we're migrating from Zendesk to our new **Motion Applied Support Portal**. This change will provide us with a more integrated and streamlined support experience for all our users.
 
@@ -37,7 +33,7 @@ Effective immediately, all support requests should be submitted through our new 
 Our team is still here to help! All existing support requests will be transitioned to the new system, and you can reach us through:
 
 - **New Support Portal:** [https://portal.motionapplied.com/Tickets/New](https://portal.motionapplied.com/Tickets/New)
-- **Documentation:** Check our comprehensive [documentation](../../) for self-service resources
+- **Documentation:** Check out our documentation for self-service resources
 
 ### Questions?
 
