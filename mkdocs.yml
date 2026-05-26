@@ -523,3 +523,6 @@ plugins:
   - search
   - tags
   - blog
+
+hooks:
+  - hooks/llms_txt.py
