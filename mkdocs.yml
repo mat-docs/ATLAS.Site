@@ -19,7 +19,6 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
     - navigation.path
     - navigation.prune 
     - navigation.indexes 
@@ -441,7 +440,7 @@ nav:
   - Support: 
     - Troubleshooting: 
       - Profiling: key-functionality/analyse/viewer/troubleshooting/profiling.md
-    - Zendesk: https://mclarenappliedtechnologies.zendesk.com/hc/en-us
+    - Portal: https://portal.motionapplied.com/Tickets/New
 
 
 markdown_extensions:

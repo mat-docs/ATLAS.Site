@@ -43,4 +43,4 @@ For detailed changes to each component and guidance on updating between versions
 ## Support
 
 If you have any questions about this release or need assistance with 
-migration, please contact the Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
+migration, please contact the Support via [Portal](https://portal.motionapplied.com/Tickets/New).

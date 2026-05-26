@@ -77,7 +77,7 @@ SUPPORT_TEXT = (
     "If you have any questions about this release or need assistance, "
     "please contact your Motion Applied first line support representative, "
     "or submit bugs and suggestions through the "
-    "[ATLAS Zendesk Portal](https://mclarenappliedtechnologies.zendesk.com/hc/en-us)."
+    "[ATLAS Support Portal](https://portal.motionapplied.com/Tickets/New)."
 )
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
