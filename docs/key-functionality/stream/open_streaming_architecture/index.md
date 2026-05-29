@@ -3,6 +3,9 @@ A standard, open set of rules and services for streaming telemetry data over a b
 the Protobuf schema for transmitting messages, along with documentation describing the 
 messages.
 
+!!! tip "New to Open Streaming?"
+    See the [Getting Started Guide](../../../developer-resources/secu4/getting-started.md) to get data flowing in 30 minutes using the Docker-based quick start, or explore the [example repository](https://github.com/atlas-dev-hub/example-stream-api-kafka-setup) for a hands-on walkthrough.
+
 ![open streaming architecture](assets/open_streaming_light.png#only-light)
 ![open streaming architecture](assets/open_streaming_dark.png#only-dark)
 
