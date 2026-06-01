@@ -2,8 +2,6 @@
 
 This guide walks you through getting ATLAS Open Streaming data flowing from source to screen. Whether you are writing telemetry from your own systems into Kafka, or reading live sessions inside the ATLAS client, start here.
 
----
-
 ## What is the Open Streaming Architecture?
 
 The Open Streaming Architecture is a broker-based system for streaming engineering telemetry data in real time. Data is published and consumed via [Apache Kafka](https://kafka.apache.org/) using a defined [Protobuf protocol](../secu4/docs.md), so any language or platform that can talk to Kafka can participate.
@@ -43,16 +41,12 @@ This is the most common source of confusion. Here is the distinction:
 !!! note "Which approach do the examples use?"
     The [example-stream-api-kafka-setup](https://github.com/atlas-dev-hub/example-stream-api-kafka-setup) and [iRacing bridge](https://github.com/atlas-dev-hub/example-bridge-service-iracing) use **raw gRPC calls to the Stream API**. The [Support Library sample code](https://github.com/mat-docs/MA.DataPlatforms.Streaming.Support.Library.SampleUsage) uses the **Support Library wrapper**. These are two different layers over the same protocol — if translating between them, be aware the API surfaces differ.
 
----
-
 ## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Engine 20+)
 - A Kafka broker (the quick-start below provides one via Docker)
 - For .NET development: .NET 8.0+ SDK and the [Motion Applied NuGet feed](https://github.com/mat-docs/packages)
 - For Python/other languages: protobuf compiler and gRPC tools for your language
-
----
 
 ## Quick Start: Data Flowing in 30 Minutes
 
@@ -104,8 +98,6 @@ To view streaming data in the ATLAS client:
 6. Click **Start** — ATLAS will display data as it arrives
 
 See [Stream Recorder](../../key-functionality/analyse/viewer/handling-data/recorders/stream-recorder.md) for full configuration details.
-
----
 
 ## The Protocol: Five Steps, Exact Order
 
@@ -220,11 +212,14 @@ The ConfigurationPacket defines parameter metadata (name, units, min/max, freque
                 identifier="Engine.Rpm",
                 name="Engine RPM",
                 application_name="VehicleTelemetry",
+                description="Engine revolutions per minute",
                 units="RPM",
                 data_type=open_data_pb2.DATA_TYPE_FLOAT64,
                 format_string="%5.0f",
                 min_value=0.0,
                 max_value=12000.0,
+                warning_min_value=0.0,
+                warning_max_value=12000.0,
                 groups=["Engine"],
                 frequencies=[10.0],
             ),
@@ -264,6 +259,8 @@ The ConfigurationPacket defines parameter metadata (name, units, min/max, freque
                 FormatString = "%5.0f",
                 MinValue = 0.0,
                 MaxValue = 12000.0,
+                WarningMinValue = 0.0,
+                WarningMaxValue = 12000.0,
                 Groups = { "Engine" },
                 Frequencies = { 10.0 },
             },
@@ -272,11 +269,14 @@ The ConfigurationPacket defines parameter metadata (name, units, min/max, freque
                 Identifier = "Engine.Temperature",
                 Name = "Engine Temperature",
                 ApplicationName = "VehicleTelemetry",
+                Description = "Engine coolant temperature",
                 Units = "°C",
                 DataType = DataType.Float64,
                 FormatString = "%5.1f",
                 MinValue = -40.0,
                 MaxValue = 150.0,
+                WarningMinValue = -20.0,
+                WarningMaxValue = 130.0,
                 Groups = { "Engine" },
                 Frequencies = { 1.0 },
             },
@@ -414,8 +414,6 @@ Send data as `PeriodicDataPacket` (fixed-frequency), `RowDataPacket` (timestampe
 !!! note "All timestamps are nanoseconds"
     Every timestamp field in the protocol (`StartTime`, `Interval`, `Timestamp`) uses **nanoseconds since UNIX epoch** (1 Jan 1970, UTC). Common intervals: 60 Hz = `16666666` ns, 100 Hz = `10000000` ns, 1 kHz = `1000000` ns. Convert from milliseconds: `ms * 1000000`.
 
----
-
 ## Packet Routing Reference
 
 Different packets go to different streams. Get this wrong and ATLAS either does not see the session or does not see the data:
@@ -429,8 +427,6 @@ Different packets go to different streams. Get this wrong and ATLAS either does 
 | `EventPacket` | Data stream (`Stream1`) | No | Events |
 | `MarkerPacket` | Both (`Stream1` + `""`) | Yes | Lap markers, pit stops |
 | `EndOfSessionPacket` | Both (`Stream1` + `""`) | No | Session end signal |
-
----
 
 ## Making Traces Smooth
 
@@ -460,8 +456,6 @@ start_time_ns += interval_ns * batch_size
 ```
 
 For the full worked example including production considerations (per-sample timestamps, non-blocking gRPC sends, clock drift prevention), see the [iRacing bridge blog post](../../blog/2026/04/21/how-i-got-iracing-telemetry-streaming-into-atlas-viewer/).
-
----
 
 ## Troubleshooting
 
@@ -512,8 +506,6 @@ Enable debug logging in `AppConfig.json`:
 
 If a Stream Recorder configuration references a server that no longer exists, ATLAS may fail to start. To recover, delete the Stream Recorder configuration file from the ATLAS config directory and restart.
 
----
-
 ## Common Pitfalls
 
 | Pitfall | Solution |
@@ -526,8 +518,6 @@ If a Stream Recorder configuration references a server that no longer exists, AT
 | One sample per packet | Batch samples into a single `PeriodicDataPacket` for smooth traces |
 | Wall-clock batch timestamps | Advance `start_time` arithmetically, not from `time.time_ns()` |
 | Wrong order of operations | Session > NewSession > Config > DataFormats > Data > EndSession |
-
----
 
 ## Example Repositories
 
@@ -548,6 +538,3 @@ If a Stream Recorder configuration references a server that no longer exists, AT
 - **[Telemetry Example](stream_api/reference_docs/examples/telemetry-example.md)** — Complete C# producer/consumer with ConfigurationPacket
 - **[Stream Recorder](../../key-functionality/analyse/viewer/handling-data/recorders/stream-recorder.md)** — ATLAS client-side recording setup
 
----
-
-For support, contact [atlas10@motionapplied.com](mailto:atlas10@motionapplied.com) or raise a ticket on the [Support Portal](https://portal.motionapplied.com/Tickets/New).
