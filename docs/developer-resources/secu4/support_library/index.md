@@ -112,10 +112,11 @@ Welcome to the comprehensive documentation for the MA DataPlatforms Streaming Su
 
 #### Write Data Workflow
 1. Initialize Support Library
-2. Create Session (Session Manager)
-3. Define Data Formats (Data Format Manager)
-4. Write Packets (Writer Module)
-5. End Session
+2. Create and Start Session (Session Manager)
+3. Send ConfigurationPacket (parameter definitions, event definitions, groups)
+4. Define Data Formats (Data Format Manager — to obtain format IDs)
+5. Write Data Packets (Writer Module)
+6. End Session
 
 #### Read Live Data Workflow
 1. Initialize Support Library

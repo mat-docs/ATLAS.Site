@@ -81,7 +81,7 @@ var periodicPacket = new PeriodicDataPacket
         DataFormatIdentifier = 1234
     },
     StartTime = 123456,
-    Interval = 1000, // 1ms
+    Interval = 1000000, // 1ms in nanoseconds
     Columns =
     {
         new SampleColumn[]
@@ -190,7 +190,7 @@ The library supports various packet types from the MA.Streaming.OpenData namespa
 - **MarkerPacket**: Session markers
 - **ErrorPacket**: Error occurrences.
 - **RawCANPacket**: Raw CAN packets.
-- **ConfigurationPacket**: Packet containing list of parameters, events, and group definitions.
+- **ConfigurationPacket**: Packet containing list of parameters, events, and group definitions. This packet must be sent after creating the session and before writing data, so that consumers (e.g. ATLAS) know how to interpret the parameters.
 
 ### Control Packets
 
@@ -330,7 +330,7 @@ public class DataPublisher
                 DataFormatIdentifier = formatId
             },
             StartTime = timestamp,
-            Interval = 10000, // 10ms in microseconds
+            Interval = 10000000, // 10ms in nanoseconds
             // Add sample values (RPM, EngineTemp, Throttle)
             Columns =
 
@@ -476,7 +476,7 @@ public void WritePeriodicData(string sessionKey, ulong formatId, ulong timestamp
             DataFormatIdentifier = formatId
         },
         StartTime = timestamp,
-        Interval = 1000  // 1ms intervals
+        Interval = 1000000,  // 1ms in nanoseconds
         Columns = 
         [
             new SampleColumn
@@ -693,11 +693,13 @@ public void WriteMarker(string sessionKey, string markerLabel, ulong timestamp)
 
 5. **Send Session Lifecycle Packets**: Always send NewSessionPacket at start and EndOfSessionPacket at end of each stream.
 
-6. **Define Formats First**: Create data formats before sending data packets that reference them.
+6. **Send ConfigurationPacket Early**: After creating and starting the session, send a `ConfigurationPacket` with your parameter definitions before writing data. This tells consumers how to interpret the data.
 
-7. **Handle Write Failures**: Always check the result and handle failures appropriately.
+7. **Define Formats Before Data**: Create data formats (to get format IDs) before sending data packets that reference them.
 
-8. **Batch When Possible**: Group related data in single packets to reduce overhead.
+8. **Handle Write Failures**: Always check the result and handle failures appropriately.
+
+9. **Batch When Possible**: Group related data in single packets to reduce overhead.
 
 ## Error Handling
 

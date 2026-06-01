@@ -258,7 +258,8 @@ nav:
           - Manipulating the Values in a 1-Axis Map: developer-resources/system-monitor/active-x/examples/example-4.md
           - Demonstrating functions GetValue2AxisMap and SetValue2AxisMap: developer-resources/system-monitor/active-x/examples/example-5.md
     - Open Streaming:
-      - Stream API: 
+      - Getting Started: developer-resources/secu4/getting-started.md
+      - Stream API:
         - Overview: developer-resources/secu4/stream_api/index.md
         - Getting Started:
           - Overview: developer-resources/secu4/stream_api/reference_docs/getting-started/overview.md
