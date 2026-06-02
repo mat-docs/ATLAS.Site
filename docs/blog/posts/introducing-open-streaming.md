@@ -26,11 +26,31 @@ Open Streaming is a **message broker pattern**. It runs on two technologies most
 - **Apache Kafka** as the broker, the backbone that carries telemetry from producers to consumers, durably and in order.
 - **Protocol Buffers (Protobuf)** over **gRPC** as the contract, a compact, strongly-typed, language-neutral description of every packet that flows through the system.
 
-```
- Source  →  Stream API (gRPC)  →  Kafka topics  →  ATLAS / your tools
-(a car,        sessions,           durable,          live or
- a sim,        config,             ordered            recorded
- a rig)        routing             transport          analysis
+```mermaid
+flowchart LR
+    subgraph Sources["Sources"]
+        direction TB
+        C1["Car"]
+        C2["Sim"]
+        C3["Test rig"]
+        C4["Bridge Service<br/>(MA ECU, etc.)"]
+    end
+    SA["<b>Stream API</b><br/>gRPC<br/>sessions · config · routing"]
+    K["<b>Kafka topics</b><br/>durable · ordered transport"]
+    subgraph Consumers["ATLAS / your tools"]
+        direction TB
+        A1["ATLAS Viewer<br/>live or recorded analysis"]
+        A2["Custom tools<br/>dashboards · alerting"]
+        A3["Your models<br/>ML · anomaly detection"]
+    end
+    C1 --> SA
+    C2 --> SA
+    C3 --> SA
+    C4 --> SA
+    SA --> K
+    K --> A1
+    K --> A2
+    K --> A3
 ```
 
 Because Kafka and gRPC are open standards with mature client libraries in almost every language, *any* platform that speaks them can join the pipeline, as a producer of data, a consumer of it, or both. The system is split into a handful of focused services, each doing one job:
@@ -44,7 +64,7 @@ Because Kafka and gRPC are open standards with mature client libraries in almost
 
 You do not need all of them to start. For many use cases the Stream API and a Kafka broker are enough.
 
-## API-first, so developers stay in control
+## API-first
 
 Open Streaming is designed API-first. Every capability is exposed through a documented gRPC interface, which means developers build against the API rather than against a fixed UI, a proprietary file format, or a single supported workflow. 
 
@@ -74,7 +94,7 @@ When the format and transport are open it means:
 
 That last one is not hypothetical. We have already wired live iRacing telemetry straight into ATLAS through the Stream API. The write-up, [How I got iRacing telemetry streaming into ATLAS](blog-post-iracing-bridge-service.md), is a great look at what the architecture enables.
 
-## The bigger picture: an ecosystem, not a feature
+## The bigger picture
 
 It is worth stepping back from any single integration and looking at the shape of the whole thing, because that is where the real potential sits.
 
