@@ -15,7 +15,7 @@ Your Data Source ──► Stream API (gRPC) ──► Kafka Broker ──► AT
                                          logging, etc.)      recording)
 ```
 
-This architecture is data-source agnostic. It works with ECU telemetry, sim racing data, kart loggers, test rigs, cycling power meters — anything that produces time-series data. For a real-world worked example, see [How I Got iRacing Telemetry Streaming into ATLAS Viewer](../../blog/2026/04/21/how-i-got-iracing-telemetry-streaming-into-atlas-viewer/).
+This architecture is data-source agnostic. It works with ECU telemetry, sim racing data, kart loggers, test rigs, cycling power meters — anything that produces time-series data. For a real-world worked example, see [How I Got iRacing Telemetry Streaming into ATLAS Viewer](../../blog/posts/blog-post-iracing-bridge-service.md).
 
 ## Architecture at a Glance
 
@@ -455,7 +455,7 @@ send_periodic_data(batch, start_time_ns, interval_ns)
 start_time_ns += interval_ns * batch_size
 ```
 
-For the full worked example including production considerations (per-sample timestamps, non-blocking gRPC sends, clock drift prevention), see the [iRacing bridge blog post](../../blog/2026/04/21/how-i-got-iracing-telemetry-streaming-into-atlas-viewer/).
+For the full worked example including production considerations (per-sample timestamps, non-blocking gRPC sends, clock drift prevention), see the [iRacing bridge blog post](../../blog/posts/blog-post-iracing-bridge-service.md).
 
 ## Troubleshooting
 
