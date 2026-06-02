@@ -1,10 +1,8 @@
 ---
 date:
-  created: 2026-06-02
+  created: 2026-06-03
 categories:
   - Blog
-tags:
-  - Stream API
 ---
 
 # Introducing Open Streaming: real-time telemetry, opened up
