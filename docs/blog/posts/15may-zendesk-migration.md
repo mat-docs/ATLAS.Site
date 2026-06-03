@@ -3,7 +3,7 @@ title: "Support Portal Migration - Moving from Zendesk to Motion Applied Portal"
 date:
   created: 2026-05-15
 categories:
-  - Announcements
+  - Announcement
 ---
 
 We're excited to announce that we're migrating from Zendesk to our new **Motion Applied Support Portal**. This change will provide us with a more integrated and streamlined support experience for all our users.
