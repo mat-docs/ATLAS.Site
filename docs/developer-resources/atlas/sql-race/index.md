@@ -35,7 +35,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
 ## Prerequisites
 
 * Visual Studio 2019 or later
-* .NET 6 or later
+* .NET 8 or later
 
 ## Code Samples Index
 

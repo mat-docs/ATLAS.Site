@@ -58,8 +58,8 @@ PRODUCTS = {
             "an individual data analyst or for many engineers all monitoring telemetry together."
         ),
         "release_filler": (
-            "Specific details of what has been covered in each of these areas, as well as "
-            "information on other bug fixes made, is included in section 4.\n\n"
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 4.\n\n"
             "We appreciate that there are still items to address in the improved areas and "
             "would appreciate your feedback such that we can prioritise issues for future releases."
         ),
@@ -95,8 +95,8 @@ PRODUCTS = {
             "other to Wirelink Uploads."
         ),
         "release_filler": (
-            "Specific details of what has been covered in each of these areas, as well as "
-            "information on other bug fixes made, is included in section 4.\n\n"
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 4.\n\n"
             "We appreciate that there are still items to address in the improved areas and "
             "would appreciate your feedback such that we can prioritise issues for future releases."
         ),
@@ -127,7 +127,7 @@ PRODUCTS = {
                 "please consult with Motion Applied and we will be happy to assist with appropriate "
                 "migration strategies."
             ),
-            "bullets": ["ATLAS uses .NET 6"],
+            "bullets": ["ATLAS uses .NET 8"],
             "restrictions": [
                 "Enabling the Windows OS firewall may prevent ATLAS clients from receiving data from "
                 "ATLAS data servers. We advise that the firewall is disabled prior to running with this configuration.",
@@ -156,8 +156,8 @@ PRODUCTS = {
             "ECUs and calibrating sensors and actuators connected to the ECU."
         ),
         "release_filler": (
-            "Specific details of what has been covered in each of these areas, as well as "
-            "information on other bug fixes made, is included in section 3.\n\n"
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 3.\n\n"
             "We appreciate that there are still items to address in the improved areas and "
             "would appreciate your feedback such that we can prioritise issues for future releases."
         ),
@@ -190,8 +190,8 @@ PRODUCTS = {
             "data delivery via the Stream API."
         ),
         "release_filler": (
-            "Specific details of what has been covered in each of these areas, as well as "
-            "information on other changes made, is included in section 2.\n\n"
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 2.\n\n"
             "We appreciate that there are still items to address in the improved areas and "
             "would appreciate your feedback such that we can prioritise issues for future releases."
         ),
@@ -214,8 +214,8 @@ PRODUCTS = {
             "across multiple ATLAS clients."
         ),
         "release_filler": (
-            "Specific details of what has been covered in each of these areas, as well as "
-            "information on other changes made, is included in section 2.\n\n"
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 2.\n\n"
             "We appreciate that there are still items to address in the improved areas and "
             "would appreciate your feedback such that we can prioritise issues for future releases."
         ),
@@ -400,7 +400,7 @@ def inl(children):
     return "".join(out)
 
 # ── Build story from AST ───────────────────────────────────────────────────────
-def build_story(tokens, st, product_info, release_summary, date_str, eval_notice=""):
+def build_story(tokens, st, product_info, release_summary, date_str, eval_notice="", post_url=""):
     """
     Constructs the full story:
       Page 1 cover (empty — drawn by canvas callback)
@@ -434,9 +434,15 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
     story.append(Paragraph("Release Overview", st["h2_plain"]))
     if release_summary:
         story.append(Paragraph(esc(release_summary), st["body_indent"]))
+    if post_url:
+        release_post_link = (f'<font color="#E8631A"><link href="{post_url}">'
+                             'release post</link></font>')
+    else:
+        release_post_link = "release post"
     for filler_para in (product_info.get("release_filler") or "").split("\n\n"):
         if filler_para.strip():
-            story.append(Paragraph(esc(filler_para.strip()), st["body_indent"]))
+            para_html = esc(filler_para.strip()).replace("{release_post}", release_post_link)
+            story.append(Paragraph(para_html, st["body_indent"]))
 
     # Evaluation Build Notice — injected from admonition if present in markdown
     if eval_notice:
@@ -556,6 +562,9 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
     CHANGES_SUBSECTIONS = {
         "new features", "bug fixes", "changes", "bug fix",
         "features", "enhancements", "improvements",
+        "configuration", "configuration changes",
+        "maintenance", "dependencies",
+        "maintenance / dependencies", "maintenance and dependencies",
     }
     SUPPORT_HEADINGS = {
         "support", "feedback / support", "feedback/support",
@@ -758,15 +767,30 @@ def clean_md(content):
     return content
 
 # ── Meta ───────────────────────────────────────────────────────────────────────
+SITE_URL = "https://atlas.motionapplied.com"
+
+def slugify(title):
+    """Reproduce the mkdocs-material blog slug: lowercase, drop punctuation,
+    spaces become hyphens (consecutive hyphens are NOT collapsed)."""
+    s = title.lower()
+    s = re.sub(r"[^a-z0-9 \-]", "", s)
+    return s.replace(" ", "-")
+
 def extract_meta(post, src):
     fm = post.metadata
     created = fm.get("date", {})
     d = created.get("created","") if isinstance(created,dict) else created
+    post_date = None
     if isinstance(d, datetime):
+        post_date = d.date()
         date_str = d.strftime("%d %B %Y")
     elif d:
-        try:    date_str = datetime.strptime(str(d),"%Y-%m-%d").strftime("%d %B %Y")
-        except: date_str = str(d)
+        try:
+            parsed = datetime.strptime(str(d),"%Y-%m-%d")
+            post_date = parsed.date()
+            date_str = parsed.strftime("%d %B %Y")
+        except:
+            date_str = str(d)
     else:
         date_str = datetime.now().strftime("%d %B %Y")
 
@@ -804,12 +828,19 @@ def extract_meta(post, src):
     # Clean up any double spaces left behind
     summary = re.sub(r"  +", " ", summary).strip()
 
+    # Published blog-post URL — the "release post" link in the overview points here
+    post_url = ""
+    if post_date:
+        post_url = (f"{SITE_URL}/blog/{post_date:%Y/%m/%d}/"
+                    f"{slugify(title)}/")
+
     return {
         "title":   title,
         "product": product,
         "version": version,
         "date":    date_str,
         "summary": summary,
+        "post_url": post_url,
     }
 
 # ── Build PDF ──────────────────────────────────────────────────────────────────
@@ -835,7 +866,8 @@ def build_pdf(md_src, out_path):
     tokens = mistune.create_markdown(renderer=None, plugins=["table"])(content)
     st     = make_styles()
     story  = build_story(tokens, st, prod, meta["summary"],
-                          meta["date"], eval_notice=eval_notice)
+                          meta["date"], eval_notice=eval_notice,
+                          post_url=meta["post_url"])
 
     meta["cover_name"]  = prod["cover_name"]
     meta["cover_short"] = prod.get("cover_short", "")
