@@ -6,7 +6,7 @@ This guide walks you through the process of creating a new **session file (`.ssn
 ???+ tip
     Make sure you have:
 
-    - Installed **.NET 6** and are targeting **x64 architecture**.
+    - Installed **.NET 8** and are targeting **x64 architecture**.
     - Added the following NuGet packages:
         - `MESL.SQLRace.API`
     - Configured your NuGet source to include the **McLaren Applied GitHub packages**:
