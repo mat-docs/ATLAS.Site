@@ -56,7 +56,7 @@ PGV (Parameter Group Value) file searching now correctly terminates when a sessi
 **Artifacts:**
 [GitHub](https://github.com/Software-Products/MA.DataPlatforms.StreamApi) .
 [NuGet](https://github.com/orgs/mat-docs/packages?q=&tab=packages&q=MA.Streaming.) .
-[Documentation](../../../developer-resources/secu4/stream_api/index.md)
+[Documentation](../../developer-resources/secu4/stream_api/index.md)
 
 **Changes**
 ### Kafka Consumer Group Support
@@ -79,7 +79,7 @@ The server now supports configurable batch message sizes, allowing you to:
 **Artifacts:**
 [GitHub](https://github.com/Software-Products/MA.DataPlatforms.Protocol) .
 [NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local) .
-[Documentation](../../../developer-resources/secu4/docs)
+[Documentation](../../developer-resources/secu4/docs.md)
 
 **Changes**
 - Protos updated to add support of rejoin by exposing consumer group identifier
