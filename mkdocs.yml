@@ -35,6 +35,19 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js
+  - javascripts/pda-explorer.js
+  - javascripts/pda-samples-vs-data.js
+  - javascripts/pda-fidelity.js
+  - javascripts/pda-lap-stats.js
+  - javascripts/synchro-explorer.js
+  - https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js
+  - https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js
+  - javascripts/sqlrace-model.js
+  - javascripts/sqlrace-model-map.js
+
 hooks:
   - overrides/hooks/shortcodes.py
 
@@ -300,22 +313,15 @@ nav:
         - .NET 6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
         - .NET 8 Upgrade: developer-resources/atlas/sql-race/net8-upgrade.md
         - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
+        - Object Model: developer-resources/atlas/sql-race/object-model.md
         - Worked Examples:
           - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Synchro Data: developer-resources/atlas/sql-race/examples/synchro-data.md
           - Functions: developer-resources/atlas/sql-race/examples/functions.md
           - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
           - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
           - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
-      - Pandlas (Python):
-        - Overview: developer-resources/atlas/pandlas/index.md
-        - Getting Started: developer-resources/atlas/pandlas/getting-started.md
-        - API Reference: developer-resources/atlas/pandlas/api-reference.md
-        - Examples:
-          - Multi-Rate Sessions: developer-resources/atlas/pandlas/examples/multirate.md
-          - Events & Markers: developer-resources/atlas/pandlas/examples/events.md
-          - Live Streaming: developer-resources/atlas/pandlas/examples/live-streaming.md
-          - Synchro Data: developer-resources/atlas/pandlas/examples/synchro.md
-      - Display API: 
+      - Display API:
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
         - Tutorials:
@@ -466,7 +472,11 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.snippets:
       base_path: docs
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
 
