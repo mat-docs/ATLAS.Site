@@ -233,6 +233,9 @@ nav:
     - System Requirements: getting-started/sysreqs.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - NuGet Packages:
+      - Overview: developer-resources/atlas/nuget/index.md
+      - Setup Guide: developer-resources/atlas/nuget/setup.md
     - System Monitor:
       - Active X: 
         - Overview: developer-resources/system-monitor/active-x/index.md
@@ -294,11 +297,8 @@ nav:
         - Service Overview: developer-resources/secu4/indexing_services/service-overview.md
         - API Documentation: developer-resources/secu4/indexing_services/api-documentation.md
         - Configuration Guide: developer-resources/secu4/indexing_services/appsettings-configuration.md
-    - ATLAS: 
+    - ATLAS:
       - Overview: developer-resources/atlas/index.md
-      - Nuget: 
-        - Overview: developer-resources/atlas/nuget/index.md
-        - Setup Guide: developer-resources/atlas/nuget/setup.md
       - Automation API:
         - Overview: developer-resources/atlas/automation-api/index.md
         - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md
@@ -310,8 +310,6 @@ nav:
       - SQL Race API: 
         - Overview: developer-resources/atlas/sql-race/index.md
         - Getting Started: developer-resources/atlas/sql-race/integration.md
-        - .NET 6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
-        - .NET 8 Upgrade: developer-resources/atlas/sql-race/net8-upgrade.md
         - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
         - Object Model: developer-resources/atlas/sql-race/object-model.md
         - Worked Examples:
@@ -347,7 +345,10 @@ nav:
             -  developer-resources/atlas/display-api/mvvm.md
             -  developer-resources/atlas/display-api/prerequisites.md
         - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
-    - RTA: 
+      - Migration Guides:
+        - .NET 6 Upgrade: developer-resources/atlas/migration/net6-upgrade.md
+        - .NET 8 Upgrade: developer-resources/atlas/migration/net8-upgrade.md
+    - RTA:
       - Introduction: developer-resources/rta/worked-guide/index.md
       - Services Reference:
         - Overview:                   developer-resources/rta/services/index.md
