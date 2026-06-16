@@ -24,6 +24,7 @@ theme:
     - navigation.indexes 
     - navigation.top
     - content.code.copy
+    - content.code.annotate
     - content.tabs.link
     - search.suggest
   icon:
@@ -32,6 +33,22 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js
+  - javascripts/pda-explorer.js
+  - javascripts/pda-samples-vs-data.js
+  - javascripts/pda-fidelity.js
+  - javascripts/pda-lap-stats.js
+  - javascripts/synchro-explorer.js
+  - https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js
+  - https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js
+  - javascripts/sqlrace-model.js
+  - javascripts/sqlrace-model-map.js
+
+hooks:
+  - overrides/hooks/shortcodes.py
 
 copyright: >
   Copyright &copy; 2026 Motion Applied Ltd. - 
@@ -241,6 +258,9 @@ nav:
         - Overview: key-functionality/integrate/apis/index.md
   - Developer Resources:
     - Overview: developer-resources/index.md
+    - NuGet Packages:
+      - Overview: developer-resources/atlas/nuget/index.md
+      - Setup Guide: developer-resources/atlas/nuget/setup.md
     - System Monitor:
       - Configuration API: 
         - Overview: developer-resources/system-monitor/configuration_api/index.md
@@ -304,11 +324,8 @@ nav:
         - Service Overview: developer-resources/secu4/indexing_services/service-overview.md
         - API Documentation: developer-resources/secu4/indexing_services/api-documentation.md
         - Configuration Guide: developer-resources/secu4/indexing_services/appsettings-configuration.md
-    - ATLAS: 
+    - ATLAS:
       - Overview: developer-resources/atlas/index.md
-      - Nuget: 
-        - Overview: developer-resources/atlas/nuget/index.md
-        - Setup Guide: developer-resources/atlas/nuget/setup.md
       - Automation API:
         - Overview: developer-resources/atlas/automation-api/index.md
         - Extracting Sessions: developer-resources/atlas/automation-api/getting-started.md
@@ -320,16 +337,16 @@ nav:
       - SQL Race API: 
         - Overview: developer-resources/atlas/sql-race/index.md
         - Getting Started: developer-resources/atlas/sql-race/integration.md
-        - .NET 6 Upgrade: developer-resources/atlas/sql-race/net6-upgrade.md
-        - .NET 8 Upgrade: developer-resources/atlas/sql-race/net8-upgrade.md
         - API Reference: https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html
+        - Object Model: developer-resources/atlas/sql-race/object-model.md
         - Worked Examples:
           - Create Session: developer-resources/atlas/sql-race/examples/create-session.md
+          - Synchro Data: developer-resources/atlas/sql-race/examples/synchro-data.md
           - Functions: developer-resources/atlas/sql-race/examples/functions.md
           - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
           - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
           - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
-      - Display API: 
+      - Display API:
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
         - Tutorials:
@@ -355,7 +372,10 @@ nav:
             -  developer-resources/atlas/display-api/mvvm.md
             -  developer-resources/atlas/display-api/prerequisites.md
         - API Reference: "https://mat-docs.github.io/Atlas.DisplayAPI.Documentation/index.html"
-    - RTA: 
+      - Migration Guides:
+        - .NET 6 Upgrade: developer-resources/atlas/migration/net6-upgrade.md
+        - .NET 8 Upgrade: developer-resources/atlas/migration/net8-upgrade.md
+    - RTA:
       - Introduction: developer-resources/rta/worked-guide/index.md
       - Services Reference:
         - Overview:                   developer-resources/rta/services/index.md

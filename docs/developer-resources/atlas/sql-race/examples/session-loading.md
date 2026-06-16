@@ -132,7 +132,7 @@ Session States are used to identify whether a session is currently live and havi
     ``` python
     server_name = r"SQLServer\InstanceName"
     database_name = "DatabaseName"
-    connection_string = f"server={serverName};Initial Catalog={databaseName};Trusted_Connection=True"
+    connection_string = f"server={server_name};Initial Catalog={database_name};Trusted_Connection=True"
     session_manager = SessionManager.CreateSessionManager()
     session_summaries = session_manager.FindBySessionState(SessionState.Historical, connection_string)
     session_key = session_summaries.get_Item(0).Key.ToString()
@@ -168,10 +168,10 @@ Session States are used to identify whether a session is currently live and havi
     ``` python
     server_name = r"SQLServer\InstanceName"
     db_name = "DatabaseName"
-    connection_string = rf"server={serverName};Initial Catalog={dbName};Trusted_Connection=True"
+    connection_string = rf"server={server_name};Initial Catalog={db_name};Trusted_Connection=True"
     session_key_guid = "c5668a15-a996-444b-8cd4-0895e0bd11b3"
     session_manager = SessionManager.CreateSessionManager()
-    client_session = sessionManager.Load(SessionKey.Parse(session_key_guid), connectionString)
+    client_session = session_manager.Load(SessionKey.Parse(session_key_guid), connection_string)
     ```
 
 === "MATLAB"
@@ -216,7 +216,7 @@ Session States are used to identify whether a session is currently live and havi
     ``` python
     server_name = r"SQLServer\InstanceName"
     db_name = "DatabaseName"
-    connection_string = rf"server={serverName};Initial Catalog={dbName};Trusted_Connection=True"
+    connection_string = rf"server={server_name};Initial Catalog={db_name};Trusted_Connection=True"
     
     # filter by session data item
     item_filter = ScalarFilter("Car", MatchingRule.EqualTo, "1", True)
