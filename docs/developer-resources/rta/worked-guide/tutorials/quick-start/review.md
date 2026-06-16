@@ -10,7 +10,7 @@
 This demo project illustrates a data loading pattern, where data is format-shifted for use with ATLAS.
 
 This is not the only way to use RTA.
-You can also connect to existing stores using a [Data Service as an adapter](../../../../../extending-atlas/rta/introduction/data-services.md). 
+You can also connect to existing stores using a [Data Service as an adapter](../../../../../key-functionality/integrate/rta/introduction/data-services.md). 
 
 ## Importing NuGet Packages
 

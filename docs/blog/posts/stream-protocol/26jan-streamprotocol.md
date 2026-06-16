@@ -18,7 +18,7 @@ and support for large configuration datasets.
 
 - **Protos (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
 - **NuGet Package:** [Stream Protocol NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.Streaming.Proto.Client.Local)
-- **Documentation:** [Read docs](../../../developer-resources/secu4/docs)
+- **Documentation:** [Read docs](../../../developer-resources/secu4/docs.md)
 
 ## Key Improvements
 
@@ -139,4 +139,4 @@ This change makes the API more consistent and clearer (since it represents multi
 ## Support
 
 If you have any questions about this release or need assistance with 
-migration, please contact the Support via [Zendesk](https://mclarenappliedtechnologies.zendesk.com/hc/en-us).
+migration, please contact the Support via [Portal](https://portal.motionapplied.com/Tickets/New).

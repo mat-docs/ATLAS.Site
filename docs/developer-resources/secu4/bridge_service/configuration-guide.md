@@ -117,10 +117,10 @@ Multiple streams share a single Kafka topic but are distributed across different
         "StreamCreationStrategy": 1,
         "Domain": "Production",
         "PartitionMappings": [
-          { "StreamIdentifier": "EngineTelemetry", "Partition": 1 },
-          { "StreamIdentifier": "ChassisTelemetry", "Partition": 2 },
-          { "StreamIdentifier": "AeroTelemetry", "Partition": 3 },
-          { "StreamIdentifier": "BrakeTelemetry", "Partition": 4 }
+          { "Stream": "EngineTelemetry", "Partition": 1 },
+          { "Stream": "ChassisTelemetry", "Partition": 2 },
+          { "Stream": "AeroTelemetry", "Partition": 3 },
+          { "Stream": "BrakeTelemetry", "Partition": 4 }
         ]
       },
       "StreamSelectionConfig": {
@@ -144,7 +144,7 @@ Multiple streams share a single Kafka topic but are distributed across different
     * Partition 4: `BrakeTelemetry` data
 
 !!! danger "Critical Rules for Partition-Based"
-    1. Stream names in `StreamSelectionConfig` **MUST** match `StreamIdentifier` in `PartitionMappings`.
+    1. Stream names in `StreamSelectionConfig` **MUST** match `Stream` in `PartitionMappings`.
     2. **Partition 0 is reserved** - all mappings must use partition 1 and above.
     3. Each stream must have a unique partition number.
     4. Kafka topic must be created with enough partitions (max partition number + 1).
@@ -303,10 +303,10 @@ Controls core Bridge service behavior including processing units, data handling,
 | :--- | :--- | :--- | :--- |
 | `DataSource` | string | "Default" | Name identifier for the data source |
 | `UseStringIdentifier` | boolean | false | Use string-based identifiers instead of numeric IDs |
-| `NumberWritingUnit` | int | 8 | Number of parallel writing units (threads) for Stream API |
-| `NumberProcessingUnit` | int | 4 | Number of parallel processing units for data decoding |
+| `ConcurrencyFactor` | int | 8 | Number of parallel units for data processing and writing |
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
+| `FeedPort` | int? | null | Optional port override for the data feed |
 
 ### ProcessFlow Strategies
 
@@ -334,8 +334,7 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
   "BridgeConfig": {
     "DataSource": "RaceTrack01",
     "UseStringIdentifier": true,
-    "NumberWritingUnit": 16,
-    "NumberProcessingUnit": 8,
+    "ConcurrencyFactor": 16,
     "AdsTimeoutInSeconds": 600,
     "ProcessFlow": "SequentialAll"
   }
@@ -349,8 +348,7 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
   "BridgeConfig": {
     "DataSource": "LiveTelemetry",
     "UseStringIdentifier": true,
-    "NumberWritingUnit": 24,
-    "NumberProcessingUnit": 12,
+    "ConcurrencyFactor": 24,
     "AdsTimeoutInSeconds": 720,
     "ProcessFlow": "DropOldest"
   }
@@ -359,8 +357,7 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
 
 ### Performance Tuning
 
-*   **`NumberWritingUnit`**: Increase for higher throughput to Stream API. Higher values use more CPU.
-*   **`NumberProcessingUnit`**: Controls parallel data decoding/processing. Increase for multi-core systems.
+*   **`ConcurrencyFactor`**: Controls the number of parallel units for both data processing and writing. Increase for higher throughput on multi-core systems. Higher values use more CPU.
 *   **`AdsTimeoutInSeconds`**: Controls how long the Bridge waits without receiving data before considering a session stopped. Default is 720 seconds (12 minutes). Reduce for faster session timeout detection, increase if you expect longer gaps in data transmission.
 *   **`ProcessFlow`**: Choose `SequentialAll` when data completeness is critical, or `DropOldest` when real-time performance is more important than historical completeness.
 
@@ -558,7 +555,6 @@ The Bridge service uses the following priority order for logging configuration:
     "IntegrateDataFormatManagement": true,
     "UseRemoteKeyGenerator": false,
     "RemoteKeyGeneratorServiceAddress": "",
-    "BatchingResponses": false,
     "InitialisationTimeoutSeconds": 1,
     "Domain": "motorsport"
   },

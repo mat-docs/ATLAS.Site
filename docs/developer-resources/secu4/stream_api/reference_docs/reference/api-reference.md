@@ -98,8 +98,16 @@ message CloseConnectionResponse {
 ### Usage Examples
 
 ```csharp
+// Initialize client
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
 // Create connection
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
 var connection = await connectionManager.NewConnectionAsync(new NewConnectionRequest
 {
     Details = new ConnectionDetails
@@ -350,7 +358,14 @@ message UpdateSessionDetailsResponse {
 ### Usage Examples
 
 ```csharp
-var sessionManager = StreamingApiClient.GetSessionManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var sessionManager = streamingApiClient.GetSessionManagementClient();
 
 // Create session
 var session = await sessionManager.CreateSessionAsync(new CreateSessionRequest
@@ -486,9 +501,16 @@ message WriteInfoPacketsResponse {
 
 ```csharp
 using MA.Streaming.OpenData;
-using MA.Streaming.API;
 
-var packetWriter = StreamingApiClient.GetPacketWriterClient();
+// Initialize client
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var packetWriter = streamingApiClient.GetPacketWriterClient();
 
 // Create periodic data packet with parameter samples
 var timestamp = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 1000000; // nanoseconds
@@ -689,10 +711,18 @@ message ReadDataPacketsResponse {
 ```csharp
 using MA.Streaming.OpenData;
 
-var packetReader = StreamingApiClient.GetPacketReaderClient();
+// Initialize client
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var packetReader = streamingApiClient.GetPacketReaderClient();
 
 // Get connection details first
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
 var connectionResponse = await connectionManager.NewConnectionAsync(new NewConnectionRequest
 {
     Details = new ConnectionDetails
@@ -860,7 +890,14 @@ message GetEventResponse {
 ### Usage Examples
 
 ```csharp
-var dataFormatManager = StreamingApiClient.GetDataFormatManagerClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var dataFormatManager = streamingApiClient.GetDataFormatManagerClient();
 
 // Get parameter data format ID
 var parameterFormatResponse = await dataFormatManager.GetParameterDataFormatIdAsync(

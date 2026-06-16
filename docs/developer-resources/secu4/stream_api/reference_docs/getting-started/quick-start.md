@@ -110,17 +110,18 @@ var config = new StreamingApiConfiguration(
     "localhost:9092", 
     []);
 
-StreamingApiClient.Initialise(
+var streamingApiClient = StreamingApiClientFactory.Create(
     config,
     new CancellationTokenSourceProvider(),
     new KafkaBrokerAvailabilityChecker(),
     new LoggingDirectoryProvider(@"C:\Temp"));
+streamingApiClient.Initialise();
 
 // Get service clients
-var sessionManager = StreamingApiClient.GetSessionManagementClient();
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
-var packetWriter = StreamingApiClient.GetPacketWriterClient();
-var packetReader = StreamingApiClient.GetPacketReaderClient();
+var sessionManager = streamingApiClient.GetSessionManagementClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
+var packetWriter = streamingApiClient.GetPacketWriterClient();
+var packetReader = streamingApiClient.GetPacketReaderClient();
 
 const string DataSource = "QuickStartDemo";
 

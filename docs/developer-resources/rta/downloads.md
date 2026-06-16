@@ -7,7 +7,7 @@
 
 These [services](services/index.md) provide an implementation toolkit covering some or all of the functionality in the [RTA API Specification](api/index.md).
 
-Combined with the [libraries](#nuget-packages) to support [Data Service](../../extending-atlas/rta/introduction/data-services.md) development, this can significantly reduce integration work.
+Combined with the [libraries](#nuget-packages) to support [Data Service](../../key-functionality/integrate/rta/introduction/data-services.md) development, this can significantly reduce integration work.
 
 ### Docker
 

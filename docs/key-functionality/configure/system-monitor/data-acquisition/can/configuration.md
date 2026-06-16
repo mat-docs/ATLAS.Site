@@ -12,7 +12,12 @@ Expanding the Bus node displays the Buffers and CAN messages configured for the 
 |--------|-------------|
 | **Buffer Count** | The number of Buffers available for configuration on the selected Bus. |
 | **Global Mask** | The receive mask for all Buffers that do not have a configurable Receive Mask. *Note: Not all control units support a configurable global mask.* |
-| **Link Speed** | Select a speed in kbits for the selected Bus from the drop-down list. |
+| **Link Speed** | Select a speed in kbits for the selected Bus from the drop-down list. This sets the arbitration-phase bit rate. |
+| **CAN-FD Supported** | An indicator that appears when the connected controller supports CAN FD. This label is only visible on CAN-FD-capable hardware. |
+| **Data Speed** | Select the CAN FD data-phase bit rate from the drop-down list. This is separate from the Link Speed (arbitration-phase bit rate). Available speeds are determined by the hardware controller. Only visible when the controller supports CAN FD. |
+
+!!! note
+    The **Data Speed** dropdown and **CAN-FD Supported** label are only visible and enabled when the hardware unit reports CAN FD capability. On classic-CAN-only hardware, these controls are hidden.
 
 **Parameter Block Panel**
 
@@ -90,11 +95,18 @@ To view the CAN messages configured for the CAN Bus, expand the Messages Node. W
 |--------|-------------|
 | **Message Id** | The unique CAN identifier for the selected CAN message. |
 | **Description** | Enter a short description of the CAN message. |
-| **Message Length** | Enter the length of the CAN message. For CAN messages with multiplexed data, the length must be the same for all multiplexer values. |
+| **CAN FD** | Enable this checkbox to mark the message as a CAN FD frame. Only available when the parent CAN bus supports CAN FD. |
+| **Message Length** | Enter the length of the CAN message. For classic CAN messages the maximum is 8 bytes. When CAN FD is enabled, the maximum increases to 64 bytes and the control enforces valid CAN FD data lengths (0–8, 12, 16, 20, 24, 32, 48, 64). For CAN messages with multiplexed data, the length must be the same for all multiplexer values. |
 | **Buffer** | The Buffer to which the selected CAN message is assigned. (Read only) |
 | **Parameter Count** | The number of Parameters associated with the selected CAN message. |
 | **Mode** | TRANSMIT / RECEIVE / NOT CONFIGURED - The Mode of the selected CAN message (the same for all messages in that Buffer). |
 | **New Parameter** | Opens the Add Parameter dialog box. |
+
+When CAN FD is enabled on a message:
+
+- The message length range extends to 64 bytes.
+- Stepping through the length field automatically snaps to the next valid CAN FD data length (e.g., incrementing from 8 jumps to 12, not 9).
+- Messages are displayed with an **"FD"** label in the tree view (e.g., `Message FD - 0x1A3` instead of `Message - 0x1A3`).
 
 **Multiplexed Panel**
 
@@ -120,7 +132,7 @@ With a specific Parameter selected, the configurable options available apply to 
 |--------|-------------|
 | **Parameter** | The name of the Parameter. For received Parameters, this is the name displayed by System Monitor and ATLAS. For transmitted Parameters, this is the name of the parameter to be transmitted. |
 | **Properties** | Open the Parameter Properties dialog box to edit the Parameter Properties. |
-| **Start Bit** | Select the position within the CAN message data where the Measurement Parameter starts. *Note: When MSB Last is selected as the Byte Order, the default Start Bit shows the normalised value. For a parameter at the start of a CAN Message, the Start Bit is shown as 0, although its underlying value is 7.* |
+| **Start Bit** | Select the position within the CAN message data where the Measurement Parameter starts. For classic CAN messages the range is 0–63; for CAN FD messages the range extends to **0–511**. *Note: When MSB Last is selected as the Byte Order, the default Start Bit shows the normalised value. For a parameter at the start of a CAN Message, the Start Bit is shown as 0, although its underlying value is 7.* |
 | **Bit Length** | Select the length in bits of the Measurement Parameter. Maximum length is 32. |
 | **Value** | Select whether the Measurement Parameter is Signed, Unsigned, or Floating Point. If Floating Point is selected, the Bit Length must be set at 32. |
 
@@ -181,6 +193,15 @@ When a Measurement Parameter or multiplexer value is defined as **MSB_LAST**, th
     - In an MSB Last word, the Start Bit is the last bit of the first byte. Whilst the Start Bit for the word at the start of a CAN message is bit 0, the Start Bit in terms of MSB is bit 7. When a Parameter is added to the CAN Message, the CAN Configure dialog automatically displays normalised values for the Start Bit. For example, if the Parameter appears at the start of a CAN Message, the value 0 is shown, although its underlying value is 7. The Start Bit of a 2nd Parameter is shown as 8, although its underlying value is 15, and so on.
     - When a CAN message is exported, the saved Start Bit values are the actual values and not the normalised values shown in the dialog box. These can be seen in the Start Bit column of the .csv Export files.
 
+## CAN Message Parameter Layout
+
+The **Parameter Layout** dialog displays the byte grid for a CAN message, allowing you to visualise parameter placement within the data frame.
+
+- Classic CAN messages display the existing 8-row (byte) grid.
+- CAN FD messages display a **64-row** grid, covering the full 64-byte payload. The dialog supports vertical scrolling to navigate the larger layout.
+
+Use the **Parameter Layout** button on the CAN Message configuration page to open the layout grid and verify parameter placement.
+
 ## CAN Parameters
 
 When a CAN Configuration file is added to the project, a CAN Parameters folder is added to the System Monitor Explorer. This folder contains CAN Parameters configured in the ECU, which can be associated with CAN Receive messages.
@@ -217,6 +238,13 @@ Existing Buffer Configuration (.csv) files and Message Configuration files can b
 2. Expand the CAN Bus and select **Messages**
 3. Right-click and select **Import Messages** or **Export Messages**
 
+### CAN FD Import/Export Notes
+
+- **CSV/Text Export** — CAN FD messages are exported with an `fd` suffix on the message ID (e.g., `0x1A3fd` rather than `0x1A3`). Extended-frame identifiers remain compatible (e.g., `0x1A3fdx`).
+- **CSV/Text Import** — The import parser recognises the `fd` suffix on message IDs and automatically creates CAN FD messages.
+- **A2L / ASAP2 Import** — The ASAP2 parser now recognises the `TES_SUPPORTS_CANFD` and `TES_DATA_SPEEDS` keywords, allowing CAN FD bus descriptions to be imported from A2L files.
+- **DBC Export** — DBC export includes the CAN FD flag, ensuring that exported DBC files correctly represent CAN FD message properties.
+
 ## CSV File Formats
 
 Buffer and CAN message CSV import files must be formatted as described below.
@@ -239,7 +267,7 @@ v2 files are identified by the text `v2` as the first value in the header row. A
 
 | Col | Name | Description |
 |-----|------|-------------|
-| 1 | CAN ID | The CAN message ID. 11-bit IDs: 0 to 0x7FF. 29-bit IDs: 0 to 0x1FFFFFFF |
+| 1 | CAN ID | The CAN message ID. 11-bit IDs: 0 to 0x7FF. 29-bit IDs: 0 to 0x1FFFFFFF. CAN FD messages include an `fd` suffix (e.g., `0x1A3fd`); extended-frame CAN FD identifiers use `fdx` (e.g., `0x1A3fdx`). |
 | 2 | Message Length | The CAN message length. |
 | 3 | Start Bit | Multiplexer messages - the position within the CAN message data where the multiplexer value starts. |
 | 4 | Length | Multiplexer messages - the length, in bits, of the multiplexer value. Maximum length is 16. |
@@ -307,3 +335,56 @@ CAN Configuration Compare :material-information-outline:{ title="Minimum Version
     - The Compare tree tries to match nodes by name or ID, so renamed buses/messages may still appear as differences even when the parameters inside line up.
     - Right-click on the Compare side to see context-aware merge descriptions and to invoke the same `<`/`<<` actions without moving your mouse to the buttons.
     - After closing the dialog with Save, use the standard System Monitor workflow to save the project and to revisit any downstream logging or download steps.
+
+## CAN FD
+
+??? "What Is CAN FD?"
+
+    CAN FD (Controller Area Network with Flexible Data-rate) is an extension of the classic CAN protocol that provides:
+
+    - **Larger payloads** — up to 64 bytes per message frame (classic CAN is limited to 8 bytes).
+    - **Higher data-phase bit rates** — a separate, faster bit rate for the data portion of the frame while keeping the arbitration phase at the standard speed.
+    - **Defined frame sizes** — CAN FD uses discrete data length values: 0–8, 12, 16, 20, 24, 32, 48, and 64 bytes.
+
+### How to Configure CAN FD
+
+**Prerequisites**
+
+- A hardware controller that supports CAN FD (the controller's PGV/description file must declare CAN FD support and available data speeds).
+
+**Steps**
+
+1. **Connect** to a CAN-FD-capable unit. The CAN Bus configuration page will show the **"CAN-FD Supported"** label and the **Data Speed** dropdown.
+
+    ![CANFD](assets/can-config-fd.png){ width="200" }
+
+2. **Set the Data Speed** — Select the desired data-phase bit rate from the **Data Speed** dropdown on the CAN Bus configuration page. The **Link Speed** (arbitration speed) is configured as before.
+
+3. **Create or edit a CAN message** — On the CAN Message configuration page, tick the **CAN FD** checkbox to mark the message as a CAN FD frame.
+    
+    ![CANFD](assets/can-config-fd-msg.png){ width="200" }
+
+4. **Set the message length** — Use the length spinner to choose a valid CAN FD data length (up to 64 bytes). The control will snap to the nearest valid CAN FD length.
+
+5. **Add parameters** — Configure parameters as usual. Start bit values can now range from 0 to 511 for CAN FD messages.
+
+6. **Review the layout** — Use the **Parameter Layout** button to open the layout grid and verify parameter placement across the full CAN FD frame.
+
+7. **Download the configuration** — Download to the hardware unit as usual. The system automatically selects the correct parameter structure format (V1 for classic CAN, V2 for CAN FD) based on the controller capability.
+
+### Valid CAN FD Data Lengths
+
+CAN FD does not support arbitrary data lengths above 8 bytes. The following data lengths are valid:
+
+| Bytes | Bits |
+|-------|------|
+| 0–8   | 0–64 |
+| 12    | 96   |
+| 16    | 128  |
+| 20    | 160  |
+| 24    | 192  |
+| 32    | 256  |
+| 48    | 384  |
+| 64    | 512  |
+
+The message length control in System Monitor enforces these values automatically.

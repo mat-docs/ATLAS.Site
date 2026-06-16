@@ -291,6 +291,8 @@ reader.Start();  // Now start reading - pipeline is ready!
 ```csharp
 using MA.DataPlatforms.Streaming.Support.Lib.Core.Abstractions;
 using MA.DataPlatforms.Streaming.Support.Lib.Core.Contracts;
+using MA.DataPlatforms.Streaming.Support.Lib.Core.Shared;
+using MA.Streaming.Abstraction;
 using MA.Streaming.Core.Configs;
 
 var logger = new ConsoleLogger();
@@ -405,6 +407,12 @@ var eventResult = dataFormatService.GetEventDataFormatId(
 ```
 
 #### 5. Read Data
+
+!!! note
+    You will need to spin / wait on the main thread as the Reader Service reads packets or the application will exit.
+    For example: while(true) { await Task.Delay(1000); }
+
+    See [Reader Module](reader-module.md) for a more complete example including handling session start / completion events.
 
 ```csharp
 // Get the reader API

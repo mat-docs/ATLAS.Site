@@ -249,7 +249,7 @@ Request for the creation of a new session
 | data_source | [string](#string) |  | Data Source name |
 | type | [string](#string) |  | Session type (defaults to &#34;Session&#34;) |
 | version | [uint32](#uint32) |  | Version (defaults to 1) |
-| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes, defaults to 0) |
+| utc_offset | [google.protobuf.Duration](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes, defaults to 0) |
 | identifier | [string](#string) |  | Session identifier |
 | associate_session_key | [string](#string) | repeated | List of unique session key to associate to the session |
 | details | [CreateSessionRequest.DetailsEntry](#ma-streaming-api-v1-CreateSessionRequest-DetailsEntry) | repeated | Session details to update (detail name, detail value) |
@@ -581,7 +581,7 @@ Response to the session info request
 | main_offset | [int64](#int64) |  | Offset of the main data source topic |
 | essentials_offset | [int64](#int64) |  | Offset of the data source essentials topic |
 | details | [GetSessionInfoResponse.DetailsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-DetailsEntry) | repeated | Session details (detail name, detail value) |
-| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
+| utc_offset | [google.protobuf.Duration](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
 | success | [bool](#bool) |  | Whether the get session info request succeeded |
 
 
@@ -723,7 +723,7 @@ The return from a packet read
 | ----- | ---- | ----- | ----------- |
 | packet | [ma.streaming.open_data.v1.Packet](#ma-streaming-open_data-v1-Packet) |  | The packet that was read |
 | stream | [string](#string) |  | The stream the packet was read from |
-| submit_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | the time that packet submit in the broker topic partition |
+| submit_time | [google.protobuf.Timestamp](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Timestamp.html) |  | the time that packet submit in the broker topic partition |
 
 
 
@@ -1493,7 +1493,7 @@ General metadata
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
-| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+| value | [google.protobuf.Any](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Any.html) |  |  |
 
 
 
@@ -1510,7 +1510,7 @@ New session has started
 | ----- | ---- | ----- | ----------- |
 | data_source | [string](#string) |  | Data Source name |
 | topic_partition_offsets | [NewSessionPacket.TopicPartitionOffsetsEntry](#ma-streaming-open_data-v1-NewSessionPacket-TopicPartitionOffsetsEntry) | repeated | The offsets into each topic / partition (key is topic name, optionally appended with a &#39;:&#39; followed by the partition number) |
-| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
+| utc_offset | [google.protobuf.Duration](https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
 | session_info | [SessionInfoPacket](#ma-streaming-open_data-v1-SessionInfoPacket) | optional | Session info |
 
 

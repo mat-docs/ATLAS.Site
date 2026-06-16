@@ -443,12 +443,14 @@ public class TelemetryProducer
 
     public TelemetryProducer(StreamingApiConfiguration configuration, string vehicleId)
     {
-        StreamingApiClient.Initialise(
+        var streamingApiClient = StreamingApiClientFactory.Create(
             configuration,
             new CancellationTokenSourceProvider(),
             new KafkaBrokerAvailabilityChecker(),
             new LoggingDirectoryProvider(@"C:\Temp"));
-        var sessionManagement = StreamingApiClient.GetSessionManagementClient();
+        streamingApiClient.Initialise();
+
+        var sessionManagement = streamingApiClient.GetSessionManagementClient();
         var response = sessionManagement.CreateSession(
             new CreateSessionRequest
             {
@@ -475,7 +477,7 @@ public class TelemetryProducer
             });
 
         Console.WriteLine($"Session {response.SessionKey} created.");
-        this.packetWriter = StreamingApiClient.GetPacketWriterClient();
+        this.packetWriter = streamingApiClient.GetPacketWriterClient();
         this.vehicleId = vehicleId;
         this.SessionKey = response.SessionKey;
         this.DataSource = vehicleId;
@@ -762,20 +764,23 @@ public class TelemetryProcessor
     private readonly string dataSource;
     private readonly string sessionKey;
     private readonly PacketReaderService.PacketReaderServiceClient packetReader;
+    private readonly PacketWriterService.PacketWriterServiceClient packetWriter;
     private readonly ConnectionManagerService.ConnectionManagerServiceClient connectionManager;
 
     public TelemetryProcessor(StreamingApiConfiguration configuration, string dataSource, string sessionKey)
     {
         this.dataSource = dataSource;
         this.sessionKey = sessionKey;
-        StreamingApiClient.Initialise(
+        var streamingApiClient = StreamingApiClientFactory.Create(
             configuration,
             new CancellationTokenSourceProvider(),
             new KafkaBrokerAvailabilityChecker(),
             new LoggingDirectoryProvider(@"C:\Temp"));
+        streamingApiClient.Initialise();
 
-        this.packetReader = StreamingApiClient.GetPacketReaderClient();
-        this.connectionManager = StreamingApiClient.GetConnectionManagerClient();
+        this.packetReader = streamingApiClient.GetPacketReaderClient();
+        this.packetWriter = streamingApiClient.GetPacketWriterClient();
+        this.connectionManager = streamingApiClient.GetConnectionManagerClient();
     }
 
     public async Task StartProcessing(CancellationToken cancellationToken = default)
@@ -1048,7 +1053,7 @@ public class TelemetryProcessor
             Timestamp = (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 1000000
         };
 
-        var packetWriter = StreamingApiClient.GetPacketWriterClient();
+        var packetWriter = this.packetWriter;
         await packetWriter.WriteDataPacketAsync(
             new WriteDataPacketRequest
             {

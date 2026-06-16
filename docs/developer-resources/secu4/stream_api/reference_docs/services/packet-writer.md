@@ -30,7 +30,14 @@ The service provides multiple writing modes optimized for different use cases:
 ### Single Packet Writing
 
 ```csharp
-var packetWriter = StreamingApiClient.GetPacketWriterClient();
+var streamingApiClient = StreamingApiClientFactory.Create(
+    new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []),
+    new CancellationTokenSourceProvider(),
+    new KafkaBrokerAvailabilityChecker(),
+    new LoggingDirectoryProvider(""));
+streamingApiClient.Initialise();
+
+var packetWriter = streamingApiClient.GetPacketWriterClient();
 
 // Write individual telemetry packet
 await packetWriter.WriteDataPacketAsync(new WriteDataPacketRequest

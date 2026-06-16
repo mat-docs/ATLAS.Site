@@ -73,13 +73,14 @@ Verify your installation by running a simple test:
 using MA.Streaming.Proto.Client.Remote;
 
 var configuration = new StreamingApiConfiguration(StreamCreationStrategy.TopicBased, "localhost:9092", []);
-StreamingApiClient.Initialise(
+var streamingApiClient = StreamingApiClientFactory.Create(
     configuration,
     new CancellationTokenSourceProvider(),
     new KafkaBrokerAvailabilityChecker(),
     new LoggingDirectoryProvider(@"C:\Temp"));
+streamingApiClient.Initialise();
 
-var connectionManager = StreamingApiClient.GetConnectionManagerClient();
+var connectionManager = streamingApiClient.GetConnectionManagerClient();
 // Test basic connectivity
 var connections = await connectionManager.GetConnection();
 ```
