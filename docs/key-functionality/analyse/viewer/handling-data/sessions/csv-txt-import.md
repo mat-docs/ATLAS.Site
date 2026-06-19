@@ -12,7 +12,7 @@ Open the ATLAS configuration/settings area and go to:
 
 **General > Text Session Format**
 
-This page maintains the text-file definitions that ATLAS writes to:
+This page maintains the text-file definitions, which is saved to:
 
 `%LOCALAPPDATA%\McLaren Applied Technologies\ATLAS 10\SQL Race\DataProviders.xml`
 
