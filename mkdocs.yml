@@ -204,6 +204,7 @@ nav:
             - Overview: key-functionality/analyse/viewer/handling-data/sessions/index.md
             - Session Browser: key-functionality/analyse/viewer/handling-data/sessions/browser.md
             - Loading Sessions: key-functionality/analyse/viewer/handling-data/sessions/loading-sessions.md
+            - Importing CSV and TXT Files: key-functionality/analyse/viewer/handling-data/sessions/csv-txt-import.md
             - Changing Properties: key-functionality/analyse/viewer/handling-data/sessions/properties.md
             - Database Connection Manager: key-functionality/analyse/viewer/handling-data/sessions/database-connection.md
             - Service Connection Manager: key-functionality/analyse/viewer/handling-data/sessions/service-connection.md
