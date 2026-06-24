@@ -327,6 +327,7 @@ nav:
           - Parameter Data Access: developer-resources/atlas/sql-race/examples/parameter-data-access.md
           - Session Export: developer-resources/atlas/sql-race/examples/session-export.md
           - Session Loading: developer-resources/atlas/sql-race/examples/session-loading.md
+          - Querying Sessions: developer-resources/atlas/sql-race/examples/query-sessions.md
       - Display API: 
         - Introduction: developer-resources/atlas/display-api/index.md
         - Getting Started: developer-resources/atlas/display-api/overview.md
