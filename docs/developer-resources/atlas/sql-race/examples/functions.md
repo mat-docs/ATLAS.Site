@@ -386,6 +386,8 @@ functionDefinition.CalculationModeInfoDefinition.Frequency = 1;
 [GitHub Example](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
 
 ## C# Embedded .XFNs
+!!! warning "Licensed Feature"
+    Please note that C# embedded XFN functions are a licensed feature and require the **.NET & MATLAB Functions** ATLAS license option.
 
 There are two methods to call .NET functions, one way is to write a Dynamic Link Library (.DLL) containing the functions' implementations the other is to embed the C# code directly into an .XFN file. A C# .NET function can be implemented directly in a specially constructed .XFN file.  Each .XFN function file can implement multiple function outputs. 
 
@@ -490,7 +492,9 @@ The interface requires an Execute() method which is called by ATLAS to calculate
 ```
 
 ## MATLAB Embedded .XFNs
-
+!!! warning "Licensed Feature"
+    Please note that MATLAB embedded XFN functions are a licensed feature and require the **.NET & MATLAB Functions** ATLAS license option.
+    
 A MATLAB function comprises at least two parts; an .XFN file which gives ATLAS 10 an XML interface to the MATLAB function and a .M file which contains the actual MATLAB script implementation. .M files can call one another so it is possible to have multiple .M files making up a single definition.
 
 The .XFN file must be in the ATLAS 10 Functions directory: `%HOMEPATH%\Documents\McLaren Electronic Systems\SQL Race\Functions`
