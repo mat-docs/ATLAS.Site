@@ -800,4 +800,4 @@ By following these steps, you can build a comprehensive `.ssn2` session file wit
 
 Explore further via [SQLRace API documentation](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/api/index.html).
 
-Additional examples in the GitHub repository [HelloCreateSSN2FromZeroWithParameters](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.HelloCreateSSN2FromZeroWithParameters) & [SessionCreationExample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/blob/master/MESL.SqlRace.Examples.Sessions.CSharp/SessionCreationExample.css).
+Additional examples in the GitHub repository [create-session-write-data.cs](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/blob/master/snippets/csharp/getting-started/04-create-session-write-data.cs) & [GettingStarted](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/projects/csharp/GettingStarted).
