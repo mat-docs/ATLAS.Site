@@ -230,7 +230,7 @@ The **parameter** binds the channel, the conversion, and the group hierarchy tog
         120, 0, ...                     % display max, display min
         120, 0, ...                     % warning max, warning min
         0, ...                          % offset
-        uint32(hex2dec('ffffffff')), ...% data bit mask
+        uint32(hex2dec('ffffffff')), ... % data bit mask
         0, ...                          % error bit mask
         "CONV_CylPressure:Engine", ...  % conversion name
         groupIds, ...
@@ -285,7 +285,9 @@ Difference the absolute timestamp array to obtain the gap (in nanoseconds) betwe
     // timestampsNs: absolute nanosecond timestamps, one per sample
     long[] intervalsNs = new long[timestampsNs.Length - 1];
     for (int i = 0; i < intervalsNs.Length; i++)
+    {
         intervalsNs[i] = timestampsNs[i + 1] - timestampsNs[i];
+    }
     ```
 
 === "Python"
@@ -329,11 +331,24 @@ SQLRace receives the `delta_scale` alongside the packet and reconstructs the ori
 === "C#"
 
     ```csharp
-    static long Gcd(long a, long b) { while (b != 0) { (a, b) = (b, a % b); } return a; }
+    static long Gcd(long a, long b)
+    {
+        while (b != 0)
+        {
+            (a, b) = (b, a % b);
+        }
+        return a;
+    }
 
     long deltaScale = intervalsNs[0];
-    foreach (long v in intervalsNs) deltaScale = Gcd(deltaScale, v);
-    if (deltaScale == 0) deltaScale = 1;
+    foreach (long v in intervalsNs)
+    {
+        deltaScale = Gcd(deltaScale, v);
+    }
+    if (deltaScale == 0)
+    {
+        deltaScale = 1;
+    }
     ```
 
 === "Python"
@@ -349,8 +364,12 @@ SQLRace receives the `delta_scale` alongside the packet and reconstructs the ori
 
     ```matlab
     deltaScale = intervalsNs(1);
-    for v = intervalsNs, deltaScale = gcd(deltaScale, v); end
-    if deltaScale == 0, deltaScale = 1; end
+    for v = intervalsNs
+        deltaScale = gcd(deltaScale, v);
+    end
+    if deltaScale == 0
+        deltaScale = 1;
+    end
     ```
 
 **Three scenarios that show how the delta scale behaves:**
@@ -498,11 +517,11 @@ Each assembled packet is delivered to SQLRace with a single call:
 
     ```csharp
     session.AddSynchroChannelData(
-        packetTimestamp,   // (1)
-        channelId,         // (2)
-        sequenceNumber,    // (3)
-        deltaScale,        // (4)
-        payload);          // (5)
+        packetTimestamp,     // (1)
+        channelId,           // (2)
+        (byte)(seq % 256),   // (3)
+        deltaScale,          // (4)
+        payload);            // (5)
     ```
 
 === "Python"
@@ -522,7 +541,7 @@ Each assembled packet is delivered to SQLRace with a single call:
     session.AddSynchroChannelData( ...
         packetTimestamp, ...     % (1)
         channelId, ...           % (2)
-        uint8(mod(seq, 256)), ...% (3)
+        uint8(mod(seq, 256)), ... % (3)
         deltaScale, ...          % (4)
         payload);                % (5)
     ```
@@ -580,10 +599,6 @@ When the data is split across multiple packets, each call carries its own base t
 
 Synchro channels are read like any other parameter, through a `ParameterDataAccess` (PDA). See [Parameter Data Access](parameter-data-access.md) for the general pattern. Two synchro-specific points:
 
-!!! warning "Reading multiple synchro channels reliably"
-
-    - **Reopen the session per parameter.** Reading several synchro channels from a *single* loaded session is unreliable: the **first** read of a freshly-loaded session always succeeds, but a subsequent `CreateParameterDataAccess` can throw a `NullReferenceException` inside the reader's range logic. Disposing each `ParameterDataAccess` (shown below) is good practice and reduces leaks, but in testing it did **not** fully eliminate the failure &mdash; the robust pattern is to load the session once per parameter so every read is a "first read".
-    - **Read over the session's own time range** (`session.StartTime` / `session.EndTime`). Requesting an arbitrary sub-range on a synchro channel can throw inside the reader's range-rounding logic; query the full range and slice in your own code if needed.
 
 === "C#"
 
@@ -661,7 +676,9 @@ The sweet spot is **32 000–48 000 samples**. Going larger gives no benefit and
 
         ```csharp
         for (int i = 0; i < intervalsNs.Length; i++)
+        {
             intervalsNs[i] = Math.Max((intervalsNs[i] / 1000) * 1000, 1000);
+        }
         ```
 
     === "Python"
@@ -689,7 +706,11 @@ On small sessions SQLRace buffers everything and writes on close. On very large 
     foreach (var pkt in packets)
     {
         session.AddSynchroChannelData(/* ... */);
-        if (++sinceFlush >= 500) { session.Flush(); sinceFlush = 0; }
+        if (++sinceFlush >= 500)
+        {
+            session.Flush();
+            sinceFlush = 0;
+        }
     }
     session.EndData();
     ```
@@ -712,9 +733,12 @@ On small sessions SQLRace buffers everything and writes on close. On very large 
     ```matlab
     sinceFlush = 0;
     for k = 1:numel(packets)
-        session.AddSynchroChannelData( ... );
+        session.AddSynchroChannelData();   % arguments elided for brevity
         sinceFlush = sinceFlush + 1;
-        if sinceFlush >= 500, session.Flush(); sinceFlush = 0; end
+        if sinceFlush >= 500
+            session.Flush();
+            sinceFlush = 0;
+        end
     end
     session.EndData();
     ```
@@ -763,4 +787,3 @@ For bulk ingestion prefer a (local) SQL Server instance over SQLite: SQLite is s
     - **One delta scale for the whole dataset** &mdash; the delta scale is **per packet**. A single global GCD can leave some packets with intervals that overflow `uint16`. Compute the GCD per packet.
     - **Non-monotonic timestamps** &mdash; SQLRace assumes timestamps are sorted ascending. Unsorted input produces garbled data with no error at write time; sort before writing.
     - **Skipping `Flush()`/`EndData()` on huge sessions** &mdash; the most common "data disappeared" report. Flush periodically and call `EndData()` before close.
-    - **Reading many synchro channels from one loaded session** &mdash; the second read onward can throw a `NullReferenceException`. Read each parameter in its own freshly-loaded session; disposing the PDA alone is good practice but not fully reliable (see [Reading Synchro Data Back](#reading-synchro-data-back)).
