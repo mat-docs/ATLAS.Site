@@ -39,7 +39,7 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
 
 ## Code Samples Index
 
-[MAT.SQLRace.HelloData](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.HelloData)
+[GettingStarted](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/projects/csharp/GettingStarted)
 :   * Searching and loading sessions
     * Loading a live session recording into a shared database
     * Loading multiple sessions together as a composite
@@ -49,18 +49,19 @@ The ATLAS Data layer is provided by the SQL Race API, which provides:
     * Calculating lap statistics
     * Adding and reading [Markers](../../../key-functionality/analyse/viewer/handling-data/laps-markers/markers.md)
 
-[MAT.SqlRace.StandaloneRecorder](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.StandaloneRecorder)
+[StandaloneRecorder](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/projects/csharp/StandaloneRecorder)
 :   * Embedding the ATLAS Data Server Telemetry (DST) recorder
     * Monitoring live data from the recorder
     * Writing augmented data back into the live session
 
-[MAT.SqlRace.Functions.HelloDotNet](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
+[FunctionLibrary](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/projects/csharp/FunctionLibrary)
 :   * Writing a [Function DLL](../../../key-functionality/analyse/viewer/functions/using-dlls.md), for use in the API and in ATLAS
 
-[MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.FileLoaderSample)
+[MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples)
 :   * Writing a Session Loader DLL to read a third-party file format (CSV example)
+    * This sample was retired as part of the examples repository restructure and no longer has a direct equivalent
 
-[Python](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/Python)
+[Python](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/snippets/python)
 :   * Loading a session
     * Reading events
     * Reading data

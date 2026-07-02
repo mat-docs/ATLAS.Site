@@ -383,7 +383,7 @@ If you use `FixedFrequency`, the following line is used to set the Frequency (Ex
 functionDefinition.CalculationModeInfoDefinition.Frequency = 1;
 ```
 
-[GitHub Example](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SqlRace.Functions.HelloDotNet)
+[GitHub Example](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/projects/csharp/FunctionLibrary)
 
 ## C# Embedded .XFNs
 
