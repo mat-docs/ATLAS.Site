@@ -121,7 +121,7 @@ When **Driver pushes button** checkbox is cleared, the following options are ava
 - **Engine started** - When selected, logging starts when the engine is started. A delay of up to 120 seconds can be entered, to a resolution of 0.1 seconds. The default is 0.
 - **Engine speed** - When selected, logging starts when both Engine Speed and Throttle Position have exceeded the specified thresholds. This is the default.
 
-Enter Speed as an integer, between 0 to 20000 rpm, and Throttle position as a percentage to a resolution of 0.01%. The default for both of these is 0.
+Enter Speed as an integer, between 0 to 20000 rpm, and Throttle position as a percentage to a resolution of 0.1%. The default for both of these is 0.
 
 **Stop Panel**
 
