@@ -24,6 +24,9 @@ The following error codes are returned by API functions. Use the macros `SMAPI_S
 
 ### Message Argument Errors
 
+!!! note
+    The range -20 to -36 is reserved for errors in the variant arguments supplied to the SendMessage call.
+
 | Code | Constant | Description |
 |------|----------|-------------|
 | -20 | `SMAPI_ERR_MSGARGMISMATCH` | Type mismatch in argument of SendMessage. Pass a word array by reference |
@@ -57,6 +60,9 @@ The following error codes are returned by API functions. Use the macros `SMAPI_S
 | -100 | `SMAPI_ERR_PARAMNOTFOUND` | Requested parameter not found |
 
 ### Editable Parameter Errors
+
+!!! note
+    The range -100 to -199 is reserved for errors returned by the parameter get/set value functions.
 
 | Code | Description |
 |------|-------------|
@@ -104,6 +110,9 @@ The following error codes are returned by API functions. Use the macros `SMAPI_S
 | -304 | `SMAPI_ERR_PARAMETER_LOCKED` | Parameter locked |
 
 ### Communications Errors
+
+!!! note
+    The range -10000 to -1000 is reserved for System Monitor comms, internal CA-card, ethernet or ECU errors which may be returned by a SendMessage call.
 
 | Code | Description |
 |------|-------------|
