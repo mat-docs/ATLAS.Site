@@ -52,6 +52,9 @@ Fixed an issue where clicking Refresh on the Server Name field in the SQLRace co
 
 ## Known Issues
 
+### VTS Raw Files created in session folder
+Raw files are created in the Session Folder when recording to both SSN2 and SQL Race instead of the Recording Folder when Raw Data Logging (VTS) is enabled.
+
 ### Data type not supported
 The current implementation of the Bridge Service doesn’t support ability to stream configurable/tuneable data.
 
