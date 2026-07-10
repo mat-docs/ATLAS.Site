@@ -62,7 +62,9 @@ public BufferingConfiguration(
     bool? includeMarkerData = null,
     bool? includeEventData = null,
     bool? includeErrorData = null,
-    bool? includeCanData = null)
+    bool? includeCanData = null,
+    int? partitionCount = null,
+    bool? allowWildcardMatch = null)
 ```
 
 **Parameters:**
@@ -71,6 +73,7 @@ public BufferingConfiguration(
   - `null` or empty list = no parameters initially subscribed
   - Can subscribe/unsubscribe dynamically later
   - Parameter names must match those defined in Data Format Manager
+  - Entries may contain the `*` wildcard when `allowWildcardMatch` is enabled — see [Wildcard parameter matching](#wildcard-parameter-matching)
 
 - **bufferingWindowLength**: Length of buffering window in milliseconds (default: 3000ms = 3 seconds)
   - Larger windows provide more context but increase latency
@@ -94,7 +97,32 @@ public BufferingConfiguration(
 
 - **includeCanData**: Include CAN bus data in buffering (default: false)
 
-### MergeStrategy Enum
+- **partitionCount**: Number of internal partitions used to process buffered data (default: 1, minimum: 1)
+
+- **allowWildcardMatch**: Allow partial parameter matching using the `*` wildcard in subscribed parameter names (default: true) — see [Wildcard parameter matching](#wildcard-parameter-matching)
+
+### Wildcard parameter matching
+
+By default (`allowWildcardMatch: true`), entries in `subscribedParameters` — and identifiers passed to `Subscribe` at runtime — may contain the `*` wildcard, which matches any sequence of characters. This lets you subscribe to a family of parameters without listing every identifier:
+
+```csharp
+var config = new BufferingConfiguration(
+    subscribedParameters: new[]
+    {
+        "Speed",     // exact match only
+        "Brake*",    // matches every parameter identifier starting with "Brake"
+    });
+```
+
+Matching rules:
+
+- A pattern must match the **whole** incoming parameter identifier — `Brake*` matches `BrakeTemp` but `rake*` does not match `BrakeTemp`.
+- Matching is case-sensitive.
+- Entries without a `*` behave exactly as before (exact match), and exact matches always work regardless of this setting.
+
+Set `allowWildcardMatch: false` to treat every subscription as a literal identifier, including any that contain `*`.
+
+
 
 ```csharp
 public enum MergeStrategy

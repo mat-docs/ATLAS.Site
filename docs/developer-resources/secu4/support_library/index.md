@@ -184,7 +184,7 @@ packetReader.Start();
 
 ### Initialization Configuration
 
-- **StreamingApiConfiguration**: Kafka broker and topic configuration
+- **StreamingApiConfiguration**: Kafka broker, topic, security, and broker tuning configuration — see [Kafka Configuration](reference_docs/kafka-configuration.md)
 - **RetryPolicy**: Connection retry behavior
 
 ### Module Configurations
