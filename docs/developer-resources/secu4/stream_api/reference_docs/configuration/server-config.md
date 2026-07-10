@@ -23,6 +23,12 @@ public interface IStreamingApiConfiguration
     uint InitialisationTimeoutSeconds { get; }
     uint TerminationTimeoutSeconds { get; }
     string Domain { get; }
+    bool EnableRouterPublishMetrics { get; }
+    bool EnableRouterConsumeMetrics { get; }
+    string KafkaBrokerPublishingConfigFilePath { get; }
+    string KafkaBrokerConsumingConfigFilePath { get; }
+    string KafkaBrokerConfigWhitelistFilePath { get; }
+    KafkaSecurityConfiguration? Security { get; }
 }
 ```
 
@@ -42,6 +48,14 @@ public interface IStreamingApiConfiguration
 | `InitialisationTimeoutSeconds` | Timeout for initialization operations | No | 30 |
 | `TerminationTimeoutSeconds` | Timeout for graceful termination | No | 1 |
 | `Domain` | Domain prefix for Kafka topics | No | "" |
+| `EnableRouterPublishMetrics` | Enable Prometheus metrics on the publish side | No | false |
+| `EnableRouterConsumeMetrics` | Enable Prometheus metrics on the consume side | No | false |
+| `KafkaBrokerPublishingConfigFilePath` | Path to the publisher broker override file | No | "kafka-publisher-broker.json" |
+| `KafkaBrokerConsumingConfigFilePath` | Path to the consumer broker override file | No | "kafka-consumer-broker.json" |
+| `KafkaBrokerConfigWhitelistFilePath` | Path to the broker override whitelist file | No | "kafka-broker-whitelist.json" |
+| `Security` | Kafka SASL/SSL credentials | No | null (unsecured) |
+
+See [Kafka Security](kafka-security.md) for `Security`, and [Kafka Broker Tuning](kafka-broker-tuning.md) for the broker override and whitelist file paths.
 
 !!! warning "Required Conditionally"
     `PartitionMappings` is required when using Partition-Based streaming strategy.
@@ -277,6 +291,29 @@ The Streaming API uses **Serilog** for structured logging, giving you full contr
   }
 }
 ```
+
+## Router Metrics
+
+`EnableRouterPublishMetrics` and `EnableRouterConsumeMetrics` turn on the Kafka producer/consumer statistics callback (librdkafka `statistics.interval.ms`) that feeds the router's Prometheus metrics for each side. Both default to `false`, in which case the callback never fires and there is zero overhead — it is not simply set to a small interval in the background.
+
+```json title="AppConfig.json (excerpt)" linenums="1"
+{
+  "StreamApiConfig": {
+    "EnableRouterPublishMetrics": true,
+    "EnableRouterConsumeMetrics": true
+  }
+}
+```
+
+!!! note "Timer-based, not per-message"
+    The statistics callback fires on a fixed timer (every 5 seconds when enabled), not once per message, so enabling it does not scale with message volume.
+
+## Kafka Security and Broker Tuning
+
+Two related, optional areas are documented on their own pages:
+
+- [Kafka Security](kafka-security.md) — SASL/SSL credentials via the `Security` section.
+- [Kafka Broker Tuning](kafka-broker-tuning.md) — the `KafkaBrokerPublishingConfigFilePath` / `KafkaBrokerConsumingConfigFilePath` / `KafkaBrokerConfigWhitelistFilePath` override files.
 
 ## Best Practices
 

@@ -294,6 +294,8 @@ nav:
           - Data Format Management: developer-resources/secu4/stream_api/reference_docs/services/data-format-management.md
         - Configuration:
           - Server Configuration: developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md
+          - Kafka Security: developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security.md
+          - Kafka Broker Tuning: developer-resources/secu4/stream_api/reference_docs/configuration/kafka-broker-tuning.md
           - Docker Setup: developer-resources/secu4/stream_api/reference_docs/configuration/docker-setup.md
         - Examples:    
           - Telemetry Example: developer-resources/secu4/stream_api/reference_docs/examples/telemetry-example.md
