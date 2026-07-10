@@ -270,6 +270,20 @@ docker exec kafka kafka-topics.sh --bootstrap-server localhost:9092 --list
 3. Verify broker URLs in configuration
 4. Check Kafka authentication settings
 
+### Issue: SASL/SSL handshake exception during group coordination
+
+**Symptoms:**
+- Exception thrown from a topic-metadata lookup (e.g. `GetInfoByTopicPrefix` / `GetInfoByTopicSuffix` / `GetInfoByTopicContains`) against a broker with SASL or SSL enabled
+- The exception surfaces around Kafka group coordination rather than the metadata call itself
+
+**Cause:**
+Metadata-only lookups create a short-lived Kafka consumer to read topic metadata. Before the July 2026 (2.1.4) release, that consumer left auto-commit enabled, which could trigger unnecessary group-coordinator interaction — and a handshake exception — when the broker required SASL/SSL.
+
+**Solutions:**
+1. Upgrade to the Stream API 2.1.4 release or later, which disables auto-commit on metadata-only consumers and closes them safely.
+2. If you can't upgrade immediately, avoid topic-metadata lookup calls against secured brokers, or run them against an unsecured listener if your broker exposes one.
+3. Confirm your [Kafka Security](../configuration/kafka-security.md) configuration is correct — an unrelated auth failure can also surface as a handshake error.
+
 ### Issue: Topic not found
 
 **Symptoms:**
