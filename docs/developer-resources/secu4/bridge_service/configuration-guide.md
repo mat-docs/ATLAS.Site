@@ -434,7 +434,7 @@ Controls core Bridge service behavior including processing units, data handling,
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
 | `FeedPort` | int? | null | Optional port override for the data feed |
-| `StandalonePgvList` | string[] | [] (empty) | PGV (Parameter Group Value) numbers to register as standalone with the message validator, as decimal or `0x`-prefixed hex strings (see below) |
+| `StandalonePgvList` | string[] | [] (empty) | PGV app IDs, as decimal or `0x`-prefixed hex strings, that Bridge Service should accept as standalone and output data for (see below) |
 
 ### ProcessFlow Strategies
 
@@ -491,8 +491,10 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
 
 ### Standalone PGV List
 
-Use `StandalonePgvList` to tell Bridge Service which PGV numbers to register as standalone with
-its message validator, rather than requiring them to arrive as part of a normal message group.
+`StandalonePgvList` lists the PGV app IDs Bridge Service should accept as standalone. When data
+from the ECU requests an app ID that's in this list, Bridge Service loads that PGV and starts
+outputting data from that app. If the list is empty, or an app's ID isn't in it, Bridge Service
+does not output data from that app.
 
 Each entry is a string, parsed as decimal or (with a `0x`/`0X` prefix) hexadecimal, and must fit
 in the range 0-65535. Leading and trailing whitespace is trimmed.
