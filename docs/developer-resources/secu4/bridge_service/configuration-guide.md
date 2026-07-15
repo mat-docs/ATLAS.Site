@@ -54,6 +54,7 @@ Controls the Stream API integration and Kafka broker connectivity.
 | `RemoteKeyGeneratorServiceAddress` | string | "" | URL of remote key generator service |
 | `InitialisationTimeoutSeconds` | int | 1 | Timeout in seconds for Stream API init |
 | `Domain` | string | "" | Optional domain specification |
+| `Security` | object | null | Kafka SASL/SSL credentials — see [Kafka Security (SASL / SSL)](#kafka-security-sasl--ssl) below |
 
 ### Example Configuration
 
@@ -72,6 +73,112 @@ Controls the Stream API integration and Kafka broker connectivity.
   }
 }
 ```
+
+### Kafka Security (SASL / SSL)
+
+If your Kafka broker requires authentication or an encrypted connection, add a `Security` object
+inside `StreamApiConfig`. Security is only activated once you set `SaslUsername`, `SslCaLocation`,
+or `SslCertificateLocation` — leave `Security` out entirely to connect without any security, which
+is unchanged for existing unsecured deployments.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `SaslUsername` | string? | SASL username. Setting this activates security. |
+| `SaslPassword` | string? | SASL password. |
+| `Protocol` | string? | `Plaintext`, `Ssl`, `SaslPlaintext`, or `SaslSsl`. Defaults to `SaslPlaintext` once security is activated. |
+| `Mechanism` | string? | `Plain`, `ScramSha256`, or `ScramSha512`. Defaults to `Plain` once security is activated. |
+| `SslCaLocation` | string? | Path to the CA certificate (PEM) used to verify the broker's certificate. |
+| `SslCertificateLocation` | string? | Path to the client certificate (PEM), for mutual TLS. Setting this activates security. |
+| `SslKeyLocation` | string? | Path to the client private key (PEM), for mutual TLS. |
+| `SslKeyPassword` | string? | Password for the client private key, if it's encrypted. |
+
+=== "SASL/PLAIN"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-7"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslPlaintext",
+          "Mechanism": "Plain",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword"
+        }
+      }
+    }
+    ```
+
+=== "SASL/SCRAM-SHA-512"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-7"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslPlaintext",
+          "Mechanism": "ScramSha512",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword"
+        }
+      }
+    }
+    ```
+
+=== "SSL (broker certificate only)"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-6"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "Ssl",
+          "SslCaLocation": "/certs/ca.pem"
+        }
+      }
+    }
+    ```
+
+=== "SSL (mutual TLS)"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-8"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "Ssl",
+          "SslCaLocation": "/certs/ca.pem",
+          "SslCertificateLocation": "/certs/client-cert.pem",
+          "SslKeyLocation": "/certs/client-key.pem",
+          "SslKeyPassword": "keypassword"
+        }
+      }
+    }
+    ```
+
+=== "SASL over TLS"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-8"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslSsl",
+          "Mechanism": "ScramSha512",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword",
+          "SslCaLocation": "/certs/ca.pem"
+        }
+      }
+    }
+    ```
+
+!!! tip
+    Bridge Service also reads [environment variables](#overriding-configuration-with-environment-variables),
+    so credentials can be supplied without writing them into `AppConfig.json`:
+    ```
+    StreamApiConfig__Security__SaslUsername=myuser
+    StreamApiConfig__Security__SaslPassword=mypassword
+    ```
 
 ### Stream Creation Strategy Explained
 
@@ -689,6 +796,11 @@ The Bridge service uses the following priority order for logging configuration:
     *   Check network connectivity to the config server.
     *   Ensure the configuration indexer service is running.
     *   Add local `CfgDirectoryPaths` and `PgvDirectoryPaths` as backup.
+*   **Issue: Stream API fails to connect with a SASL/SSL handshake error**
+    *   Verify `Protocol` and `Mechanism` match what the broker is actually configured for.
+    *   For SASL, double-check `SaslUsername`/`SaslPassword`.
+    *   For SSL, verify certificate paths (`SslCaLocation`, `SslCertificateLocation`, `SslKeyLocation`) are correct and readable by the account running Bridge Service.
+    *   Remember `Security` only activates once `SaslUsername`, `SslCaLocation`, or `SslCertificateLocation` is set — an incomplete `Security` block may silently connect unsecured instead of failing.
 *   **Issue: Environment variable override isn't applied**
     *   Confirm the key uses `__` (double underscore) between each nested segment, e.g. `BridgeConfig__DataSource`.
     *   Environment variables are only read at startup — restart the Bridge Service after changing one.
