@@ -13,7 +13,7 @@ The MA DataPlatforms Streaming Support Library is a .NET library designed to fac
 - **Buffering & Merging**: Buffer incoming data packets, merge them, and extract time-aligned samples
 - **Interpolation**: Subscribe to parameters at custom frequencies with automatic super-sampling or sub-sampling
 - **Event-Driven Architecture**: Rich event system for tracking session lifecycle, data availability, and processing status
-- **Kafka Integration**: Built-in support for Kafka-based streaming with configurable retry policies
+- **Kafka Integration**: Built-in support for Kafka-based streaming with configurable retry policies, [secured (SASL/SSL) brokers, and broker tuning](kafka-configuration.md)
 - **Prometheus Metrics**: Built-in monitoring and metrics support
 
 ## Architecture
@@ -302,6 +302,8 @@ var streamApiConfig = new StreamingApiConfiguration(
     StreamCreationStrategy.PartitionBased,
     "localhost:9094",
     []);
+// To connect to a secured (SASL/SSL) broker or tune the Kafka
+// producer/consumer, see the Kafka Configuration page.
 
 // Create the support library API with retry policy (the retry policy used for when the broker not available)
 var supportLibApi = new SupportLibApiFactory().Create(

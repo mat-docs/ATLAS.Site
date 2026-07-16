@@ -79,7 +79,8 @@ public PacketReadingConfiguration(
     string? sessionKey = null,
     LiveReadingType? liveReadingType = null,
     int? bufferLength = null,
-    string? groupId = null)
+    string? groupId = null,
+    IReadOnlyList<string>? excludedStreams = null)
 
 ```
 
@@ -112,6 +113,9 @@ public PacketReadingConfiguration(
     - Multiple readers with same group ID share the load (Kafka consumer group behavior)
     - Use different group IDs for independent readers of the same topic
     - Empty string creates a unique consumer group per reader
+- **excludedStreams**: List of streams to skip when reading a session (default: empty = nothing excluded)
+    - Applied after the `streams` selection: a stream that appears in both lists is not read
+    - Useful to read everything except a few known-noisy streams, without having to list every stream you do want in `streams`
 
 ### ReadingType Enum
 

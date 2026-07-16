@@ -386,6 +386,7 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
     public string SessionIdentifierPattern { get; }
     public ReadingType ReadingType { get; }
     public IReadOnlyList<string> Streams { get; }
+    public IReadOnlyList<string> ExcludedStreams { get; }
     public LiveReadingType LiveReadingType { get; }
     public int BufferLength { get; }
     public string GroupId { get; }
@@ -400,7 +401,8 @@ public class PacketReadingConfiguration : IPacketReadingConfiguration
         string? sessionKey = null,
         LiveReadingType? liveReadingType = null,
         int? bufferLength = null,
-        string? groupId = null);
+        string? groupId = null,
+        IReadOnlyList<string>? excludedStreams = null);
 }
 ```
 
@@ -511,7 +513,9 @@ public class BufferingConfiguration : IBufferingConfiguration
     public MergeStrategy MergeStrategy { get; }
     public uint BufferingWindowLength { get; }
     public uint SlidingWindowPercentage { get; }
+    public int PartitionCount { get; }
     public IReadOnlyList<string> SubscribedParameters { get; }
+    public bool AllowWildcardMatch { get; }
     
     public BufferingConfiguration(
         IReadOnlyList<string>? subscribedParameters = null,
@@ -521,7 +525,9 @@ public class BufferingConfiguration : IBufferingConfiguration
         bool? includeMarkerData = null,
         bool? includeEventData = null,
         bool? includeErrorData = null,
-        bool? includeCanData = null);
+        bool? includeCanData = null,
+        int? partitionCount = null,
+        bool? allowWildcardMatch = null);
 }
 ```
 
@@ -781,6 +787,17 @@ public class StreamingApiConfiguration : IStreamingApiConfiguration
     public string RemoteKeyGeneratorServiceAddress { get; }
     public bool BatchingResponses { get; }
     public uint InitialisationTimeoutSeconds { get; }
+    public uint TerminationTimeoutSeconds { get; }
+    public string Domain { get; }
+    public int BatchingSizesKb { get; }
+    public int BatchingTimeMs { get; }
+    public bool EnableGrpcReflection { get; }
+    public string KafkaBrokerPublishingConfigFilePath { get; }
+    public string KafkaBrokerConsumingConfigFilePath { get; }
+    public string KafkaBrokerConfigWhitelistFilePath { get; }
+    public KafkaSecurityConfiguration? Security { get; set; }
+    public bool EnableRouterPublishMetrics { get; }
+    public bool EnableRouterConsumeMetrics { get; }
     
     public StreamingApiConfiguration(
         StreamCreationStrategy? streamCreationStrategy = null,
@@ -792,9 +809,44 @@ public class StreamingApiConfiguration : IStreamingApiConfiguration
         bool? useRemoteKeyGenerator = false,
         string? remoteKeyGeneratorServiceAddress = "",
         bool? batchingResponses = false,
-        uint? initialisationTimeoutSeconds = 3);
+        uint? initialisationTimeoutSeconds = 3,
+        uint? terminationTimeoutSeconds = 1,
+        string? domain = null,
+        int? batchingSizesKb = null,
+        int? batchingTimeMs = null,
+        bool? enableGrpcReflection = false,
+        string? kafkaBrokerPublishingConfigFilePath = null,
+        string? kafkaBrokerConsumingConfigFilePath = null,
+        string? kafkaBrokerConfigWhitelistFilePath = null,
+        KafkaSecurityConfiguration? security = null,
+        bool? enableRouterPublishMetrics = false,
+        bool? enableRouterConsumeMetrics = false);
 }
 ```
+
+The three `kafkaBroker...FilePath` parameters point to optional JSON files that tune the underlying Kafka producer and consumer, and `security` carries the credentials for connecting to a secured broker. Both are covered in [Kafka Configuration](kafka-configuration.md).
+
+### KafkaSecurityConfiguration
+
+Credentials for connecting to a secured Kafka broker. When `Security` is `null` (or no credential field is set) the library connects without security.
+
+```csharp
+namespace MA.Streaming.Abstraction;
+
+public class KafkaSecurityConfiguration
+{
+    public string? SaslUsername { get; set; }
+    public string? SaslPassword { get; set; }
+    public string? Protocol { get; set; }               // "Plaintext" | "Ssl" | "SaslPlaintext" | "SaslSsl"
+    public string? Mechanism { get; set; }              // "Plain" | "ScramSha256" | "ScramSha512"
+    public string? SslCaLocation { get; set; }
+    public string? SslCertificateLocation { get; set; }
+    public string? SslKeyLocation { get; set; }
+    public string? SslKeyPassword { get; set; }
+}
+```
+
+See [Kafka Configuration](kafka-configuration.md) for usage scenarios, defaults, and the Python equivalents.
 
 ### StreamCreationStrategy
 

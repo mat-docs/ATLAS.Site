@@ -322,6 +322,7 @@ nav:
           - Interpolation Module: developer-resources/secu4/support_library/reference_docs/interpolation-module.md
         - Reference:
           - API Reference: developer-resources/secu4/support_library/reference_docs/api-reference.md
+          - Kafka Configuration: developer-resources/secu4/support_library/reference_docs/kafka-configuration.md
       - Indexing Services:
         - Overview: developer-resources/secu4/indexing_services/index.md
         - Service Overview: developer-resources/secu4/indexing_services/service-overview.md
