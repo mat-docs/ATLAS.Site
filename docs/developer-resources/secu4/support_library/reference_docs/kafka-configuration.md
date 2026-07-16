@@ -1,6 +1,6 @@
 # Kafka Configuration
 
-The Support Library connects to Kafka through the embedded Stream API. From release 2.1.4 (July 2026), `StreamingApiConfiguration` lets you do two things that previously required changes on the broker side or custom builds:
+The Support Library connects to Kafka through the embedded Stream API. From release 2.1.4.22 (July 2026), `StreamingApiConfiguration` lets you do two things that previously required changes on the broker side or custom builds:
 
 - **Connect to a secured broker** — supply SASL and/or SSL credentials through the `Security` property.
 - **Tune the Kafka producer and consumer** — point the library at JSON override files that adjust librdkafka settings without any code change.
