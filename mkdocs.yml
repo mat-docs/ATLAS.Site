@@ -303,9 +303,12 @@ nav:
           - Error Handling: developer-resources/secu4/stream_api/reference_docs/reference/error-handling.md
         - Troubleshooting: developer-resources/secu4/stream_api/reference_docs/reference/troubleshooting.md
         - Protocol Documentation: developer-resources/secu4/docs.md
-      - Bridge Service: 
+      - Bridge Service:
         - Overview: developer-resources/secu4/bridge_service/index.md
-        - Configuration Guide: developer-resources/secu4/bridge_service/configuration-guide.md
+        - Getting Started: developer-resources/secu4/bridge_service/getting-started.md
+        - Configuration Guide: developer-resources/secu4/bridge_service/configuration.md
+        - Configuration Reference: developer-resources/secu4/bridge_service/configuration-reference.md
+        - Troubleshooting: developer-resources/secu4/bridge_service/troubleshooting.md
       - Support Library: 
         - Overview: developer-resources/secu4/support_library/reference_docs/index.md
         # - Home: developer-resources/secu4/support_library/index.md

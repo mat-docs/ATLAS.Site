@@ -27,6 +27,21 @@ components to manage sessions, configuration, metadata etc. All RDA protected da
 be filtered out at this point, based on the active team license, so any downstream 
 components will only receive data available to the team.
 
+!!! note "In plain terms"
+    A running car streams out a constant flood of raw electronic readings — thousands of numbers a
+    second, in a compact machine format that nothing can read directly. Bridge Service is the
+    **translator and broadcaster** that sits in the middle:
+
+    - **It translates** the raw readings into real engineering values — engine RPM, temperatures,
+      pressures, and so on — in their proper units.
+    - **It broadcasts live** onto a shared stream (the broker) so that many tools and people can
+      read the same feed at once, instead of each one needing its own direct link to the car.
+    - **It respects permissions** — only the data your team is licensed to see passes through;
+      restricted parameters are filtered out before they leave.
+
+    In short: it turns a car's raw data into **readable, shareable, live telemetry** that the rest
+    of your tools can use.
+
 ### Virtual Parameter Service
 Virtual parameters are defined as simple FDL functions in the ECU logging config, and 
 are traditionally calculated on demand by clients rather than the values being persisted
