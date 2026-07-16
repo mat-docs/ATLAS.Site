@@ -17,6 +17,26 @@ The main configuration file is typically `AppConfig.json` and contains the follo
 }
 ```
 
+## Overriding Configuration with Environment Variables
+
+Bridge Service loads `AppConfig.json` first, then applies any matching environment variables on
+top of it — environment variables take precedence over values in the JSON file. This applies in
+both deployment modes (standalone host and ADS-integrated).
+
+Address nested configuration keys with a double underscore (`__`) between each segment:
+
+```powershell
+$env:StreamApiConfig__BrokerUrl = "kafka-broker.company.com:9092"
+$env:BridgeConfig__DataSource = "RaceTrack01"
+```
+
+!!! tip
+    Use environment variables for values you don't want committed to `AppConfig.json` — for
+    example broker credentials — instead of writing them into the file.
+
+!!! note
+    Environment variables are read once at startup. Restart the Bridge Service after changing one.
+
 ## 1. StreamApiConfig
 
 Controls the Stream API integration and Kafka broker connectivity.
@@ -34,6 +54,7 @@ Controls the Stream API integration and Kafka broker connectivity.
 | `RemoteKeyGeneratorServiceAddress` | string | "" | URL of remote key generator service |
 | `InitialisationTimeoutSeconds` | int | 1 | Timeout in seconds for Stream API init |
 | `Domain` | string | "" | Optional domain specification |
+| `Security` | object | null | Kafka SASL/SSL credentials — see [Kafka Security (SASL / SSL)](#kafka-security-sasl--ssl) below |
 
 ### Example Configuration
 
@@ -52,6 +73,112 @@ Controls the Stream API integration and Kafka broker connectivity.
   }
 }
 ```
+
+### Kafka Security (SASL / SSL)
+
+If your Kafka broker requires authentication or an encrypted connection, add a `Security` object
+inside `StreamApiConfig`. Security is only activated once you set `SaslUsername`, `SslCaLocation`,
+or `SslCertificateLocation` — leave `Security` out entirely to connect without any security, which
+is unchanged for existing unsecured deployments.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `SaslUsername` | string? | SASL username. Setting this activates security. |
+| `SaslPassword` | string? | SASL password. |
+| `Protocol` | string? | `Plaintext`, `Ssl`, `SaslPlaintext`, or `SaslSsl`. Defaults to `SaslPlaintext` once security is activated. |
+| `Mechanism` | string? | `Plain`, `ScramSha256`, or `ScramSha512`. Defaults to `Plain` once security is activated. |
+| `SslCaLocation` | string? | Path to the CA certificate (PEM) used to verify the broker's certificate. |
+| `SslCertificateLocation` | string? | Path to the client certificate (PEM), for mutual TLS. Setting this activates security. |
+| `SslKeyLocation` | string? | Path to the client private key (PEM), for mutual TLS. |
+| `SslKeyPassword` | string? | Password for the client private key, if it's encrypted. |
+
+=== "SASL/PLAIN"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-7"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslPlaintext",
+          "Mechanism": "Plain",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword"
+        }
+      }
+    }
+    ```
+
+=== "SASL/SCRAM-SHA-512"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-7"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslPlaintext",
+          "Mechanism": "ScramSha512",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword"
+        }
+      }
+    }
+    ```
+
+=== "SSL (broker certificate only)"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-6"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "Ssl",
+          "SslCaLocation": "/certs/ca.pem"
+        }
+      }
+    }
+    ```
+
+=== "SSL (mutual TLS)"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-8"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "Ssl",
+          "SslCaLocation": "/certs/ca.pem",
+          "SslCertificateLocation": "/certs/client-cert.pem",
+          "SslKeyLocation": "/certs/client-key.pem",
+          "SslKeyPassword": "keypassword"
+        }
+      }
+    }
+    ```
+
+=== "SASL over TLS"
+
+    ```json title="AppConfig.json" linenums="1" hl_lines="4-8"
+    {
+      "StreamApiConfig": {
+        "BrokerUrl": "kafka-broker.company.com:9094",
+        "Security": {
+          "Protocol": "SaslSsl",
+          "Mechanism": "ScramSha512",
+          "SaslUsername": "myuser",
+          "SaslPassword": "mypassword",
+          "SslCaLocation": "/certs/ca.pem"
+        }
+      }
+    }
+    ```
+
+!!! tip
+    Bridge Service also reads [environment variables](#overriding-configuration-with-environment-variables),
+    so credentials can be supplied without writing them into `AppConfig.json`:
+    ```
+    StreamApiConfig__Security__SaslUsername=myuser
+    StreamApiConfig__Security__SaslPassword=mypassword
+    ```
 
 ### Stream Creation Strategy Explained
 
@@ -307,6 +434,7 @@ Controls core Bridge service behavior including processing units, data handling,
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
 | `FeedPort` | int? | null | Optional port override for the data feed |
+| `StandalonePgvList` | string[] | [] (empty) | PGV app IDs, as decimal or `0x`-prefixed hex strings, that Bridge Service should accept as standalone and output data for (see below) |
 
 ### ProcessFlow Strategies
 
@@ -360,6 +488,24 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
 *   **`ConcurrencyFactor`**: Controls the number of parallel units for both data processing and writing. Increase for higher throughput on multi-core systems. Higher values use more CPU.
 *   **`AdsTimeoutInSeconds`**: Controls how long the Bridge waits without receiving data before considering a session stopped. Default is 720 seconds (12 minutes). Reduce for faster session timeout detection, increase if you expect longer gaps in data transmission.
 *   **`ProcessFlow`**: Choose `SequentialAll` when data completeness is critical, or `DropOldest` when real-time performance is more important than historical completeness.
+
+### Standalone PGV List
+
+`StandalonePgvList` lists the PGV app IDs Bridge Service should accept as standalone. When data
+from the ECU requests an app ID that's in this list, Bridge Service loads that PGV and starts
+outputting data from that app. If the list is empty, or an app's ID isn't in it, Bridge Service
+does not output data from that app.
+
+Each entry is a string, parsed as decimal or (with a `0x`/`0X` prefix) hexadecimal, and must fit
+in the range 0-65535. Leading and trailing whitespace is trimmed.
+
+```json title="AppConfig.json" linenums="1"
+{
+  "BridgeConfig": {
+    "StandalonePgvList": [ "100", "0x64", "0xFF" ]
+  }
+}
+```
 
 ## 4. EssentialsConfig
 
@@ -652,6 +798,17 @@ The Bridge service uses the following priority order for logging configuration:
     *   Check network connectivity to the config server.
     *   Ensure the configuration indexer service is running.
     *   Add local `CfgDirectoryPaths` and `PgvDirectoryPaths` as backup.
+*   **Issue: Stream API fails to connect with a SASL/SSL handshake error**
+    *   Verify `Protocol` and `Mechanism` match what the broker is actually configured for.
+    *   For SASL, double-check `SaslUsername`/`SaslPassword`.
+    *   For SSL, verify certificate paths (`SslCaLocation`, `SslCertificateLocation`, `SslKeyLocation`) are correct and readable by the account running Bridge Service.
+    *   Remember `Security` only activates once `SaslUsername`, `SslCaLocation`, or `SslCertificateLocation` is set — an incomplete `Security` block may silently connect unsecured instead of failing.
+*   **Issue: Environment variable override isn't applied**
+    *   Confirm the key uses `__` (double underscore) between each nested segment, e.g. `BridgeConfig__DataSource`.
+    *   Environment variables are only read at startup — restart the Bridge Service after changing one.
+*   **Issue: Bridge Service fails to start after adding `StandalonePgvList`**
+    *   Each entry must be a plain decimal number or a `0x`/`0X`-prefixed hex number, and fit in the range 0-65535.
+    *   Remove or fix any entry that isn't one of those two formats.
       
 
 !!! warning "Resource Requirements"
