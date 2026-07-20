@@ -102,3 +102,154 @@ label[for="__search"] {
     justify-content: center !important;
   }
 }
+
+
+/* Admonition colours */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: #e8560a;
+}
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset details.warning > summary {
+  background-color: rgba(232, 86, 10, 0.12);
+}
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset details.warning > summary::before {
+  background-color: #e8560a;
+}
+
+/* Route cards */
+.route-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.route-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  padding: 1.4rem 1.5rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.route-card:hover {
+  border-color: #e8560a;
+  background: rgba(232,86,10,0.06);
+}
+
+.route-card .route-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e8560a;
+  margin-bottom: 0.4rem;
+}
+
+.route-card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+  color: #201f1f;
+}
+
+.route-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(27, 26, 26, 0.65);
+  line-height: 1.55;
+}
+
+/* Decision table highlight */
+.md-typeset .decision-table td:last-child {
+  font-weight: 600;
+  color: #e8560a;
+}
+
+
+/* Step callouts */
+.step-list {
+  counter-reset: step-counter;
+  list-style: none;
+  padding: 0;
+}
+
+.step-list li {
+  counter-increment: step-counter;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.step-list li::before {
+  content: counter(step-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #e8560a;
+  color: #2a2727;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+
+/* Repo cards */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.repo-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+}
+
+.repo-card a {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.repo-card .lang-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(232,86,10,0.18);
+  color: #e8560a;
+  border-radius: 3px;
+  padding: 0.15em 0.5em;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.repo-card p {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(24, 23, 23, 0.6);
+  line-height: 1.5;
+}
+
+/* Prototype badge */
+.prototype-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,193,7,0.12);
+  color: #ffc107;
+  border: 1px solid rgba(255,193,7,0.3);
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
