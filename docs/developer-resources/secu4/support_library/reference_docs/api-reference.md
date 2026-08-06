@@ -513,7 +513,6 @@ public class BufferingConfiguration : IBufferingConfiguration
     public MergeStrategy MergeStrategy { get; }
     public uint BufferingWindowLength { get; }
     public uint SlidingWindowPercentage { get; }
-    public int PartitionCount { get; }
     public IReadOnlyList<string> SubscribedParameters { get; }
     public bool AllowWildcardMatch { get; }
     
@@ -526,7 +525,6 @@ public class BufferingConfiguration : IBufferingConfiguration
         bool? includeEventData = null,
         bool? includeErrorData = null,
         bool? includeCanData = null,
-        int? partitionCount = null,
         bool? allowWildcardMatch = null);
 }
 ```
