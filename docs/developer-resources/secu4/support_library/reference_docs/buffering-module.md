@@ -63,7 +63,6 @@ public BufferingConfiguration(
     bool? includeEventData = null,
     bool? includeErrorData = null,
     bool? includeCanData = null,
-    int? partitionCount = null,
     bool? allowWildcardMatch = null)
 ```
 
@@ -96,8 +95,6 @@ public BufferingConfiguration(
 - **includeErrorData**: Include error packets in buffering (default: false)
 
 - **includeCanData**: Include CAN bus data in buffering (default: false)
-
-- **partitionCount**: Number of internal partitions used to process buffered data (default: 1, minimum: 1)
 
 - **allowWildcardMatch**: Allow partial parameter matching using the `*` wildcard in subscribed parameter names (default: true) — see [Wildcard parameter matching](#wildcard-parameter-matching)
 
