@@ -78,8 +78,8 @@
 | ++ctrl+f++                                                  | Move to fastest lap                                                                     |
 | ++ctrl+bracket-right++                                      | Go to next occurrence of event                                                          |
 | ++ctrl+bracket-left++                                       | Go to previous occurrence of event                                                      |
-| ++ctrl+alt+right++                                          | Go to next gear shift                                                                   |
-| ++ctrl+alt+left++                                           | Go to previous gear shift                                                               |
+| ++ctrl+alt+right++                                          | Go to next signal change                                                                |
+| ++ctrl+alt+left++                                           | Go to previous signal change                                                            |
 
 ## Displays
 
