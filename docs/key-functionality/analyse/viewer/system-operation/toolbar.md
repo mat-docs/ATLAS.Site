@@ -53,8 +53,8 @@ Toolbars can be moved and rearranged by dragging the toolbar handle, found on th
 | Move to Current Lap | ![icon](assets/current.png) | Zoom so only the currently selected lap is visible. | Laps Toolbar |
 | Move to Next Lap | ![icon](assets/next.png) | Advance the cursor to the next lap. | Laps Toolbar |
 | Laps & Markers Editor | ![icon](assets/lap-editor.png) | Open the editor to view or modify laps and markers in the primary session. | Laps Toolbar |
-| Move to Next Gearshift | ![icon](assets/next-gear.png) | Navigate to the adjacent gear‑shift event (next). | Laps Toolbar |
-| Move to Previous Gearshift | ![icon](assets/previous-gear.png) | Navigate to the adjacent gear‑shift event (previous). | Laps Toolbar |
+| Move to Next Signal Change | ![icon](assets/next-gear.png) | Navigate to the adjacent signal change (next). | Laps Toolbar |
+| Move to Previous Signal Change | ![icon](assets/previous-gear.png) | Navigate to the adjacent signal change (previous). | Laps Toolbar |
 | Quick Access Assistant | ![icon](assets/quick-access.png) | Launch the assistant to quickly add parameters, functions, displays, or pages. | Quick Access Toolbar |
 | Go To | ![icon](assets/go-to.png) | Launch the Go To plugin to jump to a specific lap or marker in the primary session. | Go To Feature Toolbar |
 | Refresh Calculated Parameters | ![icon](assets/refresh-params.png) | Recompute all calculated parameters across the entire workbook. | Refresh Toolbar |
