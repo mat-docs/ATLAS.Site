@@ -37,8 +37,11 @@ The Export Manager helps you extract and save session data for analysis, reporti
     - Format-specific options (e.g., column separators for Text) will be enabled as needed.
 
 6. **Configure Destination:**  
-    - For SQL Race Database, select from available databases or add new connections via the Database Connection Manager.
+    - For SQL Race Database, select from available databases or add new connections via the Database Connection Manager, then set the **Session Identifier** (defaults to the selected session name).
     - For other formats, specify the file path.
+
+7. **Auto Increment:**  
+    - All export types support automatic version numbering to the file name or session identifier for SQL Race. When enabled and an export with that name already exists, the system appends `_1`, and increments the number for subsequent duplicates. 
 
     ![Export Manager 4](assets/export-manager-4.png)
 
