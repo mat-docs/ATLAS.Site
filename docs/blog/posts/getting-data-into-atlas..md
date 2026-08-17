@@ -27,7 +27,7 @@ There are three supported routes for bringing external data into ATLAS. Which on
   <div class="route-card">
     <div class="route-label">Route 3</div>
     <h3>SQL Race API</h3>
-    <p>Write directly into ATLAS storage from .NET, Python, or MATLAB. Also the path for custom file format loaders.</p>
+    <p>Write directly into ATLAS storage from .NET, Python, or MATLAB.</p>
   </div>
 </div>
 
@@ -292,7 +292,7 @@ The Toolkit Services are available as Windows binaries, Linux binaries, and Dock
 ## Route 3: SQL Race API
 
 !!! abstract "Best for"
-    .NET, Python, or MATLAB applications that need to write data directly into ATLAS storage (SSN2 files or a shared SQL Server database), or custom file formats you want ATLAS to open natively via a Session Loader DLL.
+    .NET, Python, or MATLAB applications that need to write data directly into ATLAS storage (SSN2 files or a shared SQL Server database).
 
 ### How it works
 
@@ -453,10 +453,6 @@ flowchart LR
 | `Unsigned16Bit` / `Unsigned32Bit` / `Unsigned8Bit` | Unsigned integers |
 | `TripleFloatingPoint32Bit` | Three 32-bit floats |
 
-### Session Loader DLL
-
-If you have a custom file format you want ATLAS to open directly, write a Session Loader DLL using the SQL Race API. [MAT.SQLRace.FileLoaderSample](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples/tree/master/MAT.SQLRace.FileLoaderSample) demonstrates this with a CSV loader.
-
 ### Code samples
 
 All worked examples are in [MAT.OCS.SQLRace.Examples](https://github.com/mat-docs/MAT.OCS.SQLRace.Examples):
@@ -465,7 +461,6 @@ All worked examples are in [MAT.OCS.SQLRace.Examples](https://github.com/mat-doc
 |---|---|
 | `MAT.SQLRace.HelloData` | Session loading, data read/write, events, laps, composite sessions |
 | `MAT.SqlRace.StandaloneRecorder` | Embedding the DST recorder, monitoring live data, writing augmented data back |
-| `MAT.SQLRace.FileLoaderSample` | Session Loader DLL for a custom file format (CSV) |
 | `Python/` | Session loading, events, and data reading in Python |
 
 :material-book-open-variant: [SQL Race API](https://atlas.motionapplied.com/developer-resources/atlas/sql-race/) · [API Reference](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/)
@@ -477,30 +472,23 @@ flowchart TD
     Q1{"Is your data\nlive / real-time?"}
     Q2{"Do you want ATLAS\nto query your\nexisting store?"}
     Q3{"Are you working\nin .NET / Python\n/ MATLAB?"}
-    Q4{"Custom file format\nyou want ATLAS\nto open natively?"}
-
     R1["Route 1\nOpen Streaming"]
     R2["Route 2\nRTA"]
     R3["Route 3\nSQL Race API"]
-    R4["Route 3\nSQL Race API\n(Session Loader DLL)"]
 
     Q1 -->|Yes| R1
     Q1 -->|No| Q2
     Q2 -->|Yes| R2
     Q2 -->|No| Q3
-    Q3 -->|Yes| Q4
-    Q4 -->|Yes| R4
-    Q4 -->|No| R3
+    Q3 -->|Yes| R3
     Q3 -->|No| R1
 
     style R1 fill:#2a3139,stroke:#e8560a,color:#fff
     style R2 fill:#2a3139,stroke:#e8560a,color:#fff
     style R3 fill:#2a3139,stroke:#e8560a,color:#fff
-    style R4 fill:#2a3139,stroke:#e8560a,color:#fff
     style Q1 fill:#1e2327,stroke:#888,color:#ccc
     style Q2 fill:#1e2327,stroke:#888,color:#ccc
     style Q3 fill:#1e2327,stroke:#888,color:#ccc
-    style Q4 fill:#1e2327,stroke:#888,color:#ccc
 ```
 
 A few common scenarios:
@@ -515,7 +503,7 @@ A few common scenarios:
     SQL Race API. Direct write into SSN2 or SQL Server, full parameter hierarchy control, works in Python and MATLAB too.
 
 !!! example "Custom binary format from a test rig"
-    SQL Race API, Session Loader DLL pattern. Engineers open it in ATLAS like any native session.
+    Convert the data to SSN2 with SQL Race API (or publish it via Open Streaming). Once converted, engineers open it in ATLAS like any native session.
 
 !!! example "Live data that also needs post-session analysis"
     Open Streaming handles both. The Stream Recorder persists sessions into SQLRace storage automatically as they are recorded.
