@@ -1,6 +1,6 @@
 ---
 date:
-  created: 2026-06-29
+  created: 2026-08-18
 categories:
   - Blog
 ---
