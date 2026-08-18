@@ -396,7 +396,7 @@ To try this example:
 1. Download the SinAndCosOfSteeringWheelAngle.xfn file attached to this example and place it in the functions directory. 
 2. Start ATLAS 10 (or if it is already running, restart it).
 3. Only one input parameter is referenced by the function aSteerWheel:Chassis so for the function to calculate, data containing this parameter must be loaded.
-4. Two output parameters are calculated steerWheelSin:FunctionParameters and steerWheelCos:FunctionParameters.  These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
+4. Two output parameters are calculated `steerWheelSin:Functions` and `steerWheelCos:Functions`. These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
 
 Firstly the InputParameters section defines which ATLAS parameter identifiers are to be sourced by the .NET function. There should be an Identifier line for each input parameter to the function.
 
@@ -487,6 +487,64 @@ The interface requires an Execute() method which is called by ATLAS to calculate
         <ExecuteOnEveryDataRequestDefinition />
     </Trigger>
 </Xfn2Function>
+```
+
+### Lap-reset integral example (C# embedded .XFN)
+
+The following `FunctionCode` example shows how to build an integral that resets whenever the lap counter changes.
+
+- `aLongAcc:Chassis` is the signal to integrate.
+- `nLap:Chassis` is an integer-like lap counter in the input data.
+- `aLongAccIntegralPerLap:Functions` is the output parameter identifier.
+
+```csharp
+using System;
+using MESL.SqlRace.Domain.Functions;
+
+public sealed class LapResetIntegral : IFunction
+{
+    public void Execute(IExecutionContext executionContext)
+    {
+        var functionInput = executionContext.FunctionInput;
+        var functionOutput = executionContext.FunctionOutput;
+
+        var timestamps = functionInput.Timestamps;
+        var timestampsCount = timestamps.Length;
+        if (timestampsCount == 0)
+        {
+            return;
+        }
+
+        var signalIndex = functionInput.InputParameterIndexes["aLongAcc:Chassis"];
+        var lapIndex = functionInput.InputParameterIndexes["nLap:Chassis"];
+        var integralIndex = functionOutput.OutputParameterIndexes["aLongAccIntegralPerLap:Functions"];
+
+        var signal = functionInput.Values[signalIndex];
+        var lapNumber = functionInput.Values[lapIndex];
+        var integral = functionOutput.OutputParametersValues[integralIndex];
+
+        var runningIntegral = 0.0;
+        var previousLap = Convert.ToInt32(Math.Round(lapNumber[0]));
+
+        for (var i = 0; i < timestampsCount; i++)
+        {
+            var currentLap = Convert.ToInt32(Math.Round(lapNumber[i]));
+            if (i == 0 || currentLap != previousLap)
+            {
+                runningIntegral = 0.0;
+            }
+            else
+            {
+                // SQLRace timestamps are 100 ns units, so multiply by 1e-7 to get seconds.
+                var dtSeconds = (timestamps[i] - timestamps[i - 1]) * 1e-7;
+                runningIntegral += signal[i] * dtSeconds;
+            }
+
+            integral[i] = runningIntegral;
+            previousLap = currentLap;
+        }
+    }
+}
 ```
 
 ## MATLAB Embedded .XFNs
@@ -652,4 +710,3 @@ function slipRatio = slipratio(vCar, vWheel)
     slipRatio = ratio.*100;
 end
 ```
-
