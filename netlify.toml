@@ -94,3 +94,8 @@ publish = "site"
   from = "/developer-resources/secu4/configuration_api/*"
   to = "/developer-resources/system-monitor/configuration_api/:splat"
   status = 301
+
+[[redirects]]
+from = "/blog/2026/08/12/atlas-viewer-release-v115310"
+to = "/blog/2026/08/12/atlas-viewer-release-v115313/"
+status = 301
