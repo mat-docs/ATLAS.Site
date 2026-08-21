@@ -42,8 +42,8 @@ graph:
 
 | Stage | Worked example |
 |-------|----------------|
-| Connect | [Session Loading](session-loading.md) |
-| Configure | [Create Session](create-session.md) &middot; [Synchro Data](synchro-data.md) |
-| Read | [Parameter Data Access](parameter-data-access.md) |
-| Export | [Session Export](session-export.md) |
-| Calculated channels | [Functions](functions.md) |
+| Connect | [Session Loading](examples/session-loading.md) |
+| Configure | [Create Session](examples/create-session.md) &middot; [Synchro Data](examples/synchro-data.md) |
+| Read | [Parameter Data Access](examples/parameter-data-access.md) |
+| Export | [Session Export](examples/session-export.md) |
+| Calculated channels | [Functions](examples/functions.md) |
