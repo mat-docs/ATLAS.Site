@@ -65,7 +65,7 @@ For official documentation and curated examples, you're in the right place. For 
 
     gRPC-based interface for real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture.
 
--   :material-cog: __[Configuration API](./secu4/configuration_api/index.md)__
+-   :material-cog: __[Configuration API](./system-monitor/configuration_api/index.md)__
 
     ---
 
