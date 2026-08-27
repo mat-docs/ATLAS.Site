@@ -26,7 +26,7 @@ Frequency content of a single parameter. The FFT Display takes the samples in th
 
 To add an FFT Display to a page, use one of the following methods:
 
-- **Display Toolbar:** Click the **FFT Display** button.
+- **Display Toolbar:** Click the **FFT Display** button ![FFT Display toolbar icon](assets/fft-icon.png).
 - **Menu:** Go to **File > New > Display** and select **FFT Display**.
 - **Quick Access Assistant:** Press `Ctrl + Q` twice, then select **New FFT Display**.
 
