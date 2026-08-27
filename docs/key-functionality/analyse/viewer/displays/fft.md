@@ -95,17 +95,14 @@ With **Logarithmic Scale (dB)** off, the Y-axis shows linear magnitude and is ti
 
 ## Reading the Spectrum
 
-Hover anywhere on the trace to get a tooltip with the frequency and magnitude of the nearest point:
-
-```text
-Freq: 42.50 Hz
-Mag: 0.0138
-```
+Hover anywhere on the trace to get a tooltip giving the frequency and the magnitude of the nearest point — the frequency in Hz to two decimal places, and the magnitude to four (in dB when the logarithmic scale is on).
 
 The two header readouts tell you what the spectrum is capable of showing:
 
 - **Fs** is estimated from the timestamps of the samples returned for the session, so it reflects the actual logging rate of the parameter. The highest frequency the plot can show is half of it.
 - **df** is the spacing between adjacent points on the frequency axis — the sample rate divided by the transform length. Two components closer together than `df` cannot be resolved into separate peaks.
+
+In the screenshot above, a parameter logged at 5000 Hz and the default 1024-point transform give a resolution of 4.88 Hz per bin, over a frequency axis reaching 2500 Hz.
 
 ### Peak Markers
 
