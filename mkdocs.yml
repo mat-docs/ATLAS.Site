@@ -154,6 +154,7 @@ nav:
         - Getting Started: key-functionality/stream/ads/installation.md
         - Recorders: key-functionality/stream/ads/recorders.md
         - Options: key-functionality/stream/ads/options.md
+        - ATLAS.ini File: key-functionality/stream/ads/atlas-ini.md
         - RDS: key-functionality/stream/ads/rds.md
       - Open Streaming:
         - Overview: key-functionality/stream/open_streaming_architecture/index.md

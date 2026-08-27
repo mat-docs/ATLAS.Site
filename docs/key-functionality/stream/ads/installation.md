@@ -20,6 +20,15 @@ This guide walks you through installing and configuring the ATLAS Data Server (A
 
 ## Data Server Setup
 
+The steps below configure ADS through its interface, which is the right approach for a single
+machine.
+
+!!! tip "Setting up more than one machine?"
+
+    Every setting in this section can also be applied from an `ATLAS.ini` file, so a whole ADS
+    configuration can be deployed by copying one file and restarting ADS — no clicking through the
+    dialogs. See the [ATLAS.ini reference](atlas-ini.md).
+
 ### Server Settings File
 
 The Server Settings file contains all of the setup information for ATLAS Data Server. It's important to spend time configuring these settings so that you don't need to repeat the process every time you open ATLAS Data Server.
@@ -36,7 +45,7 @@ The ATLAS Data Server creates a log file to record all events during operation. 
 
 1. Under `Recording > Logging (Debug)` find Log File Folder.
 
-2. By default the log file is created here : `C:\Documents\McLaren Electronic Systems\ATLAS 9\Log `, to update the location change the path.
+2. By default the log file is created in your Documents folder, at `McLaren Electronic Systems\ATLAS 9\log`. To update the location, change the path.
 
 ### Setting up IP addresses
 
