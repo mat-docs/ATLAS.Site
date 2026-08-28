@@ -129,7 +129,7 @@ The display recomputes when the data it depends on changes — a new session, a 
 | Symptom | Cause | Fix |
 |---|---|---|
 | The FFT Display is not on the toolbar or in the display menu | The preview feature is not enabled, or ATLAS has not been restarted since enabling it | Tick **Allow FFT display** in **Tools > Options > General > Preview Features** and restart ATLAS. |
-| "Insufficient data (*n* samples, minimum 8 required)" | The parameter returned fewer than eight samples for the session timebase | Choose a parameter logged at a higher rate, or a session with a longer timebase. |
+| "Insufficient data, please select a wider timeline" | The parameter returned too few samples over the session timebase to compute a transform | Widen the timeline, choose a parameter logged at a higher rate, or open a session with a longer timebase. |
 | The plot is empty and there are no readouts | No parameter has been added, or the session has no data for it | Press `P` and select a parameter, or drag one onto the display. |
 | The peaks you expect are missing or merged | The frequency resolution is too coarse to separate them | Increase **FFT Size**, or switch **Window Function** to Blackman if a large peak is masking a small one. |
 | A small peak is invisible next to a large one | Linear magnitude scaling | Turn on **Logarithmic Scale (dB)**. |
