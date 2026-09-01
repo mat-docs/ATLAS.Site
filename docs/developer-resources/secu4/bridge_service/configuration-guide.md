@@ -13,6 +13,7 @@ The main configuration file is typically `AppConfig.json` and contains the follo
   "BridgeConfig": { ... },
   "EssentialsConfig": { ... },
   "RdaConfig": { ... },
+  "DiskBackedBufferConfig": { ... },
   "Serilog": { ... }
 }
 ```
@@ -433,8 +434,27 @@ Controls core Bridge service behavior including processing units, data handling,
 | `ConcurrencyFactor` | int | 8 | Number of parallel units for data processing and writing |
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
-| `FeedPort` | int? | null | Optional port override for the data feed |
+| `FeedPort` | int? | null | Optional port override for the data feed (see [Feed Port and Metric Port Resolution](#feed-port-and-metric-port-resolution)) |
+| `MetricPort` | int? | null | Optional port override for the Prometheus metrics endpoint (see [Feed Port and Metric Port Resolution](#feed-port-and-metric-port-resolution)) |
 | `StandalonePgvList` | string[] | [] (empty) | PGV app IDs, as decimal or `0x`-prefixed hex strings, that Bridge Service should accept as standalone and output data for (see below) |
+
+### Feed Port and Metric Port Resolution
+
+The feed port (data ingress) and the Prometheus metrics port are each resolved from multiple
+sources, in priority order:
+
+1.  **Feed port:** the `-p` command-line argument or the `FEED_PORT` environment variable.
+2.  **Metric port:** the `METRIC_PORT` environment variable (there is no `-m` command-line
+    argument).
+3.  `BridgeConfig.FeedPort` / `BridgeConfig.MetricPort` in `AppConfig.json` (or the equivalent
+    `BridgeConfig__FeedPort` / `BridgeConfig__MetricPort` environment variables described in
+    [Overriding Configuration with Environment Variables](#overriding-configuration-with-environment-variables)).
+4.  Built-in defaults: **9697** for the feed port, **10010** for the metric port.
+
+!!! note
+    `FEED_PORT` and `METRIC_PORT` are read directly by the host process and take priority over
+    any `BridgeConfig__FeedPort` / `BridgeConfig__MetricPort` value — if a stale `FEED_PORT`
+    environment variable is set, it silently overrides a `FeedPort` you set in `AppConfig.json`.
 
 ### ProcessFlow Strategies
 
@@ -597,7 +617,30 @@ Reduced Data Access (RDA) configuration for reading telemetry data files.
 }
 ```
 
-## 6. Serilog Configuration
+## 6. DiskBackedBufferConfig
+
+Controls the per-session buffer that holds messages pending validation retry. Once a session's
+buffer exceeds `MaxQueueLength`, further items spill to disk instead of growing memory
+unbounded, and are read back from disk as the queue drains.
+
+### Properties
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `MaxQueueLength` | int | 1000 | Number of items kept in memory per session before overflow spills to disk |
+| `TempFolderPath` | string | `%TEMP%\EngineeringConversion\DiskBackedBuffer` | Directory used to store the disk-backed overflow files |
+
+### Example Configuration
+
+```json title="AppConfig.json" linenums="1"
+{
+  "DiskBackedBufferConfig": {
+    "MaxQueueLength": 1000
+  }
+}
+```
+
+## 7. Serilog Configuration
 
 Structured logging configuration using the Serilog framework.
 
@@ -737,6 +780,9 @@ The Bridge service uses the following priority order for logging configuration:
       "C:\\RDA\\Sessions\\2026",
       "\\\\FileServer\\RDA\\Archive"
     ]
+  },
+  "DiskBackedBufferConfig": {
+    "MaxQueueLength": 1000
   },
   "Serilog": {
     "MinimumLevel": {
