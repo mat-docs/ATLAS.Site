@@ -36,59 +36,15 @@ target's queue fills (it's capped at `QueueCapacity`, default `100000`), Broadca
 blocks and waits rather than dropping records for a Bridge target — the target must catch up on
 its own.
 
-**When to use**: any time the downstream is itself a Bridge/RemoteDataFeed consumer, rather than
-something reading directly from Kafka.
+**When to use**: any time the downstream is itself a Bridge/RemoteDataFeed consumer.
 
-## I want to add a Kafka broker target
+## I want to run more than one target
 
-**Situation**: you want records written directly into a Kafka stream (via the Stream API), rather
-than forwarded to another RemoteDataFeed endpoint.
+**Situation**: fan-out replication — for example, two Bridge targets at different sites.
 
-Add an entry to `Targets.BrokerConfigs`:
-
-```json title="AppConfig.json" linenums="1"
-{
-  "BroadcastConfig": {
-    "Targets": {
-      "BrokerConfigs": [
-        {
-          "Name": "kafka-primary",
-          "BrokerUrl": "localhost:9094",
-          "Domain": "",
-          "Stream": "broadcast-live"
-        }
-      ]
-    }
-  }
-}
-```
-
-`BrokerUrl` and `Stream` are both required. Every packet sent to this target goes to the single
-`Stream` you name — there's no per-message stream routing. Internally, the stream is always
-written using the Stream API's partition-based strategy, mapped to partition 1 (partition 0 is
-reserved by the Stream API for session data); this isn't user-configurable.
-
-**Result**: unlike a Bridge target, a broker target doesn't perform a licence handshake or replay
-session-control history — Kafka already holds durable session state. If its queue fills (capped
-at `QueueCapacity`, default `100000`), Broadcast Service drops the oldest queued records for that
-target rather than blocking.
-
-**When to use**: when the consumer reads via the Stream API / Kafka directly, instead of speaking
-RemoteDataFeed.
-
-## I want to run more than one target of each kind
-
-**Situation**: fan-out replication — for example, two Bridge targets at different sites, or two
-broker targets pointing at different streams.
-
-Add multiple entries to `BridgeConfigs` and/or `BrokerConfigs`. Every target — bridge or broker,
-mixed together — needs a unique effective name (case-insensitive); startup fails otherwise.
-
-- For a **Bridge target**, the effective name is always `Name`. If you add two Bridge targets,
-  give each a distinct `Name` explicitly — `Host`/`Port` aren't part of the effective name.
-- For a **broker target**, the effective name is `Name` if you set one, otherwise it falls back
-  to `BrokerUrl`. Two broker targets that share the same `BrokerUrl` (writing to different
-  streams on the same broker) need distinct explicit `Name` values, or they'll collide.
+Add multiple entries to `BridgeConfigs`. Every target needs a unique `Name` (case-insensitive);
+startup fails otherwise. `Host`/`Port` aren't part of the effective name, so give each target a
+distinct `Name` explicitly even if they point at different hosts.
 
 ```json title="AppConfig.json" linenums="1"
 {
@@ -97,10 +53,6 @@ mixed together — needs a unique effective name (case-insensitive); startup fai
       "BridgeConfigs": [
         { "Name": "site-a-bridge", "Host": "site-a.internal", "Port": 9697 },
         { "Name": "site-b-bridge", "Host": "site-b.internal", "Port": 9697 }
-      ],
-      "BrokerConfigs": [
-        { "Name": "kafka-live", "BrokerUrl": "localhost:9094", "Stream": "live" },
-        { "Name": "kafka-backup", "BrokerUrl": "localhost:9094", "Stream": "backup" }
       ]
     }
   }

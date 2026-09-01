@@ -13,8 +13,7 @@ how-tos (adding a target, tuning WAL compaction, and so on), see the
     "MetricPort": 10010,
     "Wal": { ... },
     "Targets": {
-      "BridgeConfigs": [ ... ],
-      "BrokerConfigs": [ ... ]
+      "BridgeConfigs": [ ... ]
     }
   }
 }
@@ -25,7 +24,7 @@ how-tos (adding a target, tuning WAL compaction, and so on), see the
 | `FeedPort` | int | `9697` | Inbound `RemoteDataFeed` gRPC server port. Validated 1-65535. |
 | `MetricPort` | int | `10010` | Prometheus metrics port. Not validated; a bind failure is caught and logged as a warning at startup — the service continues without metrics. |
 | `Wal` | object | — | Write-ahead log settings. See [Wal](#wal). |
-| `Targets` | object | — | Downstream bridge and broker targets. See [Targets](#targets). |
+| `Targets` | object | — | Downstream Bridge targets. See [Targets](#targets). |
 
 ## Wal
 
@@ -51,15 +50,13 @@ how-tos (adding a target, tuning WAL compaction, and so on), see the
 | Property | Type | Default | Notes |
 |---|---|---|---|
 | `BridgeConfigs` | array of bridge target objects | `[]` | Downstream targets reached over `RemoteDataFeed` gRPC. See [Bridge targets](#bridge-targets). |
-| `BrokerConfigs` | array of broker target objects | `[]` | Downstream targets reached via the Stream API (Kafka). See [Broker targets](#broker-targets). |
 
-At least one target — bridge or broker, in any combination — must be configured across the two
-arrays combined.
+At least one entry must be configured in `BridgeConfigs`.
 
 ### Shared target fields
 
-Every entry in `BridgeConfigs` and every entry in `BrokerConfigs` accepts these fields in addition
-to its own type-specific fields below:
+Every entry in `BridgeConfigs` accepts these fields in addition to its own type-specific fields
+below:
 
 | Property | Type | Default | Notes |
 |---|---|---|---|
@@ -68,8 +65,7 @@ to its own type-specific fields below:
 | `OffloadProcessing` | bool | `false` | When `false`, offload (bulk historical) telemetry is dropped for this target and its cursor still advances; session control records are always forwarded regardless of this setting. |
 | `Retry` | object | — | Reconnect/backoff behavior. See [Retry](#retry). |
 
-The effective name used for uniqueness checks (see [Validation](#validation)) is `Name` for bridge
-targets, and `Name` if set, otherwise `BrokerUrl`, for broker targets.
+The effective name used for uniqueness checks (see [Validation](#validation)) is `Name`.
 
 ### Bridge targets
 
@@ -97,39 +93,6 @@ The target address is built as `http://{Host}:{Port}`.
 }
 ```
 
-### Broker targets
-
-Additional fields for entries in `Targets.BrokerConfigs`:
-
-| Property | Type | Default | Notes |
-|---|---|---|---|
-| `BrokerUrl` | string | `""` | Required — an empty value fails validation. Kafka bootstrap address, e.g. `"localhost:9094"`. |
-| `Domain` | string | `""` | Stream API domain; may be left empty. |
-| `Stream` | string | `""` | Required — an empty value fails validation. Single stream name; all packets for this target are written to this one stream. |
-
-```json title="AppConfig.json" linenums="1"
-{
-  "Name": "KafkaBroker01",
-  "BrokerUrl": "localhost:9094",
-  "Domain": "",
-  "Stream": "broadcast-output",
-  "QueueCapacity": 100000,
-  "OffloadProcessing": false,
-  "Retry": {
-    "InitialDelayMs": 500,
-    "MaxDelayMs": 30000,
-    "JitterMs": 250
-  }
-}
-```
-
-!!! note "Stream API partition assignment"
-    Broadcast Service always writes to a broker target using the Stream API's partition-based
-    strategy, with the configured `Stream` mapped to partition 1 — this mapping is internal to
-    Broadcast Service and is not user-configurable. Partition 0 is reserved by the Stream API
-    itself for session/essential data; this is a Stream API constraint, not something Broadcast
-    Service controls.
-
 ## Retry
 
 Each target's `Retry` object (`RetryConfig`).
@@ -156,15 +119,14 @@ violated, the service fails to start with an exception of the form
 `; ` into a single message):
 
 - `FeedPort` must be between 1 and 65535.
-- At least one target (bridge or broker) must be configured.
+- At least one target must be configured in `Targets.BridgeConfigs`.
 - If `Wal.CompactionEnabled` is `true`, `Wal.CompactionIntervalMs` must be `>= 100`.
 - `Wal.OffsetFlushIntervalMs` must be `>= 50` (checked regardless of `CompactionEnabled`).
 - `Wal.SegmentRollBytes` must be `>= 1024`.
-- Every target must have a non-empty effective name, and effective names must be unique
-  case-insensitively across all targets.
+- Every target must have a non-empty `Name`, and names must be unique case-insensitively across
+  all targets.
 - Every target's `QueueCapacity` must be `>= 1`.
-- Every broker target's `BrokerUrl` and `Stream` must be non-empty.
-- Every bridge target's `Host` must be non-empty, and `Port` must be between 1 and 65535.
+- Every target's `Host` must be non-empty, and `Port` must be between 1 and 65535.
 
 ## Environment variable overrides
 

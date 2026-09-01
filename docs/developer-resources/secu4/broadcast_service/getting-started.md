@@ -10,8 +10,7 @@ Pick the tab for how you want to run it — each one is self-contained.
     **Prerequisites**
 
     - .NET 8.0 runtime available on the machine.
-    - At least one reachable downstream target: either a Bridge/RemoteDataFeed endpoint, or a
-      Kafka broker you can write to.
+    - At least one reachable downstream Bridge/RemoteDataFeed endpoint.
     - An upstream source that speaks the RemoteDataFeed protocol (a Bridge or ADS instance) to
       point at the feed port once Broadcast Service is running.
 
@@ -62,8 +61,8 @@ Pick the tab for how you want to run it — each one is self-contained.
 
     - **Startup fails with `Invalid broadcast configuration: ...`** — configuration validation
       failed. The message lists every problem found, joined together. Common causes: `FeedPort`
-      outside 1-65535, no targets configured, two targets with the same name, or a Bridge target
-      missing `Host` / a broker target missing `BrokerUrl` or `Stream`.
+      outside 1-65535, no targets configured, two targets with the same name, or a target missing
+      `Host`.
     - **Feed port already in use** — if another process (including a second Broadcast Service
       instance) is already bound to `FeedPort`, startup fails. Pick a different `FeedPort` or
       stop the conflicting process.
@@ -76,8 +75,7 @@ Pick the tab for how you want to run it — each one is self-contained.
     **Prerequisites**
 
     - Docker (or a compatible container runtime).
-    - At least one reachable downstream target: either a Bridge/RemoteDataFeed endpoint, or a
-      Kafka broker you can write to.
+    - At least one reachable downstream Bridge/RemoteDataFeed endpoint.
     - An upstream source that speaks the RemoteDataFeed protocol (a Bridge or ADS instance) to
       point at the feed port once the container is running.
 
@@ -133,8 +131,7 @@ Pick the tab for how you want to run it — each one is self-contained.
 
     - **Startup fails with `Invalid broadcast configuration: ...`** — same validation as above:
       check `FeedPort` range, that at least one target is configured, target names are unique,
-      and required target fields (`Host`/`Port` for Bridge targets, `BrokerUrl`/`Stream` for
-      broker targets) are set.
+      and required target fields (`Host`/`Port`) are set.
     - **Feed port already in use** — make sure the host port you mapped to 9697 isn't already
       taken by another container or process.
     - **WAL directory not writable / disappears on restart** — if `/data/wal` (or wherever

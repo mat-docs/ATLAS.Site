@@ -8,8 +8,8 @@ reconnects.
 It sits between an upstream source and one or more downstream consumers. Towards its upstream
 source, it exposes the same RemoteDataFeed gRPC contract a Bridge/ADS source expects, so from the
 source's point of view it looks like an ordinary downstream. Towards its own downstreams, it acts
-as the upstream — replaying that same RemoteDataFeed contract, or writing directly into a Kafka
-stream — so each downstream can consume, fall behind, and recover without affecting the others.
+as the upstream — replaying that same RemoteDataFeed contract — so each downstream can consume,
+fall behind, and recover without affecting the others.
 
 !!! note "Not the same as Bridge Service"
     Broadcast Service is a separate product from [the ADS-integrated Bridge Service](../bridge_service/index.md),
@@ -25,8 +25,8 @@ At minimum, every deployment needs:
 
 - **An inbound feed port** — the port Broadcast Service listens on for the upstream
   RemoteDataFeed source (`FeedPort`).
-- **At least one downstream target** — a Bridge target, a Kafka broker target, or both.
-  Broadcast Service refuses to start if no targets are configured.
+- **At least one downstream Bridge target** — Broadcast Service refuses to start if no targets
+  are configured.
 - **A write-ahead log (WAL) directory** — where incoming records are durably persisted so
   targets can replay them (`Wal.Directory`).
 - **Enough disk for the WAL** — durability comes from disk. Plan capacity around your WAL
