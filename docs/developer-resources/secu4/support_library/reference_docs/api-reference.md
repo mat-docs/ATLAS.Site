@@ -514,6 +514,7 @@ public class BufferingConfiguration : IBufferingConfiguration
     public uint BufferingWindowLength { get; }
     public uint SlidingWindowPercentage { get; }
     public IReadOnlyList<string> SubscribedParameters { get; }
+    public int PartitionCount { get; } // currently always 1 - see Buffering Module reference
     public bool AllowWildcardMatch { get; }
     
     public BufferingConfiguration(
@@ -525,6 +526,7 @@ public class BufferingConfiguration : IBufferingConfiguration
         bool? includeEventData = null,
         bool? includeErrorData = null,
         bool? includeCanData = null,
+        int? partitionCount = null, // currently ignored - PartitionCount is forced to 1
         bool? allowWildcardMatch = null);
 }
 ```
