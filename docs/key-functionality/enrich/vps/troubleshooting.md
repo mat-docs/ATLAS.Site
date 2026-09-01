@@ -75,6 +75,12 @@ The `vps_virtual_parameter_definition_incomplete_gauge` indicates virtual defini
     If it remains non-zero indefinitely, check that all required source parameter definitions are being published in the session's configuration packets.
 
 
+### A virtual parameter's values stop appearing after a source replays old data (Snapshot mode)
+
+??? success "Explanation"
+    In `Snapshot` calculation mode, a source sample older than the latest value already recorded for that parameter is rejected rather than applied retroactively — this is expected behaviour, not a bug. If your source can redeliver historical or out-of-order samples (e.g. replaying a recorded session), use `CalculationMode: "Default"` instead. See [Calculation Modes](configuration/appconfig-reference.md#calculation-modes).
+
+
 ### Log file is not being created
 
 ??? note "Checklist"
@@ -90,6 +96,10 @@ The `vps_virtual_parameter_definition_incomplete_gauge` indicates virtual defini
 ### Can I run multiple VPS instances for different data sources?
 
 Yes. Each VPS instance supports a single `DataSource`. To process multiple data sources, deploy separate instances with different `AppConfig.json` files, each specifying a different `DataSource` value. Ensure each instance uses a unique `StreamApiPort` and `METRIC_PORT`.
+
+### Which calculation mode should I use?
+
+Use `Snapshot` for live streaming — it keeps memory flat over long-running sessions and keeps producing values even when a source ticks slowly. Use `Default` for replayed/recorded sessions, or any source that can deliver samples out of order, since `Snapshot` rejects out-of-order samples. See [Calculation Modes](configuration/appconfig-reference.md#calculation-modes) for the full comparison.
 
 ### Does the VPS process historical sessions?
 
