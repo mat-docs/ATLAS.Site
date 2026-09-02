@@ -119,4 +119,3 @@ The VPS uses the Stream API to manage topic creation and data flow. Topics are c
 ### How do I verify that virtual data is being written correctly?
 
 1. **Check metrics** — Ensure `vps_virtual_parameter_packet_info_packager_packaged_counter` is incrementing.
-2. **Use Kafka UI** — Navigate to `http://localhost:8080` and inspect the topics for virtual session data.

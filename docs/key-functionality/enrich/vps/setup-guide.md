@@ -38,9 +38,6 @@ The VPS Docker image is public, hosted on Docker Hub as [`atlasplatformdocker/vi
 | `9094` | Kafka | Broker listener for external clients |
 | `10010` | VPS Metrics | Prometheus metrics endpoint |
 | `13579` | Stream API | Default Stream API port (configurable) |
-| `9000` | Prometheus | Prometheus web UI |
-| `3000` | Grafana | Grafana web UI |
-| `8080` | Kafka UI | Kafka management UI |
 
 !!! tip
     All ports are configurable. The above are the conventional defaults if you set up this stack yourself, matching the `AppConfig.json`/image defaults documented elsewhere on this page.
