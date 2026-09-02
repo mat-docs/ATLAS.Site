@@ -59,7 +59,6 @@ The VPS Docker image is public, hosted on Docker Hub as [`atlasplatformdocker/vi
     - `bridge-service/` — Bridge Service configuration
     - `prometheus/prometheus.yml` — Prometheus scrape config
     - `Virtual Parameter Service Dashboard.json` — Grafana dashboard
-    - `reset-docker.bat` — Docker reset script
 
 3. **Configure Prometheus** — Edit `prometheus/prometheus.yml` and replace the target with your machine's IPv4 address:
 
@@ -78,19 +77,10 @@ The VPS Docker image is public, hosted on Docker Hub as [`atlasplatformdocker/vi
 
     See the [AppConfig Reference](configuration/appconfig-reference.md) for the full schema.
 
-5. **Start the stack** — Run the `reset-docker.bat` script:
-
-    ```batch
-    cd C:\dev\vps
-    reset-docker.bat
-    ```
-
-    !!! danger "This script removes ALL Docker containers, networks, images and volumes"
-        Only use this in a development environment. Review the script before running.
-
-    Alternatively, start the stack directly:
+5. **Start the stack**:
 
     ```bash
+    cd C:\dev\vps
     docker compose up -d
     ```
 
