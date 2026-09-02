@@ -118,7 +118,7 @@ Pick the tab for how you want to run it — each one is self-contained.
       -e CONFIG_FILE_PATH=/config/AppConfig.json \
       -v /host/path/config:/config \
       -v /host/path/wal:/data/wal \
-      <broadcast-service-image>
+      atlasplatformdocker/broadcast-service-host:latest
     ```
 
     **Confirm it's working**
