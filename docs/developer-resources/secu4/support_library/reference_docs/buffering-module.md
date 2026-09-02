@@ -63,7 +63,6 @@ public BufferingConfiguration(
     bool? includeEventData = null,
     bool? includeErrorData = null,
     bool? includeCanData = null,
-    int? partitionCount = null,
     bool? allowWildcardMatch = null)
 ```
 
@@ -96,13 +95,6 @@ public BufferingConfiguration(
 - **includeErrorData**: Include error packets in buffering (default: false)
 
 - **includeCanData**: Include CAN bus data in buffering (default: false)
-
-- **partitionCount**: define the number of partitions to use for buffering.
-
-    !!! warning "Currently ignored"
-        `PartitionCount` is temporarily forced to `1` regardless of the value passed here, as a
-        backend mitigation for a concurrency issue. This parameter is kept for API compatibility
-        but has no effect until the mitigation is lifted.
 
 - **allowWildcardMatch**: Allow partial parameter matching using the `*` wildcard, or full regex syntax, in subscribed parameter names (default: true) — see [Wildcard and regex parameter matching](#wildcard-and-regex-parameter-matching)
 
