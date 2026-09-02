@@ -11,7 +11,7 @@ The **Virtual Parameter Service (VPS)** simplifies the calculation of virtual pa
 | **Stream API integration** | Reads source sessions from Kafka and writes computed results back as new virtual sessions. |
 | **Session lifecycle management** | Detects live sessions, creates associated virtual sessions, and manages their full lifecycle. |
 | **Prometheus metrics** | Exposes detailed operational metrics for monitoring via Prometheus and Grafana. |
-| **Docker-first deployment** | Ships as a Docker image with a provided `docker-compose.yaml` for full-stack orchestration. |
+| **Docker-first deployment** | Ships as a public Docker image, alongside a Windows binary for running outside Docker. |
 | **Configurable buffering** | Tunable buffering window and sliding window percentage to balance latency and throughput. |
 
 

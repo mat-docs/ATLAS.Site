@@ -12,12 +12,10 @@ Common issues and their solutions when working with the Virtual Parameter Servic
 
     1. **Is ADS running?** Ensure ADS is active and streaming live data.
     2. **Is the Bridge Service running?** Verify the Bridge Service container is healthy: `docker ps`.
-    3. **Is the Bridge Service configured correctly?**
-        - `Enable Bridge Service` must be `TRUE` in ADS (Tools > Options > General).
-        - `Local Bridge Service` must be `FALSE`.
-        - `BridgeServiceConfig.json` must have the correct `BrokerUrl` (your machine IP, not `localhost`).
-    4. **Is the `DataSource` correct?** The `DataSource` in `AppConfig.json` must match the data source name in ADS.
-    5. **Is Kafka reachable?** The `BrokerUrl` in `AppConfig.json` must point to a valid, running Kafka broker.
+    3. **Is the Bridge Service configured correctly?** See its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md) for enabling it and setting `BrokerUrl`.
+    4. **Is the `DataSource` correct?** The VPS's `DataSource` (`AppConfig.json`) must match the DataSource name Bridge Service publishes under.
+    5. **Is Kafka reachable?** The `BrokerUrl` in `AppConfig.json` must point to a valid, running Kafka broker — the same one Bridge Service is configured to publish to.
+    6. **Do `StreamCreationStrategy` and `PartitionMappings` match Bridge Service?** If `StreamApiConfig.StreamCreationStrategy` doesn't match Bridge Service's setting, the VPS is looking for data in the wrong place (topics vs. partitions). If it's `1` (partition-based), `PartitionMappings` must match Bridge Service's mapping too — it's ignored for `2` (topic-based).
 
 
 ### Kafka is not initialised in time before the Bridge Service
@@ -75,6 +73,12 @@ The `vps_virtual_parameter_definition_incomplete_gauge` indicates virtual defini
     If it remains non-zero indefinitely, check that all required source parameter definitions are being published in the session's configuration packets.
 
 
+### A virtual parameter's values stop appearing after a source replays old data (Snapshot mode)
+
+??? success "Explanation"
+    In `Snapshot` calculation mode, a source sample older than the latest value already recorded for that parameter is rejected rather than applied retroactively — this is expected behaviour, not a bug. If your source can redeliver historical or out-of-order samples (e.g. replaying a recorded session), use `CalculationMode: "Default"` instead. See [Calculation Modes](configuration/appconfig-reference.md#calculation-modes).
+
+
 ### Log file is not being created
 
 ??? note "Checklist"
@@ -90,6 +94,10 @@ The `vps_virtual_parameter_definition_incomplete_gauge` indicates virtual defini
 ### Can I run multiple VPS instances for different data sources?
 
 Yes. Each VPS instance supports a single `DataSource`. To process multiple data sources, deploy separate instances with different `AppConfig.json` files, each specifying a different `DataSource` value. Ensure each instance uses a unique `StreamApiPort` and `METRIC_PORT`.
+
+### Which calculation mode should I use?
+
+Use `Snapshot` for live streaming — it keeps memory flat over long-running sessions and keeps producing values even when a source ticks slowly. Use `Default` for replayed/recorded sessions, or any source that can deliver samples out of order, since `Snapshot` rejects out-of-order samples. See [Calculation Modes](configuration/appconfig-reference.md#calculation-modes) for the full comparison.
 
 ### Does the VPS process historical sessions?
 
