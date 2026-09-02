@@ -12,12 +12,9 @@ Common issues and their solutions when working with the Virtual Parameter Servic
 
     1. **Is ADS running?** Ensure ADS is active and streaming live data.
     2. **Is the Bridge Service running?** Verify the Bridge Service container is healthy: `docker ps`.
-    3. **Is the Bridge Service configured correctly?**
-        - `Enable Bridge Service` must be `TRUE` in ADS (Tools > Options > General).
-        - `Local Bridge Service` must be `FALSE`.
-        - `BridgeServiceConfig.json` must have the correct `BrokerUrl` (your machine IP, not `localhost`).
-    4. **Is the `DataSource` correct?** The `DataSource` in `AppConfig.json` must match the data source name in ADS.
-    5. **Is Kafka reachable?** The `BrokerUrl` in `AppConfig.json` must point to a valid, running Kafka broker.
+    3. **Is the Bridge Service configured correctly?** See its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md) for enabling it and setting `BrokerUrl`.
+    4. **Is the `DataSource` correct?** The VPS's `DataSource` (`AppConfig.json`) must match the DataSource name Bridge Service publishes under.
+    5. **Is Kafka reachable?** The `BrokerUrl` in `AppConfig.json` must point to a valid, running Kafka broker — the same one Bridge Service is configured to publish to.
 
 
 ### Kafka is not initialised in time before the Bridge Service

@@ -28,7 +28,7 @@ The Virtual Parameter Service supports configuration via environment variables, 
 
 ```yaml
 virtual-parameter-service:
-  image: atlasplatformdocker/virtual-parameter-service-host-dev:latest
+  image: atlasplatformdocker/virtual-parameter-service-host:latest
   ports:
     - "10010:10010"
   volumes:
@@ -50,7 +50,7 @@ docker run -d \
   -e LOG_FILE_PATH=/logs/vps-svc-log.txt \
   -e METRIC_PORT=10010 \
   -v C:\path\to\AppConfig.json:/config/AppConfig.json \
-  atlasplatformdocker/virtual-parameter-service-host-dev:latest
+  atlasplatformdocker/virtual-parameter-service-host:latest
 ```
 
 !!! tip "Environment variables vs command arguments"

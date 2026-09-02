@@ -10,33 +10,27 @@ Before deploying the Virtual Parameter Service, ensure the following dependencie
 
 | Software | Minimum Version | Purpose |
 |---|---|---|
-| **ADS (ATLAS Data Server)** | `9.85.2.183` | Source of live telemetry sessions |
+| **ADS (ATLAS Data Server)**, running the [Bridge Service](../../../developer-resources/secu4/bridge_service/index.md) | `9.85.2.183` | The VPS's actual data source — Bridge Service publishes live telemetry to Kafka; ADS is what runs it |
 | **Docker** | Latest stable | Container runtime for deploying the service stack |
 | **Kafka** | Latest (via Confluent images) | Message broker for the Stream API |
 
 
-### ADS Configuration
+### Bridge Service
 
-The Bridge Service must be enabled in ADS to bridge telemetry data into Kafka.
+The VPS doesn't talk to ADS directly — it consumes live telemetry from Kafka topics published by the **Bridge Service**, which runs alongside ADS. Set up and enable Bridge Service following its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md); two of its settings need to line up with the VPS's own configuration:
 
-1. Open ADS and navigate to **Tools > Options > General**.
-2. Set **Enable Bridge Service** to `TRUE`.
-3. Set **Local Bridge Service** to `FALSE`.
-4. Locate `BridgeServiceConfig.json` (by default in `Documents\McLaren Electronic Systems\ATLAS 9\BridgeService\`).
-5. Set the `BrokerUrl` to your machine's IP address (not `localhost`).
+- **`DataSource`** — the VPS's `DataSource` setting (see [AppConfig Reference](configuration/appconfig-reference.md)) must match the DataSource name Bridge Service publishes under.
+- **`BrokerUrl`** — the VPS's `StreamApiConfig.BrokerUrl` must point to the same Kafka broker Bridge Service is configured to publish to.
 
-!!! warning "Use your machine IP"
-    The Bridge Service runs inside Docker — you must use your machine's IPv4 address (from `ipconfig`), not `localhost` or `127.0.0.1`.
+!!! tip "Running the local Docker stack"
+    If you're using the `docker-compose.yaml` stack below for local testing, Bridge Service runs in its own container — use your machine's IPv4 address (from `ipconfig`) for `BrokerUrl`, not `localhost` or `127.0.0.1`, since containers can't reach the host machine that way.
 
 ### Docker Access
 
-The VPS Docker image is hosted on Docker Hub under the [ATLAS Platform Docker](https://hub.docker.com/repository/docker/atlasplatformdocker/virtual-parameter-service-host-dev/general) organisation.
+The VPS Docker image is public, hosted on Docker Hub as [`atlasplatformdocker/virtual-parameter-service-host`](https://hub.docker.com/repository/docker/atlasplatformdocker/virtual-parameter-service-host/general). No special access is required — `docker login` is only needed to avoid Docker Hub's anonymous pull rate limits.
 
-- Ensure you have **access** to the Docker Hub repository.
-- Ensure you are **logged in** to Docker (`docker login`).
-
-!!! note "No Docker Hub access?"
-    If you do not have access to the Docker Hub repository, you can load the image from a `.tar` file provided as a build artifact. See the [Setup Guide](setup-guide.md#without-docker-hub-access) for details.
+!!! note "Can't reach Docker Hub?"
+    If your environment can't pull from Docker Hub at all (e.g. an offline/air-gapped machine), you can load the image from a `.tar` file provided as a build artifact. See [Offline Install](setup-guide.md#offline-install) below.
 
 ### Network Requirements
 
@@ -53,8 +47,6 @@ The VPS Docker image is hosted on Docker Hub under the [ATLAS Platform Docker](h
     All ports are configurable. The above are the defaults provided in the `docker-compose.yaml`.
 
 ## Docker Deployment (Recommended)
-
-### With Docker Hub Access
 
 1. **Choose a working directory** (e.g. `C:\dev\vps`).
 
@@ -79,7 +71,7 @@ The VPS Docker image is hosted on Docker Hub under the [ATLAS Platform Docker](h
 
 4. **Configure the VPS** — Edit `virtual-parameter-service/AppConfig.json`:
 
-    - Set `DataSource` to match your ADS data source.
+    - Set `DataSource` to match the DataSource name Bridge Service publishes under.
     - Set `BrokerUrl` to point to your Kafka instance (e.g. `YOUR_MACHINE_IP:9094`).
 
     See the [AppConfig Reference](configuration/appconfig-reference.md) for the full schema.
@@ -109,9 +101,9 @@ The VPS Docker image is hosted on Docker Hub under the [ATLAS Platform Docker](h
     You should see containers for: `zookeeper`, `kafka`, `kafka-ui`, `bridge-service`, `virtual-parameter-service`, `prometheus`, and `grafana`.
 
 
-### Without Docker Hub Access
+### Offline Install
 
-If you do not have access to the Docker Hub repository:
+If your environment can't reach Docker Hub at all (e.g. an offline/air-gapped machine):
 
 1. Follow steps 1–4 above.
 
@@ -136,7 +128,7 @@ If you do not have access to the Docker Hub repository:
       --name virtual-parameter-service \
       -p 10010:10010 \
       -v C:\path\to\AppConfig.json:/config/AppConfig.json \
-      atlasplatformdocker/virtual-parameter-service-host-dev:TAG \
+      atlasplatformdocker/virtual-parameter-service-host:TAG \
       -c /config/AppConfig.json \
       -l /logs/vps-svc-log.txt
     ```
@@ -151,7 +143,7 @@ docker run -d \
   --name virtual-parameter-service \
   -p 10010:10010 \
   -v C:\AppConfig.json:/config/AppConfig.json \
-  atlasplatformdocker/virtual-parameter-service-host-dev:0.0.1.82-dev \
+  atlasplatformdocker/virtual-parameter-service-host:latest \
   -c /config/AppConfig.json \
   -l /logs/vps-svc-log.txt
 ```
@@ -172,7 +164,7 @@ Instead of command-line arguments, you can use environment variables in `docker-
 
 ```yaml
 virtual-parameter-service:
-  image: atlasplatformdocker/virtual-parameter-service-host-dev:latest
+  image: atlasplatformdocker/virtual-parameter-service-host:latest
   ports:
     - "10010:10010"
   volumes:
