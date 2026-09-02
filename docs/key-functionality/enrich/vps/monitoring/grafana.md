@@ -33,19 +33,19 @@ The dashboard will appear under **Dashboards** in the left sidebar.
 
 ## Dashboard Panels
 
-The provided dashboard includes panels for key operational metrics:
+The provided `Virtual Parameter Service Dashboard.json` ships with two panels, both built from the session/data-source gauges:
 
-| Panel | What It Shows |
+| Panel type | Metrics plotted |
 |---|---|
-| **Data Sources** | Number of active data sources (`vps_running_gauge_of_data_sources`). |
-| **Connected Sessions** | Number of live sessions being processed (`vps_running_gauge_of_connected_sessions`). |
-| **Parameter Definitions** | Counters for total, built, failed, and incomplete virtual parameter definitions. |
-| **Packet Processing** | Rates of packets received, dispatched, and packaged. |
-| **Sample Throughput** | Volume of timestamp data received and virtual samples produced. |
+| **Time series** | `vps_running_gauge_of_data_sources`, `vps_running_gauge_of_connected_sessions` |
+| **Stat** | `vps_running_gauge_of_data_sources` |
+
+!!! note "Extend the dashboard yourself"
+    This is a minimal starting point — it doesn't include panels for parameter definitions, packet processing, or sample throughput. Use the PromQL queries below to add your own panels for those.
 
 ## Useful PromQL Queries
 
-You can create custom panels or explore metrics using these queries:
+Add custom panels or explore metrics using these queries:
 
 ### Active sessions per data source
 

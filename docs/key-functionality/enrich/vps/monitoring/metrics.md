@@ -46,6 +46,8 @@ All VPS metrics are prefixed with `vps_`.
 |---|---|---|
 | `vps_virtual_configuration_packet_packager_counter` | Counter | Number of configuration packets packaged and sent. |
 | `vps_virtual_configuration_parameter_packaged_counter` | Counter | Number of virtual parameters included in configuration packets. |
+| `vps_created_configuration_packet_holder_counter` | Counter | Number of multi-part incoming configuration packets the service has started reassembling (see `config_identifier` label). |
+| `vps_completed_configuration_packet_holder_counter` | Counter | Number of multi-part incoming configuration packets fully reassembled from all their parts. |
 
 ### Data Processing Counters
 
@@ -61,7 +63,7 @@ All VPS metrics are prefixed with `vps_`.
 |---|---|---|
 | `vps_virtual_parameter_packet_info_packager_counter` | Counter | Number of packet infos received for packaging. |
 | `vps_virtual_parameter_packet_info_packager_samples_counter` | Counter | Number of individual samples in received packet infos. |
-| `vps_virtual_parameter_packet_info_packager_packaged_counter` | Counter | Number of packages actually packaged and written. |
+| `vps_virtual_parameter_packet_info_packaged_counter` | Counter | Number of packages actually packaged and written. |
 
 ## Metric Labels
 
@@ -73,7 +75,7 @@ Metrics are enriched with labels to allow filtering and drill-down:
 | `session_key` | The session key for the active session. | Session-scoped metrics |
 | `parameter_identifier` | The identifier of a specific parameter. | Definition and subscription metrics |
 | `type` | Context-dependent type. E.g. `parameter` or `virtual` for definitions. | `vps_parameter_definition_counter` |
-| `action` | Context-dependent action. E.g. `handled` or `unhandled`. | `vps_packet_dispatcher_counter` |
+| `action` | Context-dependent action. E.g. `Handled` or `Unhandled` (labels are case-sensitive). | `vps_packet_dispatcher_counter` |
 | `source_identifiers` | The source parameter identifiers that compose a virtual. | Build-related metrics |
 | `config_identifier` | The configuration identifier. | Configuration metrics |
 
