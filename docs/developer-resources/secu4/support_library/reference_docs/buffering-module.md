@@ -72,7 +72,7 @@ public BufferingConfiguration(
   - `null` or empty list = no parameters initially subscribed
   - Can subscribe/unsubscribe dynamically later
   - Parameter names must match those defined in Data Format Manager
-  - Entries may contain the `*` wildcard when `allowWildcardMatch` is enabled — see [Wildcard parameter matching](#wildcard-parameter-matching)
+  - Entries may contain the `*` wildcard, or regex syntax, when `allowWildcardMatch` is enabled — see [Wildcard and regex parameter matching](#wildcard-and-regex-parameter-matching)
 
 - **bufferingWindowLength**: Length of buffering window in milliseconds (default: 3000ms = 3 seconds)
   - Larger windows provide more context but increase latency
@@ -96,28 +96,40 @@ public BufferingConfiguration(
 
 - **includeCanData**: Include CAN bus data in buffering (default: false)
 
-- **allowWildcardMatch**: Allow partial parameter matching using the `*` wildcard in subscribed parameter names (default: true) — see [Wildcard parameter matching](#wildcard-parameter-matching)
+- **allowWildcardMatch**: Allow partial parameter matching using the `*` wildcard, or full regex syntax, in subscribed parameter names (default: true) — see [Wildcard and regex parameter matching](#wildcard-and-regex-parameter-matching)
 
-### Wildcard parameter matching
+### Wildcard and regex parameter matching
 
-By default (`allowWildcardMatch: true`), entries in `subscribedParameters` — and identifiers passed to `Subscribe` at runtime — may contain the `*` wildcard, which matches any sequence of characters. This lets you subscribe to a family of parameters without listing every identifier:
+By default (`allowWildcardMatch: true`), entries in `subscribedParameters` — and identifiers passed to `Subscribe` at runtime — are matched using more than plain equality. Which matching strategy applies depends on what the entry looks like:
+
+- **Plain identifiers** (no `*` and none of the regex characters below) are compared to the incoming identifier case-insensitively.
+- **`*` wildcard patterns** match any sequence of characters, and are compared case-sensitively.
+- **Patterns containing regex syntax** — any of `. $ ^ { [ ( | ) + ? \` — are compiled and matched as a real, case-sensitive regular expression, anchored to the whole identifier. This is the slowest of the three, so only reach for it when a `*` wildcard can't express what you need.
 
 ```csharp
 var config = new BufferingConfiguration(
     subscribedParameters: new[]
     {
-        "Speed",     // exact match only
-        "Brake*",    // matches every parameter identifier starting with "Brake"
+        "Speed",         // exact match, case-insensitive
+        "Brake*",        // matches every parameter identifier starting with "Brake"
+        "Wheel[0-9]+",   // regex fallback: matches Wheel0, Wheel12, ...
     });
 ```
 
 Matching rules:
 
 - A pattern must match the **whole** incoming parameter identifier — `Brake*` matches `BrakeTemp` but `rake*` does not match `BrakeTemp`.
-- Matching is case-sensitive.
-- Entries without a `*` behave exactly as before (exact match), and exact matches always work regardless of this setting.
+- Entries without `*` or regex syntax behave as an exact match, but that exact match is case-insensitive.
+- Entries with `*` or regex syntax are matched case-sensitively.
 
-Set `allowWildcardMatch: false` to treat every subscription as a literal identifier, including any that contain `*`.
+!!! warning "Regex characters in identifiers are not escaped"
+    If a subscribed identifier contains a character from `. $ ^ { [ ( | ) + ? \`, it is compiled
+    as regex syntax rather than treated as a literal character. For example `Speed.Front` is not
+    matched literally — the `.` matches any single character. If your naming convention uses
+    these characters as literal text, avoid combining them with `*`/regex-style patterns, or
+    escape them yourself before passing them in.
+
+Set `allowWildcardMatch: false` to treat every subscription as a literal identifier compared case-sensitively, including any that contain `*` or regex syntax.
 
 
 
