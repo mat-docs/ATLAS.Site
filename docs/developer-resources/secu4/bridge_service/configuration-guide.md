@@ -13,6 +13,7 @@ The main configuration file is typically `AppConfig.json` and contains the follo
   "BridgeConfig": { ... },
   "EssentialsConfig": { ... },
   "RdaConfig": { ... },
+  "DiskBackedBufferConfig": { ... },
   "Serilog": { ... }
 }
 ```
@@ -430,11 +431,33 @@ Controls core Bridge service behavior including processing units, data handling,
 | :--- | :--- | :--- | :--- |
 | `DataSource` | string | "Default" | Name identifier for the data source |
 | `UseStringIdentifier` | boolean | false | Use string-based identifiers instead of numeric IDs |
-| `ConcurrencyFactor` | int | 8 | Number of parallel units for data processing and writing |
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
-| `FeedPort` | int? | null | Optional port override for the data feed |
+| `FeedPort` | int? | null | Optional port override for the data feed (see [Feed Port and Metric Port Resolution](#feed-port-and-metric-port-resolution)) |
+| `MetricPort` | int? | null | Optional port override for the Prometheus metrics endpoint (see [Feed Port and Metric Port Resolution](#feed-port-and-metric-port-resolution)) |
+| `LiveConcurrencyFactor` | int | 4 | Number of parallel processing units for live telemetry |
+| `OffloadConcurrencyFactor` | int | 12 | Number of parallel processing units for offloaded (historical/replayed) telemetry |
+| `OffloadProcessing` | boolean | true | Whether offloaded data is processed at all; when `false`, offloaded data is discarded instead of being written out |
+| `OffloadStream` | string | "" (empty) | Optional stream name that offloaded data is routed to, instead of the default stream |
 | `StandalonePgvList` | string[] | [] (empty) | PGV app IDs, as decimal or `0x`-prefixed hex strings, that Bridge Service should accept as standalone and output data for (see below) |
+
+### Feed Port and Metric Port Resolution
+
+The feed port (data ingress) and the Prometheus metrics port are each resolved from multiple
+sources, in priority order:
+
+1.  **Feed port:** the `-p` command-line argument or the `FEED_PORT` environment variable.
+2.  **Metric port:** the `METRIC_PORT` environment variable (there is no `-m` command-line
+    argument).
+3.  `BridgeConfig.FeedPort` / `BridgeConfig.MetricPort` in `AppConfig.json` (or the equivalent
+    `BridgeConfig__FeedPort` / `BridgeConfig__MetricPort` environment variables described in
+    [Overriding Configuration with Environment Variables](#overriding-configuration-with-environment-variables)).
+4.  Built-in defaults: **9697** for the feed port, **10010** for the metric port.
+
+!!! note
+    `FEED_PORT` and `METRIC_PORT` are read directly by the host process and take priority over
+    any `BridgeConfig__FeedPort` / `BridgeConfig__MetricPort` value — if a stale `FEED_PORT`
+    environment variable is set, it silently overrides a `FeedPort` you set in `AppConfig.json`.
 
 ### ProcessFlow Strategies
 
@@ -462,7 +485,7 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
   "BridgeConfig": {
     "DataSource": "RaceTrack01",
     "UseStringIdentifier": true,
-    "ConcurrencyFactor": 16,
+    "LiveConcurrencyFactor": 16,
     "AdsTimeoutInSeconds": 600,
     "ProcessFlow": "SequentialAll"
   }
@@ -476,7 +499,7 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
   "BridgeConfig": {
     "DataSource": "LiveTelemetry",
     "UseStringIdentifier": true,
-    "ConcurrencyFactor": 24,
+    "LiveConcurrencyFactor": 24,
     "AdsTimeoutInSeconds": 720,
     "ProcessFlow": "DropOldest"
   }
@@ -485,7 +508,9 @@ The `ProcessFlow` property controls how the Bridge service handles data flow and
 
 ### Performance Tuning
 
-*   **`ConcurrencyFactor`**: Controls the number of parallel units for both data processing and writing. Increase for higher throughput on multi-core systems. Higher values use more CPU.
+*   **`LiveConcurrencyFactor`**: Controls the number of parallel processing units for live telemetry. Increase for higher throughput on multi-core systems. Higher values use more CPU.
+*   **`OffloadConcurrencyFactor`**: Controls the number of parallel processing units for offloaded (historical/replayed) telemetry. Increase for higher throughput on multi-core systems. Higher values use more CPU.
+*   **`OffloadProcessing`**: Set to `false` to discard offloaded data instead of processing it, if offload telemetry isn't needed downstream.
 *   **`AdsTimeoutInSeconds`**: Controls how long the Bridge waits without receiving data before considering a session stopped. Default is 720 seconds (12 minutes). Reduce for faster session timeout detection, increase if you expect longer gaps in data transmission.
 *   **`ProcessFlow`**: Choose `SequentialAll` when data completeness is critical, or `DropOldest` when real-time performance is more important than historical completeness.
 
@@ -597,7 +622,30 @@ Reduced Data Access (RDA) configuration for reading telemetry data files.
 }
 ```
 
-## 6. Serilog Configuration
+## 6. DiskBackedBufferConfig
+
+Controls the per-session buffer that holds messages pending validation retry. Once a session's
+buffer exceeds `MaxQueueLength`, further items spill to disk instead of growing memory
+unbounded, and are read back from disk as the queue drains.
+
+### Properties
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `MaxQueueLength` | int | 1000 | Number of items kept in memory per session before overflow spills to disk |
+| `TempFolderPath` | string | `%TEMP%\EngineeringConversion\DiskBackedBuffer` | Directory used to store the disk-backed overflow files |
+
+### Example Configuration
+
+```json title="AppConfig.json" linenums="1"
+{
+  "DiskBackedBufferConfig": {
+    "MaxQueueLength": 1000
+  }
+}
+```
+
+## 7. Serilog Configuration
 
 Structured logging configuration using the Serilog framework.
 
@@ -716,8 +764,8 @@ The Bridge service uses the following priority order for logging configuration:
   "BridgeConfig": {
     "DataSource": "TestTrack_Simulator",
     "UseStringIdentifier": true,
-    "NumberWritingUnit": 16,
-    "NumberProcessingUnit": 8,
+    "LiveConcurrencyFactor": 16,
+    "OffloadConcurrencyFactor": 8,
     "AdsTimeoutInSeconds": 600,
     "ProcessFlow": "SequentialAll"
   },
@@ -737,6 +785,9 @@ The Bridge service uses the following priority order for logging configuration:
       "C:\\RDA\\Sessions\\2026",
       "\\\\FileServer\\RDA\\Archive"
     ]
+  },
+  "DiskBackedBufferConfig": {
+    "MaxQueueLength": 1000
   },
   "Serilog": {
     "MinimumLevel": {
@@ -782,12 +833,12 @@ The Bridge service uses the following priority order for logging configuration:
     *   Verify `Auto` is set to `false` when using custom mappings.
     *   Check wildcard patterns/order.
 *   **Issue: Performance problems**
-    *   Increase `NumberWritingUnit` / `NumberProcessingUnit`.
+    *   Increase `LiveConcurrencyFactor` / `OffloadConcurrencyFactor`.
     *   Consider using `ProcessFlow: "DropOldest"` if real-time data is more important than completeness.
 *   **Issue: Data is being dropped**
     *   Check if `ProcessFlow` is set to `"DropOldest"`. This is the expected behavior when buffers are full.
     *   If data completeness is critical, change to `"SequentialAll"`.
-    *   Alternatively, increase `NumberWritingUnit` and `NumberProcessingUnit` to improve throughput.
+    *   Alternatively, increase `LiveConcurrencyFactor` and `OffloadConcurrencyFactor` to improve throughput.
 *   **Issue: Session stops prematurely or doesn't stop**
     *   Adjust `AdsTimeoutInSeconds` based on your data streaming pattern.
     *   Default (720 seconds / 12 minutes) works for most scenarios.
@@ -814,5 +865,5 @@ The Bridge service uses the following priority order for logging configuration:
 !!! warning "Resource Requirements"
     Increasing these values requires more system resources (CPU and memory). Setting values too high on smaller machines may lead to deadlock or threadpool starvation. **Recommended settings for an 8-core machine with 16GB RAM:**
 
-      - `NumberProcessingUnit`: 12
-      - `NumberWritingUnit`: 24
+      - `LiveConcurrencyFactor`: 12
+      - `OffloadConcurrencyFactor`: 24
