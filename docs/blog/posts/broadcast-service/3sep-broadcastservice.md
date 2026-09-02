@@ -22,7 +22,7 @@ This is the first release of Broadcast Service, a new product that gives your li
 
 ### Resilient, Multi-Target Bridge Data Delivery
 
-Broadcast Service sits between an upstream source and one or more downstream consumers. Towards its upstream source, it exposes the same RemoteDataFeed gRPC contract a Bridge/ADS source expects, so it looks like an ordinary downstream. Towards its own downstreams, it replays that same RemoteDataFeed contract as the upstream, so each downstream Bridge target can consume, fall behind, and recover independently without affecting the others.
+Broadcast Service sits between an upstream source and one or more downstream consumers. Towards its upstream source, it exposes the same ADS messages, so it looks like an ordinary downstream. Towards its own downstreams, it replays that same ADS messages as the upstream, so each downstream Bridge target can consume, fall behind, and recover independently without affecting the others.
 
 Durability comes from a segmented, write-ahead log: incoming records are persisted to disk before being forwarded, each target tracks its own replay cursor, and a stalled or disconnected target can catch up from where it left off once it reconnects. WAL segments are rolled at a configurable size and compacted automatically once every target has replayed past them, so disk usage stays bounded under normal operation.
 
