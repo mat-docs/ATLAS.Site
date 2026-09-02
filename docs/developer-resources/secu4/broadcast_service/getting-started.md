@@ -10,8 +10,8 @@ Pick the tab for how you want to run it — each one is self-contained.
     **Prerequisites**
 
     - .NET 8.0 runtime available on the machine.
-    - At least one reachable downstream Bridge/RemoteDataFeed endpoint.
-    - An upstream source that speaks the RemoteDataFeed protocol (a Bridge or ADS instance) to
+    - At least one reachable downstream Bridge endpoint.
+    - An upstream source such as ADS or another Broadcast Service to
       point at the feed port once Broadcast Service is running.
 
     **Minimal config**
@@ -47,7 +47,7 @@ Pick the tab for how you want to run it — each one is self-contained.
     **Start it**
 
     ```bash
-    dotnet run --project MA.DataPlatforms.Bridge.Broadcast.Host
+    dotnet run MA.DataPlatforms.Bridge.Broadcast.Host.exe
     ```
 
     **Confirm it's working**
@@ -75,9 +75,9 @@ Pick the tab for how you want to run it — each one is self-contained.
     **Prerequisites**
 
     - Docker (or a compatible container runtime).
-    - At least one reachable downstream Bridge/RemoteDataFeed endpoint.
-    - An upstream source that speaks the RemoteDataFeed protocol (a Bridge or ADS instance) to
-      point at the feed port once the container is running.
+    - At least one reachable downstream Bridge endpoint.
+    - An upstream source such as ADS or another Broadcast Service to
+      point at the feed port once Broadcast Service is running.
 
     **Minimal config**
 

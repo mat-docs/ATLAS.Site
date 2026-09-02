@@ -6,7 +6,7 @@ full field-by-field list, defaults, and validation rules, see the
 
 ## I want to add a downstream Bridge target
 
-**Situation**: you want Broadcast Service to forward the feed on to another Bridge/RemoteDataFeed
+**Situation**: you want Broadcast Service to forward the feed on to another Bridge
 endpoint — replicating bridge-to-bridge.
 
 Add an entry to `Targets.BridgeConfigs`:
@@ -31,12 +31,12 @@ Add an entry to `Targets.BridgeConfigs`:
 omitted. Broadcast Service connects to this target at `http://{Host}:{Port}`.
 
 **Result**: on connect, this target performs a licence handshake with the downstream and replays
-any cached session-control history, then forwards live records over RemoteDataFeed. If the
+any cached session-control history, then forwards live records over gRPC. If the
 target's queue fills (it's capped at `QueueCapacity`, default `100000`), Broadcast Service
 blocks and waits rather than dropping records for a Bridge target — the target must catch up on
 its own.
 
-**When to use**: any time the downstream is itself a Bridge/RemoteDataFeed consumer.
+**When to use**: any time the downstream is itself a Bridge consumer.
 
 ## I want to run more than one target
 

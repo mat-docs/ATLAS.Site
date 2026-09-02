@@ -36,12 +36,9 @@ flowchart LR
     K -->|Sessions & Data| VPS["Virtual Parameter Service"]
     VPS -->|Computed Virtuals| K
     K -->|Virtual Data| C["ATLAS Viewer"]
-    VPS -->|Metrics| P["Prometheus"]
-    P --> G["Grafana"]
 ```
 ## Use Cases
 
 - **Eliminating redundant calculations** — Instead of every client independently computing the same virtual parameters, the VPS computes them once and publishes the results.
 - **Ensuring consistency** — All consumers receive identical computed values, removing discrepancies between different client implementations.
 - **Reducing client load** — Downstream applications no longer need to include FDL evaluation logic, simplifying their architecture.
-- **Centralised monitoring** — Operators can track the health and throughput of virtual parameter processing from a single Grafana dashboard.
