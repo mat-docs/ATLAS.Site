@@ -431,7 +431,6 @@ Controls core Bridge service behavior including processing units, data handling,
 | :--- | :--- | :--- | :--- |
 | `DataSource` | string | "Default" | Name identifier for the data source |
 | `UseStringIdentifier` | boolean | false | Use string-based identifiers instead of numeric IDs |
-| `BatchingLevel` | enum | Medium | Quad decoding batch size: `None`, `Medium`, `High`, `ExtraHigh` |
 | `AdsTimeoutInSeconds` | int | 720 | Timeout in seconds for detecting session stop when no data is received from ADS (ATLAS Data Server) |
 | `ProcessFlow` | enum | SequentialAll | Data processing flow strategy (see below for details) |
 | `FeedPort` | int? | null | Optional port override for the data feed (see [Feed Port and Metric Port Resolution](#feed-port-and-metric-port-resolution)) |
