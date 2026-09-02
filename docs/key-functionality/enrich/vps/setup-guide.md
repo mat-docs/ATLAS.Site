@@ -17,10 +17,12 @@ Before deploying the Virtual Parameter Service, ensure the following dependencie
 
 ### Bridge Service
 
-The VPS doesn't talk to ADS directly — it consumes live telemetry from Kafka topics published by the **Bridge Service**, which runs alongside ADS. Set up and enable Bridge Service following its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md); two of its settings need to line up with the VPS's own configuration:
+The VPS doesn't talk to ADS directly — it consumes live telemetry from Kafka topics published by the **Bridge Service**, which runs alongside ADS. Set up and enable Bridge Service following its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md); several of its settings need to line up with the VPS's own configuration, or the VPS will be listening in the wrong place:
 
 - **`DataSource`** — the VPS's `DataSource` setting (see [AppConfig Reference](configuration/appconfig-reference.md)) must match the DataSource name Bridge Service publishes under.
 - **`BrokerUrl`** — the VPS's `StreamApiConfig.BrokerUrl` must point to the same Kafka broker Bridge Service is configured to publish to.
+- **`StreamCreationStrategy`** — the VPS's `StreamApiConfig.StreamCreationStrategy` must match Bridge Service's (`1` = partition-based, `2` = topic-based), since it determines where in Kafka the data actually lands.
+- **`PartitionMappings`** — only relevant when `StreamCreationStrategy` is `1` (partition-based); the VPS's `StreamApiConfig.PartitionMappings` must match Bridge Service's mapping so the VPS reads from the same partitions Bridge Service writes to. Not used for topic-based (`2`).
 
 !!! tip "Running the local Docker stack"
     If you're using the `docker-compose.yaml` stack below for local testing, Bridge Service runs in its own container — use your machine's IPv4 address (from `ipconfig`) for `BrokerUrl`, not `localhost` or `127.0.0.1`, since containers can't reach the host machine that way.

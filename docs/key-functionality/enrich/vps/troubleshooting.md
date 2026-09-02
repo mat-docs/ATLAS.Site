@@ -15,6 +15,7 @@ Common issues and their solutions when working with the Virtual Parameter Servic
     3. **Is the Bridge Service configured correctly?** See its own [configuration guide](../../../developer-resources/secu4/bridge_service/index.md) for enabling it and setting `BrokerUrl`.
     4. **Is the `DataSource` correct?** The VPS's `DataSource` (`AppConfig.json`) must match the DataSource name Bridge Service publishes under.
     5. **Is Kafka reachable?** The `BrokerUrl` in `AppConfig.json` must point to a valid, running Kafka broker — the same one Bridge Service is configured to publish to.
+    6. **Do `StreamCreationStrategy` and `PartitionMappings` match Bridge Service?** If `StreamApiConfig.StreamCreationStrategy` doesn't match Bridge Service's setting, the VPS is looking for data in the wrong place (topics vs. partitions). If it's `1` (partition-based), `PartitionMappings` must match Bridge Service's mapping too — it's ignored for `2` (topic-based).
 
 
 ### Kafka is not initialised in time before the Bridge Service
