@@ -1,6 +1,6 @@
 # Grafana Dashboards
 
-Grafana provides visual dashboards for monitoring the Virtual Parameter Service in real time. A pre-built dashboard JSON is included with the service.
+Grafana provides visual dashboards for monitoring the Virtual Parameter Service in real time. The VPS doesn't ship a pre-built dashboard — build your own panels from the metrics below.
 
 ## Setting Up Grafana
 
@@ -20,32 +20,13 @@ Grafana provides visual dashboards for monitoring the Virtual Parameter Service 
 
 5. Click **Save & Test** to verify the connection.
 
-### 2. Import the Dashboard
+### 2. Build a Dashboard
 
-A pre-built dashboard is provided as `Virtual Parameter Service Dashboard.json` (included in `Run.zip`).
-
-1. Navigate to **Dashboards > New > Import**.
-2. Upload or paste the contents of `Virtual Parameter Service Dashboard.json`.
-3. Select the **Prometheus** data source you configured in step 1.
-4. Click **Import**.
-
-The dashboard will appear under **Dashboards** in the left sidebar.
-
-## Dashboard Panels
-
-The provided `Virtual Parameter Service Dashboard.json` ships with two panels, both built from the session/data-source gauges:
-
-| Panel type | Metrics plotted |
-|---|---|
-| **Time series** | `vps_running_gauge_of_data_sources`, `vps_running_gauge_of_connected_sessions` |
-| **Stat** | `vps_running_gauge_of_data_sources` |
-
-!!! note "Extend the dashboard yourself"
-    This is a minimal starting point — it doesn't include panels for parameter definitions, packet processing, or sample throughput. Use the PromQL queries below to add your own panels for those.
+Create a new dashboard (**Dashboards > New > New Dashboard**) and add panels against the Prometheus data source you just configured, using the metrics from [Metrics & Prometheus](metrics.md) and the example queries below.
 
 ## Useful PromQL Queries
 
-Add custom panels or explore metrics using these queries:
+Use these as a starting point for your own panels:
 
 ### Active sessions per data source
 
@@ -79,7 +60,7 @@ rate(vps_virtual_parameter_packet_info_packager_samples_counter[5m])
 
 ## Quick Health Check
 
-After setup, you should see a non-zero value for `vps_running_gauge_of_data_sources` on the dashboard. This confirms:
+After setup, `vps_running_gauge_of_data_sources` should return a non-zero value in Grafana (or directly in Prometheus's own Graph view). This confirms:
 
 - The VPS is running and connected to Kafka.
 - Prometheus is successfully scraping the VPS metrics endpoint.

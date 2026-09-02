@@ -82,7 +82,7 @@ Metrics are enriched with labels to allow filtering and drill-down:
 
 ## Prometheus Configuration
 
-The provided `prometheus.yml` configures Prometheus to scrape the VPS metrics endpoint:
+Configure your own Prometheus instance to scrape the VPS metrics endpoint, e.g. in `prometheus.yml`:
 
 ```yaml
 global:
