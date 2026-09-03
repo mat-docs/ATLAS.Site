@@ -233,6 +233,7 @@ nav:
           - Countdown: key-functionality/analyse/viewer/displays/countdown.md
           - Error: key-functionality/analyse/viewer/displays/error.md
           - Event: key-functionality/analyse/viewer/displays/event.md
+          - FFT: key-functionality/analyse/viewer/displays/fft.md
           - Histogram: key-functionality/analyse/viewer/displays/histogram.md
           - Loadmap: key-functionality/analyse/viewer/displays/loadmap.md
           - Map: key-functionality/analyse/viewer/displays/map.md
