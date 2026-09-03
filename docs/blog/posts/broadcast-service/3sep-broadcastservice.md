@@ -16,7 +16,7 @@ This is the first release of Bridge Broadcast Service, a new product that gives 
 ## Downloads
 
 - **Docker:** [Container image](https://hub.docker.com/r/atlasplatformdocker/broadcast-service-host)
-- **Windows Binary:** [Download](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Broadcaster%20Service/Broadcast%20Service%201.0.0.4/MA.DataPlatforms.Bridge.Broadcast.Host.zip)
+- **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Broadcaster%20Service/Broadcast%20Service%201.0.0.4/MA.DataPlatforms.Bridge.Broadcast.Host.zip)
 - **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/broadcast_service/)
 
 ## New Features
