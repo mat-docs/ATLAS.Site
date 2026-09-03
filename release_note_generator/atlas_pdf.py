@@ -3,7 +3,8 @@
 Release Note PDF Generator
 
 Converts markdown release notes to branded Motion Applied PDFs.
-Supports ATLAS Viewer, ATLAS Data Server, System Monitor, Bridge Service, and more.
+Supports ATLAS Viewer, ATLAS Data Server, System Monitor, Bridge Service,
+Broadcast Service, and more.
 
 Usage:
     python atlas_pdf.py <path/to/release.md> [output.pdf]
@@ -188,6 +189,31 @@ PRODUCTS = {
             "telemetry data streams between sources and consumers. It provides flexible "
             "stream mapping, session lifecycle management, and reliable high-throughput "
             "data delivery via the Stream API."
+        ),
+        "release_filler": (
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 2.\n\n"
+            "We appreciate that there are still items to address in the improved areas and "
+            "would appreciate your feedback such that we can prioritise issues for future releases."
+        ),
+        "sysreq_intro":  None,
+        "sysreq_table":  None,
+        "sysreq_notes":  [],
+        "licensing":     None,
+        "installation":  None,
+        "diagnostics":   False,
+    },
+    "broadcast service": {
+        "cover_name":      "ATLAS Streaming Platform\n– Broadcast Service",
+        "cover_short":     "",
+        "section1_title":  "ATLAS Streaming Platform – Broadcast Service Release",
+        "overview_heading":"Broadcast Service Overview",
+        "overview": (
+            "Broadcast Service is a component of the ATLAS Streaming Platform that gives a "
+            "live telemetry feed highly-available replication to multiple downstream "
+            "consumers. It sits between an upstream source and one or more downstream Bridge "
+            "targets, persisting incoming data to a durable write-ahead log so a downstream "
+            "restart, network blip, or slow consumer never costs you data."
         ),
         "release_filler": (
             "Specific details of what has changed in the release can be found in the "
