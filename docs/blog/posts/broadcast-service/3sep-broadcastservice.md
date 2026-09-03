@@ -7,15 +7,16 @@ tags:
   - Broadcast Service
 ---
 
-# Broadcast Service Release: v1.0.0.4
+# Bridge Broadcast Service Release: v1.0.0.4
 
-This is the first release of Broadcast Service, a new product that gives your live telemetry feed highly-available replication to multiple downstream consumers — so a downstream restart, network blip, or slow consumer never costs you data.
+This is the first release of Bridge Broadcast Service, a new product that gives your live telemetry feed highly-available replication to multiple downstream consumers — so a downstream restart, network blip, or slow consumer never costs you data.
 
 <!-- more -->
 
 ## Downloads
 
 - **Docker:** [Container image](https://hub.docker.com/r/atlasplatformdocker/broadcast-service-host)
+- **Windows Binary:** [Download](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Broadcaster%20Service/Bridge%20Broadcast%20Service%201.0.0.4/MA.DataPlatforms.Bridge.Broadcast.Host.zip)
 - **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/broadcast_service/)
 
 ## New Features
