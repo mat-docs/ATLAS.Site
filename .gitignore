@@ -2,6 +2,11 @@ site
 .venv/
 main.py
 /.vs
+
+# macOS filesystem metadata
+.DS_Store
+**/.DS_Store
+
 # Python cache files
 overrides/hooks/__pycache__/
 .cache
