@@ -2,6 +2,9 @@
 command = "mkdocs build"
 publish = "site"
 
+[build.environment]
+MISE_PYTHON_GITHUB_ATTESTATIONS = "false"
+
 [[headers]]
   for = "*.min.js"
   [headers.values]
