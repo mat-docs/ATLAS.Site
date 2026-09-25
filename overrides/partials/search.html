@@ -13,23 +13,32 @@ https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
     var INDEX = 'ATLAS Docs Site';
 
     // Must match SECTIONS in the Algolia crawler config: path prefix -> product.
-    // Also sets the order of the filter chips.
+    // Pages in "General" aren't listed, so reading them doesn't boost anything.
     var PRODUCTS = [
-        ['/key-functionality/analyse/', 'ATLAS'],
-        ['/developer-resources/atlas/sql-race/', 'SQL Race'],
-        ['/developer-resources/atlas/', 'ATLAS'],
-        ['/key-functionality/store/', 'SQL Race'],
         ['/key-functionality/configure/system-monitor/', 'System Monitor'],
-        ['/developer-resources/system-monitor/', 'System Monitor'],
-        ['/key-functionality/integrate/rta/', 'RTA'],
-        ['/developer-resources/rta/', 'RTA'],
+        ['/key-functionality/store/sqlrace/', 'SQL Race'],
         ['/key-functionality/stream/ads/', 'ADS'],
-        ['/key-functionality/stream/', 'Streaming'],
-        ['/developer-resources/secu4/', 'Streaming'],
+        ['/key-functionality/enrich/vtag/', 'vTAG Server'],
         ['/key-functionality/enrich/vps/', 'VPS'],
-        ['/key-functionality/enrich/vtag/', 'vTAG'],
-        ['/getting-started/', 'General'],
-        ['/introduction/', 'General']
+        ['/key-functionality/analyse/viewer/', 'ATLAS'],
+        ['/key-functionality/integrate/rta/', 'RTA'],
+        ['/developer-resources/system-monitor/', 'System Monitor'],
+        ['/developer-resources/secu4/stream_api/', 'Stream API'],
+        ['/developer-resources/secu4/bridge_service/', 'Bridge Service'],
+        ['/developer-resources/secu4/broadcast_service/', 'Broadcast Service'],
+        ['/developer-resources/secu4/support_library/', 'Support Library'],
+        ['/developer-resources/atlas/automation-api/', 'Automation API'],
+        ['/developer-resources/atlas/sql-race/', 'SQL Race API'],
+        ['/developer-resources/atlas/display-api/', 'Display API'],
+        ['/developer-resources/rta/', 'RTA']
+    ];
+
+    // Chip order. Products in the index but not listed here go at the end.
+    var CHIP_ORDER = [
+        'ATLAS', 'SQL Race', 'System Monitor', 'RTA', 'ADS', 'vTAG Server', 'VPS',
+        'Automation API', 'Display API', 'SQL Race API',
+        'Stream API', 'Bridge Service', 'Broadcast Service', 'Support Library',
+        'General'
     ];
 
     var path = location.pathname;
@@ -50,9 +59,8 @@ https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
             })
                 .then(function (r) { return r.json(); })
                 .then(function (d) {
-                    var order = PRODUCTS.map(function (p) { return p[1]; });
                     available = Object.keys((d.facets && d.facets.product) || {}).sort(function (a, b) {
-                        var ia = order.indexOf(a), ib = order.indexOf(b);
+                        var ia = CHIP_ORDER.indexOf(a), ib = CHIP_ORDER.indexOf(b);
                         return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
                     });
                 })
