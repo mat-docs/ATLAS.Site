@@ -1,5 +1,5 @@
 !!! danger "Preview Functionality"
-    The FFT Display is currently a preview feature. As such, the content in this page is subject to change based on feedback and roadmap changes.
+    The FFT Display is currently a preview feature. As such, the content in this page is subject to change based on feedback and roadmap changes. This display is available from ATLAS [v11.5.4.230](../../../../blog/posts/viewer/11.5.4.230-W37.md) onwards.
 
 # FFT Display
 
