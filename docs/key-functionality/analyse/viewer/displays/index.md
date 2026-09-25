@@ -34,6 +34,7 @@ ATLAS Viewer displays are visual components that show telemetry data from your s
 | [**Waveform**](waveform.md) | Multi-parameter time/distance traces | Interactive legend, reference cursor, autoscale, event markers, live telemetry | 100 (default, adjustable) |
 | [**Scatterplot**](scatterplot.md) | 2D plot of Y vs X, optional Z colour mapping | Best-fit/reference lines, up to 5 parameter sets, custom draw styles | 24 |
 | [**Histogram**](histogram.md) | Distribution of a single parameter | Spectral/cumulative modes, adjustable bins, auto-refresh | 1 |
+| [**FFT**](fft.md) | Frequency spectrum of a single parameter | Window functions, dB scale, peak markers, zoom | 1 |
 | [**Loadmap**](loadmap.md) | Pseudo-3D heatmap of time in parameter ranges | Adjustable buckets, colour bar, lap refresh | 2 |
 | [**Surface Map**](surface.md) | Interactive 3D mesh graph | Rotate/zoom, axis/grid customisation, requires .3d file | 2 |
 | [**Numeric**](numeric.md) | Instant numeric readouts | Auto-sizing text, colour thresholds, grid layout | 150 |
