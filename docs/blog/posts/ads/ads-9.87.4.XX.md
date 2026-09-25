@@ -18,28 +18,25 @@ This release includes several bug fixes to support SSN2 adoption. There are no n
 
 ## Bug Fixes
 
-### Unattended Offload Could Be Blocked
+### Unattended Offload Could Be Blocked (#57296, #60473, #60742, #60896)
 Fixed an issue where a "Server Busy" dialog could interrupt unattended SSN2 offloads.
 
 ### SSN2 Offload Folder Path Handling
-Fixed an issue where SSN2 offloads could be written to the default location when the configured output folder contained leading or trailing whitespace.
+Fixed an issue where SSN2 or SQL Race offloads could be written to the default location when the configured output folder contained leading or trailing whitespace.
 
-### Crash
+### Crash (#60820)
 Fixed a stability issue that could cause ADS to crash after updating to version 9.87.3.93.
 
-### SQLRace Parameter Resolution Errors
+### SQLRace Parameter Resolution Errors (#60756)
 Fixed an issue that could generate SQLRace parameter data access errors, spamming logs during offload.
 
-### Multi-Session Offload Dual Recorder Naming
-Fixed an issue where dual-recorder sessions were not always renamed correctly when multiple sessions were offloaded in a single operation.
-
-### RAW File Replay Compatibility
+### RAW File Replay Compatibility (#60839, #60703)
 Fixed an issue where RAW telemetry files could be created with an incorrect file suffix, preventing replay.
 
-### SSN2 Session Detail Resolution
+### SSN2 Session Detail Resolution (#60797)
 Fixed an issue where session identifiers and session details were not resolved correctly when generating SSN2 sessions from RDS.
 
-### Dual Recorder Initialisation
+### Dual Recorder Initialisation (#60796)
 Fixed an issue where the dual recorder could fail to initialise after restarting ADS.
 
 ## Known Issues
