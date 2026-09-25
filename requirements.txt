@@ -1,3 +1,2 @@
 ﻿# https://www.starfallprojects.co.uk/posts/deploy-mkdocs-netlify/
-mkdocs==1.5.3
-mkdocs-material==9.5.0
+zensical==0.0.65

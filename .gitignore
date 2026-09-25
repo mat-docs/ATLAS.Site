@@ -8,7 +8,6 @@ main.py
 **/.DS_Store
 
 # Python cache files
-overrides/hooks/__pycache__/
 .cache
 __pycache__/
 *.py[cod]

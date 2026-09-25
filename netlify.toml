@@ -1,5 +1,5 @@
 [build]
-command = "mkdocs build"
+command = "zensical build && python scripts/tag_search_index.py site && python scripts/generate_llms_txt.py site"
 publish = "site"
 
 [[headers]]
@@ -40,7 +40,7 @@ publish = "site"
     Cache-Control = "public, max-age=300"
 
 [[headers]]
-  for = "search/search_index.json"
+  for = "search.json"
   [headers.values]
     Cache-Control = "public, max-age=300"
 
