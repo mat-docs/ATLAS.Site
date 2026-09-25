@@ -100,7 +100,8 @@ label[for="__search"] {
   flex-basis: 100%;
   flex-wrap: wrap;
   gap: .35rem;
-  padding: .5rem 0 0;
+  /* Line up with the search input, which gets its inset from .DocSearch-Form */
+  padding: 0 16px 12px;
 }
 
 .atlas-search-scope__chip {
