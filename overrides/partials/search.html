@@ -37,9 +37,11 @@ https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
     var CHIP_ORDER = [
         'ATLAS', 'SQL Race', 'System Monitor', 'RTA', 'ADS', 'vTAG Server', 'VPS',
         'Automation API', 'Display API', 'SQL Race API',
-        'Stream API', 'Bridge Service', 'Broadcast Service', 'Support Library',
-        'General'
+        'Stream API', 'Bridge Service', 'Broadcast Service', 'Support Library'
     ];
+
+    // In the index but not offered as a chip; these pages only show under "All docs".
+    var NO_CHIP = ['General'];
 
     var path = location.pathname;
     var currentProduct = (PRODUCTS.find(function (p) { return path.indexOf(p[0]) === 0; }) || [])[1] || null;
@@ -107,7 +109,8 @@ https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', 'Filter results by product');
 
-        [null].concat(available).forEach(function (name) {
+        var chips = available.filter(function (p) { return NO_CHIP.indexOf(p) < 0; });
+        [null].concat(chips).forEach(function (name) {
             var chip = document.createElement('button');
             chip.type = 'button';
             chip.className = 'atlas-search-scope__chip';
