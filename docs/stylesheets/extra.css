@@ -90,6 +90,42 @@ label[for="__search"] {
   --docsearch-primary-color: var(--md-primary-fg-color, #ED6D20) !important;
 }
 
+/* ── Modal product filter chips ── */
+.DocSearch-SearchBar:has(.atlas-search-scope) {
+  flex-wrap: wrap;
+}
+
+.atlas-search-scope {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: .35rem;
+  /* Line up with the search input, which gets its inset from .DocSearch-Form */
+  padding: 12px 16px;
+}
+
+.atlas-search-scope__chip {
+  background: var(--docsearch-hit-background, #fff);
+  border: 1px solid var(--docsearch-muted-color, #969faf);
+  border-radius: 1rem;
+  color: var(--docsearch-text-color, #1c1e21);
+  cursor: pointer;
+  font: inherit;
+  font-size: .75rem;
+  line-height: 1;
+  padding: .35rem .7rem;
+}
+
+.atlas-search-scope__chip:hover {
+  border-color: var(--docsearch-primary-color);
+}
+
+.atlas-search-scope__chip[aria-pressed="true"] {
+  background: var(--docsearch-primary-color);
+  border-color: var(--docsearch-primary-color);
+  color: #fff;
+}
+
 /* ── Responsive: icon-only on narrow screens ── */
 @media screen and (max-width: 76.25em) {
   .DocSearch-Button-Placeholder,

@@ -7,10 +7,155 @@
 https://cdn.jsdelivr.net/npm/@docsearch/js@4.6.0/dist/umd/index.min.js
 "></script>
 <script>
-docsearch({
-    container: '#docsearch',
-    appId: '{{ config.extra.ALGOLIA_APP_ID }}',
-    indexName: 'ATLAS Docs Site',
-    apiKey: '{{ config.extra.ALGOLIA_API_KEY }}'
-});
+(function () {
+    var APP_ID = '{{ config.extra.ALGOLIA_APP_ID }}';
+    var API_KEY = '{{ config.extra.ALGOLIA_API_KEY }}';
+    var INDEX = 'ATLAS Docs Site';
+
+    // Must match SECTIONS in the Algolia crawler config: path prefix -> product.
+    // Pages in "General" aren't listed, so reading them doesn't boost anything.
+    var PRODUCTS = [
+        ['/key-functionality/configure/system-monitor/', 'System Monitor'],
+        ['/key-functionality/store/sqlrace/', 'SQL Race'],
+        ['/key-functionality/stream/ads/', 'ADS'],
+        ['/key-functionality/enrich/vtag/', 'vTAG Server'],
+        ['/key-functionality/enrich/vps/', 'VPS'],
+        ['/key-functionality/analyse/viewer/', 'ATLAS'],
+        ['/key-functionality/integrate/rta/', 'RTA'],
+        ['/developer-resources/system-monitor/', 'System Monitor'],
+        ['/developer-resources/secu4/stream_api/', 'Stream API'],
+        ['/developer-resources/secu4/bridge_service/', 'Bridge Service'],
+        ['/developer-resources/secu4/broadcast_service/', 'Broadcast Service'],
+        ['/developer-resources/secu4/support_library/', 'Support Library'],
+        ['/developer-resources/atlas/automation-api/', 'Automation API'],
+        ['/developer-resources/atlas/sql-race/', 'SQL Race API'],
+        ['/developer-resources/atlas/display-api/', 'Display API'],
+        ['/developer-resources/rta/', 'RTA']
+    ];
+
+    // Chip order. Products in the index but not listed here go at the end.
+    var CHIP_ORDER = [
+        'ATLAS', 'SQL Race', 'System Monitor', 'RTA', 'ADS', 'vTAG Server', 'VPS',
+        'Automation API', 'Display API', 'SQL Race API',
+        'Stream API', 'Bridge Service', 'Broadcast Service', 'Support Library'
+    ];
+
+    // In the index but not offered as a chip; these pages only show under "All docs".
+    var NO_CHIP = ['General'];
+
+    var path = location.pathname;
+    var currentProduct = (PRODUCTS.find(function (p) { return path.indexOf(p[0]) === 0; }) || [])[1] || null;
+
+    // Products present in the index. Stays empty until the crawler has added the
+    // `product` field, in which case search behaves exactly as before.
+    var available = [];
+    var scope = null; // null = all products
+    var facetsRequest = null;
+
+    function loadFacets() {
+        if (!facetsRequest) {
+            facetsRequest = fetch('https://' + APP_ID + '-dsn.algolia.net/1/indexes/' + encodeURIComponent(INDEX) + '/query', {
+                method: 'POST',
+                headers: { 'X-Algolia-Application-Id': APP_ID, 'X-Algolia-API-Key': API_KEY },
+                body: JSON.stringify({ query: '', hitsPerPage: 0, facets: ['product'] })
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    available = Object.keys((d.facets && d.facets.product) || {}).sort(function (a, b) {
+                        var ia = CHIP_ORDER.indexOf(a), ib = CHIP_ORDER.indexOf(b);
+                        return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+                    });
+                })
+                .catch(function () { available = []; });
+        }
+        return facetsRequest;
+    }
+
+    function productFilter(name) {
+        return 'product:"' + name.replace(/"/g, '\\"') + '"';
+    }
+
+    // Chosen product: only that product. Otherwise every product, with the one the
+    // reader is currently in scored higher so its pages come first.
+    function buildFilters() {
+        if (!available.length) return null;
+        if (scope) return productFilter(scope);
+        if (!currentProduct || available.indexOf(currentProduct) < 0) return null;
+        return available.map(function (p) {
+            return productFilter(p) + '<score=' + (p === currentProduct ? 2 : 1) + '>';
+        }).join(' OR ');
+    }
+
+    function rerunSearch() {
+        var input = document.querySelector('.DocSearch-Input');
+        if (!input) return;
+        // The input is React-controlled, so the value has to actually change to trigger a search.
+        var setValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+        var query = input.value;
+        setValue.call(input, query + ' ');
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        setValue.call(input, query);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.focus();
+    }
+
+    function renderChips(modal) {
+        if (!available.length || modal.querySelector('.atlas-search-scope')) return;
+        var bar = modal.querySelector('.DocSearch-SearchBar');
+        if (!bar) return;
+
+        var group = document.createElement('div');
+        group.className = 'atlas-search-scope';
+        group.setAttribute('role', 'group');
+        group.setAttribute('aria-label', 'Filter results by product');
+
+        var chips = available.filter(function (p) { return NO_CHIP.indexOf(p) < 0; });
+        [null].concat(chips).forEach(function (name) {
+            var chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'atlas-search-scope__chip';
+            chip.textContent = name || 'All docs';
+            chip.setAttribute('aria-pressed', String(scope === name));
+            chip.addEventListener('click', function () {
+                scope = name;
+                group.querySelectorAll('.atlas-search-scope__chip').forEach(function (c) {
+                    c.setAttribute('aria-pressed', String(c === chip));
+                });
+                rerunSearch();
+            });
+            group.appendChild(chip);
+        });
+
+        // Inside the header rather than after it: DocSearch mounts its results panel
+        // straight after the header, which would push the chips below the results.
+        bar.appendChild(group);
+    }
+
+    new MutationObserver(function () {
+        var modal = document.querySelector('.DocSearch-Modal');
+        if (modal) loadFacets().then(function () { renderChips(modal); });
+    }).observe(document.body, { childList: true, subtree: true });
+
+    docsearch({
+        container: '#docsearch',
+        appId: APP_ID,
+        indexName: INDEX,
+        apiKey: API_KEY,
+        transformSearchClient: function (client) {
+            return Object.assign({}, client, {
+                search: function (params) {
+                    var filters = buildFilters();
+                    if (filters && params && params.requests) {
+                        params = Object.assign({}, params, {
+                            requests: params.requests.map(function (r) {
+                                return r.indexName === INDEX && !r.filters ? Object.assign({}, r, { filters: filters }) : r;
+                            })
+                        });
+                    }
+                    return client.search(params);
+                }
+            });
+        }
+    });
+})();
 </script>
