@@ -1,12 +1,12 @@
 ---
 date:
-  created: 2026-09-29
+  created: 2026-10-01
 categories:
   - Releases
 tags:
   - ADS
 ---
-# ATLAS Data Server Release: v9.87.4.XX
+# ATLAS Data Server Release: v9.87.4.49
 
 This release includes several bug fixes to support SSN2 adoption. There are no new features in this release.
 
@@ -14,7 +14,7 @@ This release includes several bug fixes to support SSN2 adoption. There are no n
 
 ## Download
 
-[ATLAS Data Server Installer](https://portal.mclarenapplied.com/portal/Downloads/Standalone%20ADS/ADS%209.87.4.XX/AtlasDataServer.exe)
+[ATLAS Data Server Installer](https://portal.mclarenapplied.com/portal/Downloads/Standalone%20ADS/ADS%209.87.4.49/AtlasDataServer.exe)
 
 ## Bug Fixes
 
