@@ -1,6 +1,6 @@
 ---
 date:
-  created: 2026-10-01
+  created: 2026-10-02
 categories:
   - Releases
 tags:
@@ -8,7 +8,7 @@ tags:
 ---
 # ATLAS Data Server Release: v9.87.4.49
 
-This release includes several bug fixes to support SSN2 adoption. There are no new features in this release.
+This release includes several bug fixes to support SSN2 adoption. There are no new features in this release. Bridge Service has been updated to use [Bridge Service v2.1.5.3](https://atlas.motionapplied.com/blog/2026/09/03/bridge-service-release-v2153/).
 
 <!-- more -->
 
