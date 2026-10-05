@@ -48,6 +48,7 @@ The XML file selected needs have a format like this:
 ![PCU Dash Info XML](assets/pcu-dash-infos-xml.png)
 
 The different parts of the XML are defined as follows:
+
 - **PcuDashInfos** - The XML root which stores the collection of PCU Dashes to use
 - **PcuDashInfo** - Each of these elements contain information for a specified PCU Dash version
 - **Order** - The index of the *PcuDashInfo* element in the colletion
