@@ -59,6 +59,6 @@ The different parts of the XML are defined as follows:
 - **RawFileExtension** - The extension for the raw file type auto-loaded by the PCU Dash per product type
 - **DrawShiftLights** - A boolean value specifying whether the PCU Dash needs shift lights drawn by ATLAS.
 
-Currently ATLAS 10 supports three PCU Dash types the PCU8D, PCU700 and PCU510 each with firmware version PCU8E.15x23, PCU700.01x33 and PCU510.03y39.CD5X respectively. 
+Currently ATLAS 10 supports three PCU Dash types the PCU8D, PCU700 and PCU510 each with firmware version PCU8E.15x23, PCU700.01x33 and PCU510.03y39.CD5X respectively which are default selectable options in the properties window. 
 The custom product type configuration is meant to give users the option to use different firmware versions, the dll for any chosen firmware version by the user must be added to the ATLAS 10 folder in C:\Program Files.
 
