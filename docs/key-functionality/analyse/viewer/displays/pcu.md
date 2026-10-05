@@ -45,6 +45,7 @@ The options for the PCU Dash Display are as follows:
 
 This is a field found in `Tools > Options > Plugins > PCU Dash Display` where users can set an XML file in which they can specify any PCU Dash type and firmware version of their choice which can then be selected in the *ProductType* and *firmware version* dropdowns in the Display Properties window.
 The XML file selected needs have a format like this:
+
 ![PCU Dash Info XML](assets/pcu-dash-infos-xml.png)
 
 The different parts of the XML are defined as follows:
