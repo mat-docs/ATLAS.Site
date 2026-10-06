@@ -46,7 +46,19 @@ The options for the PCU Dash Display are as follows:
 This is a field found in `Tools > Options > Plugins > PCU Dash Display` where users can set an XML file in which they can specify any PCU Dash type and firmware version of their choice which can then be selected in the *ProductType* and *firmware version* dropdowns in the Display Properties window.
 The XML file selected needs have a format like this:
 
-![PCU Dash Info XML](assets/pcu-dash-infos-xml.png)
+```xml
+<PcuDashInfos>
+	<PcuDashInfo>
+		<Order>0</Order>
+		<DisplayName>PCU8D</DisplayName>
+		<CDSimClientDLLName>CDSimClient.dll</CDSimClientDLLName>
+		<SimulatorHostFilename>SimHost.exe</SimulatorHostFilename>
+		<FirmwareName>PCU8E.15x23.dll</FirmwareName>
+		<RawFileExtension>.rawpcu8d</RawFileExtension>
+		<DrawShiftLights>true</DrawShiftLights>
+	</PcuDashInfo>
+</PcuDashInfos>
+```
 
 The different parts of the XML are defined as follows:
 
@@ -59,8 +71,6 @@ The different parts of the XML are defined as follows:
 - **FirmwareName** - The dll for the firmware version of the PCU Dash specified in *DisplayName*, which turns up as a selectable option in the **Firmware Version** dropdown. A value in this element must be suffixed with '.dll' and no two *PcuDashInfo* elements can have the same value for this **Firmware version**
 - **RawFileExtension** - The extension for the raw file type auto-loaded by the PCU Dash per product type
 - **DrawShiftLights** - A boolean value specifying whether the PCU Dash needs shift lights drawn by ATLAS.
-
-Currently ATLAS 10 supports three PCU Dash types the PCU8D, PCU700 and PCU510 each with firmware version PCU8E.15x23, PCU700.01x33 and PCU510.03y39.CD5X respectively which are default selectable options in the properties window. 
 
 The custom product type configuration is meant to give users the option to use different firmware versions, the dll for any chosen firmware version by the user must be added to the ATLAS 10 folder in C:\Program Files.
 
