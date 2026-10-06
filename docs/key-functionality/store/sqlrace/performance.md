@@ -102,7 +102,7 @@ Forcing garbage collection (GC) in ATLAS can have both benefits and drawbacks. O
 
 However, there are also some downsides. Forcing GC can introduce performance overhead, as the process can be resource-intensive and may temporarily slow down the application. It can also lead to unpredictable behaviour, disrupting the normal GC cycle and potentially causing issues if not managed carefully.
 
-![Force GC](assets/force_gc.png){: style="width:50%;"}
+![Force GC](assets/force_gc.png){: style="max-width:50%;"}
 
 !!! note
     The Force GC feature was implemented to assist our developers in managing stress and benchmarking tasks, enabling quicker resource release between tests.
