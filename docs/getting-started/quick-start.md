@@ -11,6 +11,7 @@ This page contains quick access to getting started with different component in t
 | [ATLAS Data Server](../key-functionality/stream/ads/installation.md) | Distribute live telemetry across your network. Connects hardware to ATLAS clients over Ethernet or Wi-Fi. | 
 | [System Monitor](../key-functionality/configure/system-monitor/getting-started/index.md) | Configure, calibrate and tune Motion Applied ECYs. Program units, setup logging and manage sensors. | 
 | [SQL Race Management Studio](../key-functionality/store/sqlrace/installation.md) | Store and manage telemetry session in a central database. Bulk import, organise and share data across your team. | 
+| [Standalone Stream Recorder](../key-functionality/analyse/standalone-stream-recorder/index.md) | Record live Stream API telemetry to SSN2 files or a SQL Race database, without running ATLAS Viewer as the recorder. | 
 
 ## Developer Guides
 
