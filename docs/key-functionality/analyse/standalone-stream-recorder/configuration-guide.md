@@ -102,7 +102,7 @@ With `Database`, `ConnectionString`, `DbEngine`, `DataSource` and `DeleteSession
 
 The recorder only starts its Server Listener when `SessionFormat` is `Database`.
 
-## Name sessions myself
+## Change session identifier or details
 
 Use this when the producer's session identifier or details are not what you want stored.
 
@@ -137,7 +137,7 @@ Use `StreamReadingConfig.SessionIdentifierPattern` to filter by session identifi
 
 `DataSource` must match the data source name set on the producer. When the producer is the Bridge Service, this is the name of the ADS.
 
-## Catch up on data I missed
+## Catchup on missed data
 
 Set `ReadingMode` to `LiveWithCatchUp` to read live data and also catch up on data missed earlier. With `Live` only live data is read.
 
