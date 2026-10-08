@@ -14,17 +14,15 @@ The sections `StreamApiConfig`, `WritingConfig`, `StreamReadingConfig`, `SqlRace
 
 ## StreamApiConfig
 
-Connection settings for the Stream API. These are shared with other Stream API components, so see [Server Configuration](../../../developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md) for what each does and its default.
+Connection settings for the Stream API. The recorder's key settings are below.
 
 | Key | Type | Notes |
 |---|---|---|
 | `StreamCreationStrategy` | `PartitionBased` (1) / `TopicBased` (2) | Must match the producer. |
 | `BrokerUrl` | string | Kafka broker address, for example `localhost:9094`. |
 | `PartitionMappings` | array of `{ "Stream": string, "Partition": int }` | Only used with `PartitionBased`. |
-| `StreamApiPort`, `IntegrateSessionManagement`, `IntegrateDataFormatManagement`, `UseRemoteKeyGenerator`, `RemoteKeyGeneratorServiceAddress`, `BatchingResponses`, `Domain` | | Present in the shipped file. |
-| `InitialisationTimeoutSeconds`, `TerminationTimeoutSeconds`, `BatchingSizesKb`, `BatchingTimeMs`, `EnableGrpcReflection`, `EnableRouterPublishMetrics`, `EnableRouterConsumeMetrics` | | Accepted by the schema. |
-| `KafkaBrokerPublishingConfigFilePath`, `KafkaBrokerConsumingConfigFilePath`, `KafkaBrokerConfigWhitelistFilePath` | string | Kafka tuning files. See [Kafka Broker Tuning](../../../developer-resources/secu4/stream_api/reference_docs/configuration/kafka-broker-tuning.md). |
-| `Security` | object | Kafka SASL/SSL. See [Kafka Security](../../../developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security.md). |
+
+All other `StreamApiConfig` settings, including `Security` and the Kafka broker tuning file paths, are described in the [Stream API Server Configuration properties](../../../developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md#configuration-properties). See also [Kafka Security](../../../developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security.md) and [Kafka Broker Tuning](../../../developer-resources/secu4/stream_api/reference_docs/configuration/kafka-broker-tuning.md).
 
 ## WritingConfig
 
@@ -46,7 +44,7 @@ Connection settings for the Stream API. These are shared with other Stream API c
 | `ReadingMode` | `Live` (0) / `LiveWithCatchUp` (1) | `Live` | `Live` reads live data only; `LiveWithCatchUp` also catches up on missed data. **Required.** |
 | `DataSource` | string | — | Data source to read from, for example `Default`. **Required.** |
 | `SessionIdentifierPattern` | string | — | Which sessions to read, for example `*`. **Required.** |
-| `GroupId` | string | empty | Consumer group id. Letters, digits, `_` and `-` only. |
+| `GroupId` | string | empty | Group id used to consume the data, so the recorder can continue where it left off after a disconnect. Letters, digits, `_` and `-` only. |
 
 ## SqlRaceConfig
 

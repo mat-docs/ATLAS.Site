@@ -21,7 +21,7 @@ Use this when your producer's Stream API uses a different broker or stream layou
 - `PartitionMappings` is only used with `PartitionBased`; each entry needs a `Stream` name and a `Partition` number.
 - If Kafka uses SASL or SSL, see [Kafka Security](../../../developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security.md).
 
-The remaining `StreamApiConfig` fields belong to the Stream API and are documented in [Server Configuration](../../../developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md).
+The remaining `StreamApiConfig` fields are documented in [Server Configuration](../../../developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md#configuration-properties).
 
 ## Record to SSN2 files
 
@@ -80,7 +80,23 @@ Use this when you want sessions in a SQL Race database, or want to load live ses
 
 === "SQL Server"
 
-    Set `DbEngine` to `SQLServer`, `DataSource` to the server address, and `ConnectionString` to a valid SQL Race connection string for that server. The other fields are as for SQLite.
+    ```json title="AppConfig.json" linenums="1"
+    "WritingConfig": {
+      "SessionFormat": "Database",
+      "UseTemporaryRecordingFolder": false,
+      "UseStreamApiSessionIdentifier": true,
+      "UseStreamApiSessionDetails": true
+    },
+    "SqlRaceConfig": {
+      "ConnectionString": "server=<ServerName>\<InstanceName>;Initial Catalog=<DatabaseName>;Trusted_Connection=True;",
+      "DbEngine": "SQLServer",
+      "DataSource": "<ServerName>\<InstanceName>",
+      "DeleteSessionOnClose": "NoSessionDelete",
+      "ServerListenerAddress": "127.0.0.1:7300"
+    }
+    ```
+
+    Replace the `<...>` placeholders with your SQL Server name, instance and SQL Race database. This example uses Windows authentication (`Trusted_Connection=True`); use whichever SQL Server connection string your SQL Race database requires.
 
 With `Database`, `ConnectionString`, `DbEngine`, `DataSource` and `DeleteSessionOnClose` must all be set, otherwise the recorder will not start. `DbEngine` accepts `SQLite` or `SQLServer`, in any letter case.
 
@@ -125,9 +141,18 @@ Use `StreamReadingConfig.SessionIdentifierPattern` to filter by session identifi
 
 Set `ReadingMode` to `LiveWithCatchUp` to read live data and also catch up on data missed earlier. With `Live` only live data is read.
 
-## Run several recorders against one broker
+## Resume recording after a disconnect
 
-Give each recorder its own `StreamReadingConfig.GroupId`. It is the group id used to consume the data and may contain only letters, digits, underscores and hyphens. It may be left empty.
+Set `StreamReadingConfig.GroupId` so the recorder can continue from where it left off if it disconnects for any reason. Restart the recorder with the same `GroupId` to resume. It may contain only letters, digits, underscores and hyphens.
+
+```json title="AppConfig.json (StreamReadingConfig)" linenums="1" hl_lines="5"
+"StreamReadingConfig": {
+  "ReadingMode": "Live",
+  "DataSource": "Default",
+  "SessionIdentifierPattern": "*",
+  "GroupId": "my-recorder"
+}
+```
 
 ## Record VPS sessions
 
