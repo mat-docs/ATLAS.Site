@@ -88,9 +88,9 @@ Use this when you want sessions in a SQL Race database, or want to load live ses
       "UseStreamApiSessionDetails": true
     },
     "SqlRaceConfig": {
-      "ConnectionString": "server=<ServerName>\<InstanceName>;Initial Catalog=<DatabaseName>;Trusted_Connection=True;",
+      "ConnectionString": "server=<ServerName>\\<InstanceName>;Initial Catalog=<DatabaseName>;Trusted_Connection=True;",
       "DbEngine": "SQLServer",
-      "DataSource": "<ServerName>\<InstanceName>",
+      "DataSource": "<ServerName>\\<InstanceName>",
       "DeleteSessionOnClose": "NoSessionDelete",
       "ServerListenerAddress": "127.0.0.1:7300"
     }
