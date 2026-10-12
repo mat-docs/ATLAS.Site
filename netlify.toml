@@ -52,14 +52,7 @@ MISE_PYTHON_GITHUB_ATTESTATIONS = "false"
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# Keep the bare landing page on atlas.motionapplied.com (rewrite stops later rules matching "/")
-[[redirects]]
-  from = "https://atlas.motionapplied.com/"
-  to = "/index.html"
-  status = 200
-  force = true
-
-# Everything else on atlas.motionapplied.com moves to the docs subdomain
+# All of atlas.motionapplied.com (including the root) moves to the docs subdomain
 [[redirects]]
   from = "https://atlas.motionapplied.com/*"
   to = "https://docs.atlas.motionapplied.com/:splat"
