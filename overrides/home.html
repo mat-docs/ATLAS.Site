@@ -14,6 +14,8 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--t1);font-family:var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
+/* Material drawer/sidebar sits on a light background; keep its text dark despite the dark body colour above */
+.md-sidebar{color:var(--md-default-fg-color)}
 .container{width:80vw;margin:0 auto;padding:0 2rem}
 
 /* Scroll reveal */
@@ -393,7 +395,6 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 </div>
 
 
-</div>
 </div>
 </div>
 </div>
