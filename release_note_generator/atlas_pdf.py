@@ -252,6 +252,30 @@ PRODUCTS = {
         "installation":  None,
         "diagnostics":   False,
     },
+    "standalone stream recorder": {
+        "cover_name":      "ATLAS Streaming Platform\n– Standalone Stream Recorder",
+        "cover_short":     "",
+        "section1_title":  "Standalone Stream Recorder Release",
+        "overview_heading":"Standalone Stream Recorder Overview",
+        "overview": (
+            "The Standalone Stream Recorder is a Windows console application that listens to "
+            "live telemetry published through the Stream API on Kafka and records each session "
+            "to SSN2 files or a SQL Race database, without needing ATLAS Viewer to act as the "
+            "recorder. It requires a machine with an ATLAS licence."
+        ),
+        "release_filler": (
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 2.\n\n"
+            "We appreciate that there are still items to address in the improved areas and "
+            "would appreciate your feedback such that we can prioritise issues for future releases."
+        ),
+        "sysreq_intro":  None,
+        "sysreq_table":  None,
+        "sysreq_notes":  [],
+        "licensing":     None,
+        "installation":  None,
+        "diagnostics":   False,
+    },
 }
 
 def get_product(title):
