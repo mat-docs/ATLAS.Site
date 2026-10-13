@@ -70,5 +70,3 @@ The different parts of the XML are defined as follows:
 - **DrawShiftLights** - A boolean value specifying whether the PCU Dash needs shift lights drawn by ATLAS.
 - **FirmwareDirectory** - The directory where the dll for the firmware version of the PCU Dash specified in *FirmwareName* is located.
 
-The custom product type configuration is meant to give users the option to use different firmware versions, the dll for any chosen firmware version by the user must be added to the ATLAS 10 folder in C:\Program Files.
-
