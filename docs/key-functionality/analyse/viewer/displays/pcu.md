@@ -41,7 +41,7 @@ The options for the PCU Dash Display are as follows:
 - **Horizontal Alignment** - Sets the horizontal alignment of the simulator if the display is wider than the simulator
 - **Vertical Alignment** - Sets the vertical alignment of the simulator if the display is taller than the simulator
 
-## Custom Product Type Configuration
+## Custom Firmware Configuration
 
 This is a field found in `Tools > Options > Plugins > PCU Dash Display` where users can set an XML file in which they can specify any PCU Dash type and firmware version of their choice which can then be selected in the *ProductType* and *firmware version* dropdowns in the Display Properties window.
 The XML file selected needs have a format like this:
@@ -51,11 +51,10 @@ The XML file selected needs have a format like this:
 	<PcuDashInfo>
 		<Order>0</Order>
 		<DisplayName>PCU8D</DisplayName>
-		<CDSimClientDLLName>CDSimClient.dll</CDSimClientDLLName>
-		<SimulatorHostFilename>SimHost.exe</SimulatorHostFilename>
 		<FirmwareName>PCU8E.15x23.dll</FirmwareName>
 		<RawFileExtension>.rawpcu8d</RawFileExtension>
 		<DrawShiftLights>true</DrawShiftLights>
+		<FirmwareDirectory>C:\FirmwareFolder</FirmwareDirectory>
 	</PcuDashInfo>
 </PcuDashInfos>
 ```
@@ -66,11 +65,10 @@ The different parts of the XML are defined as follows:
 - **PcuDashInfo** - Each of these elements contain information for a specified PCU Dash version
 - **Order** - The index of the *PcuDashInfo* element in the colletion
 - **DisplayName** - The product type of PCU Dash display (e.g. PCU8D or PCU700) which are selectable options in the **Product Type** dropdown in the display properties window
-- **CDSimClientDLLName** - The dll for the CDSimClient which should be set as 'CDSimClient.dll'
-- **SimulatorHostFilename** - The exe for the simulator host which should be set as 'SimHost.exe'
 - **FirmwareName** - The dll for the firmware version of the PCU Dash specified in *DisplayName*, which turns up as a selectable option in the **Firmware Version** dropdown. A value in this element must be suffixed with '.dll' and no two *PcuDashInfo* elements can have the same value for this **Firmware version**
 - **RawFileExtension** - The extension for the raw file type auto-loaded by the PCU Dash per product type
 - **DrawShiftLights** - A boolean value specifying whether the PCU Dash needs shift lights drawn by ATLAS.
+- **FirmwareDirectory** - The directory where the dll for the firmware version of the PCU Dash specified in *FirmwareName* is located.
 
 The custom product type configuration is meant to give users the option to use different firmware versions, the dll for any chosen firmware version by the user must be added to the ATLAS 10 folder in C:\Program Files.
 
