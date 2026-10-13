@@ -465,7 +465,7 @@ echo "Support logs collected: $LOG_DIR.tar.gz"
 ### Contact Information
 
 For additional support:
-- Documentation: [Stream API Docs](https://docs.atlas.motionapplied.com/stream-api/)
+- Documentation: [Stream API Docs](https://atlas.motionapplied.com/stream-api/)
 - Issues: [GitHub Issues](https://github.com/Software-Products/MA.DataPlatforms.StreamApi/issues)
 - Support: atlas10@motionapplied.com
 

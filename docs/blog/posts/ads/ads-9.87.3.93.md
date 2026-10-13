@@ -22,7 +22,7 @@ This release completes a redesign of RDS connection handling, bundles an updated
 Redesigned RDS connections. RDS now automatically reconnects when the connection is interrupted, without requiring the Master ADS to be restarted.
 
 ### Bridge Service Updated to v2.1.4.15
-ADS now bundles [Bridge Service v2.1.4.15](https://docs.atlas.motionapplied.com/blog/2026/07/16/bridge-service-release-v21415/). See the linked release note for full details.
+ADS now bundles [Bridge Service v2.1.4.15](https://atlas.motionapplied.com/blog/2026/07/16/bridge-service-release-v21415/). See the linked release note for full details.
 
 ## Bug Fixes
 

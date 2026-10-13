@@ -1,5 +1,5 @@
 site_name: ATLAS Product Suite
-site_url: https://docs.atlas.motionapplied.com/
+site_url: https://atlas.motionapplied.com/
 repo_url: https://github.com/mat-docs/ATLAS.Site
 edit_uri: edit/main/docs/
 docs_dir: 'docs'

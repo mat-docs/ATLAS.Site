@@ -793,7 +793,7 @@ def clean_md(content):
     return content
 
 # ── Meta ───────────────────────────────────────────────────────────────────────
-SITE_URL = "https://docs.atlas.motionapplied.com"
+SITE_URL = "https://atlas.motionapplied.com"
 
 def slugify(title):
     """Reproduce the mkdocs-material blog slug: lowercase, drop punctuation,
