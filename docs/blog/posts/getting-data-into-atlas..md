@@ -207,7 +207,7 @@ No .NET SDK, Python, or protoc required for the C# example — everything runs i
   </div>
 </div>
 
-:material-book-open-variant: [Open Streaming Getting Started](https://atlas.motionapplied.com/developer-resources/secu4/getting-started/) · [Stream API Reference](https://atlas.motionapplied.com/developer-resources/secu4/stream_api/)
+:material-book-open-variant: [Open Streaming Getting Started](https://docs.atlas.motionapplied.com/developer-resources/secu4/getting-started/) · [Stream API Reference](https://docs.atlas.motionapplied.com/developer-resources/secu4/stream_api/)
 
 ## Route 2: RTA
 
@@ -287,7 +287,7 @@ The Toolkit Services are available as Windows binaries, Linux binaries, and Dock
 !!! info "When RTA is not the right choice"
     RTA assumes a central data store. If your workflow involves local files and in-field laptops, or you're recording directly from hardware to the local network, the SQL Race API or native ATLAS capabilities may be a better fit.
 
-:material-book-open-variant: [RTA Introduction](https://atlas.motionapplied.com/key-functionality/integrate/rta/) · [Developer Worked Guide](https://atlas.motionapplied.com/developer-resources/rta/worked-guide/)
+:material-book-open-variant: [RTA Introduction](https://docs.atlas.motionapplied.com/key-functionality/integrate/rta/) · [Developer Worked Guide](https://docs.atlas.motionapplied.com/developer-resources/rta/worked-guide/)
 
 ## Route 3: SQL Race API
 
@@ -463,7 +463,7 @@ All worked examples are in [MAT.OCS.SQLRace.Examples](https://github.com/mat-doc
 | `MAT.SqlRace.StandaloneRecorder` | Embedding the DST recorder, monitoring live data, writing augmented data back |
 | `Python/` | Session loading, events, and data reading in Python |
 
-:material-book-open-variant: [SQL Race API](https://atlas.motionapplied.com/developer-resources/atlas/sql-race/) · [API Reference](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/)
+:material-book-open-variant: [SQL Race API](https://docs.atlas.motionapplied.com/developer-resources/atlas/sql-race/) · [API Reference](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/)
 
 ## Choosing between the three
 
@@ -511,10 +511,10 @@ A few common scenarios:
 
 ## Further reading
 
-- :material-lightning-bolt: [Open Streaming Getting Started](https://atlas.motionapplied.com/developer-resources/secu4/getting-started/)
-- :material-api: [Stream API Reference](https://atlas.motionapplied.com/developer-resources/secu4/stream_api/)
-- :material-database: [RTA Introduction](https://atlas.motionapplied.com/key-functionality/integrate/rta/)
-- :material-book-open-variant: [RTA Developer Worked Guide](https://atlas.motionapplied.com/developer-resources/rta/worked-guide/)
-- :material-code-braces: [SQL Race API](https://atlas.motionapplied.com/developer-resources/atlas/sql-race/)
+- :material-lightning-bolt: [Open Streaming Getting Started](https://docs.atlas.motionapplied.com/developer-resources/secu4/getting-started/)
+- :material-api: [Stream API Reference](https://docs.atlas.motionapplied.com/developer-resources/secu4/stream_api/)
+- :material-database: [RTA Introduction](https://docs.atlas.motionapplied.com/key-functionality/integrate/rta/)
+- :material-book-open-variant: [RTA Developer Worked Guide](https://docs.atlas.motionapplied.com/developer-resources/rta/worked-guide/)
+- :material-code-braces: [SQL Race API](https://docs.atlas.motionapplied.com/developer-resources/atlas/sql-race/)
 - :material-file-document-outline: [SQL Race API Reference](https://mat-docs.github.io/Atlas.SQLRaceAPI.Documentation/)
 - :material-github: [ATLAS Developer Community](https://github.com/atlas-dev-hub)
