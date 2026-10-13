@@ -10,8 +10,9 @@ Usage:
     python atlas_pdf.py <path/to/release.md> [output.pdf]
 """
 
-import sys, re, os, requests
+import sys, re, os, posixpath, requests
 from datetime import datetime
+from urllib.parse import urljoin, urlsplit, urlunsplit
 import frontmatter, mistune
 
 from reportlab.lib.pagesizes import A4
@@ -443,7 +444,10 @@ def inl(children):
         elif tp == "codespan":     out.append(f'<font name="Courier" size="9">{esc(t.get("raw",""))}</font>')
         elif tp == "strong":       out.append(f"<b>{inl(t.get('children',[]))}</b>")
         elif tp == "emphasis":     out.append(f"<i>{inl(t.get('children',[]))}</i>")
-        elif tp == "link":         out.append(f'<font color="#E8631A">{inl(t.get("children",[]))}</font>')
+        elif tp == "link":
+            href = esc(t.get("attrs", {}).get("url", ""))
+            label = inl(t.get("children",[]))
+            out.append(f'<font color="#E8631A"><link href="{href}">{label}</link></font>')
         elif tp in ("softline_break","linebreak"): out.append(" ")
         elif "children" in t:     out.append(inl(t["children"]))
         elif "raw" in t:          out.append(esc(t["raw"]))
@@ -819,6 +823,47 @@ def clean_md(content):
 # ── Meta ───────────────────────────────────────────────────────────────────────
 SITE_URL = "https://atlas.motionapplied.com"
 
+def website_link(url, md_src, post_url):
+    """Resolve a Markdown link to the equivalent public website URL."""
+    parsed = urlsplit(url)
+    if parsed.scheme or parsed.netloc:
+        return url
+    if not parsed.path:
+        return f"{post_url}{parsed.fragment and '#' + parsed.fragment}" if post_url else url
+
+    if parsed.path.startswith("/"):
+        site_path = parsed.path
+    else:
+        src_path = urlsplit(md_src).path.replace("\\", "/")
+        docs_marker = "/docs/"
+        if docs_marker in src_path:
+            src_path = src_path.split(docs_marker, 1)[1]
+        elif src_path.startswith("docs/"):
+            src_path = src_path[5:]
+        site_path = "/" + posixpath.normpath(
+            posixpath.join(posixpath.dirname(src_path), parsed.path)
+        ).lstrip("/")
+
+    if site_path.endswith("/index.md"):
+        site_path = site_path[:-len("index.md")]
+    elif site_path.endswith(".md"):
+        site_path = site_path[:-len(".md")] + "/"
+
+    return urlunsplit((
+        urlsplit(SITE_URL).scheme,
+        urlsplit(SITE_URL).netloc,
+        site_path,
+        parsed.query,
+        parsed.fragment,
+    ))
+
+def resolve_markdown_links(tokens, md_src, post_url):
+    for token in tokens or []:
+        if token.get("type") == "link":
+            attrs = token.setdefault("attrs", {})
+            attrs["url"] = website_link(attrs.get("url", ""), md_src, post_url)
+        resolve_markdown_links(token.get("children"), md_src, post_url)
+
 def slugify(title):
     """Reproduce the mkdocs-material blog slug: lowercase, drop punctuation,
     spaces become hyphens (consecutive hyphens are NOT collapsed)."""
@@ -914,6 +959,7 @@ def build_pdf(md_src, out_path):
         print(f"  Eval    : yes")
 
     tokens = mistune.create_markdown(renderer=None, plugins=["table"])(content)
+    resolve_markdown_links(tokens, md_src, meta["post_url"])
     st     = make_styles()
     story  = build_story(tokens, st, prod, meta["summary"],
                           meta["date"], eval_notice=eval_notice,
