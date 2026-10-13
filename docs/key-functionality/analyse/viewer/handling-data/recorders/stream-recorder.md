@@ -1,7 +1,7 @@
 # Stream Recorder
 
 ## Purpose
-Connects to a Kafka broker to record live telemetry via the [Open Data Streaming Architecture](https://docs.atlas.motionapplied.com/developer-resources/secu4/docs/).
+Connects to a Kafka broker to record live telemetry via the [Open Data Streaming Architecture](https://atlas.motionapplied.com/developer-resources/secu4/docs/).
 
 ## Prerequisites
 Stream Server Configuration must be set up in Tools|Options|Recorders|Stream Recorder.
@@ -31,11 +31,11 @@ There are Advanced Settings available for the Stream Server Configuration. This 
 ## Kafka Security
 Kafka Security is only needed if Kafka is setup with security enabled.
 
-For more info, look at [Kafka Security](https://docs.atlas.motionapplied.com/developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security/#overview).
+For more info, look at [Kafka Security](https://atlas.motionapplied.com/developer-resources/secu4/stream_api/reference_docs/configuration/kafka-security/#overview).
 
 ## Kafka Tuning
 
-Kafka Tuning is available to fine tune how Stream Recorder consumes from Kafka. The file path are for the Kafka Tuning json. For more info, click [Kafka Tuning](https://docs.atlas.motionapplied.com/developer-resources/secu4/stream_api/reference_docs/configuration/kafka-broker-tuning/).
+Kafka Tuning is available to fine tune how Stream Recorder consumes from Kafka. The file path are for the Kafka Tuning json. For more info, click [Kafka Tuning](https://atlas.motionapplied.com/developer-resources/secu4/stream_api/reference_docs/configuration/kafka-broker-tuning/).
 
 ## Recording Modes
 The Stream Recorder supports two operational modes for consuming OSAP data from Kafka. These modes determine where in the stream the Recorder begins reading data and how it handles historical backlog.

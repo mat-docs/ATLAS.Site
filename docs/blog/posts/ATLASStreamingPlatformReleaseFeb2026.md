@@ -21,7 +21,7 @@ This release introduces updates across multiple components of the ATLAS Streamin
 **Artifacts:**
 [Docker](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general) .
 [Windows Binary](https://portal.motionapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.2.6/MA.DataPlatforms.Bridge.Host.zip) .
-[Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
 
 **Changes**
 ### Heartbeat-Based Timeout Detection
@@ -91,7 +91,7 @@ The server now supports configurable batch message sizes, allowing you to:
 **Artifacts:**
 [GitHub](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library) ·
 [NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core) ·
-[Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
 
 **Changes**
 - Updated to leverage changes introduced in the Stream API
@@ -104,7 +104,7 @@ The server now supports configurable batch message sizes, allowing you to:
 
 **Artifacts:**
 [Docker](https://hub.docker.com/r/atlasplatformdocker/file-indexing-service) .
-[Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/indexing_services/#files-service-features)
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/#files-service-features)
 
 **Changes**
 - General-purpose file indexing and management
@@ -113,7 +113,7 @@ The server now supports configurable batch message sizes, allowing you to:
 
 **Artifacts:**
 [Docker](https://hub.docker.com/r/atlasplatformdocker/config-indexing-service) .
-[Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/indexing_services/#configs-service-features)
+[Documentation](https://atlas.motionapplied.com/developer-resources/secu4/indexing_services/#configs-service-features)
 
 **Changes**
 - Specialized indexing and processing for CFG and PGV files

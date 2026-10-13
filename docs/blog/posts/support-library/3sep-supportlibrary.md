@@ -17,7 +17,7 @@ This release adds regex matching for subscribed parameters and improves bufferin
 
 - **Python FFI (GitHub):** [Repository](https://github.com/Software-Products/MA.DataPlatforms.Streaming.Support.Library)
 - **NuGet Package:** [Support Library NuGet](https://github.com/mat-docs/packages/pkgs/nuget/MA.DataPlatforms.Streaming.Support.Lib.Core)
-- **Documentation:** [Read docs](https://docs.atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
+- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/support_library/reference_docs/)
 
 ## New Features
 

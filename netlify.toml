@@ -52,16 +52,9 @@ MISE_PYTHON_GITHUB_ATTESTATIONS = "false"
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-# All of atlas.motionapplied.com (including the root) moves to the docs subdomain
-[[redirects]]
-  from = "https://atlas.motionapplied.com/*"
-  to = "https://docs.atlas.motionapplied.com/:splat"
-  status = 301
-  force = true
-
 [[redirects]]
   from = "https://atlas.mclarenapplied.com/*"
-  to = "https://docs.atlas.motionapplied.com/:splat"
+  to = "https://atlas.motionapplied.com/:splat"
   status = 301
   force = true
 
