@@ -63,10 +63,10 @@ Only used when `WritingConfig.SessionFormat` is `Database`. With `SSN2` the sect
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `Port` | int, 1–65535 | `10110` | Port for Prometheus metrics. The shipped file uses `10015`. |
-| `IsEnabled` | bool | `false` | Enable Prometheus metrics. |
+| `IsEnabled` | bool | `false` | Ignored in this release; the recorder starts the Prometheus endpoint regardless of this value. |
 
 !!! note "Metrics endpoint"
-    In this release the recorder starts the metrics endpoint on `Port` whether or not `IsEnabled` is `true`.
+    Control the metrics endpoint with `Port` only. `IsEnabled` does not turn it on or off.
 
 ## Serilog
 
@@ -82,6 +82,6 @@ The recorder checks the file at startup and does not start if any rule fails:
 - `UseStreamApiSessionIdentifier` is `false` and `SessionIdentifierText` is empty.
 - `SessionFormat` is `Database` and `ConnectionString`, `DbEngine`, `DataSource` or `DeleteSessionOnClose` is not set.
 - `DbEngine` is not `SQLite` or `SQLServer`.
-- `ServerListenerAddress` is not `host:port`.
+- `ServerListenerAddress` is set to a non-empty value that does not match `host:port`. An empty or non-IP value does not stop startup; see [Troubleshooting](troubleshooting.md).
 - `MetricsConfig.Port` is outside 1–65535.
 - `GroupId` contains characters other than letters, digits, `_` or `-`.

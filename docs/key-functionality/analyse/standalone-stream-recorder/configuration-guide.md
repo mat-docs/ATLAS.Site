@@ -158,16 +158,18 @@ Set `StreamReadingConfig.GroupId` so the recorder can continue from where it lef
 
 Set the top-level `"RecordVpsSessions": true`. It defaults to `false`.
 
-## Expose Prometheus metrics
+## Change the Prometheus metrics port
+
+Use this when the default metrics port clashes with another service. The recorder always exposes Prometheus metrics on `Port`.
 
 ```json title="AppConfig.json (MetricsConfig)" linenums="1"
 "MetricsConfig": {
   "Port": 10015,
-  "IsEnabled": true
+  "IsEnabled": false
 }
 ```
 
-`Port` must be between 1 and 65535.
+`Port` must be between 1 and 65535. `IsEnabled` is ignored in this release, so the endpoint is available on `Port` whether it is `true` or `false`.
 
 !!! warning "Administrator rights"
     On Windows the metrics endpoint may need the recorder to run as Administrator. If it does not have access, the recorder logs that it is continuing without Prometheus.

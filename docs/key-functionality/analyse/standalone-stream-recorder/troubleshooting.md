@@ -19,9 +19,9 @@
 
 **Symptom:** the log contains `Failed to parse ServerListenerAddress '...'. Server Listener will NOT be started.`
 
-**Cause:** `SqlRaceConfig.ServerListenerAddress` is empty or is not a valid IP address and port.
+**Cause:** `SqlRaceConfig.ServerListenerAddress` is empty, or it is not an IP address and port. A hostname such as `localhost:7300` is not accepted here. The recorder keeps running without the Server Listener.
 
-**Fix:** use an IP address and port, for example `127.0.0.1:7300`.
+**Fix:** use an IP address and port, for example `127.0.0.1:7300`. A value that is not in `host:port` form at all stops startup instead; see [Validation rules](configuration-reference.md#validation-rules).
 
 ## No Prometheus metrics
 
