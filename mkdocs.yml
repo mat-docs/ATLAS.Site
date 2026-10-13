@@ -175,6 +175,12 @@ nav:
         - Troubleshooting & FAQ: key-functionality/enrich/vps/troubleshooting.md
     - Analyse: 
       - Overview: key-functionality/analyse/index.md
+      - Standalone Stream Recorder:
+        - Overview: key-functionality/analyse/standalone-stream-recorder/index.md
+        - Getting Started: key-functionality/analyse/standalone-stream-recorder/getting-started.md
+        - Configuration Guide: key-functionality/analyse/standalone-stream-recorder/configuration-guide.md
+        - Configuration Reference: key-functionality/analyse/standalone-stream-recorder/configuration-reference.md
+        - Troubleshooting: key-functionality/analyse/standalone-stream-recorder/troubleshooting.md
       - Viewer: 
         - Overview: key-functionality/analyse/viewer/index.md
         - Getting Started: key-functionality/analyse/viewer/quick-start.md
