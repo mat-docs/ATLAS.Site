@@ -8,22 +8,85 @@ All RDA protected data will be filtered out at this point, based on the active t
 components will only receive data available to the team. 
 
 
-## Configuration
-Currently, the Bridge Service is installed with ADS and will share settings used by ADS, i.e. the licence used by ADS, 
-and all the config, pgv and PUL files specified in ADS.
+## Choose your deployment
 
-Bridge service uses the name of the ADS as the DataSource name. This can be configured within the ADS on 
-Setup | General | General Network Settings | Name.
+Bridge Service is the same program in every deployment. What changes is how it is started, and therefore which
+configuration file it reads.
 
-!!! note
-    In the future, the config will be extended to support running Bridge service on a container and hence allowing users 
-    to specify and fetch licences and all the required pgvs and configs from different user specified location
+| How Bridge Service runs | Configuration file it reads |
+|---|---|
+| **Launched by ADS** (installed with ADS) | `Documents\McLaren Electronic Systems\ATLAS 9\BridgeService\BridgeServiceConfig.json` |
+| **Standalone on Windows** (you run `MA.DataPlatforms.Bridge.Host.exe` yourself) | `Configs\AppConfig.json` next to the exe, or the file you pass with `-c` |
+| **Docker** (`atlasplatformdocker/bridge-service-host`) | `/app/Configs/AppConfig.json` in the container, or the file named by the `CONFIG_FILE_PATH` environment variable |
 
+`BridgeServiceConfig.json` and `AppConfig.json` have the same format and accept the same sections, described in the
+[Configuration Guide](configuration-guide.md).
 
-Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, which can be found in 
-*../Documents/McLaren Electronic Systems/ATLAS9/BridgeService* folder. The data can be split multiple Kafka topics or 
-partitions. For more, information please refer to 
-[Stream Creation Strategy](../stream_api/reference_docs/configuration/server-config.md/#stream-creation-strategies)
+=== "Launched by ADS"
+
+    On first launch, ADS copies the default `AppConfig.json` from `<ADS install folder>\BridgeService\Configs\` to
+    `Documents\McLaren Electronic Systems\ATLAS 9\BridgeService\BridgeServiceConfig.json`. From then on, ADS always
+    starts Bridge Service with that copy.
+
+    - **Edit `BridgeServiceConfig.json`**, not the `AppConfig.json` in the install folder. Once the copy exists, changes
+      to the install-folder file have no effect.
+    - To start again from the default file (for example after upgrading ADS), delete `BridgeServiceConfig.json`. ADS
+      creates a new copy the next time it launches Bridge Service.
+    - ADS passes its own feed port to Bridge Service, which overrides `BridgeConfig.FeedPort` in the file.
+    - If `EssentialsConfig` and `RdaConfig` paths are left empty, Bridge Service uses the config, PGV and PUL folders
+      set in ATLAS 9 for the Windows user running it.
+
+    Bridge service uses the name of the ADS as the DataSource name. This can be configured within the ADS on
+    Setup | General | General Network Settings | Name.
+
+=== "Standalone on Windows"
+
+    Run `MA.DataPlatforms.Bridge.Host.exe`. It accepts three optional command-line arguments:
+
+    | Argument | Meaning | Example |
+    |---|---|---|
+    | `-c` | Configuration file path | `-c "C:\Bridge\MyConfig.json"` |
+    | `-l` | Log file path (see [Logging](configuration-guide.md#7-serilog-configuration)) | `-l "C:\Logs\bridge.txt"` |
+    | `-p` | Feed port that ADS connects to | `-p 9697` |
+
+    !!! warning "Use an absolute `-c` path, or start from the install folder"
+        A relative configuration path is resolved from the folder Bridge Service is started from. If you start it from
+        anywhere else, pass an absolute path with `-c`.
+
+    As with ADS, empty `EssentialsConfig` and `RdaConfig` paths fall back to the config, PGV and PUL folders set in
+    ATLAS 9 for the Windows user running Bridge Service.
+
+=== "Docker"
+
+    The image runs from `/app` and reads `/app/Configs/AppConfig.json`. Either mount your own file over it, or mount it
+    anywhere and set `CONFIG_FILE_PATH` to its absolute path inside the container.
+
+    ```bash
+    docker run -p 9697:9697 -p 10011:10011 -v /srv/bridge/AppConfig.json:/app/Configs/AppConfig.json:ro -v /srv/essentials:/essentials:ro atlasplatformdocker/bridge-service-host
+    ```
+
+    !!! warning "Settings you must change for Docker"
+        - **`EssentialsConfig.CfgDirectoryPaths` and `PgvDirectoryPaths` are required.** There is no ATLAS 9 fallback
+          in a container: if either is empty, Bridge Service stops at startup with
+          *"DirectoryPaths needs to be specified in EssentialsConfig"*. List the folders as they appear **inside** the
+          container. If you use PUL files, set `RdaConfig.PulFilesSearchPaths` the same way.
+        - **`StreamApiConfig.BrokerUrl`**: `localhost` refers to the container itself. Point it at your Kafka broker's
+          host name.
+        - **Ports**: publish the feed port (default `9697`) that ADS connects to, and the Prometheus metrics port
+          (`10011` in the default configuration file).
+
+    Any setting can also be overridden with an
+    [environment variable](configuration-guide.md#overriding-configuration-with-environment-variables), for example
+    `-e StreamApiConfig__BrokerUrl=kafka:9092`.
+
+## Splitting data across Kafka topics or partitions
+
+The data can be split across multiple Kafka topics or partitions. For more information, refer to
+[Stream Creation Strategy](../stream_api/reference_docs/configuration/server-config.md/#stream-creation-strategies).
+The examples below show only the two relevant sections.
+
+!!! note "Add or update — don't replace the whole file"
+    Change these sections in your existing configuration file and leave the other sections in place.
 
 === "Example with StreamCreationStrategy=2 (Topic based)"
 
@@ -37,8 +100,7 @@ partitions. For more, information please refer to
             "IntegrateDataFormatManagement": true,
             "UseRemoteKeyGenerator": false,
             "RemoteKeyGeneratorServiceAddress": "",
-            "BatchingResponses": false,
-            "StreamApiPort": 13579
+            "BatchingResponses": false
         },
         "StreamSelectionConfig": {
             "Auto": true,
@@ -94,8 +156,7 @@ partitions. For more, information please refer to
             "IntegrateDataFormatManagement": true,
             "UseRemoteKeyGenerator": false,
             "RemoteKeyGeneratorServiceAddress": "",
-            "BatchingResponses": false,
-            "StreamApiPort": 13579
+            "BatchingResponses": false
         },
         "StreamSelectionConfig": {
             "Auto": false,
@@ -141,8 +202,9 @@ partitions. For more, information please refer to
     ``` 
 
 
-!!! info
-    Bridge Service logs are stored in a *"BridgeLogYYYMMDD.txt"* file, which can be found in *../Documents/McLaren Electronic Systems/ATLAS9/log* folder. 
+!!! info "Logs"
+    From Bridge Service 2.1.1, the default configuration file logs to the console window only, so no log file is
+    written unless you configure one. See [Logging](configuration-guide.md#7-serilog-configuration).
 
 ## Setup
 

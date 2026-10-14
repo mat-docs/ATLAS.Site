@@ -4,7 +4,10 @@ The MA DataPlatforms Bridge service uses multiple configuration sections to cont
 
 ## Configuration File Structure
 
-The main configuration file is typically `AppConfig.json` and contains the following top-level sections:
+The configuration file is `AppConfig.json` when you run Bridge Service yourself (standalone or in Docker), and
+`BridgeServiceConfig.json` when ADS launches it. Both have the same format — see
+[Choose your deployment](index.md#choose-your-deployment) for which file applies to you. It contains the following
+top-level sections:
 
 ```json
 {
@@ -55,7 +58,7 @@ Controls the Stream API integration and Kafka broker connectivity.
 | `RemoteKeyGeneratorServiceAddress` | string | "" | URL of remote key generator service |
 | `InitialisationTimeoutSeconds` | int | 1 | Timeout in seconds for Stream API init |
 | `Domain` | string | "" | Optional domain specification |
-| `Security` | object | null | Kafka SASL/SSL credentials — see [Kafka Security (SASL / SSL)](#kafka-security-sasl--ssl) below |
+| `Security` | object | null | Kafka SASL/SSL credentials — see [Kafka Security (SASL / SSL)](#kafka-security-sasl-ssl) below |
 
 ### Example Configuration
 
@@ -536,8 +539,15 @@ in the range 0-65535. Leading and trailing whitespace is trimmed.
 
 Configuration files (CFG) and Parameter Group Values (PGV) are essential for data decoding.
 
-!!! note
-    When using integrated Windows Bridge with ADS, these files are automatically retrieved from ADS (ATLAS Data Server) and do not need to be manually configured.
+!!! note "Windows: empty paths fall back to ATLAS 9"
+    On Windows, if `CfgDirectoryPaths` or `PgvDirectoryPaths` is empty, Bridge Service uses the config and PGV folders
+    set in ATLAS 9 for the Windows user running it. That is why an ADS-launched Bridge Service usually needs no
+    `EssentialsConfig` section.
+
+!!! warning "Docker / Linux: both paths are required"
+    There is no ATLAS 9 fallback outside Windows. If `CfgDirectoryPaths` or `PgvDirectoryPaths` is empty, Bridge
+    Service stops at startup with *"DirectoryPaths needs to be specified in EssentialsConfig"* — even when
+    `RemoteConfigIndexerUrl` is set.
 
 ### Properties
 
@@ -545,9 +555,7 @@ Configuration files (CFG) and Parameter Group Values (PGV) are essential for dat
 | :--- | :--- | :--- |
 | `CfgDirectoryPaths` | string[] | Array of directory paths containing CFG configuration files |
 | `PgvDirectoryPaths` | string[] | Array of directory paths containing PGV parameter files |
-| `RemoteConfigIndexerUrl`| string? | Optional URL for remote configuration indexer service |
-
-> **Note:** The `RemoteConfigIndexerUrl` option is only used when a centralized configuration indexer service is deployed and accessible. When configured, the Bridge will query that URL to retrieve CFG and PGV info from the remote service. If the remote service is not available or no info is returned, it will fall back to using the local directories.
+| `RemoteConfigIndexerUrl`| string? | Optional base URL of the Configs service of MA.DataPlatforms.Indexing (see [Using Remote Config Indexer](#using-remote-config-indexer)). Leave it out, or empty, to search the local directories only. |
 
 ### Example Configuration
 
@@ -569,26 +577,34 @@ Configuration files (CFG) and Parameter Group Values (PGV) are essential for dat
 
 ### Using Remote Config Indexer
 
-For centralized configuration management, you can specify a remote configuration indexer service URL. This allows the Bridge to query that URL to fetch configuration files from a central server. If the remote service is not available or no info is returned, it will fall back to using the local directories:
+Use a remote config indexer when many CFG and PGV files are stored centrally and you want Bridge Service to look up
+where a file is instead of searching its own folders.
 
-```json
-{
-  "EssentialsConfig": {
-    "CfgDirectoryPaths": [],
-    "PgvDirectoryPaths": [],
-    "RemoteConfigIndexerUrl": "http://config-server.company.com:5050"
-  }
-}
-```
+`RemoteConfigIndexerUrl` must point at the **Configs service** of MA.DataPlatforms.Indexing, which listens on port
+**5050** by default. It is not the Files service on port 5000. Give the base URL only, with no path, for example
+`http://config-server.company.com:5050`. Bridge Service calls these endpoints on it:
 
-**Benefits of Remote Config Indexer:**
-*   Reduced file searching and querying time - file locations are cached for faster retrieval, minimizing I/O overhead
+| Endpoint | Used to |
+|---|---|
+| `GET /api/processing/files/cfg?configId=…` | Find the CFG files for a config ID |
+| `GET /api/processing/files/pgv?appId=…&appVersion=…` | Find the PGV files for an app ID and version |
+| `GET /api/processing/info?configId=…` | Read the processing info for a config ID |
+| `GET /api/heartbeat` | Check the service is available |
 
-**Hybrid Configuration:**
+When the indexer doesn't return a file, Bridge Service falls back to searching `CfgDirectoryPaths` and
+`PgvDirectoryPaths`.
 
-You can also use both local directories and remote indexer. If the remote service is unavailable, the Bridge will fall back to local directories:
+!!! warning "The indexer returns file paths, not file contents"
+    Bridge Service opens the files itself at the paths the indexer returns, so those paths must be readable from
+    where Bridge Service runs:
 
-```json
+    - **Windows**: run the indexer on the same machine, or index network share paths that both machines can reach.
+    - **Docker**: the paths the indexer reports must exist inside the Bridge Service container. Mount the same
+      storage at the same path in both.
+
+This works the same whether Bridge Service is launched by ADS, run standalone on Windows, or run in Docker.
+
+```json title="AppConfig.json" linenums="1"
 {
   "EssentialsConfig": {
     "CfgDirectoryPaths": ["C:\\Data\\Configs\\CFG"],
@@ -647,41 +663,63 @@ unbounded, and are read back from disk as the queue drains.
 
 ## 7. Serilog Configuration
 
-Structured logging configuration using the Serilog framework.
+Bridge Service logging is configured with the `Serilog` section of the configuration file, in the standard
+[Serilog JSON settings](https://github.com/serilog/serilog-settings-configuration) format. Bridge Service includes
+two sinks: **Console** and **File**.
 
-### Configuration Priority
+### Where logs go
 
-The Bridge service uses the following priority order for logging configuration:
+| Your configuration file | Where logs go |
+|---|---|
+| **Has a `Serilog` section** | Only where that section says. `-l` and `LOG_FILE_PATH` are **ignored**. |
+| **Has no `Serilog` section** | The console, plus a log file that rolls over daily, at the first of: the path given by `-l` or `LOG_FILE_PATH`; on Windows, `bridge-svc-log.txt` in the ADS log file folder; otherwise `Logs/bridge-svc-log.txt` relative to the folder Bridge Service was started from. |
 
-1.  **Serilog section** in `AppConfig.json` (if present) - Full customization via JSON.
-2.  **`LOG_FILE_PATH`** environment variable or `-l` command-line argument.
-3.  **Default** - Falls back to `Logs/bridge-svc-log.txt`.
+!!! warning "No log file by default"
+    From Bridge Service 2.1.1, the default configuration file contains a `Serilog` section that writes to the
+    **console only**. No log file is written in any deployment — including when ADS launches Bridge Service, because
+    the log path ADS passes with `-l` is ignored while a `Serilog` section is present. To get a log file, either:
 
-!!! important
-    If you include a `Serilog` section in your `AppConfig.json`, you have full control over logging configuration. Without it, the service uses built-in defaults.
+    - add a File sink to the `Serilog` section (see [Write logs to a file](#write-logs-to-a-file)), or
+    - delete the `Serilog` section, so the fallback locations in the table above apply. When launched by ADS, this
+      writes `BridgeLog<date>.txt` to the ADS log file folder.
 
-### Basic Structure
+### Write logs to a file
 
-```json
+Add a File sink next to the Console sink. Use an absolute path: a relative path is resolved from the folder Bridge
+Service was started from, which for an ADS-launched Bridge Service is its install folder and may not be writable.
+
+```json title="AppConfig.json" linenums="1" hl_lines="8-15"
 {
   "Serilog": {
     "MinimumLevel": {
-      "Default": "Information",
-      "Override": {
-        "Microsoft": "Warning",
-        "System": "Warning"
-      }
+      "Default": "Information"
     },
     "WriteTo": [
-      { "Name": "Console", "Args": { ... } },
-      { "Name": "File", "Args": { ... } }
-    ],
-    "Enrich": ["FromLogContext", "WithMachineName", "WithThreadId"]
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": {
+          "path": "C:\\Logs\\Bridge\\bridge-svc-log.txt",
+          "rollingInterval": "Day",
+          "outputTemplate": "[{Timestamp:HH:mm:ss.fff} {Level:u3}]: {Message:lj}{NewLine}{Exception}"
+        }
+      }
+    ]
   }
 }
 ```
 
+With `"rollingInterval": "Day"`, the date is added to the file name, for example `bridge-svc-log20261014.txt`. The
+File sink also accepts the standard `retainedFileCountLimit` and `fileSizeLimitBytes` arguments to limit disk use.
+
+!!! note "Docker"
+    Console output appears in `docker logs`. If you add a File sink, write to a path on a mounted volume, for example
+    `"path": "/logs/bridge-svc-log.txt"` with `-v /srv/bridge-logs:/logs`. Otherwise the log file is lost when the
+    container is removed.
+
 ### Log Levels
+
+Set `MinimumLevel.Default` to one of:
 
 *   **Verbose:** Very detailed, trace-level information.
 *   **Debug:** Debugging information.
@@ -690,52 +728,9 @@ The Bridge service uses the following priority order for logging configuration:
 *   **Error:** Errors and exceptions.
 *   **Fatal:** Critical failures causing shutdown.
 
-### Console Sink Configuration
-
-```json
-{
-  "Name": "Console",
-  "Args": {
-    "outputTemplate": "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}: {Message:lj}{NewLine}{Exception}"
-  }
-}
-```
-
-### File Sink Configuration
-
-```json
-{
-  "Name": "File",
-  "Args": {
-    "path": "C:\\Logs\\bridge-service-.txt",
-    "rollingInterval": "Day",
-    "retainedFileCountLimit": 30,
-    "fileSizeLimitBytes": 104857600,
-    "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] {Message:lj}{NewLine}{Exception}"
-  }
-}
-```
-
-!!! tip
-    When using the Serilog section in `AppConfig.json`, the file sink path is fully customisable.
-
-### File Sink Configuration
-
-```json
-{
-  "Name": "File",
-  "Args": {
-  "path": "C:\\Logs\\bridge-service-.txt",
-  "rollingInterval": "Day",
-  "retainedFileCountLimit": 30,
-  "fileSizeLimitBytes": 104857600,
-  "outputTemplate": "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] {Message:lj}{NewLine}{Exception}"
-  }
-}
-```
-
-!!! tip
-    When using the Serilog section in `AppConfig.json`, the file sink path is fully customisable.
+You can also change the level without editing the file, with an
+[environment variable](#overriding-configuration-with-environment-variables):
+`Serilog__MinimumLevel__Default=Debug`.
 
 ## Complete Configuration Example
 
@@ -845,10 +840,18 @@ The Bridge service uses the following priority order for logging configuration:
     *   Reduce for faster timeout detection in live scenarios.
     *   Increase if you have legitimate gaps in data transmission.
 *   **Issue: Remote Config Indexer not working**
-    *   Verify `RemoteConfigIndexerUrl` is correct and accessible.
-    *   Check network connectivity to the config server.
+    *   Verify `RemoteConfigIndexerUrl` is the base URL of the indexer's **Configs** service (port 5050 by default), not the Files service, and has no path.
+    *   Check network connectivity to the config server, for example by opening `<RemoteConfigIndexerUrl>/api/heartbeat`.
     *   Ensure the configuration indexer service is running.
+    *   Check that the file paths the indexer returns are readable from where Bridge Service runs — in Docker, inside the container.
     *   Add local `CfgDirectoryPaths` and `PgvDirectoryPaths` as backup.
+*   **Issue: Bridge Service stops at startup with "DirectoryPaths needs to be specified in EssentialsConfig"**
+    *   Outside Windows (for example in Docker) there is no ATLAS 9 fallback: set both `CfgDirectoryPaths` and `PgvDirectoryPaths`, using paths inside the container.
+    *   On Windows, set them in `EssentialsConfig`, or set the config and PGV folders in ATLAS 9 for the Windows user running Bridge Service.
+*   **Issue: No Bridge Service log file is written**
+    *   If the configuration file has a `Serilog` section, `-l` and `LOG_FILE_PATH` are ignored. Add a File sink to the `Serilog` section, or delete the section — see [Where logs go](#where-logs-go).
+*   **Issue: Changes to `AppConfig.json` have no effect when ADS launches Bridge Service**
+    *   ADS uses `Documents\McLaren Electronic Systems\ATLAS 9\BridgeService\BridgeServiceConfig.json` instead. Edit that file — see [Choose your deployment](index.md#choose-your-deployment).
 *   **Issue: Stream API fails to connect with a SASL/SSL handshake error**
     *   Verify `Protocol` and `Mechanism` match what the broker is actually configured for.
     *   For SASL, double-check `SaslUsername`/`SaslPassword`.
