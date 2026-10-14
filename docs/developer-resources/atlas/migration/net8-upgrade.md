@@ -152,6 +152,30 @@ PYTHONNET_RUNTIME=coreclr
 PYTHONNET_CORECLR_RUNTIME_CONFIG=C:\Program Files\McLaren Applied Technologies\ATLAS 10\MAT.Atlas.Host.runtimeconfig.json
 ```
 
+!!! warning
+
+    `MAT.Atlas.Host.runtimeconfig.json` now also references the ASP.NET Core shared framework
+    (`Microsoft.AspNetCore.App`), because the ATLAS host uses it. When this runtime configuration is loaded
+    from Python, loading historic SQL Race sessions that contain virtual parameters can fail with an
+    "unable to load PDA" exception.
+
+    To work around this, make a copy of `MAT.Atlas.Host.runtimeconfig.json`, remove the
+    `Microsoft.AspNetCore.App` entry from its `frameworks` section (leaving `Microsoft.NETCore.App`), and point
+    `pythonnet` at the copy instead of the file in the ATLAS installation folder.
+
+    ```json
+    {
+      "runtimeOptions": {
+        "frameworks": [
+          {
+            "name": "Microsoft.NETCore.App",
+            "version": "8.0.0"
+          }
+        ]
+      }
+    }
+    ```
+
 More information about calling .NET from Python can be found in the 
 [pythonnet documentation](https://pythonnet.github.io/pythonnet/python.html#loading-a-runtime).
 
