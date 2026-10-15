@@ -13,7 +13,7 @@ This release focuses on SSN2 and SQL Race recording, with fixes for wildcard res
 <!-- more -->
 
 !!! info "Development Build Notice"
-  This release is provided as a development build and is a pre-release version made available for early testing and feedback. Please report any problems or feedback encountered while using this build to help improve the final release.
+    This release is provided as a development build and is a pre-release version made available for early testing and feedback. Please report any problems or feedback encountered while using this build to help improve the final release.
 
 ## Download
 
