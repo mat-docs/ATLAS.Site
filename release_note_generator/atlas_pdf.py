@@ -454,7 +454,7 @@ def inl(children):
     return "".join(out)
 
 # ── Build story from AST ───────────────────────────────────────────────────────
-def build_story(tokens, st, product_info, release_summary, date_str, eval_notice="", post_url=""):
+def build_story(tokens, st, product_info, release_summary, date_str, build_notice=None, post_url=""):
     """
     Constructs the full story:
       Page 1 cover (empty — drawn by canvas callback)
@@ -498,10 +498,10 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
             para_html = esc(filler_para.strip()).replace("{release_post}", release_post_link)
             story.append(Paragraph(para_html, st["body_indent"]))
 
-    # Evaluation Build Notice — injected from admonition if present in markdown
-    if eval_notice:
-        story.append(Paragraph("Evaluation Build Notice", st["h2_plain"]))
-        story.append(Paragraph(esc(eval_notice), st["body_indent"]))
+    # Build notice — injected from admonition if present in markdown
+    if build_notice:
+        story.append(Paragraph(build_notice["title"], st["h2_plain"]))
+        story.append(Paragraph(esc(build_notice["body"]), st["body_indent"]))
 
     story.append(Paragraph("Feedback/Support", st["h2_plain"]))
     story.append(Paragraph(
@@ -793,29 +793,36 @@ def build_story(tokens, st, product_info, release_summary, date_str, eval_notice
     return story
 
 # ── Pre-process markdown ───────────────────────────────────────────────────────
-def extract_eval_notice(raw_content):
-    """Extract the Evaluation Build Notice from an admonition block, if present."""
+def extract_build_notice(raw_content):
+    """Extract an Evaluation or Development Build Notice, if present."""
     m = re.search(
-        r'^!!!\s+\w+\s+"Evaluation Build Notice"\n((?:^    .+\n?)+)',
+        r'^!!!\s+\w+\s+"((?:Evaluation|Development) Build Notice)"\n'
+        r'((?:^ {2,4}.+\n?)+)',
         raw_content, flags=re.M
     )
     if m:
-        return re.sub(r"^ {4}", "", m.group(1), flags=re.M).strip()
-    # Also catch if it was already converted to **Evaluation Build Notice:** text
+        return {
+            "title": m.group(1),
+            "body": re.sub(r"^ {2,4}", "", m.group(2), flags=re.M).strip(),
+        }
+    # Also catch notices already converted to bold text
     m2 = re.search(
-        r'\*\*Evaluation Build Notice[:\*]+\*?\*?\s*(.+?)(?=\n\n|\Z)',
+        r'\*\*((?:Evaluation|Development) Build Notice)[:\*]+\*?\*?\s*'
+        r'(.+?)(?=\n\n|\Z)',
         raw_content, flags=re.DOTALL
     )
     if m2:
-        return m2.group(1).strip().replace("\n", " ")
-    return ""
+        return {
+            "title": m2.group(1),
+            "body": m2.group(2).strip().replace("\n", " "),
+        }
+    return None
 
 def clean_md(content):
     content = content.replace("<!-- more -->", "")
-    # Drop all !!! admonitions entirely. The Evaluation Build Notice is the only
-    # one we keep, and it's extracted separately by extract_eval_notice().
+    # Drop all !!! admonitions entirely. Build notices are extracted separately.
     content = re.sub(
-        r'^!!!\s+\w+(?:\s+"[^"]*")?\n((?:^    .+\n?)+)',
+        r'^!!!\s+\w+(?:\s+"[^"]*")?\n((?:^ {2,4}.+\n?)+)',
         "", content, flags=re.M,
     )
     return content
@@ -949,20 +956,20 @@ def build_pdf(md_src, out_path):
     post        = frontmatter.loads(raw)
     meta        = extract_meta(post, md_src)
     prod        = get_product(meta["product"])
-    eval_notice = extract_eval_notice(post.content)
+    build_notice = extract_build_notice(post.content)
     content     = clean_md(post.content)
 
     print(f"  Product : {meta['product']}")
     print(f"  Version : {meta['version']}")
     print(f"  Date    : {meta['date']}")
-    if eval_notice:
-        print(f"  Eval    : yes")
+    if build_notice:
+        print(f"  Notice  : {build_notice['title']}")
 
     tokens = mistune.create_markdown(renderer=None, plugins=["table"])(content)
     resolve_markdown_links(tokens, md_src, meta["post_url"])
     st     = make_styles()
     story  = build_story(tokens, st, prod, meta["summary"],
-                          meta["date"], eval_notice=eval_notice,
+                          meta["date"], build_notice=build_notice,
                           post_url=meta["post_url"])
 
     meta["cover_name"]  = prod["cover_name"]
