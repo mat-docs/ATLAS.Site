@@ -828,7 +828,7 @@ def clean_md(content):
     return content
 
 # ── Meta ───────────────────────────────────────────────────────────────────────
-SITE_URL = "https://atlas.motionapplied.com"
+SITE_URL = "https://docs.atlas.motionapplied.com"
 
 def website_link(url, md_src, post_url):
     """Resolve a Markdown link to the equivalent public website URL."""
