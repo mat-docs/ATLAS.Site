@@ -18,7 +18,7 @@ enhanced data streaming capabilities.
 
 - **Docker:** [Container image](https://hub.docker.com/repository/docker/atlasplatformdocker/bridge-service-host/general)
 - **Windows Binary:** [Download](https://portal.mclarenapplied.com/portal/Downloads/ATLAS%20Streaming%20Platform%20-%20Bridge%20Service/Bridge%20Service%202.1.1.21/MA.DataPlatforms.Bridge.Host.zip)
-- **Documentation:** [Read docs](https://atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
+- **Documentation:** [Read docs](https://docs.atlas.motionapplied.com/developer-resources/secu4/bridge_service/)
 
 ## Key Improvements
 

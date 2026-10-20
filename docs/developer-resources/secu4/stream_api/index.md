@@ -1,6 +1,6 @@
 The Stream API is a component that manages real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture. It provides a gRPC-based interface that enables any programming language to interact with live data streams efficiently.
 
-For more information, see [Open Streaming Architecture Documentation](https://atlas.motionapplied.com/developer-resources/secu4/docs/)
+For more information, see [Open Streaming Architecture Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/docs/)
 
 ## Table of Contents
 
@@ -776,7 +776,7 @@ public async Task WriteBatchData()
 
 ## API Reference
 
-For API reference, please refer to the [Stream API Reference](https://atlas.motionapplied.com/developer-resources/secu4/docs/)
+For API reference, please refer to the [Stream API Reference](https://docs.atlas.motionapplied.com/developer-resources/secu4/docs/)
 
 ### Error Handling
 
@@ -952,7 +952,7 @@ using var readStream = packetReader.ReadPackets(request);
 
 For technical support and questions:
 
-- **Documentation**: [Open Streaming Architecture Documentation](https://atlas.motionapplied.com/developer-resources/secu4/stream_api/)
+- **Documentation**: [Open Streaming Architecture Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/stream_api/)
 - **Sample Code**: [Usage Examples](https://github.com/mat-docs/MA.Streaming.Api.UsageSample)
 - **Protocol Definitions**: [MA.DataPlatforms.Protocol Repository](https://github.com/Software-Products/MA.DataPlatforms.Protocol)
 - **NuGet Packages**: [Motion Applied Packages](https://github.com/mat-docs/packages)

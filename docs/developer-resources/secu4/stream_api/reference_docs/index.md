@@ -5,7 +5,7 @@
 The Stream API is a high-performance component that manages real-time data streaming to and from Kafka brokers as part of the Open Streaming Architecture. It provides a gRPC-based interface that enables any programming language to interact with live data streams efficiently.
 
 !!! info "API Documentation"
-    For complete technical documentation, visit the [Open Streaming Architecture Documentation](https://atlas.motionapplied.com/developer-resources/secu4/docs/).
+    For complete technical documentation, visit the [Open Streaming Architecture Documentation](https://docs.atlas.motionapplied.com/developer-resources/secu4/docs/).
 
 ## Overview
 
