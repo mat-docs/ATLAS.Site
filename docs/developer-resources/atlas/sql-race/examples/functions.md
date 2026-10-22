@@ -566,7 +566,7 @@ The .M files are referenced by absolute path from the .XFN file so can be locate
 5. Four output parameters are calculated: `rSlipRatioFL:Functions`, `rSlipRatioFR:Functions`, `rSlipRatioRL:Functions` and `rSlipRatioRR:Functions`. These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
 
 ### Setup
-MATLAB embedded functions require a specific dll to work. The `Interop.MLApp.dll` cannot be bundled with ATLAS by default, so users will need to generate this and can be done by executing the following PowerShell script. Administrator priveliges may be necessary.
+MATLAB embedded functions require a specific dll to work. The `Interop.MLApp.dll` cannot be bundled with ATLAS by default, so users will need to generate this and can be done by executing the following PowerShell script. Administrator privileges may be necessary.
 
 ```powershell
 # Set the file path to your TlbImp.exe
