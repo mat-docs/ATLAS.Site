@@ -562,8 +562,46 @@ The .M files are referenced by absolute path from the .XFN file so can be locate
 1. The three files in this example are CalculateSlipRatios.xfn, calculateslipratios.m and slipratio.m, download these and place them all in the functions directory.
 2. Edit the CalculateSlipRatios.xfn file in any normal text editor, find the <FilePath>...</FilePath> line and edit it so the correct, absolute path to the calculateslipratios.m file is in the inner pair of square brackets.
 3. Start ATLAS 10 (or if it is already running, restart it).
-4. Four ATLAS input parameters are referenced; `vCar:Chassis`, `vWheelFL:Chassis`, `vWheelFR:Chassis`, `vWheelRL:Chassis` and `vWheelRR:Chassis` so for the function to calculate, data containing these parameters must be loaded.
+4. Five ATLAS input parameters are referenced; `vCar:Chassis`, `vWheelFL:Chassis`, `vWheelFR:Chassis`, `vWheelRL:Chassis` and `vWheelRR:Chassis` so for the function to calculate, data containing these parameters must be loaded.
 5. Four output parameters are calculated: `rSlipRatioFL:Functions`, `rSlipRatioFR:Functions`, `rSlipRatioRL:Functions` and `rSlipRatioRR:Functions`. These should now be available to add to any display from the ATLAS 10 Parameter Browser or Quick Access shortcut.
+
+### Setup
+MATLAB embedded functions require a specific dll to work. The `Interop.MLApp.dll` cannot be bundled with ATLAS by default, so users will need to generate this and can be done by executing the following PowerShell script. Administrator privileges may be necessary.
+
+```powershell
+# Set the file path to your TlbImp.exe
+$TlbImp = "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\TlbImp.exe"
+
+# Set the file path to your MATLAB version's mlapp.tlb
+$TlbFile = "C:\Program Files\MATLAB\R2025b\bin\win64\mlapp.tlb"
+
+$OutputFile = "C:\Program Files\McLaren Applied Technologies\ATLAS 10\Interop.MLApp.dll"
+
+# Make sure TlbImp exists
+if (-not (Test-Path $TlbImp)) {
+    Write-Error "TlbImp.exe was not found: $TlbImp"
+    exit 1
+}
+
+# Make sure the MATLAB type library exists
+if (-not (Test-Path $TlbFile)) {
+    Write-Error "MATLAB type library was not found: $TlbFile"
+    exit 1
+}
+
+Write-Host "Generating Interop.MLApp.dll..."
+
+& $TlbImp $TlbFile "/namespace:MLApp" "/out:$OutputFile" "/asmversion:1.0.0.0"
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "Successfully created:"
+    Write-Host $OutputFile
+}
+else {
+    Write-Error "TlbImp failed with exit code $LASTEXITCODE"
+    exit $LASTEXITCODE
+}
+```
 
 ### The .XFN File
 
