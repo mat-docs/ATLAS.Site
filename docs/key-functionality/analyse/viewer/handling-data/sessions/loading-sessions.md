@@ -153,7 +153,7 @@ You can change which Set a Display shows without opening the Session Browser:
 | `Ctrl + Delete` | Removes the Set from every Display on the active page |
 | `Ctrl + Shift + Delete` | Removes the Set from every Display in the active page group |
 
-Sets 11 to 20 use the same modifiers with `-`, `+`, `Backspace`, `;`, `'`, `,`, `.`, `/`, `Tab` and `Caps Lock`.
+Sets 11 to 20 use the same modifiers with `-`, `=`, `Backspace`, `;`, `'`, `,`, `.`, `/`, `Tab` and `Caps Lock`. For Set 12, press the `=` key (or numpad `+`), not `Shift` + `=`, because `Shift` is itself one of the modifiers.
 
 ### Sharing a Session reference
 

@@ -82,7 +82,7 @@ The Parameter Browser is your main tool for finding and adding parameters.
 
 ### Parameter Properties
 
-Edit individual parameter settings by double-clicking the parameter in the display, selecting it and pressing `Ctrl+Enter`, or right-click > Properties.
+Edit individual parameter settings by double-clicking the parameter in the display, or right-click > Properties. In a parameter list, such as the Scatterplot or Load Map parameter panel, you can also select the parameter and press `Ctrl+Enter`. Make sure the list has focus: anywhere else `Ctrl+Enter` switches to full screen. See [Keyboard Shortcuts](../system-operation/keyboard.md).
 
 | Setting | Description |
 |---------|-------------|

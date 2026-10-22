@@ -1,6 +1,6 @@
 # Keyboard Shortcuts
 
-Keyboard shortcuts let you drive ATLAS without the mouse. Most shortcuts act on the active Display, so click a Display first to give it focus. Shortcuts do not run while you are typing in a text box or editing a property grid.
+Keyboard shortcuts let you drive ATLAS without the mouse. Most shortcuts act on the active Display, so click a Display first to give it focus. Shortcuts do not run while you are typing in a text box or editing a property grid, with two exceptions. In the [Notepad display](../displays/notepad.md), `Page Up`, `Page Down`, `Ctrl+Q` and the set association keys still work. In the [Web Browser display](../displays/web.md) address box, `Ctrl+Q` searches your favourites.
 
 Shortcuts cannot be changed in this release.
 

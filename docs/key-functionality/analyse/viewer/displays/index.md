@@ -156,7 +156,7 @@ Save your workbook (`Ctrl+S`) to preserve your display setup for future sessions
 |-----|--------|
 | `Ctrl+Q, Ctrl+Q` | Quick Access Assistant |
 | `P` or `Insert` | Parameter Browser |
-| `Ctrl+Enter` | Parameter Properties (when a parameter is selected) |
+| `Ctrl+Enter` | Parameter Properties, when a parameter list such as the Scatterplot or Load Map parameter panel has focus. Anywhere else it switches to full screen. |
 | `Ctrl+F10` / `Ctrl+F11` / `Ctrl+F12` | Toggle current title bar / hide all / show all title bars |
 | `D` | Display Properties |
 | `Shift+<n>` | Switch display to Compare Set n |
