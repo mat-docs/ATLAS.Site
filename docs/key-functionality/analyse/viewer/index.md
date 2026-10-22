@@ -10,7 +10,7 @@ Key features include:
 
 - **Historical Replay**: Revisit and study past sessions using stored telemetry files.
 
-- **Flexible Integration**: Supports a wide range of data formats including proprietary (.ssn2), SQL Race databases, CSV, MATLAB, and Parquet.
+- **Flexible Integration**: Supports a wide range of data formats including proprietary (.ssn2), SQL Race databases, CSV, and MATLAB.
 
 - **Automation Support**: Through the ATLAS Automation API, users can automate session loading, display configuration, and parameter management using .NET-compatible languages like C#, and MATLAB.
 
