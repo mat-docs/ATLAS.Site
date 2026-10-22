@@ -26,7 +26,7 @@ A mouse with a scroll-wheel is recommended, though many actions have [Keyboard S
 
 <br clear="both">
 
-![Hold left and right mouse buttons](assets/mouse_left_right.gif){class="mouse-img"} Hold both buttons and move the mouse left or right to scroll a Waveform Display left or right.
+![Hold left and right mouse buttons](assets/mouse_left_right.gif){class="mouse-img"} Hold both buttons, or the middle button (scroll wheel), and move the mouse left or right to scroll a Waveform Display left or right. In a Waveform Display, hold ++alt++ and left click a trace to select it.
 
 <br clear="both">
 

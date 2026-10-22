@@ -20,17 +20,19 @@ Connects to a live telemetry stream from an ATLAS Data Server over a network.
 
 3. Configure the following:
 
-    - Recorder Name: Friendly name for identification.
+    - **Recorder Name**: Friendly name for identification.
 
-    - Data Server: Select from {servername}:{Data Stream name}.
+    - **Data Server**: Select from {servername}:{Data Stream name}. Servers that are offline are shown with `:(OFFLINE)` after the name.
 
-    - Refresh: Click to update the list of available servers.
+    - **Refresh**: Click to update the list of available servers.
 
-    - Session Identifier: Use tokens or manual entry.
+    - **Session Identifier**: Use tokens or manual entry. Select **Auto Assign** to take the identifier from the server.
 
-    - Auto Record: Enable if you want recording to start automatically.
+    - **Session Colour**: The colour used for Sessions from this Recorder.
 
-4. Click Start to begin manual recording.
+    - **Promote to primary when recorder starts**: Makes the recorded Session the primary Session of its Set when recording starts.
+
+4. Click **Start** to begin manual recording, or turn on **Auto Record** for the Recorder in the Session Browser if you want recording to start automatically.
 
 ## Notes
 

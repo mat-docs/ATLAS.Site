@@ -1,3 +1,4 @@
+# Go To
 
 The **Go To** feature in ATLAS 10 allows users to quickly navigate to specific laps, markers, or exact positions (by time or distance) within a session. This feature streamlines data exploration and analysis, making it easier to locate and review key moments.
 
@@ -13,14 +14,14 @@ You can access the Go To window in any of the following ways:
 
 The Go To dialog provides three main navigation options, selectable via a drop-down list:
 
-1. **Laps** – Jump to a specific lap in the session.
-2. **Markers** – Move to a defined marker (point or range) within the session.
-3. **Exact Setting** – Position the cursor at a precise time or distance.
+1. **Lap**: Jump to a specific lap in the session.
+2. **Marker**: Move to a defined marker (point or range) within the session.
+3. **Exact Setting**: Position the cursor at a precise time or distance.
 
 
 #### 1. Go To Feature - [Laps](../handling-data/laps-markers/laps.md)
 
-- The default option is **Laps**.
+- The default option is **Lap**.
 - Select a lap from the drop-down list and click **Apply** to move the cursor to that lap.
 - **OK** applies the selection and closes the window; **Cancel** closes the window without changes.
 - For live or replay sessions, playback will pause and jump to the selected lap.
@@ -51,7 +52,7 @@ Use the **Exact Setting** option to move the cursor to a specific time or distan
     - **Time from end of lap**: Enter a time offset from the end of a selected lap.
 
 - If the session spans multiple days, a **Day** drop-down appears for selecting the day.
-- If the entered time is out of session range, an error dialog will prompt for a valid value.
+- If the entered time is out of session range or not in the correct format, an error message asks for a valid value.
 
 ![Error](assets/error.png)
 
@@ -63,7 +64,7 @@ Use the **Exact Setting** option to move the cursor to a specific time or distan
     - **Value from start of lap**: Enter a distance offset from the start of a selected lap.
     - **Value from end of lap**: Enter a distance offset from the end of a selected lap.
 
-- If the entered distance is out of session range, an error dialog will prompt for a valid value.
+- If the entered distance is out of session range, an error message asks for a valid value.
 
 ![Go To Exact](assets/go-to-exact.png)
 

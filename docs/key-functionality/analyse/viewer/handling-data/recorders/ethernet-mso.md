@@ -16,25 +16,25 @@ ATLAS or ADS must be running.
 
 2. Add an Ethernet Multi-Session Offload Recorder.
 
-3. Use the Connection Tab to:
+3. Use the **Connection** tab to:
 
     - Select Car and Unit.
 
-    - Choose SQL Server or SQLite.
+    - Choose the **Database engine** (SQL Server or SQLite).
 
-    - Set Export Folder.
+    - Set the **Export folder**.
 
-    - Define Session Identifier.
+    - Define the Session Identifier.
 
-    - Use the Select Sessions Tab to:
+4. Use the **Select Session** tab to:
 
-    - View sessions stored on the ECU.
+    - View sessions stored on the ECU, with their **Type / Number**, **Start Date / Time**, **End Date / Time**, **Length**, **Laps**, **Config ID**, **Offloaded By** and **Offload Progress**.
 
     - Select sessions to offload.
 
-    - Use buttons: Select All, Clear All, Hide Offloaded, Query.
+    - Use the buttons: **Select All**, **Clear All**, **Hide Offloaded** (or **Show Offloaded**) and **Query**.
 
-4. Click Start to offload selected sessions.
+5. Click Start to offload selected sessions.
 
 ## Notes
 

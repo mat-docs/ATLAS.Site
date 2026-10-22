@@ -18,9 +18,13 @@ In the bottom right hand corner of the display is the scale. This changes when u
 
 To zoom in and out of the display use the mouse wheel or press Ctrl + or Ctrl -.
 
+To re-centre the map on the car, right-click the display and select **Goto Current Location**. To keep the car in the centre all the time, turn on **Lock Center to Data** in Display Properties.
+
+The map centre and zoom level are saved with the workbook, so the map opens where you left it.
+
 ## Parameter Selection
 
-The Bing Map requires **Latitude** and **Longitude** parameters to be added to the display **respectively**.
+The Bing Map requires **Latitude** and **Longitude** parameters to be added to the display **respectively**. Add the latitude parameter first and the longitude parameter second. Set **GPS Data Format** in Display Properties to match how the session stores GPS data.
 
 To show the parameter selection dialog do one of the following:
 

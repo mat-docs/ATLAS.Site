@@ -6,7 +6,7 @@ Each Display in ATLAS has a **Timebase**, defined by:
 - **Duration**: The length of time shown.
 - **Position**: A specific point within the Timebase.
 
-**Default Settings**: Timebase duration and position are based on the absolute time in the active Session. Displays can have independent or linked Timebases—changes to a linked Timebase affect all associated Displays.
+**Default Settings**: Timebase duration and position are based on the absolute time in the active Session. Displays can have independent or linked Timebases. Changes to a linked Timebase affect all associated Displays.
 
 ### Adjusting the Timebase
 
@@ -38,9 +38,9 @@ The **Timeline** is shown at the top of the ATLAS Main Window when a Session or 
     - Previous Lap  
     - Next Lap  
     - Fastest Lap
-- **Lap Bar**: Visualizes session duration and lap boundaries.
+- **Lap Bar**: Visualizes session duration and lap boundaries. A green tick marks the boundary between two sessions, and a thicker tick marks a gap in the data before a lap. Hover over a lap to see its name, lap time with the difference to the fastest lap, and start and end times.
 - **Time Position**: Marked by a vertical red line.
-- **Compare Set Scope & Offset**: Choose what to compare (whole session, single lap, fastest lap) and set time offsets between sessions.
+- **Compare Set Scope & Offset**: Choose what to compare (**Whole Session**, **Single Lap**, **Fastest Lap** or **Absolute Session**) and set time offsets between sessions.
 
 ## Timeline Actions
 
@@ -53,8 +53,20 @@ Interact with the Timeline using your mouse and keyboard:
     - Right to left: Select whole laps
 - **Right-click**: Remove sessions or manage Compare Sets.
 - **Left-click a Set tag/number**: Show/hide Compare Sets.
-- **Right-click session identifier**: Promote to primary, delete, or view session details.
-- **Zoom**: Use `+` and `-` keys or mouse wheel to zoom in/out on the Timeline.
+- **Right-click session identifier**: **Promote To Primary**, **Remove Session**, or **Session Details**. Removing a live session also removes its recorder from the set, and ATLAS asks you to confirm.
+- **Click a session's colour icon**: Show or hide that session in the set. The primary session cannot be hidden.
+- **Right-click a session's colour icon**: Change the session colour.
+- **Click the collapse icon next to the Set tag**: Collapse or expand the set on the Timeline.
+- **Zoom**: Use `+` and `-` keys or mouse wheel to zoom in/out on the Timeline. The same commands are on View > Zoom (**X Zoom In** and **X Zoom Out**).
+
+For lap and session keyboard shortcuts, such as ++ctrl+f++ for the fastest lap and ++ctrl+shift+right++ for the next lap, see [Keyboard Shortcuts](../system-operation/keyboard.md#timeline-and-navigation). The same moves are on the View > Move menu.
+
+## Stepping Through Events and Signal Changes
+
+- Press ++ctrl+alt+right++ or ++ctrl+alt+left++ to move the cursor to the next or previous signal change. By default this is a gear change (`NGear:Chassis`); choose a different parameter with **Move to Next/Previous Signal Change Parameter** in [Options](../system-operation/options.md). The same moves are on the toolbar.
+- Press ++ctrl+bracket-right++ or ++ctrl+bracket-left++ to move to the next or previous occurrence of the event set by **Event Tracking Mask** in the Waveform Display options.
+
+Hold the keys down to keep stepping.
 
 ## Timebase vs Distance Mode
 
