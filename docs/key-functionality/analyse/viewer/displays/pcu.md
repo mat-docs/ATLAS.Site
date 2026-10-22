@@ -50,13 +50,21 @@ The XML file selected needs have a format like this:
 <PcuDashInfos>
 	<PcuDashInfo>
 		<Order>0</Order>
+		<DisplayName>PCU8D</DisplayName>
+		<FirmwareName>PCU8E.15x23.dll</FirmwareName>
+		<RawFileExtension>.rawpcu8d</RawFileExtension>
+		<DrawShiftLights>true</DrawShiftLights>
+		<FirmwareDirectory>C:\FirmwareFolder</FirmwareDirectory>
+	</PcuDashInfo>
+	<ShellPcuDashInfo>
+		<Order>1</Order>
 		<DisplayName>PCU700</DisplayName>
 		<FirmwareName>PCU700.01x33.dll</FirmwareName>
 		<CompanionShellName>PCU700.shell.dll</CompanionShellName>
 		<RawFileExtension>.mldup</RawFileExtension>
 		<DrawShiftLights>false</DrawShiftLights>
 		<FirmwareDirectory>C:\FirmwareFolder</FirmwareDirectory>
-	</PcuDashInfo>
+	</ShellPcuDashInfo>
 </PcuDashInfos>
 ```
 
@@ -64,11 +72,12 @@ The different parts of the XML are defined as follows:
 
 - **PcuDashInfos** - The XML root which stores the collection of PCU Dashes to use
 - **PcuDashInfo** - Each of these elements contain information for a specified PCU Dash version
+- **ShellPcuDashInfo** - A PCU Dash version which requires a companion shell dll to draw the shift lights if *DrawShiftLights* is set to *false*
 - **Order** - The index of the *PcuDashInfo* element in the colletion
 - **DisplayName** - The product type of PCU Dash display (e.g. PCU8D or PCU700) which are selectable options in the **Product Type** dropdown in the display properties window
 - **FirmwareName** - The dll for the firmware version of the PCU Dash specified in *DisplayName*, which turns up as a selectable option in the **Firmware Version** dropdown. A value in this element must be suffixed with '.dll' and no two *PcuDashInfo* elements can have the same value for this **Firmware version**
-- **CompanionShellName** - The companion shell dll for the firmware version of the PCU Dash specified in *FirmwareName*, needed for drawing the shift lights if *DrawShiftLights* is set to *false*. Required to sit in the same directory as the dll specified in *FirmwareName* and also must be suffixed with '.dll' 
+- **CompanionShellName** - The companion shell dll for the firmware version of the PCU Dash specified in *FirmwareName* for a *ShellPcuDashInfo* entry, needed for drawing the shift lights if *DrawShiftLights* is set to *false*. Required to sit in the same directory as the dll specified in *FirmwareName* and also must be suffixed with '.dll' 
 - **RawFileExtension** - The extension for the raw file type auto-loaded by the PCU Dash per product type
 - **DrawShiftLights** - A boolean value specifying whether the PCU Dash needs shift lights drawn by ATLAS.
-- **FirmwareDirectory** - The directory where the dll for the firmware version of the PCU Dash specified in *FirmwareName* is located.
+- **FirmwareDirectory** - The directory where the dll for the firmware version of the PCU Dash specified in *FirmwareName* is located as well as where the companion shell dll specified in *CompanionShellName* for a *ShellPcuDashInfo* entry.
 
