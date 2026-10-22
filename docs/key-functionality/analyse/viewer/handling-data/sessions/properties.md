@@ -49,13 +49,13 @@ These codes incorporate standard session details (metadata):
 
 To extract parameter values, use `${param}$`, where `{param}` is the parameter identifier or name.
 
-This is commonly used together with text conversions &mdash; to spell out driver initials, for example.
+This is commonly used together with text conversions, for example to spell out driver initials.
 
 !!! example
 
     `$NDriverInitial1$$NDriverInitial2$$NDriverInitial3$_$NFOMRacingNo$` = `HAM_44`
 
-If the parameter is not present &mdash; for example, while configuration is being processed &mdash; the macro will not be expanded.
+If the parameter is not present (for example, while configuration is being processed), the macro is not expanded.
 
 ## Accessing the Session Properties Panel
 
@@ -64,7 +64,7 @@ To view or edit Session properties:
 1.  Open the Session Browser.
 2. Select a Session from the Session List.
 
-The Session Properties Panel will appear, displaying all available metadata for the selected Session.
+The Session Properties Panel will appear, displaying all available metadata for the selected Session in **Property** and **Value** columns. Right-click a row and select **Copy** to copy it.
 
 !!! tip 
     Editable fields are shown in white. Read-only fields are shown in grey.

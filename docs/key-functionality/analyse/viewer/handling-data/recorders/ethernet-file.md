@@ -20,21 +20,25 @@ ECU must be connected via Ethernet.
 
     - Recorder Name
 
-    - Car: Select from Car Definitions.
+    - Car: Select from Car Definitions. Click **...** to open the **Unit Definition** window.
 
-    - Unit: Choose a specific unit or “All Units”.
+    - Unit: Shows the unit used for the selected car. ATLAS selects **All Units** when it is available.
 
     - Data Versions: Enable to upload DTVs at start.
 
-    - Events / Row Data: Enable to save .evt and .row files.
+    - Export Config As text
 
-    - Export Config as Text
+    - Export M files
+
+    - SQLRace database setting: choose the **Database engine** and **Export folder**.
 
     - Session Identifier
+
+    Options that the connected unit does not support are disabled.
 
 4. Click Start to begin recording.
 
 ## Notes
 
 Ideal for continuous data streaming during track sessions.
-Does not require a radio link—Ethernet is sufficient
+Does not require a radio link; Ethernet is sufficient

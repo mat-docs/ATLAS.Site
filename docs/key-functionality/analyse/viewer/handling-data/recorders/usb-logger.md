@@ -38,7 +38,7 @@ In this mode, the logger writes data through the loom to a USB stick placed in a
 !!! tip 
     While the parameter may appear as `NTAG320TLMPxIPAddress` on TAG-320 units, other models like TAG-510 or TAG-700 may use a slightly different prefix. To ensure compatibility, look for the `TLMPxIPAddress` field under the **Telemetry > TLM-Px** section in the BIOS tree. This structure is consistent across supported TAG units.
 
-- In ATLAS, go to **Tools > Options > System Monitor Folders** and set up the folders containing the required ECU configuration files (e.g., PGVs).
+- In ATLAS, go to **Tools > Options > Recorders > System Monitor Folders** and set up the folders containing the required ECU configuration files (e.g., PGVs).
 
 !!! info
     When the vehicle is powered on, the ECU will automatically begin logging data to the USB drive. Depending on session length, multiple `.bin` files may be generated.
@@ -76,10 +76,12 @@ Set the following:
 <source src="../assets/usb-logger/usb_logger_1.mp4" type="video/mp4">
 </video>
 
-Go to the USB Logger Bin File(s) tab and set:
+Go to the **USB Logger Bin File(s)** tab and set:
 
-- **Folder path** to the `.bin` file(s)
-- **Select the bin files** you wish to import.
+- **USB Logger Bin File Folder Path** to the folder that holds the `.bin` file(s)
+- **Select File(s)**: tick the bin files you wish to import. Click **Refresh** to update the list.
+
+To include the bin file name in each Session name, select **Append USB Logger Bin File Name to Session Identifier**.
 
 <video autoplay loop muted playsinline>
 <source src="../assets/usb-logger/usb_logger_2.mp4" type="video/mp4">
@@ -92,7 +94,7 @@ ATLAS will automatically detect and import multiple `.bin` files found in the fo
 
 **6. Start the Recorder**
 
-- The recorder will process each binary file individually, creating a new session per `bin` file. If *Auto Export SSN2* was selected when configuring the recorder it will export the converted `.ssn` files to the export folder after processing is finished.
+- The recorder will process each binary file individually, creating a new session per `bin` file. If *Auto Export SSN2* was selected when configuring the recorder it will export the converted `.ssn2` files to the export folder after processing is finished.
 
 <video autoplay loop muted playsinline>
 <source src="../assets/usb-logger/usb_logger_3.mp4" type="video/mp4">
@@ -110,14 +112,14 @@ ATLAS will automatically detect and import multiple `.bin` files found in the fo
 **7. Using the Data**
 
 - Once the session is fully read and marked as **Historical**, it will appear in the **Sources** panel.
-- You can import the session into a **Set** using **Append** or **Compare** mode, like any other historical data.
+- You can load the session into a **Set**, or append it to other Sessions, like any other historical data.
 
 ![New Recorder](assets/usb-logger/usb_logger_4.png){: style="width:75%;"}
 
 Depending on the selected database engine:
 
-- **SQLite**: Share the exported `.ssn` file via a network drive.
-- **SQL Race**: Team members with access to the database can view the session directly.
+- **SQLite**: Share the exported `.ssn2` file via a network drive.
+- **SQL Server**: Team members with access to the database can view the session directly.
 
 ## Use Cases
 

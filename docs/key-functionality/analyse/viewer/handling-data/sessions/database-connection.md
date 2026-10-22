@@ -20,7 +20,7 @@ You can open the Database Connection Manager in two ways:
 2. Enter the required details:
     - **Server Name**: The server hosting the database.
     - **Database Name**: The name of the database.
-    - **Friendly Name** (optional): A user-friendly name for the database.
+    - **Friendly Name**: A user-friendly name for the database. This field is required.
     - **Root Path**: The folder location of the database file.
 3. Click **Test Connection** to verify the details.
 4. Click **OK** to save and enable the connection.

@@ -1,7 +1,7 @@
 # Waveform Display
 
 !!! abstract "At a Glance"
-    **Parameters**: Unlimited  
+    **Parameters**: 100 by default (**Maximum Number of Parameters** in the Waveform options)  
     **X-Axis**: Time or Distance  
     **Key Features**: Multiple cursors, statistics, events, zoom  
     **Best For**: Time-series analysis, multi-session comparison
@@ -71,6 +71,11 @@ The Waveform Display plots multiple parameters as traces against time or distanc
 - Click rows to select parameters
 - Reposition, resize, grid, show units, toggle headers
 - Select rows (`Ctrl`/`Shift`) to highlight traces and perform actions (hide/delete/distribute)
+- Drag rows up or down to reorder the legend
+- Each session has a header with a colour stripe, a button to show or hide all of that session's parameters, and a toggle between **Use Parameter Colours** and **Use Session Colour**
+- With **Show Warning Indicators** on, up and down arrows flag parameters outside their warning (blue) or critical (red) limits
+
+**Reading the value column**: a `=` next to a value means it is a recorded sample, and `?` means a default value is shown. Use this to tell real data from filler before you quote a number.
 
 ### Axes
 
@@ -88,16 +93,21 @@ The Waveform Display plots multiple parameters as traces against time or distanc
 | Value | `V` | Vertical line, shows sample values (default) |
 | Crosshair | `C` | Adds horizontal sight line |
 | Gradient | `G` | Diagonal line with three handles; legend shows per-signal gradient |
-| Hide | `N` | Turn off cursor display |
+| Hide | `H` | Turn off cursor display |
+
+The same modes are on **View > Cursor Mode** and the display toolbar. The **Cursor Mode** display property saves the choice with the display.
 
 !!! tip "Reference Cursor"
-    Press `R` to add a red reference line for comparison.
+    Press `R` (or **Use Reference Cursor** in the context menu) to add a red reference line for comparison.
     
     **Features:**
     
-    - Red reference line; grey window between reference and current cursor defines analysis range
-    - Legend shows ΔTime/ΔDistance and computes statistics for that window
-    - Drag either cursor to adjust window size
+    - Red reference line; shaded window between reference and current cursor defines analysis range
+    - Red `Ref:` text on the plot shows the reference position and the time or distance difference (Δ) to the cursor
+    - The legend computes statistics for that window; the Delta column appears even when **Show Statistics** is off
+    - Click or drag in the plot to move the cursor end of the window
+    - Point at the red reference line until the pointer changes, then drag to move the reference end
+    - Hold `Ctrl` and drag inside the window to move the whole window without changing its length
 
 ![Waveform Display with Reference Cursor](assets/ref-cursor.png)
 
@@ -106,7 +116,7 @@ The Waveform Display plots multiple parameters as traces against time or distanc
 Enable statistics to see parameter behaviour over ranges:
 
 !!! note "Setup Steps"
-    1. Check **Show Statistics** in Display Properties
+    1. Check **Show Statistics** in Display Properties (or press `S`)
     2. Choose your **Statistics Level**
     3. Toggle metrics with keyboard shortcuts
 
@@ -117,9 +127,14 @@ Enable statistics to see parameter behaviour over ranges:
 | Display | Visible timebase | D |
 | Lap | Current lap only | L |
 | Session | Entire session | S |
-| All | All loaded sessions | A |
+| Reference cursor | Window between the reference and current cursor | R |
+| All | Ticks or clears a statistic at every level at once | n/a |
 
-Reference Cursor can have its own level or swap with the chosen level.
+Reference Cursor can have its own level or swap with the chosen level (**Reference Cursor Uses** property: Own, Lap, Display or Session).
+
+The keyboard shortcuts and context menu act on one level. Choose which in the Waveform options with **Context Menu and Key Shortcut Statistic Level**, and optionally **Override Context Menu and Key Shortcut Statistic Level for Reference Cursor**.
+
+**Jump to a minimum or maximum**: click a Min or Max cell in the legend to move the cursor to the moment that value occurred.
 
 **Available Metrics:**
 
@@ -141,6 +156,9 @@ Reference Cursor can have its own level or swap with the chosen level.
 - Click legend row to select one parameter
 - `Ctrl+Click`: Add to selection
 - `Shift+Click`: Select range
+- `Ctrl+A`: Select all
+- `Alt+Click` a trace in the plot to select it
+- Click a Y axis to select the parameters on it; double-click it to open Parameter Properties
 - Selected traces flash (by default)
 
 **Hide Selected Parameters**:
@@ -178,27 +196,32 @@ Reference Cursor can have its own level or swap with the chosen level.
 
 **Features:**
 
-- Hover for event details
+- Hover for event details (time, ID, description and status); click a block to also move the cursor to the event
 - Multiple events at same position show highest priority colour
-- Mask/unmask events by hovering and right-clicking
-- View masked events via context menu
+- To mask events, hover over a block, tick the events in the popup and click **Mask Selected**
+- To unmask, choose **View Masked Events** in the context menu, select events and click **UnMask Selected**
+- Mask whole priorities with the **Mask: All**, **Mask: High**, **Mask: Medium** and **Mask: Low** display properties
+- Events from the **Left to Right Overlay** lap are also shown
 
 **Other Markers:**
 
 | Marker Type | Description | Toggle |
 |-------------|-------------|--------|
 | Lap Markers | Vertical dashed lines at lap boundaries | Display Properties |
-| Date/Time Markers | Clock time or lap time on X-axis | Time mode only |
+| Date Markers | Date shown with the time on the X-axis | Display Properties (**Show Date Markers**) |
+| Clock or lap time | X-axis in time mode shows clock time or lap time | Display Properties (**Show Time As**) |
 | Circuit Stripe | Track sectors/segments across top of plot; toggle labels; choose global/overridden Circuit Definition | Display Properties |
 
 ### Zoom and Navigation
 
 **Zoom Box**:
 
-- Click and drag to create zoom region
+- Right-drag, or hold `Shift` and left-drag, to create a zoom region (a plain left-drag moves the cursor). Press `Z` (or **Zoom Box** in the context menu) to arm a zoom box for the next left-drag.
     - Top-to-bottom: Zoom X and Y axes
     - Bottom-to-top: Zoom X-axis only (zoom strip)
-- Mouse wheel: Zoom X-axis (time/distance)
+- Press `Esc` to cancel a zoom box
+- Mouse wheel, or `+` and `-`: Zoom X-axis (time/distance)
+- `Ctrl+Z` undoes the last zoom and `Ctrl+Alt+Z` undoes all zooms (**Undo Zoom** and **Undo All Zooms** in the context menu)
 - Toolbar zoom buttons
 
 **Autoscroll** (Live Sessions):
@@ -224,22 +247,25 @@ Press `K` to cycle between X-axis mappings:
 - Plots time difference between sessions
 - Shows which session is ahead/behind at each distance
 - Enable **Show Time Diff** in Display Properties
-- Choose TDiff start point:
+- Choose TDiff start point (**Start** property in the Time difference category):
     - Start of lap
-    - Current cursor position
+    - Cursor
+- Press `F` (**Zero time difference** in the context menu) to reset the time difference to zero at the cursor
+
+`Ctrl+K` applies the current X-axis mode to every display on the page, and `Ctrl+Shift+K` applies it to all displays, so traces stay aligned when you switch between time and distance.
 
 ### Sampling and Interpolation
 
-**Sub-Sampling** (when cursor spans multiple samples):
+**Sub-Sampling** (when multiple samples fall under a single pixel):
 
-Choose how to display data:
+Set **Sample Mode** in Parameter Properties > Post Processing to choose how to display data:
 
-- **First**: Show first sample value
-- **Min**: Show minimum in range
-- **Max**: Show maximum in range
+- **First Value**: Show first sample value
+- **Minimum**: Show minimum in range
+- **Maximum**: Show maximum in range
 - **Mean**: Show average
-- **Min→Max**: Draw vertical line from min to max
-- **Max→Min**: Draw vertical line from max to min
+- **Minimum To Maximum**: Draw vertical line from min to max
+- **Maximum To Minimum**: Draw vertical line from max to min
 
 Legend shows min/max values; trace shows vertical min-max line.
 
@@ -260,6 +286,10 @@ Legend shows min/max values; trace shows vertical min-max line.
     - Functions
     - When using Filters or Trends
 
+**Line up sessions by hand**: choose **Drag Session Offset** in the context menu, pick the session, then drag its traces left or right until features line up. Right-click to finish.
+
+**Show or hide a compared session**: press `Ctrl+Shift+Alt+1` to `9` to toggle that session's traces without removing it.
+
 ### Left-to-Right Mode (Strip Chart)
 
 For live telemetry analysis:
@@ -274,7 +304,8 @@ Useful for comparing current lap against previous laps in real-time.
 ### Live Telemetry & Historical Replay
 
 - **Live:** Waveform scrolls/updates if a live session is in the set
-- **Historical Replay:** Enable **Allow Historical Replay**; double-click plot to replay
+- **Historical Replay:** Enable **Allow Historic Replay**; double-click plot to replay
+- A `Live` or `Live: Paused` label on the plot shows whether the display is following live data
 
 ## Keyboard Shortcuts
 
@@ -285,13 +316,14 @@ Useful for comparing current lap against previous laps in real-time.
 | `V` | Value cursor mode |
 | `C` | Crosshair cursor mode |
 | `G` | Gradient cursor mode |
-| `N` | Hide cursor |
+| `H` | Hide cursor |
 | `R` | Toggle reference cursor |
 
 ### Statistics
 
 | Key | Action |
 |-----|--------|
+| `S` | Toggle Show Statistics |
 | `M` | Toggle Min statistic |
 | `X` | Toggle Max statistic |
 | `N` | Toggle Mean statistic |
@@ -303,11 +335,26 @@ Useful for comparing current lap against previous laps in real-time.
 | Key | Action |
 |-----|--------|
 | `K` | Cycle X-axis mode (Time/Distance) |
+| `Ctrl+K` / `Ctrl+Shift+K` | Apply X-axis mode to page / all displays |
 | `D` | Display Properties |
-| `←` / `→` | Move cursor |
-| `Shift+←` / `Shift+→` | Move cursor faster |
+| `←` / `→` | Move cursor to previous / next sample |
 | `Home` | Cursor to start |
 | `End` | Cursor to end |
+| `F` | Zero time difference at cursor |
+| `Z` / `Esc` | Zoom box / cancel zoom box |
+| `+` / `-` | Zoom in / out |
+| `Ctrl+Z` / `Ctrl+Alt+Z` | Undo zoom / undo all zooms |
+
+### Parameters and Output
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+A` | Select all parameters |
+| `T` | Hide or show selected parameters |
+| `Delete` | Delete selected parameters |
+| `Ctrl+C` | Copy selected legend items to clipboard (**Copy Legend Items to Clipboard** in the context menu copies every row) |
+| `Ctrl+Shift+Alt+1` to `9` | Show or hide a compared session's traces |
+| `Ctrl+P` / `Ctrl+Shift+P` | Print / Print Preview |
 
 ### Compare Sets
 
@@ -322,45 +369,78 @@ Key properties you can configure:
 
 ### General
 
-- Background colour
-- Show grid (horizontal, vertical, both)
-- Grid spacing
-- Show title bar
-- Allow historical replay
+- Title
+- Background Colour
+- Show Title Bar
 
-### Legend
+### Statistics
 
-- Position (top, bottom, left, right)
-- Font size
-- Show units
-- Show warning indicators
-- Value alignment
+- Show Statistics
+- Statistics Level (a grid of Min, Max, Mean, Delta and Standard Deviation for each level)
+- Reference Cursor Uses
 
-### Cursor & Statistics
+### Legend Settings
 
-- Cursor mode (Value, Crosshair, Gradient)
-- Show statistics
-- Statistics level
-- Reference cursor level
+- Show Legend
+- Position (Left, Right, Top or Bottom; default Left)
+- Show Units
+- Show Warning Indicators
+- Value Alignment
+- Show Grid
+- Font Size
+- Show Column Headers
 
-### Time/Distance
+### Waveform Settings
 
-- X-axis mode
-- Show time difference
-- TDiff start point
-- Time notation format
+- Cursor Mode
+- Cursor Minimum Precision (minimum decimal places in the cursor time)
+- Highlight Mode (None, Highlight, Flash or Pulse) and Highlight Alpha (how much unselected traces dim)
+- Align Grid to Y Scales
+- Allow Historic Replay
+- Show Grid (Normal, None, Horizontal Lines or Vertical Lines)
+- Z-Order (Top To Bottom or Bottom To Top drawing order)
+- Use Global Circuit Definition and Circuit Definition
+- Draw left to right, Gap % and Left to Right Overlay (Previous Lap or Fastest Lap)
+- Show Circuit Stripe (None, Sector or Segment) and Show Circuit Labels
 
-### Events
+### Markers
 
-- Show event indicators
-- Show lap markers
-- Show date/time markers
-- Circuit stripe visibility
+- Show Lap Markers
+- Mask: All, Mask: High, Mask: Medium, Mask: Low
+- Show Event Indicators
+- Show Date Markers
+- Show Time As (Clock Time or Lap Time)
 
-### Sub-Sampling
+### Time difference
 
-- Drawing mode (First, Min, Max, Mean, etc.)
-- Interpolate between samples
+- Show Time Diff
+- Start (Start of lap or Cursor)
+
+### Background Image
+
+- Show Image, Image Left Offset, Image Top Offset, Image Path
+
+Sub-sampling (**Sample Mode**), **Interpolate between samples** and **Weighted Statistics** are per-parameter settings in Parameter Properties > Post Processing, not display properties.
+
+## Parameter Properties
+
+Double-click a legend row or a Y axis to open Parameter Properties for that parameter. Waveform-specific settings include:
+
+| Category | Property | What it helps with |
+|----------|----------|--------------------|
+| Trace | **Trace Width** | Line width from 1 to 10 pixels |
+| Trace | **Trace Style** | Line, Small Point, Dot, Box, Cross, Line and Box, or Line and Cross, to see individual samples |
+| Trace | **Line Style** | Solid, Dash Dash, Dot Dash or Dot Dot, to tell traces apart |
+| Trace | **Y Scale** | Show the parameter's own Y scale |
+| Trace | **Distribution Top** / **Distribution Bottom** | Set the band a trace occupies (you can also drag the handles on the plot) |
+| Limits | **Display Maximum** / **Display Minimum** | Fix the Y range so the scale does not jump |
+| Limits | **Clip Trace** | Hide trace drawn outside the display range |
+| Limits | **Show Warning Limits** / **Show Critical Limits** | Draw dashed lines at the warning and critical limits |
+| Limits | **Additional Markers** | Draw horizontal reference lines at the values you enter |
+| Post Processing | **Filter Type** / **Filter Frequency** | Filter a noisy channel |
+| Post Processing | **Trend** | Plot a per-lap statistic as a stepped trace |
+| Post Processing | **Show Differences** | Plot the difference between compared sessions |
+| Post Processing | **Weighted Statistics** | Use time-weighted statistics so irregular sampling does not skew the result |
 
 ## Example Configurations
 
@@ -429,8 +509,8 @@ Key properties you can configure:
 
 ??? question "Event markers not showing?"
     - Check **Show Event Indicators** is enabled in Display Properties
-    - Verify events aren't masked in Event Filter Display
-    - Check event priorities are visible
+    - Check **View Masked Events** in the context menu for events you masked
+    - Check the **Mask: All**, **Mask: High**, **Mask: Medium** and **Mask: Low** properties are off for the priorities you want to see
 
 ??? question "Differences not showing?"
     "Show Differences" not available with:

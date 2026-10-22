@@ -1,6 +1,6 @@
 # Laps
 
-In ATLAS, a Lap is a defined segment of time within a telemetry session—typically corresponding to a vehicle completing a circuit. But laps are not just for motorsport. They are a powerful structuring tool for any time-series data stream where repeated cycles or phases occur.
+In ATLAS, a Lap is a defined segment of time within a telemetry session, typically corresponding to a vehicle completing a circuit. But laps are not just for motorsport. They are a powerful structuring tool for any time-series data stream where repeated cycles or phases occur.
 
 Laps allow users to:
 
@@ -26,8 +26,7 @@ The selected session details are visible as a tooltip by hovering over the speci
 
 ![timeline-tooltip.png](assets/timeline-tooltip.png)
 
-The number of session details that a user can add can be defined in Tools > Options > Plugins > F1 Timeline, the 
-maximum number of session details allowed is 20. 
+The number of session details that a user can add is set by **Session Details Tooltip Limit** in **Tools > Options > Plugins > F1 Timeline**. The default is 5 and the maximum is 20.
 
 ## Why Use Laps?
 
@@ -53,7 +52,7 @@ During a live session, ATLAS can track laps in real time. This is especially use
 
 **2. Manual Lap Definition**
 
-You can define laps manually using the Laps and Markers Editor. This is useful when:
+You can define laps manually using the Laps And Markers Editor. This is useful when:
 
 - The data source doesn’t emit lap markers
 - You want to redefine laps based on new criteria
@@ -66,6 +65,17 @@ Manual laps can be:
 - *Flexible: *placed anywhere in the session
 
 - *Named:* with custom labels like “Out Lap”, “Pit Entry”, “Cool Down”
+
+**Editing laps in the Laps And Markers Editor**
+
+Open **Tools > Laps And Markers Editor** and select the **Laps** tab. The list shows each lap's **Label**, **Start time** and **Duration**.
+
+- **New** (or `Insert`): creates a new lap from the current cursor position. ATLAS asks you to confirm because the laps will be renumbered.
+- **Delete** (or `Delete`): deletes the selected lap after you confirm. The first lap of each Session in a Composite Session cannot be deleted.
+- **Go To**: sets the cursor and timebase to the selected lap.
+- In **Update Lap Marker**, edit the **Label** and click **Save**, or click **Reset** to discard your changes.
+
+You can also right-click a lap for **Go To** and **Delete**.
 
 **3. Session Navigation**
 
@@ -96,7 +106,7 @@ Laps can be used to:
 - Drive conditional formatting (e.g. highlight fastest lap)
 - Trigger alarms or annotations in dashboards
 - Filter waveforms, histograms, or scatter plots to a specific lap
-- Laps are not just metadata—they are active drivers of visualisation and logic in ATLAS.
+- Laps are not just metadata; they are active drivers of visualisation and logic in ATLAS.
 
 **6. Out/In Lap Handling**
 
@@ -126,7 +136,7 @@ This enables:
 
 ## Advanced Use Cases for Laps in ATLAS
 
-Laps are not just a convenience for motorsport—they are a strategic structuring mechanism for any telemetry-driven workflow. Below are advanced scenarios where laps become critical to extracting value from ATLAS.
+Laps are not just a convenience for motorsport. They are a structuring mechanism for any telemetry-driven workflow. Below are advanced scenarios where laps become critical to extracting value from ATLAS.
 
 ### Performance Benchmarking Across Sessions
 

@@ -29,7 +29,7 @@ To add a Scatterplot Display to a page, use one of the following methods:
 - **Toolbar:** Click the **Scatterplot Display** button on the Display Toolbar.
 - **Menu:** Go to **File > New > Display** and select **Scatterplot Display**.
 - **Shortcut:** Press `Ctrl+Q` twice to open the QuickAccess Assistant, type "Scatterplot", and select **New Scatterplot Display**.
-- **From Waveform:** Select two parameters in a Waveform legend and use **View Scatterplot of Selected Parameters** (`Ctrl+T`) to create a Scatterplot pre-wired to those signals.
+- **From Waveform:** Select two parameters in a Waveform legend and choose **View Scatterplot of Selected Parameters** from the Waveform context menu to create a Scatterplot pre-wired to those signals.
 
 A third "Z" parameter can be selected to create a three-dimensional scatter plot.
 
@@ -81,61 +81,69 @@ When using Z-axis (3D mode):
 
 - Points coloured by Z-value
 - Colour bar shows value-to-colour mapping
-- Customise colour scale
 - Adjust colour range
 
 ### Draw Styles
 
-Choose how data points appear:
+Choose how data points appear with the **Draw Style** display property:
 
-- Points (dots)
-- Lines connecting points
-- Points with connecting lines
-- Filled shapes
+- Line
+- Small Point
+- Large Point
+- Cross
+- Line And Cross
+- Line Forward Only
+- Line And Cross Forward Only
 
 ### Grid Configuration
 
-**Grid Size Options**:
+**Grid Size** options:
 
-- Small: Fine grid for detailed work
-- Medium: Balanced grid spacing
-- Large: Coarse grid for overview
-- Custom: Specify exact spacing
+- Fine
+- Normal
+- Coarse
+- Custom: Specify exact spacing with **Custom Grid Size**
 
-**Grid Display**:
+**Grid Lines** options:
 
-- Show/hide major gridlines
-- Show/hide minor gridlines
-- Custom grid colours
-- Adjust grid opacity
+- None
+- Vertical Lines
+- Horizontal Lines
+- All
 
 ### Zoom and Navigation
 
 **Zoom Box**:
 
-- Click and drag to create zoom region
+- Right-drag, or hold `Shift` and left-drag, to create a zoom region (**Zoom Box** in the context menu also starts one)
 - Automatically zooms to selected area
-- Undo/redo zoom with toolbar buttons
+- A `Zoom n` label shows how many zoom levels deep you are
 
 **Zoom History**:
 
 - Multiple zoom levels remembered
-- Navigate back/forward through zoom history
-- Reset to full view
+- **Undo Zoom** (`Ctrl+Z`) and **Redo Zoom** (`Ctrl+Y`) step back and forward through zoom history
+- **Undo All Zooms** (`Ctrl+Alt+Z`) resets to full view
+
+**Mouse wheel and keys**:
+
+- Mouse wheel, `+` or `-` zoom in and out
 
 **Manual Scaling**:
 
-- Set exact X and Y axis ranges
-- Auto-scale to data
-- Lock aspect ratio (optional)
+- Set exact X and Y axis ranges with **Display Maximum** and **Display Minimum** in Parameter Properties
+- Auto-scale to data with **Autoscale** in the context menu, and undo it with **Reset Autoscale**
 
-### Cursor Modes
+### Cursor
 
-**Value Mode**: Standard cursor
+- The crosshair snaps to the nearest data point of the selected plot as you move the pointer
+- Click or drag in the plot to move the shared cursor, so Waveform and other displays follow the point you chose
+- Press `H` (**Hide Cursor**) to hide the crosshair
+- Press `R` to set a reference point at the cursor
 
-**Crosshair Mode**: Adds horizontal and vertical reference lines
+### Live Data
 
-**In-Place Reference Line**: Fixed reference marker
+- Click the plot to pause live updates; double-click to resume
 
 ## Best Fit & Reference Lines
 
@@ -146,25 +154,17 @@ Choose how data points appear:
 
 ### Best Fit Lines
 
-- Polynomial fit up to 5th order.
+- Polynomial fit up to 5th order. Polynomial is the only fit type.
 - **Order:**
     - *Unspecified*: ATLAS automatically selects the most accurate polynomial order (up to 5).
     - *Specified (1-5)*: Forces that exact order (e.g., 1 = linear).
 - **Limits:** Define which samples are used for the fit (do not clip the drawn line). The calculated line spans the entire plot area.
 - **Colour & Sessions:** Line colour defaults to the set's colour. In compare mode, each Best Fit line is recalculated per session and uses the session colour. Custom colours apply only in single-session mode.
 
-**Fit Types Available:**
-
-| Type | Use Case | Formula |
-|------|----------|---------|
-| Linear | Straight relationships | y = mx + b |
-| Polynomial | Curved relationships | y = aₓxⁿ + ... + a₁x + a₀ |
-| Power | Power law | y = axᵇ |
-| Exponential | Growth/decay | y = aeᵇˣ |
-| Logarithmic | Log relationships | y = a ln(x) + b |
+**Best Fit Line Properties** dialog fields: **Line Type** (Best Fit or Reference), **Scatterplot**, **Colour**, **Specify Order**, **Limit X Axis** and **Limit Y Axis** (Min and Max), **Include Limits**, **Show Formula** and **Coefficient Decimal Places**.
 
 !!! tip "Formula Display"
-    Enable **Show Formula** to display the equation with coefficients near the line. Updates when data changes!
+    Enable **Show Formula** to display the equation with coefficients near the line. Use **Coefficient Decimal Places** to control how many decimals are shown.
 
 ### Reference Lines
 
@@ -177,7 +177,7 @@ Choose how data points appear:
 - Choose **Place Linear Reference Line** from the right-click menu.
 - A temporary white line with drag handles appears:
     - Drag centre to move; drag ends to pivot and stretch.
-- Confirm to persist the line, then select which scatterplot set to apply it to.
+- Choose **Confirm Linear Reference Line** to persist the line (or **Cancel Linear Reference Line**), then select which scatterplot set to apply it to.
 - X/Y axis limits are inferred from handle positions. Changing the selected set updates coefficients and limits; manual tweaks are lost if you switch sets again.
 
 ### Line Lifecycle & Visibility
@@ -185,7 +185,7 @@ Choose how data points appear:
 - **Automatic deletion:** Lines are tied to specific X/Y parameter pairs. Deleting X or Y, swapping axes, or replacing Z with X or Y deletes associated lines without warning. Undo does not restore them.
 - **Global toggles:**
     - *Show Best Fit and Reference Lines* (on/off for all lines).
-    - *Show Best Fit Line Formulas* (shows formulas under the X-axis).
+    - *Show Formulae for Best Fit and Reference Lines* (shows formulas under the X-axis).
 - Per-line or per-set visibility toggles are not available.
 
 !!! warning "Lines and Parameter Changes"
@@ -365,37 +365,29 @@ _Time Period (Number of Samples) = 6 (seconds on display) / **2 (samples)**_
 
 ## Display Properties
 
-### Data Configuration
+### General
 
-- Fixed frequency (Hz)
-- Fixed sample count
-- Data point mode (see [Sampling Modes](#scatterplot-sampling-modes))
-- Show Z-axis colour mapping
+- Title
+- Background Colour
+- Show Title Bar
 
-### Grid Settings
+### Data
 
-- Grid size (Small/Medium/Large/Custom)
-- Custom grid spacing
-- Show major gridlines
-- Show minor gridlines
-- Grid colour
+- Data Point Mode (see [Sampling Modes](#scatterplot-sampling-modes))
+- Frequency (Hz)
+- Sample Count
 
-### Visual Options
+### Appearance
 
-- Primary draw style
-- Show boundary lines (best-fit)
-- Show zero axes
-- Show best-fit formulas
-- Show colour bar (3D mode)
-- Background colour
+- Draw Style
+- Use Parameter Colours (colour points by parameter rather than by session)
+- Grid Lines
+- Grid Size
+- Custom Grid Size
+- Show Formulae for Best Fit and Reference Lines
+- Show Best Fit and Reference Lines
 
-### Axes
-
-- X-axis label and range
-- Y-axis label and range
-- Z-axis label and range (3D)
-- Auto-scale options
-- Lock aspect ratio
+Axis ranges are set per parameter in Parameter Properties (**Display Maximum** and **Display Minimum**), not in Display Properties.
 
 ## Working with Parameters
 
@@ -408,13 +400,14 @@ _Time Period (Number of Samples) = 6 (seconds on display) / **2 (samples)**_
 
 ### Editing Parameter Properties
 
-Double-click axis label or parameter to configure:
+Double-click an axis label or a parameter in the parameter panel (or select it and press `Ctrl+Enter`) to configure:
 
-- Parameter selection
-- Colour assignment
-- Scale and range
-- Units display
-- Decimal precision
+- **Format String** (number format on the axis)
+- **Hidden**
+- **Display Maximum** and **Display Minimum** (axis range)
+- **Warning Maximum** / **Warning Minimum** and **Critical Maximum** / **Critical Minimum**, with **Show Warning Limits** and **Show Critical Limits** to draw dashed limit lines on the axis
+
+On an axis with several parameters, click a label to select that parameter. Use **Display Set Colour** in the parameter panel to change a plot's colour.
 
 ### Removing Parameters
 
@@ -427,11 +420,15 @@ Double-click axis label or parameter to configure:
 |-----|--------|
 | `D` | Display Properties |
 | `P` | Parameter configuration |
-| `Z` | Zoom box mode |
+| `Ctrl+Enter` | Parameter Properties for the selected parameter |
 | `Ctrl+Z` | Undo zoom |
 | `Ctrl+Y` | Redo zoom |
-| `Home` | Reset zoom |
-| `Ctrl+T` | View Scatterplot of Selected Parameters (from Waveform) |
+| `Ctrl+Alt+Z` | Undo all zooms |
+| `+` / `-` | Zoom in / out |
+| `H` | Hide or show the cursor |
+| `T` | Hide or show the selected scatterplot |
+| `R` | Toggle reference cursor |
+| `Ctrl+P` / `Ctrl+Shift+P` | Print / Print Preview |
 | `Delete` | Remove selected parameter set |
 
 ## Example Use Cases
@@ -443,7 +440,7 @@ Double-click axis label or parameter to configure:
     2. **X-axis**: Engine RPM
     3. **Y-axis**: Throttle Position
     4. **Z-axis**: Engine Torque (colour mapped)
-    5. Enable colour bar
+    5. Tick **Use Z Axis** so the colour bar appears
     6. Adjust grid for readability
     7. Set appropriate axis ranges
     
@@ -453,7 +450,7 @@ Double-click axis label or parameter to configure:
     Analyse parameter relationships:
     
     1. Add parameters to analyse (X vs Y)
-    2. Add linear best-fit line
+    2. Add a best fit line with **Specify Order** set to 1 (linear)
     3. Enable "Show Formula"
     4. Look for strong correlation (tight to line)
     5. R² value indicates correlation strength
@@ -492,7 +489,7 @@ Double-click axis label or parameter to configure:
 !!! tip "Performance"
     If the plot feels cluttered, reduce density via Fixed Sample Count or switch Draw Style to Small Point or Cross.
 
-    If Z-colouring appears sparse, check the Z limits (Parameter Properties > Appearance > Limits). Points with Z outside limits are not drawn.
+    If Z-colouring appears sparse, check the Z limits (Parameter Properties > Limits). Points with Z outside limits are not drawn.
 
     To focus on part of the lap/run, set a Reference Cursor on a Waveform and use the Scatterplot's solid/faint point effect to isolate that window.
 
@@ -511,18 +508,16 @@ Double-click axis label or parameter to configure:
     - Enable best-fit line to see trend
 
 ??? question "Colour bar not showing?"
-    - Verify Z-axis parameter is added
-    - Check "Show colour bar" is enabled
+    - Verify Z-axis parameter is added and **Use Z Axis** is ticked
     - Check Z-parameter has valid data
 
 ??? question "Best-fit line incorrect?"
-    - Check fit type is appropriate for data
-    - Try different polynomial degree
+    - Try a different polynomial order with **Specify Order**
     - Verify sufficient data points
     - Check for outliers affecting fit
 
 ??? question "Zoom stuck?"
-    - Press `Home` to reset zoom
+    - Press `Ctrl+Alt+Z` (**Undo All Zooms**) to reset zoom
     - Use undo zoom (`Ctrl+Z`)
     - Check manual axis ranges
 

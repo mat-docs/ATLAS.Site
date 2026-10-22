@@ -4,7 +4,7 @@ The Function Editor in ATLAS allows users to create, edit, and view Functions, w
 
 ![Function Editor](assets/function-editor.png)
 
-## Quick Start — Creating Your First Function
+## Quick Start: Creating Your First Function
 
 1. Open the Function Editor and click New. Default General and Function properties are prefilled. 
 2. Set General Properties (name, format, units, display min/max). These act like parameter properties for Displays. 
@@ -15,12 +15,27 @@ The Function Editor in ATLAS allows users to create, edit, and view Functions, w
 
 
 !!! tip
-    If your environment does not have Resolve without App Name enabled (Options ▸ Data), use the full parameter identifier (e.g., vCar:Chassis) rather than a short name. 
+    If your environment does not have Resolve without App Name enabled (**Tools > Options > General > Data**), use the full parameter identifier (e.g., vCar:Chassis) rather than a short name. 
 
 ## Opening the Function Editor
 
 - Click the **Function Editor** button on the Browser Toolbar.
 - Select **View > Function Editor** from the Menu Bar.
+
+The Function Editor has no default keyboard shortcut to open it.
+
+Inside the Function Editor, use these menus and keys:
+
+| Command | Menu | Key |
+|---|---|---|
+| New | **File > New** | `Ctrl + N` |
+| New From Example | **File > New From Example** | |
+| Save | **File > Save** | `Ctrl + S` |
+| Delete Function | **File > Delete Function** | |
+| Build Function | **File > Build Function** | `F6` |
+| Close | **File > Close** | `Alt + F4` |
+
+The toolbar also has a button that builds all functions. Use the **View** menu to reopen the **Function Browser**, **Function Parameter Browser**, **Properties**, **Constants** and **Build Output** panes.
 
 ## Function Editor Panels
 
@@ -49,9 +64,9 @@ When a Function uses multiple inputs sampled at different times, choose how ofte
 
 **Function Mode**
 
-- Instantaneous (On‑the‑fly) — evaluates at every sample point of every input; results are not stored. Default for non‑historical Functions. 
-- Coverage cursor based — computes from Session start to the coverage cursor; results are stored. Default for historical Functions. 
-- Leading edge — computes once at the leading edge, skipping gaps. 
+- **Instantaneous**: evaluates at every sample point of every input; results are not stored. Default for non‑historical Functions. 
+- **Coverage cursor based**: computes from Session start to the coverage cursor; results are stored. Default for historical Functions. 
+- **Leading edge**: computes once at the leading edge, skipping gaps. 
 
 **Calculation Mode**
 
@@ -61,9 +76,10 @@ When a Function uses multiple inputs sampled at different times, choose how ofte
 
 **Additional options**
 
-- Calculate Over Whole Session — compute across the entire Session. 
-- Interpolate Between Samples — interpolate values off the current sample; if off, uses most recent sample. 
-- Join Gaps Around Null — joins gaps for instantaneous Functions during recording (no effect on historical data).
+- **Calculate Over Whole Session**: compute across the entire Session. 
+- **Interpolate Between Samples**: interpolate values off the current sample; if off, uses most recent sample. 
+- **Join Gaps Around Null**: joins gaps for instantaneous Functions during recording (no effect on historical data).
+- **Store In Session**: stores the results of the Function in an associated session alongside the source session.
 
 ![Function Properties](assets/function-properties.png)
 
@@ -94,7 +110,7 @@ Insert Parameters in code with the $ prefix (e.g., $Vcar). Type $ then Ctrl+Spac
 
 **Variables and Arrays**
 
-Define variables by assignment—no declarations needed; scope is per Function. Array subscripts can be expressions. Names can include letters, digits, and underscores, and must not clash with a Constant name.
+Define variables by assignment (no declarations needed); scope is per Function. Array subscripts can be expressions. Names can include letters, digits, and underscores, and must not clash with a Constant name.
 
 ```
 for (i = 0; i < 3; i++) { 
@@ -146,18 +162,23 @@ Constants live outside Functions (global scope) in default_constants.txt:
 
 They can be numeric or string and are ideal for vehicle characteristics you reference across multiple Functions. If a Constant used by a Function is missing, the interpreter raises an execution error. 
 
-**Constant Editor (open from Function Editor ▸ View ▸ Constants)**
+**Constant Editor (open from Function Editor > View > Constants, or click View Constants on the toolbar)**
 
-- Add — enter Name and Value (string/number) and click Add.
-- Update — select, edit Name or Value, then Update (changing Name creates a new Constant).
-- Delete — select and Delete (confirm when prompted). 
+- **Add**: enter Name and Value (string/number) and click Add.
+- **Update**: select, edit Name or Value, then Update (changing Name creates a new Constant).
+- **Delete**: select and Delete (confirm when prompted). 
 
 ![Constants](assets/constants.png)
 
 **Types of Constants**
 
-- Default — global, stored in default_constants.txt. 
-- Session — stored within a specific Session; select Session type, then the Set and Session to view.
+- **Default**: global, stored in default_constants.txt. 
+- **Session**: stored within a specific Session; select Session type, then the Set and Session to view.
+
+## Rebuilding and refreshing Functions
+
+- To rebuild every Function, select **Tools > Functions > Rebuild All Functions** or press `Ctrl + Shift + R`.
+- To recalculate Function results, select **Tools > Refresh Calculated Parameters** and choose **In Current Display**, **On Visible Pages** or **For Entire Workbook**. The toolbar button **Refresh Calculated Parameters For Entire Workbook** does the same for the whole Workbook.
 
 ## Error Handling
 

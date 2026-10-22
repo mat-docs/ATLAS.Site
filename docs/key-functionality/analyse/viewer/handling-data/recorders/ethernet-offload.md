@@ -23,11 +23,11 @@ Car Definition must be loaded.
 
     - Data Versions
 
-    - Export Config as Text / M Files
+    - Export Config As text / Export M files
 
-    - SQL Race Database Type
+    - Database engine
 
-    - Export Folder
+    - Export folder
 
     - Session Identifier / Details
 

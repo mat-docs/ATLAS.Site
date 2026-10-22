@@ -64,16 +64,13 @@ Parameters can show different colours based on their values:
     Default text colour (typically white)
 
 !!! warning "Warning"
-    Text colour changes when a value enters its warning range
+    Uses **Warning Colour** (default blue) when a value goes outside its warning limits
 
 !!! danger "Critical"
-    Uses critical colour (default red) for critical values
-
-!!! info "Non-Critical"
-    If critical is disabled, non-critical values use the selected colour (default blue)
+    Uses **Critical Colour** (default red) when a value goes outside its critical limits
 
 !!! note "Configuration"
-    Set warning and critical ranges for each parameter in the **Appearance** section of the Parameter Properties panel.
+    Set warning and critical limits for each parameter in the **Limits** section of the Parameter Properties panel, and turn on **Show Warning Limits** or **Show Critical Limits**. Parameters with these options off are never coloured.
 
 ### Flexible Formatting
 
@@ -83,23 +80,26 @@ Control what's displayed for each parameter:
 - Show/hide description
 - Show/hide numeric value
 - Show/hide units
-- Show/hide sign (+ or -)
+- Show/hide a `+` sign on positive values (**Show Signs**), so the sign of a value is never ambiguous
 - Show/hide status indicator
+
+Parameters with a text conversion show the lookup text instead of the raw number. Parameters whose units are `ddmmyy.hhmm` are shown as a date and time.
 
 ### Status Indicators
 
-Parameters can display status symbols:
+Each indicator is a separate option in Display Properties, and all except **Show Status Indicator** are off by default:
 
-- **Up arrow**: Value increasing
-- **Down arrow**: Value decreasing
-- **Warning symbol**: In warning range
-- **Critical symbol**: In critical range
+- **Show Up Indicator**: arrow when the value is above the last displayed value
+- **Show Down Indicator**: arrow when the value is below the last displayed value
+- **Show Warning Indicator**: icon when the value is in its warning range
+- **Show Critical Indicator**: icon when the value is in its critical range
+- **Show Status Indicator**: sample status. `=` means the cursor is exactly on a sample, `?` means a default value. Between samples, the held value is shown with no indicator.
 
 ### Hex Formatting
 
 For parameters displayed in hexadecimal:
 
-- Option to show "0x" prefix
+- **Show "0x" for Hex Values** shows or hides the `0x` prefix (on by default)
 - Configurable uppercase/lowercase
 - Full hex formatting control
 
@@ -114,62 +114,75 @@ Optional grid lines between parameters:
 
 ## Display Properties
 
+Press `D` with the display selected to open Display Properties.
+
 ### Text Formatting
 
-**Font Family**: Choose from available system fonts
+**Font Name**: Choose from available system fonts (default Segoe UI)
 
 **Font Size**:
 
 - **Auto**: Automatically scales to fit window (recommended)
-- **Fixed**: Specify exact point size
+- **Use Fixed Font Size** with **Fixed Font Size**: Specify exact point size (default 12)
 
-**Alignment**:
+**Alignment - Text**:
 
-- Name alignment (Left, Center, Right)
-- Value alignment (Left, Center, Right)
+- **Name** alignment (Left, Right)
+- **Value** alignment (Left, Right)
 
-**Visibility**:
+**Displayed Items**:
 
-- Show parameter name
-- Show parameter description
-- Show value
-- Show units
-- Show sign (+ or -)
-- Show status indicator
+- **Show Name**
+- **Show Description** (off by default)
+- **Show Value**
+- **Show Units**
+- **Show Signs** (off by default)
+- **Show Status Indicator**
+- **Show Up Indicator**, **Show Down Indicator**, **Show Warning Indicator**, **Show Critical Indicator** (off by default)
+- **Show "0x" for Hex Values**
 
 ### Colour Options
 
-**Text Colouring**:
+**Colours - Text**:
 
-- **Single colour for all**: All parameters use same text colour
-- **Individual colours**: Each parameter uses its own colour
-- **Apply critical/warning to text**: Threshold colours affect text colour
+- **Use Single Colour** with **Text Single Colour**: All parameters use the same text colour (on by default)
+- Turn **Use Single Colour** off so each parameter uses its own colour
 
-**Background Colouring**:
+**Colours - Ranges (Critical and Warning)**:
 
-- **Display background**: Overall display background colour
-- **Apply critical/warning to background**: Threshold colours affect background
-- **Selected item colours**: Foreground and background for selected parameters
+- **Critical Colour** and **Warning Colour**
+- **Apply Critical Colour** and **Apply Warning Colour**: Threshold colours affect text colour (on by default)
 
-**Note**: Critical/warning colours can apply to text OR background, not both simultaneously.
+**Colours - Background**:
+
+- **Background Colour**: Overall display background colour
+- **Apply Critical and Warning Colours**: Threshold colours fill the row background, which is easier to see from a distance. Turn off **Apply Critical Colour** and **Apply Warning Colour** first.
+- **Use Parameter Colour**: Fills each row background with the parameter colour
+
+**Colours - Selected Items**:
+
+- **Foreground** and **Background** for selected parameters
+- **Use Parameter Foreground Colour**: Selected item text uses the parameter colour
+
+**Note**: Critical/warning colours can apply to text OR background, not both simultaneously. The same applies to the parameter colour. If you try to use both, the status bar shows a message and the change is not applied.
 
 ### Grid and Layout
 
-- **Show grid**: Enable/disable grid lines between parameters
-- **Grid colour**: Colour of grid lines
-- **Column padding**: Space between columns
-- **Item padding**: Space around each parameter
+- **Show Grid**: Enable/disable grid lines between parameters
+- **Grid Colour**: Colour of grid lines
+- **Column Padding**: Space either side of the grid column lines
+- **Item Padding**: Space around each parameter
+- **Internal Border**: Padding inside the display area
 
 ### Data Update
 
-- **Refresh rate**: Update frequency in Hz (1-1000 Hz)
-- **Auto-refresh**: Enable continuous updates
+- **Auto Refresh Rate (Hz)**: How often the display updates when data is panning automatically, for example in live. Choose 1, 2, 5, 10, 20 or 30 Hz (default 5 Hz).
 
 ## Adding Parameters
 
 After creating a Numeric Display:
 
-1. Open Parameter Browser (`Ctrl+P`)
+1. Open Parameter Browser (`P`)
 2. Find the parameters you want to monitor
 3. Drag parameters onto the display, or
 4. Select parameters and Add to Display
@@ -203,25 +216,25 @@ Drag parameters to reorder them within the grid.
 ### Removing Parameters
 
 - Select parameter(s)
-- Press `Delete` key, or
-- Right-click > Remove Parameter
+- Press `Delete` key
 
 ### Copying Values
 
 **Copy to Clipboard**:
 
-- Right-click > Copy (for selected parameters)
-- Right-click > Copy All
+- Right-click > **Copy Selected Items to Clipboard** (or `Ctrl+C`) copies the selected parameters. If nothing is selected, `Ctrl+C` copies all of them.
+- Right-click > **Copy to Clipboard** copies all parameters
 
-Values copied as tab-delimited text, suitable for pasting into Excel or other tools.
+Values are copied as tab-delimited text (name, value, units), suitable for pasting into Excel or other tools.
 
 ### Snapshot Export
 
 Export current display values to file:
 
 1. Right-click display
-2. Select "Snapshot to File"
-3. Choose format and location
+2. Select **Snapshot to Data File**
+
+ATLAS writes a `.txt` file of comma-separated name, value and units to `Documents\McLaren Applied Technologies\ATLAS 10\Snapshots`, named after the display. The status bar shows the full path of the file.
 
 ## Keyboard Shortcuts
 
@@ -229,20 +242,20 @@ Export current display values to file:
 |-----|--------|
 | `D` | Display Properties |
 | `Delete` | Remove selected parameters |
-| `Ctrl+C` | Copy selected values |
+| `Ctrl+C` | Copy selected values (all values if nothing is selected) |
 | `Ctrl+A` | Select all parameters |
-| `↑/↓/←/→` | Navigate selection |
+| `↑/↓` | Move the selection up or down |
 
 ## Example Configurations
 
 === "Dashboard Layout"
     Create a clean monitoring dashboard:
     
-    - [x] Set **Show parameter name**: ON
-    - [x] Set **Show value**: ON
-    - [x] Set **Show units**: ON
-    - [ ] Set **Show description**: OFF
-    - [x] Enable **Apply critical/warning to text**
+    - [x] Set **Show Name**: ON
+    - [x] Set **Show Value**: ON
+    - [x] Set **Show Units**: ON
+    - [ ] Set **Show Description**: OFF
+    - [x] Enable **Apply Critical Colour** and **Apply Warning Colour**
     - [x] Set appropriate thresholds
     
     :bar_chart: **Perfect for**: Live monitoring stations
@@ -250,11 +263,11 @@ Export current display values to file:
 === "Minimal Value Display"
     Show just the numbers:
     
-    - [ ] Set **Show parameter name**: OFF
-    - [x] Set **Show value**: ON
-    - [ ] Set **Show units**: OFF
-    - [x] Use **Individual colours** for differentiation
-    - [ ] Disable **Show status indicator**
+    - [ ] Set **Show Name**: OFF
+    - [x] Set **Show Value**: ON
+    - [ ] Set **Show Units**: OFF
+    - [ ] Turn off **Use Single Colour** so each parameter uses its own colour
+    - [ ] Disable **Show Status Indicator**
     - [ ] Hide grid for cleaner look
     
     :1234: **Perfect for**: Dense parameter grids
@@ -262,11 +275,12 @@ Export current display values to file:
 === "Status Monitor"
     Highlight issues immediately:
     
-    - [x] Enable **Apply critical/warning to background**
-    - [x] Set **Display background**: Dark colour
+    - [ ] Turn off **Apply Critical Colour** and **Apply Warning Colour**
+    - [x] Enable **Apply Critical and Warning Colours** (Colours - Background)
+    - [x] Set **Background Colour**: Dark colour
     - [x] Configure warning/critical thresholds
-    - [x] Enable **Show status indicator**
-    - [x] Use **Auto font size** for visibility
+    - [x] Enable **Show Warning Indicator** and **Show Critical Indicator**
+    - [ ] Leave **Use Fixed Font Size** off so text scales to fit
     
     :traffic_light: **Perfect for**: Alert dashboards
 
@@ -277,7 +291,7 @@ Export current display values to file:
     
     :art: **Colour coding**: Set up threshold colours to instantly spot issues
     
-    :arrows_counterclockwise: **Live monitoring**: Keep refresh rate reasonable (20-60 Hz) to avoid flicker
+    :arrows_counterclockwise: **Live monitoring**: **Auto Refresh Rate (Hz)** goes up to 30 Hz; the default is 5 Hz
 
 !!! tip "Data Display"
     :1234: **Hex values**: Great for displaying status words and bit fields
@@ -301,11 +315,12 @@ Export current display values to file:
 
 ??? question "Colours not showing?"
     - Check warning/critical thresholds are configured in Parameter Properties
-    - Verify "Apply critical/warning" option is enabled
+    - Verify **Show Critical Limits** or **Show Warning Limits** is on for the parameter
+    - Verify **Apply Critical Colour** / **Apply Warning Colour** (text) or **Apply Critical and Warning Colours** (background) is enabled
     - Check text vs background colour application setting
 
 ??? question "Values not updating?"
-    - Check refresh rate is appropriate
+    - Check **Auto Refresh Rate (Hz)** is appropriate
     - Verify session is loaded and active
     - Check cursor is moving (if not live)
 

@@ -10,7 +10,7 @@ The Service Connection Manager allows users with an RTA License to manage RTA ho
 1. Open the **Session Browser**.
 2. Go to the **Indexed Sources** tab.
 3. Click the **Add Data Source** button ( ).
-4. Select **Service Connections**.
+4. Select **Service Connections...**.
 
 ## Adding a Service Connection
 
@@ -23,15 +23,15 @@ The Service Connection Manager allows users with an RTA License to manage RTA ho
     - If successful, click **OK** to save, or **Cancel** to discard.
     ![Service Connection Properties](assets/service-properties.png)
 4. If using OAuth 2.0 Authorization:
-    - Enable the OAuth 2.0 checkbox.
-    - Fill in the required authentication fields.
+    - Select the **OAuth 2.0 Authorization** checkbox.
+    - Fill in the authentication fields. **Authorize URI** and **Token URI** are required; **Client ID**, **Scope** and **Logout URI** are also available.
     - Test the connection and click **OK** to save.
 
 Once the connection is set up, enable the **Indexed source** checkbox to retrieve sessions from the host.
 
 ## Importing and Exporting Service Connections
 
-- Use the **Import** and **Export** buttons in the Service Connection Properties to share connection files (`.svc`) with other users.
+- Use the **Import** and **Export** buttons in the Service Connection Properties to share connection files (`.svc.json`) with other users.
 
 ## Removing a Service Connection
 

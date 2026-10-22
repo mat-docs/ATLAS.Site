@@ -32,7 +32,7 @@ ATLAS Viewer displays are visual components that show telemetry data from your s
 | Display Type | Purpose | Key Features | Max Parameters |
 |--------------|---------|--------------|----------------|
 | [**Waveform**](waveform.md) | Multi-parameter time/distance traces | Interactive legend, reference cursor, autoscale, event markers, live telemetry | 100 (default, adjustable) |
-| [**Scatterplot**](scatterplot.md) | 2D plot of Y vs X, optional Z colour mapping | Best-fit/reference lines, up to 5 parameter sets, custom draw styles | 24 |
+| [**Scatterplot**](scatterplot.md) | 2D plot of Y vs X, optional Z colour mapping | Best-fit/reference lines, up to 5 parameter sets, custom draw styles | 24 (default, adjustable) |
 | [**Histogram**](histogram.md) | Distribution of a single parameter | Spectral/cumulative modes, adjustable bins, auto-refresh | 1 |
 | [**FFT**](fft.md) | Frequency spectrum of a single parameter | Window functions, dB scale, peak markers, zoom | 1 |
 | [**Loadmap**](loadmap.md) | Pseudo-3D heatmap of time in parameter ranges | Adjustable buckets, colour bar, lap refresh | 2 |
@@ -47,7 +47,7 @@ ATLAS Viewer displays are visual components that show telemetry data from your s
 | [**Event**](event.md) | ECU events with priority and snapshots | Priority filtering, masking, row colouring | 100 |
 | [**Error**](error.md) | Live ECU error monitoring | Status tracking, filtering, double-click to jump | N/A |
 | [**Notepad**](notepad.md) | Free-text session notes | Custom fonts/colours, snapshot/copy | N/A |
-| [**Bing Map**](map.md) | Satellite map of GPS location | Zoom/scale, GPS formats, lock map centre | N/A |
+| [**Bing Map**](map.md) | Satellite map of GPS location | Zoom/scale, GPS formats, lock map centre | 3 |
 | [**Web Browser**](web.md) | Embedded browser | Live feeds/web content, show/hide controls | N/A |
 | [**Countdown Timer**](countdown.md) | Countdown clock or time offset | Custom text, font/colour options | N/A |
 | [**Video**](video.md) | Synchronised video playback | In-car camera, event correlation | N/A |
@@ -75,10 +75,11 @@ Properties can be:
 - **◻️ Square**: Default value. Reset to default with the reset button.
 - **♦️ Diamond**: Changed for this instance only.
 - **⚪ Circle**: Global setting — affects all future instances of that display type.
+- **Two crossed ovals**: Multiple. Shown when you edit several items at once and the property is at different levels (default, local or global) across them.
 
 ![Display Properties example](assets/properties.png)
 
-Right-click any property to make it global, clear global assignment, or reset to default. The meaning of each property is shown at the bottom of the Display Properties window when selected.
+Right-click any property to make it global (**Make Global**), clear the global assignment (**Clear Global Value**), or reset it (**Reset**). Use the buttons at the top of the grid to list properties by category or alphabetically. The meaning of each property is shown at the bottom of the Display Properties window when selected.
 
 !!! warning "Global Properties"
     Global properties affect ALL future displays of that type. Use carefully!
@@ -88,7 +89,7 @@ Right-click any property to make it global, clear global assignment, or reset to
 There are two types of zoom operation:
 
 - **X only**: Zoom the X-axis only. Changes the Duration on the Timebase (Waveform Display only).
-- **X and Y**: Click and drag a Zoom Box to zoom both axes in Waveform or Scatterplot displays.
+- **X and Y**: Right-drag (or hold `Shift` and left-drag) a Zoom Box to zoom both axes in Waveform or Scatterplot displays.
 
 In a Waveform Display, drawing from top-to-bottom creates an X+Y zoom box; drawing bottom-to-top creates an X-only zoom strip. In a Scatterplot Display, the zoom region is always a box regardless of direction.
 
@@ -113,11 +114,17 @@ Right-click on most displays to access:
 - Reset zoom/scale
 - Display-specific tools
 
+The display context menu also lists the Compare Sets you can switch the display to (with their `Shift` shortcuts), **No Association** (`Shift+Delete`), **Lock to Current Association**, **Display Properties** (`D`), **Parameter Selection** (`P`) and **Options...**, which opens that display's page in Tools > Options.
+
+For graphic displays such as Waveform, the **View > Cursor Mode** menu (**Value Cursor**, **Cross Hair Cursor**, **Gradient Cursor**, **Hide Cursor**) and the **View > Display** menu (**Create Zoom Box**, **Undo Zoom Box**, **Auto - Scale**, **Reset Auto - Scale**, **Distribute Parameters**, **Reset Distribute Parameters**) act on the selected display. The same commands are on the toolbar.
+
+ATLAS can ask you to confirm before it closes a display, so you do not lose one by accident.
+
 ## Adding Parameters
 
 After opening a display, use the **Parameter Browser** to add telemetry channels:
 
-1. Open Parameter Browser (`Ctrl+P` or View menu)
+1. Open Parameter Browser (`P`, `Insert` or **View > Parameter Browser**)
 2. Browse or search for parameters
 3. Drag parameters onto the display, or select and click "Add to Display"
 
@@ -148,7 +155,9 @@ Save your workbook (`Ctrl+S`) to preserve your display setup for future sessions
 | Key | Action |
 |-----|--------|
 | `Ctrl+Q, Ctrl+Q` | Quick Access Assistant |
-| `Ctrl+P` | Parameter Browser |
+| `P` or `Insert` | Parameter Browser |
+| `Ctrl+Enter` | Parameter Properties (when a parameter is selected) |
+| `Ctrl+F10` / `Ctrl+F11` / `Ctrl+F12` | Toggle current title bar / hide all / show all title bars |
 | `D` | Display Properties |
 | `Shift+<n>` | Switch display to Compare Set n |
 | `Ctrl+<n>` | Switch page to Compare Set n |

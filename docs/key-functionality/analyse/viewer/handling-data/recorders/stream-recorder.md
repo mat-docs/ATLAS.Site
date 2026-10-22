@@ -42,7 +42,7 @@ The Stream Recorder supports two operational modes for consuming OSAP data from 
 
 1. **Live Mode:** Live mode begins consuming data only from the moment the Recorder starts. The Recorder attaches to the Kafka topic at the current offset and continues forward.
 
-2. **Live with Catchup Mode:** The Recorder starts at the live edge, ensuring it processes new data immediately. Simultaneously, it begins consuming all data from the start of the session. Catch‑up happens in the background, at a controlled rate, without disrupting live processing. Priority is always given to leading‑edge, real‑time data.
+2. **Live with Catch Up Mode:** The Recorder starts at the live edge, ensuring it processes new data immediately. Simultaneously, it begins consuming all data from the start of the session. Catch‑up happens in the background, at a controlled rate, without disrupting live processing. Priority is always given to leading‑edge, real‑time data.
 
 ## Group Id
 The group id allows Stream Recorder to set the Kafka Consumer Group ID. This allows Stream Recorder to track the current offset in Kafka and continue reading from the last offset it read from. So if the ATLAS client disconnects and rejoins the stream, it will continue from the last offset it read from (assuming the topics has not been cleared down of messages). If left blank, Stream Recorder will always read from the leading edge of the session.
@@ -53,18 +53,22 @@ The group id allows Stream Recorder to set the Kafka Consumer Group ID. This all
 2. Add a Stream Recorder.
 3. Configure:
     - **Recorder Name**
-    - **Database Engine:** SQLite or SQL Race.
-    - **Database Path** / **Connection String**.
-    - **Delete Recorded Session on Close**
-    - **Auto Export to SSN2** (If recording to SQLite)
-    - **Export Folder**
-    - **Stream Server** / **Data Source**
-    - **Session Identifier Pattern** / **Source**
+    - **Database engine:** SQLite or SQL Server.
+    - **Database path** (SQLite) / **Connection String** (SQL Server).
+    - **Delete on close** (SQLite)
+    - **Auto Export SSN2** (SQLite)
+    - **Export folder**
+    - **Stream Server** / **Stream Data Source**
+    - **Session Identifier Pattern** / **Session Identifier Source**
     - **Recording Mode**
     - **Group Id**
-- **Session Details Source** / **Details**
+    - **Record VPS Sessions**
+    - **Session Details Source** / **Session Details**
 4. Choose between:
     - **Start:** Waits for a live session and records it.
     - **Auto Record:** Continuously records new sessions as they appear.
+
+!!! warning "Delete on close"
+    If **Delete on close** is selected, ATLAS deletes the recorded Session when ATLAS closes. This cannot be undone.
 
 ![Recorder Editor](assets/stream-recorder/stream-recorder-editor-page.png)

@@ -63,7 +63,7 @@ Press `D` or right-click > **Display Properties** to open the property grid.
 
 ### FFT Size
 
-FFT Size sets the *maximum* number of samples fed into the transform. It is limited to the range 64 to 16384 and is always snapped to a power of two: entering a larger value rounds up to the next power of two, entering a smaller one rounds down to the previous one. So typing `1000` gives 1024, and typing `900` when the size was 1024 gives 512.
+FFT Size sets the *maximum* number of samples fed into the transform. It is limited to the range 64 to 16384 and is always snapped to a power of two: entering a larger value rounds up to the next power of two, entering a smaller one rounds down to the previous one. So with the size at 512, typing `1000` gives 1024; with the size at the default 1024, typing `1000` or `900` gives 512.
 
 The size you choose trades frequency resolution against the amount of data summarised:
 
