@@ -454,7 +454,16 @@ def inl(children):
     return "".join(out)
 
 # ── Build story from AST ───────────────────────────────────────────────────────
-def build_story(tokens, st, product_info, release_summary, date_str, build_notice=None, post_url=""):
+def build_story(
+    tokens,
+    st,
+    product_info,
+    release_summary,
+    date_str,
+    build_notice=None,
+    post_url="",
+    preserve_markdown_headers=False,
+):
     """
     Constructs the full story:
       Page 1 cover (empty — drawn by canvas callback)
@@ -612,6 +621,7 @@ def build_story(tokens, st, product_info, release_summary, date_str, build_notic
     ki_intro_added  = False
     in_item         = False  # True when under an h3 — use indented body style
     had_new_features = False  # track if New Features came before Bug Fixes
+    preserve_section_started = False
 
     CHANGES_SUBSECTIONS = {
         "new features", "bug fixes", "changes", "bug fix",
@@ -680,6 +690,7 @@ def build_story(tokens, st, product_info, release_summary, date_str, build_notic
         nonlocal first_h1_seen, first_para_done, in_skipped
         nonlocal in_changes, in_known_issues, ki_intro_added
         nonlocal in_item, had_new_features
+        nonlocal preserve_section_started
         tp = tok["type"]
 
         if tp == "heading":
@@ -695,6 +706,17 @@ def build_story(tokens, st, product_info, release_summary, date_str, build_notic
                 in_changes = in_known_issues = in_skipped = in_item = False
 
             elif level == 2:
+                if preserve_markdown_headers:
+                    if not preserve_section_started:
+                        new_section("Release Notes")
+                        preserve_section_started = True
+                    ctr.b += 1
+                    ctr.c = 0
+                    story.append(Spacer(1, 3*mm))
+                    story.append(Paragraph(f"{ctr.a}.{ctr.b} {text}", st["h2"]))
+                    in_changes = in_known_issues = in_skipped = in_item = False
+                    return
+
                 if tl in SUPPORT_HEADINGS:
                     in_skipped = True
                     in_changes = in_known_issues = in_item = False
@@ -945,6 +967,14 @@ def extract_meta(post, src):
         "post_url": post_url,
     }
 
+
+def should_preserve_markdown_headers(meta):
+    """Keep original markdown section headers for release-note edge cases."""
+    return (
+        meta.get("product", "").strip().lower() == "system monitor"
+        and meta.get("version", "").strip().lower() == "v8.87.2.1"
+    )
+
 # ── Build PDF ──────────────────────────────────────────────────────────────────
 def build_pdf(md_src, out_path):
     if md_src.startswith("http"):
@@ -968,9 +998,16 @@ def build_pdf(md_src, out_path):
     tokens = mistune.create_markdown(renderer=None, plugins=["table"])(content)
     resolve_markdown_links(tokens, md_src, meta["post_url"])
     st     = make_styles()
-    story  = build_story(tokens, st, prod, meta["summary"],
-                          meta["date"], build_notice=build_notice,
-                          post_url=meta["post_url"])
+    story  = build_story(
+        tokens,
+        st,
+        prod,
+        meta["summary"],
+        meta["date"],
+        build_notice=build_notice,
+        post_url=meta["post_url"],
+        preserve_markdown_headers=should_preserve_markdown_headers(meta),
+    )
 
     meta["cover_name"]  = prod["cover_name"]
     meta["cover_short"] = prod.get("cover_short", "")
