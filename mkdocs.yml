@@ -165,6 +165,12 @@ nav:
         - Getting Started: key-functionality/enrich/vtag/getting-started.md
         - Operating vTAG Server: key-functionality/enrich/vtag/operating-vtag.md
         - Live & Historical Usage: key-functionality/enrich/vtag/complete-system.md
+      - vTAG Service:
+        - Overview: key-functionality/enrich/vtag-service/index.md
+        - Getting Started: key-functionality/enrich/vtag-service/getting-started.md
+        - Configuration Guide: key-functionality/enrich/vtag-service/configuration-guide.md
+        - Configuration Reference: key-functionality/enrich/vtag-service/configuration-reference.md
+        - Troubleshooting: key-functionality/enrich/vtag-service/troubleshooting.md
       - Virtual Parameter Service:
         - Overview: key-functionality/enrich/vps/index.md
         - Getting Started: key-functionality/enrich/vps/setup-guide.md

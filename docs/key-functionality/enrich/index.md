@@ -12,6 +12,16 @@ vTAG Server is a computation engine that runs Simulink‑based logic on live or 
 - External computation offload: Shifts non‑critical or CPU‑heavy logic away from on‑car ECUs, reducing hardware load and enabling safer experimentation.
 - Data publishing into ATLAS: Outputs vData back into the ATLAS ecosystem so processed signals appear as native channels for analysis, distribution, and recording.
 
+## [vTAG Service](vtag-service/index.md)
+
+vTAG Service runs your vTAG models on telemetry streamed to a Kafka broker using the Open Streaming Architecture, and publishes the outputs back to the broker. It doesn't need ADS.
+
+### Key Functionality
+
+- Broker-based input: Reads model inputs from any Open Streaming producer, including parameters that don't come directly from the TAG unit.
+- Stream output: Publishes model outputs as an associated session on the same broker, ready for ATLAS and other consumers.
+- Live reprogramming: Picks up a new model programmed with System Monitor without a restart.
+
 <!-- ## [Virtual Parameter Service](vps/index.md)
 
 The Virtual Parameter Service calculates FDL-defined virtual parameters in real time and publishes them back to the broker, eliminating client-side recalculation.
