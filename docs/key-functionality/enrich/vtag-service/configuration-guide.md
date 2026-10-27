@@ -11,6 +11,9 @@ Common changes to `Documents\Motion Applied\vTAG Service\AppConfig.json`, organi
 
 Set `BrokerUrl` to the broker's address. `StreamCreationStrategy` and `Domain` must match the producer that publishes your input data (for example, the `StreamApiConfig` in your Bridge Service configuration), or vTAG Service won't find its sessions.
 
+!!! warning "Partition-based producers"
+    If the producer uses the partition-based strategy (`StreamCreationStrategy` `1`), also copy its `PartitionMappings` into vTAG Service's `StreamApiConfig`. Every stream needs a mapping, or it won't route correctly; see [Partition Mappings](../../../developer-resources/secu4/stream_api/reference_docs/configuration/server-config.md#partition-mappings).
+
 ```json title="AppConfig.json" linenums="1" hl_lines="3 4 5"
 {
   "StreamApiConfig": {

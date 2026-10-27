@@ -66,7 +66,7 @@ vTAG Service reads the licence from `%APPDATA%\McLaren Applied Technologies\Lice
 !!! note "Edit only these values; leave the rest of the file as it is"
     `...` marks settings that are left out of this example. Don't delete them from your file.
 
-- **`StreamApiConfig.BrokerUrl`**: the `host:port` of your Kafka broker. Use `localhost:9094` if the broker runs on this PC with the default port.
+- **`StreamApiConfig.BrokerUrl`**: the `host:port` your Kafka broker listens on. The default file's `localhost:9094` is only a starting value: use your broker's actual address and port. For example, the Docker broker from [Getting Started with Open Streaming](../../../developer-resources/secu4/getting-started.md) listens on `localhost:9092`.
 - **`VTagHost.DataSource`**: the name of the data source your producer publishes telemetry under. vTAG Service reads its inputs from it. For the Bridge Service, it's the `DataSource` value in the Bridge Service's configuration file. If you're not sure, ask whoever set up the stream; many setups use `Default`.
 - **`EssentialsConfig` paths**: the folders that hold the `.pgv`, `.cfg` and `.pul` files for the model you'll program. In JSON, write each backslash twice (`\\`).
 
@@ -87,7 +87,17 @@ The second line is expected on a new installation: no model has been programmed 
 
 ## 6. Program your model with System Monitor
 
-Program your vTAG application onto vTAG Service the same way you would for vTAG Server (see [Reprogram the vECU](../vtag/getting-started.md#4-reprogram-the-vecu)), with one difference: connect System Monitor to the IP address in `VTagClient.BindIpAddress`. The default is `127.0.0.1`, so System Monitor must run on the same PC.
+With vTAG Service running:
+
+1. Open **System Monitor**.
+2. Create a **New Project** (**File > New > Project**).
+3. Select the BIOS Program Version. If `vtag.build` didn't specify a BIOS version, the default is 4; select a 1000 BIOS version.
+4. Select all of the App IDs in the selected base and load your generated PGVs.
+5. Click **Finish**.
+6. Connect to the IP address in `VTagClient.BindIpAddress`. The default is `127.0.0.1`, so System Monitor must run on the same PC.
+7. Reprogram the unit (**F3**).
+
+These are the same steps as for [vTAG Server](../vtag/getting-started.md#4-reprogram-the-vecu), except that there is no **Reset vECU** step: vTAG Service has no reset option of its own.
 
 When programming finishes, vTAG Service reads the model's parameters and subscribes to the broker:
 
