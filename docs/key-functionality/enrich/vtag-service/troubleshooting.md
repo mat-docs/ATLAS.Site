@@ -2,7 +2,7 @@
 
 Each problem below lists the symptom, the message to look for in the log, and the fix.
 
-vTAG Service logs to its console window and to daily files in `Documents\Motion Applied\vTAG Service\logs` (`vTAG_log-<date>.txt`). If the console window has closed, open the latest log file.
+vTAG Service logs to its console window and to daily files in `Documents\Motion Applied\vTAG Service\logs` (`vTAG_log-<date>.txt`). If the console window has closed, open the latest log file. For more detail, set `Serilog.MinimumLevel` to `Debug` in `AppConfig.json` and restart (see [Serilog](configuration-reference.md#serilog)).
 
 ## The service closes immediately after starting
 
