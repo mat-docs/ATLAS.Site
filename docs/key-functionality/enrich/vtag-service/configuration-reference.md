@@ -20,7 +20,7 @@ The file has five sections:
 | [`VTagHost`](#vtaghost) | Which data source the model subscribes to, and the output session |
 | [`VTagClient`](#vtagclient) | The virtual vTAG unit that runs your model |
 | [`EssentialsConfig`](#essentialsconfig) | Folders containing your `.pgv`, `.cfg` and `.pul` files |
-| [`Serilog`](#serilog) | Logging (not applied in this version) |
+| [`Serilog`](#serilog) | Logging |
 
 ## Default file
 
@@ -146,7 +146,13 @@ The default file sets each list to `C:\McLaren Applied`.
 
 ## Serilog
 
-vTAG Service logs at `Information` level to the console window and to daily log files in `Documents\Motion Applied\vTAG Service\logs` (`vTAG_log-<date>.txt`), starting a new file when one reaches 10 MB.
+Logging uses [Serilog](https://github.com/serilog/serilog-settings-configuration), configured in the standard Serilog format. The default file logs at `Information` level to the console window and to daily log files in `Documents\Motion Applied\vTAG Service\logs` (`vTAG_log-<date>.txt`), starting a new file when one reaches 10 MB.
 
-!!! warning "Logging settings are fixed in this version"
-    The default file contains a `Serilog` section, but this version of vTAG Service doesn't apply it: changing it, for example raising `MinimumLevel` to `Debug`, has no effect. Leave the section as it is.
+| Property | Value in default file | Description |
+|---|---|---|
+| `MinimumLevel` | `"Information"` | Lowest level that is logged. Set it to `"Debug"` for more detail when troubleshooting. |
+| `WriteTo` | Console and File | Where logs are written. The File entry's `Args` set the path, how often a new file starts (`rollingInterval`) and the size limit (`fileSizeLimitBytes`, `rollOnFileSizeLimit`). |
+
+The log file path in the default file starts with `{AppConfigDirectory}`. vTAG Service replaces this with the folder that holds `AppConfig.json` (`Documents\Motion Applied\vTAG Service`) when it loads the file. You can use `{AppConfigDirectory}` in any setting.
+
+If the `Serilog` section is missing, vTAG Service logs at `Information` level to the console and to the same log folder.
