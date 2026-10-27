@@ -26,15 +26,9 @@ Failed to read licence file
 
 **Symptom:** after programming, the model doesn't run, and System Monitor or the log reports `BIOS-8260: Licence check failed` with code `0004`.
 
-**Log may also show:**
+**Cause:** either your licence doesn't include the vTAG Server feature, or files that vTAG Service needs to check the licence are missing from its installation.
 
-```text title="Log (console or file)"
-Could not preload licence libraries from "<folder>": ... The vTAG BIOS licence check will rely on an ATLAS 9 install.
-```
-
-**Cause:** older vTAG BIOS builds need `AtlasCoreA.dll`, `SysMonCoreA.dll` and `OCSCoreA.dll` to check the licence. The installer puts these in the installation folder. If they are missing, or `VTagClient.LicenceLibrariesDirectory` points somewhere else, the check fails, even with a valid licence.
-
-**Fix:** remove `LicenceLibrariesDirectory` from `AppConfig.json` (or leave it empty) so the installation folder is used. If the files are missing from `C:\Program Files (x86)\Motion Applied\MA.DataPlatforms.vTAGService`, reinstall vTAG Service.
+**Fix:** check in **Licence Manager** that your licence includes vTAG Server. If it does, reinstall vTAG Service.
 
 ## The service starts but never subscribes to the broker
 
@@ -73,7 +67,7 @@ If the log shows `Support Library rejected model subscription`, vTAG Service cou
 
 | Log message | What it means |
 |---|---|
-| `Slot <n>: Duplicate output param '"<name>"' at DLL indices ... — using last` | Your application has two outputs with the same name. Only the last one is published. Rename one of them in your model. |
+| `Slot <n>: Duplicate output param '"<name>"' ... — using last` | Your application has two outputs with the same name. Only the last one is published. Rename one of them in your model. |
 | `Source param '"<name>"' has unsupported sample mode <mode> — defaulting to Mean` | vTAG Service supports only the Minimum, Maximum and Mean sample modes for inputs. Other modes are treated as Mean. Change the sample mode in your model if you need different behaviour. |
 
 ## Processing slows down when the window is hidden
