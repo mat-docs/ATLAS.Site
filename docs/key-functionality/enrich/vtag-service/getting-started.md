@@ -76,7 +76,7 @@ Save the file. vTAG Service reads it only when it starts. If it's already runnin
 
 Start **vTAG Service** from the Start Menu or the desktop shortcut. A console window opens and shows the service's log. Keep this window open: closing it stops the service.
 
-When it starts successfully, you'll see lines like these. The **Support Library** is the component vTAG Service uses to connect to the broker.
+When it starts successfully, you'll see lines like these. The first line shows that vTAG Service has connected to your broker.
 
 ```text title="Log (console or file)"
 Support Library started (broker: "localhost:9094")

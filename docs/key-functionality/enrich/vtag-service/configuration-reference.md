@@ -22,9 +22,9 @@ The file has five sections:
 | [`EssentialsConfig`](#essentialsconfig) | Folders containing your `.pgv`, `.cfg` and `.pul` files |
 | [`Serilog`](#serilog) | Logging |
 
-## Default file
+## Default values
 
-This is the file the installer creates:
+The installer creates the file with these values:
 
 ```json title="AppConfig.json (default)" linenums="1"
 {
@@ -34,19 +34,9 @@ This is the file the installer creates:
     "PartitionMappings": [
       {}
     ],
-    "IntegrateSessionManagement": true,
-    "IntegrateDataFormatManagement": true,
-    "UseRemoteKeyGenerator": false,
-    "RemoteKeyGeneratorServiceAddress": "",
-    "BatchingResponses": false,
-    "InitialisationTimeoutSeconds": 10,
     "Domain": ""
   },
   "Serilog": {
-    "Using": [
-      "Serilog.Sinks.Console",
-      "Serilog.Sinks.File"
-    ],
     "MinimumLevel": "Information",
     "WriteTo": [
       {
@@ -91,8 +81,6 @@ This is the file the installer creates:
 ## StreamApiConfig
 
 The connection to your Kafka broker. vTAG Service uses the standard Stream API configuration, which is shared with other Open Streaming components; for details of each field, see the [Stream API configuration in the Bridge Service guide](../../../developer-resources/secu4/bridge_service/configuration-guide.md).
-
-The settings you are most likely to change:
 
 | Property | Type | Value in default file | Description |
 |---|---|---|---|

@@ -35,12 +35,12 @@ Set `VTagHost.DataSource` to the data source name your producer uses.
 ```json title="AppConfig.json" linenums="1" hl_lines="3"
 {
   "VTagHost": {
-    "DataSource": "SupportLibTest"
+    "DataSource": "Track"
   }
 }
 ```
 
-**Result:** vTAG Service runs the model on sessions published to `SupportLibTest`.
+**Result:** vTAG Service runs the model on sessions published to `Track`.
 
 ## Give the output session a fixed identifier
 
