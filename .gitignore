@@ -17,3 +17,4 @@ __pycache__/
 .claude
 # Draft release notes
 release-notes/*.md
+release-notes/*.pdf
