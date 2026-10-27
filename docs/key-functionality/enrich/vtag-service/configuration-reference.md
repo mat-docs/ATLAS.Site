@@ -24,7 +24,7 @@ The file has five sections:
 
 ## Default file
 
-This is the file the installer creates (settings that only Motion Applied support should change are left out):
+This is the file the installer creates:
 
 ```json title="AppConfig.json (default)" linenums="1"
 {
@@ -124,10 +124,6 @@ The virtual vTAG unit that System Monitor programs and that runs your model.
 | Property | Type | Default if missing | Description |
 |---|---|---|---|
 | `BindIpAddress` | string | `"127.0.0.1"` | IP address of the virtual vTAG unit. Connect System Monitor to this address to program it. |
-| `BootTimeoutSeconds` | int | `10` | Internal wait limit, in seconds, used when the unit is starting a session. It isn't a startup timeout: the service starts without waiting for a model. Not in the default file; leave it unset unless Motion Applied support asks you to change it. |
-
-!!! note
-    Leave any other `VTagClient` settings in the file as they are, unless Motion Applied support asks you to change them.
 
 ## EssentialsConfig
 
