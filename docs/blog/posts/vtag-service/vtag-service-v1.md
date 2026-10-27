@@ -1,13 +1,13 @@
 ---
 date:
-  created: 2026-10-28
+  created: 2026-10-27
 categories:
   - Releases
 tags:
   - vTAG Service
 ---
 
-# vTAG Service Release: v1.0.0.0
+# vTAG Service Release: v1.0.0.6
 
 The first release of vTAG Service, a Windows console application that runs your vTAG model on telemetry read from a Kafka broker and publishes the model's outputs back to the broker as a new session, with no need for ADS.
 
@@ -35,7 +35,7 @@ If you reprogram the unit while the service is running, vTAG Service picks up th
 
 ### Simple Installation and Licensing
 
-A single installer, `MA.DataPlatforms.vTAGService.Setup.exe`, installs vTAG Service and Licence Manager if it isn't already installed, adds Start Menu and desktop shortcuts, and creates your configuration file. vTAG Service ships with its own runtime, and you don't need ATLAS, ADS or vTAG Server installed. It requires a Motion Applied licence with the vTAG Server feature.
+A single installer, `MA.DataPlatforms.vTAGService.Setup.exe`, installs vTAG Service and Licence Manager if it isn't already installed, adds Start Menu and desktop shortcuts, and creates your configuration file. It requires a valid ATLAS licence with vTAG Server option.
 
 ### Configure Everything in One File
 
