@@ -24,7 +24,7 @@ The file has five sections:
 
 ## Default file
 
-This is the file the installer creates:
+This is the file the installer creates (settings that only Motion Applied support should change are left out):
 
 ```json title="AppConfig.json (default)" linenums="1"
 {
@@ -64,7 +64,6 @@ This is the file the installer creates:
     ]
   },
   "VTagClient": {
-    "VTagClientDllPath": "",
     "BindIpAddress": "127.0.0.1"
   },
   "VTagHost": {
