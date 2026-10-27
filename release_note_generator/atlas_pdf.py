@@ -253,6 +253,69 @@ PRODUCTS = {
         "installation":  None,
         "diagnostics":   False,
     },
+    "vtag server": {
+        "cover_name":      "vTAG Server",
+        "cover_short":     "",
+        "section1_title":  "vTAG Server Release",
+        "overview_heading":"vTAG Server Overview",
+        "overview": (
+            "vTAG Server runs Simulink-based vTAG models on live telemetry or historical "
+            "sessions, without needing a physical ECU, and publishes the results as new "
+            "parameters. For live processing it runs alongside an ATLAS Data Server (ADS) "
+            "with a vTAG recorder (VTS) set to auto-record. For historical processing you "
+            "load a session, set vTAG to historic mode and start it, creating vTAG sessions "
+            "in SQL Race or SSN2 format."
+        ),
+        "release_filler": (
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 3.\n\n"
+            "We appreciate that there are still items to address in the improved areas and "
+            "would appreciate your feedback such that we can prioritise issues for future releases."
+        ),
+        "sysreq_intro": "The following table lists the minimum and recommended PC specifications for running vTAG Server.",
+        "sysreq_table": [
+            ["",               "Minimum Supported",                "Recommended"],
+            ["Operating System","Windows 11*",                     "Windows 11*"],
+            ["Memory",         "8 GB",                             "8 GB or Higher"],
+            ["Processor",      "Intel Core Duo 2 GHz",             "Intel Core i7 Processor"],
+            ["Disk Space",     "HDD with 20 GB free disk space",   "High Capacity SSD 512 GB or more"],
+        ],
+        "sysreq_notes": [
+            "*Motion Applied solely supports Windows 11 for vTAG Server. Windows 10 is not validated.",
+            "vTAG Server uses .NET 8.",
+        ],
+        "licensing": (
+            "An ATLAS licence is required. Additional extensions to the standard ATLAS licence "
+            "are required to use the “vTAG Server Recorder (VTS)” and the vTAG Server "
+            "application, and to use ATLAS with SQL Race (in addition to the SQL Race licence)."
+        ),
+        "installation": None,
+        "diagnostics": False,
+    },
+    "vtag service": {
+        "cover_name":      "ATLAS Streaming Platform\n– vTAG Service",
+        "cover_short":     "",
+        "section1_title":  "vTAG Service Release",
+        "overview_heading":"vTAG Service Overview",
+        "overview": (
+            "vTAG Service is a Windows console application that runs your vTAG model on "
+            "telemetry read from a Kafka broker using the Open Streaming Architecture, and "
+            "publishes the model's outputs back to the broker as an associated session, "
+            "without needing ADS. It requires a Motion Applied licence with the vTAG Server feature."
+        ),
+        "release_filler": (
+            "Specific details of what has changed in the release can be found in the "
+            "{release_post}, or in section 2.\n\n"
+            "We appreciate that there are still items to address in the improved areas and "
+            "would appreciate your feedback such that we can prioritise issues for future releases."
+        ),
+        "sysreq_intro":  None,
+        "sysreq_table":  None,
+        "sysreq_notes":  [],
+        "licensing":     None,
+        "installation":  None,
+        "diagnostics":   False,
+    },
     "standalone stream recorder": {
         "cover_name":      "ATLAS Streaming Platform\n– Standalone Stream Recorder",
         "cover_short":     "",
@@ -1012,6 +1075,7 @@ def build_pdf(md_src, out_path):
     meta["cover_name"]  = prod["cover_name"]
     meta["cover_short"] = prod.get("cover_short", "")
 
+    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     cf = Frame(ML, MB, CW, PAGE_H-MT-MB, id="cover")
     nf = Frame(ML, MB, CW, PAGE_H-MT-MB, id="normal")
     doc = BaseDocTemplate(
