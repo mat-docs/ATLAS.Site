@@ -206,7 +206,7 @@ nav:
             - NASCAR Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/nascar-telemetry-recorder.md
             - Data Server Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/data-server.md
             - File Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/file-telemetry.md
-            - Ethernet File Telemetry: key-functionality/analyse/viewer/handling-data/recorders/ethernet-file.md
+            - Ethernet Telemetry Recorder: key-functionality/analyse/viewer/handling-data/recorders/ethernet-file.md
             - Ethernet Multi Session Offload: key-functionality/analyse/viewer/handling-data/recorders/ethernet-mso.md
             - Ethernet Offload: key-functionality/analyse/viewer/handling-data/recorders/ethernet-offload.md
             - Stream Recorder: key-functionality/analyse/viewer/handling-data/recorders/stream-recorder.md
