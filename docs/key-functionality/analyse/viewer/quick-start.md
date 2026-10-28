@@ -4,7 +4,7 @@
 
 To start ATLAS, if installed in the default location:
 
-* Click Start > All Programs > McLaren Applied Technologies> ATLAS
+* Click Start > All Programs > McLaren Applied Technologies > ATLAS 10 > ATLAS
 
 A new Workbook is opened with a single empty Page by default.
 
@@ -68,7 +68,7 @@ Access live data via Recorders. A Recorder streams raw telemetry data, and sever
 ### [Displays](displays/index.md)
 Once data has been added, begin building your Workbook by adding Displays to Pages. Multiple types of Displays are available, each of which can be customised to meet specific requirements. Displays may be docked in various layouts to optimise visibility across the Workbook.
 
-For detailed information on types of Displays, shortcuts and different display options refer to the embedded documentation: Help > View Help (Preview) (*F1*).
+For detailed information on types of Displays, shortcuts and different display options refer to the embedded documentation: Help > View Help (*F1*).
 
 ### [Parameters](handling-data/parameters/index.md)
 Use the Parameter Browser (*P*) to select one or more parameters to display. Double-click a parameter or drag and drop it onto the Display. To remove a parameter, click on it and press *DELETE*.

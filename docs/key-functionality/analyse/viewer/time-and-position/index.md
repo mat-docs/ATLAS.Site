@@ -4,7 +4,7 @@ ATLAS provides powerful tools for visualising data over time using Timebases and
 
 The Graphical Timeline, shown at the top of the ATLAS Main Window, lets users control the Timebase using mouse interactions. It displays key session information, lap selection, markers, and navigation buttons for quickly moving between laps. The LapBar visually represents session duration, with laps and fastest lap highlighted.
 
-For Compare Sets with multiple sessions, the Timeline offers options to compare whole sessions, single laps, or fastest laps, and allows setting time offsets between sessions.
+For Compare Sets with multiple sessions, the Timeline offers options to compare sessions by **Whole Session**, **Single Lap**, **Fastest Lap** or **Absolute Session**, and allows setting time offsets between sessions.
 
 This overview introduces the main concepts and controls for managing time and position in ATLAS, helping users navigate and analyse session data efficiently.
 

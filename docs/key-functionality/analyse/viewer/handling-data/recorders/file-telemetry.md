@@ -13,8 +13,10 @@ Replays previously recorded raw telemetry data for diagnostics or analysis.
 2. Add a File Telemetry Recorder.
 3. Configure:
     - Recorder Name
-    - Telemetry Timestamp File: Browse to .raw_tm file.
+    - Telemetry Timestamp File: Click **Browse...** and select the .raw_tm file.
     - Session Identifier
+    - Session Colour
+    - Promote to primary when recorder starts
 4. Click Start to begin playback.
 
 ## Notes

@@ -6,7 +6,7 @@ Toolbar buttons are duplicates of Menu commands or other controls. Each item is 
 
 Any command that is unavailable in a given context is greyed out but remains on the toolbar.
 
-Toolbars can be moved and rearranged by dragging the toolbar handle, found on the left-hand end of each toolbar:
+Toolbars can be moved and rearranged by dragging the toolbar handle, found on the left-hand end of each toolbar. ATLAS remembers where you put them.
 
 | Action | Icon | Description | Toolbar |
 |--------|------|-------------|---------|
@@ -48,14 +48,14 @@ Toolbars can be moved and rearranged by dragging the toolbar handle, found on th
 | Reset Auto‑scale | ![icon](assets/reset-auto.png) | Exit auto‑scale and return to manual/normal scaling. | Display View Toolbar |
 | Distribute Parameters | ![icon](assets/distribute.png) | Arrange selected parameters in equally sized rows (Waveform). | Display View Toolbar |
 | Reset Distribute Parameters | ![icon](assets/reset-distribute.png) | Revert to the standard parameter layout (Waveform). | Display View Toolbar |
-| Toggle Display Title Bar | ![icon](assets/title.png) | Show or hide the title bar for the selected display. | Display Titles Toolbar |
+| Hide/Show the Current Display's Title Bar | ![icon](assets/title.png) | Show or hide the title bar for the selected display (++ctrl+f10++). | Display Titles Toolbar |
 | Move to Previous Lap | ![icon](assets/previous.png) | Move the cursor back to the prior lap. | Laps Toolbar |
 | Move to Current Lap | ![icon](assets/current.png) | Zoom so only the currently selected lap is visible. | Laps Toolbar |
 | Move to Next Lap | ![icon](assets/next.png) | Advance the cursor to the next lap. | Laps Toolbar |
-| Laps & Markers Editor | ![icon](assets/lap-editor.png) | Open the editor to view or modify laps and markers in the primary session. | Laps Toolbar |
-| Move to Next Signal Change | ![icon](assets/next-gear.png) | Navigate to the adjacent signal change (next). | Laps Toolbar |
-| Move to Previous Signal Change | ![icon](assets/previous-gear.png) | Navigate to the adjacent signal change (previous). | Laps Toolbar |
-| Quick Access Assistant | ![icon](assets/quick-access.png) | Launch the assistant to quickly add parameters, functions, displays, or pages. | Quick Access Toolbar |
-| Go To | ![icon](assets/go-to.png) | Launch the Go To plugin to jump to a specific lap or marker in the primary session. | Go To Feature Toolbar |
-| Refresh Calculated Parameters | ![icon](assets/refresh-params.png) | Recompute all calculated parameters across the entire workbook. | Refresh Toolbar |
-| Reset Parameter Properties | ![icon](assets/reset-param.png) | Resets the settings for all parameters to their default settings. | Refresh Toolbar |
+| Open Laps And Markers Editor | ![icon](assets/lap-editor.png) | Open the editor to view or modify laps and markers in the primary session. | Laps Toolbar |
+| Move to Next Signal Change | ![icon](assets/next-gear.png) | Navigate to the adjacent signal change (next, ++ctrl+alt+right++). By default this is a gear change; set the parameter with **Move to Next/Previous Signal Change Parameter** in [Options](options.md). | Laps Toolbar |
+| Move to Previous Signal Change | ![icon](assets/previous-gear.png) | Navigate to the adjacent signal change (previous, ++ctrl+alt+left++). | Laps Toolbar |
+| Quick Access Assistant | ![icon](assets/quick-access.png) | Launch the assistant to quickly add parameters, functions, displays, or pages (++ctrl+q++). See [Quick Access modes](keyboard.md#quick-access-modes). | Quick Access Toolbar |
+| Go To | ![icon](assets/go-to.png) | Open the [Go to](../time-and-position/go-to.md) window to jump to a lap, a marker, or an exact time or distance (++ctrl+g++). | Go To Feature Toolbar |
+| Refresh Calculated Parameters For Entire Workbook | ![icon](assets/refresh-params.png) | Recompute all calculated parameters across the entire workbook. To refresh only the current display or the visible pages, use Tools > Refresh Calculated Parameters. | Refresh Toolbar |
+| Reset All Parameter Properties | ![icon](assets/reset-param.png) | Resets the settings for all parameters to their default settings, or resets parameters in compared sessions to the settings of the primary session parameter. | Refresh Toolbar |

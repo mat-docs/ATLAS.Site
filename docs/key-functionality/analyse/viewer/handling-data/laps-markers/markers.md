@@ -66,7 +66,7 @@ session.Markers.Add(marker);
 
 ## Using the Markers Tab
 
-The Markers tab in the Laps And Markers Editor displays markers for the active session. Users can:
+To open the editor, select **Tools > Laps And Markers Editor**, then select the **Markers** tab. The list shows each marker's **Label**, **Start time**, **End time** and **Type** (**Point** or **Range**) for the active session. Users can:
 
 1. **Add** a new marker
 2. **Delete** the selected marker
@@ -94,15 +94,17 @@ The Markers tab in the Laps And Markers Editor displays markers for the active s
   - **End time:** Enabled for range markers
 
 Edit times by typing, using arrows, or dropdown controls.  
-Use the cursor button to set times to the cursor position.  
-Reset button restores default/previous values.
+Click **Set to Cursor** to set the times to the current cursor or timebase.  
+Click **Reset** to restore the default values.
 
 Click **Save** to add the marker to the list.
 
 ### Marker Selection and Management
 
-- **Delete:** Select a marker and press Delete to remove it.
-- **Go To:** Select a marker and press Go To to move the cursor (to the time point for point markers, or midpoint for range markers).
+- **New:** Press `Insert` in the marker list to start a new marker.
+- **Delete:** Select a marker and click **Delete** or press `Delete` to remove it. ATLAS asks you to confirm.
+- **Go To:** Select a marker and click **Go To**. For a point marker, the cursor moves to the marker time. For a range marker, the timebase is set to the range and the cursor moves to its midpoint.
+- Right-click a marker for **Go To** and **Delete**.
 - **Edit:** Select a marker, update details, and press Save to apply changes.
 
 Markers are also available in the Laps dropdown.  

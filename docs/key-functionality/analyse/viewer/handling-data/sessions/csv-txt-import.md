@@ -8,9 +8,9 @@
 
 ## Configure a CSV or TXT format
 
-Open the ATLAS configuration/settings area and go to:
+Go to:
 
-**General > Text Session Format**
+**Tools > Options > General > Text Session Format**
 
 This page maintains the text-file definitions, which is saved to:
 
@@ -73,7 +73,7 @@ For a comma-separated file with two header rows:
 
     1. **Is the licence correct?** Confirm that **CSV/ASCII Import** is included in your licence.
     2. **Does the extension match?** The file extension must exactly match a definition in **Text Session Format**.
-    3. **Was the dot omitted?** The extension must be entered without a leading dot — `csv`, not `.csv`.
+    3. **Was the dot omitted?** The extension must be entered without a leading dot: `csv`, not `.csv`.
     4. **Are you in the right tab?** The folder must be opened from **Session Browser > Files**.
 
     ---

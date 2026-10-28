@@ -8,7 +8,7 @@ The Parameter Browser allows you to select and manage Parameters for the current
 
 - Click the Parameter Browser icon on the Browser Toolbar.
 - Select **View > Parameter Browser** from the Menu Bar.
-- Use the keyboard shortcut **P** with a display selected.
+- Press **P** or **Insert** with a display selected.
 - Right-click anywhere on a Display and choose **Parameter Selection** from the context menu.
 
 **Parameter Browser Layout**
@@ -21,8 +21,8 @@ The Parameter Browser allows you to select and manage Parameters for the current
     - Use "All Groups" if unsure where a Parameter is located.
 
 2. **Search Criteria and Parameters List (Center)**
-    - Search for Parameters by name or description.
-    - Restrict search to Slow Row, Virtual Parameters, or Functions.
+    - Search for Parameters by name, description or application group. Name matches are listed first.
+    - Use the **Slow Row**, **Virtuals** and **Functions** toggles to show or hide those types of Parameter.
     - Add Parameters to the Display by double-clicking or dragging.
     - Select multiple Parameters with Ctrl/Shift + Click.
     - When comparing sessions, expand Parameters to see applicable sessions.
@@ -32,6 +32,25 @@ The Parameter Browser allows you to select and manage Parameters for the current
     - Parameters with data are white; those without are greyed out.
     - Select a Parameter to highlight it on the Display.
     - Press **Delete** to remove a selected Parameter
+
+**Searching from the keyboard**
+
+| Key or text | Result |
+|---|---|
+| `*` in the search text | Wildcard that matches any characters |
+| `-` at the end of the search text | Sorts results by name, A to Z |
+| `+` at the end of the search text | Sorts results by name, Z to A |
+| `Up` / `Down` | Moves the selection in the results list |
+| `Enter` | Adds the selected Parameters to the active Display |
+| `Esc` | Clears the search and closes the Parameter Browser |
+
+**Parameter list columns**
+
+Right-click a column header in the Parameter list to choose which columns are shown. As well as **Name**, **Description** and **Units**, you can show property columns: **Color**, **Display Min**, **Display Max**, **Format String**, **Filter Type** and **Filter Frequency**. Values that have been changed are shown in bold. Right-click a property value and select **Clear Global Value** to remove a global value.
+
+A `*` in the first column means one or more of its properties have been changed from the session default. Hover over it to see the tooltip **Changed from session default**.
+
+Right-click a Parameter row and select **Properties** to open its Parameter Properties.
 
 ## Changing Parameter Colour
 
@@ -76,10 +95,10 @@ Parameter Aliasing lets you assign custom names to Parameters.
   </AliasingConfiguration>
 ```
 
-Configure aliasing in `aliasing.config` saved at `%userprofile%\documents\McLaren Applied Technologies\`.
+Configure aliasing in `aliasing.config` saved at `%USERPROFILE%\Documents\McLaren Applied Technologies\ATLAS 10\`.
 
-!!! warning   
-  After making changes to `aliasing.config`, you must restart ATLAS for the new aliases to take effect.
+!!! warning
+    After making changes to `aliasing.config`, you must restart ATLAS for the new aliases to take effect.
 
 If a parameter (e.g., `pBrake`) is already present in your workbook and you create an alias (e.g., `BrakePressure`), `pBrake` will remain in the workbook but will no longer be searchable in the Parameter Browser. Only the alias name (`BrakePressure`) will be available for searching. To remove the old parameter name from your workbook, you need to delete it manually.
 
@@ -102,8 +121,10 @@ Set formats in the Appearance frame of the Parameter Properties panel.
 Manage Parameter appearance and behavior:
 
 - **Default:** Core properties from data acquisition.
-- **Changed:** Overrides for the current Display.
+- **Local:** Overrides for the current Display.
 - **Global:** Applies property value to all instances of the display type in the workbook.
+
+The indicator next to each value shows which level it comes from: **Default**, **Local** or **Global**.
 
 ![Parameter Properties](assets/parameter-tool-window.png)
 
@@ -116,9 +137,25 @@ Manage Parameter appearance and behavior:
     - Copy Name/Value
     - Paste Value
     - Show/Hide Description
-    - Make Global
-    - Clear Global Value
-    - Reset to Default
+    - **Make Global**
+    - **Force Global**
+    - **Clear Global Value**
+    - **Reset**
+    - **Copy values from primary** (Parameter properties only)
+
+### Resetting all Parameter properties
+
+To undo property changes for every Parameter at once, click **Reset All Parameter Properties** on the toolbar. In the **Reset Parameter Settings** window, choose one option and click **Reset Parameter Settings**:
+
+- **Reset to Default**: resets the settings for all parameters to their default settings.
+- **Reset to Primary**: resets the settings for all parameters in compare to the setting of the primary session parameter.
+
+### Parameter properties in compare mode
+
+When a Set holds more than one Session, you can choose where the properties of the compared Sessions come from. Go to **Tools > Options > General > Data** and set **Parameter Properties in Compare mode** to **Default data**, **Primary session** or **User defined**.
+
+!!! note
+    Parameter property inheritance only happens on session load.
 
 !!! tip
     Use the Parameter Browser and Properties tool window to fully customize how Parameters are displayed and behave in ATLAS.

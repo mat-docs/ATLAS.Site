@@ -15,6 +15,38 @@ To add a Circuit Display to a Page do one of the following:
 
 You can now use the Parameter Browser to add some Parameters to set up the display as required. The current cursor position is shown on the circuit if you add the sLap Parameter.
 
+## Choosing the circuit
+
+By default, with **Global Circuit Definition** set to **Auto** in the options, the display picks the circuit automatically from the Circuit Location parameter or the session's Circuit property. If no circuit matches, the display shows a message explaining why. To pick a circuit yourself, turn off **Use Global Circuit Definition** in Display Properties and choose from the **Circuit** list. **Circuit File** and **Last Modified** show the path and date of the circuit in use.
+
+The options for the display are in **Tools > Options > Plugins > Circuit Display**: **Circuits Location**, **Global Circuit Definition**, **Circuit Location Parameter Name**, **X-Axis Mapping**, **End of straight parameter**, and the parameters and settings used to generate circuits.
+
+If the display shows a distance mapping message at the top left, click it to open the options and fix the mapping.
+
+## Display Properties
+
+Press `D` with the display selected to open Display Properties.
+
+| Property | Description |
+|---|---|
+| **Use Global Circuit Definition** | Use the global circuit, or turn off to choose a circuit for this display |
+| **Circuit** | The circuit shown when **Use Global Circuit Definition** is off |
+| **Angle of Rotation** | Rotates the circuit, so you can match the orientation your team is used to |
+| **Show Sectors** | Shows or hides the track sectors |
+| **Show Segments** | Shows or hides the track segments (corners and straights) |
+| **Show Colour Bar** and **Colour Bar** | Shows the colour bar legend and chooses which one to use |
+| **Background Colour** | The display's background colour |
+| **Auto Refresh Rate** | How often the display updates when data is panning automatically |
+
+## Moving around the circuit
+
+- Click or drag on the track to move the cursor to that point.
+- Double-click the display to go back to following live data.
+
+## Generating a circuit from data
+
+If you do not have a circuit file, right-click the display and select **Auto generate circuit from current lap**, or press `Ctrl+Alt+T`. ATLAS builds a track map from the current lap. You cannot generate a circuit from a live lap, the last lap of a session, or an in, out or pit lap, because these would give a poor map. Pause live scrolling and select a completed lap first.
+
 ## Circuit Editor 
 
 The Circuit Editor is a tool within ATLAS that allows users to create and modify Circuit Definition files. These files control how a racing track is visually represented and subdivided into Segments (Corners and Straights) and Sectors, ensuring consistency across displays such as Circuit Display and Waveform.
@@ -45,17 +77,20 @@ You can open the Circuit Editor in two ways:
 The editor is organized into three tabs, each with a live preview:
 
 1. **General Tab**
-     - Set the circuit’s name, add documentation notes, and specify total length.
+     - Set the circuit’s **Name**, add **Notes**, and specify the **Reference Length**.
+     - Set the **Lap Trigger Offset** and the **Main Straight Start** and **Main Straight End**.
      - Preview shows the circuit as it will appear in displays.
 
 2. **Segments Tab**
      - Define the sequence of corners and straights.
-     - Add, rename, or delete segments; adjust boundaries by dragging or entering values.
+     - Add segments with **Insert Corner** or **Insert Straight**, rename or **Delete** them, and use **Auto Name** to name them automatically; adjust boundaries by dragging or entering values.
+     - Use the **Show** column to choose which segment names appear.
      - Segments are color-coded and labeled for clarity.
 
 3. **Sectors Tab**
      - Partition the lap for timing/analysis.
-     - Add, rename, recolor, or delete sectors; adjust boundaries interactively.
+     - **Insert**, **Add**, rename, recolor, or **Delete** sectors; adjust boundaries interactively.
+     - Use the **Show** column to choose which sector names appear.
      - Sectors are independent of segments.
 
 ## Workflows

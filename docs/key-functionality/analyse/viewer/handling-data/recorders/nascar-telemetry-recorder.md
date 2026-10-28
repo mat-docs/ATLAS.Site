@@ -53,7 +53,7 @@ Once ATLAS has been installed and licensed:
     * Database path - If SQLite option is selected, user can set a local path, folder and name the .ssndb for the local cache. For SQLServer option, a connection string for the database will be needed.
     > Do not use a folder location which is being used to sync the content of the folder to OneDrive. This doesn't work well with the Recorders as ATLAS has to constantly write and read from this location.
     * Auto Export SSN2 - If you check this box an SSN2 export for every recording will be saved such that it creates a file per start/stop of the recorder.
-* Select Close and add the recorder to a SET, then click start. If the NATS server is streaming data, the NTR recorder box will begin to flash red if a connection is achieved. If parameters are not present it is possible the car is not streaming.
+* Select Close and add the recorder to a SET, then click start. When recording starts, the recorder chip in the status bar turns red and flashes briefly. The chip stays red while recording, whatever the state of the connection, so check that parameters are updating. If parameters are not present it is possible the car is not streaming.
 > If the recorder is not working, this might be down to a Firewall issue, so please check with your IT department
 !!! note
     * You can also access the previously recorded JSON files from [https://teamcontent.nascar.com/](https://teamcontent.nascar.com/)  These file can be downloaded and played back into ATLAS and recorded as SSN2 files.

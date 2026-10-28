@@ -39,7 +39,7 @@ Only one display is "selected" at a time (click inside it).
 2. Select "Make Global" — property becomes global (⚪ icon)
 3. All future displays of that type will use this value
 
-To remove global status: right-click the property > "Clear Global".
+To remove global status: right-click the property > "Clear Global Value".
 
 !!! warning
     Global properties affect ALL future displays of that type. Use carefully!
@@ -54,7 +54,7 @@ The Parameter Browser is your main tool for finding and adding parameters.
 
 **Opening**:
 
-- Press `Ctrl+P`
+- Press `P` or `Insert`
 - View menu > Parameter Browser
 - Usually docked on the left side
 
@@ -82,7 +82,7 @@ The Parameter Browser is your main tool for finding and adding parameters.
 
 ### Parameter Properties
 
-Edit individual parameter settings by double-clicking the parameter in the display, or right-click > Properties.
+Edit individual parameter settings by double-clicking the parameter in the display, or right-click > Properties. In a parameter list, such as the Scatterplot or Load Map parameter panel, you can also select the parameter and press `Ctrl+Enter`. Make sure the list has focus: anywhere else `Ctrl+Enter` switches to full screen. See [Keyboard Shortcuts](../system-operation/keyboard.md).
 
 | Setting | Description |
 |---------|-------------|
@@ -107,7 +107,8 @@ Edit individual parameter settings by double-clicking the parameter in the displ
 
 Workbooks contain pages; pages contain displays.
 
-- **Create pages**: Right-click page tabs > New Page (or duplicate an existing page)
+- **Create pages**: Press `Ctrl+N`, or right-click page tabs > New Page (or duplicate an existing page)
+- **Move between pages**: `Page Up` / `Page Down`
 - **Name pages**: Right-click page tab > Rename — use descriptive names like "Overview", "Sector 1", "Gearbox"
 - **Organise**: Group related displays on the same page; use separate pages for different analysis areas
 
@@ -138,16 +139,15 @@ Workbooks contain pages; pages contain displays.
 
 **Single Session**:
 
-1. File > Open Session
-2. Browse to session file
-3. Session loads into Compare Set 1
+1. Press `Ctrl+L` to open the Session Browser
+2. Find the session
+3. Press `Enter` to load it into the current set
 
 **Multiple Sessions** (Compare Sets):
 
-1. File > Add to Compare Set
-2. Choose set number (1-8)
-3. Session loads into specified set
-4. All displays can switch between sets
+1. In the Session Browser, press `Ctrl+Enter` to load the session into a new set, or `Shift+Enter` to overwrite the current set
+2. All displays can switch between sets
+3. Press `Ctrl+F1` to `Ctrl+F9` to toggle session 1 to 9 in the active set on or off
 
 ### Switching Between Sessions
 
@@ -180,11 +180,11 @@ Compare Sets let you analyse multiple sessions:
 === "Keyboard"
     | Keys | Action |
     |------|--------|
-    | `←` / `→` | Move by one sample |
-    | `Shift+←` / `Shift+→` | Move faster |
+    | `←` / `→` | Move by one sample (Waveform) |
+    | `Ctrl+Alt+←` / `Ctrl+Alt+→` | Previous / next signal change |
+    | `Ctrl+[` / `Ctrl+]` | Previous / next event |
     | `Home` | Jump to session start |
     | `End` | Jump to session end |
-    | `Page Up` / `Page Down` | Larger steps |
     
     :keyboard: **Precise** control
 
@@ -217,8 +217,8 @@ Workbooks save your entire workspace:
 ### Saving and Opening
 
 - **Save**: `Ctrl+S` or File > Save
-- **Save As**: File > Save As (useful for creating templates)
-- **Open**: File > Open Workbook (restores exact workspace; prompts if sessions not found)
+- **Save As**: `Ctrl+Alt+S` or File > Save As (useful for creating templates)
+- **Open**: `Ctrl+O` or File > Open (restores exact workspace; prompts if sessions not found)
 
 ### Workbook Templates
 
