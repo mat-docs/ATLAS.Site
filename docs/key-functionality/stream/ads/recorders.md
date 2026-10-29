@@ -24,6 +24,8 @@ Configure the following settings:
 
 Use the **All** tab to define default session settings (details, export location, and so on) that apply to all future recorders on this ADS instance.
 
+Session identifiers, folders and details can contain wildcards that ADS fills in when it records, such as the date, driver or a parameter value. See [Session Wildcards](wildcards.md).
+
 ![Recorder All tab](assets/recorder_all.png)
 
 ## Recorder types
