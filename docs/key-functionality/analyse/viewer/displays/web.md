@@ -62,4 +62,69 @@ Press `D` with the display selected to open Display Properties.
 
 ## Troubleshooting
 
-If the display shows an error instead of a web page, or a page does not load, see [Web Browser Troubleshooting](web-troubleshooting.md).
+When the browser cannot be used, the display shows **The Web Browser display cannot show web pages**, explains what went wrong, and shows the same problem on the ATLAS status bar. Two buttons are available:
+
+- **Retry** recreates the browser without restarting ATLAS.
+- **Copy details** copies the error and diagnostic information to the clipboard. Send this to support. It includes the WebView2 Runtime version, the minimum version needed, the browser data folder, the Windows version and the exception, if there was one.
+
+Find what the display says below.
+
+??? failure "The Microsoft Edge WebView2 Runtime is not installed"
+
+    **Cause:** The ATLAS installer does not install the runtime. Windows 11 includes it, but some Windows 10 computers and some managed computers do not.
+
+    **Fix:** Install the runtime as described in [Requirements](#requirements), then click **Retry**.
+
+    The ATLAS installer's system checks include a Microsoft Edge WebView2 Runtime check. It warns when the runtime is missing and has a **Click for info** button that opens the Microsoft page. It never stops ATLAS installing.
+
+    If your IT team provide a fixed version of the runtime through the `BrowserExecutableFolder` WebView2 policy (for ATLAS as `MAT.ATLAS.Host.exe`, or for all applications with `*`), the installer check recognises it. If the policy points at a folder that does not exist, the check warns and the display will not work until the folder is corrected.
+
+??? failure "This computer has version X of the runtime, but version Y or later is needed"
+
+    **Cause:** The display needs version 109.0.1518.78 or later. The normal Evergreen runtime updates itself, so this usually means your IT team have pinned an older version.
+
+    **Fix:** Ask your IT team to update the runtime, or to remove any policy that keeps it on an older version. Then click **Retry**.
+
+??? failure "WebView2Loader.dll is missing or damaged"
+
+    **Fix:** Repair or reinstall ATLAS, then restart ATLAS.
+
+??? failure "The Web Browser display could not write to its data folder"
+
+    **Cause:** The browser stores its profile (cookies, logins and cache) in `%LOCALAPPDATA%\McLaren Applied Technologies\ATLAS 10\WebView2`, and your Windows account cannot write to the folder shown in the message.
+
+    **Fix:** Check that your Windows account can write to the folder, then click **Retry**.
+
+??? failure "The Microsoft Edge WebView2 Runtime could not start"
+
+    The message ends with an error code.
+
+    **Fix:**
+
+    1. If your organisation restricts WebView2 through policy, ask your IT team to allow it for ATLAS.
+    2. Ask your IT team to repair the runtime.
+    3. Close ATLAS and delete the browser data folder shown in the message, then start ATLAS again. This clears saved cookies and logins for every Web Browser display.
+    4. If the problem continues, click **Copy details** and send the result to support.
+
+??? failure "The browser engine stopped unexpectedly"
+
+    **Fix:** Click **Retry** to restart the browser.
+
+??? failure "The page stopped unexpectedly again soon after it was reloaded"
+
+    **Cause:** When a page stops, ATLAS reloads it once. If it stops again within a minute, ATLAS does not reload it again, so that it does not reload for ever. Pages can do this when they run out of memory or hit a graphics driver problem.
+
+    **Fix:** Click **Retry** to load the page again. If it keeps happening, click **Copy details** and send the result to support.
+
+    Two related messages appear on the status bar only. **The page stopped unexpectedly and is being reloaded** needs no action. For **The page is not responding. Click Refresh to reload it**, click **Refresh** in the header bar.
+
+??? failure "Status bar: the URL was not correctly formed, or a page could not be loaded"
+
+    **Fix:**
+
+    - Check the address. You can type a web address with or without `http://`, or the path to a local or network file. A relative file path does not work.
+    - For more detail, see the ATLAS log file. The log folder and level of detail are set in [Options](../system-operation/options.md).
+
+??? failure "Status bar: error generating snapshot image"
+
+    The capture failed, for example because the display is minimised or off screen, or the file is locked. Make the display visible and try again. The log file has the details.

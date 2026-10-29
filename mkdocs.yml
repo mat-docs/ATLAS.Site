@@ -258,7 +258,6 @@ nav:
           - Video: key-functionality/analyse/viewer/displays/video.md
           - Waveform: key-functionality/analyse/viewer/displays/waveform.md
           - Web Display: key-functionality/analyse/viewer/displays/web.md
-          - Web Display Troubleshooting: key-functionality/analyse/viewer/displays/web-troubleshooting.md
     - Integrate:
       - Overview: key-functionality/integrate/index.md
       - RTA: 
