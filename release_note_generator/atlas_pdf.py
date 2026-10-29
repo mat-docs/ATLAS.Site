@@ -27,6 +27,24 @@ from reportlab.platypus import (
     Table, TableStyle, PageBreak, NextPageTemplate, KeepTogether,
 )
 from reportlab.pdfgen import canvas as rl_canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
+# ── Fonts ──────────────────────────────────────────────────────────────────────
+# Montserrat (SIL OFL) is bundled in ./fonts. No regular-weight italic is
+# bundled, so italics fall back to the regular face.
+FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts")
+for _name, _file in (
+    ("Montserrat",            "Montserrat-Regular.ttf"),
+    ("Montserrat-Bold",       "Montserrat-Bold.ttf"),
+    ("Montserrat-BoldItalic", "Montserrat-BoldItalic.ttf"),
+):
+    pdfmetrics.registerFont(TTFont(_name, os.path.join(FONT_DIR, _file)))
+pdfmetrics.registerFontFamily(
+    "Montserrat",
+    normal="Montserrat", bold="Montserrat-Bold",
+    italic="Montserrat", boldItalic="Montserrat-BoldItalic",
+)
 
 # ── Page geometry ──────────────────────────────────────────────────────────────
 PAGE_W, PAGE_H = A4
@@ -398,7 +416,7 @@ def _rule(c):
     c.line(ML, PAGE_H - 18*mm, PAGE_W - MR, PAGE_H - 18*mm)
 
 def _footer(c, date_str, page_num):
-    c.setFont("Helvetica", 7.5)
+    c.setFont("Montserrat", 7.5)
     c.setFillColor(GREY)
     c.drawString(ML, 10*mm, f"C O N F I D E N T I A L  |  {date_str}")
     c.drawRightString(PAGE_W - MR, 10*mm, str(page_num))
@@ -414,28 +432,28 @@ def make_cover_cb(meta):
         # Product long name — top-left ~58% down
         y = PAGE_H * 0.59
         for line in meta["cover_name"].split("\n"):
-            c.setFont("Helvetica", 24)
+            c.setFont("Montserrat", 24)
             c.drawString(ML, y, line)
             y -= 32
 
         # Product short name — large, right-aligned ~46%
         short = meta.get("cover_short", "")
         if short:
-            c.setFont("Helvetica", 52)
-            sw = c.stringWidth(short, "Helvetica", 52)
+            c.setFont("Montserrat", 52)
+            sw = c.stringWidth(short, "Montserrat", 52)
             c.drawString(PAGE_W - MR - sw, PAGE_H * 0.455, short)
 
         # "Release Note" — bottom-right ~28%
-        c.setFont("Helvetica", 26)
-        rw = c.stringWidth("Release Note", "Helvetica", 26)
+        c.setFont("Montserrat", 26)
+        rw = c.stringWidth("Release Note", "Montserrat", 26)
         c.drawString(PAGE_W - MR - rw, PAGE_H * 0.28, "Release Note")
 
         # Version below
         v = meta.get("version", "")
         if v:
-            c.setFont("Helvetica", 13)
+            c.setFont("Montserrat", 13)
             c.setFillColor(GREY)
-            vw = c.stringWidth(v, "Helvetica", 13)
+            vw = c.stringWidth(v, "Montserrat", 13)
             c.drawString(PAGE_W - MR - vw, PAGE_H * 0.24, v)
 
         _footer(c, meta["date"], 1)
@@ -456,39 +474,39 @@ def make_styles():
     def ps(n, **k): return ParagraphStyle(n, **k)
     return {
         # Main section: "1. ATLAS Data Server Release"
-        "h1":      ps("h1",  fontName="Helvetica",      fontSize=18, textColor=NAVY,
+        "h1":      ps("h1",  fontName="Montserrat",      fontSize=18, textColor=NAVY,
                              leading=22, spaceBefore=0, spaceAfter=8),
         # Sub-section: "1.1 ATLAS Data Server Overview"
-        "h2":      ps("h2",  fontName="Helvetica",      fontSize=12, textColor=NAVY,
+        "h2":      ps("h2",  fontName="Montserrat",      fontSize=12, textColor=NAVY,
                              leading=16, spaceBefore=10, spaceAfter=4),
         # Plain sub-heading — no number, used in section 1
-        "h2_plain":ps("h2p", fontName="Helvetica",      fontSize=12, textColor=NAVY,
+        "h2_plain":ps("h2p", fontName="Montserrat",      fontSize=12, textColor=NAVY,
                              leading=16, spaceBefore=10, spaceAfter=4),
         # Item heading: "4.1.1  Channel Data Size Error..."
-        "h3":      ps("h3",  fontName="Helvetica",      fontSize=10.5, textColor=NAVY,
+        "h3":      ps("h3",  fontName="Montserrat",      fontSize=10.5, textColor=NAVY,
                              leading=14, spaceBefore=8, spaceAfter=2),
-        "h4":      ps("h4",  fontName="Helvetica-Bold", fontSize=10, textColor=BLACK,
+        "h4":      ps("h4",  fontName="Montserrat-Bold", fontSize=10, textColor=BLACK,
                              leading=14, spaceBefore=6, spaceAfter=2),
         # Body text under section headings (no indent)
-        "body":    ps("body",fontName="Helvetica",      fontSize=10, textColor=BLACK,
+        "body":    ps("body",fontName="Montserrat",      fontSize=10, textColor=BLACK,
                              leading=15, spaceAfter=5, alignment=TA_JUSTIFY),
         # Body text indented under h3 item headings
-        "body_indent": ps("body_i", fontName="Helvetica", fontSize=10, textColor=BLACK,
+        "body_indent": ps("body_i", fontName="Montserrat", fontSize=10, textColor=BLACK,
                              leading=15, spaceAfter=5, alignment=TA_JUSTIFY,
                              leftIndent=14),
-        "bullet":  ps("bul", fontName="Helvetica",      fontSize=10, textColor=BLACK,
+        "bullet":  ps("bul", fontName="Montserrat",      fontSize=10, textColor=BLACK,
                              leading=14, spaceAfter=3, leftIndent=28, bulletIndent=14),
-        "bullet2": ps("bul2",fontName="Helvetica",      fontSize=10, textColor=BLACK,
+        "bullet2": ps("bul2",fontName="Montserrat",      fontSize=10, textColor=BLACK,
                              leading=14, spaceAfter=2, leftIndent=42, bulletIndent=28),
         "code":    ps("code",fontName="Courier",        fontSize=8,  textColor=HexColor("#333"),
                              leading=11, backColor=LTGREY,
                              leftIndent=14, spaceBefore=3, spaceAfter=3, borderPad=4),
-        "note":    ps("note",fontName="Helvetica",      fontSize=10, textColor=BLACK,
+        "note":    ps("note",fontName="Montserrat",      fontSize=10, textColor=BLACK,
                              leading=15, spaceAfter=5, leftIndent=14,
                              backColor=LTGREY, borderPad=4),
-        "th":      ps("th",  fontName="Helvetica-Bold", fontSize=9, textColor=WHITE,  leading=12),
-        "td":      ps("td",  fontName="Helvetica",      fontSize=9, textColor=BLACK,  leading=12),
-        "td_hd":   ps("tdhd",fontName="Helvetica-Bold", fontSize=9, textColor=WHITE,  leading=12),
+        "th":      ps("th",  fontName="Montserrat-Bold", fontSize=9, textColor=WHITE,  leading=12),
+        "td":      ps("td",  fontName="Montserrat",      fontSize=9, textColor=BLACK,  leading=12),
+        "td_hd":   ps("tdhd",fontName="Montserrat-Bold", fontSize=9, textColor=WHITE,  leading=12),
     }
 
 # ── Section counter ────────────────────────────────────────────────────────────
