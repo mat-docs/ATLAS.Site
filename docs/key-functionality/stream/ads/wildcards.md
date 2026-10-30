@@ -75,8 +75,8 @@ To use any other session detail, including user-defined details, use
 !!! tip "Write the detail name exactly as it appears"
     On SSN, ADS converts underscores in the detail name to spaces, so `$SESSIONDETAIL_Note_1$` also
     works. SQL Race (SSN2 and SQL Race DB) matches the name exactly, so on those destinations
-    `$SESSIONDETAIL_Note_1$` only matches a detail called `Note_1`. Write the name exactly as it
-    appears, spaces included, and the same setting works on every destination.
+    `$SESSIONDETAIL_Note_1$` only matches a detail called `Note_1`. For settings shared across destinations,
+    use detail names without literal underscores and write them exactly as they appear, spaces included.
 
 ### Data source
 
