@@ -345,7 +345,7 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 </div>
 <div class="fade-content" id="hero-copy" aria-live="polite" aria-atomic="true">
 <h1 id="hero-h1">Data at the speed of the <em>race</em></h1>
-<p id="hero-p">ATLAS moves raw telemetry from the car to the pit wall to the factory. Live, every lap, every session.</p>
+<p id="hero-p">ATLAS delivers live telemetry from the car to the pit wall and the factory, for every lap of every session.</p>
 </div>
 <div class="hero-actions">
 <a href="https://docs.atlas.motionapplied.com/getting-started/quick-start/" class="btn-primary">Get started →</a>
@@ -383,7 +383,7 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 <div class="reveal">
 <div class="section-label">The data journey</div>
 <h2 class="section-title" id="pipe-title">From sensor to insight in under a millisecond</h2>
-<p class="section-desc fade-content" id="pipe-desc">Every data point travels through a purpose-built pipeline. Captured on the car, transmitted live, enriched with models, stored for the season, and surfaced wherever an engineer needs it.</p>
+<p class="section-desc fade-content" id="pipe-desc">Every data point follows the same path: captured on the car, transmitted live, enriched with models, stored for the season and available wherever an engineer needs it.</p>
 </div>
 <div class="pipeline-vis reveal">
 <div class="pipeline-packets" id="pipe-pkts" aria-hidden="true"></div>
@@ -407,7 +407,7 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 <div class="reveal">
 <div class="section-label">Live insights</div>
 <h2 class="section-title fade-content" id="comms-title">Two rooms. Same data. Different decisions.</h2>
-<p class="section-desc fade-content" id="comms-desc">The pit wall reacts in seconds. The factory connects dots across seasons. Both live, both running ATLAS.</p>
+<p class="section-desc fade-content" id="comms-desc">The pit wall reacts in seconds. The factory connects the dots across seasons. Both work from the same live ATLAS data.</p>
 </div>
 <div class="comms-grid reveal">
 
@@ -445,8 +445,8 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 <div class="container">
 <div class="reveal">
 <div class="section-label">The platform</div>
-<h2 class="section-title" id="families-title">Five products. One data journey.</h2>
-<p class="section-desc">Each product handles a stage of the telemetry lifecycle. Adopt what you need, scale as you grow.</p>
+<h2 class="section-title" id="families-title">Five families. One data journey.</h2>
+<p class="section-desc">Each family covers one stage of the telemetry lifecycle. Use the ones you need.</p>
 </div>
 <div class="fam-grid reveal">
 <div class="fam-card">
@@ -487,11 +487,12 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius
 <div class="section-divider"></div>
 <section class="cta-section section-alt" aria-labelledby="cta-h2">
 <div class="container reveal">
-<h2 id="cta-h2">Ready to operate at the limit?</h2>
-<p id="cta-p">Every millisecond of data. Every decision that matters.</p>
+<h2 id="cta-h2">See ATLAS on your own data</h2>
+<p id="cta-p">Talk to our team about your setup.</p>
 <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
 <a href="https://www.motionapplied.com/contact" class="btn-primary">Contact sales →</a>
 <a href="https://docs.atlas.motionapplied.com/getting-started/quick-start/" class="btn-ghost">Read the docs</a>
+<a href="https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7" class="btn-ghost" target="_blank" rel="noopener">View the roadmap</a>
 </div>
 </div>
 </section>
@@ -508,7 +509,7 @@ const INDUSTRIES = {
   motorsport: {
     hero: {
       h1: 'Data at the speed of the <em>race</em>',
-      p: 'ATLAS moves raw telemetry from the car to the pit wall to the factory. Live, every lap, every session.'
+      p: 'ATLAS delivers live telemetry from the car to the pit wall and the factory, for every lap of every session.'
     },
     hud: [
       {k:'Speed',  color:'or'}, {k:'Gear',   color:'tl'},
@@ -538,33 +539,33 @@ const INDUSTRIES = {
     },
     stats:[
       {v:'30+',l:'Years in motorsport'},{v:'<1ms',l:'Telemetry latency'},{v:'1000+',l:'Parameters per session'},
-      {v:'5',l:'Products'},{v:'Live',l:'Remote factory access'},{v:'∞',l:'Sessions searchable'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Remote factory access'},{v:'All',l:'Sessions searchable'},
       {v:'F1',l:'Proven heritage'},{v:'Simulink',l:'Model execution'},{v:'Secure',l:'Team-level data isolation'}
     ],
     comms:{
       liveLabel:'Pit wall, lap 34/58',
       remoteLabel:'Factory, remote operations',
       title:'Two rooms. Same data.<br>Different decisions.',
-      desc:'The pit wall reacts in seconds. The factory connects dots across seasons. Both live, both running ATLAS.',
+      desc:'The pit wall reacts in seconds. The factory connects the dots across seasons. Both work from the same live ATLAS data.',
       liveMsgs:[
         {from:'dr',name:'Driver',text:'Something doesn\'t feel right on the front wing. Entry to turn 6 is loose.',align:'l'},
         {from:'re',name:'Race engineer',text:'Copy. Pulling it up. Front downforce dropped since lap 31.',align:'r',tag:'Front DF: -4.2% since L31',tc:'dt-warn'},
-        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nFrontWingDF below threshold. 3 consecutive laps',align:'l',sys:true,tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nFrontWingDF below threshold for 3 consecutive laps',align:'l',sys:true,tc:'dt-warn'},
         {from:'st',name:'Strategist',text:'If we\'ve lost that aero, the undercut doesn\'t work. Recalculating pit window.',align:'l',tag:'Pit window: L36→L38',tc:'dt-info'},
-        {from:'re',name:'Race engineer',text:'vTAG confirms. predicted lap time loss 0.3s compounding. Endplate deflection consistent with damage.',align:'r',tag:'vTAG: +0.3s/lap projected',tc:'dt-pu'},
+        {from:'re',name:'Race engineer',text:'vTAG confirms. Predicted lap time loss 0.3s compounding. Endplate deflection consistent with damage.',align:'r',tag:'vTAG: +0.3s/lap projected',tc:'dt-pu'},
         {from:'dr',name:'Driver',text:'Rear is also starting to move around. These tyres are done.',align:'l'},
         {from:'re',name:'Race engineer',text:'We can see it. Rear left surface temp climbing. Box this lap, plan C.',align:'r',tag:'RL surface: 142°C ↑',tc:'dt-warn'},
         {from:'dr',name:'Driver',text:'Box box. Copy.',align:'l'},
-        {from:'sys',name:'ATLAS',text:'Pit stop initiated. timer started. Strategy plan C loaded.',align:'l',sys:true,tc:'dt-ok'},
-        {from:'st',name:'Strategist',text:'Hamilton is on a 2-stop too. If we get a clean out-lap we clear him.',align:'l',tag:'Gap to HAM: 1.8s',tc:'dt-am'},
-        {from:'re',name:'Race engineer',text:'Good stop. 2.3 seconds. You\'re clear of Hamilton. Push now.',align:'r',tag:'Pit stop: 2.3s',tc:'dt-ok'},
+        {from:'sys',name:'ATLAS',text:'Pit stop initiated. Timer started. Strategy plan C loaded.',align:'l',sys:true,tc:'dt-ok'},
+        {from:'st',name:'Strategist',text:'The car ahead is on a 2-stop too. If we get a clean out-lap we clear them.',align:'l',tag:'Gap to car ahead: 1.8s',tc:'dt-am'},
+        {from:'re',name:'Race engineer',text:'Good stop. 2.3 seconds. You\'re clear of the car ahead. Push now.',align:'r',tag:'Pit stop: 2.3s',tc:'dt-ok'},
         {from:'dr',name:'Driver',text:'Car feels much better. Front end is alive again.',align:'l'},
       ],
       remoteMsgs:[
-        {from:'pe',name:'Performance engineer',text:'I\'m seeing the front wing drop from here too. Pulling up the Barcelona session. we had something similar in FP2.',align:'l',tag:'Searching: front wing events',tc:'dt-info'},
+        {from:'pe',name:'Performance engineer',text:'I\'m seeing the front wing drop from here too. Pulling up the Barcelona session. We had something similar in FP2.',align:'l',tag:'Searching: front wing events',tc:'dt-info'},
         {from:'ae',name:'Aero engineer',text:'Barcelona was a different endplate spec, but the deflection shape looks very similar at yaw angles above 4°.',align:'r',tag:'Yaw threshold: >4°',tc:'dt-pu'},
         {from:'sys',name:'ATLAS',text:'SQL Race: 3 matching sessions found. Barcelona FP2, Imola Q1, Bahrain test day 2',align:'l',sys:true,tc:'dt-tl'},
-        {from:'pe',name:'Performance engineer',text:'All three show the same signature. This isn\'t contact damage. it\'s a structural weakness.',align:'l',tag:'Pattern match: 4 events',tc:'dt-warn'},
+        {from:'pe',name:'Performance engineer',text:'All three show the same signature. That points to a structural weakness, not contact damage.',align:'l',tag:'Pattern match: 4 events',tc:'dt-warn'},
         {from:'rl',name:'Reliability engineer',text:'Cross-referencing with tunnel data via RTA. The FEA model predicted flex at exactly this yaw angle.',align:'r',tag:'FEA correlation: 94%',tc:'dt-pu'},
         {from:'he',name:'Head of engineering',text:'So we\'ve been treating a design flaw as random contact damage. How many races has this cost us?',align:'l'},
         {from:'pe',name:'Performance engineer',text:'Conservative estimate: 12-15 points across the season. The Imola DNF was likely this failing under sustained load.',align:'r',tag:'Estimated cost: 12-15 pts',tc:'dt-warn'},
@@ -574,13 +575,13 @@ const INDUSTRIES = {
         {from:'he',name:'Head of engineering',text:'Agreed. Fast-track the new spec. I want validation by Wednesday and the part on the car by Friday practice.',align:'l',tag:'Target: Friday FP1',tc:'dt-ok'},
       ]
     },
-    cta:{h2:'Ready to operate at the limit?',p:'Every millisecond of data. Every decision that matters.'}
+    cta:{h2:'See ATLAS on your own data',p:'Talk to our team about your setup.'}
   },
 
   aerospace: {
     hero: {
       h1: 'Data at the speed of <em>flight</em>',
-      p: 'ATLAS moves flight data from the airframe to operations to fleet engineering. Real-time, every sortie, every airframe.'
+      p: 'ATLAS delivers live flight data from the airframe to operations and fleet engineering, for every sortie across the fleet.'
     },
     hud: [
       {k:'Altitude', color:'or'}, {k:'Mach',    color:'tl'},
@@ -610,21 +611,21 @@ const INDUSTRIES = {
     },
     stats:[
       {v:'1000+',l:'Parameters per airframe'},{v:'<1ms',l:'Data latency'},{v:'Real-time',l:'In-flight monitoring'},
-      {v:'5',l:'Products'},{v:'Live',l:'Multi-site fleet ops'},{v:'∞',l:'Sorties searchable'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site fleet ops'},{v:'All',l:'Sorties searchable'},
       {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Operations centre, sortie 7 active',
       remoteLabel:'Fleet engineering, remote analysis',
       title:'Ops centre and fleet desk.<br>Same data. Different focus.',
-      desc:'The ops centre monitors live sorties. Fleet engineering finds patterns across airframes and flight hours. Both live, both running ATLAS.',
+      desc:'The ops centre monitors live sorties. Fleet engineering finds patterns across airframes and flight hours. Both work from the same live ATLAS data.',
       liveMsgs:[
         {from:'pi',name:'Pilot',text:'Getting some vibration through the stick at high alpha. Feels structural, not aero.',align:'l'},
         {from:'ft',name:'Flight test engineer',text:'Copy. EGT and vibration spectra are nominal. Pulling structural loads overlay now.',align:'r',tag:'Vib band: 42Hz ↑',tc:'dt-warn'},
-        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nVibeSpectrum_42Hz above threshold. sustained 12 seconds',align:'l',sys:true,tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nVibeSpectrum_42Hz above threshold for 12 seconds',align:'l',sys:true,tc:'dt-warn'},
         {from:'ft',name:'Flight test engineer',text:'That 42Hz peak correlates with the starboard engine mount. Not critical but we should log a maintenance flag.',align:'r',tag:'Engine mount resonance',tc:'dt-pu'},
         {from:'pi',name:'Pilot',text:'Reducing to 0.82 Mach. Vibration subsiding.',align:'l'},
-        {from:'ft',name:'Flight test engineer',text:'Confirmed. vibration dropped below threshold at M 0.82. Speed-dependent. Logging flight condition.',align:'r',tag:'Clear below M 0.82',tc:'dt-ok'},
+        {from:'ft',name:'Flight test engineer',text:'Confirmed. Vibration dropped below threshold at M 0.82. Speed-dependent. Logging flight condition.',align:'r',tag:'Clear below M 0.82',tc:'dt-ok'},
         {from:'sys',name:'ATLAS',text:'Flight condition logged. Maintenance flag raised: starboard engine mount inspection.',align:'l',sys:true,tc:'dt-am'},
         {from:'se',name:'Safety engineer',text:'Fuel state is comfortable. Recommend completing the test card at reduced Mach and RTB.',align:'l',tag:'Fuel: 4,200 kg remaining',tc:'dt-ok'},
         {from:'ft',name:'Flight test engineer',text:'Agreed. Pilot, continue test points 4 through 7 at M 0.80. Skip point 8.',align:'r'},
@@ -633,7 +634,7 @@ const INDUSTRIES = {
       remoteMsgs:[
         {from:'pe',name:'Structures engineer',text:'I\'m seeing that 42Hz signature from here. Cross-referencing against fleet vibration database.',align:'l',tag:'Fleet DB: querying',tc:'dt-info'},
         {from:'ae',name:'Propulsion engineer',text:'This looks like the same mount resonance we saw on tail number 004 last quarter. Different airframe, same behaviour.',align:'r',tag:'Match: TN-004 event',tc:'dt-pu'},
-        {from:'sys',name:'ATLAS',text:'SQL Race: 5 matching events found across 3 airframes. all starboard engine mount, 38-45Hz band',align:'l',sys:true,tc:'dt-tl'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 5 matching events found across 3 airframes, all starboard engine mount, 38-45Hz band',align:'l',sys:true,tc:'dt-tl'},
         {from:'pe',name:'Structures engineer',text:'Five events across three airframes. This is a fleet-wide concern, not a one-off. We need to pull the FEM results.',align:'l',tag:'Fleet pattern: 5 events',tc:'dt-warn'},
         {from:'rl',name:'Fatigue engineer',text:'FEM predicted resonance at exactly this frequency under high-alpha loading. Original analysis assumed it wouldn\'t be sustained.',align:'r',tag:'FEM correlation: 91%',tc:'dt-pu'},
         {from:'he',name:'Chief engineer',text:'So the model was right but the operational assumption was wrong. How many flight hours before this becomes structural?',align:'l'},
@@ -643,13 +644,13 @@ const INDUSTRIES = {
         {from:'he',name:'Chief engineer',text:'Issue a fleet-wide inspection directive. Revised mount goes into next scheduled maintenance. No aircraft grounded yet, but I want data from every sortie flagged.',align:'l',tag:'Fleet directive issued',tc:'dt-ok'},
       ]
     },
-    cta:{h2:'Ready to see across your fleet?',p:'Every parameter. Every sortie. Every airframe.'}
+    cta:{h2:'See ATLAS across your fleet',p:'Talk to our team about your setup.'}
   },
 
   research: {
     hero: {
       h1: 'Data at the speed of <em>discovery</em>',
-      p: 'ATLAS moves high-frequency sensor data from the facility to the control room to the analysis lab. Continuous, every run, every campaign.'
+      p: 'ATLAS delivers continuous high-frequency sensor data from the facility to the control room and the analysis lab, for every run of every campaign.'
     },
     hud: [
       {k:'Temp',     color:'or'}, {k:'Pressure', color:'tl'},
@@ -680,18 +681,18 @@ const INDUSTRIES = {
     },
     stats:[
       {v:'10,000+',l:'Parameters per facility'},{v:'<1ms',l:'Data latency'},{v:'Continuous',l:'24/7 monitoring'},
-      {v:'5',l:'Products'},{v:'Live',l:'Multi-site operations'},{v:'∞',l:'Campaigns searchable'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Multi-site operations'},{v:'All',l:'Campaigns searchable'},
       {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Control room, run 14 active',
       remoteLabel:'Analysis lab, remote research',
       title:'Control room and research lab.<br>Same data. Different timescales.',
-      desc:'The control room monitors live operations second by second. The analysis lab finds patterns across campaigns and years. Both live, both running ATLAS.',
+      desc:'The control room monitors live operations second by second. The analysis lab finds patterns across campaigns and years. Both work from the same live ATLAS data.',
       liveMsgs:[
         {from:'op',name:'Reactor operator',text:'Seeing a slow drift on primary coolant loop B temperature. Up 2 degrees over the last 30 minutes.',align:'l'},
-        {from:'cr',name:'Control room supervisor',text:'Copy. Pulling up the thermal hydraulics overlay. Loop A is stable. this is B only.',align:'r',tag:'Loop B: +2.1°C drift',tc:'dt-warn'},
-        {from:'sys',name:'ATLAS',text:'⚠ Trend alarm: nPrimaryLoopB_Temp increasing 0.07°C/min. projected to reach caution threshold in 28 minutes',align:'l',sys:true,tc:'dt-warn'},
+        {from:'cr',name:'Control room supervisor',text:'Copy. Pulling up the thermal hydraulics overlay. Loop A is stable. This is B only.',align:'r',tag:'Loop B: +2.1°C drift',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Trend alarm: nPrimaryLoopB_Temp increasing 0.07°C/min, projected to reach caution threshold in 28 minutes',align:'l',sys:true,tc:'dt-warn'},
         {from:'cr',name:'Control room supervisor',text:'vTAG model says this is consistent with reduced flow in the secondary side. Checking pump B2.',align:'r',tag:'vTAG: flow restriction model',tc:'dt-pu'},
         {from:'op',name:'Reactor operator',text:'Pump B2 discharge pressure is down 3%. Could be cavitation or a valve position issue.',align:'l',tag:'Pump B2: -3% ΔP',tc:'dt-am'},
         {from:'cr',name:'Control room supervisor',text:'Switching to backup pump B3. Operator, confirm transfer and monitor for transient.',align:'r'},
@@ -701,23 +702,23 @@ const INDUSTRIES = {
       ],
       remoteMsgs:[
         {from:'rs',name:'Research scientist',text:'That loop B drift matches something we saw in campaign 12. Pulling up the historical data.',align:'l',tag:'Searching: loop B events',tc:'dt-info'},
-        {from:'su',name:'Systems engineer',text:'Campaign 12 was 18 months ago. different fuel cycle. But the thermal signature is almost identical.',align:'r',tag:'Match: Campaign 12',tc:'dt-pu'},
+        {from:'su',name:'Systems engineer',text:'Campaign 12 was 18 months ago, with a different fuel cycle. But the thermal signature is almost identical.',align:'r',tag:'Match: Campaign 12',tc:'dt-pu'},
         {from:'sys',name:'ATLAS',text:'SQL Race: 4 matching thermal drift events found. Campaigns 8, 12, 19, and current',align:'l',sys:true,tc:'dt-tl'},
         {from:'rs',name:'Research scientist',text:'All four events occurred within the first 200 hours after a secondary loop maintenance window. This is a post-maintenance issue.',align:'l',tag:'Pattern: post-maintenance',tc:'dt-warn'},
         {from:'su',name:'Systems engineer',text:'Checking the maintenance logs via RTA integration. The valve alignment procedure changed between campaigns 12 and 19.',align:'r',tag:'Procedure delta found',tc:'dt-pu'},
         {from:'he',name:'Technical director',text:'So the new procedure is introducing a subtle misalignment. How long before it self-corrects through thermal cycling?',align:'l'},
-        {from:'rs',name:'Research scientist',text:'Based on the four data sets. roughly 180-220 operating hours. But pump cavitation risk remains elevated during that window.',align:'r',tag:'Risk window: 180-220 hrs',tc:'dt-warn'},
-        {from:'sys',name:'ATLAS',text:'vTAG simulation started. revised valve alignment procedure × 4 campaign data sets. ETA: 22 minutes.',align:'l',sys:true,tc:'dt-tl'},
+        {from:'rs',name:'Research scientist',text:'Based on the four data sets, roughly 180-220 operating hours. But pump cavitation risk remains elevated during that window.',align:'r',tag:'Risk window: 180-220 hrs',tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'vTAG simulation started: revised valve alignment procedure × 4 campaign data sets. ETA: 22 minutes.',align:'l',sys:true,tc:'dt-tl'},
         {from:'he',name:'Technical director',text:'Revert to the original alignment procedure for the next maintenance window. And flag every facility running the new procedure.',align:'l',tag:'Procedure reversion ordered',tc:'dt-ok'},
       ]
     },
-    cta:{h2:'Ready to see across your facility?',p:'Every sensor. Every campaign. Every parameter.'}
+    cta:{h2:'See ATLAS across your facility',p:'Talk to our team about your setup.'}
   },
 
   robotics: {
     hero: {
       h1: 'Data at the speed of the <em>mission</em>',
-      p: 'ATLAS moves platform telemetry from the vehicle to the ground station to mission HQ. Live, every sortie, every vehicle.'
+      p: 'ATLAS delivers live platform telemetry from the vehicle to the ground station and mission HQ, for every sortie across the fleet.'
     },
     hud: [
       {k:'Altitude', color:'or'}, {k:'Heading', color:'tl'},
@@ -749,18 +750,18 @@ const INDUSTRIES = {
     },
     stats:[
       {v:'500+',l:'Parameters per vehicle'},{v:'<1ms',l:'Data latency'},{v:'Multi-vehicle',l:'Fleet monitoring'},
-      {v:'5',l:'Products'},{v:'Live',l:'Remote operations'},{v:'∞',l:'Missions searchable'},
+      {v:'5',l:'Capability families'},{v:'Live',l:'Remote operations'},{v:'All',l:'Missions searchable'},
       {v:'Open',l:'Kafka streaming'},{v:'Simulink',l:'Model execution'},{v:'SQL',l:'Structured session store'}
     ],
     comms:{
       liveLabel:'Ground station, mission 7 active',
       remoteLabel:'Mission HQ, fleet operations',
       title:'Ground station and mission HQ.<br>Same data. Different scope.',
-      desc:'The ground station manages live vehicles. Mission HQ coordinates across the fleet and optimises operations. Both live, both running ATLAS.',
+      desc:'The ground station manages live vehicles. Mission HQ coordinates across the fleet and optimises operations. Both work from the same live ATLAS data.',
       liveMsgs:[
         {from:'op',name:'UAV operator',text:'Vehicle 3 is reporting higher than expected motor current on motor 2. Flight is stable but I want to flag it.',align:'l'},
         {from:'gs',name:'Ground station lead',text:'Copy. Pulling up the propulsion overlay. Motors 1, 3, 4 are nominal. Motor 2 is drawing 15% above baseline.',align:'r',tag:'Motor 2: +15% current',tc:'dt-warn'},
-        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nMotor2_Current above threshold. sustained for 4 minutes',align:'l',sys:true,tc:'dt-warn'},
+        {from:'sys',name:'ATLAS',text:'⚠ Alarm: nMotor2_Current above threshold for 4 minutes',align:'l',sys:true,tc:'dt-warn'},
         {from:'gs',name:'Ground station lead',text:'vTAG model suggests bearing wear or prop imbalance. Not flight-critical yet but degrading efficiency.',align:'r',tag:'vTAG: bearing wear model',tc:'dt-pu'},
         {from:'op',name:'UAV operator',text:'Battery is burning faster than planned. Estimate 6 minutes less endurance on this sortie.',align:'l',tag:'Endurance: -6 min',tc:'dt-am'},
         {from:'gs',name:'Ground station lead',text:'Shorten the survey leg by two waypoints. Complete the priority area and RTB for motor inspection.',align:'r'},
@@ -771,17 +772,17 @@ const INDUSTRIES = {
       remoteMsgs:[
         {from:'mp',name:'Mission planner',text:'Motor 2 issue on Vehicle 3. I\'m seeing similar current signatures in the fleet database. Pulling historical.',align:'l',tag:'Fleet DB: querying',tc:'dt-info'},
         {from:'se',name:'Fleet engineer',text:'We had the same pattern on Vehicle 1 six weeks ago. Different motor position but same bearing supplier.',align:'r',tag:'Match: V1 motor 4',tc:'dt-pu'},
-        {from:'sys',name:'ATLAS',text:'SQL Race: 7 motor current anomalies found across fleet. all Supplier B bearings, 200-300 flight hour range',align:'l',sys:true,tc:'dt-tl'},
+        {from:'sys',name:'ATLAS',text:'SQL Race: 7 motor current anomalies found across the fleet, all Supplier B bearings, 200-300 flight hour range',align:'l',sys:true,tc:'dt-tl'},
         {from:'mp',name:'Mission planner',text:'Seven events, all the same supplier, all in the same hour range. This is a batch quality issue.',align:'l',tag:'Pattern: Supplier B batch',tc:'dt-warn'},
         {from:'se',name:'Fleet engineer',text:'Checking procurement records. These bearings came from a single lot delivered in Q3. We have 12 more installed across the fleet.',align:'r',tag:'12 bearings at risk',tc:'dt-warn'},
         {from:'he',name:'Fleet director',text:'What\'s the failure mode? Gradual degradation or risk of sudden seizure?',align:'l'},
         {from:'se',name:'Fleet engineer',text:'Based on ATLAS data: gradual. Current increases linearly then plateaus. No sudden failures in any of the 7 events. But efficiency drops 20% by hour 350.',align:'r',tag:'Failure mode: gradual',tc:'dt-pu'},
         {from:'sys',name:'ATLAS',text:'vTAG simulation: revised maintenance interval × fleet data. Optimal replacement at 250 flight hours.',align:'l',sys:true,tc:'dt-tl'},
         {from:'he',name:'Fleet director',text:'Replace all Supplier B bearings at next scheduled maintenance. Any vehicle past 250 hours gets pulled from the roster until done.',align:'l',tag:'Fleet directive issued',tc:'dt-ok'},
-        {from:'mp',name:'Mission planner',text:'That\'s 3 vehicles grounded temporarily. Adjusting mission schedule. we can cover all commitments with the remaining fleet.',align:'r',tag:'Schedule adjusted',tc:'dt-ok'},
+        {from:'mp',name:'Mission planner',text:'That\'s 3 vehicles grounded temporarily. Adjusting mission schedule. We can cover all commitments with the remaining fleet.',align:'r',tag:'Schedule adjusted',tc:'dt-ok'},
       ]
     },
-    cta:{h2:'Ready to command your fleet?',p:'Every vehicle. Every mission. Every parameter.'}
+    cta:{h2:'See ATLAS across your fleet',p:'Talk to our team about your setup.'}
   }
 };
 

@@ -3,7 +3,7 @@ site_url: https://docs.atlas.motionapplied.com/
 repo_url: https://github.com/mat-docs/ATLAS.Site
 edit_uri: edit/main/docs/
 docs_dir: 'docs'
-site_description: '"Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
+site_description: 'Comprehensive technical documentation for Motion Applied ATLAS. Covering custom displays, data integration, APIs, and developer tools'
 
 theme:
   name: material
@@ -62,6 +62,7 @@ nav:
     - Use Cases in Motorsport and Engineering: introduction/use-cases.md
     - Eco-System Overview: introduction/eco-system.md
     - Ecosystem Guide: introduction/ecosystem-guide.md
+    - Roadmap: https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7
   - Getting Started: 
     - Quick Start: getting-started/quick-start.md
     - Security: getting-started/security.md
@@ -260,6 +261,8 @@ nav:
           - Video: key-functionality/analyse/viewer/displays/video.md
           - Waveform: key-functionality/analyse/viewer/displays/waveform.md
           - Web Display: key-functionality/analyse/viewer/displays/web.md
+        - Troubleshooting:
+          - Profiling: key-functionality/analyse/viewer/troubleshooting/profiling.md
     - Integrate:
       - Overview: key-functionality/integrate/index.md
       - RTA: 
@@ -480,11 +483,9 @@ nav:
     - ATLAS Dev Community: https://github.com/atlas-dev-hub
   - News and Release Notes: 
     - blog/index.md
-  - Downloads: https://portal.motionapplied.com/
-  - Support: 
-    - Troubleshooting: 
-      - Profiling: key-functionality/analyse/viewer/troubleshooting/profiling.md
-    - Portal: https://portal.motionapplied.com/Tickets/New
+  - Downloads and Support:
+    - Downloads: https://portal.motionapplied.com/
+    - Raise a Support Ticket: https://portal.motionapplied.com/Tickets/New
 
 
 markdown_extensions:
@@ -529,6 +530,9 @@ extra:
       link: https://uk.linkedin.com/company/motionapplied
     - icon: fontawesome/solid/paper-plane
       link: mailto:sales@motionapplied.com
+    - icon: fontawesome/solid/route
+      link: https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7
+      name: ATLAS roadmap
   tags:
     prototype: prototype
   generator: false
