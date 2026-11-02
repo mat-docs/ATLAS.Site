@@ -12,6 +12,8 @@ theme:
     scheme: default
     primary: custom
     accent: custom
+  font:
+    text: Montserrat
   logo: assets/swoosh/motion_applied_logo_white.svg
   favicon: assets/swoosh/motion_applied_logo.svg
   features:
