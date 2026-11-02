@@ -37,13 +37,14 @@ FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts")
 for _name, _file in (
     ("Montserrat",            "Montserrat-Regular.ttf"),
     ("Montserrat-Bold",       "Montserrat-Bold.ttf"),
+    ("Montserrat-Italic",     "Montserrat-Regular.ttf"),
     ("Montserrat-BoldItalic", "Montserrat-BoldItalic.ttf"),
 ):
     pdfmetrics.registerFont(TTFont(_name, os.path.join(FONT_DIR, _file)))
 pdfmetrics.registerFontFamily(
     "Montserrat",
     normal="Montserrat", bold="Montserrat-Bold",
-    italic="Montserrat", boldItalic="Montserrat-BoldItalic",
+    italic="Montserrat-Italic", boldItalic="Montserrat-BoldItalic",
 )
 
 # ── Page geometry ──────────────────────────────────────────────────────────────
