@@ -4,6 +4,10 @@
 
 * Windows 11 Professional or Enterprise (64 bit)
 
+## Web Browser Display
+
+The [Web Browser display](../key-functionality/analyse/viewer/displays/web.md) needs the Microsoft Edge WebView2 Runtime, which is included with Windows 11. The ATLAS installer does not install it.
+
 ## Recommended Hardware
 
 * 16 GB RAM or higher
