@@ -37,12 +37,7 @@ From 2008 our standard ECU was on every F1 car, and ATLAS had become the standar
 
 ### A lap at Monaco
 
-Our favourite picture of ATLAS 9 at work is a printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee.[^scarbs]
-
-<figure markdown>
-  ![An ATLAS 9 lap overlay printout for Monaco 2011: two laps drawn as traces against lap distance, with a panel of values and a track map in the corner](assets/atlas9-monaco-2011.png){ width="640" }
-  <figcaption>A lap overlay printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee</figcaption>
-</figure>
+A favourite picture of ATLAS 9 at work is a printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee. You can see it in the [ScarbsF1 write-up](https://scarbsf1.wordpress.com/2011/08/18/telemetry-and-data-analysis-introduction/).[^scarbs]
 
 It tells a whole story on one page:
 
@@ -54,6 +49,11 @@ It tells a whole story on one page:
 Then it went to the drivers as a printout in the garage.
 
 ATLAS 9 worked like a spreadsheet: a workbook of pages, and on each page the displays an engineer had built. They chose from nine kinds: Waveform, Scatter, Circuit, Histogram, Summary, FFT, Map, Bar and InPlace, which hosted ActiveX controls with full access to the data.[^sheet]
+
+<figure markdown>
+  ![An ATLAS Express window from 2011: waveform traces for two laps, a table of values including TDiff, a track map, and workbook page tabs along the bottom](assets/atlas9-2011.png){ width="640" }
+  <figcaption>ATLAS Express, 2011, running a workbook of pages. Two laps are overlaid, with TDiff in the values panel and a track map alongside.</figcaption>
+</figure>
 
 ### Beyond Formula 1
 
@@ -128,13 +128,13 @@ In 1991 an engineer sat at one keyboard in front of racks of monitors, one for e
 </figure>
 
 <figure markdown>
-  ![A lap overlay printout from Monaco, 2011](assets/atlas9-monaco-2011.png)
-  <figcaption><strong>2011</strong>Laps overlaid, with TDiff, and printed for the garage</figcaption>
+  ![An ATLAS Express window from 2011 with overlaid laps, a values panel and a track map](assets/atlas9-2011.png)
+  <figcaption><strong>2011</strong>Two laps overlaid, with TDiff and a track map</figcaption>
 </figure>
 
 <figure markdown>
-  ![An ATLAS Viewer Waveform display showing one lap of speed, throttle, brake, RPM and gear](course/assets/waveform-first-plot.png)
-  <figcaption><strong>Today</strong>Any number of displays, on any screens you like</figcaption>
+  ![An ATLAS Viewer workbook today, with waveforms, a circuit map, a scatterplot, tyre temperature displays and a satellite map on one page](assets/atlas10-today.png){ style="object-position: 30% 0" }
+  <figcaption><strong>Today</strong>A whole workbook of displays at once</figcaption>
 </figure>
 
 </div>
