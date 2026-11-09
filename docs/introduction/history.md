@@ -1,6 +1,6 @@
 # The History of ATLAS
 
-In 1991 the first TAG telemetry system for Group C sportscars rode around in an articulated trailer, and its views appear to have had a monitor each. Today ATLAS Viewer puts more than 20 kinds of display on whatever screens you have, and we have not needed a trailer in a while. This is how a trailer became a platform.
+In 1991 the first TAG telemetry system for Group C sportscars rode around in an articulated trailer, and every view had a monitor of its own. Today ATLAS Viewer puts more than 20 kinds of display on whatever screens you have, and we have not needed a trailer in a while. This is how a trailer became a platform.
 
 We started out as TAG Electronic Systems in 1988. Since then we have also been McLaren Electronic Systems and McLaren Applied, and we are now Motion Applied. ATLAS (Advanced Telemetry Linked Acquisition System) has come along for every one of those names.
 
@@ -9,9 +9,14 @@ We started out as TAG Electronic Systems in 1988. Since then we have also been M
 
 ## The trailer, 1991
 
-Our oldest picture of ATLAS is a photograph of a trailer. Inside was the first TAG telemetry system for Group C, and the equipment panels already carry the ATLAS name.
+Our oldest picture of ATLAS is a photograph of a trailer. Inside was the first TAG telemetry system for Group C, and the racks already carry the ATLAS name.
 
-Look at the screens and you will spot some old friends. One is titled "Histograms" and is full of bar gauges. Another shows a circuit map with the car's position on it. There are strip-chart traces, and a text "main screen" of values. Each view appears to have had a rack-mounted monitor of its own, which makes it the original multi-monitor set-up. If we are reading the photograph right, histograms, circuit maps and traces were already there in 1991, and all three are still display types today.
+<figure markdown>
+  ![An engineer at a keyboard in the 1991 ATLAS trailer, facing racks of monitors showing a Histograms screen, a circuit map, strip-chart traces and a Main Screen of values](assets/atlas-trailer-1991.jpg){ width="380" }
+  <figcaption>ATLAS trailer · 1991 · Articulated trailer containing the 1st TAG telemetry system for Group C</figcaption>
+</figure>
+
+Look at the screens and you will spot some old friends. One is titled "Histograms" and is full of bar gauges. Another shows a circuit map with the car's position on it. Below them are strip-chart traces and a "Main Screen" of values, and there is a block-colour plot too. Every view has a rack-mounted monitor of its own, which makes this the original multi-monitor set-up, and each one wears an ATLAS badge. Histograms, circuit maps and traces were all there in 1991, and all three are still display types today.
 
 The person behind it was Dr Udo Zucker, who led TAG Electronic Systems. Before that he had developed the electronic ignition and injection control for the TAG-Porsche engine in McLaren's 1984 MP4/2.[^zucker] Our first big contract was Mercedes-Benz's Group C programme. Motor Sport's 1991 look at the Mercedes C291 confirms that we supplied the engine management and a comprehensive telemetry system, which Zucker said sent five million bits of information per second.[^c291]
 

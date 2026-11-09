@@ -59,7 +59,7 @@ copyright: >
 nav:
   - Introduction:
     - Start Here: introduction/index.md
-    - "The Course: ATLAS from Zero":
+    - "ATLAS from Zero":
       - "1. Coming from Another Tool": introduction/course/other-tools.md
       - "2. The Five Stages": introduction/course/five-stages.md
       - "3. Your First Hour in Viewer": introduction/course/first-hour.md
