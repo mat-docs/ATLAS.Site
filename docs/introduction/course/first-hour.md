@@ -16,23 +16,24 @@ You need three things:
 
 Start **ATLAS Viewer** from the Start menu. A new workbook opens with one empty page.
 
-![ATLAS Viewer on first launch](../../key-functionality/analyse/viewer/assets/intro.png)
+![ATLAS Viewer with a new, empty workbook](assets/viewer-empty-workbook.png)
 
 The empty page is expected. Viewer has not been told what data to show yet.
 
 ## 2. Open the Session Browser and load a session
 
-Press `Ctrl+L` to open the **Session Browser**. It has six panels. For now you need three:
+Press `Ctrl+L` to open the **Session Browser**. It has six panels. For now you need these four:
 
-| Panel | What to do |
-|---|---|
-| **Session Sources** | Tell Viewer where to look. Right-click and choose **Folder Manager...** for a folder of files, or **Connection Manager...** for a SQL Race database. |
-| **Session List** | Shows the sessions in the sources you picked, with metadata such as driver, circuit and number of laps. Use the filters or the search box to narrow down. |
-| **Compare Sets List** | Shows what is loaded. You will see this fill up in a moment. |
+![Session Browser with one session loaded into a set](assets/session-browser.png)
 
-![Session Browser](../../key-functionality/analyse/viewer/assets/session_browser.png)
+| | Panel | What to do |
+|---|---|---|
+| 1 | **Session Sources** | Tell Viewer where to look. Use the **Files** tab to browse to a folder of session files, or right-click and choose **Connection Manager...** for a SQL Race database. |
+| 2 | **Session List** | Shows the sessions in the sources you picked, with metadata such as driver, circuit and time of recording. Use the filters or the search box to narrow down. |
+| 3 | **Compare Sets List** | Shows what is loaded. Each tab is a set. |
+| 4 | **Session Properties** | Shows the details of the selected session, such as car, circuit, fastest lap and number of laps. |
 
-Select a session and press `Enter` (or double-click it). It is now loaded into the current **set**.
+Select a session and press `Enter` (or double-click it). It appears in the Compare Sets List (3), which means it is loaded into the current **set**. Press `Esc` to close the Session Browser.
 
 !!! warning "Nothing can be plotted until a session is loaded"
     This is the most common reason for a blank display. The workbook holds layout. The data comes from the set.
@@ -41,17 +42,24 @@ Select a session and press `Enter` (or double-click it). It is now loaded into t
 
 Press `Ctrl+Q` twice, type `Waveform`, and press `Enter`. A **Waveform** display opens. It plots parameters against time (or distance) and is the display you will use most.
 
+![Quick access box with Waveform typed in](assets/quick-access-waveform.png)
+
 Other ways to add a display are the display toolbar and **File > New > Display**. See [Displays](../../key-functionality/analyse/viewer/displays/index.md) for all 20 or so types.
 
 ## 4. Add parameters
 
 With the Waveform selected, press `P` to open the **Parameter Browser**.
 
-- The left panel lists **application groups**, which organise parameters by source or subsystem. Choose **All Groups** if you are not sure where something is.
-- Type in the search box to find a parameter by name, description or group. Use `*` as a wildcard.
-- Press `Enter`, double-click, or drag a parameter onto the display to add it.
+![Parameter Browser with five parameters added to Waveform 1](assets/parameter-browser.png)
 
-Add three or four parameters. Each gets a trace and a row in the legend with its value at the cursor.
+1. The left panel lists **application groups**, which organise parameters by source or subsystem. Choose **All Groups** if you are not sure where something is.
+2. Type in the search box to find a parameter by name, description or group. Use `*` as a wildcard.
+3. The **Slow Row**, **Virtuals** and **Functions** toggles show or hide those kinds of parameter.
+4. The right panel lists the parameters already on the selected display.
+
+Press `Enter`, double-click, or drag a parameter onto the display to add it. Add three or four parameters, then press `Esc`. Each parameter gets a trace and a row in the legend with its value at the cursor.
+
+![Waveform showing speed, throttle, brake, RPM and gear for one lap](assets/waveform-first-plot.png)
 
 !!! tip "What if the parameter I expect is missing?"
     Check **All Groups**, check that the **Functions** and **Virtuals** toggles are on if it is a calculated channel, and check the session really contains it. In the Selected Parameters list, parameters with no data are greyed out. See [Channels and calculated parameters](channels-and-calculations.md).
@@ -67,7 +75,15 @@ Add three or four parameters. Each gets a trace and a row in the legend with its
 | Jump to the start or end | `Home` / `End` |
 | Select a whole lap | Double-click it in the **Timeline** along the top |
 
-The **Timeline** at the top of the window shows the session length and its laps, and controls what time range the displays show. See [Timebase and Timeline](../../key-functionality/analyse/viewer/time-and-position/time.md).
+The **Timeline** at the top of the window shows the session length and its laps, and controls what time range the displays show.
+
+![Timeline bar with the lap selector, lap buttons and session bar](assets/timeline-laps.png)
+
+1. The loaded session and the lap shown. `Lap 7f` means lap 7, the fastest lap. Click the arrow to pick another lap.
+2. **Previous Lap** and **Next Lap**.
+3. The whole session. Each white block is a lap, and the shaded region is the time range the displays show.
+
+See [Timebase and Timeline](../../key-functionality/analyse/viewer/time-and-position/time.md).
 
 ## 6. Overlay a second session
 

@@ -48,6 +48,10 @@ When you need a channel that was not recorded, there is a ladder of options. Sta
 5. Press `F6` to build and check for errors.
 6. Save. The function is now available in the Parameter Browser like any other parameter.
 
+![Function Editor with a function open, showing the Function Browser, definition, Properties and Function Build Output panels](assets/function-editor.png)
+
+The **Function Browser** (top left) lists the functions you already have. Double-click one to open it. Its definition opens in a tab, its name, units and display range are in **Properties** (bottom left), and errors from `F6` appear in **Function Build Output**.
+
 !!! tip "Use the full identifier if short names do not resolve"
     If a short name does not resolve, use the full `name:application` identifier, such as `vCar:Chassis`, unless **Resolve without App Name** is enabled in **Tools > Options > General > Data**.
 

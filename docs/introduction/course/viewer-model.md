@@ -22,6 +22,19 @@ In words:
 
 The dotted line matters most. A display is not attached to a particular file. It is attached to a *set*, and whatever is in the set is what you see.
 
+## The model on screen
+
+This is the workbook you built in the previous step.
+
+![The Viewer window with its main areas numbered](assets/viewer-anatomy.png)
+
+1. **Menus and toolbars.** Every action, including adding displays and opening the browsers.
+2. **The set and its session.** The set number and colour, the session loaded into it, and the lap the displays are showing.
+3. **Timeline.** The whole session, lap by lap. The shaded region is the time range on screen.
+4. **Page tabs.** Each tab is a page in the workbook. Click `+` to add one.
+5. **Legend.** Each parameter on the display, with its value at the cursor.
+6. **Display.** Here a Waveform, plotting the parameters from the set against time.
+
 ## The pieces
 
 | Piece | What it is | Where to learn more |

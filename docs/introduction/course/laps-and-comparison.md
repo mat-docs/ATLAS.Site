@@ -21,6 +21,9 @@ Laps are not just labels. Viewer uses them to:
 - **The data source emits them.** Many loggers mark lap boundaries as they record.
 - **You define them.** Open **Tools > Laps And Markers Editor** and use the **Laps** tab to create, rename, delete and jump to laps. This is how you segment data whose source has no laps.
 
+![Tools menu with Laps And Markers Editor and Export Data highlighted](assets/tools-menu.png){ width="400" }
+![Laps tab of the Laps And Markers Editor, listing each lap with its start time and duration](assets/laps-editor-laps.png){ width="450" }
+
 !!! note "Laps are read-only while a session is live"
     You can see laps arriving during a live session, but you can edit them only once the session becomes historical.
 
@@ -30,11 +33,17 @@ Out laps and in laps are special lap types that help you exclude non-representat
 
 A **marker** is a labelled point in time, or a range, with a type, a description and optional labels carrying values and units. Use markers for things that are not laps: a fault, a step change, a manoeuvre, a region you want to come back to.
 
-Markers appear on the Timeline, and their labels show as tooltips. You can add them in the Markers tab of the Laps And Markers Editor, or by code with the SQL Race API (useful when a model or script finds the interesting regions for you). See [Markers](../../key-functionality/analyse/viewer/handling-data/laps-markers/markers.md).
+![Markers tab of the Laps And Markers Editor, with the Add/Update Marker form](assets/laps-editor-markers.png){ width="450" }
+
+Markers appear on the Timeline, and their labels show as tooltips. You can add them in the Markers tab of the Laps And Markers Editor (fill in a label, set the start time, or use **Set to Cursor**, then **Save**), or by code with the SQL Race API (useful when a model or script finds the interesting regions for you). See [Markers](../../key-functionality/analyse/viewer/handling-data/laps-markers/markers.md).
 
 ## Navigating with the Timeline
 
-The **Timeline** along the top of the window shows the loaded set. From it you can:
+The **Timeline** along the top of the window shows the loaded set.
+
+![Timeline bar with the lap selector, lap buttons and session bar](assets/timeline-laps.png)
+
+From it you can:
 
 - double-click a lap to make it the timebase,
 - use the **Previous Lap**, **Next Lap** and **Fastest Lap** buttons,
@@ -63,7 +72,11 @@ In a Waveform, you can plot against **distance** instead of time. This compares 
 
 ### Summarise per lap
 
-The **Summary** display gives minimum, maximum and mean per lap as a table or plot, and the Scatterplot, Histogram and FFT displays answer other questions about the same data. See the [display comparison table](../../key-functionality/analyse/viewer/displays/index.md#display-comparison).
+The **Summary** display gives one row per lap, with a statistic such as minimum, maximum, mean or end value for each parameter, as a table or plot.
+
+![Summary display with one row per lap for speed, RPM, throttle and brake](assets/summary-display.png)
+
+The Scatterplot, Histogram and FFT displays answer other questions about the same data. See the [display comparison table](../../key-functionality/analyse/viewer/displays/index.md#display-comparison).
 
 ## Try it
 
