@@ -37,7 +37,14 @@ From 2008 our standard ECU was on every F1 car, and ATLAS had become the standar
 
 ### A lap at Monaco
 
-Our favourite picture of ATLAS 9 at work is a printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee.[^scarbs] It tells a whole story on one page:
+Our favourite picture of ATLAS 9 at work is a printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee.[^scarbs]
+
+<figure markdown>
+  ![An ATLAS 9 lap overlay printout for Monaco 2011: two laps drawn as traces against lap distance, with a panel of values and a track map in the corner](assets/atlas9-monaco-2011.png){ width="640" }
+  <figcaption>A lap overlay printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee</figcaption>
+</figure>
+
+It tells a whole story on one page:
 
 - Two drivers, two laps, overlaid in red and blue against lap distance.
 - A cursor that reads the exact value on every trace as it moves.
@@ -104,9 +111,43 @@ Race Tech reported in March 2019 that teams would be evaluating ATLAS 10 that se
 
 ## How far we have come
 
-The ideas on those early screens held up: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here, and this is what we have built around them.
+In 1991 an engineer sat at one keyboard in front of racks of monitors, one for each view. Thirty-five years later, the ideas on those screens have held up: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. Everything around them has grown.
+
+<div class="hist-stats">
+  <div><strong>35 years</strong><span>since the trailer photograph</span></div>
+  <div><strong>9 → 20+</strong><span>display types</span></div>
+  <div><strong>3 APIs</strong><span>and a plugin platform</span></div>
+  <div><strong>5 stages</strong><span>from configuring hardware to analysing data</span></div>
+</div>
+
+<div class="hist-compare" markdown>
+
+<figure markdown>
+  ![The 1991 ATLAS trailer, with racks of monitors](assets/atlas-trailer-1991.jpg){ style="object-position: 50% 75%" }
+  <figcaption><strong>1991</strong>A monitor for every view</figcaption>
+</figure>
+
+<figure markdown>
+  ![A lap overlay printout from Monaco, 2011](assets/atlas9-monaco-2011.png)
+  <figcaption><strong>2011</strong>Laps overlaid, with TDiff, and printed for the garage</figcaption>
+</figure>
+
+<figure markdown>
+  ![An ATLAS Viewer Waveform display showing one lap of speed, throttle, brake, RPM and gear](course/assets/waveform-first-plot.png)
+  <figcaption><strong>Today</strong>Any number of displays, on any screens you like</figcaption>
+</figure>
+
+</div>
+
+Here is what changed, piece by piece.
 
 <div class="grid cards" markdown>
+
+-   __One trailer → a whole ecosystem__
+
+    ---
+
+    ATLAS Viewer now sits in a chain that runs from configuring hardware, through streaming and enriching data, to storing and analysing it. Take the tour in [The five stages](course/five-stages.md).
 
 -   __A monitor per view → any monitors you like__
 
