@@ -159,20 +159,6 @@ ATLAS 10 replaced ATLAS 9 around 2018 to 2019. The company described it as a new
 
 Race Tech reported in March 2019 that teams would be evaluating ATLAS 10 that season. The support site carried a provisional 2018 F1 release schedule and guidance on importing ATLAS 9 workbooks.
 
-## Version 11 and beyond, 2022 to 2026
-
-Since 2022 ATLAS has shipped as dated, numbered releases in the 11.x series, and the documentation moved from calling the product "ATLAS 10" to calling it ATLAS Viewer. In July 2025 the company became Motion Applied, and named ATLAS as one of its core investments ([McLaren Applied](https://mclarenapplied.com/news/mclaren-applied-becomes-motion-applied)).
-
-### Releases that changed what users see
-
-| Release | What changed |
-| --- | --- |
-| February 2022 (11.1.1.222) | Custom markers in the ATLAS client ([ATLAS news](https://atlas.mclarenapplied.com/news)) |
-| August 2022 (11.1.3.367) | Interface support for lap markers |
-| March 2024 (11.3.1.584) | A Go To dialog, marker improvements and a NASCAR telemetry recorder preview |
-| August 2025 (11.4.3.239) | Histograms can be copied straight to the clipboard ([release notes](https://atlas.motionapplied.com/blog/2025/08/18/atlas-viewer-release-v1143239/)) |
-| February 2026 (11.5.1.8) | Unit definitions for the TAG-700 and TAG-510 control units ([release notes](https://atlas.motionapplied.com/blog/2026/02/27/atlas-viewer-release-v11518/)) |
-
 ## How far it has come
 
 The core ideas from the early screens proved right: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here. Almost everything around them has been rebuilt.
