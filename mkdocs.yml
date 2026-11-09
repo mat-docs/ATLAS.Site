@@ -75,6 +75,7 @@ nav:
       - System Requirements: getting-started/sysreqs.md
       - Security: getting-started/security.md
     - Background:
+      - History of ATLAS: introduction/history.md
       - Choosing Components: introduction/ecosystem-guide.md
       - Use Cases in Motorsport and Engineering: introduction/use-cases.md
       - Roadmap: https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7
