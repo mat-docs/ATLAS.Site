@@ -1,111 +1,47 @@
 # The History of ATLAS
 
-In 1991 the first TAG telemetry system for Group C sportscars travelled in an articulated trailer, and its views appear to have had a monitor each. Today ATLAS Viewer has more than 20 display types and a plugin platform, and it has been the standard data package across the Formula 1 paddock. We have fitted a lot more onto a single screen since then, and we have not needed a trailer for it. This is the story of how we got here.
+In 1991 the first TAG telemetry system for Group C sportscars rode around in an articulated trailer, and its views appear to have had a monitor each. Today ATLAS Viewer puts more than 20 kinds of display on whatever screens you have, and we have not needed a trailer in a while. This is how a trailer became a platform.
 
-We began as TAG Electronic Systems in 1988. We became McLaren Electronic Systems, then McLaren Applied, and we are now Motion Applied. Through every one of those names, ATLAS (Advanced Telemetry Linked Acquisition System) has been our [data visualisation tool](https://www.motionapplied.com/products/ATLAS) for capturing, distributing, displaying and analysing data from control systems.
+We started out as TAG Electronic Systems in 1988. Since then we have also been McLaren Electronic Systems and McLaren Applied, and we are now Motion Applied. ATLAS (Advanced Telemetry Linked Acquisition System) has come along for every one of those names.
 
 !!! note "A note on names"
     Historically, "ATLAS" meant the application engineers used to look at data. Today **ATLAS** is the whole ecosystem and **ATLAS Viewer** is that application. This page says "ATLAS" for the product as it was known at the time, and "ATLAS Viewer" for the application today. See [Start here](index.md) for the ecosystem as it is now.
 
-## At a glance
+## The trailer, 1991
 
-<div class="grid cards" markdown>
+Our oldest picture of ATLAS is a photograph of a trailer. Inside was the first TAG telemetry system for Group C, and the equipment panels already carry the ATLAS name.
 
--   :material-flag-checkered: __1991__
+Look at the screens and you will spot some old friends. One is titled "Histograms" and is full of bar gauges. Another shows a circuit map with the car's position on it. There are strip-chart traces, and a text "main screen" of values. Each view appears to have had a rack-mounted monitor of its own, which makes it the original multi-monitor set-up. If we are reading the photograph right, histograms, circuit maps and traces were already there in 1991, and all three are still display types today.
 
-    ---
+The person behind it was Dr Udo Zucker, who led TAG Electronic Systems. Before that he had developed the electronic ignition and injection control for the TAG-Porsche engine in McLaren's 1984 MP4/2.[^zucker] Our first big contract was Mercedes-Benz's Group C programme. Motor Sport's 1991 look at the Mercedes C291 confirms that we supplied the engine management and a comprehensive telemetry system, which Zucker said sent five million bits of information per second.[^c291]
 
-    A trailer carries the first TAG telemetry system for Group C. Histograms, a circuit map and strip-chart traces appear on its screens.
-
--   :material-car-sports: __1993__
-
-    ---
-
-    McLaren adopts our engine control and telemetry for its MP4/8.
-
--   :material-view-dashboard: __2008__
-
-    ---
-
-    Our standard ECU becomes compulsory on every F1 car, and ATLAS 9 becomes the paddock standard.
-
--   :material-puzzle: __2018__
-
-    ---
-
-    ATLAS 10 is rebuilt from the ground up as a plugin platform.
-
--   :material-rocket-launch: __2026__
-
-    ---
-
-    ATLAS Viewer: more than 20 displays, compare sets and open APIs.
-
-</div>
-
-## A trailer full of monitors, 1991
-
-Our earliest look at ATLAS is a photograph from the archive. It shows the trailer that carried the first TAG telemetry system for Group C, with equipment panels bearing the ATLAS name.
-
-The screens are our favourite part. Each view appears to have had a rack-mounted CRT monitor of its own, rather than being a window on a shared desktop. One screen is titled "Histograms" and shows rows of bar gauges. Others show a circuit map with the car's position, strip-chart traces, and a text "main screen" of values. If that reading is right, histogram, circuit and trace views, all standard ATLAS display types today, were already there in some form in 1991.
-
-### The people and the car
-
-TAG Electronic Systems was led by Dr Udo Zucker. Before TAG, Zucker had developed the electronic ignition and injection control for the TAG-Porsche engine in McLaren's 1984 MP4/2 ([Formula1.com](https://www.formula1.com/en/latest/article/how-niki-laudas-final-title-winning-car-the-1984-mclaren-mp4-2-changed-f1.7vGiQXahtUbaKo70ZJ8OGQ)). By July 1991, Motor Sport was calling him the "father" of the Motronic engine management system ([Motor Sport, July 1991](https://www.motorsportmagazine.com/archive/article/july-1991/34/under-scrutiny-mercedes-c291/?v=7516fd43adaa)). He later became chief executive of TAG McLaren Audio ([Design Week, 1998](https://www.designweek.co.uk/issues/15-october-1998/clive-grinyer-quits-fitch-for-client-role/)).
-
-Our first large contract was the Mercedes-Benz Group C sportscar programme ([Motion Applied history](https://motionapplied.com/about/our-history/)). Motor Sport's analysis of the Mercedes C291 confirms that we supplied its engine management and a comprehensive telemetry system, which Zucker said transmitted five million bits of information per second.
-
-!!! info "What we know, and what we are still digging for"
-    The photograph is our evidence for the 1991 trailer, and we are still looking for the first dated reference to the ATLAS name and for descriptions of the earliest screens. The earliest dated statement we have found is iRacing's 2011 release, which says ATLAS was developed in the 1990s to support McLaren's own Formula 1 team ([iRacing, 2011](https://www.iracing.com/iracing-partners-with-mclaren-electronic-systems-for-online-racing-data-analysis/)). Accounts describe Zucker as the head of TAG Electronic Systems. If you have archive material from the period, we would love to see it.
+!!! info "Got an archive?"
+    We are still hunting for the first dated reference to the ATLAS name, and for descriptions of the earliest screens. The earliest dated statement we have found is iRacing's 2011 release, which says ATLAS was developed in the 1990s to support McLaren's own Formula 1 team.[^iracing] If you have material from the period, we would love to see it.
 
 ## Into the paddock, 1992 to 2007
 
-Honda's departure pushed McLaren onto our control systems for 1993, and the telemetry came along.
+Honda's departure sent McLaren to our control systems for 1993, and the telemetry came with them. McLaren credits us with the MP4/8's engine management, chassis control, data acquisition and telemetry.[^mp48]
 
-| Year | What happened |
-| --- | --- |
-| 1992 to 1993 | McLaren ran our gearbox unit with Honda in 1992, then adopted our full engine control unit for 1993 ([Motor Sport, 2024](https://www.motorsportmagazine.com/archive/article/may-2024/70/sennas-underdog-f1-success-the-special-talent-and-nimble-mclaren-that-won-five-times-in-1993/)). McLaren credits us with the 1993 MP4/8's engine management, chassis control, data acquisition and telemetry ([McLaren heritage](https://www.mclaren.com/racing/heritage/formula-1/cars/1993-formula-1-mclaren-mp4-8/)). |
-| 2000 | We introduce 32-bit PowerPC ECUs and start generating software automatically from model-based design tools ([Electronics Weekly](https://www.electronicsweekly.com/market-sectors/embedded-systems/embedded-processing-at-mclaren-2012-06/)). |
-| 2002 | McLaren's technical specification credits us with its data analysis and telemetry systems ([Atlas F1, 2002](http://atlasf1.autosport.com/news/2002/features/teams/mclaren.html)). |
-| 2003 | We become McLaren Electronic Systems (MES). |
-| 2005 | The TAG-310, precursor to the standard ECU, first runs ([New Electronics](https://www.newelectronics.co.uk/content/features/racing-ahead-developing-an-engine-control-unit-for-all-f1-teams)). |
-| 2006 | With Microsoft, we win the FIA contract to supply the standard ECU from 2008. Our managing director, Peter van Manen, says we already work with all the F1 teams ([Microsoft, 2006](https://news.microsoft.com/source/2006/12/11/microsoft-and-mclaren-electronic-systems-win-race-to-provide-electronic-technology-to-the-fia-formula-one-world-championship-for-2008-to-2010/)). |
+The next decade was about making everything smaller, faster and smarter. In 2000 we introduced 32-bit PowerPC ECUs, with software generated automatically from model-based design tools.[^ecu2000] The TAG-310, ancestor of the standard ECU, first ran in 2005.[^tag310] In 2006 we won the FIA's contract to supply the standard ECU from 2008, together with Microsoft, and our managing director, Peter van Manen, could say that we already worked with all the F1 teams.[^microsoft]
 
-### From dedicated monitors to the Windows desktop
-
-By the time of the standard ECU, ATLAS was a client–server system built on Microsoft's stack. ECU data went to an ATLAS Server developed first with Visual Studio 2005, then 2008 ([formula1-dictionary](https://www.formula1-dictionary.net/f1-ecu-electronic-control-unit/)). Remote Data Servers could be daisy-chained, so live telemetry could be watched at the track, the factory and the engine supplier at once.
-
-The ATLAS client ran on garage laptops under Windows XP or Vista, giving near real-time displays of the car's health, with Excel 2007 alongside for further analysis. We are still working out exactly when ATLAS made the move from dedicated monitors to the desktop.
+ATLAS was growing up too. It became a client–server system on the Windows desktop, with an ATLAS Server built first in Visual Studio 2005, then 2008. Remote Data Servers could be daisy-chained, so the track, the factory and the engine supplier could all watch the same live telemetry at once.[^f1dict] The client ran on garage laptops under Windows XP or Vista, with Excel 2007 alongside for further analysis. Exactly when ATLAS made the jump from dedicated monitors to the desktop is one of the things we are still working out.
 
 ## The paddock standard, 2008 to 2017
 
-From 2008 our standard ECU was compulsory on every F1 car, and ATLAS came with it. A 2011 analysis put it neatly: ATLAS was the standard because every car ran the FIA-specified MES ECU ([ScarbsF1, 2011](https://scarbsf1.wordpress.com/2011/08/18/telemetry-and-data-analysis-introduction/)).
+From 2008 our standard ECU was on every F1 car, and ATLAS had become the standard data package in the paddock.[^scarbs]
 
-### A lap comparison at Monaco, 2011
+### A lap at Monaco
 
-Our favourite picture of ATLAS 9 at work is a real printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee (same ScarbsF1 source). It shows an engineer comparing two drivers:
+Our favourite picture of ATLAS 9 at work is a printout from the 2011 Monaco Grand Prix, analysed by data engineer Brian Jee.[^scarbs] It tells a whole story on one page:
 
-- The two drivers' laps are overlaid in red and blue against lap distance.
-- A vertical cursor shows the exact value on every trace as it moves.
-- ATLAS draws a time-difference (TDiff) trace automatically whenever layers are overlaid, so you can see at a glance where time was gained or lost.
-- A dot on a track map follows the cursor. ATLAS built the map from lateral acceleration and distance data, and coloured the corners by lateral-acceleration thresholds.
-- Drivers reviewed displays like this as printouts in the garage.
+- Two drivers, two laps, overlaid in red and blue against lap distance.
+- A cursor that reads the exact value on every trace as it moves.
+- A time-difference (TDiff) trace that ATLAS draws automatically whenever layers are overlaid, so you can see where time was won and lost.
+- A dot on a track map that follows the cursor. ATLAS built the map from lateral acceleration and distance data, and coloured the corners by lateral-acceleration thresholds.
 
-### How ATLAS 9 was organised
+Then it went to the drivers as a printout in the garage.
 
-ATLAS 9 followed a layout that spreadsheet users will find familiar. A workbook held multiple pages, and each page held displays the engineer built. An undated [ATLAS product sheet](https://www.scribd.com/document/480702902/ATLAS-pdf) lists what was on offer:
-
-| Display | What it showed |
-| --- | --- |
-| Waveform | Several parameters plotted as traces |
-| Scatter | Pairs of parameters in a cross-plot |
-| Circuit | The car's position on a track map generated from recorded data |
-| Histogram | The distribution of a parameter |
-| Summary | Statistics for the session by lap, section or segment |
-| FFT | Frequency analysis, transfer functions and correlations |
-| Map | Logged data on a 3D wireframe |
-| Bar | Simple bar graphs |
-| InPlace | ActiveX controls running inside ATLAS with full access to the data |
+ATLAS 9 worked like a spreadsheet: a workbook of pages, and on each page the displays an engineer had built. They chose from nine kinds: Waveform, Scatter, Circuit, Histogram, Summary, FFT, Map, Bar and InPlace, which hosted ActiveX controls with full access to the data.[^sheet]
 
 ### Beyond Formula 1
 
@@ -117,45 +53,45 @@ ATLAS turned out to be good company away from the F1 grid too.
 
     ---
 
-    In 2011 we became NASCAR's official ECU supplier, and electronic fuel injection made its debut at the 2012 Daytona 500 ([Electronics Weekly](https://www.electronicsweekly.com/market-sectors/embedded-systems/embedded-processing-at-mclaren-2012-06/)).
+    In 2011 we became NASCAR's official ECU supplier, and electronic fuel injection made its debut at the 2012 Daytona 500.[^ecu2000]
 
 -   :material-flash: __Formula E__
 
     ---
 
-    We supplied the motor, transmission and electronics for the first Spark-Renault car ([Motorsport.com, 2013](https://www.motorsport.com/formula-e/news/mclaren-the-power-behind-formula-e/440037/)).
+    We supplied the motor, transmission and electronics for the first Spark-Renault car.[^fe]
 
 -   :material-controller: __Sim racing__
 
     ---
 
-    In May 2011 we offered iRacing members ATLAS Express, a version derived from the F1 software ([iRacing](https://www.iracing.com/iracing-partners-with-mclaren-electronic-systems-for-online-racing-data-analysis/)). The set-up guide installed into an "ATLAS 9" folder and shipped a sample workbook ([guide](https://www.scribd.com/document/352980261/McLaren-ATLAS-iRacing-pdf)).
+    In May 2011 we gave iRacing members ATLAS Express, a version derived from the F1 software, for analysing their own racing data.[^iracing] Its set-up guide even shipped a sample workbook.[^guide]
 
 </div>
 
 ## Rebuilt from the ground up, 2018 to 2021
 
-Around 2018 to 2019, ATLAS 10 arrived. We described it as a new visualisation platform ["built from the ground up"](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/sections/360000858514-ATLAS-10) for faster, easier access to data, and we designed ATLAS 9 and ATLAS 10 to run side by side during the transition so nobody had to switch overnight.
+Around 2018 to 2019 we rebuilt it. ATLAS 10 was a new visualisation platform "built from the ground up" for faster, easier access to data.[^atlas10] We designed ATLAS 9 and ATLAS 10 to run side by side, so nobody had to switch overnight.
 
 <div class="grid cards" markdown>
 
--   :material-puzzle-outline: __A plugin platform__
+-   :material-puzzle-outline: __A platform for plugins__
 
     ---
 
-    ATLAS became a user-interface shell in which most functionality comes from display, functionality and recorder plugins ([Motion Applied](https://www.motionapplied.com/products/ATLAS)). Developers could write their own display plugins in .NET ([Writing a Display Plugin](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115001760613-Writing-a-Display-Plugin)). Today that is the [Display API](../developer-resources/atlas/display-api/index.md).
+    ATLAS became a shell in which most functionality, from displays to recorders, comes from plugins.[^plugins] Developers could write their own display plugins in .NET. Today that is the [Display API](../developer-resources/atlas/display-api/index.md).
 
--   :material-lan-connect: __An open architecture__
+-   :material-lan-connect: __Open to other tools__
 
     ---
 
-    Engineers could feed data from third-party tools into ATLAS 10 for the rest of the team to view alongside other sources ([Race Tech, 2019](https://www.racetechmag.com/article/five-f1-tech-facts-every-fan-should-know/)).
+    Engineers could feed data from third-party tools into ATLAS 10 and see it next to everything else.[^racetech]
 
 -   :material-compare: __Compare sets__
 
     ---
 
-    Compare sets were an ATLAS 10 feature ([automation API notes](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/360009038334-ATLAS-10-Automation-API)). They are still how Viewer overlays runs today.
+    A feature of ATLAS 10,[^compare] and still how Viewer overlays runs today.
 
 </div>
 
@@ -163,20 +99,73 @@ Race Tech reported in March 2019 that teams would be evaluating ATLAS 10 that se
 
 ## How far we have come
 
-The ideas on those early screens have held up well: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here, and we have built a lot around them.
+The ideas on those early screens held up: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here, and this is what we have built around them.
 
-| | Where we started | Where we are |
-| --- | --- | --- |
-| **Screens** | A rack-mounted monitor for each view (1991 photograph) | Displays that dock or float on any monitor, grouped into pages and saved in workbooks |
-| **Display types** | Nine on the ATLAS 9 product sheet | [More than 20](../key-functionality/analyse/viewer/displays/index.md), including a 3D Surface Map, a Bing satellite map, video and a steering-wheel PCU Dash simulator |
-| **Comparing runs** | Two laps overlaid and printed for the garage (Monaco, 2011) | [Compare sets](../key-functionality/analyse/viewer/handling-data/sessions/loading-sessions.md): several sessions overlaid live, with TDiff in the [Waveform display](../key-functionality/analyse/viewer/displays/waveform.md) |
-| **Calculations** | Engineers took data into Excel for further analysis | [Functions](../key-functionality/analyse/viewer/functions/index.md) written in FDL, C# or MATLAB inside Viewer, plus Simulink models through vTAG |
-| **Extending it** | ActiveX controls running inside ATLAS | Plugins and three APIs: [Display](../developer-resources/atlas/display-api/index.md), [Automation](../developer-resources/atlas/automation-api/index.md) and [SQL Race](../developer-resources/atlas/sql-race/index.md) |
-| **Sharing data** | Printed displays reviewed in the garage | A shared SQL Race database that a whole team can use at once, plus session references and configuration bundles |
-| **Live data** | Remote Data Servers daisy-chained between track, factory and supplier | The same path, plus [Open Streaming](../key-functionality/stream/open_streaming_architecture/index.md), a Kafka-based layer that remote or late-joining consumers can read |
+<div class="grid cards" markdown>
+
+-   __A monitor per view → any monitors you like__
+
+    ---
+
+    Displays dock or float, group into pages, and are saved in workbooks.
+
+-   __Nine displays → more than twenty__
+
+    ---
+
+    Including a 3D Surface Map, a Bing satellite map, video and a steering-wheel PCU Dash simulator. See all the [displays](../key-functionality/analyse/viewer/displays/index.md).
+
+-   __Two laps on paper → compare sets, live__
+
+    ---
+
+    Overlay several sessions, with TDiff in the [Waveform display](../key-functionality/analyse/viewer/displays/waveform.md). Learn how in [Laps, markers and comparing runs](course/laps-and-comparison.md).
+
+-   __Excel on the side → functions inside Viewer__
+
+    ---
+
+    Write [functions](../key-functionality/analyse/viewer/functions/index.md) in FDL, C# or MATLAB, and run Simulink models through vTAG.
+
+-   __ActiveX controls → plugins and three APIs__
+
+    ---
+
+    The [Display](../developer-resources/atlas/display-api/index.md), [Automation](../developer-resources/atlas/automation-api/index.md) and [SQL Race](../developer-resources/atlas/sql-race/index.md) APIs.
+
+-   __Printouts in the garage → one shared database__
+
+    ---
+
+    A SQL Race database a whole team can use at once, plus session references and configuration bundles.
+
+-   __Daisy-chained servers → and Open Streaming__
+
+    ---
+
+    The same live path, plus a [Kafka-based layer](../key-functionality/stream/open_streaming_architecture/index.md) that remote or late-joining consumers can read.
+
+</div>
 
 ## Where to go next
 
 - [Start here](index.md): the ecosystem today, and a short course for new users.
 - [ATLAS Viewer](../key-functionality/analyse/viewer/index.md): the current application.
 - [Release notes](../blog/index.md): what we are changing now.
+
+[^zucker]: [Formula1.com: how Niki Lauda's final title-winning car, the 1984 McLaren MP4/2, changed F1](https://www.formula1.com/en/latest/article/how-niki-laudas-final-title-winning-car-the-1984-mclaren-mp4-2-changed-f1.7vGiQXahtUbaKo70ZJ8OGQ). Motion Applied's own [history page](https://motionapplied.com/about/our-history/) names the Mercedes-Benz Group C programme as our first large contract.
+[^c291]: [Motor Sport, July 1991: Under scrutiny, Mercedes C291](https://www.motorsportmagazine.com/archive/article/july-1991/34/under-scrutiny-mercedes-c291/?v=7516fd43adaa).
+[^iracing]: [iRacing, 2011: iRacing partners with McLaren Electronic Systems](https://www.iracing.com/iracing-partners-with-mclaren-electronic-systems-for-online-racing-data-analysis/).
+[^mp48]: [Motor Sport, May 2024](https://www.motorsportmagazine.com/archive/article/may-2024/70/sennas-underdog-f1-success-the-special-talent-and-nimble-mclaren-that-won-five-times-in-1993/) on McLaren's 1992 and 1993 seasons, and [McLaren heritage: the 1993 MP4/8](https://www.mclaren.com/racing/heritage/formula-1/cars/1993-formula-1-mclaren-mp4-8/).
+[^ecu2000]: [Electronics Weekly: embedded processing at McLaren](https://www.electronicsweekly.com/market-sectors/embedded-systems/embedded-processing-at-mclaren-2012-06/).
+[^tag310]: [New Electronics: developing an engine control unit for all F1 teams](https://www.newelectronics.co.uk/content/features/racing-ahead-developing-an-engine-control-unit-for-all-f1-teams).
+[^microsoft]: [Microsoft, 11 December 2006: Microsoft and McLaren Electronic Systems win the FIA contract](https://news.microsoft.com/source/2006/12/11/microsoft-and-mclaren-electronic-systems-win-race-to-provide-electronic-technology-to-the-fia-formula-one-world-championship-for-2008-to-2010/).
+[^f1dict]: [formula1-dictionary: F1 ECU and the ATLAS architecture](https://www.formula1-dictionary.net/f1-ecu-electronic-control-unit/).
+[^scarbs]: [ScarbsF1, 2011: Telemetry and data analysis introduction](https://scarbsf1.wordpress.com/2011/08/18/telemetry-and-data-analysis-introduction/).
+[^sheet]: [ATLAS product sheet](https://www.scribd.com/document/480702902/ATLAS-pdf), undated.
+[^fe]: [Motorsport.com, 2013: McLaren, the power behind Formula E](https://www.motorsport.com/formula-e/news/mclaren-the-power-behind-formula-e/440037/).
+[^guide]: [McLaren ATLAS iRacing set-up guide](https://www.scribd.com/document/352980261/McLaren-ATLAS-iRacing-pdf), which installs into an "ATLAS 9" folder.
+[^atlas10]: [ATLAS 10 support section](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/sections/360000858514-ATLAS-10).
+[^plugins]: [Motion Applied: ATLAS](https://www.motionapplied.com/products/ATLAS) and [Writing a Display Plugin](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115001760613-Writing-a-Display-Plugin).
+[^racetech]: [Race Tech, 2019: Five F1 tech facts every fan should know](https://www.racetechmag.com/article/five-f1-tech-facts-every-fan-should-know/).
+[^compare]: [ATLAS 10 Automation API notes](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/360009038334-ATLAS-10-Automation-API), which list compare sets as ATLAS 10-only functionality.
