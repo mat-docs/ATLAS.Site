@@ -7,7 +7,7 @@ ATLAS (Advanced Telemetry Linked Acquisition System) is a modular data ecosystem
 
 ## How ATLAS is organised
 
-ATLAS covers an entire data chain: a unit on the car, a link to the pit, servers, a shared database, calculation services, and a room full of engineers analysing the same data at once. Viewer sits at the end of that chain, and its vocabulary (sessions, sets, recorders, application groups) follows from where the data comes from.
+We built ATLAS to cover an entire data chain: a unit on the car, a link to the pit, servers, a shared database, calculation services, and a room full of engineers analysing the same data at once. Viewer sits at the end of that chain, and its vocabulary (sessions, sets, recorders, application groups) follows from where the data comes from.
 
 You do not need the whole chain to start. A few ideas, taken in order, are enough, and the course below introduces them in that order.
 
