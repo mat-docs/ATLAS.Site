@@ -186,18 +186,20 @@ Since 2022 ATLAS has shipped as dated, numbered releases in the 11.x series, and
 - **AIPEX Racing alliance (December 2025).** Motion Applied will lead the integration of AI algorithms into ATLAS ([Motion Applied](https://www.motionapplied.com/news/strategic-alliance-with-aipex-racing/)).
 - **Standard ECU to 2030.** The FIA selected the company to supply the F1 standard ECU for 2026 to 2030 ([MIA](https://the-mia.com/news/624190/McLaren-Applied-extends-SECU-contract-with-FIA-until-2030.htm)).
 
-## What has lasted
+## How far it has come
 
-ATLAS Viewer now offers [more than 20 display types](../key-functionality/analyse/viewer/displays/index.md), including a 3D Surface Map, a Bing satellite map of the car's GPS position, a steering-wheel PCU Dash simulator and Numeric readouts with colour thresholds. But the core ideas have barely moved.
+The core ideas from the early screens proved right: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here. Almost everything around them has been rebuilt.
 
-| Idea | 1991 | 2011 (ATLAS 9) | Today |
-| --- | --- | --- | --- |
-| Traces against time or distance | Strip-chart traces | Waveform | [Waveform display](../key-functionality/analyse/viewer/displays/waveform.md), with TDiff for multi-session comparison |
-| Distribution of a parameter | "Histograms" screen | Histogram | Histogram display |
-| Car position on a track map | Circuit map | Circuit | Circuit display |
-| Statistics by lap | Not known | Summary | Summary display |
-| Workbooks of pages of displays | Not known | Workbook, pages, displays | Workbooks, pages and displays, saved with layout and settings |
-| Live data | Telemetry from the trailer | Live telemetry at the track, factory and supplier | Waveform scrolls in real time during live telemetry |
+| | Then | Now |
+| --- | --- | --- |
+| **Screens** | One rack-mounted monitor per view (1991 photograph) | Displays that dock or float on any monitor, grouped into pages and saved in workbooks |
+| **Display types** | Nine on the ATLAS 9 product sheet | [More than 20](../key-functionality/analyse/viewer/displays/index.md), including a 3D Surface Map, a Bing satellite map, video and a steering-wheel PCU Dash simulator |
+| **Comparing runs** | Two laps overlaid and printed for the garage (Monaco, 2011) | [Compare sets](../key-functionality/analyse/viewer/handling-data/sessions/loading-sessions.md): several sessions overlaid live, with TDiff in the [Waveform display](../key-functionality/analyse/viewer/displays/waveform.md) |
+| **Calculations** | Excel alongside ATLAS for further analysis | [Functions](../key-functionality/analyse/viewer/functions/index.md) written in FDL, C# or MATLAB inside Viewer, plus Simulink models through vTAG |
+| **Extending it** | ActiveX controls running inside ATLAS | Plugins and three APIs: [Display](../developer-resources/atlas/display-api/index.md), [Automation](../developer-resources/atlas/automation-api/index.md) and [SQL Race](../developer-resources/atlas/sql-race/index.md) |
+| **Sharing data** | Printouts in the garage | A shared SQL Race database that a whole team can use at once, plus session references and configuration bundles |
+| **Live data** | Remote Data Servers daisy-chained between track, factory and supplier | The same path, plus [Open Streaming](../key-functionality/stream/open_streaming_architecture/index.md), a Kafka-based layer that remote or late-joining consumers can read |
+| **Insight** | Engineers reading the traces | Forward Cursor predictions in 2019, and an alliance in 2025 to bring AI algorithms into ATLAS |
 
 ## Timeline
 
