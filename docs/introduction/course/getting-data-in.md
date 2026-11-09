@@ -69,7 +69,7 @@ The details and the "pick this when" lists are in [Choosing components](../ecosy
 
 ## Getting data out
 
-Right-click a session in the Session Browser and choose **Export Session** to write a complete session to SSN2 (the session must not be loaded in a set).
+To write a complete session to SSN2 from a database, right-click a historical SQL Race session in the Session Browser and choose **Export Session**. The session must not be loaded in a set. This option is not available for live sessions, `.ssn` or `.ssn2` files, or RTA sessions, so use the Export Manager below for those.
 
 For more control, use the **Export Manager** (**Tools > Export Data** or `Ctrl+E`, needs the **CSV/ASCII Export** licence option). You can choose which parameters and laps to export, and the format: **Text**, **MATLAB 1D or 2D**, **SSN2** or **SQL Race Database**. Save configurations and re-run them. See [Export Manager](../../key-functionality/analyse/viewer/handling-data/export/export-manager.md).
 

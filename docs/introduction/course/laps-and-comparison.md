@@ -64,7 +64,9 @@ Load a session into a new set (`Ctrl+Enter`), and point one display at each set 
 
 ### Align runs before you compare them
 
-Two runs rarely start at exactly the same instant. The **Lap Trigger Offset** session property aligns data across sessions. Edit it in the **Session Properties** panel of the Session Browser.
+Two runs rarely start at exactly the same instant. To align runs that start at different times, use the time offsets in the [Timeline](../../key-functionality/analyse/viewer/time-and-position/time.md), or choose **Drag Session Offset** in the Waveform context menu, pick the session and drag its traces until features line up.
+
+The **Lap Trigger Offset** session property is something different. It is a distance in metres from the lap trigger to the Start/Finish line, and it corrects for sessions recorded with the trigger in different physical positions. Edit it in the **Session Properties** panel of the Session Browser.
 
 ### Compare against distance, not just time
 
