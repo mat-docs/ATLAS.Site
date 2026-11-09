@@ -58,15 +58,26 @@ copyright: >
 
 nav:
   - Introduction:
-    - Overview: introduction/index.md
-    - Use Cases in Motorsport and Engineering: introduction/use-cases.md
-    - Eco-System Overview: introduction/eco-system.md
-    - Ecosystem Guide: introduction/ecosystem-guide.md
-    - Roadmap: https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7
-  - Getting Started: 
-    - Quick Start: getting-started/quick-start.md
-    - Security: getting-started/security.md
-    - System Requirements: getting-started/sysreqs.md
+    - Start Here: introduction/index.md
+    - "The Course: ATLAS from Zero":
+      - "1. Coming from Another Tool": introduction/course/other-tools.md
+      - "2. The Five Stages": introduction/course/five-stages.md
+      - "3. Your First Hour in Viewer": introduction/course/first-hour.md
+      - "4. How Viewer Is Organised": introduction/course/viewer-model.md
+      - "5. Laps, Markers and Comparing Runs": introduction/course/laps-and-comparison.md
+      - "6. Channels and Calculated Parameters": introduction/course/channels-and-calculations.md
+      - "7. Getting Your Data In": introduction/course/getting-data-in.md
+      - "8. Beyond Viewer": introduction/course/beyond-viewer.md
+      - "9. Automating It": introduction/course/automating.md
+    - Glossary: introduction/glossary.md
+    - Install and Set Up:
+      - Quick Start: getting-started/quick-start.md
+      - System Requirements: getting-started/sysreqs.md
+      - Security: getting-started/security.md
+    - Background:
+      - Choosing Components: introduction/ecosystem-guide.md
+      - Use Cases in Motorsport and Engineering: introduction/use-cases.md
+      - Roadmap: https://eu-rm.roadmunk.com/rm3/published-depiction/f526bf24afba88d045cf325157d2b09fff7644c7
   - User Guides:
     - Overview: key-functionality/index.md
     - Configuration:

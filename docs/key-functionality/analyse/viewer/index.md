@@ -1,5 +1,8 @@
 # Viewer
 
+!!! tip "New to ATLAS?"
+    ATLAS Viewer is the desktop application within the wider ATLAS ecosystem. For a guided introduction, take the [course](../../../introduction/index.md), or go straight to [Your first hour in Viewer](../../../introduction/course/first-hour.md).
+
 The ATLAS Viewer is a core component of the ATLAS ecosystem, designed for the visualisation and analysis of telemetry data. It enables users to interact with both live and historical data streams, offering real-time insights and deep analytical capabilities tailored for motorsport and other telemetry-intensive applications.
 
 Key features include:

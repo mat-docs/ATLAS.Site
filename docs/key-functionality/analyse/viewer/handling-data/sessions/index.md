@@ -3,7 +3,7 @@ A Session in ATLAS is a structured collection of data samples recorded from a ve
 
 Live, via telemetry (wireless transmission), or
 Offline, via a wirelink (physical connection).
-Each Session is automatically created and stored in an SQL Race database as it is recorded. This database replaces the older .ssn file format used in previous versions of ATLAS. However, legacy .ssn files can still be loaded for analysis and comparison.
+Each Session recorded in ATLAS Viewer is automatically created and stored in an SQL Race database as it is recorded. This database replaces the older .ssn file format used in previous versions of ATLAS. Sessions can also be held as .ssn2 files (for example, exported from a database or written by the Standalone Stream Recorder), and legacy .ssn files can still be loaded for analysis and comparison.
 
 ## Types of Sessions
 There are two primary types of Sessions in ATLAS:
