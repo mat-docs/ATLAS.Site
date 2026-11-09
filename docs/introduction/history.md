@@ -39,7 +39,7 @@ The company behind ATLAS began as TAG Electronic Systems in 1988. It later becam
 
     ---
 
-    Regular 11.x releases, a new company name, and an alliance to bring AI into ATLAS.
+    Regular 11.x releases and a new company name.
 
 </div>
 
@@ -143,17 +143,11 @@ ATLAS 10 replaced ATLAS 9 around 2018 to 2019. The company described it as a new
 
     ATLAS became a user-interface shell in which most functionality comes from display, functionality and recorder plugins ([Motion Applied](https://www.motionapplied.com/products/ATLAS)). Developers could write their own display plugins in .NET ([Writing a Display Plugin](https://mclarenappliedtechnologies.zendesk.com/hc/en-us/articles/115001760613-Writing-a-Display-Plugin)). Today that is the [Display API](../developer-resources/atlas/display-api/index.md).
 
--   :material-chart-timeline-variant: __Forward Cursor__
-
-    ---
-
-    The headline feature used machine learning to predict quantities such as tyre wear, fuel consumption and weather as a session evolved ([Race Tech, 2019](https://www.racetechmag.com/article/five-f1-tech-facts-every-fan-should-know/)).
-
 -   :material-lan-connect: __An open architecture__
 
     ---
 
-    Engineers could feed data from third-party tools into ATLAS 10 for the rest of the team to view alongside other sources (Race Tech, 2019).
+    Engineers could feed data from third-party tools into ATLAS 10 for the rest of the team to view alongside other sources ([Race Tech, 2019](https://www.racetechmag.com/article/five-f1-tech-facts-every-fan-should-know/)).
 
 -   :material-compare: __Compare sets__
 
@@ -179,13 +173,6 @@ Since 2022 ATLAS has shipped as dated, numbered releases in the 11.x series, and
 | August 2025 (11.4.3.239) | Histograms can be copied straight to the clipboard ([release notes](https://atlas.motionapplied.com/blog/2025/08/18/atlas-viewer-release-v1143239/)) |
 | February 2026 (11.5.1.8) | Unit definitions for the TAG-700 and TAG-510 control units ([release notes](https://atlas.motionapplied.com/blog/2026/02/27/atlas-viewer-release-v11518/)) |
 
-### Data and AI
-
-- **KX partnership (August 2023).** Integrating the kdb+ time-series database was presented as a better way of visualising higher-rate data and running AI and ML queries ([eeNews Europe](https://www.eenewseurope.com/en/mclaren-boosts-racecar-industrial-analytics/)).
-- **E1 powerboats.** E1 named McLaren Applied its official data viewing software supplier, with ATLAS available to all teams ([E1](https://www.e1series.com/partner/65_McLaren-Applied)).
-- **AIPEX Racing alliance (December 2025).** Motion Applied will lead the integration of AI algorithms into ATLAS ([Motion Applied](https://www.motionapplied.com/news/strategic-alliance-with-aipex-racing/)).
-- **Standard ECU to 2030.** The FIA selected the company to supply the F1 standard ECU for 2026 to 2030 ([MIA](https://the-mia.com/news/624190/McLaren-Applied-extends-SECU-contract-with-FIA-until-2030.htm)).
-
 ## How far it has come
 
 The core ideas from the early screens proved right: traces against time or distance, a cursor that reads every value, overlaid laps with a time difference, and workbooks of pages of displays. They are all still here. Almost everything around them has been rebuilt.
@@ -199,7 +186,6 @@ The core ideas from the early screens proved right: traces against time or dista
 | **Extending it** | ActiveX controls running inside ATLAS | Plugins and three APIs: [Display](../developer-resources/atlas/display-api/index.md), [Automation](../developer-resources/atlas/automation-api/index.md) and [SQL Race](../developer-resources/atlas/sql-race/index.md) |
 | **Sharing data** | Printouts in the garage | A shared SQL Race database that a whole team can use at once, plus session references and configuration bundles |
 | **Live data** | Remote Data Servers daisy-chained between track, factory and supplier | The same path, plus [Open Streaming](../key-functionality/stream/open_streaming_architecture/index.md), a Kafka-based layer that remote or late-joining consumers can read |
-| **Insight** | Engineers reading the traces | Forward Cursor predictions in 2019, and an alliance in 2025 to bring AI algorithms into ATLAS |
 
 ## Timeline
 
@@ -208,14 +194,11 @@ The core ideas from the early screens proved right: traces against time or dista
     | Date | Event |
     | --- | --- |
     | Feb 2026 | ATLAS Viewer 11.5.1.8 adds TAG-700 and TAG-510 unit definitions |
-    | Dec 2025 | AIPEX Racing alliance to bring AI into ATLAS |
     | Aug 2025 | Histogram copy-to-clipboard (11.4.3.239) |
     | Jul to Aug 2025 | McLaren Applied becomes Motion Applied |
-    | Aug 2023 | KX kdb+ partnership for higher-rate data and AI/ML queries |
-    | Nov 2022 | FIA selects the company for the F1 standard ECU, 2026 to 2030 |
     | Aug 2022 | Lap markers in the ATLAS interface (11.1.3.367) |
     | Feb 2022 | Custom markers in ATLAS (11.1.1.222) |
-    | Mar 2019 | Race Tech reports teams evaluating ATLAS 10, with Forward Cursor |
+    | Mar 2019 | Race Tech reports teams evaluating ATLAS 10 |
     | 2018 | Provisional ATLAS 10 F1 release schedule |
     | Aug 2011 | Published analysis of an ATLAS 9-era Monaco driver-comparison display |
     | May 2011 | ATLAS Express launched for iRacing members |
