@@ -1,8 +1,11 @@
 # Getting started
 
-## Launching ATLAS
+!!! tip "New to ATLAS?"
+    This page is a reference for launching Viewer and the main window. For a guided walkthrough that loads a session and builds your first workbook, see [Your first hour in Viewer](../../../introduction/course/first-hour.md).
 
-To start ATLAS, if installed in the default location:
+## Launching ATLAS Viewer
+
+To start ATLAS Viewer, if installed in the default location:
 
 * Click Start > All Programs > McLaren Applied Technologies > ATLAS 10 > ATLAS
 
@@ -12,14 +15,14 @@ A new Workbook is opened with a single empty Page by default.
 
 ## Adding a Licence
 
-Use the Licence Manager utility to display and modify licence information. Licence codes may be added after ATLAS has been installed.
+Use the Licence Manager utility to display and modify licence information. Licence codes may be added after ATLAS Viewer has been installed.
 The default location on the Start menu is: All Programs > McLaren Applied Technologies >  Licence Manager.
 
 ![Licence Manager](assets/licence_manager.png)
 
-## Using ATLAS
+## Using ATLAS Viewer
 
-The Main Window of ATLAS is displayed when you start the program and open a Workbook. It is highly customisable but has a number of key features by default as shown below.
+The Main Window of ATLAS Viewer is displayed when you start the program and open a Workbook. It is highly customisable but has a number of key features by default as shown below.
 
 ![Main Window](assets/main-window.png)
 

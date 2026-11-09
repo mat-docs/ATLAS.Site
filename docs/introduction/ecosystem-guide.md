@@ -1,6 +1,6 @@
-# Ecosystem Guide
+# Choosing Components
 
-Not sure where to start? This guide will help you find the right ATLAS components for what you're trying to do. No prior knowledge of the software needed.
+Not sure which ATLAS components you need? This guide helps you choose between options for storage, distribution, calculation and programmatic access. No prior knowledge of the software needed. If you are new to ATLAS, start with [Start here](index.md) and come back when you have a decision to make.
 
 ATLAS is an ecosystem for working with telemetry data - the measurements that come from sensors, controllers, and simulation in high performance engineering environments. 
 

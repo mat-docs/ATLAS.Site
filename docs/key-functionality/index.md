@@ -1,8 +1,12 @@
-ATLAS (Advance Telemetry Linked Acquisition System) is a powerful software platform used to collect, process, and visualise data—especially in high-performance environments like motorsport. But don’t worry: you don’t need to be an engineer to get started. This guide walks you through the essentials.
+# User Guides
 
-!!! tip "Tips for New Users"
+ATLAS (Advanced Telemetry Linked Acquisition System) is a software ecosystem used to collect, process, and visualise data, especially in high-performance environments like motorsport. **ATLAS Viewer** is the desktop application within it that you use to analyse data. This section holds the full reference for each component.
+
+!!! tip "New here?"
+    Start with [Start here](../introduction/index.md), which has a short course taking you from first principles to a working Viewer.
+
     - Start with a simple session file and explore the display tools.
-    - Don’t worry about acronyms, focus on what you want to see or understand.
+    - Don’t worry about acronyms, focus on what you want to see or understand. The [glossary](../introduction/glossary.md) helps.
     - ATLAS is modular, learn one part at a time.
 
 ## Core Concepts
@@ -19,9 +23,9 @@ ATLAS is built around the idea that data flows through a journey—from being ca
 
 ### 2. Getting Started
 
-When you first open ATLAS, you’ll typically:
+When you first open ATLAS Viewer, you’ll typically:
 
-- Load a historical session file (often called an .ssn file).
+- Load a historical session, from a database or a session file (.ssn2, or the older .ssn).
 
 - Build a display to view the data—think of this like setting up your dashboard.
 
@@ -69,12 +73,12 @@ ATLAS gives you full control over how data is displayed:
 
 ## Tools You’ll Encounter
 
-ATLAS includes a set of tools that work together to help you collect, analyse, and visualise data—each one designed for a specific part of your workflow. Here's a quick guide to what they do and when to use them.
+The ATLAS ecosystem includes a set of tools that work together to help you collect, analyse, and visualise data—each one designed for a specific part of your workflow. Here's a quick guide to what they do and when to use them.
 
 | Tool    | What It Does | When to use it |
 | -------- | ------- | ------- |
 | [System Monitor](configure/system-monitor/index.md)  | Manages projects and hardware connections | When programming ECUs |
 | [ADS](stream/ads/index.md) | Connects ATLAS to live data sources  | When streaming live data from a vehicle or simulator |
-| [vTAG](enrich/vps/index.md)  | Runs virtual models and integrates results  | When running Simulink models with real-world data |
+| [vTAG](enrich/vtag/index.md)  | Runs virtual models and integrates results  | When running Simulink models with real-world data |
 | [SQL Race](store/sqlrace/index.md)    | Stores and manages large datasets | For persistent storage |
-| [ATLAS](analyse/viewer/index.md)    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |
+| [ATLAS Viewer](analyse/viewer/index.md)    |  Lets you create custom workbooks to visualise data | For visualising data in different displays |

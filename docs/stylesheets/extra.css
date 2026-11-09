@@ -289,3 +289,67 @@ label[for="__search"] {
   font-weight: 600;
   margin-bottom: 1rem;
 }
+
+/* History page: headline numbers and then/now image row */
+.hist-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin: 1.4rem 0;
+}
+
+.hist-stats div {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+  padding: 0.8rem 0.3rem;
+  text-align: center;
+}
+
+.hist-stats strong {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1.15;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--md-primary-fg-color);
+}
+
+.hist-stats span {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.hist-compare {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1.4rem 0;
+}
+
+.hist-compare figure {
+  margin: 0;
+}
+
+.hist-compare img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.hist-compare figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.hist-compare figcaption strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--md-primary-fg-color);
+}
+
+@media (max-width: 600px) {
+  .hist-stats { grid-template-columns: repeat(2, 1fr); }
+  .hist-compare { grid-template-columns: 1fr; }
+}
