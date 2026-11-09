@@ -39,7 +39,7 @@ The company behind ATLAS began as TAG Electronic Systems in 1988. It later becam
 
     ---
 
-    Regular 11.x releases and a new company name.
+    ATLAS Viewer: more than 20 displays, compare sets and open APIs.
 
 </div>
 
