@@ -187,42 +187,6 @@ The core ideas from the early screens proved right: traces against time or dista
 | **Sharing data** | Printouts in the garage | A shared SQL Race database that a whole team can use at once, plus session references and configuration bundles |
 | **Live data** | Remote Data Servers daisy-chained between track, factory and supplier | The same path, plus [Open Streaming](../key-functionality/stream/open_streaming_architecture/index.md), a Kafka-based layer that remote or late-joining consumers can read |
 
-## Timeline
-
-??? abstract "Key events, newest first"
-
-    | Date | Event |
-    | --- | --- |
-    | Feb 2026 | ATLAS Viewer 11.5.1.8 adds TAG-700 and TAG-510 unit definitions |
-    | Aug 2025 | Histogram copy-to-clipboard (11.4.3.239) |
-    | Jul to Aug 2025 | McLaren Applied becomes Motion Applied |
-    | Aug 2022 | Lap markers in the ATLAS interface (11.1.3.367) |
-    | Feb 2022 | Custom markers in ATLAS (11.1.1.222) |
-    | Mar 2019 | Race Tech reports teams evaluating ATLAS 10 |
-    | 2018 | Provisional ATLAS 10 F1 release schedule |
-    | Aug 2011 | Published analysis of an ATLAS 9-era Monaco driver-comparison display |
-    | May 2011 | ATLAS Express launched for iRacing members |
-    | 2008 | MES standard ECU on every F1 car; ATLAS becomes the paddock standard |
-    | Dec 2006 | MES and Microsoft announced as standard ECU suppliers |
-    | 2005 | TAG-310 first runs |
-    | 2003 | TAG becomes McLaren Electronic Systems |
-    | 2000 | TAG introduces 32-bit PowerPC ECUs and model-based software |
-    | 1993 | McLaren MP4/8 uses TAG engine management, data acquisition and telemetry |
-    | 1991 | TAG telemetry on the Mercedes C291; exhibit dates the first Group C telemetry trailer to this year |
-    | 1988 | TAG Electronic Systems is formed |
-
-## What we do not know yet
-
-Some parts of this story could not be confirmed from published sources and need archival work:
-
-- When was the ATLAS name first used, and was it already on the 1991 trailer?
-- What did ATLAS look like in the 1990s, and when did it move from dedicated monitors to the Windows desktop?
-- When was each display type first introduced? The ATLAS product sheet is undated.
-- Who wrote the original ATLAS software?
-- Exactly when did ATLAS 9 launch, and was there a single official launch of ATLAS 10?
-
-The most promising primary sources are period technical features in Racecar Engineering, Autosport and Motor Sport (1991 to 2000), surviving printed telemetry sheets, and Motion Applied's own archive. If you have material that fills any of these gaps, we would like to hear from you.
-
 ## Where to go next
 
 - [Start here](index.md): the ecosystem today, and a short course for new users.
