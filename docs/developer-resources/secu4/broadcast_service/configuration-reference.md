@@ -23,6 +23,8 @@ how-tos (adding a target, tuning WAL compaction, and so on), see the
 |---|---|---|---|
 | `FeedPort` | int | `9697` | Inbound `RemoteDataFeed` gRPC server port. Validated 1-65535. |
 | `MetricPort` | int | `10010` | Prometheus metrics port. Not validated; a bind failure is caught and logged as a warning at startup — the service continues without metrics. |
+| `DataSource` | string | `""` | Optional override for the session data source. Sanitised to alphanumerics (falls back to `Default`). Must agree with each Bridge's `BridgeConfig.DataSource` when load balancing. |
+| `ConsumerGroups` | object | — | Load-balancing settings. See [ConsumerGroups](#consumergroups). |
 | `Wal` | object | — | Write-ahead log settings. See [Wal](#wal). |
 | `Targets` | object | — | Downstream Bridge targets. See [Targets](#targets). |
 
@@ -92,6 +94,26 @@ The target address is built as `http://{Host}:{Port}`.
   }
 }
 ```
+
+### Consumer group membership
+
+| Property | Type | Default | Notes |
+|---|---|---|---|
+| `ConsumerGroup` | string | `""` | Name of the group this Bridge belongs to. Required, and must match a group in `ConsumerGroups.Groups`, when `ConsumerGroups.Enabled` is `true`. |
+
+## ConsumerGroups
+
+`BroadcastConfig.ConsumerGroups`. Enables load balancing; see
+[Replication and Load Balancing](replication-and-load-balancing.md).
+
+| Property | Type | Default | Notes |
+|---|---|---|---|
+| `Enabled` | bool | `false` | `true` splits each session across the Bridges of a group instead of replicating to each Bridge. |
+| `RegexMatchTimeoutMs` | int | `100` | Validated 1-10000. Timeout for each `SessionIdMatchers` regex evaluation. |
+| `CanonicalBrokerSession.BrokerUrl` | string | `""` | Required when enabled. Kafka bootstrap address of the shared session. |
+| `CanonicalBrokerSession.Domain` | string | `""` | Must match every member Bridge's `StreamApiConfig.Domain`. |
+| `CanonicalBrokerSession.Stream` | string | `""` | Required when enabled. |
+| `Groups` | array | `[]` | At least one when enabled. Each has `Name` (unique) and `SessionIdMatchers` (one or more regexes). A session must match exactly one group. |
 
 ## Retry
 

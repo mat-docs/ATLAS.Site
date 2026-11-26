@@ -58,6 +58,8 @@ See [Getting Started](getting-started.md) for step-by-step instructions for both
 ## Next steps
 
 - [Getting Started](getting-started.md) — run your first instance and confirm it's forwarding data.
+- [Replication and Load Balancing](replication-and-load-balancing.md) — replicate the feed to several
+  Bridges, or split one feed across a group of Bridges, with sample topologies.
 - [Configuration Guide](configuration-guide.md) — task-by-task guidance for adding targets,
   tuning the WAL, and overriding config with environment variables.
 - [Configuration Reference](configuration-reference.md) — the full field-by-field reference for
