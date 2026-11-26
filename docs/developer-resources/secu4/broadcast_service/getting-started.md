@@ -32,7 +32,7 @@ Pick the tab for how you want to run it — each one is self-contained.
             {
               "Name": "downstream-bridge",
               "Host": "downstream-host",
-              "Port": 9697
+              "Port": 9698
             }
           ]
         }
@@ -43,6 +43,13 @@ Pick the tab for how you want to run it — each one is self-contained.
     This configures the inbound feed port, the metrics port, the WAL directory, and a single
     Bridge target to forward to. `Targets.BridgeConfigs` needs at least one entry — Broadcast
     Service won't start with zero targets configured.
+
+    !!! warning "Target `Port` must differ from `FeedPort`, and the Bridge must listen on it"
+        The target `Port` (`9698` above) is where Broadcast Service contacts the Bridge, so it must not be
+        the same as Broadcast Service's `FeedPort` (`9697`) if they run on the same host. Set the downstream
+        Bridge's `BridgeConfig.FeedPort` to this same port (`9698`). Do **not** leave the Bridge on the port
+        ADS uses to reach it: ADS must connect to Broadcast Service's `FeedPort`, and the Bridge must only
+        be reachable by Broadcast Service.
 
     **Start it**
 
@@ -97,13 +104,20 @@ Pick the tab for how you want to run it — each one is self-contained.
             {
               "Name": "downstream-bridge",
               "Host": "downstream-host",
-              "Port": 9697
+              "Port": 9698
             }
           ]
         }
       }
     }
     ```
+
+    !!! warning "Target `Port` must differ from `FeedPort`, and the Bridge must listen on it"
+        The target `Port` (`9698` above) is where Broadcast Service contacts the Bridge, so it must not be
+        the same as Broadcast Service's `FeedPort` (`9697`) if they run on the same host. Set the downstream
+        Bridge's `BridgeConfig.FeedPort` to this same port (`9698`). Do **not** leave the Bridge on the port
+        ADS uses to reach it: ADS must connect to Broadcast Service's `FeedPort`, and the Bridge must only
+        be reachable by Broadcast Service.
 
     !!! warning "Mount a volume for the WAL directory"
         Mount a volume at whatever path you set `Wal.Directory` to — `/data/wal` in the example

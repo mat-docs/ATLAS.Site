@@ -339,6 +339,7 @@ nav:
       - Broadcast Service:
         - Overview: developer-resources/secu4/broadcast_service/index.md
         - Getting Started: developer-resources/secu4/broadcast_service/getting-started.md
+        - Replication and Load Balancing: developer-resources/secu4/broadcast_service/replication-and-load-balancing.md
         - Configuration Guide: developer-resources/secu4/broadcast_service/configuration-guide.md
         - Configuration Reference: developer-resources/secu4/broadcast_service/configuration-reference.md
         - Troubleshooting: developer-resources/secu4/broadcast_service/troubleshooting.md
