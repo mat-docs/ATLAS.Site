@@ -180,6 +180,7 @@ nav:
         - Getting Started: key-functionality/enrich/vtag/getting-started.md
         - Operating vTAG Server: key-functionality/enrich/vtag/operating-vtag.md
         - Live & Historical Usage: key-functionality/enrich/vtag/complete-system.md
+        - BIOS & SM Messages: key-functionality/enrich/vtag/bios-interface.md
       - vTAG Service:
         - Overview: key-functionality/enrich/vtag-service/index.md
         - Getting Started: key-functionality/enrich/vtag-service/getting-started.md

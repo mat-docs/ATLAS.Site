@@ -117,3 +117,5 @@ Custom messages for the BIOS are forwarded on to ATLAS through `vTAG_Client.dll`
 | `10AF 0001` | `07F0 00AF`      | Stop processing                                         |
 | `10AF 0002` | `07F0 00AF xxxx` | Rerun process percentage, where `xxxx` is the percentage in hex |
 | `10AF 0003` | `07F0 00AF`      | Reset                                                   |
+
+For the full list of SM messages the vTAG Server vECU supports, and the interface between the BIOS and your applications, see [vTAG Server BIOS and SM Messages](bios-interface.md).
