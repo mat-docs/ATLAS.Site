@@ -104,3 +104,16 @@ Displays the log, also saved as a standard log file.
     - The Process States and the progress are shown in the 'control' part.
     - When running live, no progress is shown. When running on Wire Link Upload or Historical, you can see the progress.
     - Note that in Historical mode the progress bar sometimes 'holds'  for a few seconds. vTAGServer is then searching for the PGV's (this will be shown in the Status Bar of ATLAS Viewer)
+
+### Custom Messages
+
+Application custom messages are supported using the message ID `1XAF 0000 0000 ......`, where the message can be any length and the `X` identifies the application destination. App number zero is reserved for the BIOS.
+
+Custom messages for the BIOS are forwarded on to ATLAS through `vTAG_Client.dll`. The following messages can be used:
+
+| Message     | Response         | Function                                                |
+|-------------|------------------|---------------------------------------------------------|
+| `10AF 0000` | `07F0 00AF`      | Start processing                                        |
+| `10AF 0001` | `07F0 00AF`      | Stop processing                                         |
+| `10AF 0002` | `07F0 00AF xxxx` | Rerun process percentage, where `xxxx` is the percentage in hex |
+| `10AF 0003` | `07F0 00AF`      | Reset                                                   |
